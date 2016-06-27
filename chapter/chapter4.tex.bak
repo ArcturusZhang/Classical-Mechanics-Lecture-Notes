@@ -1,0 +1,1539 @@
+\chapter{两体问题}
+
+无外力的两质点体系在相互作用下的运动求解问题称为{\heiti 两体问题}。
+
+两体中心力是自然界最普遍、最典型的力场之一。中心力问题研究肇始于行星运动的理论解释，对原子核式模型的确立起了关键性的作用。
+
+\section{两体问题约化与中心力场}
+
+\subsection{Lagrange函数及其分离变量}
+
+在两体系统不受外力作用时，设两个质点之间的相互作用势表示为$V = V(\mbf{r}_1 - \mbf{r}_2)$，则系统的Lagrange函数为
+\begin{equation}
+	L = \frac12 m_1 \dot{\mbf{r}}_1^2 + \frac12 m_2 \dot{\mbf{r}}_2^2 - V(\mbf{r}_1 - \mbf{r}_2)
+\end{equation}
+可见此Lagrange函数无循环坐标，两粒子的运动相互耦合。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(200);
+	//两体问题
+	pair O,m1,m2,C;
+	O = (0,0);
+	m1 = (1,0.8);
+	m2 = (-0.2,0.6);
+	C = interp(m2,m1,0.35);
+	label("$O$",O,S);
+	draw(Label("$\boldsymbol{r}_1$",MidPoint,Relative(E),black),O--m1,blue,Arrow);
+	label("$m_1$",m1,SE);
+	draw(Label("$\boldsymbol{r}_2$",MidPoint,Relative(W),black),O--m2,blue,Arrow);
+	label("$m_2$",m2,W);
+	draw(Label("$\boldsymbol{R}$",MidPoint,Relative(W),black),O--C,red,Arrow);
+	label("$C$",C,N);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W),black),m2--m1,red,Arrow);
+	dot(C);
+	//draw(O--m1+(0.2,0),invisible);
+\end{asy}
+\caption{两体问题}
+\label{两体问题}
+\end{figure}
+
+考虑取质心坐标
+\begin{equation}
+	\mbf{R} = \frac{m_1\mbf{r}_1+m_2\mbf{r}_2}{m_1+m_2}
+\end{equation}
+和两个质点之间的相对位矢
+\begin{equation}
+	\mbf{r} = \mbf{r}_1 - \mbf{r}_2
+\end{equation}
+为广义坐标。记$M = m_1+m_2$为体系的{\heiti 总质量}，$\mu = \dfrac{m_1m_2}{m_1+m_2}$为两体{\heiti 约化质量}，则有
+\begin{equation}
+	\begin{cases}
+		\displaystyle \mbf{r}_1 = \mbf{R} + \frac{m_2}{M}\mbf{r} = \mbf{R} + \frac{\mu}{m_1} \mbf{r} \\[1.5ex]
+		\displaystyle \mbf{r}_2 = \mbf{R} - \frac{m_1}{M}\mbf{r} = \mbf{R} - \frac{\mu}{m_2} \mbf{r}
+	\end{cases}
+	\label{两体问题广义坐标变换}
+\end{equation}
+由此，系统的Lagrange方程可以表示为
+\begin{align}
+	L & = \frac12 m_1 \left(\dot{\mbf{R}}+\frac{\mu}{m_1}\dot{\mbf{r}}\right)^2 + \frac12 m_2 \left(\dot{\mbf{R}}-\frac{\mu}{m_2}\dot{\mbf{r}}\right)^2 - V(\mbf{r}) \nonumber \\
+	& = \frac12 M\dot{\mbf{R}}^2 + \frac12 \mu \dot{\mbf{r}}^2 - V(\mbf{r})
+\end{align}
+由此可以将两体问题等效为两个单体问题——解耦：
+\begin{enumerate}
+	\item 整体运动：质量为$M$的质点的运动。Lagrange函数不显含$\mbf{R}$，故有$\dot{P} = \mbf{0}$，即$M$做惯性运动。
+	\item 相对运动：质量为$\mu$的质点的运动。
+	\begin{equation*}
+		\mu \ddot{\mbf{r}} = -\frac{\pl V}{\pl \mbf{r}}
+	\end{equation*}
+	即$\mu$在势场$V$中的运动。
+\end{enumerate}
+系统的动能$T=T_C+T'$，其中$\displaystyle T_C = \frac12 M\dot{\mbf{R}}^2$为整体动能，$\displaystyle T' = \frac12 \mu\dot{\mbf{r}}^2$为两体内动能。系统的角动量$\mbf{l} = \mbf{l}_C+\mbf{l}'$，其中$\mbf{l}_C = \mbf{R} \times M\dot{\mbf{R}}$为轨道角动量，
+\begin{equation*}
+	\mbf{l}' = \mbf{r}'_1 \times m_1 \dot{\mbf{r}}'_1 + \mbf{r}'_2 \times m_2 \dot{\mbf{r}}'_2 = \mbf{r} \times \mu \dot{\mbf{r}}
+\end{equation*}
+为内秉角动量。
+
+由于两体系统的整体运动即为惯性运动，因此后面的讨论集中于相对运动的求解。
+
+\subsection{两体中心力场}
+
+如果两体相互作用势能只与两个粒子的相对距离$r$有关，而和它们的相对方向无关，即$V(\mbf{r}) = V(r)$，这种势场称为{\heiti 中心势场}。在中心势场中，可有两个质点之间的相互作用力为\footnote{此处由于\begin{equation*} r = \sqrt{x^2+y^2+z^2} \end{equation*}可有\begin{equation*} \frac{\pl r}{\pl \mbf{r}} = \bnb r = \frac{\pl r}{\pl x}{\mbf{e}_1}+\frac{\pl r}{\pl y}{\mbf{e}_2}+\frac{\pl r}{\pl z}{\mbf{e}_3} = \frac{x}{r}\mbf{e}_1 + \frac{y}{r}\mbf{e}_2 + \frac{z}{r}\mbf{e}_3 = \frac{\mbf{r}}{r} \end{equation*}}
+\begin{equation}
+	\mbf{f}_{12} = -\frac{\pl V}{\pl \mbf{r}} = -V'(r) \frac{\pl r}{\pl \mbf{r}} = -V'(r) \frac{\mbf{r}}{r} = -\mbf{f}_{21}
+\end{equation}
+由此，内力做功为
+\begin{equation}
+	\mbf{f}_{12} \cdot \mathrm{d} \mbf{r}_1 + \mbf{f}_{21} \cdot \mathrm{d} \mbf{r}_2 = -V'(r) \mathrm{d} r = -\mathrm{d} V(r)
+\end{equation}
+故$\mu$的运动能量守恒。再考虑内力矩
+\begin{equation}
+	\dot{\mbf{l}}{}' = \mbf{M}' = \mbf{r} \times \left(-V'(r) \frac{\mbf{r}}{r}\right) = \mbf{0}
+\end{equation}
+故$\mu$的运动内秉角动量守恒，而且有$\mbf{r} \perp \mbf{l}'$，即$\mu$在垂直于内秉角动量的固定平面内运动。因此相对运动可用平面极坐标系来描述，即取$r,\theta$为广义坐标，则此时的Lagrange函数为
+\begin{equation}
+	L' = \frac12 \mu \left(\dot{r}^2 + r^2 \dot{\theta}^2\right) - V(r)
+\end{equation}
+
+\section{等效势、运动解与轨道方程}
+
+\subsection{运动方程}
+
+根据相对运动的Lagrange函数
+\begin{equation*}
+	L' = \frac12 \mu \left(\dot{r}^2 + r^2 \dot{\theta}^2\right) - V(r)
+\end{equation*}
+可得运动方程为
+\begin{equation}
+	\begin{cases}
+		\displaystyle \mu \left(\ddot{r}-r\dot{\theta}^2\right) = -V'(r) = f(r) \\
+		\displaystyle \mu \left(r\ddot{\theta} + 2\dot{r} \dot{\theta}\right) = 0
+	\end{cases}
+	\label{两体运动方程}
+\end{equation}
+
+\subsection{守恒定律}
+
+$\theta$为循环坐标，故有$p_\theta$守恒，即
+\begin{equation}
+	p_\theta = \mu r^2 \dot{\theta} = l\,\text{（常数）}
+	\label{内秉角动量守恒}
+\end{equation}
+此即为两体内秉角动量守恒。
+
+Lagrange函数$L'$不显含时间，故
+\begin{equation}
+	H = \frac12 \mu \left(\dot{r}^2+r^2\dot{\theta}^2\right) + V(r) = E\,\text{（常数）}
+	\label{两体内能守恒}
+\end{equation}
+即两体内能守恒。
+
+\subsection{运动解}
+
+由式\eqref{内秉角动量守恒}可得
+\begin{equation*}
+	\dot{\theta} = \frac{l}{\mu r^2}
+\end{equation*}
+代入式\eqref{两体内能守恒}可得
+\begin{equation}
+	\frac12 \mu \dot{r}^2 + \frac{l^2}{2\mu r^2} + V(r) = E
+	\label{相对径向运动}
+\end{equation}
+令
+\begin{equation}
+	U(r) = \frac{l^2}{2\mu r^2} + V(r)
+\end{equation}
+称为{\heiti 等效势}，则式\eqref{相对径向运动}化为
+\begin{equation}
+	\frac12 \mu \dot{r}^2 + U(r) = E
+	\label{两体运动等效为一维运动}
+\end{equation}
+由此，径向运动等效为质点$\mu$在等效势场$U(r)$中的一维运动。等效势中的惯性离心势来自可遗角坐目标共轭动量效应。
+
+在
+\begin{equation}
+	\frac{\mathrm{d} r}{\mathrm{d} t} = \pm \sqrt{\frac{2}{\mu}\big[E-U(r)\big]}
+	\label{r对t的方程}
+\end{equation}
+两边积分可得
+\begin{equation}
+	t-t_0 = \pm \sqrt{\frac{\mu}{2}} \int_{r_0}^r \frac{\mathrm{d} r}{\sqrt{E-U(r)}}
+	\label{t与r的关系}
+\end{equation}
+即有$r = r(t)$。再在
+\begin{equation}
+	\frac{\mathrm{d} \theta}{\mathrm{d} t} = \frac{l}{\mu r^2}
+	\label{theta对t的方程}
+\end{equation}
+两边积分可得
+\begin{equation*}
+	\theta - \theta_0 = \frac{l}{\mu} \int_{t_0}^t \frac{\mathrm{d} t}{\big[r(t)\big]^2}
+\end{equation*}
+即有$\theta = \theta(t)$。由此即得到了全部相对运动的解。
+
+\subsection{轨道方程}
+
+将式\eqref{r对t的方程}与式\eqref{theta对t的方程}相除，可得
+\begin{equation}
+	\frac{\mathrm{d} r}{\mathrm{d} \theta} = \pm \frac{\mu r^2}{l} \sqrt{\frac{2}{\mu}\big[E-U(r)\big]}
+	\label{两体轨道方程（变量为r）}
+\end{equation}
+做变量代换$u=\dfrac{1}{r}$，可得两体问题轨道微分方程
+\begin{equation}
+	\frac{\mathrm{d} u}{\mathrm{d} \theta} = \mp \frac{1}{l} \sqrt{2\mu\left[E - U\left(\frac{1}{u}\right)\right]}
+	\label{两体轨道方程}
+\end{equation}
+对于势场$V(r) = \dfrac{\alpha}{r} + \dfrac{\beta}{r^2}$和$V(r) = \alpha r^2$，式\eqref{两体轨道方程}有解析解。如果$r$的变化区间有两个边界$r_{\mathrm{min}}$和$r_{\mathrm{max}}$，则轨道位于两个圆$r = r_{\mathrm{min}}$和$r = r_{\mathrm{max}}$所限制的环形区域内，但有限运动的轨道并不一定是闭合的。在$r$从$r_{\mathrm{max}}$变化到$r_{\mathrm{min}}$再变回$r_{\mathrm{max}}$的这段时间内，矢径转过了一个角度$\Delta \theta$，根据式\eqref{两体轨道方程}有
+\begin{equation}
+	\Delta \theta = \mp 2\int_{\frac{1}{r_{\mathrm{max}}}}^{\frac{1}{r_{\mathrm{min}}}} \frac{l\mathrm{d} u}{\sqrt{2\mu\left[E-U\left(\dfrac{1}{u}\right)\right]}}
+\end{equation}
+如果$\Delta \theta$与$2\pi$的比值是有理数，轨道是闭合的。一般来说，在任意形式的$V(r)$情况下，轨道闭合的情况是罕见的。在任意形式的$V(r)$情况下，$\Delta \theta$与$2\pi$的比值并不是有理数，因此在一般情况下，有限运动的轨道并不是闭合的。在无限长的时间进程中，轨道无数次经过$r_{\max}$和$r_{\min}$的位置而填满由两个圆所限制的整个圆环，如图\ref{非闭合轨道}所示。只有$V(r) = \dfrac{\alpha}{r}$和$V(r) = \alpha r^2$两种形式的势场中，任意有限运动的轨道都是闭合的。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//进动的非闭合轨道
+	real p,e,omega,rmax,rmin;
+	pair O;
+	path g;
+	O = (0,0);
+	p = 1;
+	e = 0.7;
+	omega = 1-0.06;
+	rmax = p/(1-e);
+	rmin = p/(1+e);
+	pair rotell(real theta){
+		real r = p/(1+e*cos(omega*theta));
+		return (-r*cos(theta),r*sin(theta));
+	}
+	g = graph(rotell,16*pi/omega,-1.25*pi,10000);
+	draw(g);
+	for(real rp=1;rp>0;rp=rp-0.06){
+		add(arrow(g,invisible,FillDraw(black),Relative(rp)));
+	}
+	draw(scale(rmax)*unitcircle,dashed);
+	draw(scale(rmin)*unitcircle,dashed);
+	draw(rotell(15*pi/omega)--1.06*rotell(15*pi/omega));
+	draw(rotell(13*pi/omega)--1.06*rotell(13*pi/omega));
+	draw(Label("$\Delta \theta$",MidPoint,Relative(E)),arc(O,length(1.03*rotell(15*pi/omega)),degrees(rotell(15*pi/omega)),degrees(rotell(13*pi/omega))),Arrows);
+	draw(Label("$r_{\min}$",MidPoint,Relative(E)),O--rmin*dir(-20),Arrow);
+	draw(Label("$r_{\max}$",Relative(0.7),Relative(W)),O--rmax*dir(110),Arrow);
+	draw(O--(rmax+0.01)*dir(90),invisible);
+\end{asy}
+\caption{非闭合轨道}
+\label{非闭合轨道}
+\end{figure}
+
+也可通过系统的运动方程\eqref{两体运动方程}得到轨道满足的微分方程。考虑
+\begin{equation*}
+	\dot{r} = \dot{\theta} \frac{\mathrm{d} r}{\mathrm{d} \theta} = \frac{l}{\mu r^2} \frac{\mathrm{d} r}{\mathrm{d} \theta} = -\frac{l}{\mu} \frac{\mathrm{d} u}{\mathrm{d} \theta}
+\end{equation*}
+所以
+\begin{equation*}
+	\ddot{r} = \dot{\theta} \frac{\mathrm{d} \dot{r}}{\mathrm{d} \theta} = \frac{l}{\mu r^2} \frac{\mathrm{d}}{\mathrm{d} \theta} \left(-\frac{l}{\mu} \frac{\mathrm{d} u}{\mathrm{d} \theta}\right) = -\frac{l^2u^2}{\mu^2} \frac{\mathrm{d}^2 u}{\mathrm{d} \theta^2}
+\end{equation*}
+由此可得
+\begin{equation*}
+	-\frac{l^2u^2}{\mu} \frac{\mathrm{d}^2 u}{\mathrm{d} \theta^2} - \mu r\left(\frac{l}{\mu r^2}\right)^2 = f(r)
+\end{equation*}
+整理可得二阶常微分方程
+\begin{equation}
+	\frac{\mathrm{d}^2 u}{\mathrm{d} \theta^2} + u = -\frac{\mu}{l^2 u^2} f\left(\frac{1}{u}\right)
+	\label{Binet方程}
+\end{equation}
+称为{\heiti Binet方程}。
+
+\subsection{圆轨道的存在性与稳定性}
+
+圆轨道存在，即径向运动处于静止状态，即可以表示为
+\begin{equation*}
+	\frac{\mathrm{d} U}{\mathrm{d} r} \bigg|_{r_m} = 0
+\end{equation*}
+稳定要求在圆轨道上等效势能取极小值，即
+\begin{equation*}
+	\frac{\mathrm{d}^2 U}{\mathrm{d} r^2} \bigg|_{r_m} > 0
+\end{equation*}
+
+\begin{example}
+利用等效势定性分析质点在势场
+\begin{equation*}
+	V(r) = -\frac{\alpha}{r^n},\quad \alpha,n > 0
+\end{equation*}
+中的运动。
+\end{example}
+\begin{solution}
+势场对应的力
+\begin{equation*}
+	f(r) = -V'(r) = -\frac{\alpha n}{r^{n+1}}<0
+\end{equation*}
+即势场为吸引势。则等效势为
+\begin{equation*}
+	U(r) = \frac{l^2}{2\mu r^2} - \frac{\alpha}{r^n}
+\end{equation*}
+径向运动方程
+\begin{equation*}
+	\frac12 \mu \dot{r}^2 + U(r) = E
+\end{equation*}
+需要满足$\dfrac12 \mu \dot{r}^2 \geqslant 0$，即
+\begin{equation*}
+	U(r) \leqslant E
+\end{equation*}
+上面的不等式即决定了质点径向运动的范围。计算
+\begin{equation*}
+	U'(r) = -\frac{l^2}{\mu r^3} + \frac{\alpha n}{r^{n+1}} = 0
+\end{equation*}
+可得$U(r)$的极值点为
+\begin{equation*}
+	r_m = \left(\frac{l^2}{n\alpha \mu}\right)^{\frac{1}{2-n}}
+\end{equation*}
+极值点存在要求$n \neq 2$，因此势场分为$0<n<2$、$n>2$和$n=2$三种情形。
+\begin{enumerate}
+	\item $0<n<2$。当$E=E_0=U_{\mathrm{min}}$时，质点沿圆轨道运动，由于是极小值轨道是稳定的。
+	
+	当$E=E_1<0$时，运动被限制在$r_{\mathrm{min}} \leqslant r \leqslant r_{\mathrm{max}}$的范围内，这种状态称为束缚态。按前面的讨论，束缚态的轨道不一定是闭合的。
+	
+	当$E=E_2=0$时，粒子的运动范围为$r \geqslant r_{\mathrm{min}}$，当$r \to +\infty$时，粒子的速度趋于$0$，轨迹趋于直线。
+	
+	当$E=E_3>0$时，粒子的运动范围同样为$r \geqslant r_{\mathrm{min}}$，但当$r \to +\infty$时，粒子的动能趋于$E$，轨迹趋于直线。这种状态称为散射态。
+
+	\item $n>2$。当$E=E_0=U_{\mathrm{max}}$时，质点沿圆轨道运动，由于是极大值轨道是不稳定的。
+	
+	当$0<E=E_1<U_{\mathrm{max}}$时，粒子只能出现在$r = r_{\mathrm{min}}$的圆内或$r = r_{\mathrm{max}}$的圆外，在中间的环形区域内粒子是禁戒的。若初始时刻粒子在$r = r_{\mathrm{min}}$的圆内，则$\dot{r} < 0$时，粒子被吸引至力心；当$\dot{r}>0$时，粒子先飞到$r = r_{\mathrm{min}}$的圆周上，然后折回到力心。而如果初始时刻粒子在$r = r_{\mathrm{max}}$的圆外，则$\dot{r} < 0$时，粒子先飞到$r = r_{\mathrm{max}}$的圆周上，然后飞向无穷远处；当$\dot{r}>0$时，粒子直接飞翔无穷远处最终成为自由粒子。
+	
+	当$E=E_2=0$时或者$E=E_4<0$时，粒子的运动范围为$r = r_{\mathrm{max}}$的圆内，并最终被力心俘获。
+	
+	当$E=E_3>U_{\mathrm{max}}$时，粒子可在全空间运动。当$\dot{r}>0$时，粒子飞向无穷远最终变为自由粒子；当$\dot{r}<0$时，粒子飞向中心，最后被力心俘获。
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(190);
+	//0<n<2的情形
+	real alpha,beta,n;
+	picture tmp;
+	real fr(real r){
+		return beta/(r**2)-alpha/(r**n);
+	}
+	real f1r(real r){
+		return beta/(r**2);
+	}
+	real f2r(real r){
+		return -alpha/(r**n);
+	}
+	alpha = 0.8*4;
+	beta = 1*4;
+	n = 1;
+	draw(tmp,xscale(0.4)*graph(fr,0.3,18,operator..),linewidth(1bp));
+	draw(tmp,xscale(0.4)*graph(f1r,0.3,18,operator..),dashed);
+	draw(tmp,xscale(0.4)*graph(f2r,0.3,18,operator..),dashed);
+	xequals(tmp,0,black);
+	yequals(tmp,0,black);
+	real rm,r1,r2;
+	rm = (2*beta/alpha/n)**(1/(2-n));
+	draw(tmp,xscale(0.4)*((0,fr(rm))--(rm,fr(rm))--(rm,0)),red);
+	r1 = (beta/alpha)**(1/(2-n))+0.225;
+	r2 = 8;
+	draw(tmp,xscale(0.4)*((0,fr(r2))--(r2,fr(r2))--(r2,0)),green);
+	draw(tmp,xscale(0.4)*((r1,0)--(r1,fr(r1))),green);
+	draw(tmp,xscale(0.4)*((0,fr(1))--(18,fr(1))),blue);
+	draw(tmp,xscale(0.4)*((1,fr(1))--(1,0)),blue);
+	path clp;
+	clp = box((-0.1,-fr(0.7)),(7.2,fr(0.7)));
+	clip(tmp,clp);
+	add(tmp);
+	label("$\dfrac{l^2}{2\mu r^2}$",xscale(0.4)*(2,f1r(2)),NE);
+	label("$V$",xscale(0.4)*(2,f2r(2)),SE);
+	label("$E_0$",(0,fr(rm)),SW,red);
+	label("$E_1$",(0,fr(r2)),W,green);
+	label("$E_2$",(0,0),NW);
+	label("$E_3$",(0,fr(1)),W,blue);
+	label("$r$",(7.2,0),E);
+	label("$U$",(0,fr(0.7)),W);
+\end{asy}
+\caption{$0<n<2$的情形}
+\label{0<n<2的情形}
+\end{minipage}
+\hspace{0.7cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(190);
+	//n>2的情形
+	real alpha,beta,n;
+	picture tmp;
+	real fr(real r){
+		return beta/(r**2)-alpha/(r**n);
+	}
+	real f1r(real r){
+		return beta/(r**2);
+	}
+	real f2r(real r){
+		return -alpha/(r**n);
+	}
+	alpha = 0.8*4;
+	beta = 1*4;
+	n = 3;
+	draw(tmp,xscale(0.8)*graph(fr,0.3,18,operator..),linewidth(1bp));
+	draw(tmp,xscale(0.8)*graph(f1r,0.3,18,operator..),dashed);
+	draw(tmp,xscale(0.8)*graph(f2r,0.3,18,operator..),dashed);
+	xequals(tmp,0,black);
+	yequals(tmp,0,black);
+	real rm,r1,r2,r3,E3;
+	rm = (2*beta/alpha/n)**(1/(2-n));
+	draw(tmp,xscale(0.8)*((0,fr(rm))--(rm,fr(rm))--(rm,0)),red);
+	r1 = (beta/alpha)**(1/(2-n))+0.069;
+	r2 = 2.5;
+	draw(tmp,xscale(0.8)*((0,fr(r2))--(18,fr(r2))),green);
+	draw(tmp,xscale(0.8)*((r2,fr(r2))--(r2,0)),green);
+	draw(tmp,xscale(0.8)*((r1,0)--(r1,fr(r1))),green);
+	r3 = 0.7;
+	draw(tmp,xscale(0.8)*((0,fr(r3))--(r3,fr(r3))--(r3,0)),orange);
+	E3 = 1.8;
+	draw(tmp,xscale(0.8)*((0,E3)--(18,E3)),blue);
+	path clp;
+	clp = box((-0.1,-fr(0.6)),(7.2,fr(0.6)));
+	clip(tmp,clp);
+	add(tmp);
+	label("$\dfrac{l^2}{2\mu r^2}$",xscale(0.8)*(1.3,f1r(1.3)),NE);
+	label("$V$",xscale(0.8)*(1.3,f2r(1.3)),SE);
+	label("$E_0$",(0,fr(rm)),W,red);
+	label("$E_1$",(0,fr(r2)),W,green);
+	label("$E_2$",(0,0),W);
+	label("$E_3$",(0,E3),W,blue);
+	label("$E_4$",(0,fr(r3)),W,orange);
+	label("$r$",(7.2,0),E);
+	label("$U$",(0,abs(fr(0.6))),W);
+	//draw((0,0)--(7.9,0),invisible);
+\end{asy}
+\caption{$n>2$的情形}
+\label{n>2的情形}
+\end{minipage}
+
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(190);
+	//n=2的情形1
+	real alpha,beta,n;
+	picture tmp;
+	real fr(real r){
+		return beta/(r**2)-alpha/(r**n);
+	}
+	real f1r(real r){
+		return beta/(r**2);
+	}
+	real f2r(real r){
+		return -alpha/(r**n);
+	}
+	alpha = 1.6*1.7;
+	beta = 1*1.7;
+	n = 2;
+	draw(tmp,graph(fr,0.3,18,operator..),linewidth(1bp));
+	draw(tmp,graph(f1r,0.3,18,operator..),dashed);
+	draw(tmp,graph(f2r,0.3,18,operator..),dashed);
+	xequals(tmp,0,black);
+	yequals(tmp,0,black);
+	real E3,r1;
+	r1 = 1.5;
+	draw(tmp,(r1,0)--(r1,fr(r1))--(0,fr(r1)),green);
+	E3 = 1.1;
+	draw(tmp,(0,E3)--(18,E3),blue);
+	path clp;
+	clp = box((-0.1,-fr(0.6)),(6,fr(0.6)));
+	clip(tmp,clp);
+	add(tmp);
+	label("$\dfrac{l^2}{2\mu r^2}$",(1,f1r(1)),NE);
+	label("$V$",(1.3,f2r(1.3)),SE);
+	label("$E_1$",(0,fr(r1)),W,green);
+	label("$E_2$",(0,0),W);
+	label("$E_3$",(0,E3),W,blue);
+	label("$r$",(6,0),E);
+	label("$U$",(0,abs(fr(0.6))),W);
+	//draw((0,0)--(6.9,0),invisible);
+\end{asy}
+\caption{$n=2$的情形（$\alpha>\dfrac{l^2}{2\mu}$）}
+\label{n=2的情形1}
+\end{minipage}
+\hspace{0.7cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(190);
+	//n=2的情形2
+	real alpha,beta,n;
+	picture tmp;
+	real fr(real r){
+		return beta/(r**2)-alpha/(r**n);
+	}
+	real f1r(real r){
+		return beta/(r**2);
+	}
+	real f2r(real r){
+		return -alpha/(r**n);
+	}
+	alpha = 1*1.7;
+	beta = 1.6*1.7;
+	n = 2;
+	draw(tmp,graph(fr,0.3,18,operator..),linewidth(1bp));
+	draw(tmp,graph(f1r,0.3,18,operator..),dashed);
+	draw(tmp,graph(f2r,0.3,18,operator..),dashed);
+	xequals(tmp,0,black);
+	yequals(tmp,0,black);
+	real r1;
+	r1 = 1;
+	draw(tmp,(r1,0)--(r1,fr(r1))--(0,fr(r1)),green);
+	path clp;
+	clp = box((-0.1,-fr(0.6)),(6,fr(0.6)));
+	clip(tmp,clp);
+	add(tmp);
+	label("$\dfrac{l^2}{2\mu r^2}$",(1.2,f1r(1.2)),NE);
+	label("$V$",(1.3,f2r(1.3)),SE);
+	label("$E_1$",(0,fr(r1)),W,green);
+	label("$E_2$",(0,0),W);
+	label("$r$",(6,0),E);
+	label("$U$",(0,abs(fr(0.6))),W);
+	//draw((0,0)--(6.9,0),invisible);
+\end{asy}
+\caption{$n=2$的情形（$\alpha<\dfrac{l^2}{2\mu}$）}
+\label{n=2的情形2}
+\end{minipage}
+\end{figure}
+	\item $n=2$而且$\alpha>\dfrac{l^2}{2\mu}$。当$E=E_1<0$时，粒子只能出现在$r = r_{\mathrm{max}}$的圆内，并最终被力心俘获。
+	
+	当$E=E_2=0$时，粒子可在全空间运动，最终粒子将飞向无穷远处且趋于静止。
+	
+	当$E=E_3>0$时，粒子可在全空间运动，最终将飞向无穷远处最终称为自由粒子。
+	\item $n=2$而且$\alpha<\dfrac{l^2}{2\mu}$。在这种情形下，只能$E>0$，此时粒子只能出现在$r = r_{\mathrm{max}}$的圆外，最终飞向无穷远而称为自由粒子。
+\end{enumerate}
+\end{solution}
+
+\begin{example}
+求势场
+\begin{equation*}
+	V(r) = \alpha r^n
+\end{equation*}
+存在稳定圆轨道的条件。
+\end{example}
+\begin{solution}
+等效势为
+\begin{equation*}
+	U(r) = \frac{l^2}{2\mu r^2} + \alpha r^n
+\end{equation*}
+存在圆轨道要求
+\begin{equation*}
+	U'(r_m) = -\frac{l^2}{\mu r_m^3} + \alpha n r_m^{n-1} = 0
+\end{equation*}
+即有
+\begin{equation*}
+	\alpha n r_m^{n+2} = \frac{l^2}{\mu}
+\end{equation*}
+由此即要求$\alpha n>0$。此时
+\begin{equation*}
+	f(r) = -V'(r) = -\alpha n r^{n-1} < 0
+\end{equation*}
+即存在圆轨道要求势场为吸引力场。下面考虑稳定性，稳定性要求
+\begin{equation*}
+	U''(r_m) = \frac{1}{r_m^4} \left[(n-1)\alpha n r_m^{n+2} + \frac{3l^2}{\mu}\right] = (n+2) \frac{l^2}{\mu r_m^4} > 0
+\end{equation*}
+即圆轨道稳定要求$n>-2$。
+
+综上，存在稳定圆轨道的条件为$\alpha>0,n>0$或者$\alpha<0,-2<n<0$。
+\end{solution}
+
+\section{距离反比势场与Kepler问题}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//距离反比势场势能曲线图
+	real alpha,beta,xmax,ymax;
+	picture tmp;
+	real fr(real r){
+		return beta/(r**2)+alpha/r;
+	}
+	real f1r(real r){
+		return beta/(r**2);
+	}
+	real f2r(real r){
+		return alpha/r;
+	}
+	alpha = -2.5*4;
+	beta = 2*4;
+	ymax = abs(fr(0.53));
+	draw(tmp,graph(fr,0.3,18,operator..),linewidth(1bp)+red,Label("引力等效势"));
+	draw(tmp,graph(f2r,0.3,18,operator..),dashed+red,Label("引力势"));
+	alpha = 2.5*4;
+	draw(tmp,graph(fr,0.3,18,operator..),linewidth(1bp)+blue,Label("斥力等效势"));
+	draw(tmp,graph(f2r,0.3,18,operator..),dashed+blue,Label("斥力势"));
+	draw(tmp,graph(f1r,0.3,18,operator..),dashed,Label("离心势"));
+	xequals(tmp,0,black);
+	yequals(tmp,0,black);
+	path clp;
+	xmax = 15;
+	clp = box((-0.1,-2/3*ymax),(xmax,ymax));
+	clip(tmp,clp);
+	add(tmp);
+	label("$r$",(xmax,0),E);
+	label("$U$",(0,ymax),W);
+	fill(box((xmax+0.1,ymax-0.2),(xmax-7.4,ymax-5.8)),black);
+	add(legend(),(xmax,ymax),SW,UnFill);
+	//draw((0,0)--(xmax+0.9,0),invisible);
+\end{asy}
+\caption{距离反比势场势能曲线图}
+\label{距离反比势场势能曲线图}
+\end{figure}
+
+距离反比势可以表示为
+\begin{equation*}
+	V(r) = \frac{\alpha}{r},\quad f(r) = -V'(r) = \frac{\alpha}{r^2}
+\end{equation*}
+此势场当$\alpha<0$时表现为引力场，当$\alpha>0$时表现为斥力场。其等效势为
+\begin{equation}
+	U(r) = \frac{l^2}{2\mu r^2} + \frac{\alpha}{r}
+\end{equation}
+对于引力的情形，在
+\begin{equation}
+	r_m = -\frac{l^2}{\mu \alpha}
+\end{equation}
+时，等效势有极小值
+\begin{equation}
+	U_{\mathrm{min}} = -\frac{\mu \alpha^2}{2l^2}
+\end{equation}
+对于斥力的情形，等效势没有极值，仍记
+\begin{equation*}
+	r_m = -\frac{l^2}{\mu \alpha}
+\end{equation*}
+
+当$\alpha<0$时（即引力情形）称为{\bf Kepler问题}。
+
+\subsection{轨道方程}
+
+对于Kepler问题，Binet方程\eqref{Binet方程}为
+\begin{equation}
+	\frac{\mathrm{d}^2 u}{\mathrm{d} \theta^2} + u = \frac{1}{r_m}
+	\label{Kepler问题的轨道微分方程}
+\end{equation}
+方程\eqref{Kepler问题的轨道微分方程}的通解为
+\begin{equation*}
+	u = \frac{1}{r_m} + A\cos(\theta-\theta_0)
+\end{equation*}
+即
+\begin{equation*}
+	r = \frac{r_m}{1+Ar_m \cos (\theta-\theta_0)}
+\end{equation*}
+适当选取极轴的方向，可以使得$\theta_0=0$，此时轨道方程为
+\begin{equation*}
+	r = \frac{r_m}{1+Ar_m \cos \theta}
+\end{equation*}
+记
+\begin{equation*}
+	p = |r_m| = \frac{l^2}{\mu |\alpha|},\quad e = Ap
+\end{equation*}
+其中$p$为{\heiti 半通径}，$e$为{\heiti 离心率}，由此可得Kepler问题的轨道方程为
+\begin{equation}
+	r = \frac{p}{1+e\cos \theta}
+	\label{Kepler问题的轨道方程}
+\end{equation}
+% 当$\alpha>0$时（斥力），轨道方程为\footnote{在斥力的极坐标方程中，需要允许极径取负值。}
+% \begin{equation}
+	% r = \frac{p}{e\cos \theta-1}
+% \end{equation}
+% 首先考虑引力的情形，
+根据轨道方程可得质点与力心的最短距离为
+\begin{equation*}
+	r_{\mathrm{min}} = \frac{p}{1+e}
+\end{equation*}
+此点一般称为{\heiti 近日点}。在近日点有$\dot{r}\big|_{r=r_{\mathrm{min}}} = 0$，因此$r_{\mathrm{min}}$满足
+\begin{equation*}
+	\frac{l^2}{2\mu r_{\mathrm{min}}^2} + \frac{\alpha}{r_{\mathrm{min}}} = E
+\end{equation*}
+由此可得离心率与系统总能量的关系
+\begin{equation*}
+	e = \sqrt{1+\frac{2El^2}{\mu\alpha^2}} = \sqrt{1-\frac{E}{U_{\mathrm{min}}}}
+\end{equation*}
+% 对于斥力的情形，根据轨道方程可得质点与原点的最短距离为\footnote{斥力情形下，轨道为双曲线的右支，此时矢径取负值}
+% \begin{equation*}
+	% r_{\mathrm{min}} = -\frac{p}{1+e}
+% \end{equation*}
+% 此时同样有
+% \begin{equation*}
+	% \frac{l^2}{2\mu r_{\mathrm{min}}^2} + \frac{\alpha}{r_{\mathrm{min}}} = E
+% \end{equation*}
+% 由此可得斥力情形下离心率与系统总能量的关系
+% \begin{equation*}
+	% e = \sqrt{1+\frac{2El^2}{\mu\alpha^2}}
+% \end{equation*}
+% 综上，无论对于引力还是斥力场，都有
+% \begin{equation}
+	% p = |r_m| = \frac{l^2}{\mu |\alpha|},\quad e = \sqrt{1+\frac{2El^2}{\mu\alpha^2}}
+% \end{equation}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(250);
+	//各种情形下轨道的形状
+	pair O;
+	real p,e[],ee,xmax,ymax;
+	picture tmp;
+	O = (0,0);
+	real r(real theta){
+		return p/(1+ee*cos(theta));
+	}
+	real nr(real theta){
+		return p/(ee*cos(theta)-1);
+	}
+	pair xy(real theta){
+		return (r(theta)*cos(theta),r(theta)*sin(theta));
+	}
+	pair nxy(real theta){
+		return (nr(theta)*cos(theta),nr(theta)*sin(theta));
+	}
+	p = 1;
+	e[1] = 0.4;
+	ee = e[1];
+	draw(tmp,graph(xy,0,2*pi),green+linewidth(1bp));
+	e[2] = 1;
+	ee = e[2];
+	draw(tmp,graph(xy,-0.7*pi,0.7*pi),linewidth(1bp));
+	e[3] = 2.5;
+	ee = e[3];
+	draw(tmp,graph(xy,-0.6*pi,0.6*pi),blue+linewidth(1bp));
+	//draw(tmp,graph(nxy,-0.34*pi,0.34*pi),purple+linewidth(1bp));
+	draw(tmp,scale(p)*unitcircle,red+linewidth(1bp));
+	draw(tmp,(-100,0)--(100,0));
+	draw(tmp,(0,-100)--(0,100));
+	label(tmp,"$p$",(0,p/2),W);
+	dot(tmp,O);
+	xmax = p/(1-e[1])*1.1;
+	ymax = xmax;
+	path clp = box((-xmax,-ymax),(xmax,ymax));
+	clip(tmp,clp);
+	add(tmp);
+	ee = e[1];
+	label("$U_{\mathrm{min}}<E<0$",xy(-0.7*pi),SW,green);
+	label("$E=0$",(-0.7*xmax,ymax),N);
+	label("$E>0$",(-0.25*xmax,ymax),N,blue);
+	//label("$\alpha<0$",(-0.25*xmax,-ymax),S,blue);
+	label("$E>0$",(0.7*xmax,ymax),N,purple);
+	//label("$\alpha>0$",(0.7*xmax,-ymax),S,purple);
+	label("$E=U_{\mathrm{min}}$",relpoint(scale(p)*unitcircle,0.06),E,red);
+\end{asy}
+\caption{各种情形下轨道的形状}
+\label{各种情形下轨道的形状}
+\end{figure}
+
+%在斥力的情形下，$\alpha>0$，$E>0$，则有$e>1$，轨道为双曲线。
+
+在引力的情形下，$\alpha<0$，按照体系能量的区别可以分为以下4种情况：
+\begin{enumerate}
+	\item 当$E>0$时，$e>1$，轨道为双曲线；
+	\item 当$E=0$时，$e=1$，轨道为拋物线；
+	\item 当$U_{\mathrm{min}}<E<0$时，$0<e<1$，轨道为椭圆；
+	\item 当$E=U_{\mathrm{min}}$时，$e=0$，轨道为圆。
+\end{enumerate}
+各种情形下，轨道的形状如图\ref{各种情形下轨道的形状}所示。
+
+当质点沿着轨道运动时，坐标对时间的依赖关系可以用式\eqref{t与r的关系}得到。它可以表示为下面所述的一种方便的参数形式。
+
+首先研究椭圆轨道。对椭圆轨道，质点与力心的最大距离为
+\begin{equation*}
+	r_{\max} = \frac{p}{1-e}
+\end{equation*}
+此点一般称为{\bf 远日点}。因此可有椭圆的半长轴为
+\begin{equation*}
+	a = \frac12 \left(\frac{p}{1-e}+\frac{p}{1+e}\right) = \frac{\alpha}{2E} > 0
+\end{equation*}
+由此，根据式\eqref{t与r的关系}可得
+\begin{align*}
+	t-t_0 & = \sqrt{\frac{\mu}{2}} \int_{r_{\min}}^r \frac{\mathrm{d}r}{\sqrt{E-U(r)}} = \sqrt{\frac{\mu}{2|E|}} \int_{r_{\min}}^r \frac{r\mathrm{d}r}{\sqrt{-r^2-\dfrac{\alpha}{|E|}r-\dfrac{l^2}{2\mu|E|}}} \\
+	& = \sqrt{\frac{\mu a}{|\alpha|}} \int_{r_{\min}}^r \frac{r\mathrm{d}r}{\sqrt{a^2e^2-(r-a)^2}}
+\end{align*}
+利用变换
+\begin{equation*}
+	r-a = -ae\cos \xi
+\end{equation*}
+可得
+\begin{equation*}
+	t-t_0 = \sqrt{\frac{\mu a^3}{|\alpha|}} \int_0^\xi (1-e\cos\xi) \mathrm{d}\xi = \sqrt{\frac{\mu a^3}{|\alpha|}} (\xi-e\sin \xi)
+\end{equation*}
+如果将近日点的时刻取为$t_0=0$，可得{\bf Kepler方程}
+\begin{equation}
+	t = \sqrt{\frac{\mu a^3}{|\alpha|}} (\xi-e\sin \xi)
+	\label{Kepler方程}
+\end{equation}
+此时即可有关于到力心距离的参数方程
+\begin{equation}
+\begin{cases}
+	r=a(1-e\cos \xi) \\
+	t = \sqrt{\dfrac{\mu a^3}{|\alpha|}} (\xi-e\sin \xi)
+\end{cases}
+\end{equation}
+再结合轨道方程\eqref{Kepler问题的轨道方程}，可得轨道的参数方程
+\begin{equation}
+\begin{cases}
+	x = r\cos \theta = a(\cos \xi-e) \\
+	y = \sqrt{r^2-x^2} = a\sqrt{1-e^2}\sin \xi \\
+	t = \sqrt{\dfrac{\mu a^3}{|\alpha|}} (\xi-e\sin \xi)
+\end{cases}
+\end{equation}
+沿着椭圆轨道运动一整圈即对应着参数$\xi$从$0$到$2\pi$，其中参数$\xi$称为椭圆的{\bf 圆心角}，其几何意义如图\ref{圆心角的几何意义}所示。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(250);
+	//圆心角的几何意义
+	real x,a,b,c,theta,r;
+	a = 2;
+	b = 1.6;
+	x = 2.5;
+	c = sqrt(a^2-b^2);
+	draw((-x,0)--(x,0));
+	draw((0,-x)--(0,x));
+	draw(xscale(a)*yscale(b)*unitcircle,linewidth(0.8bp));
+	draw(scale(a)*unitcircle);
+	dot((c,0));
+	theta = 30;
+	draw((0,0)--a*dir(theta));
+	pair P;
+	P = intersectionpoint(xscale(a)*yscale(b)*unitcircle,a*dir(theta)--(a*dir(theta).x,0));
+	draw((c,0)--P);
+	draw(a*dir(theta)--(a*dir(theta).x,0));
+	label("$p$",(P+(a*dir(theta).x,0))/2,E);
+	r = 0.3;
+	draw(Label("$\xi$",MidPoint,Relative(E)),arc((0,0),r,0,theta));
+	r = 0.15;
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc((c,0),r,0,degrees(P-(c,0))));
+	label("$a$",(a,0),SE);
+	label("$b$",(0,b),SW);
+	label("$ae$",(c,0),S);
+\end{asy}
+\caption{圆心角的几何意义}
+\label{圆心角的几何意义}
+\end{figure}
+
+对于双曲线轨道，同样有双曲线的半轴长为
+\begin{equation*}
+	a = \frac{|\alpha|}{2E}
+\end{equation*}
+同样，根据式\eqref{t与r的关系}可得
+\begin{align*}
+	t-t_0 & = \sqrt{\frac{\mu}{2}} \int_{r_{\min}}^r \frac{\mathrm{d}r}{\sqrt{E-U(r)}} = \sqrt{\frac{\mu}{2E}} \int_{r_{\min}}^r \frac{r\mathrm{d}r}{\sqrt{-r^2-\dfrac{\alpha}{E}r-\dfrac{l^2}{2\mu E}}} \\
+	& = \sqrt{\frac{\mu a}{|\alpha|}} \int_{r_{\min}}^r \frac{r\mathrm{d}r}{\sqrt{(r+a)^2-a^2e^2}}
+\end{align*}
+利用变换
+\begin{equation*}
+	r+a = ae\cosh \xi
+\end{equation*}
+可得
+\begin{equation*}
+	t-t_0 = \sqrt{\frac{\mu a^3}{|\alpha|}} \int_0^\xi (e\cosh\xi-1) \mathrm{d}\xi = \sqrt{\frac{\mu a^3}{|\alpha|}} (e\sinh \xi-\xi)
+\end{equation*}
+如果将近日点的时刻取为$t_0=0$，可得
+\begin{equation}
+	t = \sqrt{\frac{\mu a^3}{|\alpha|}} (e\sinh \xi-\xi)
+\end{equation}
+此时即可有关于到力心距离的参数方程
+\begin{equation}
+\begin{cases}
+	r=a(e\cosh \xi-1) \\
+	t = \sqrt{\dfrac{\mu a^3}{|\alpha|}} (e\sinh \xi-\xi)
+\end{cases}
+\end{equation}
+再结合轨道方程\eqref{Kepler问题的轨道方程}，可得轨道的参数方程
+\begin{equation}
+\begin{cases}
+	x = r\cos \theta = a(e-\cosh \xi) \\
+	y = \sqrt{r^2-x^2} = a\sqrt{e^2-1}\sinh \xi \\
+	t = \sqrt{\dfrac{\mu a^3}{|\alpha|}} (e\sinh \xi-\xi)
+\end{cases}
+\end{equation}
+其中参数$\xi$的取值范围为$(-\infty,+\infty)$，近日点即对应$\xi=0$。
+
+对于抛物线轨道，根据式\eqref{t与r的关系}可得
+\begin{align*}
+	t-t_0 & = \sqrt{\frac{\mu}{2}} \int_{r_{\min}}^r \frac{\mathrm{d}r}{\sqrt{E-U(r)}} = \sqrt{\frac{\mu}{2|\alpha|}} \int_{r_{\min}}^r \frac{r\mathrm{d}r}{\sqrt{r-\dfrac{l^2}{2\mu |\alpha|}}} \\
+	& = \sqrt{\frac{\mu}{2|\alpha|}} \int_{r_{\min}}^r \frac{r\mathrm{d}r}{\sqrt{r-\dfrac{p}{2}}}
+\end{align*}
+利用变换
+\begin{equation*}
+	r = \frac{p}{2}(1+\eta^2)
+\end{equation*}
+可得
+\begin{equation*}
+	t-t_0 = \sqrt{\frac{\mu p^3}{|\alpha|}} \int_0^\eta \frac12(1+\eta^2) \mathrm{d}\eta = \sqrt{\frac{\mu p^3}{|\alpha|}} \frac{\eta}{2}\left(1+\frac{\eta^3}{3}\right)
+\end{equation*}
+如果将近日点的时刻取为$t_0=0$，可得
+\begin{equation}
+	t = \sqrt{\frac{\mu p^3}{|\alpha|}} \frac{\eta}{2}\left(1+\frac{\eta^3}{3}\right)
+\end{equation}
+此时即可有关于到力心距离的参数方程
+\begin{equation}
+\begin{cases}
+	r = \dfrac{p}{2}(1+\eta^2) \\
+	t = \sqrt{\dfrac{\mu p^3}{|\alpha|}} \dfrac{\eta}{2}\left(1+\dfrac{\eta^3}{3}\right)
+\end{cases}
+\end{equation}
+再结合轨道方程\eqref{Kepler问题的轨道方程}，可得轨道的参数方程
+\begin{equation}
+\begin{cases}
+	x = r\cos \theta = \dfrac{p}{2}(1-\eta^2) \\
+	y = \sqrt{r^2-x^2} = p\eta \\
+	t = \sqrt{\dfrac{\mu p^3}{|\alpha|}} \dfrac{\eta}{2}\left(1+\dfrac{\eta^3}{3}\right)
+\end{cases}
+\end{equation}
+其中参数$\eta$的取值范围为$(-\infty,+\infty)$，近日点即对应$\eta=0$。
+
+\subsection{Laplace-Runge-Lenz矢量}
+
+在任意有心力场$V(r) = \dfrac{\alpha}{r}$中存在其特有的运动积分，称为{\bf Laplace-Runge-Lenz矢量}
+\begin{equation}
+	\mbf{A} = \mbf{v} \times \mbf{l} + \frac{\alpha \mbf{r}}{r}
+\end{equation}
+直接求其时间导数可得
+\begin{align*}
+	\frac{\mathrm{d}\mbf{A}}{\mathrm{d}t} & = \dot{\mbf{v}} \times \mbf{l} + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3} \\
+	& = \dot{\mbf{v}} \times (\mu \mbf{r} \times \mbf{v}) + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3} \\
+	& = \mu\mbf{r}(\mbf{v}\cdot\dot{\mbf{v}}) - \mu\mbf{v}(\mbf{r}\cdot \dot{\mbf{v}}) + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3}
+\end{align*}
+将运动方程$\mu \dot{\mbf{v}} = \dfrac{\alpha\mbf{r}}{r^3}$代入，即可得
+\begin{equation*}
+	\frac{\mathrm{d}\mbf{A}}{\mathrm{d}t} = \mbf{0}
+\end{equation*}
+由此便验证了Laplace-Runge-Lenz矢量$\mbf{A}$是运动积分。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(350);
+	//Laplace-Runge-Lenz矢量
+	real p,e,alpha,A;
+	p = 1;
+	e = 0.8;
+	pair ell(real theta){
+		real r;
+		r = p/(1+e*cos(theta));
+		return (r*cos(theta),r*sin(theta));
+	}
+	alpha = 1;
+	draw(graph(ell,0,2*pi,1000),linewidth(0.8bp));
+	A = alpha*e;
+	pair P[];
+	P[0] = ell(0);
+	P[1] = ell(2.2);
+	P[2] = ell(pi);
+	P[3] = ell(3/2*pi);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),(0,0)--P[0],Arrow);
+	draw(Label("$\boldsymbol{A}$",MidPoint,S),P[0]--P[0]+A*dir(0),red,Arrow);
+	draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",MidPoint,S),shift(A*dir(0))*(P[0]+alpha*dir(0)--P[0]),darkgreen,Arrow);
+	draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,N),shift(0.09*dir(90))*(P[0]--P[0]+alpha*dir(0)+A*dir(0)),blue,Arrow);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),(0,0)--P[1],Arrow);
+	draw(Label("$\boldsymbol{A}$",MidPoint,Relative(W)),shift(alpha*dir(2.2*180/pi))*(P[1]--P[1]+A*dir(0)),red,Arrow);
+	draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",Relative(0.1),Relative(E)),P[1]+alpha*dir(2.2*180/pi)--P[1],darkgreen,Arrow);
+	draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,Relative(E)),P[1]--P[1]+alpha*dir(2.2*180/pi)+A*dir(0),blue,Arrow);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),(0,0)--P[2],Arrow);
+	draw(Label("$\boldsymbol{A}$",MidPoint,S),P[2]-A*dir(0)--P[2],red,Arrow);
+	draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",MidPoint,N),shift(0.09*dir(90))*(P[2]-alpha*dir(0)--P[2]),darkgreen,Arrow);
+	draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,S),P[2]-A*dir(0)--P[2]-alpha*dir(0),blue,Arrow);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),(0,0)--P[3],Arrow);
+	draw(Label("$\boldsymbol{A}$",MidPoint,S),P[3]+alpha*dir(-90)--P[3]+alpha*dir(-90)+A*dir(0),red,Arrow);
+	draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",Relative(0.3),Relative(W)),P[3]+alpha*dir(-90)--P[3],darkgreen,Arrow);
+	draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,Relative(W)),P[3]--P[3]+alpha*dir(-90)+A*dir(0),blue,Arrow);
+	dot((0,0));
+\end{asy}
+\caption{Laplace-Runge-Lenz矢量}
+\label{Laplace-Runge-Lenz矢量}
+\end{figure}
+
+\subsection{Kepler行星运动定律}
+
+\begin{itemize}
+	\item {\heiti Kepler第一定律}：行星以太阳为焦点，沿椭圆轨道运动。椭圆轨道的半长轴半短轴分别为
+	\begin{align}
+		a & = \frac12 \left(\frac{p}{1+e}+\frac{p}{1-e}\right) = \frac{\alpha}{2E} \\
+		b & = \frac{p}{\sqrt{1-e^2}} = \frac{l}{\sqrt{2\mu|E|}}
+	\end{align}
+	由此可得，能量取决于长轴，与形状无关；长轴相同，短轴长的轨道角动量大。
+	\item {\heiti Kepler第二定律}：太阳与行星连线的扫面速度为常量。即
+	\begin{equation*}
+		\mathrm{d} \mbf{S} = \frac12 \mbf{r} \times \mathrm{d} \mbf{r}
+	\end{equation*}
+	因此
+	\begin{equation}
+		\frac{\mathrm{d} \mbf{S}}{\mathrm{d} t} = \frac12 \mbf{r} \times \mbf{v} = \frac{\mbf{L}}{2\mu} = \text{常矢量}
+	\end{equation}
+	\item {\heiti Kepler第三定律}：行星公转周期的平方正比于椭圆半长轴的立方。根据第二定律中求出的面积速度，可以求出行星公转的周期
+	\begin{equation}
+		T = \frac{\pi ab}{l/2\mu} = \pi |\alpha| \sqrt{\frac{\mu}{2|E|^3}} = \pi \sqrt{\frac{4\mu a^3}{|\alpha|}}
+	\end{equation}
+	由此即
+	\begin{equation}
+		\frac{T^2}{a^3} = \frac{4\pi^2 \mu}{|\alpha|}
+	\end{equation}
+\end{itemize}
+
+\section{粒子弹性散射}
+
+粒子散射是获取粒子相互作用信息，进而确定物质围观结构的实验手段之一。
+
+散射前后，两粒子相距无限远，相互作用势可取为零。散射过程中不受外力，或外力可忽略。粒子间的相互作用为两体中心力。
+
+\subsection{弹性散射}
+
+散射过程中，粒子的内部状态不变，因而静能不变。散射前后，粒子的总动量与总动能守恒。
+
+由于散射过程中不受外力作用，因此质心系满足
+\begin{equation*}
+	\dot{\mbf{V}} = \ddot{\mbf{R}} = \mbf{0}
+\end{equation*}
+质心系是惯性系。在质心系中，动量守恒和质量守恒可以分别表示为
+\begin{subnumcases}{}
+	m_1 \mbf{v}'_{1i} + m_2 \mbf{v}'_{2i} = m_1 \mbf{v}'_{1f} + m_2 \mbf{v}'_{2f} = \mbf{0} \label{第四章：弹性散射动量守恒} \\
+	\dfrac12 m_1 \mbf{v}'^2_{1i} + \dfrac12 m_2 \mbf{v}'^2_{2i} = \dfrac12 m_1 \mbf{v}'^2_{1f} + \dfrac12 m_2 \mbf{v}'^2_{2f} \label{第四章：弹性散射能量守恒}
+\end{subnumcases}
+由动量守恒\eqref{第四章：弹性散射动量守恒}可得
+\begin{equation*}
+	m_1 \mbf{v}'_{1i} = - m_2 \mbf{v}'_{2i},\quad m_1 \mbf{v}'_{1f} = - m_2 \mbf{v}'_{2f}
+\end{equation*}
+由上式和动量守恒\eqref{第四章：弹性散射能量守恒}可得
+\begin{equation*}
+	v'_{1f} = v'_{1i},\quad v'_{2f} = v'_{2i}
+\end{equation*}
+即质心系中，两粒子动量大小相等，方向相反。弹性散射后，粒子的速率不变，运动方向偏转，偏转角度记作$\theta$，称为{\heiti 质心系散射角}。散射角由相互作用决定。由于在实验室坐标系中，速度满足
+\begin{equation*}
+	\mbf{v}_1 = \mbf{V} + \mbf{v}'_1,\quad \mbf{v}_2 = \mbf{V} + \mbf{v}'_2
+\end{equation*}
+因此，两个粒子的相对速度在质心系和实验室系中相同，记作
+\begin{equation*}
+	\mbf{v} = \mbf{v}_1 - \mbf{v}_2 = \mbf{v}'_1 - \mbf{v}'_2
+\end{equation*}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//质心坐标系中的散射
+	pair O,O1;
+	real theta,v1,v2,v;
+	O = (0,0);
+	v1 = 2;
+	v2 = 1;
+	theta = 40;
+	draw(Label("$\boldsymbol{v}'_{1i}$",EndPoint,black),O--v1*dir(0),red,Arrow);
+	draw(Label("$\boldsymbol{v}'_{1f}$",EndPoint,black),O--v1*dir(theta),red,Arrow);
+	draw(Label("$\boldsymbol{v}'_{2i}$",EndPoint,black),O--v2*dir(180),blue,Arrow);
+	draw(Label("$\boldsymbol{v}'_{2f}$",EndPoint,black),O--v2*dir(180+theta),blue,Arrow);
+	draw(arc(O,v1,0,theta),dashed);
+	draw(arc(O,v2,180,180+theta),dashed);
+	label("$\theta$",O,5*dir(theta/2));
+	picture tmp;
+	O1 = (3.3,-0.3);
+	v = 2.5;
+	draw(tmp,Label("$\boldsymbol{v}'_i$",EndPoint,black),O--v*dir(0),Arrow);
+	draw(tmp,Label("$\boldsymbol{v}'_f$",EndPoint,black),O--v*dir(theta),Arrow);
+	draw(tmp,arc(O,v,0,theta),dashed);
+	label(tmp,"$\theta$",O,5*dir(theta/2));
+	add(shift(O1)*tmp);
+	//draw((0,0)--(6.7,0),invisible);
+\end{asy}
+\caption{质心坐标系中的散射}
+\label{质心坐标系中的散射}
+\end{figure}
+
+下面考虑靶粒子初始时刻静止的情形，即$\mbf{v}_{2i} = \mbf{0}$，此时$\mbf{v}'_{2i} = -\mbf{V}$，因此有
+\begin{equation*}
+	m_1 \mbf{v}'_{1i} = -m_2 \mbf{v}'_{2i} = m_2 \mbf{V}
+\end{equation*}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//静止靶粒子情形下的速度
+	pair O;
+	real V,v1,theta;
+	O = (0,0);
+	V = 1;
+	v1 = 2.5;
+	theta = 35;
+	draw(Label("$\boldsymbol{v}'_{1f}$",Relative(0.7),Relative(E),black),O--v1*dir(theta),red,Arrow);
+	draw(Label("$\boldsymbol{v}_{1f}$",Relative(0.7),Relative(W),black),V*dir(180)--v1*dir(theta),red,Arrow);
+	draw(V*dir(180)--O,Arrow);
+	label("$\boldsymbol{V}$",O,N);
+	draw(Label("$\boldsymbol{v}'_{2f}$",Relative(0.7),Relative(W),black),O--V*dir(180+theta),blue,Arrow);
+	draw(Label("$\boldsymbol{v}_{2f}$",Relative(0.7),Relative(E),black),V*dir(180)--V*dir(180+theta),blue,Arrow);
+	draw(Label("$\boldsymbol{v}'_{1i}$",EndPoint,black),O--v1*dir(0),red,Arrow);
+	draw(v1*dir(theta)--((v1*dir(theta)).x,0),dashed);
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,0.3,0,theta),Arrow);
+	draw(Label("$\mathnormal{\Theta}_1$",MidPoint,Relative(E)),arc(V*dir(180),0.3,0,degrees(v1*dir(theta)-V*dir(180))),Arrow);
+	draw(Label("$\mathnormal{\Theta}_2$",MidPoint,Relative(W)),arc(V*dir(180),0.2,360,degrees(V*dir(180+theta)-V*dir(180))),Arrow);
+	//draw(O--(3,0),invisible);
+\end{asy}
+\caption{静止靶粒子情形下的速度}
+\label{静止靶粒子情形下的速度}
+\end{figure}
+
+速度合成如图\ref{静止靶粒子情形下的速度}所示，其中$\mathnormal{\Theta}_1$称为实验室系入射粒子{\heiti 散射角}，$\mathnormal{\Theta}_2$称为实验室系靶粒子{\heiti 反冲角}。它们与质心系散射角的关系如下
+\begin{equation}
+	\begin{cases}
+		\displaystyle \tan \mathnormal{\Theta}_1 = \frac{v'_{1i}\sin \theta}{V+v'_{1i} \cos \theta} = \frac{\sin \theta}{\frac{m_1}{m_2} + \cos \theta} \\[1.5ex]
+		\displaystyle \mathnormal{\Theta}_2 = \frac{\pi - \theta}{2}
+	\end{cases}
+	\label{实验室系散射角和反冲角}
+\end{equation}
+
+\subsection{质心系散射角}
+
+质心系散射角与碰撞前后粒子的相对速度偏转角相等。相对速度偏转角由入射粒子相对靶粒子的运动决定。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(350);
+	//弹性散射的几何参数
+	real p,e,theta0,b,l;
+	picture tmp;
+	real fr(real theta){
+		return p/(e*cos(theta)-1);
+	}
+	pair xy(real theta){
+		return (fr(theta)*cos(theta),fr(theta)*sin(theta));
+	}
+	p = 1;
+	e = 2;
+	theta0 = acos(1/e);
+	b = p/(e*sqrt(e*e-1));
+	l = 10;
+	draw(tmp,rotate(180-theta0/pi*180)*graph(xy,-0.32*pi,0.32*pi),red+linewidth(1bp));
+	draw(tmp,rotate(180-theta0/pi*180)*((p/(e*e-1),0)--(p/(e*e-1),0)+l*dir(theta0/pi*180)),dashed);
+	draw(tmp,rotate(180-theta0/pi*180)*((p/(e*e-1),0)--(p/(e*e-1),0)+l*dir(-theta0/pi*180)),dashed);
+	draw(tmp,rotate(180-theta0/pi*180)*((0,0)--p/(e-1)*dir(0)),dashed);
+	draw(tmp,rotate(180-theta0/pi*180)*(l*dir(theta0/pi*180)--(0,0)--l*dir(-theta0/pi*180)),dashed);
+	dot(tmp,(0,0));
+	label("$\phi$",rotate(180-theta0/pi*180)*(p/(e*e-1),0),dir(180-theta0/2/pi*180));
+	label("$\phi$",rotate(180-theta0/pi*180)*(p/(e*e-1),0),dir(180-theta0*3/2/pi*180));
+	path clp;
+	clp = (0,0)--l*dir(theta0/pi*180)--l*dir(theta0/pi*180)+2*b*dir(theta0/pi*180-90)--l*dir(0)--l*dir(-theta0/pi*180)+2*b*dir(-theta0/pi*180+90)--l*dir(-theta0/pi*180)--cycle;
+	clp = rotate(180-theta0/pi*180)*shift((-0.1,0))*clp;
+	clip(tmp,clp);
+	draw(tmp,(0,0)--(0.5*l,0),dashed);
+	label(tmp,"$\theta$",(0,0),2*dir((180-2*theta0/pi*180)/2));
+	draw(tmp,Label("$r_{\mathrm{min}}$",BeginPoint,Relative(W)),rotate(180-theta0/pi*180)*(p/(e-1)*dir(0)+dir(0)--p/(e-1)*dir(0)),Arrow);
+	draw(tmp,rotate(180-theta0/pi*180)*(-dir(0)--(0,0)),Arrow);
+	draw(tmp,0.9*l*dir(180)-dir(90)--(0.9*l*dir(180)),Arrow);
+	draw(tmp,Label("$b$",BeginPoint,Relative(W)),0.9*l*dir(180)+b*dir(90)+dir(90)--(0.9*l*dir(180)+b*dir(90)),Arrow);
+	draw(tmp,Label("$\boldsymbol{v}_i$",MidPoint,Relative(E)),shift((0,b))*(l*dir(180)+dir(180)--l*dir(180)),Arrow);
+	draw(tmp,Label("$\boldsymbol{v}_f$",MidPoint,Relative(E)),shift(b*dir(90+180-2*theta0/pi*180))*(l*dir(180-2*theta0/pi*180)--l*dir(180-2*theta0/pi*180)+dir(180-2*theta0/pi*180)),Arrow);
+	label(tmp,"$O$",(0,0),SW);
+	add(tmp);
+	//draw((0,0)--(0.5*l+1.2,0),invisible);
+\end{asy}
+\caption{弹性散射的几何参数}
+\label{弹性散射的几何参数}
+\end{figure}
+
+入射粒子初始速度与靶粒子之间的距离记作$b$，称为{\heiti 碰撞参数}或{\heiti 瞄准距离}。由于靶粒子初始是静止的，故系统的能量为
+\begin{equation*}
+	E = \frac12 \mu v^2
+\end{equation*}
+角动量为
+\begin{equation*}
+	l = \mu b v
+\end{equation*}
+因此角动量$l$可以用能量$E$和瞄准距离$b$来表示
+\begin{equation*}
+	l^2 = 2\mu b^2 E
+\end{equation*}
+根据式\eqref{两体运动等效为一维运动}，可得
+\begin{equation*}
+	U(r_{\mathrm{min}}) = \frac{l^2}{2\mu r_{\mathrm{min}}^2} + V(r_{\mathrm{min}}) = E
+\end{equation*}
+即有
+\begin{equation*}
+	1- \frac{V(r_{\mathrm{min}})}{E} - \frac{b^2}{r_{\mathrm{min}}^2} = 0
+\end{equation*}
+据此可得$r_{\mathrm{min}}$。再由式\eqref{两体轨道方程（变量为r）}可得
+\begin{equation}
+	\phi = \int_{r_{\mathrm{min}}}^{+\infty} \frac{b\mathrm{d} r}{r^2 \sqrt{1-\dfrac{V(r)}{E} - \dfrac{b^2}{r^2}}}
+\end{equation}
+由此即可得质心系散射角
+\begin{equation}
+	\theta = \pi - 2\phi = \theta(b,E)
+	\label{质心系散射角的通用关系式}
+\end{equation}
+具体关系决定于$V(r)$。
+
+\subsection{散射截面}
+
+散射实验一般是使得具有确定能量的粒子束均匀入射，然后对散射粒子的角分布进行测量以获得粒子之间作用势的信息。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(350);
+	//散射截面
+	pair O;
+	real E0,p,e,theta0,theta1,theta2,b,l,delta,r1,r0,alpha,lb,lc,x0,bb;
+	picture tmp;
+	O = (0,0);
+	real fr(real theta){
+		return p/(e*cos(theta)-1);
+	}
+	pair xy(real theta){
+		return (fr(theta)*cos(theta),fr(theta)*sin(theta));
+	}
+	r1 = 1.3;
+	draw(tmp,scale(r1)*unitcircle);
+	l = 7;
+	lb = 6;
+	lc = 5;
+	delta = 0.03;
+	alpha = 1/3;
+	E0 = 1.5;
+	b = 0.96;
+	p = E0*b*b;
+	e = sqrt(1+2*E0*E0*b*b);
+	theta0 = acos(1/e);
+	theta1 = theta0;
+	draw(tmp,rotate(180-theta0/pi*180)*graph(xy,-theta0+delta*pi,theta0-delta*pi),red+linewidth(1bp));
+	draw(tmp,O--l*dir(180-2*theta0/pi*180),red+dashed);
+	draw(tmp,shift(lc*dir(180))*xscale(alpha)*arc(O,0.72*b,-90,90),dashed);
+	draw(tmp,shift(lc*dir(180))*xscale(alpha)*arc(O,0.72*b,90,270));
+	draw(tmp,Label("$b$",MidPoint,Relative(W)),lb*dir(180)--lb*dir(180)+0.72*b*dir(90),Arrow);
+	x0 = (1-alpha**2)*r1*cos(pi-2*theta0);
+	bb = sqrt(r1**2-x0**2/(1-alpha**2));
+	draw(tmp,shift((x0,0))*xscale(alpha)*arc(O,bb,80,360-80));
+	draw(tmp,shift((x0,0))*xscale(alpha)*arc(O,bb,-80,80),dashed);
+	b = 1.2;
+	p = E0*b*b;
+	e = sqrt(1+2*E0*E0*b*b);
+	theta0 = acos(1/e);
+	theta2 = theta0;
+	draw(tmp,rotate(180-theta0/pi*180)*graph(xy,-theta0+delta*pi,theta0-delta*pi),blue+linewidth(1bp));
+	draw(tmp,O--l*dir(180-2*theta0/pi*180),blue+dashed);
+	draw(tmp,shift(lc*dir(180))*xscale(alpha)*arc(O,0.75*b,-90,90),dashed);
+	draw(tmp,shift(lc*dir(180))*xscale(alpha)*arc(O,0.75*b,90,270));
+	draw(tmp,Label("$\mathrm{d} b$",BeginPoint,Relative(E)),lb*dir(180)+0.75*b*dir(90)+0.72*b*dir(90)--lb*dir(180)+0.75*b*dir(90),Arrow);
+	x0 = (1-alpha**2)*r1*cos(pi-2*theta0);
+	bb = sqrt(r1**2-x0**2/(1-alpha**2));
+	draw(tmp,shift((x0,0))*xscale(alpha)*arc(O,bb,80,360-80));
+	draw(tmp,shift((x0,0))*xscale(alpha)*arc(O,bb,-80,80),dashed);
+	dot(tmp,O);
+	label(tmp,"$O$",O,S);
+	draw(tmp,l*dir(180)--0.5*l*dir(0));
+	r0 = 1.9;
+	draw(tmp,Label("$\theta$",MidPoint,Relative(E)),arc(O,r0,0,180-2*theta1/pi*180),Arrow);
+	r0 = 2.4;
+	draw(tmp,Label("$\mathrm{d}\theta$",MidPoint,Relative(E)),arc(O,r0,180-2*theta2/pi*180,180-2*theta1/pi*180),Arrow);
+	path clp;
+	clp = scale(l)*unitcircle;
+	clip(tmp,clp);
+	label(tmp,"$\mathrm{d} \omega = 2\pi \sin \theta\mathrm{d} \theta$",r1*dir(-47),SE);
+	add(tmp);
+\end{asy}
+\caption{散射截面}
+\label{散射截面}
+\end{figure}
+
+设入射粒子流密度为$I$，则入射粒子数按$b$的分布为
+\begin{equation*}
+	\mathrm{d} N = 2\pi I b \mathrm{d}b
+\end{equation*}
+则散射粒子按$\theta$的分布可以表示为
+\begin{equation*}
+	\mathrm{d} N = I \cdot 2\pi b(\theta)|b'(\theta)| \mathrm{d} \theta
+\end{equation*}
+对$\theta$的分布并不是十分方便，因此需要使用对立体角$\omega$的分布。在球体的情形下，立体角元$\mathrm{d} \omega$与$\mathrm{d} \theta$的关系为
+\begin{equation*}
+	\mathrm{d} \omega = 2\pi \sin \theta\mathrm{d} \theta
+\end{equation*}
+由此可有散射粒子按$\omega$的分布
+\begin{equation*}
+	\mathrm{d} N = I \frac{b(\theta)}{\sin \theta}|b'(\theta)| \mathrm{d} \omega
+\end{equation*}
+定义{\heiti 微分散射截面}为
+\begin{equation}
+	\mathrm{d} \sigma = \frac{\mathrm{d}N}{I} = 2\pi b \mathrm{d} b = \frac{b(\theta)}{\sin \theta} |b'(\theta)| \mathrm{d} \omega
+	\label{微分散射截面}
+\end{equation}
+同样有{\heiti 单位立体角散射截面}为
+\begin{equation}
+	\sigma(\theta) = \frac{\mathrm{d} \sigma}{\mathrm{d} \omega} = \frac{b(\theta)}{\sin \theta}|b'(\theta)|
+\end{equation}
+根据式\eqref{质心系散射角的通用关系式}可知，上式中的$b = b(\theta,E)$决定于两体中心势的具体形式，与实验条件无关。
+
+前面的讨论都基于质心系，在实验室系中，有
+\begin{equation*}
+	\mathrm{d} \mathnormal{\Sigma} = \frac{\mathrm{d}N}{I} = \mathnormal{\Sigma}_1(\mathnormal{\Theta}_1) \mathrm{d} \mathnormal{\Omega}_1, \quad \mathrm{d} \mathnormal{\Omega}_1 = 2\pi \sin \mathnormal{\Theta}_1 \mathrm{d} \mathnormal{\Theta}_1
+\end{equation*}
+所以有
+\begin{equation*}
+	\mathnormal{\Sigma}_1(\mathnormal{\Theta}_1) = \sigma(\theta) \frac{\mathrm{d} \omega}{\mathrm{d} \mathnormal{\Omega}_1} = \sigma(\theta) \frac{\mathrm{d} \cos \theta}{\mathrm{d} \cos \mathnormal{\Theta}_1}
+\end{equation*}
+其中$\mathnormal{\Theta}_1$满足
+\begin{equation*}
+	\tan \mathnormal{\Theta}_1 = \frac{\sin \theta}{\frac{m_1}{m_2} + \cos \theta}
+\end{equation*}
+在实验中，可实际测量的量为$\displaystyle \mathnormal{\Sigma}_1(\mathnormal{\Theta}_1)$。
+
+{\heiti 总散射截面}可以计算为
+\begin{equation}
+	\sigma_t = \int_S \mathrm{d} \sigma = \int_0^\pi 2\pi \sigma(\theta) \sin \theta \mathrm{d} \theta = \int_0^{b_{\mathrm{max}}} 2\pi b\mathrm{d} b = \pi b_{\mathrm{max}}^2
+\end{equation}
+式中$b_{\mathrm{max}}$为散射得以发生的最大瞄准距离，即当$b>b_{\mathrm{max}}$时，入射粒子始终在相互作用力程之外，粒子将直线掠过。
+
+\subsection{Coulomb势弹性散射}
+
+Coulomb势可以表示为
+\begin{equation*}
+	V = \frac{\alpha}{r},\quad \alpha > 0
+\end{equation*}
+此时$r_{\mathrm{min}}$满足
+\begin{equation*}
+	1-  \frac{\alpha}{E r_{\mathrm{min}}} - \frac{b^2}{r_{\mathrm{min}}^2} = 0
+\end{equation*}
+由此可得
+\begin{equation}
+	\frac{1}{r_{\mathrm{min}}} = \frac{1}{b^2} \left[\sqrt{\left(\frac{\alpha}{2E}\right)^2+b^2} - \frac{\alpha}{2E}\right]
+\end{equation}
+即有
+\begin{equation*}
+	\phi = \int_{r_{\mathrm{min}}}^{+\infty} \frac{\dfrac{b}{r^2} \mathrm{d} r}{\sqrt{1-\dfrac{\alpha}{Er} - \dfrac{b^2}{r^2}}} = \left.\arccos \frac{\dfrac{b^2}{r}+\dfrac{\alpha}{2E}}{\sqrt{\left(\dfrac{\alpha}{2E}\right)^2+ b^2}}\right|_{r_{\mathrm{min}}}^{+\infty} = \arccos \frac{\dfrac{\alpha}{2E}}{\sqrt{\left(\dfrac{\alpha}{2E}\right)^2+b^2}}
+\end{equation*}
+所以有
+\begin{equation*}
+	\tan \phi = \frac{2Eb}{\alpha}
+\end{equation*}
+考虑到$\theta = \pi-2\phi$，可有
+\begin{equation}
+	b = \frac{\alpha}{2E}\cot \frac{\theta}{2}
+\end{equation}
+由此可得Coulomb势下的微分散射截面
+\begin{equation}
+	\sigma(\theta) = \frac{b(\theta)}{\sin \theta} |b'(\theta)| = \frac{\left(\dfrac{\alpha}{4E}\right)^2}{\sin^4 \dfrac{\theta}{2}}
+	\label{Rutherford公式}
+\end{equation}
+式\eqref{Rutherford公式}称为{\heiti Rutherford公式}。总散射截面为
+\begin{equation*}
+	\sigma_t = \int_0^\pi 2\pi \sigma(\theta) \sin \theta \mathrm{d} \theta \to +\infty
+\end{equation*}
+此式说明Coulomb力为长程力。
+
+\begin{example}[刚球势散射]
+\label{刚球势散射}
+求粒子在刚球势
+\begin{equation*}
+	V(r) = \begin{cases} +\infty, & r < a \\ 0, & r \geqslant a \end{cases}
+\end{equation*}
+中的散射截面。
+\end{example}
+\begin{solution}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//刚球势散射
+	pair O;
+	real theta,phi,r,l,r0;
+	O = (0,0);
+	r = 1;
+	l = 1.8;
+	theta = 55;
+	phi = (180+theta)/2;
+	draw(shift(O)*scale(r)*unitcircle);
+	draw(r*dir(phi)+0.8*l*dir(180)--r*dir(phi),red,Arrow);
+	draw(r*dir(phi)--r*dir(phi)+0.8*l*dir(theta),red,Arrow);
+	draw(O--2*r*dir(phi),dashed);
+	draw(O--2*r*dir(theta),dashed);
+	draw(l*dir(180)--l*dir(0),dashed);
+	draw(Label("$b$",MidPoint,Relative(E)),r*dir(phi)--((r*dir(phi)).x,0),dashed);
+	r0 = 0.2;
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,r0,0,theta),Arrow);
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(O,r0,phi,180),Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{第四章例3}
+\end{figure}
+对此问题，可直接根据几何关系求出瞄准距离$b$与散射角$\theta$之间的关系为
+\begin{equation*}
+	b = a\sin \phi = a \cos \frac{\theta}{2}
+\end{equation*}
+由此可得微分散射截面
+\begin{equation*}
+	\mathrm{d} \sigma = \mathrm{d} (\pi b^2) = \frac{\pi a^2}{2} \sin \theta \mathrm{d} \theta = \frac{a^2}{4} \mathrm{d} \omega
+\end{equation*}
+所以有
+\begin{equation*}
+	\sigma(\theta) = \frac{\mathrm{d} \sigma}{\mathrm{d} \omega} = \frac{a^2}{4}
+\end{equation*}
+总散射截面
+\begin{equation*}
+	\sigma_t = \frac{a^2}{4} \int \mathrm{d} \omega = \frac{a^2}{4} 4\pi = \pi a^2
+\end{equation*}
+\end{solution}
+
+\begin{example}[阶跃中心势散射]
+求粒子在势场
+\begin{equation*}
+	V = \begin{cases} V_0,& r<a \\ 0,& r\geqslant a \end{cases}
+\end{equation*}
+\end{example}
+\begin{solution}
+首先考虑$V_0>0$的情形。
+
+当$E<V_0$时，粒子无法进入$r=a$的内部，结果等同于例\ref{刚球势散射}的刚球势散射。
+
+当$E>V_0$时，根据能量守恒，可有粒子在$r=a$外部和内部满足如下关系式
+\begin{equation*}
+	\frac12 \mu v^2 = \frac12 \mu v'^2 + V_0 = E
+\end{equation*}
+由此可得
+\begin{equation*}
+	\frac{v'}{v} = \sqrt{\frac{E-V_0}{E}} =: n
+\end{equation*}
+其中$n$可称为折射率。再根据角动量守恒，可有粒子在$r=a$外部和内部满足如下关系式\footnote{此处考虑到粒子在常数势场中的运动轨迹必然为直线。}
+\begin{equation*}
+	\mu vb = \mu v'r_{\mathrm{min}}
+\end{equation*}
+由此可得
+\begin{equation*}
+	\frac{b}{r_{\mathrm{min}}} = \frac{\sin \alpha}{\sin \beta} = n
+\end{equation*}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//阶跃中心势散射
+	pair O;
+	real r,alpha,beta,theta,n,l,r0;
+	r = 1;
+	alpha = 30;
+	beta = 55;
+	n = 1.8;
+	l = 1;
+	theta = 2*beta-2*alpha;
+	draw(scale(r)*unitcircle);
+	draw(O--n*r*dir(180-alpha),dashed);
+	draw(O--n*r*dir(2*beta-alpha),dashed);
+	draw(r*dir(180-alpha)+l*dir(180)--r*dir(180-alpha),red,Arrow);
+	draw(r*dir(180-alpha)--r*dir(2*beta-alpha),red,Arrow);
+	draw(r*dir(2*beta-alpha)--r*dir(2*beta-alpha)+l*dir(theta),red,Arrow);
+	draw(O--n*r*dir(theta),dashed);
+	draw(n*r*dir(180)--n*r*dir(0),dashed);
+	draw(Label("$b$",MidPoint,E),r*dir(180-alpha)--((r*dir(180-alpha)).x,0),Arrows);
+	draw(Label("$r_{\mathrm{min}}$",Relative(0.6),Relative(E)),O--interp(r*dir(180-alpha),r*dir(2*beta-alpha),0.5),Arrows);
+	r0 = 0.2;
+	draw(Label("$\alpha$",MidPoint,Relative(W)),arc(r*dir(180-alpha),r0,180,180-alpha),Arrow);
+	draw(Label("$\beta$",MidPoint,Relative(W)),arc(r*dir(180-alpha),r0,beta-alpha,-alpha),Arrow);
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,r0,0,theta),Arrow);
+\end{asy}
+\caption{阶跃中心势散射}
+\label{阶跃中心势散射}
+\end{figure}
+所以
+\begin{equation*}
+	\sin \alpha = \frac{b}{a},\quad \sin \beta = \frac{b}{na}
+\end{equation*}
+根据几何关系，可有$\theta=2(\beta-\alpha)$，所以
+\begin{equation*}
+	\cos \frac{\theta}{2} = \cos(\beta-\alpha) = \cos\beta \cos\alpha + \sin \beta \sin \alpha
+\end{equation*}
+所以有
+\begin{equation*}
+	\left(\cos \frac{\theta}{2}-\frac{b^2}{na^2}\right)^2 = \left(1-\frac{b^2}{a^2}\right)\left(1-\frac{b^2}{na^2}\right)
+\end{equation*}
+由此解得
+\begin{equation*}
+	b^2 = \frac{n^2a^2\sin^2 \dfrac{\theta}{2}}{1+n^2-2n\cos \dfrac{\theta}{2}}
+\end{equation*}
+根据
+\begin{equation*}
+	\mathrm{d} \sigma = \mathrm{d} (\pi b^2)% = \sigma(\theta) \mathrm{d} \omega
+\end{equation*}
+即可得到微分散射截面。
+\end{solution}

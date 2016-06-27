@@ -1,0 +1,52 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-117";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+usepackage("siunitx");
+import graph;
+import math;
+size(300);
+//45页5.16
+picture tmp;
+pair O,A,AO,B,C,D,dash,P;
+real r,l1,l2,r0,rr,d,alpha;
+path rail,clp;
+O = (0,0);
+r = 1;
+l1 = 0.5;
+l2 = 0.5;
+rail = (l1+r)*dir(180)--arc(O,r,180,270)--r*dir(-90)+l2*dir(0);
+draw(tmp,rail,linewidth(1bp));
+dash = 0.05*dir(-120);
+for(real p=0;p<=1;p=p+0.012){
+P = relpoint(rail,p);
+draw(tmp,P--P+dash);
+}
+alpha = 30;
+r0 = 0.02;
+d = 0.1;
+AO = r*dir(180)+r0*dir(45);
+B = (r-r0)*dir(-90-alpha);
+draw(shift(B)*rotate(-alpha)*box((-d,-1.2*r0),(d,1.2*r0)));
+clip(rail--O--cycle);
+draw(r*dir(-90)--O--r*dir(-90-alpha),dashed);
+draw(shift(AO)*scale(r0)*unitcircle);
+rr = 0.2;
+draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,rr,-90-alpha,-90),Arrows);
+A = AO+r0*dir(degrees(B-AO)+aCos(r0/length(B-AO)));
+draw(tmp,(l1+r)*dir(180)+2*r0*dir(90)--arc(AO,r0,90,degrees(B-AO)+aCos(r0/length(B-AO)))--B,linewidth(0.8bp));
+clip(tmp,box((-r-0.8*l1,-2*r),(0.5*l2,r)));
+add(tmp);
+label("$D$",(-r-0.8*l1,2*r0),W);
+label("$A$",A,NE);
+label("$B$",B,2*dir(30));
+label("$C$",r*dir(-90),NE);

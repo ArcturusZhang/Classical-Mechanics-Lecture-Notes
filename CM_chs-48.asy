@@ -1,0 +1,50 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-48";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(350);
+//Laplace-Runge-Lenz矢量
+real p,e,alpha,A;
+p = 1;
+e = 0.8;
+pair ell(real theta){
+real r;
+r = p/(1+e*cos(theta));
+return (r*cos(theta),r*sin(theta));
+}
+alpha = 1;
+draw(graph(ell,0,2*pi,1000),linewidth(0.8bp));
+A = alpha*e;
+pair P[];
+P[0] = ell(0);
+P[1] = ell(2.2);
+P[2] = ell(pi);
+P[3] = ell(3/2*pi);
+draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),(0,0)--P[0],Arrow);
+draw(Label("$\boldsymbol{A}$",MidPoint,S),P[0]--P[0]+A*dir(0),red,Arrow);
+draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",MidPoint,S),shift(A*dir(0))*(P[0]+alpha*dir(0)--P[0]),darkgreen,Arrow);
+draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,N),shift(0.09*dir(90))*(P[0]--P[0]+alpha*dir(0)+A*dir(0)),blue,Arrow);
+draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),(0,0)--P[1],Arrow);
+draw(Label("$\boldsymbol{A}$",MidPoint,Relative(W)),shift(alpha*dir(2.2*180/pi))*(P[1]--P[1]+A*dir(0)),red,Arrow);
+draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",Relative(0.1),Relative(E)),P[1]+alpha*dir(2.2*180/pi)--P[1],darkgreen,Arrow);
+draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,Relative(E)),P[1]--P[1]+alpha*dir(2.2*180/pi)+A*dir(0),blue,Arrow);
+draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),(0,0)--P[2],Arrow);
+draw(Label("$\boldsymbol{A}$",MidPoint,S),P[2]-A*dir(0)--P[2],red,Arrow);
+draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",MidPoint,N),shift(0.09*dir(90))*(P[2]-alpha*dir(0)--P[2]),darkgreen,Arrow);
+draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,S),P[2]-A*dir(0)--P[2]-alpha*dir(0),blue,Arrow);
+draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),(0,0)--P[3],Arrow);
+draw(Label("$\boldsymbol{A}$",MidPoint,S),P[3]+alpha*dir(-90)--P[3]+alpha*dir(-90)+A*dir(0),red,Arrow);
+draw(Label("$\dfrac{\alpha\boldsymbol{r}}{r}$",Relative(0.3),Relative(W)),P[3]+alpha*dir(-90)--P[3],darkgreen,Arrow);
+draw(Label("$\boldsymbol{v}\times\boldsymbol{l}$",MidPoint,Relative(W)),P[3]--P[3]+alpha*dir(-90)+A*dir(0),blue,Arrow);
+dot((0,0));

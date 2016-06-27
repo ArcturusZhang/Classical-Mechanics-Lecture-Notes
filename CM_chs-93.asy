@@ -1,0 +1,35 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-93";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+usepackage("xeCJK");
+usepackage("amsmath");
+import graph;
+import math;
+size(200);
+//重力引力离心力1
+pair O;
+real r,rr,lambda,F,Ft;
+O = (0,0);
+r = 1;
+lambda = 50;
+F = 0.7;
+Ft = 0.2;
+rr = 0.15;
+draw(shift(O)*scale(r)*unitcircle);
+draw(O--r*dir(lambda));
+draw(Label("$\boldsymbol{F}$",EndPoint,Relative(E)),r*dir(lambda)--(r-F)*dir(lambda),Arrow);
+draw(Label("$\boldsymbol{F}_t$",EndPoint),r*dir(lambda)--r*dir(lambda)+Ft*dir(0),Arrow);
+draw(Label("$m\boldsymbol{g}$",EndPoint,Relative(W)),r*dir(lambda)--(r-F)*dir(lambda)+Ft*dir(0),Arrow);
+draw((r-F)*dir(lambda)--(r-F)*dir(lambda)+Ft*dir(0)--r*dir(lambda)+Ft*dir(0),dashed);
+draw(Label("$\omega_0$",EndPoint),(0,-r)--(0,1.15*r));
+draw(O--(r,0));
+draw(Label("$\lambda$",MidPoint,Relative(E)),arc(O,rr,0,lambda),Arrow);
+draw(Label("$\alpha$",Relative(0.6),Relative(E)),arc(r*dir(lambda),1.8*rr,lambda+180,degrees(-F*dir(lambda)+Ft*dir(0))),Arrow);
+draw(shift((0,1.15*r))*yscale(1/2)*arc(O,rr,180+30,360-30),Arrow);

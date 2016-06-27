@@ -1,0 +1,57 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-14";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(300);
+//变质量体系1
+picture pic1;
+pair O,F,v,u,m;
+real rO,rm,lF,lv,lu;
+O = (0,0);
+rO = 2;
+fill(pic1,yscale(2/3)*scale(rO)*unitcircle,yellow);
+label(pic1,"$m$",O);
+v = (1,0.7);
+lv = 1.2;
+draw(pic1,Label("$\boldsymbol{v}$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
+F = (-1.3,-0.8);
+lF = 1.2;
+draw(pic1,Label("$\boldsymbol{F}$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
+rm = 0.7;
+m = (3,0.4);
+fill(pic1,shift(m)*yscale(2/3)*scale(rm)*unitcircle,green);
+label(pic1,"$\Delta m$",m);
+u = (-0.1,0.2)+m;
+lu = 0.9;
+draw(pic1,Label("$\boldsymbol{u}$",MidPoint,Relative(E)),u--u+lu*dir(135),Arrow);
+label(pic1,"$t$",(0,-1.5),S);
+add(pic1);
+
+//变质量体系2
+picture pic2;
+pair O,F,v,u,m;
+real rO,rm,lF,lv,lu;
+O = (0,0);
+rO = 2;
+fill(pic2,yscale(2/3)*scale(rO)*unitcircle,yellow);
+label(pic2,"$m'=m+\Delta m$",O);
+v = (1,0.7);
+lv = 1.2;
+draw(pic2,Label("$\boldsymbol{v}'$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
+F = (-1.3,-0.8);
+lF = 1.2;
+draw(pic2,Label("$\boldsymbol{F}'$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
+label(pic2,"$t'=t+\Delta t$",(0,-1.5),S);
+add(shift((6.5,0))*pic2);
+//draw(O--(9,0),invisible);

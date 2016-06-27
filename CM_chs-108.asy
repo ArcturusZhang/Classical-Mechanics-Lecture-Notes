@@ -1,0 +1,30 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-108";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+usepackage("siunitx");
+import graph;
+import math;
+size(180);
+//37页4.56受力分析1
+pair O;
+real P,r;
+O = (0,0);
+P = 2;
+draw(Label("$\boldsymbol{N}_1$",EndPoint,Relative(E)),O--P*Sin(30)*dir(30),Arrow);
+draw(Label("$\boldsymbol{N}_2$",EndPoint,Relative(E)),P*Sin(30)*dir(30)--P*dir(90),Arrow);
+draw(Label("$\boldsymbol{P}_1+\boldsymbol{P}_2$",MidPoint,Relative(E)),P*dir(90)--O,Arrow);
+r = 0.2;
+draw(O--0.3*P*dir(0),dashed);
+draw(Label("$\ang{30}$",MidPoint,Relative(E)),arc(O,r,0,30),Arrow);
+draw(P*Sin(30)*dir(30)--P*Sin(30)*dir(30)+0.3*P*dir(180),dashed);
+draw(Label("$\ang{60}$",MidPoint,Relative(W)),arc(P*Sin(30)*dir(30),r,180,120),Arrow);

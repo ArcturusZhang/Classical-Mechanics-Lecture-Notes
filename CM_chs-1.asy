@@ -1,0 +1,37 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-1";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+size(200);
+//直角坐标系
+pair O,x,y,z,r;
+O = (0,0);
+x = 0.8*dir(-135);
+y = (1,0);
+z = (0,1);
+draw(Label("$x$",EndPoint),O--x,Arrow);
+draw(Label("$y$",EndPoint),O--y,Arrow);
+draw(Label("$z$",EndPoint),O--z,Arrow);
+label("$O$",O,SE);
+draw(Label("$\boldsymbol{e}_1$",EndPoint,NW),O--0.5*x,red,Arrow);
+draw(Label("$\boldsymbol{e}_2$",EndPoint,NE),O--0.5*y,red,Arrow);
+draw(Label("$\boldsymbol{e}_3$",EndPoint,W),O--0.5*z,red,Arrow);
+real xx,yy,zz;
+xx = 0.3;
+yy = 0.6;
+zz = 0.8;
+r = xx*x+yy*y+zz*z;
+draw(Label("$\boldsymbol{r}$",EndPoint),O--r,Arrow);
+draw(xx*x--xx*x+yy*y--yy*y,dashed);
+draw(O--xx*x+yy*y--xx*x+yy*y+zz*z--zz*z,dashed);
+//draw(O--z+(1.5,0),invisible);

@@ -1,0 +1,32 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-39";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(200);
+//两体问题
+pair O,m1,m2,C;
+O = (0,0);
+m1 = (1,0.8);
+m2 = (-0.2,0.6);
+C = interp(m2,m1,0.35);
+label("$O$",O,S);
+draw(Label("$\boldsymbol{r}_1$",MidPoint,Relative(E),black),O--m1,blue,Arrow);
+label("$m_1$",m1,SE);
+draw(Label("$\boldsymbol{r}_2$",MidPoint,Relative(W),black),O--m2,blue,Arrow);
+label("$m_2$",m2,W);
+draw(Label("$\boldsymbol{R}$",MidPoint,Relative(W),black),O--C,red,Arrow);
+label("$C$",C,N);
+draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W),black),m2--m1,red,Arrow);
+dot(C);
+//draw(O--m1+(0.2,0),invisible);

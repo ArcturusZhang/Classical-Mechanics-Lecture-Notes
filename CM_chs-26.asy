@@ -1,0 +1,33 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-26";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(200);
+//第二章例5图
+pair O;
+real R,r,theta;
+O = (0,0);
+R = 1;
+r = 0.05;
+theta = -30;
+draw(shift(O)*scale(R)*unitcircle,linewidth(1bp));
+draw(O--R*dir(0),dashed);
+draw(O--R*dir(theta));
+fill(shift(R*dir(theta))*scale(r)*unitcircle,black);
+draw(1.2*R*dir(-90)--1.4*R*dir(90),dashed);
+draw(shift(1.2*R*dir(90))*xscale(2)*arc(O,2*r,110,360+70),Arrow);
+label("$O$",O,W);
+draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,0.2,-90,theta),Arrow);
+label("$m$",R*dir(theta),3*W);
+label("$\mathnormal{\Omega}$",1.2*R*dir(90)+4*r*dir(0),E);

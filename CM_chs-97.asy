@@ -1,0 +1,33 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-97";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(250);
+//Foucault摆振动面的旋转
+pair O,x,y;
+real a,b,theta,r;
+O = (0,0);
+x = (5,0);
+y = (0,4);
+a = 4;
+b = 3;
+r = 0.8;
+theta = -30;
+label("$O$",O,W);
+draw(Label("$x'$",EndPoint),rotate(theta)*(O--x),Arrow);
+draw(Label("$y'$",EndPoint),rotate(theta)*(O--y),Arrow);
+draw(rotate(theta)*xscale(a)*yscale(b)*unitcircle);
+draw(Label("$x$",EndPoint),O--x,Arrow);
+draw(Label("$y$",EndPoint),O--y,Arrow);
+draw(Label("$\omega_0 t\sin \lambda$",MidPoint,Relative(W)),arc(O,r,0,theta),Arrow);

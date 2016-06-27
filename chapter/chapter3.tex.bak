@@ -1,0 +1,3764 @@
+\chapter{Hamilton动力学}
+
+理想完整有势体系的Lagrange函数可以表示为
+\begin{equation*}
+	L = T(\mbf{q},\dot{\mbf{q}},t) - U(\mbf{q},\dot{\mbf{q}},t)
+\end{equation*}
+则有理想完整有势系的Lagrange方程为
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+\end{equation*}
+利用体系的对称性可以简化求解上述常微分方程组。
+
+Lagrange力学有如下不足：
+\begin{enumerate}
+	\item 运动学：速度$\dot{\mbf{q}} = \dfrac{\mathrm{d} \mbf{q}}{\mathrm{d} t}$作为坐目标衍生变量出现；
+	\item 动力学：坐标、速度的初值$\mbf{q}(t_0),\dot{\mbf{q}}(t_0)$独立，不能体现坐标、速度在因果律上的独立性；
+	\item 在位形空间描述运动，方程为二阶常微分方程组，同一点可能代表体系的不同状态（速度不同的状态），导致运动轨道的不同。
+\end{enumerate}
+
+1835年，Hamilton发表了两篇著名论文，将Lagrange方程化为更对称的一阶方程组，创立了Hamilton动力学，为量子力学、统计物理、量子场论奠定理论基础。
+
+\section{正则方程}
+
+广义动量和广义动量定理可以表示为
+\begin{equation*}
+	\begin{cases}
+		\displaystyle p_\alpha = \frac{\pl L}{\pl \dot{q}_\alpha} \\[1.5ex]
+		\displaystyle \dot{p}_\alpha = \frac{\pl L}{\pl q_\alpha}
+	\end{cases}
+\end{equation*}
+由此定义的广义动量具有
+\begin{equation*}
+	p_\alpha = p_\alpha(\mbf{q},\dot{\mbf{p}},t)
+\end{equation*}
+的形式，则有
+\begin{equation*}
+	\dot{\mbf{q}} = \dot{\mbf{q}}(\mbf{q},\mbf{p},t)
+\end{equation*}
+由此，可作力学状态参量变换$\mbf{q},\dot{\mbf{q}} \to \mbf{q},\mbf{p}$，找到新的特征函数，通过对$\mbf{p},\mbf{q}$的偏导数生成力学方程。
+
+\subsection{Legendre变换}
+
+设有函数$f(x,y)$，考虑
+\begin{align*}
+	\mathrm{d} f & = \frac{\pl f}{\pl x} \mathrm{d}x + \frac{\pl f}{\pl y} \mathrm{d} y = u\mathrm{d} x + v\mathrm{d} y \\
+	& = \mathrm{d} (ux) - x\mathrm{d} u + v\mathrm{d} y
+\end{align*}
+此处
+\begin{equation*}
+	\begin{cases}
+		\displaystyle u = \frac{\pl f}{\pl x} = u(x,y) \\[1.5ex]
+		\displaystyle v = \frac{\pl f}{\pl y} = v(x,y)
+	\end{cases}
+\end{equation*}
+由此定义以$u,y$为自变量的新函数
+\begin{equation}
+	g = ux - f = ux(u,y) - f(x(u,y),y) = g(u,y)
+\end{equation}
+则有
+\begin{equation*}
+	\mathrm{d} g = x\mathrm{d} u - v\mathrm{d}y = \frac{\pl g}{\pl u} \mathrm{d} u + \frac{\pl g}{\pl y} \mathrm{d} y
+\end{equation*}
+此时有
+\begin{equation}
+	\begin{cases}
+		\displaystyle x = \frac{\pl g}{\pl u} = x(u,y) \\[1.5ex]
+		\displaystyle v = - \frac{\pl g}{\pl y} = \bar{v}(u,y)
+	\end{cases}
+	\label{chp3:Legendre变换}
+\end{equation}
+式\eqref{chp3:Legendre变换}给出的变换称为{\heiti Legendre变换}。
+
+\subsection{Hamilton正则方程}
+
+Lagrange函数具有形式
+\begin{equation*}
+	L = L(\mbf{q},\dot{\mbf{q}},t)
+\end{equation*}
+考虑做Legendre变换
+\begin{align*}
+	\mathrm{d} L & = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \mathrm{d} \dot{q}_\alpha + \sum_{i=1}^s \frac{\pl L}{\pl q_\alpha} + \frac{\pl L}{\pl t} \mathrm{d} t \\
+	& = \sum_{\alpha=1}^s p_\alpha \mathrm{d} \dot{q}_\alpha + \sum_{\alpha=1}^s \dot{p}_\alpha \mathrm{d} q_\alpha - \dot{H} \mathrm{d} t \\
+	& = \mathrm{d} \left(\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha \right) - \sum_{\alpha=1}^s \dot{q}_\alpha \mathrm{d} p_\alpha + \sum_{\alpha=1}^s \dot{p}_\alpha \mathrm{d}q_\alpha - \dot{H} \mathrm{d} t
+\end{align*}
+由此可有
+\begin{equation}
+	H = \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - L = \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha(\mbf{q},\mbf{p},t) - L(\mbf{q},\dot{\mbf{q}}(\mbf{q},\mbf{p},t),t) = H(\mbf{q},\mbf{p},t)
+\end{equation}
+即
+\begin{equation*}
+	H = \sum_{\alpha=1}^s \frac{\pl H}{\pl p_\alpha} \mathrm{d} p_\alpha + \sum_{\alpha=1}^s \frac{\pl H}{\pl q_\alpha} \mathrm{d} q_\alpha + \frac{\pl H}{\pl t} \mathrm{d} t = \sum_{\alpha=1}^s \dot{q}_\alpha \mathrm{d} p_\alpha - \sum_{\alpha=1}^s \dot{p}_\alpha \mathrm{d} q_\alpha + \dot{H} \mathrm{d} t
+\end{equation*}
+由此可得
+\begin{equation}
+	\begin{cases}
+		\dot{q}_\alpha = \dfrac{\pl H}{\pl p_\alpha} \\[1.5ex]
+		\dot{p}_\alpha = -\dfrac{\pl H}{\pl q_\alpha} 
+	\end{cases}
+	\alpha = 1,2,\cdots,s
+	\label{Hamilton正则方程}
+\end{equation}
+以及
+\begin{equation}
+	\dot{H} = \frac{\pl H}{\pl t}
+\end{equation}
+式\eqref{Hamilton正则方程}称为{\heiti Hamilton正则方程}，$\mbf{q},\mbf{p}$称为{\heiti 正则变量}。函数$H = H(\mbf{q},\mbf{p},t)$称为{\heiti Hamilton函数}，其为以正则变量表示的广义能量。
+
+由正则变量张成了一个$2s$维空间，称为{\heiti 相空间}。相空间中的点称为{\heiti 相点}，代表体系的力学状态。相点在相空间运动而描述的轨道称为{\heiti 相轨道}，反映了体系状态的演化。
+
+正则方程是由$2s$个一阶常微分方程构成的常微分方程组，决定了相点的速度。给定正则变量的$2s$个初始值，可以唯一确定正则变量的时间演化关系。
+
+\begin{example}[一维谐振子]
+写出一维谐振子的正则方程和相空间轨迹。
+\end{example}
+\begin{solution}
+一维谐振子的Lagrange函数为
+\begin{equation*}
+	L = \frac12 m\dot{q}^2 - \frac12 kq^2
+\end{equation*}
+考虑$p = \dfrac{\pl L}{\pl \dot{q}} = m\dot{q}$，则有
+\begin{equation*}
+	\dot{q} = \frac{p}{m}
+\end{equation*}
+所以Hamilton函数为
+\begin{equation*}
+	H = p\dot{q} - L = \frac{p^2}{2m} + \frac12 kq^2
+\end{equation*}
+正则方程为
+\begin{equation*}
+	\begin{cases}
+		\dot{q} = \dfrac{\pl H}{\pl p} = \dfrac{p}{m} \\[1.5ex]
+		\dot{p} = -\dfrac{\pl H}{\pl q} = -kq
+	\end{cases}
+\end{equation*}
+消去广义动量$p$即可得到系统的动力学方程
+\begin{equation*}
+	m\ddot{q} + kq = 0
+\end{equation*}
+由于
+\begin{equation*}
+	\dot{H} = \frac{\pl H}{\pl t} = 0
+\end{equation*}
+所以$H = E(\text{常数})$，相空间轨迹即为
+\begin{equation*}
+	\frac{p^2}{2mE} + \frac{q^2}{2E/k} = 1
+\end{equation*}
+是一个椭圆。
+\end{solution}
+
+\begin{example}[电磁场中带电粒子的Hamilton函数]
+求电磁场中带电粒子的Hamilton函数。
+\end{example}
+\begin{solution}
+电磁场中带电粒子的Lagrange函数为
+\begin{equation*}
+	L(\mbf{r},\dot{\mbf{r}},t) = \frac12 m \dot{\mbf{r}}^2 + e\mbf{A}(\mbf{r},t) \cdot \dot{\mbf{r}} - e\phi(\mbf{r},t)
+\end{equation*}
+则有
+\begin{equation*}
+	\mbf{p} = \frac{\pl L}{\pl \dot{\mbf{r}}} = m\dot{\mbf{r}} + e\mbf{A}
+\end{equation*}
+所以
+\begin{equation*}
+	\dot{\mbf{r}} = \frac{\mbf{p} - e\mbf{A}}{m}
+\end{equation*}
+由此可得Hamilton函数
+\begin{equation*}
+	H = \mbf{p} \cdot \dot{\mbf{r}} - L = \frac{1}{2m} (\mbf{p}-e\mbf{A})^2 + e\phi
+\end{equation*}
+\end{solution}
+
+\subsection{守恒定律}
+
+根据正则方程，如果Hamilton函数中不显含坐标$q_\alpha$，则有
+\begin{equation*}
+	\dot{p}_\alpha = -\frac{\pl H}{\pl q_\alpha} = 0
+\end{equation*}
+即有与该坐标共轭的动量$p_\alpha$守恒。如果Hamilton函数中不显含时间$t$，则有
+\begin{equation*}
+	\dot{H} = \frac{\pl H}{\pl t} = 0
+\end{equation*}
+即有广义能量守恒。
+
+在Hamilton力学中，体系的对称性表现为$H$的变换不变性。
+
+\subsection{正则方程的矩阵形式}
+
+记
+\begin{equation*}
+	\begin{array}{l}
+	\displaystyle \mbf{\xi} = \begin{pmatrix} \mbf{q} \\ \mbf{p} \end{pmatrix} = \begin{pmatrix} q_1 \\ \vdots \\ q_s \\ p_1 \\ \vdots \\ p_s \end{pmatrix},\quad \mbf{J} = \begin{pmatrix} \mbf{0} & \mbf{I} \\ -\mbf{I} & \mbf{0} \end{pmatrix} = \begin{pmatrix} 0 & \cdots & 0 & 1 & \cdots & 0 \\ \vdots & & \vdots & \vdots & & \vdots \\ 0 & \cdots & 0 & 0 & \cdots & 1 \\ -1 & \cdots & 0 & 0 & \cdots & 0 \\ \vdots & & \vdots & \vdots & & \vdots \\ 0 & \cdots & -1 & 0 & \cdots & 0 \end{pmatrix} \\
+	\displaystyle \frac{\pl H}{\pl \mbf{\xi}} = \begin{pmatrix} \dfrac{\pl H}{\pl \mbf{q}} \\[1.5ex] \dfrac{\pl H}{\pl \mbf{p}} \end{pmatrix} = \begin{pmatrix} \dfrac{\pl H}{\pl q_1} \\[1.5ex] \vdots \\[1.5ex] \dfrac{\pl H}{\pl q_s} \\[1.5ex] \dfrac{\pl H}{\pl p_1} \\[1.5ex] \vdots \\[1.5ex] \dfrac{\pl H}{\pl p_s} \end{pmatrix}
+	\end{array}
+\end{equation*}
+则正则方程可以表示为
+\begin{equation}
+	\dot{\mbf{\xi}} = \mbf{J} \frac{\pl H}{\pl \mbf{\xi}}
+	\label{正则方程的辛形式}
+\end{equation}
+式\eqref{正则方程的辛形式}称为{\heiti 正则方程的矩阵形式}或{\heiti 正则方程的辛（sympletic）形式}。
+
+可通过直接计算的方式验证矩阵$\mbf{J}$满足如下性质：
+\begin{equation}
+	\mbf{J}^2 = -\mbf{I}_{2s},\quad \mbf{J}^{\mathrm{T}} = \mbf{J}^{-1} = -\mbf{J},\quad \det \mbf{J} = 1
+\end{equation}
+
+\section{泛函与变分}
+
+\subsection{泛函}
+
+依赖于函数关系的变量，即函数之函数，称为{\heiti 泛函}，一般记作$J = J[y(x)]$。常见的泛函一般具有形式
+\begin{equation*}
+	J[y(x)] = \int_a^b F(x,y,y') \mathrm{d} x
+\end{equation*}
+
+\subsection{变分}
+
+自变函数发生无限小变动后的新函数与原函数之差，称为{\heiti 自变函数的变分}，即
+\begin{equation*}
+	\delta y(x) = \tilde{y}(x) - y(x)
+\end{equation*}
+当$y(x)$可微时，总是假定$\delta y(x)$也是可微的。考虑自变函数导数的变分，即
+\begin{equation*}
+	\delta \frac{\mathrm{d}y}{\mathrm{d}x}(x) = \frac{\mathrm{d}\tilde{y}}{\mathrm{d}x}(x) - \frac{\mathrm{d}y}{\mathrm{d}x}(x) = \frac{\mathrm{d}}{\mathrm{d}x}\left[\tilde{y}(x) - y(x)\right] = \frac{\mathrm{d}}{\mathrm{d} x} \delta y(x)
+\end{equation*}
+因此，对任意函数$f$均有
+\begin{equation}
+	\delta \frac{\mathrm{d}}{\mathrm{d} x} f = \frac{\mathrm{d}}{\mathrm{d} x} \delta f
+\end{equation}
+下面考虑函数的变分，首先有
+\begin{equation*}
+	\Delta F = F(x,y+\delta y,y'+\delta y') - F(x,y,y')
+\end{equation*}
+其中一级变动称为函数的变分，即
+\begin{equation*}
+	\delta F = \frac{\pl F}{\pl y} \delta y + \frac{\pl F}{\pl y'} \delta y'
+\end{equation*}
+现在考虑泛函的变分，首先有
+\begin{equation*}
+	\Delta J = J\left[y(x)+\delta y(x)\right] - J\left[y(x)\right]
+\end{equation*}
+其中一级变动即为泛函的变分，即
+\begin{align*}
+	\delta J & = \int_a^b \delta F(x,y,y') \mathrm{d} x = \int_a^b \left(\frac{\pl F}{\pl y} \delta y + \frac{\pl F}{\pl y'} \delta y'\right) \mathrm{d} x \\
+	& = \int_a^b \left[\frac{\mathrm{d}}{\mathrm{d} x} \left(\frac{\pl F}{\pl y'} \delta y\right) + \left(\frac{\pl F}{\pl y} - \frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'}\right) \delta y \right] \mathrm{d} x \\
+	& = \frac{\pl F}{\pl y'} \delta y \bigg|_a^b + \int_a^b \left(\frac{\pl F}{\pl y} - \frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'}\right) \delta y \mathrm{d} x
+\end{align*}
+
+\subsection{变分问题（泛函极值问题）}
+
+变分问题始于最速降线问题（1696，J. Bernoulli）：给定重力场中两端点，求从一点到另一点用时最短的光滑轨道。即求自变函数$y(x)$，使泛函$\displaystyle J[y(x)] = \int_a^b F(x,y,y') \mathrm{d} x$在边界条件$y(a) = y_A,y(b) = y_B$下取得极值。
+
+可以证明，泛函极值的必要条件即为
+\begin{equation}
+	\delta J = 0
+\end{equation}
+
+\subsection{Euler-Lagrange方程}
+
+如果给定边界条件，则有
+\begin{equation}
+	\delta y(a) = \delta y(b) = 0
+	\label{变分问题边界条件}
+\end{equation}
+所以有变分
+\begin{equation*}
+	\delta J = \frac{\pl F}{\pl y'} \delta y \bigg|_a^b + \int_a^b \left(\frac{\pl F}{\pl y} - \frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'}\right) \delta y \mathrm{d} x = \int_a^b \left(\frac{\pl F}{\pl y} - \frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'}\right) \delta y \mathrm{d} x
+\end{equation*}
+由于$\delta y$是任意的，可有
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'} - \frac{\pl F}{\pl y} = 0
+	\label{Euler-Lagrange方程}
+\end{equation}
+式\eqref{Euler-Lagrange方程}称为{\heiti Euler-Lagrange方程}\footnote{可以看到，Euler-Lagrange方程与理想完整有势系的Lagrange方程\eqref{理想完整系的Lagrange方程}具有完全相同的形式。因此可以想见，理想完整有势系的Lagrange方程也是某种变分原理（即{\heiti Hamilton原理}）的结果。}。
+
+下面考虑
+\begin{align*}
+	\frac{\mathrm{d}}{\mathrm{d} x} \left(\frac{\pl F}{\pl y'} y' - F\right) & = \frac{\mathrm{d}}{\mathrm{d} x} \left(\frac{\pl F}{\pl y'}y'\right) - \left(\frac{\pl F}{\pl y'} y'' + \frac{\pl F}{\pl y} y' + \frac{\pl F}{\pl x}\right) \\
+	& = \left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'} - \frac{\pl F}{\pl y}\right) y' - \frac{\pl F}{\pl x} = -\frac{\pl F}{\pl x}
+\end{align*}
+如果函数$F$不显含$x$，则Euler-Lagrange方程有初积分
+\begin{equation}
+	\frac{\pl F}{\pl y'}y' - F = C
+\end{equation}
+
+\begin{example}[最速降线问题]
+给定重力场中两端点，求从一点到另一点用时最短的光滑轨道。
+\end{example}
+\begin{solution}
+所求的时间可以表示为
+\begin{equation*}
+	T = \frac{1}{\sqrt{2g}} \int_a^b \sqrt{\frac{1+y'^2}{y}} \mathrm{d} x
+\end{equation*}
+即此时
+\begin{equation*}
+	F(x,y,y') = \sqrt{\frac{1+y'^2}{y}}
+\end{equation*}
+由于$F$不显含$x$，利用Euler-Lagrange方程的初积分
+\begin{equation*}
+	\frac{\pl F}{\pl y'} y' - F = -\frac{1}{\sqrt{y(1+y'^2)}} = -\frac{1}{\sqrt{2C_1}}
+\end{equation*}
+所以有
+\begin{equation*}
+	\frac{\mathrm{d} y}{\mathrm{d} x} = \sqrt{\frac{2C_1 - y}{y}}
+\end{equation*}
+做换元$y = C_1(1-\cos \theta)$，可得
+\begin{equation*}
+	\begin{cases}
+		x = C_1(\theta - \sin \theta) + C_2 \\
+		y = C_1(1-\cos \theta)
+	\end{cases}
+\end{equation*}
+这是一条倒置的旋轮线（摆线），如图\ref{最速降线：摆线}所示，其中的常数$C_1,C_2$由边界条件决定。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(300);
+	//最速降线
+	pair O,P;
+	real x,y,rp;
+	path p;
+	O = (0,0);
+	x = 7.4;
+	y = 2.5;
+	draw(Label("$x$",EndPoint),0.1*x*dir(180)--x*dir(0),Arrow);
+	draw(Label("$y$",EndPoint),0.2*y*dir(90)--y*dir(-90),Arrow);
+	label("$O$",O,SW);
+	pair cycloid(real t){
+		return (t-sin(t),cos(t)-1);
+	}
+	rp = 0.7*2*pi;
+	p = graph(cycloid,0,rp);
+	draw(p,red+linewidth(1bp));
+	label("$A$",O,NW);
+	P = cycloid(rp);
+	label("$B$",P,SE);
+	p = graph(cycloid,rp,2*pi);
+	draw(p);
+	dot(O);
+	dot(P);
+\end{asy}
+\caption{最速降线}
+\label{最速降线：摆线}
+\end{figure}
+\end{solution}
+
+\begin{example}[球面短程线（测地线）]
+求球面上连接任意两点之间的最短曲线。
+\end{example}
+\begin{solution}
+在球面上取球面坐标，则球面上的曲线可以表示为
+\begin{equation*}
+	\begin{cases}
+		r = R \\
+		\theta = \theta(\phi)
+	\end{cases}
+\end{equation*}
+根据球坐标系的距离元素表达式可得球面上曲线的弧长元素为
+\begin{equation*}
+	\mathrm{d} s = R\sqrt{(\mathrm{d} \theta)^2 + \sin^2 \theta (\mathrm{d} \phi)^2} = R \sqrt{\theta'^2 + \sin^2 \theta} \mathrm{d} \phi
+\end{equation*}
+所以，球面上曲线的弧长为
+\begin{equation*}
+	s = R \int_{\phi_A}^{\phi_B} \sqrt{\theta'^2 + \sin^2 \theta} \mathrm{d} \phi
+\end{equation*}
+即此时
+\begin{equation*}
+	F(\phi,\theta,\theta') = \sqrt{\theta'^2 + \sin^2 \theta}
+\end{equation*}
+由于$F$不显含$\phi$，利用Euler-Lagrange方程的初积分
+\begin{equation*}
+	\frac{\pl F}{\pl \theta'} \theta' - F = -\frac{\sin^2 \theta}{\sqrt{\theta'^2 + \sin^2 \theta}} = -\cos \theta_0\text{（常数）}
+\end{equation*}
+由此可得
+\begin{equation*}
+	\frac{\mathrm{d} \theta}{\mathrm{d} \phi} = \sin^2 \theta \sqrt{\tan^2 \theta_0 - \cot^2 \theta}
+\end{equation*}
+解得
+\begin{equation}
+	\phi - \arccos(-\cot \theta_0 \cot\theta) = \phi_0\text{（常数）}
+	\label{chp3:球面大圆的参数方程}
+\end{equation}
+整理可得
+\begin{equation*}
+	\cos \phi \cos \phi_0 + \sin \phi \sin \phi_0 + \cot \theta \cot \theta_0 = 0
+\end{equation*}
+在上式两端乘$R\sin \theta \sin \theta_0$，并考虑到球坐标系的坐标转换关系，可得
+\begin{equation*}
+	x \sin \theta_0 \cos \phi_0 + y\sin \theta_0 \sin \phi_0 + z\cos \theta_0 = 0
+\end{equation*}
+此处，记$\mbf{e}_n = \sin \theta_0 \cos \phi_0 \mbf{e}_1 + \sin \theta_0 \sin \phi_0 \mbf{e}_2 + \cos \theta_0 \mbf{e}_3$，则上式可记作
+\begin{equation*}
+	\mbf{r} \cdot \mbf{e}_n = 0
+\end{equation*}
+边界条件为
+\begin{equation*}
+	\mbf{r}_A \cdot \mbf{e}_n = \mbf{r}_B \cdot \mbf{e}_n = 0
+\end{equation*}
+由此，短程线即为$OAB$平面与球面的交线之间较短的弧，即大圆弧。此处$\mbf{e}_n$即为$OAB$平面的法向量。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(200);
+	//球面短程线示意图
+	real hd,hdd;
+	pair O,i,j,k,en;
+	real r,theta0,phi0;
+	O = (0,0);
+	r = 2;
+	label("$O$",O,NW);
+	draw(shift(O)*scale(r)*unitcircle);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	theta0 = pi/6;
+	phi0 = 1.5;
+	en = sin(theta0)*cos(phi0)*i+sin(theta0)*sin(phi0)*j+cos(theta0)*k;
+	dot(r*en,red);
+	draw(O--r*en,red+dashed);
+	draw(Label("$\boldsymbol{e}_n$",EndPoint,W,black),r*en--r*en+en,red,Arrow);
+	
+	pair cir(real phi){
+		real theta,u,x,y,z;
+		if(phi==phi0){
+			theta = pi/2;
+		}
+		else{
+			u = -1./cos(phi-phi0)/tan(theta0);
+			if(u<0){
+				theta = pi-atan(-u);
+			}
+			else{
+				theta = atan(u);
+			}
+		}
+		x = r*sin(theta)*cos(phi);
+		y = r*sin(theta)*sin(phi);
+		z = r*cos(theta);
+		return x*i+y*j+z*k;
+	}
+	draw(graph(cir,pi/2,3*pi/2),blue+dashed);
+	draw(graph(cir,3*pi/2,2*pi+pi/2),blue);
+	real theta,theta2;
+	theta = -0.1*pi;
+	theta2 = 0.3*pi;
+	draw(graph(cir,theta,theta2),blue+linewidth(1.5bp));
+	draw(Label("$\boldsymbol{r}_A$",MidPoint,Relative(E)),O--cir(theta),dashed,Arrow);
+	label("$A$",cir(theta),SW);
+	dot(cir(theta));
+	draw(Label("$\boldsymbol{r}_B$",MidPoint,Relative(W)),O--cir(theta2),dashed,Arrow);
+	label("$B$",cir(theta2),S);
+	dot(cir(theta2));
+	theta = 0.13*pi;
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),O--cir(theta),dashed,Arrow);
+	dot(cir(theta));
+\end{asy}
+\caption{球面短程线示意图}
+\label{球面短程线示意图}
+\end{figure}
+\end{solution}
+
+\subsection{多元泛函极值问题}
+
+考虑多元泛函
+\begin{equation*}
+	J[y_1(x),y_2(x),\cdots,y_s(x)] = \int_a^b F(x;y_1,y_2,\cdots,y_s;y'_1,y'_2,\cdots,y'_s) \mathrm{d} x
+\end{equation*}
+在固定边界条件
+\begin{equation*}
+	\delta y_\alpha(a) = \delta y_\beta(b) = 0,\quad \alpha = 1,2,\cdots,s
+\end{equation*}
+下，泛函的变分为
+\begin{align*}
+	\delta J & = \delta \int_a^b F(x;y_1,y_2,\cdots,y_s;y'_1,y'_2,\cdots,y'_s) \mathrm{d} x \\
+	& = \int_a^b \delta F(x;y_1,y_2,\cdots,y_s;y'_1,y'_2,\cdots,y'_s) \mathrm{d} x \\
+	& = \int_a^b \left(\sum_{\alpha=1}^s \frac{\pl F}{\pl y_\alpha} \delta y_\alpha + \sum_{\alpha=1}^s \frac{\pl F}{\pl y'_\alpha} \delta y'_\alpha\right) \mathrm{d} x \\
+	& = \int_a^b \left[\frac{\mathrm{d}}{\mathrm{d} x} \left(\sum_{\alpha=1}^s \frac{\pl F}{\pl y'_\alpha} \delta y_\alpha\right) + \sum_{\alpha=1}^s \left(\frac{\pl F}{\pl y_\alpha} - \frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_\alpha} \right) \delta y_\alpha\right] \mathrm{d} x \\
+	& = \sum_{\alpha=1}^s \frac{\pl F}{\pl y'_\alpha} \delta y_\alpha \bigg|_a^b + \int_a^b \sum_{\alpha=1}^s \left(\frac{\pl F}{\pl y_\alpha} - \frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_\alpha} \right) \delta y_\alpha \mathrm{d} x \\
+	& = \int_a^b \sum_{\alpha=1}^s \left(\frac{\pl F}{\pl y_\alpha} - \frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_\alpha} \right) \delta y_\alpha \mathrm{d} x = 0
+\end{align*}
+由于$\delta y_\alpha\,(\alpha=1,2,\cdots,s)$之间相互独立，可得
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_\alpha} - \frac{\pl F}{\pl y_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+	\label{多元泛函的Euler-Lagrange方程}
+\end{equation}
+当$F$不显含$x$时，式\eqref{多元泛函的Euler-Lagrange方程}同样有初积分
+\begin{equation*}
+	\sum_{\alpha=1}^s \frac{\pl F}{\pl y'_\alpha} y'_\alpha - F = C
+\end{equation*}
+
+\section{力学变分原理}
+
+d'Alambert原理的形式为
+\begin{equation*}
+	\sum_{i=1}^n(\mbf{F}_i - m_i \ddot{\mbf{r}}) \cdot \delta \mbf{r}_i = 0
+\end{equation*}
+式中，$\delta \mbf{r}_i$为$t$时刻实际运动所达位形处的虚位移，即由约束限定的位矢等时变分，因而与实际运动$\mbf{r}_i(t),\,i=1,2,\cdots,n$相对，称
+\begin{equation*}
+	\tilde{\mbf{r}}_i(t) = \mbf{r}_i(t) + \delta \mbf{r}_i(t),\quad i=1,2,\cdots,n
+\end{equation*}
+为虚拟运动。力学变分原理指出实际运动与近邻虚拟运动相比所具有的极值性。
+
+\subsection{Hamilton原理}
+
+考虑d'Alambert原理
+\begin{align*}
+	\sum_{i=1}^n \left(\mbf{F}_i - m_i \frac{\mathrm{d} \dot{\mbf{r}}_i}{\mathrm{d} t}\right) \cdot \delta \mbf{r}_i & = \sum_{i=1}^n \left(\mbf{F}_i \cdot \delta \mbf{r}_i + m_i \dot{\mbf{r}}_i \cdot \delta \dot{\mbf{r}}_i\right) - \frac{\mathrm{d}}{\mathrm{d} t} \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \delta \mbf{r}_i \\
+	& = \delta T + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i - \frac{\mathrm{d}}{\mathrm{d} t} \sum_{i=1}^n \frac{\pl T}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i = 0
+\end{align*}
+将上式对时间积分，可得
+\begin{equation}
+	\int_{t_1}^{t_2} \left(\delta T + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i\right) \mathrm{d} t = \sum_{i=1}^n \frac{\pl T}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i \bigg|_{t_1}^{t_2}
+	\label{d'Alambert原理的积分形式}
+\end{equation}
+式\eqref{d'Alambert原理的积分形式}表示的关系为{\heiti d'Alambert原理的积分形式}。对于有势系，即有广义势$U = U(\mbf{r},\dot{\mbf{r}},t)$，则有
+\begin{equation*}
+	\mbf{F}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i},\quad i=1,2,\cdots,n
+\end{equation*}
+所以
+\begin{align*}
+	\sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i & = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n \frac{\pl U}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\right) - \sum_{i=1}^n \left(\frac{\pl U}{\pl \dot{\mbf{r}}_i} \cdot \delta \dot{\mbf{r}}_i + \frac{\pl U}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i \right) \\
+	& = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n \frac{\pl U}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\right) - \delta U
+\end{align*}
+由此可有
+\begin{equation}
+	\int_{t_1}^{t_2} \delta L \mathrm{d} t = \sum_{i=1}^n \frac{\pl L}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i \bigg|_{t_1}^{t_2}
+	\label{有势系d'Alambert原理的积分形式}
+\end{equation}
+式\eqref{有势系d'Alambert原理的积分形式}表示的关系为{\heiti 有势系d'Alambert原理的积分形式}。
+
+如果采用固定边界条件，即
+\begin{equation*}
+	\mbf{r}_i(t_1) = \mbf{r}_{i1},\mbf{r}_i(t_2) = \mbf{r}_{i2},\quad i=1,2,\cdots,n
+\end{equation*}
+则有
+\begin{equation*}
+	\delta \mbf{r}_i(t_1) = \delta \mbf{r}_i(t_2) = 0,\quad i = 1,2,\cdots,n
+\end{equation*}
+因此，对于有势系满足
+\begin{equation*}
+	\int_{t_1}^{t_2} \delta L \mathrm{d} t = 0
+\end{equation*}
+由此，可定义{\heiti Hamilton作用量}
+\begin{equation}
+	S = \int_{t_1}^{t_2} L \mathrm{d} t
+	\label{Hamilton作用量}
+\end{equation}
+则对于有势系有
+\begin{equation}
+	\delta S = \delta\int_{t_1}^{t_2} L \mathrm{d} t = 0
+	\label{Hamilton原理}
+\end{equation}
+式\eqref{Hamilton原理}表示的关系称为{\heiti Hamilton原理}\footnote{有些文献中称为{\heiti 最小作用量原理}。}。即与始末时间和位形均相同的虚拟运动相比，有势系实际运动使体系的作用量取驻值。对于一般体系，则有
+\begin{equation}
+	\int_{t_1}^{t_2} \left(\delta T + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i\right) \mathrm{d} t = 0
+	\label{一般体系的Hamilton原理}
+\end{equation}
+称为{\heiti 一般体系的Hamilton原理}。对于完整系，可有
+\begin{equation*}
+	\sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i = \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha
+\end{equation*}
+故有{\heiti 一般完整系的Hamilton原理}
+\begin{equation}
+	\int_{t_1}^{t_2} \left(\delta T + \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha\right) \mathrm{d} t = 0
+	\label{一般完整系的Hamilton原理}
+\end{equation}
+
+Hamilton原理是积分变分原理，与此相对应的d'Alambert原理是微分变分原理。变分原理具有如下特点：
+\begin{enumerate}
+	\item 不涉及具体坐标选取，形式统一；
+	\item 作用量是标量，形式简单，高度概括；
+	\item 易于推广至无限自由度体系（场）和非力学体系。
+\end{enumerate}
+
+\subsection{位形空间与Lagrange方程}
+
+对于完整系，可取广义坐标$q_\alpha,\,\,\alpha = 1,2,\cdots,s$通过广义坐标变换
+\begin{equation*}
+	\mbf{r}_i = \mbf{r}_i(\mbf{q},t),\quad i=1,2,\cdots,n
+\end{equation*}
+使得完整约束自动满足。完整有势系下的Hamilton作用量可以表示为
+\begin{equation}
+	S[\mbf{q}(t)] = \int_{t_1}^{t_2} L(\mbf{q},\dot{\mbf{q}},t) \mathrm{d} t
+\end{equation}
+在固定边界条件$\delta \mbf{q}(t_1) = \delta \mbf{q}(t_2) = 0$下，根据Hamilton原理以及Euler-Lagrange方程，可有
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+\end{equation}
+
+Lagrange函数$L$具有规范不定性，即作{\heiti 定域规范变换}
+\begin{equation}
+	\tilde{L} = L + \frac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t)
+\end{equation}
+可有
+\begin{equation*}
+	\delta \tilde{S} = \delta S + \delta f(\mbf{q},t)\big|_{t_1}^{t_2} = \delta S + \sum_{\alpha=1}^s \frac{\pl f}{\pl q_\alpha} \delta q_\alpha \bigg|_{t_1}^{t_2} = \delta S
+\end{equation*}
+即在定域规范变换下，Hamilton作用量的变分不变，进而体系的Lagrange方程也不变。因此规范变换下，体系的运动规律不变，此即为体系的{\heiti 规范不变性}。
+
+$L$的不定性来自广义势的规范不定性，即$\tilde{U}(\mbf{q},\dot{\mbf{q}},t) = U(\mbf{q},\dot{\mbf{q}},t) - \dfrac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t)$与$U(\mbf{q},\dot{\mbf{q}},t)$表示的是同一个势场。下面证明这一点，首先考虑$f = f(\mbf{q},t)$，则有
+\begin{equation*}
+	\dfrac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t) = \sum_{\alpha=1}^n \frac{\pl f}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl f}{\pl t} = \dot{f}(\mbf{q},\dot{\mbf{q}},t)
+\end{equation*}
+以及
+\begin{equation*}
+	\mathrm{d} f = \sum_{\alpha=1}^n \frac{\pl f}{\pl q_\alpha} \mathrm{d} q_\alpha + \frac{\pl f}{\pl t} \mathrm{d} t
+\end{equation*}
+在上式两端求对时间$t$的导数，可有
+\begin{align}
+	\mathrm{d} \dot{f} & = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{\alpha=1}^n \frac{\pl f}{\pl q_\alpha} \mathrm{d} q_\alpha\right) + \frac{\mathrm{d}}{\mathrm{d} t} \left(\frac{\pl f}{\pl t}\right) \mathrm{d} t \nonumber \\
+	& = \sum_{\alpha=1}^n \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl f}{\pl q_\alpha} \mathrm{d} q_\alpha + \sum_{\alpha=1}^n \frac{\pl f}{\pl q_\alpha} \mathrm{d} \dot{q}_\alpha + \frac{\mathrm{d}}{\mathrm{d} t} \left(\frac{\pl f}{\pl t}\right) \mathrm{d} t
+	\label{推广经典Lagrange关系中间步骤1}
+\end{align}
+再考虑函数$\dot{f} = \dot{f}(\mbf{q},\dot{\mbf{q}},t)$，可有
+\begin{equation}
+	\mathrm{d} \dot{f} = \sum_{\alpha=1}^n \frac{\pl \dot{f}}{\pl q_\alpha} \mathrm{d} q_\alpha + \sum_{\alpha=1}^n \frac{\pl \dot{f}}{\pl \dot{q}_\alpha} \mathrm{d} \dot{q}_\alpha + \frac{\pl \dot{f}}{\pl t} \mathrm{d} t
+	\label{推广经典Lagrange关系中间步骤2}
+\end{equation}
+对比式\eqref{推广经典Lagrange关系中间步骤1}和\eqref{推广经典Lagrange关系中间步骤2}可得{\heiti 推广经典Lagrange关系}
+\begin{equation}
+	\frac{\pl \dot{f}}{\pl \dot{q}_\alpha} = \frac{\pl f}{\pl q_\alpha},\quad \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl f}{\pl q_\alpha} = \frac{\pl \dot{f}}{\pl q_\alpha},\quad \alpha = 1,2,\cdots,s
+	\label{推广经典Lagrange关系}
+\end{equation}
+据此考虑广义力
+\begin{align*}
+	\tilde{Q}_\alpha & = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \tilde{U}}{\pl \dot{q}_\alpha} - \frac{\pl \tilde{U}}{\pl q_\alpha} = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{q}_\alpha} - \frac{\pl U}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \dot{f}}{\pl \dot{q}_\alpha} + \frac{\pl \dot{f}}{\pl q_\alpha} \\
+	& = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{q}_\alpha} - \frac{\pl U}{\pl q_\alpha} = Q_\alpha	
+\end{align*}
+在规范变换下体系的力场不变，故势$\tilde{U}(\mbf{q},\dot{\mbf{q}},t) = U(\mbf{q},\dot{\mbf{q}},t) - \dfrac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t)$与$U(\mbf{q},\dot{\mbf{q}},t)$表示的是同一个势场。
+
+在规范变换下，广义动量为
+\begin{equation*}
+	\tilde{p}_\alpha = \frac{\pl \tilde{L}}{\pl \dot{q}_\alpha} = \frac{\pl L}{\pl \dot{q}_\alpha} + \frac{\pl \dot{f}}{\pl \dot{q}_\alpha} = p_\alpha + \frac{\pl f}{\pl q_\alpha}
+\end{equation*}
+广义能量为
+\begin{align*}
+	\tilde{H} & = \sum_{\alpha=1}^s \frac{\pl \tilde{L}}{\pl \dot{q}_\alpha} \dot{q}_\alpha - \tilde{L} = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \dot{q}_\alpha - L + \sum_{\alpha=1}^s \frac{\pl \dot{f}}{\pl \dot{q}_\alpha} \dot{q}_\alpha - \frac{\mathrm{d} f}{\mathrm{d} t} \\
+	& = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \dot{q}_\alpha - L + \sum_{\alpha=1}^s \frac{\pl f}{\pl q_\alpha} \dot{q}_\alpha - \left(\sum_{\alpha=1}^s \frac{\pl f}{\pl q_\alpha} + \frac{\pl f}{\pl t}\right) = H - \frac{\pl f}{\pl t}
+\end{align*}
+即，与坐标共轭的广义动量，与时间共轭的广义能量均具有不定性，取决于Lagrange函数的规范选择。
+
+对于一般完整系的Hamilton原理
+\begin{equation*}
+	\int_{t_1}^{t_2} \left(\delta T + \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha\right) \mathrm{d} t = 0
+\end{equation*}
+考虑到$T = T(\mbf{q},\dot{\mbf{q}},t)$，有
+\begin{align*}
+	& \int_{t_1}^{t_2} \left(\delta T + \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha\right) \mathrm{d} t = \int_{t_1}^{t_2} \left(\sum_{\alpha=1}^s \frac{\pl T}{\pl q_\alpha} \delta q_\alpha + \sum_{\alpha=1}^s \frac{\pl T}{\pl \dot{q}_\alpha} \delta \dot{q}_\alpha + \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha\right) \mathrm{d} t \\
+	& \quad = \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s \frac{\pl T}{\pl q_\alpha} \delta q_\alpha + \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{\alpha=1}^s \frac{\pl T}{\pl \dot{q}_\alpha} \delta q_\alpha\right) - \sum_{\alpha=1}^s \frac{\mathrm{d}}{\mathrm{d} t} \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right) \delta q_\alpha + \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha \right] \mathrm{d} t \\
+	& \quad = \frac{\pl T}{\pl \dot{q}_\alpha} \delta q_\alpha\bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \sum_{\alpha=1}^s \left(\frac{\pl T}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} + Q_\alpha\right) \delta q_\alpha \mathrm{d} t \\
+	& \quad = \int_{t_1}^{t_2} \sum_{\alpha=1}^s \left(\frac{\pl T}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} + Q_\alpha\right) \delta q_\alpha \mathrm{d} t
+\end{align*}
+因为$\delta q_\alpha\,(\alpha=1,2,\cdots,s)$相互独立，所以可得{\heiti 一般完整系的Lagrange方程}
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} = Q_\alpha,\quad \alpha = 1,2,\cdots,s
+\end{equation}
+
+\subsection{相空间与Hamilton方程}
+
+在位形空间，考虑Hamilton函数的定义，有
+\begin{equation*}
+	L = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \dot{q}_\alpha - H = \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t)
+\end{equation*}
+根据Hamilton原理，可有
+\begin{align*}
+	\delta S & = \int_{t_1}^{t_2} \left[\sum_{\alpha=1} (\dot{q}_\alpha \delta p_\alpha + p_\alpha \delta \dot{q}_\alpha) - \sum_{\alpha=1}^s \left(\frac{\pl H}{\pl p_\alpha} \delta p_\alpha + \frac{\pl H}{\pl q_\alpha} \delta q_\alpha\right)\right] \mathrm{d} t \\
+	& = \int_{t_1}^{t_2} \left[\frac{\mathrm{d}}{\mathrm{d} t} \sum_{\alpha=1}^s p_\alpha \delta q_\alpha + \sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha} \right) \delta q_\alpha \right] \mathrm{d} t \\
+	& = \sum_{\alpha=1}^s p_\alpha \delta q_\alpha\bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha}\right) \delta q_\alpha\right] \mathrm{d} t
+\end{align*}
+由于$S = S[\mbf{q}(t)]$，独立变分只有$\delta q_\alpha$，动量由坐标定义，其变分不独立。考虑
+\begin{equation*}
+	H = \sum_{\beta=1}^s p_\beta \dot{q}_\beta(\mbf{q},\mbf{p},t) - L(\mbf{q},\dot{\mbf{q}}(\mbf{q},\mbf{p},t),t)
+\end{equation*}
+所以有
+\begin{equation*}
+	\frac{\pl H}{\pl p_\alpha} = \dot{q}_\alpha + \sum_{\beta=1}^s p_\beta \frac{\pl \dot{q}_\beta}{\pl p_\alpha} - \sum_{\beta=1}^s \frac{\pl L}{\pl \dot{q}_\beta} \frac{\pl \dot{q}_\beta}{\pl p_\alpha} = \dot{q}_\alpha + \sum_{\beta=1}^s \left(p_\beta - \frac{\pl L}{\pl \dot{q}_\beta} \right) \frac{\pl \dot{q}_\beta}{\pl p_\alpha}
+\end{equation*}
+考虑到动量的定义$p_\beta = \dfrac{\pl L}{\pl \dot{q}_\beta}$，即有
+\begin{equation*}
+	\dot{q}_\alpha = \frac{\pl H}{\pl p_\alpha}
+\end{equation*}
+因此有
+\begin{equation*}
+	\sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha = 0
+\end{equation*}
+故有
+\begin{equation*}
+	\delta S = -\int_{t_1}^{t_2} \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha} \right) \delta q_\alpha \mathrm{d} t = 0
+\end{equation*}
+由此可有
+\begin{equation*}
+	\dot{p}_\alpha = - \frac{\pl H}{\pl q_\alpha}
+\end{equation*}
+即，在位形空间中考察Hamilton方程一半是动量定义，另一半是运动方程。
+
+上节已经指出，与坐标共轭的动量具有规范不定性，据此，可以将动量视为与坐标地位平等、完全独立的正则变量。由此在相空间中即可将Hamilton作用量写作
+\begin{equation}
+	S[\mbf{q}(t),\mbf{p}(t)] = \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t)\right] \mathrm{d} t
+\end{equation}
+在固定边界条件下，应用Hamilton原理，有
+\begin{align*}
+	\delta S & = \int_{t_1}^{t_2} \left(\sum_{\alpha=1}^s \dot{q}_\alpha \delta p_\alpha + \sum_{\alpha=1}^s p_\alpha \delta \dot{q}_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl q_\alpha} \delta q_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl p_\alpha} \delta p_\alpha \right) \mathrm{d} t \\
+	& = \int_{t_1}^{t_2} \left[\frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{\alpha=1}^s p_\alpha \delta q_\alpha\right) - \sum_{\alpha=1}^s \dot{p}_\alpha \delta q_\alpha + \sum_{\alpha=1}^s \dot{q}_\alpha \delta p_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl q_\alpha} \delta q_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl p_\alpha} \delta p_\alpha \right] \mathrm{d} t \\
+	& = \sum_{\alpha=1}^s p_\alpha \delta q_\alpha \bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha}\right) \delta q_\alpha \right] \mathrm{d} t \\
+	& = \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha}\right) \delta q_\alpha \right] \mathrm{d} t
+\end{align*}
+据此即可得到Hamilton正则方程
+\begin{equation}
+	\begin{cases}
+		\dot{q}_\alpha = \dfrac{\pl H}{\pl p_\alpha} \\[1.5ex]
+		\dot{p}_\alpha = -\dfrac{\pl H}{\pl q_\alpha}
+	\end{cases}
+\end{equation}
+将Hamilton原理视为相空间力学变分原理，则Hamilton方程全体均为运动方程。坐标和动量在满足相空间Hamilton原理的前提下可以独立变换，扩大了变换的自由度。
+
+\subsection{位形时空与推广的Lagrange方程}
+
+作参数变换$t = t(\tau)$，则有推广的Lagrange函数为
+\begin{equation*}
+	\mathnormal{\Lambda} (\mbf{q},t;\mbf{q}',t') = L \left(\mbf{q}, \frac{\mbf{q}'}{t'},t\right) t'
+\end{equation*}
+此时Hamilton作用量变换为
+\begin{equation}
+	S[\mbf{q}(\tau)] = \int_{\tau_1}^{\tau_2} L\left(\mbf{q},\frac{\mbf{q}'}{t'},t\right) t' \mathrm{d} \tau = \int_{\tau_1}^{\tau_2} \mathnormal{\Lambda} (\mbf{q},t;\mbf{q}',t') \mathrm{d} \tau
+\end{equation}
+在固定边界条件下，即
+\begin{equation*}
+	\delta \mbf{q}(\tau_1) = \delta \mbf{q}(\tau_2) = 0,\quad \delta t(\tau) = 0
+\end{equation*}
+可有
+\begin{align*}
+	\delta S & = \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} \delta q_\alpha + \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q'_\alpha\right) \mathrm{d} \tau \\
+	& = \int_{\tau_1}^{\tau_2} \left[\frac{\mathrm{d}}{\mathrm{d} \tau} \sum_{\alpha=1}^s \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha + \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \right] \mathrm{d} \tau \\
+	& = \sum_{\alpha=1}^s \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_1}^{\tau_2} + \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau \\
+	& = \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau = 0
+\end{align*}
+由此可得以$\tau$为参数的Lagrange方程
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} - \frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+\end{equation}
+以上讨论限于位形空间，仅将参数$t$通过确定的对应关系变换成新参数$\tau$。
+
+在位形时空中，$\tau$为参数，$t$视为变量，记作$q_{s+1}$。即此时$\delta \tau = 0$，但$\delta t(\tau) \neq 0$，Hamilton作用量为
+\begin{equation*}
+	S[\mbf{q}(\tau),t(\tau)] = \int_{\tau_1}^{\tau_2} \mathnormal{\Lambda}(\mbf{q},t;\mbf{q}',t') \mathrm{d} \tau
+\end{equation*}
+同样在固定边界条件下
+\begin{equation*}
+	\delta \mbf{q}(\tau_1) = \delta \mbf{q}(\tau_2) = 0,\quad \delta t(\tau_1) = \delta t(\tau_2) = 0
+\end{equation*}
+考虑Hamilton原理，即
+\begin{align*}
+	\delta S & = \sum_{\alpha=1}^{s+1} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_1}^{\tau_2} + \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^{s+1} \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau \\
+	& = \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^{s+1} \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau = 0
+\end{align*}
+由此可以得到位形时空（$s+1$维空间）中的Lagrange方程
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} - \frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s+1
+\end{equation}
+
+\subsection{其它形式的力学变分原理}
+
+为了导出其他形式的力学变分原理，首先考虑在位形时空中，Hamilton原理可以表示为
+\begin{equation*}
+	\delta S = \sum_{\alpha=1}^{s+1} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_1}^{\tau_2} + \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^{s+1} \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau
+\end{equation*}
+其他形式的力学变分原理应同样满足系统的Lagrange方程，因此如果此处不附加边界条件，将Lagrange方程代入，可得力学变分原理的一种形式如下
+\begin{equation*}
+	\delta S = \int_{\tau_1}^{\tau_2} \delta \varLambda \mathrm{d} \tau = \sum_{\alpha=1}^{s+1} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_1}^{\tau_2} = \sum_{\alpha=1}^{s+1} p_\alpha \delta q_\alpha\bigg|_{\tau_1}^{\tau_2}
+\end{equation*}
+或者
+\begin{equation}
+	\int_{\tau_1}^{\tau_2} \left(\delta \varLambda - \frac{\mathrm{d}}{\mathrm{d} \tau} \sum_{\alpha=1}^{s+1} p_\alpha \delta q_\alpha \right) \mathrm{d} \tau = 0
+\end{equation}
+若实际运动与虚拟运动同时同位形出发且同时同位形到达，即
+\begin{equation*}
+	\delta q_\alpha(\tau_1) = \delta q_\alpha(\tau_2) = 0,\quad \alpha = 1,2,\cdots,s+1
+\end{equation*}
+即得到位形时空（$s+1$维）的Hamilton原理
+\begin{equation}
+	\int_{\tau_1}^{\tau_2} \delta \varLambda \mathrm{d} \tau = 0
+	\label{位形时空的Hamilton原理}
+\end{equation}
+若实际运动与虚拟运动同位形出发且同位形到达，但出发、到达时间不同，即
+\begin{equation*}
+	\delta q_\alpha(\tau_1) = \delta q_\alpha(\tau_2) = 0,\quad \alpha = 1,2,\cdots,s,\quad \delta t(\tau) \neq 0
+\end{equation*}
+即得到位形空间（$s$维）的Hamilton原理
+\begin{equation}
+	\int_{\tau_1}^{\tau_2} \left[\delta \varLambda + \frac{\mathrm{d}}{\mathrm{d} \tau}(H\delta t)\right] \mathrm{d} \tau = 0
+	\label{位形空间的Hamilton原理}
+\end{equation}
+
+现在，考虑满足时间平移对称性的体系，此时有
+\begin{equation*}
+	H' = -p'_t = -\frac{\pl \varLambda}{\pl t} = 0
+\end{equation*}
+此时体系广义能量守恒\footnote{大部分的力学体系都能满足此条件。}。可比较具有相同能量、相同始末位形的实际运动与虚拟运动，此时变分相应地称为{\heiti 等能变分}。等能变分$\delta$满足
+\begin{equation*}
+	\delta H = 0,\quad \delta t \neq 0,\quad \delta \tau = 0
+\end{equation*}
+等能条件限制了位形轨道每一点的速度，使得实际运动与虚拟运动不能同时出发与到达。此时有
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} \tau}(H\delta t) = H' \delta t + H\delta t' = \delta (Ht) - t'\delta H = \delta (Ht')
+\end{equation*}
+由此，式\eqref{位形时空的Hamilton原理}可化为
+\begin{equation*}
+	\int_{\tau_1}^{\tau_2} \delta (\varLambda + Ht') \mathrm{d} \tau = \delta \int_{\tau_1}^{\tau_2} (\varLambda + Ht') \mathrm{d} \tau = 0
+\end{equation*}
+定义
+\begin{equation*}
+	W[\mbf{q}(\tau),t(\tau)] = \int_{\tau_1}^{\tau_2} (L+H)t' \mathrm{d} \tau = \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^s p_\alpha q'_\alpha \mathrm{d} \tau 
+\end{equation*}
+称为{\heiti Lagrange作用量}\footnote{有些文献上称为{\heiti 简约作用量}。}，相应的式\eqref{位形时空的Hamilton原理}化为
+\begin{equation*}
+	\delta W[\mbf{q}(\tau),t(\tau)] = \delta \int_{\tau_1}^{\tau_2} \sum_{\alpha=1}^s p_\alpha q'_\alpha \mathrm{d} \tau = 0
+\end{equation*}
+称为{\heiti 位形时空的Lagrange原理}。在Lagrange作用量的表达式中作变量代换$t=t(\tau)$消去参数$\tau$，可有
+\begin{equation}
+	W[\mbf{q}(t)] = \int_{t_1}^{t_2} (L+H) \mathrm{d} t = \int_{t_1}^{t_2} \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha \mathrm{d} t
+\end{equation}
+此时可有{\heiti 位形空间的Lagrange原理}
+\begin{equation}
+	\Delta W[\mbf{q}(t)] = \Delta \int_{t_1}^{t_2} (L+H) \mathrm{d} t = \Delta \int_{t_1}^{t_2} \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha \mathrm{d} t = 0
+	\label{位形空间的Lagrange原理}
+\end{equation}
+此处，$\Delta$为位形空间中的等时变分。由于位形空间与位形时空的参数不同，因此他们的变分规则不同，此处引入记号$\Delta$以示区别。在位形空间中，取任意函数$f(t)$，则等能变分满足
+\begin{align*}
+	\Delta f & = \delta f(t) + \dot{f} \Delta t \\
+	\frac{\mathrm{d}}{\mathrm{d} t} \Delta f & = \delta \dot{f}(t) + \ddot{f} \Delta t + \dot{f} \frac{\mathrm{d}\Delta t}{\mathrm{d} t} = \Delta \dot{f} + \dot{f} \frac{\mathrm{d}\Delta t}{\mathrm{d} t} \\
+	\Delta \int_{t_1}^{t_2} f \mathrm{d} t & = \delta \int_{\tau_1}^{\tau_2} f t' \mathrm{d} \tau = \int_{\tau_1}^{\tau_2} \left(t' \delta f + f\frac{\mathrm{d} \delta t}{\mathrm{d} \tau}\right) \mathrm{d} \tau = \int_{t_1}^{t_2} \left(\Delta f + f\frac{\mathrm{d} \Delta t}{\mathrm{d} t}\right) \mathrm{d} t
+\end{align*}
+Lagrange原理\eqref{位形空间的Lagrange原理}可改写为
+\begin{equation}
+	\Delta W = \Delta \int_{\mbf{q}_1}^{\mbf{q}_2} \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha = 0
+	\label{Lagrange原理的Maupertuis形式}
+\end{equation}
+式\eqref{Lagrange原理的Maupertuis形式}称为{\heiti Lagrange原理的Maupertuis（莫培督）形式}。
+
+\begin{example}[由位形空间的Lagrange原理导出Lagrange方程]
+由位形空间的Lagrange原理，即
+\begin{equation*}
+	\Delta W = \Delta \int_{t_1}^{t_2} (L+H) \mathrm{d} t = \int_{t_1}^{t_2} \left[\Delta(L+H) + (L+H) \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\right] \mathrm{d} t = 0
+\end{equation*}
+现在来考察上面积分中的各项，首先根据等能变分的定义，有$\Delta H = 0$。考虑到体系的能量守恒，即有
+\begin{equation*}
+	\dot{H} = -\frac{\pl L}{\pl t} = 0
+\end{equation*}
+由此可有
+\begin{align*}
+	\Delta L + (L+H) \frac{\mathrm{d} \Delta t}{\mathrm{d} t} & = \sum_{\alpha=1}^s \frac{\pl L}{\pl q_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta \dot{q}_\alpha + \frac{\pl L}{\pl t} \Delta t + \sum_{\alpha=1}^s p_\alpha q_\alpha \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\\
+	& = \sum_{\alpha=1}^s \frac{\pl L}{\pl q_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \left(\frac{\mathrm{d} \Delta q_\alpha}{\mathrm{d} t} - \dot{q}_\alpha \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\right) + \sum_{\alpha=1}^s p_\alpha q_\alpha \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\\
+	& = \frac{\mathrm{d}}{\mathrm{d} t} \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha
+\end{align*}
+综上，可得
+\begin{align*}
+	\Delta W & = \int_{t_1}^{t_2} \left[\frac{\mathrm{d}}{\mathrm{d} t} \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha\right] \mathrm{d} t \\
+	& = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta q_\alpha\bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha \mathrm{d} t
+\end{align*}
+对始末位形可有
+\begin{equation*}
+	\Delta \mbf{q}(t_1) = \Delta \mbf{q}(t_2) = 0
+\end{equation*}
+因此，有
+\begin{equation*}
+	\Delta W = \int_{t_1}^{t_2} \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha \mathrm{d} t = 0
+\end{equation*}
+根据$\Delta q_\alpha$的独立性，即可得到Lagrange方程
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+\end{equation*}
+\end{example}
+
+若体系的约束为完整稳定约束，根据节\ref{第二章：广义能量的数学结构}的讨论，此时有
+\begin{align*}
+	L & = T-V = T_2 - V \\
+	H & = L_2 - L_0 = T_2 + V
+\end{align*}
+其中
+\begin{equation*}
+	T_2 = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta,\quad M_{\alpha\beta}(\mbf{q},t) = \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl q_\beta}
+\end{equation*}
+此时Lagrange原理为
+\begin{equation*}
+	\Delta W = \Delta \int_{t_1}^{t_2} (L+H) \mathrm{d} t = \Delta \int_{t_1}^{t_2} \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta \mathrm{d} t = 0
+\end{equation*}
+定义位形空间线元
+\begin{equation*}
+	\mathrm{d} s^2 = \frac{1}{M} \sum_{i=1}^n m_i \mathrm{d} \mbf{r}_i \cdot \mathrm{d} \mbf{r}_i = \frac{1}{M} \sum_{\alpha,\beta=1}^s M_{\alpha\beta} \mathrm{d} q_\alpha \mathrm{d} q_\beta
+\end{equation*}
+其中$\displaystyle M = \sum_{i=1}^n m_i$，此时动能可以表示为
+\begin{equation*}
+	T = \frac12 M \left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2 
+\end{equation*}
+此处，$\dfrac{\mathrm{d} s}{\mathrm{d} t}$即为体系位形代表点沿位形轨道运动的速度，方向即为轨道的切线方向。再考虑到体系的能量守恒，将总能量记作$E$，则有
+\begin{equation*}
+	2T\mathrm{d} t = \sqrt{2MT}\mathrm{d} s = \sqrt{2M\big[E-V(\mbf{r})\big]} \mathrm{d}s
+\end{equation*}
+此时，Lagrange原理形式为
+\begin{equation}
+	\Delta W = \Delta \int_{\mbf{r}_1}^{\mbf{r}_2} \sqrt{2M\big[E-V(\mbf{r})\big]} \mathrm{d}s = 0
+	\label{Lagrange原理的Jacobi形式}
+\end{equation}
+式\eqref{Lagrange原理的Jacobi形式}称为{\heiti Lagrange原理的Jacobi形式}。此原理不涉及时间，它从所有满足能量守恒的虚拟轨道中选出Lagrange作用量取极值的实际轨道。
+
+\section{Lagrange乘子法}
+
+对于完整体系，运动方程中不含约束力。因此对于不需要求解约束力的问题，可直接求解运动。如何求解完整体系中的约束力？
+
+\subsection{Lagrange乘子法}
+
+多元函数在约束下的极值问题，可以用{\heiti Lagrange乘子法}来解决。即已知多元函数
+\begin{equation*}
+	J = J(y_1,y_2,\cdots,y_n)
+\end{equation*}
+求其在约束条件
+\begin{equation*}
+	f_j(y_1,y_2,\cdots,y_n) = 0,\quad j = 1,2,\cdots,m<n
+\end{equation*}
+下的极值。根据极值条件，取极值时要求
+\begin{equation}
+	\mathrm{d} J = \sum_{i=1}^n \frac{\pl J}{\pl y_i} \mathrm{d}y_i = 0
+\end{equation}
+但此时$\mathrm{d} y_i$之间并不独立，还需满足
+\begin{equation}
+	\sum_{i=1}^n \frac{\pl f}{\pl y_i} \mathrm{d} y_i = 0,\quad i=1,2,\cdots,m
+\end{equation}
+由此，可引入$m$个不定乘子$\lambda_i$，则有
+\begin{equation}
+	\mathrm{d} \left(J + \sum_{j=1}^m \lambda_j f_j\right) = \sum_{i=1}^n \left(\frac{\pl J}{\pl y_i} + \sum_{j=1}^m \lambda_j \frac{\pl f_j}{\pl y_i} \right) \mathrm{d} y_i = 0
+\end{equation}
+即有驻点满足的方程为
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\pl J}{\pl y_i} + \sum_{j=1}^m \lambda_j \frac{\pl f_j}{\pl y_i} = 0, & i=1,2,\cdots,n \\
+		f_j(y_1,y_2,\cdots,y_n) = 0, & j=1,2,\cdots,m
+	\end{cases}
+\end{equation}
+据此可以解出极值点$(y_1,y_2,\cdots,y_n)$和乘子$\lambda_j$。这种方法称为Lagrange乘子法。
+
+一般地，Lagrange乘子法可按如下操作：首先定义Lagrange函数
+\begin{equation}
+	\bar{J}(y_1,y_2,\cdots,y_n;\lambda_1,\lambda_2,\cdots,\lambda_m) = J(y_1,y_2,\cdots,y_n) + \sum_{j=1}^m \lambda_j f_j(y_1,y_2,\cdots,y_n)
+\end{equation}
+然后按无条件极值的方法求解极值点
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\pl \bar{J}}{\pl y_i} = 0, & i=1,2,\cdots,n \\[1.5ex]
+		\displaystyle \frac{\pl \bar{J}}{\pl \lambda_j} = 0, & j = 1,2,\cdots,m
+	\end{cases}
+\end{equation}
+解此方程组，即可得到条件极值点$(y_1,y_2,\cdots,y_n)$（以及$m$个Lagrange乘子）。
+
+\subsection{Lagrange乘子法求解全部约束力}
+
+理想完整有势体系的约束可以表示为
+\begin{equation}
+	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;t) = 0,\quad j = 1,2,\cdots,k
+\end{equation}
+Hamilton作用量可以表示为
+\begin{equation*}
+	S[\mbf{r}(t)] = \int_{t_1}^{t_2} L(\mbf{r},\dot{\mbf{r}},t) \mathrm{d} t
+\end{equation*}
+在固定边界条件下，其变分为
+\begin{align*}
+	\delta S & = \int_{t_1}^{t_2} \delta L(\mbf{r},\dot{\mbf{r}},t) \mathrm{d} t = \int_{t_1}^{t_2} \left(\sum_{i=1}^n \frac{\pl L}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i + \sum_{i=1}^n \frac{\pl L}{\pl \dot{\mbf{r}}_i} \cdot \delta \dot{\mbf{r}}_i\right) \mathrm{d} t \\
+	& = \int_{t_1}^{t_2} \left[\frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n \frac{\pl L}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\right) - \sum_{i=1}^n \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i + \sum_{i=1}^n \frac{\pl L}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i\right] \mathrm{d} t \\
+	& = \sum_{i=1}^n \frac{\pl L}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i \bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \sum_{i=1}^n \left(\frac{\pl L}{\pl \mbf{r}_i} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{\mbf{r}}_i}\right) \cdot \delta \mbf{r}_i \mathrm{d} t \\
+	& = \int_{t_1}^{t_2} \sum_{i=1}^n \left(\frac{\pl L}{\pl \mbf{r}_i} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{\mbf{r}}_i}\right) \cdot \delta \mbf{r}_i \mathrm{d} t = 0
+\end{align*}
+再考虑到约束条件
+\begin{equation*}
+	\delta f_j = \sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i = 0
+\end{equation*}
+引入不定乘子$\lambda_j(t)$即有
+\begin{equation}
+	\delta \int_{t_1}^{t_2} \left(L + \sum_{j=1}^k \lambda_j(t) f_j\right) \mathrm{d} t = \int_{t_1}^{t_2} \sum_{i=1}^n \left(\frac{\pl L}{\pl \mbf{r}_i} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{\mbf{r}}_i} + \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i}\right) \cdot \delta \mbf{r}_i \mathrm{d} t = 0
+\end{equation}
+由此可有
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{\mbf{r}}_i} - \frac{\pl L}{\pl \mbf{r}_i} = \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i},& i = 1,2,\cdots,n \\
+		\displaystyle f_j(\mbf{r},t) = 0,& j=1,2,\cdots,k
+	\end{cases}
+	\label{完整有势系的Lagrange乘子法}
+\end{equation}
+据此可以解出系统的运动$\mbf{r}_i = \mbf{r}_i(t)$，以及不定乘子$\lambda_j = \lambda_j(t)$。
+
+根据Lagrange公式\eqref{加速度的Lagrange公式}可有
+\begin{equation*}
+	m_i \ddot{\mbf{r}}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{\mbf{r}}_i} - \frac{\pl T}{\pl \mbf{r}_i}
+\end{equation*}
+再考虑到
+\begin{equation*}
+	\mbf{F}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i}
+\end{equation*}
+根据Newton第二定律，约束力满足
+\begin{equation*}
+	m_i \ddot{\mbf{r}}_i = \mbf{F}_i + \mbf{R}_i,\quad i=1,2,\cdots,n
+\end{equation*}
+所以有
+\begin{align}
+	\mbf{R}_i & = m_i\ddot{\mbf{r}}_i - \mbf{F}_i = \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{\mbf{r}}_i} - \frac{\pl T}{\pl \mbf{r}_i}\right) - \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i}\right) \nonumber = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{\mbf{r}}_i} - \frac{\pl L}{\pl \mbf{r}_i} \nonumber \\
+	& = \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i}
+\end{align}
+于是，记
+\begin{equation}
+	\mbf{R}_{ij} = \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i}
+\end{equation}
+为第$j$个约束施于第$i$个质点的力，其方向决定于$\bnb_i f_j$，大小则与$\lambda_j$成正比。约束力可以写作
+\begin{equation*}
+	\mbf{R}_i = \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i} = -\frac{\pl}{\pl \mbf{r}_i} \left(-\sum_{j=1}^k \lambda_j f_j\right)
+\end{equation*}
+所以，标量函数
+\begin{equation}
+	W(\mbf{r},t) = -\sum_{j=1}^k \lambda_j f_j(\mbf{r},t)
+\end{equation}
+可称为{\heiti 约束力势}。
+
+于是可将约束力势视作外力的势能加入Lagrange函数中，即
+\begin{equation}
+	\bar{L}(\mbf{r},\dot{\mbf{r}},t;\mbf{\lambda}) = T-U-W = \sum_{i=1}^n \frac12 m\dot{\mbf{r}}^2 - U(\mbf{r},\dot{\mbf{r}},t) + \sum_{j=1}^k \lambda_j f_j(\mbf{r},t)
+\end{equation}
+应用Hamilton原理可得
+\begin{align*}
+	& \delta \bar{S}[\mbf{r}(t),\mbf{\lambda}(t)] = \delta \int_{t_1}^{t_2} \bar{L} \mathrm{d} t = \int_{t_1}^{t_2} \left(\sum_{i=1}^n \frac{\pl \bar{L}}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i + \sum_{i=1}^n \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} \cdot \delta \dot{\mbf{r}}_i + \sum_{j=1}^k \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j \right) \mathrm{d} t \\
+	& \quad = \int_{t_1}^{t_2} \left[\frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\right) - \sum_{i=1}^n \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i + \sum_{i=1}^s \frac{\pl \bar{L}}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i + \sum_{j=1}^k \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j\right] \mathrm{d} t \\
+	& \quad = \sum_{i=1}^n \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \left(\sum_{i=1}^s \frac{\pl \bar{L}}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i - \sum_{i=1}^n \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i + \sum_{j=1}^k \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j\right) \mathrm{d} t \\
+	& \quad = \int_{t_1}^{t_2} \left[-\sum_{i=1}^s \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} - \frac{\pl \bar{L}}{\pl \mbf{r}_i}\right) \cdot \delta \mbf{r}_i + \sum_{j=1}^k \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j\right] \mathrm{d} t
+\end{align*}
+由此可得
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} - \frac{\pl \bar{L}}{\pl \mbf{r}_i} = 0,& i=1,2,\cdots,n \\[1.5ex]
+		\displaystyle \frac{\pl \bar{L}}{\pl \lambda_j} = 0,& j = 1,2,\cdots,k
+	\end{cases}
+\end{equation}
+
+对于一般理想完整体系，可构造
+\begin{equation}
+	\bar{L} = T- W = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}^2 + \sum_{j=1}^k \lambda_j f_j(\mbf{r},t)
+\end{equation}
+由一般完整体系的Hamilton原理
+\begin{align*}
+	& \int_{t_1}^{t_2} \left(\delta \bar{L} + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i\right) \mathrm{d} t \\
+	& \quad = \int_{t_1}^{t_2} \left(\sum_{i=1}^n \frac{\pl \bar{L}}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i + \sum_{i=1}^n \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} \cdot \delta \dot{\mbf{r}}_i + \sum_{j=1}^k \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i \right) \mathrm{d} t \\
+	& \quad = \sum_{i=1}^n \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i \bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \left[-\sum_{i=1}^n \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} - \frac{\pl \bar{L}}{\pl \mbf{r}_i} - \mbf{F}_i\right) \cdot \delta \mbf{r}_i + \sum_{j=1}^k \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j\right] \mathrm{d} t \\
+	& \quad = \int_{t_1}^{t_2} \left[-\sum_{i=1}^n \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} - \frac{\pl \bar{L}}{\pl \mbf{r}_i} - \mbf{F}_i\right) \cdot \delta \mbf{r}_i + \sum_{j=1}^k \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j\right] \mathrm{d} t
+\end{align*}
+由此可得
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} - \frac{\pl \bar{L}}{\pl \mbf{r}_i} = \mbf{F}_i,& i=1,2,\cdots,n \\[1.5ex]
+		\displaystyle \frac{\pl \bar{L}}{\pl \lambda_j} = 0,& j = 1,2,\cdots,k
+	\end{cases}
+\end{equation}
+
+\subsection{Lagrange乘子法求解部分约束力}
+
+设有完整约束
+\begin{equation*}
+	\begin{cases}
+		f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;t) = 0, & j = 1,2,\cdots,l \\
+		f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;t) = 0, & j = l+1,l+2,\cdots,k
+	\end{cases}
+\end{equation*}
+求前$l$个约束的约束力，可以除去约束中的前$l$个，根据后$k-l$个选择广义坐标$q_\alpha,\,\,\alpha=1,2,\cdots,r = 3n-k+l$。广义坐标使得后面$k-l$个约束自动满足，余下前$l$个约束方程变为
+\begin{equation*}
+	f_j(\mbf{r}(\mbf{q},t),t) = \bar{f}_j(\mbf{q},t),\quad j=1,2,\cdots,l
+\end{equation*}
+即
+\begin{equation*}
+	\delta \bar{f}_j = \sum_{\alpha=1}^r \frac{\pl \bar{f}_j}{\pl q_\alpha} \delta q_\alpha = 0
+\end{equation*}
+根据Hamilton原理，有
+\begin{align*}
+	\delta S & = \sum_{\alpha=1}^r \frac{\pl L}{\pl q_\alpha} \delta q_\alpha\bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} \right) \delta q_\alpha \mathrm{d} t \\
+	& = \int_{t_1}^{t_2} \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} \right) \delta q_\alpha \mathrm{d} t = 0
+\end{align*}
+此处$q_\alpha$不相互独立，因而不能通过上式直接得出系统方程。引入不定乘子$\lambda_j(t)$可有
+\begin{equation*}
+	\delta \int_{t_1}^{t_2} \left(L+\sum_{j=1}^l \lambda_j(t) \bar{f}_j\right) \mathrm{d} t = \int_{t_1}^{t_2} \sum_{\alpha=1}^r \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} + \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha} \right) \delta q_\alpha \mathrm{d} t = 0
+\end{equation*}
+由此可得
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha},& \alpha=1,2,\cdots,r \\
+		\bar{f}_j(\mbf{q},t) = 0, & j=1,2,\cdots,l
+	\end{cases}
+\end{equation}
+同样可以通过Newton第二定律得到广义约束力的表达式为
+\begin{equation*}
+	R_\alpha = \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha}
+\end{equation*}
+则有
+\begin{equation}
+	R_{\alpha j} = \lambda_j \frac{\pl \bar{f}}{\pl q_\alpha}
+\end{equation}
+为第$j$个约束条件对应约束力的第$\alpha$个广义力分量。改写约束力为
+\begin{equation*}
+	R_\alpha = \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha} = -\frac{\pl}{\pl q_\alpha} \left(-\sum_{j=1}^l \lambda_j \bar{f}_j\right)
+\end{equation*}
+故标量函数
+\begin{equation}
+	W(\mbf{q},t) = -\sum_{j=1}^l \lambda_j \bar{f}_j(\mbf{q},t)
+\end{equation}
+称为{\heiti 约束力势}。
+
+此时也可以将约束力势当作外力的势能加入Lagrange函数中，即
+\begin{equation*}
+	\bar{L}(\mbf{q},\dot{\mbf{q}},t;\mbf{\lambda}) = T-U-W = L(\mbf{q},\dot{\mbf{q}},t) + \sum_{j=1}^l \lambda_j \bar{f}_j (\mbf{q},t)
+\end{equation*}
+于是，根据Hamilton原理，可有
+\begin{align*}
+	\delta S & = \int_{t_1}^{t_2} \delta \bar{L} \mathrm{d} t = \int_{t_1}^{t_2} \left(\sum_{\alpha=1}^r \frac{\pl \bar{L}}{\pl q_\alpha} \delta q_\alpha + \sum_{\alpha=1}^r \frac{\pl \bar{L}}{\pl \dot{q}_\alpha} \delta \dot{q}_\alpha + \sum_{j=1}^l \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j \right) \mathrm{d} t \\
+	& = \int_{t_1}^{t_2} \left[-\sum_{\alpha=1}^r \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{q}_\alpha} - \frac{\pl \bar{L}}{\pl q_\alpha}\right)\delta q_\alpha + \sum_{j=1}^l \frac{\pl \bar{L}}{\pl \lambda_j} \delta \lambda_j \right] \mathrm{d} t = 0
+\end{align*}
+由此可得
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{q}_\alpha} - \frac{\pl \bar{L}}{\pl q_\alpha} = 0, & \alpha =1,2,\cdots,r \\[1.5ex]
+		\displaystyle \frac{\pl \bar{L}}{\pl \lambda_j} = 0,& j = 1,2,\cdots,l
+	\end{cases}
+\end{equation}
+
+\begin{example}
+质量为$m$的质点从半径为$R$的光滑半球面顶端零初速滑下，求脱离球面时的位置。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(200);
+	//第三章例7图
+	pair O;
+	real R,r,theta;
+	R = 3;
+	theta = 60;
+	r = 0.15;
+	O = (0,0);
+	draw(arc(O,R,0,180)--cycle);
+	draw(Label("$R$",MidPoint,W),O--R*dir(90),dashed);
+	draw(O--R*dir(theta),dashed);
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,0.6,90,theta),Arrow);
+	fill(shift((R+r)*dir(theta))*scale(r)*unitcircle,black);
+	label("$m$",(R+r)*dir(theta),3*E);
+	draw(Label("$\boldsymbol{N}$",EndPoint),(R+r)*dir(theta)--(R+r)*dir(theta)+dir(theta),Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{第三章例7图}
+\end{figure}
+\end{example}
+
+\begin{solution}
+本例约束为可解约束$r - R \geqslant 0$。未解时约束为$r-R=0$，约束力为$\mbf{N}$，约束解除的条件为$\mbf{N} = \mbf{0}$。
+
+除去约束，选择广义坐标为$r,\theta$，则Lagrange函数为
+\begin{equation*}
+	\bar{L} = \frac12 m(\dot{r}^2+r^2 \dot{\theta}) - mgr\cos \theta + \lambda(r-R)
+\end{equation*}
+则有系统方程为
+\begin{equation*}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{r}} - \frac{\pl \bar{L}}{\pl r} = m(\ddot{r} - r\dot{\theta}^2) + mg\cos \theta - \lambda = 0 \\[1.5ex]
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\theta}} - \frac{\pl \bar{L}}{\pl \theta} = \frac{\mathrm{d}}{\mathrm{d} t} (mr^2\dot{\theta}) - mgr\sin \theta = 0 \\[1.5ex]
+		\displaystyle \frac{\pl \bar{L}}{\pl \lambda} = r-R = 0
+	\end{cases}
+\end{equation*}
+\end{solution}
+由第三式可得$r=R$，再由前两式消去$r$，可得
+\begin{equation*}
+	\begin{cases}
+		mR\dot{\theta}^2 - mg\cos \theta + \lambda = 0 \\
+		mR^2 \ddot{\theta} - mgR\sin \theta = 0
+	\end{cases}
+\end{equation*}
+根据$\ddot{\theta} = \dot{\theta} \dfrac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta}$，上面第二式可以化为
+\begin{equation*}
+	\mathrm{d} \left(\frac12 mR^2 \dot{\theta}^2 + mgR\cos \theta\right) = 0
+\end{equation*}
+根据初始条件$\dot{\theta} \big|_{\theta=0} = 0$可得
+\begin{equation*}
+	\frac12 mR^2 \dot{\theta}^2 + mgR\cos \theta = mgR
+\end{equation*}
+由此可解得
+\begin{equation*}
+	\lambda = mg(3\cos \theta-2)
+\end{equation*}
+约束力为
+\begin{equation*}
+	\begin{cases}
+		N_r = \lambda \dfrac{\pl}{\pl r}(r-R) = \lambda \\[1.5ex]
+		N_\theta = \lambda \dfrac{\pl}{\pl \theta}(r-R) = 0
+	\end{cases}
+\end{equation*}
+由此脱离条件为
+\begin{equation*}
+	\lambda = mg(3\cos \theta-2) = 0
+\end{equation*}
+即$\theta = \arccos \dfrac23$时，此时高度为$h = R\cos \theta = \dfrac23 R$。
+
+\subsection{Lagrange乘子法求解线性非完整体系的运动}
+
+设非完整体系有完整约束
+\begin{equation*}
+	f_j (\mbf{r},t) = 0,\quad j = 1,2,\cdots,k
+\end{equation*}
+以及非完整约束
+\begin{equation*}
+	\sum_{i=1}^n \mbf{A}_{ji}(\mbf{r},t) \cdot \dot{\mbf{r}}_i + A_{j0}(\mbf{r},t) = 0,\quad j = 1,2,\cdots,k'
+\end{equation*}
+引入广义坐标$q_\alpha,\,\,\alpha = 1,2,\cdots,s=3n-k$消去完整约束，即
+\begin{equation*}
+	f_j(\mbf{r}(\mbf{q},t),t) \equiv 0,\quad j=1,2,\cdots,k
+\end{equation*}
+考虑
+\begin{equation*}
+	\dot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}
+\end{equation*}
+则非完整约束变换为
+\begin{align}
+	\sum_{i=1}^n \mbf{A}_{ji} \cdot \dot{\mbf{r}}_i + A_{j0}(\mbf{r},t) & = \sum_{i=1}^n \mbf{A}_{ji} \cdot \left(\sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}\right) + A_{j0}(\mbf{r},t) \nonumber \\
+	& = \sum_{\alpha=1}^s \bar{A}_{j\alpha}(\mbf{q},t) \dot{q}_\alpha + \bar{A}_{j0}(\mbf{q},t) = 0,\quad j=1,2,\cdots,k'
+	\label{Lagrange乘子法解非完整系统的非完整约束}
+\end{align}
+其中
+\begin{equation*}
+	\begin{cases}
+		\displaystyle \bar{A}_{j\alpha}(\mbf{q},t) = \sum_{i=1}^n \mbf{A}_{ji}(\mbf{r}(\mbf{q},t),t) \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha} \\[1.5ex]
+		\displaystyle \bar{A}_{j0}(\mbf{q},t) = \sum_{i=1}^n \mbf{A}_{ji}(\mbf{r}(\mbf{q},t),t) \cdot \frac{\pl \mbf{r}_i}{\pl t} + A_{j0}(\mbf{r}(\mbf{q},t),t)
+	\end{cases}
+\end{equation*}
+式\eqref{Lagrange乘子法解非完整系统的非完整约束}所示的非完整约束可以等价的表示为
+\begin{align}
+	\sum_{\alpha=1}^s \bar{A}_{j\alpha}(\mbf{q},t) \mathrm{d} q_\alpha + \bar{A}_{j0}(\mbf{q},t) \mathrm{d} t = 0,\quad j=1,2,\cdots,k'
+\end{align}
+或者
+\begin{align}
+	\sum_{\alpha=1}^s \bar{A}_{j\alpha}(\mbf{q},t) \delta q_\alpha = 0,\quad j=1,2,\cdots,k'
+	\label{Lagrange乘子法解非完整系统的非完整约束的变分形式}
+\end{align}
+Hamilton作用量可以表示为
+\begin{equation*}
+	S[\mbf{q}(t)] = \int_{t_1}^{t_2} L(\mbf{q},\dot{\mbf{q}},t) \mathrm{d} t
+\end{equation*}
+同样可以根据Hamilton原理得到
+\begin{equation*}
+	\delta S = \int_{t_1}^{t_2} \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \delta q_\alpha \mathrm{d} t = 0
+\end{equation*}
+由于此处$\delta q_\alpha$不是互相独立的，还要满足式\eqref{Lagrange乘子法解非完整系统的非完整约束的变分形式}，由此可引入不定乘子$\lambda_j$，即有
+\begin{align*}
+	\int_{t_1}^{t_2} \left(\delta L + \sum_{j=1}^{k'} \lambda_j \sum_{\alpha=1}^s \bar{A}_{j\alpha} \delta q_\alpha\right) \mathrm{d} t = \int_{t_1}^{t_2} \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} + \sum_{j=1}^{k'} \lambda_j \bar{A}_{j\alpha} \right) \delta q_\alpha \mathrm{d} t = 0
+\end{align*}
+由此可有系统方程
+\begin{equation}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = \sum_{j=1}^{k'} \lambda_j \bar{A}_{j\alpha},& \alpha = 1,2,\cdots,s \\[1.5ex]
+		\displaystyle \sum_{\alpha=1}^s \bar{A}_{j\alpha} \dot{q}_\alpha + \bar{A}_{j0} = 0,& j = 1,2,\cdots,k'
+	\end{cases}
+\end{equation}
+
+\begin{example}[直立圆盘在水平面上的纯滚动]
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(200);
+	//纯滚动直立圆盘
+	real hd,hdd;
+	pair O,x,y,z,i,j,k;
+	hd = 131+25/60;
+	hdd = 7+10/60;
+	O = (0,0);
+	x = 1.2*dir(90+hd);
+	y = 1.5*dir(-hdd);
+	z = 1.5*dir(90);
+	draw(Label("$x$",EndPoint),O--x,Arrow);
+	draw(Label("$y$",EndPoint),O--y,Arrow);
+	draw(Label("$z$",EndPoint),O--z,Arrow);
+	label("$O$",O,NW);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	
+	real x0,y0,r,phi;
+	pair P;
+	pair planecur(real xx){
+		real yy = y0+1*tan(xx-x0);
+		return xx*i+yy*j;
+	}
+	pair dplanecur(real xx){
+		real yy = 1/((cos(xx-x0))**2);
+		return xx*i+yy*j;
+	}
+	pair wheel(real theta){
+		real xx,yy,zz;
+		xx = x0+r*sin(theta)*cos(phi);
+		yy = y0+r*sin(theta)*sin(phi);
+		zz = r+r*cos(theta);
+		return xx*i+yy*j+zz*k;
+	}
+	real getphi(real xx){
+		real yy = 1/((cos(xx-x0))**2);
+		return atan(yy/xx);
+	}
+	x0 = 1;
+	y0 = 0.7;
+	r = 0.5;
+	phi = getphi(x0);
+	unfill(graph(wheel,0,2*pi)--cycle);
+	draw(graph(wheel,0,2*pi),linewidth(0.8bp));
+	draw(graph(planecur,x0-1,x0+1));
+	P = planecur(x0);
+	dot(P);
+	draw((P-0.7*dplanecur(x0))--(P+dplanecur(x0)),dashed);
+	draw(P--P+r*k--wheel(-1.2));
+	label("$(x,y)$",P+r*k,E);
+	label("$\theta$",P+r*k,WSW);
+	label("$\phi$",P-0.7*dplanecur(x0),2*S);
+	
+	//draw(O--(1.7,0),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第三章例8图}
+\end{figure}
+\end{example}
+\begin{solution}
+此非完整体系有完整约束
+\begin{equation*}
+	z-R = 0
+\end{equation*}
+以及非完整约束
+\begin{equation*}
+	\begin{cases}
+		\dot{x} - R\dot{\theta} \cos \phi = 0 \\
+		\dot{y} - R\dot{\theta} \sin \phi = 0
+	\end{cases}
+\end{equation*}
+由此可将广义坐标取为$x,y,\theta,\phi$，体系的Lagrange函数为
+\begin{equation*}
+	L = T = \frac12 m(\dot{x}^2+\dot{y}^2) + \frac12 I_1 \dot{\theta}^2 + \frac12 I_2 \dot{\theta}^2
+\end{equation*}
+考虑到
+\begin{align*}
+	& \bar{A}_{11} = 1,\quad \bar{A}_{12} = 0,\quad \bar{A}_{13} = -R\cos \phi,\quad \bar{A}_{14} = 0 \\
+	& \bar{A}_{21} = 0,\quad \bar{A}_{22} = 1,\quad \bar{A}_{23} = -R\sin \phi,\quad \bar{A}_{24} = 0
+\end{align*}
+由此可以写出系统方程为
+\begin{subnumcases}{}
+%\renewcommand{\theequation}{\theparentequation-\arabic{equation}}
+	m\ddot{x} = \lambda_1 \label{方程第1式} \\
+	m\ddot{y} = \lambda_2 \label{方程第2式} \\
+	I_1 \ddot{\theta} = -R(\lambda_1 \cos \phi + \lambda_2 \sin \phi) \label{方程第3式} \\
+	I_2 \ddot{\phi} = 0 \label{方程第4式} \\
+	\dot{x} - R\dot{\theta} \cos \phi = 0 \label{方程第5式} \\
+	\dot{y} - R\dot{\theta} \sin \phi = 0 \label{方程第6式} 
+\end{subnumcases}
+由式\eqref{方程第4式}可得
+\begin{equation*}
+	\phi = \omega_2 t + \phi_0
+\end{equation*}
+考虑$\text{式}\eqref{方程第1式} \times R\cos\phi + \text{式}\eqref{方程第2式} \times R\sin \phi + \text{式}\eqref{方程第3式}$可得
+\begin{equation}
+	mR(\ddot{x} \cos \phi+\ddot{y}\sin \phi) + I_1 \ddot{\theta} = 0
+	\label{方程第7式}
+\end{equation}
+再考虑$\cos \phi \times \dfrac{\mathrm{d}}{\mathrm{d} t}\text{式}\eqref{方程第5式} + \sin \phi \times \dfrac{\mathrm{d}}{\mathrm{d} t}\text{式}\eqref{方程第6式}$可得
+\begin{equation}
+	\ddot{x} \cos \phi+\ddot{y}\sin \phi - R\ddot{\theta} = 0
+	\label{方程第8式}
+\end{equation}
+由式\eqref{方程第7式}和式\eqref{方程第8式}可解得
+\begin{equation*}
+	\theta = \omega_1 t + \theta_0
+\end{equation*}
+于是根据式\eqref{方程第5式}和式\eqref{方程第6式}可得
+\begin{align*}
+	\begin{cases}
+		\dot{x} = R\omega_1 \cos(\omega_2 t + \phi_0) \\
+		\dot{y} = R\omega_1 \sin(\omega_2 t + \phi_0)
+	\end{cases}
+\end{align*}
+
+下面分两种情况讨论圆盘的运动，
+\begin{enumerate}
+	\item $\omega_2 = 0$，系统的解为
+	\begin{equation}
+	\begin{cases}
+		x = R\omega_1 t \cos \phi_0 + x_0 \\
+		y = R\omega_1 t \sin \phi_0 + y_0 \\
+		\theta = \omega_1 t + \theta_0 \\
+		\phi = \phi_0 \\
+		\lambda_1 = 0 \\
+		\lambda_2 = 0
+	\end{cases}
+	\end{equation}
+	可见，圆盘沿直线匀速滚动。运动过程自动保证约束条件，约束力为零。
+	\item $\omega_2 \neq 0$，系统的解为
+	\begin{equation}
+	\begin{cases}
+		\displaystyle x = \frac{R\omega_1}{\omega_2} \sin(\omega_2 t + \phi_0) - \frac{R\omega_1}{\omega_2} \sin \phi_0 + x_0 \\
+		\displaystyle y = -\frac{R\omega_1}{\omega_2} \cos(\omega_2 t + \phi_0) + \frac{R\omega_1}{\omega_2} \cos \phi_0 + y_0 \\
+		\theta = \omega_1 t + \theta_0 \\
+		\phi = \omega_2 t + \phi_0 \\
+		\lambda_1 = -R\omega_1 \omega_2 \sin \phi \\
+		\lambda_2 = R\omega_1 \omega_2 \cos \phi
+	\end{cases}
+	\end{equation}	
+	可见，圆盘沿圆周匀速滚动，纯滚动条件自动保证，约束力垂直盘面，提供向心力。
+\end{enumerate}
+\end{solution}
+
+\section{Poisson括号}
+
+\subsection{Poisson括号的定义}
+
+对两个系统状态函数$f = f(\mbf{q},\mbf{p},t)$和$g = g(\mbf{q},\mbf{p},t)$，定义
+\begin{equation}
+	[f,g] = \sum_{\alpha=1}^s \left(\frac{\pl f}{\pl q_\alpha} \frac{\pl g}{\pl p_\alpha} - \frac{\pl g}{\pl q_\alpha} \frac{\pl f}{\pl p_\alpha}\right) = \sum_{\alpha=1}^s \begin{vmatrix} \dfrac{\pl f}{\pl q_\alpha} & \dfrac{\pl f}{\pl p_\alpha} \\[1.5ex] \dfrac{\pl g}{\pl q_\alpha} & \dfrac{\pl g}{\pl p_\alpha} \end{vmatrix} = \sum_{\alpha=1}^s \frac{\pl (f,g)}{\pl (q_\alpha,p_\alpha)}
+\end{equation}
+称为{\heiti Poisson括号}。
+\begin{equation}
+	[q_\alpha,q_\beta] = 0,\quad [p_\alpha,p_\beta] = 0,\quad [q_\alpha,p_\beta] = \delta_{\alpha\beta}
+	\label{基本Poisson括号}
+\end{equation}
+称为{\heiti 基本Poisson括号}。根据Poisson括号的定义，容易得到
+\begin{equation}
+	[q_\alpha, f] =\frac{\pl f}{\pl p_\alpha},\quad [p_\alpha,f] = -\frac{\pl f}{\pl q_\alpha}
+\end{equation}
+
+\subsection{Poisson括号的性质}
+
+利用Poisson括号的定义和行列式的性质很容易得到Poisson括号的以下性质：
+\begin{enumerate}
+	\item 反对称性：
+	\begin{equation*}
+		[f,g] = -[g,f]
+	\end{equation*}
+	特别地，可有$[f,f] = 0$；
+	\item 线性性：
+	\begin{equation*}
+		[f,C_1 g+C_2 h] = C_1[f,g] + C_2[f,h],\quad \forall \, C_1,C_2 \in \mathbb{R}
+	\end{equation*}
+	\item $[f,gh] = [f,g]h+g[f,h]$；
+	\item Leibniz性：
+	\begin{equation*}
+		\frac{\pl}{\pl x} [f,g] = \left[\frac{\pl f}{\pl x},g\right] + \left[f,\frac{\pl g}{\pl x}\right],\quad x \in \{\mbf{q},\mbf{p},t\}
+	\end{equation*}
+	\item Jacobi恒等式：
+	\begin{equation*}
+		\big[f,[g,h]\big] + \big[g,[h,f]\big] + \big[h,[f,g]\big] = 0
+	\end{equation*}
+\end{enumerate}
+
+\subsection{力学的Poisson括号形式}
+
+设有函数$f = f(\mbf{q},\mbf{p},t)$，考虑
+\begin{equation*}
+	\frac{\mathrm{d} f}{\mathrm{d} t} = \frac{\pl f}{\pl t} + \sum_{\alpha=1}^s \left(\frac{\pl f}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl f}{\pl p_\alpha} \dot{p}_\alpha\right) = \frac{\pl f}{\pl t} + \sum_{\alpha=1}^s \left(\frac{\pl f}{\pl q_\alpha} \frac{\pl H}{\pl p_\alpha} + \frac{\pl f}{\pl p_\alpha} \frac{\pl H}{\pl q_\alpha}\right)
+\end{equation*}
+此处利用了Hamilton正则方程，由此得到
+\begin{equation}
+	\frac{\mathrm{d} f}{\mathrm{d} t} = \frac{\pl f}{\pl t} + [f,H]
+\end{equation}
+如果函数$f$不显含时间，即$\dfrac{\pl f}{\pl t} = 0$，则有
+\begin{equation}
+	\frac{\mathrm{d} f}{\mathrm{d} t} = [f,H]
+\end{equation}
+分别将函数$f$取为$q_\alpha$和$p_\alpha$可得{\heiti 正则方程的Poisson括号形式}
+\begin{equation}
+	\begin{cases}
+		\displaystyle \dot{q}_\alpha = [q_\alpha,H] \\[1.5ex]
+		\displaystyle \dot{p}_\alpha = [p_\alpha,H]
+	\end{cases}
+\end{equation}
+将函数$f$取为$H$则得到
+\begin{equation}
+	\dot{H} = \frac{\pl H}{\pl t}
+\end{equation}
+
+如果将$[f,H]$记作$\hat{H} f$，此处$\hat{H}$称为{\heiti 算子}，它代表一种操作——即求该函数与Hamilton函数的Poisson括号。如果$f$不显含时间，可有
+\begin{equation*}
+	\frac{\mathrm{d} f}{\mathrm{d} t} = [f,H] = \hat{H}f
+\end{equation*}
+依次可有
+\begin{align*}
+	\frac{\mathrm{d}^2 f}{\mathrm{d} t^2} & = \frac{\mathrm{d}}{\mathrm{d} t}[f,H] = [\hat{H}f,H] = \hat{H} (\hat{H} f) = \hat{H}^2 f \\
+	& \vdots \\
+	\frac{\mathrm{d}^n f}{\mathrm{d} t^n} & = \frac{\mathrm{d}}{\mathrm{d} t}\left(\frac{\mathrm{d}^{n-1}f}{\mathrm{d} t^{n-1}}\right) = [\hat{H}^{n-1}f,H] = \hat{H} (\hat{H}^{n-1} f) = \hat{H}^n f
+\end{align*}
+如果不考虑收敛的问题，任何正则变量的函数可以用Taylor级数表示为
+\begin{align*}
+	f(\mbf{q}(t),\mbf{p}(t)) = \sum_{n=0}^\infty \frac{1}{n!} \frac{\mathrm{d}^n f}{\mathrm{d} t^n}(0) t^n = \sum_{n=0}^\infty \frac{t^n}{n!} \hat{H}^n f(0) = \mathrm{e}^{t\hat{H}} f(0)
+\end{align*}
+由此，可以得到运动的算子形式解。
+
+\begin{example}
+利用算子形式求解一维谐振子，其Hamilton函数为
+\begin{equation*}
+	H = \frac{p^2}{2m} + \frac12 m\omega^2 q^2
+\end{equation*}
+\end{example}
+\begin{solution}
+根据基本Poisson括号
+\begin{equation*}
+	[q,q] = 0,\quad [p,p] = 0,\quad [q,p] = 1
+\end{equation*}
+可得
+\begin{align*}
+	[q,H] & = \frac{1}{2m}[q,p^2] + \frac12 m\omega^2 [q,q^2] = \frac{1}{2m} \bigg([q,p]p+p[q,p]\bigg) = \frac{p}{m} \\
+	[p,H] & = \frac{1}{2m}[p,p^2] + \frac12 m\omega^2 [p,q^2] = \frac12 m\omega^2 \bigg([p,q]q+q[p,q]\bigg) = -m\omega^2 q
+\end{align*}
+由此可以依次计算
+\begin{align*}
+	\hat{H}q & = [q,H] = \frac{p}{m} \\
+	\hat{H}^2q & = \frac{1}{m}[p,H] = -\omega^2 q \\
+	\hat{H}^3q & = -\omega^2[q,H] = -\omega^2\frac{p}{m} \\
+	\hat{H}^4q & = -\frac{\omega^2}{m}[p,H] = (-\omega^2)^2 q \\
+	& \vdots \\
+	\hat{H}^{2m-1} q & = (-\omega^2)^{m-1} \frac{p}{m} \\
+	\hat{H}^{2m} q & = (-\omega^2)^m q \\
+	& \vdots 
+\end{align*}
+故有
+\begin{align*}
+	q(t) & = \left[\sum_{m=0}^\infty \frac{t^{2m}}{(2m)!} \hat{H}^{2m} + \sum_{m=1} \frac{t^{2m-1}}{(2m-1)!} \hat{H}^{2m-1}\right] q(0) \\
+	& = \sum_{m=0}^\infty \frac{(-1)^m(\omega t)^{2m}}{(2m)!} q(0) + \sum_{m=1}^\infty \frac{(-1)^{m-1}(\omega t)^{2m-1}}{(2m-1)!} \frac{p(0)}{m\omega} \\
+	& = q(0) \cos \omega t + \frac{p(0)}{m\omega} \sin \omega t
+\end{align*}
+\end{solution}
+
+\subsection{运动积分与Poisson定理}
+
+体系力学状态随时间演变时不变的力学量称为{\heiti 运动积分}，即满足
+\begin{equation}
+	\frac{\mathrm{d} f}{\mathrm{d} t} = \frac{\pl f}{\pl t} + [f,H] = 0
+\end{equation}
+
+\begin{theorem}[Poisson定理]
+两个运动积分的Poisson括号仍为运动积分。即如有$\dfrac{\mathrm{d} f}{\mathrm{d} t} = 0,\dfrac{\mathrm{d} g}{\mathrm{d} t} = 0$，则有
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} t} [f,g] = 0
+\end{equation*}
+\end{theorem}
+\begin{proof}
+由于
+\begin{equation*}
+	\frac{\mathrm{d} f}{\mathrm{d} t} = \frac{\pl f}{\pl t} + [f,H] = 0
+\end{equation*}
+所以有$\dfrac{\pl f}{\pl t} = -[f,H]$，同理可有$\dfrac{\pl g}{\pl t} = -[g,H]$。由此可有
+\begin{align*}
+	\frac{\mathrm{d}}{\mathrm{d} t} [f,g] & = \frac{\pl}{\pl t}[f,g] + \big[[f,g],H\big] = \left[\frac{\pl f}{\pl t},g\right] + \left[f,\frac{\pl g}{\pl t}\right] + \big[[f,g],H\big] \\
+	& = \big[-[f,H],g\big] + \big[f,-[g,H]\big] + \big[[f,g],H\big] \\
+	& = -\big[f,[g,H]\big] - \big[g,[H,f]\big] - \big[H,[f,g]\big] = 0 \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}[角动量的Poisson括号]
+角动量可以表示为
+\begin{equation*}
+	\mbf{L} = \mbf{r} \times \mbf{p} = \begin{vmatrix} \mbf{e}_1 & \mbf{e}_2 & \mbf{e}_3 \\ x & y & z \\ p_x & p_y & p_z \end{vmatrix}
+\end{equation*}
+所以
+\begin{align*}
+	[L_x,L_y] & = [yp_z-zp_y,zp_x-xp_z] = [yp_z,zp_x] + [zp_y,xp_z] \\
+	& = y[p_z,z]p_x + x[z,p_z] p_y = xp_y-yp_x = L_z
+\end{align*}
+同理可有
+\begin{equation*}
+	[L_y,L_z] = L_x,\quad [L_z,L_x] = L_y
+\end{equation*}
+考虑
+\begin{align*}
+	[L_z,L^2] & = [L_z,L_x^2] + [L_z,L_y^2] + [L_z,L_z^2] \\
+	& = [L_z,L_x]L_x + L_x[L_z,L_x] + [L_z,L_y]L_y + L_y[L_z,L_y] \\
+	& = L_yL_x + L_xL_y - L_xL_y - L_yL_x = 0
+\end{align*}
+同理可有
+\begin{equation*}
+	[L_x,L^2] = [L_y,L^2] = [L_z,L^2] = 0
+\end{equation*}
+由此可得，若角动量任意两分量守恒，则第三分量亦守恒。角动量三分量变化不独立，这与两次异轴转动可合成绕第三轴转动的事实相照应。
+\end{example}
+
+\subsection{量子Poisson括号}
+
+量子Poisson括号定义为
+\begin{equation}
+	[f,g]_{-} = fg - gf
+\end{equation}
+在量子力学中，将正则方程中的Possion括号$[f,g]$替换为$\dfrac{1}{\mathrm{i}\hbar} [f,g]_{-}$的过程，称为{\heiti 正则量子化}。力学量的乘积一般非对易，可用算符或矩阵表示。
+
+基本Poisson括号表示为
+\begin{equation}
+	[q_i,p_j]_{-} = \mathrm{i} \hbar \delta_{ij},\quad [q_i,q_j]_{-} = 0,\quad [p_i,p_j]_{-} = 0,\quad i,j=1,2,3
+\end{equation}
+可有{\heiti Heisenberg方程}
+\begin{equation}
+	\frac{\mathrm{d} f}{\mathrm{d} t} = \frac{\pl f}{\pl t} + \frac{1}{\mathrm{i} \hbar} [f,H]_{-}
+\end{equation}
+取宏观极限
+\begin{equation*}
+	\lim_{\hbar \to 0} \frac{1}{\mathrm{i} \hbar} [f,g]_{-} = [f,g]
+\end{equation*}
+时，动力学过渡为经典力学。
+
+\section{正则变换}
+
+对称性越高，方程的求解越简便。对称性可以通过变换发现。
+
+\subsection{点变换}
+
+设在一组广义坐标$\mbf{q}$下，Lagrange函数形式为
+\begin{equation*}
+	L = L_q(\mbf{q},\dot{\mbf{q}},t)
+\end{equation*}
+系统方程为
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+\end{equation*}
+做广义坐标变换
+\begin{equation*}
+	\mbf{q} = \mbf{q}(\mbf{Q},t)
+\end{equation*}
+则有
+\begin{equation*}
+	L = L_Q(\mbf{Q},\dot{\mbf{Q}},t) = L_q(\mbf{q}(\mbf{Q},t),\dot{\mbf{q}}(\mbf{Q},\dot{\mbf{Q}},t),t)
+\end{equation*}
+所以有
+\begin{align*}
+	\frac{\pl L}{\pl \dot{Q}_\alpha} & = \sum_{\beta=1}^s \frac{\pl L}{\pl \dot{q}_\beta} \frac{\pl \dot{q}_\beta}{\pl \dot{Q}_\alpha} \\
+	\frac{\pl L}{\pl Q_\alpha} & = \sum_{\beta=1}^s \frac{\pl L}{\pl q_\beta} \frac{\pl q_\beta}{\pl Q_\alpha} + \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\beta} \frac{\pl \dot{q}_\beta}{\pl Q_\alpha} 
+\end{align*}
+由此可得
+\begin{align*}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{Q}_\alpha} - \frac{\pl L}{\pl Q_\alpha} & = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{\beta=1}^s \frac{\pl L}{\pl \dot{q}_\beta} \frac{\pl \dot{q}_\beta}{\pl \dot{Q}_\alpha}\right) - \sum_{\beta=1}^s \frac{\pl L}{\pl q_\beta} \frac{\pl q_\beta}{\pl Q_\alpha} - \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\beta} \frac{\pl \dot{q}_\beta}{\pl Q_\alpha} \\
+	& = \sum_{\alpha=1}^s \left[\frac{\mathrm{d}}{\mathrm{d} t} \left(\frac{\pl L}{\pl \dot{q}_\beta}\right) \frac{\pl \dot{q}_\beta}{\pl \dot{Q}_\alpha} - \frac{\pl L}{\pl q_\beta} \frac{\pl q_\beta}{\pl Q_\alpha}\right] + \sum_{\beta=1}^s \frac{\pl L}{\pl \dot{q}_\beta} \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl q_\beta}{\pl Q_\alpha} - \frac{\pl \dot{q}_\beta}{\pl Q_\alpha}\right) \\
+	& = \sum_{\alpha=1}^s \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\beta} - \frac{\pl L}{\pl q_\beta}\right) \frac{\pl q_\beta}{\pl Q_\alpha} = 0
+\end{align*}
+此处利用了经典Lagrange关系
+\begin{equation*}
+	\frac{\pl \dot{q}_\beta}{\pl \dot{Q}_\alpha} = \frac{\pl q_\beta}{\pl Q_\alpha},\quad \frac{\pl \dot{q}_\beta}{\pl Q_\alpha} = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl q_\beta}{\pl Q_\alpha}
+\end{equation*}
+可见，做广义坐标变换，Lagrange方程不变。
+
+\subsection{正则变换}
+
+在Hamilton力学中，正则变量处于平等地位，变换的自由度更大。做正则变量变换
+\begin{equation}
+	\begin{cases}
+		Q_\alpha = Q_\alpha(\mbf{q},\mbf{p},t), \\
+		P_\alpha = P_\alpha(\mbf{q},\mbf{p},t),
+	\end{cases}\quad \alpha = 1,2,\cdots,s
+	\label{正则坐标变换}
+\end{equation}
+在变换\eqref{正则坐标变换}下，Hamilton函数将变换为
+\begin{equation*}
+	K = K(\mbf{Q},\mbf{P},t) = H(\mbf{q}(\mbf{Q},\mbf{P},t),\mbf{p}(\mbf{Q},\mbf{P},t),t)
+\end{equation*}
+一般情况下，在变换之后正则方程将不能保持原来的形式。如果在变换\eqref{正则坐标变换}下，新的Hamilton函数$K(\mbf{Q},\mbf{P},t)$仍然满足正则方程
+\begin{equation*}
+	\begin{cases}
+		\displaystyle \dot{Q}_\alpha = \frac{\pl K}{\pl P_\alpha}, \\[1.5ex]
+		\displaystyle \dot{P}_\alpha = -\frac{\pl K}{\pl Q_\alpha},
+	\end{cases}\quad \alpha =1,2,\cdots,s
+\end{equation*}
+这种变换称为{\heiti 正则变换}。
+
+\subsection{正则变换的条件}
+
+由于正则方程与Hamilton原理是等价的，因此只要变换\eqref{正则坐标变换}可以满足Hamilton原理的要求，就可以保证新的正则方程形式保持不变。
+
+在变换前后，正则变量都需要满足固定边界条件，即
+\begin{align*}
+	\begin{cases}
+		\delta\mbf{q}(t_1) = \delta \mbf{q}(t_2) = 0, \\
+		\delta\mbf{p}(t_1) = \delta \mbf{p}(t_2) = 0,
+	\end{cases}\quad 
+	\begin{cases}
+		\delta\mbf{Q}(t_1) = \delta \mbf{Q}(t_2) = 0, \\
+		\delta\mbf{P}(t_1) = \delta \mbf{P}(t_2) = 0,
+	\end{cases}
+\end{align*}
+根据相空间Hamilton原理，有
+\begin{align}
+	& \delta \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t)\right] \mathrm{d} t = 0 \label{正则变换前的Hamilton原理} %\\
+	%& \delta \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s P_\alpha \dot{Q}_\alpha - H(\mbf{Q},\mbf{P},t)\right] \mathrm{d} t = 0 \label{正则变换后的Hamilton原理}
+\end{align}
+由于$L$具有规范不定性，即$L$和$L+\dfrac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t)$是等价的，而且考虑到式\eqref{正则变换前的Hamilton原理}中的被积函数加上一项全微分之后，定积分$\displaystyle \int_{t_1}^{t_2} \mathrm{d} f$只和端点的值有关，而端点的变分恒为零，因此$f$不仅可以是$\mbf{q}$和$t$的函数，还可以将$\mbf{p}$作为参数包含在内。即正则变换前的Hamilton原理应该表达为
+\begin{equation}
+	\delta \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t) + \frac{\mathrm{d} f_1}{\mathrm{d} t}(\mbf{q},\mbf{p},t)\right] \mathrm{d} t = 0 \label{正则变换前的Hamilton原理一般形式}
+\end{equation}
+因此正则变换之后的Hamilton原理应该表达为
+\begin{equation}
+	\delta \int_{t_1}^{t_2} \left[\sum_{\alpha=1}^s P_\alpha \dot{Q}_\alpha - K(\mbf{Q},\mbf{P},t) + \frac{\mathrm{d} f_2}{\mathrm{d} t}(\mbf{Q},\mbf{P},t)\right] \mathrm{d} t = 0 \label{正则变换前的Hamilton原理一般形式}
+\end{equation}
+因此，可有
+\begin{equation}
+	\delta \int_{t_1}^{t_2} \left[\lambda \left(\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H\right) - \left(\sum_{\alpha=1}^s P_\alpha \dot{Q}_\alpha - K\right) + \lambda \frac{\mathrm{d} f_1}{\mathrm{d} t} - \frac{\mathrm{d} f_2}{\mathrm{d} t}\right] \mathrm{d} t = 0
+\end{equation}
+记
+\begin{equation}
+	F_1 = f_2(\mbf{Q},\mbf{P},t) - \lambda f_1(\mbf{q},\mbf{p},t)
+\end{equation}
+则有
+\begin{equation*}
+	\delta \int_{t_1}^{t_2} \left[\lambda \left(\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t)\right) - \left(\sum_{\alpha=1}^s P_\alpha \dot{Q}_\alpha - K(\mbf{Q},\mbf{P},t)\right) - \frac{\mathrm{d} F_1}{\mathrm{d} t}(\mbf{Q},\mbf{P},t)\right] \mathrm{d} t = 0
+\end{equation*}
+要使上式成立，只要取
+\begin{equation}
+	\lambda \left(\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t)\right) = \sum_{\alpha=1}^s P_\alpha \dot{Q}_\alpha - K(\mbf{Q},\mbf{P},t) + \dot{F_1}(\mbf{Q},\mbf{P},t) = 0
+	\label{正则变换需满足的一般条件1}
+\end{equation}
+式\eqref{正则变换需满足的一般条件1}中$\lambda$称为{\heiti 标度因子}，表示不同的单位度量引起的数值放大，不影响物理实质，因此可取$\lambda=1$，则有
+\begin{equation}
+	\mathrm{d} F_1 = \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha - \sum_{\alpha=1}^s P_\alpha \mathrm{d} Q_\alpha + (K-H) \mathrm{d} t
+	\label{正则变换需满足的一般条件}
+\end{equation}
+满足式\eqref{正则变换需满足的一般条件}的变换即为{\heiti 正则变换}。如果$\lambda \neq 1$，则为{\heiti 拓展正则变换}。
+
+\subsection{母函数}
+
+\subsubsection{第一类母函数}
+
+考虑式\eqref{正则变换需满足的一般条件}的右端，同时出现新旧两组正则变量$\mbf{q},\mbf{p}$和$\mbf{Q},\mbf{P}$，但这$4s$个变量之间由于存在$2s$个变换方程\eqref{正则坐标变换}，因此独立的变量只有$2s$个。在式\eqref{正则变换需满足的一般条件}中，独立的变量是正则坐标$\mbf{q}$和$\mbf{Q}$，因此函数$F_1$也应取$\mbf{q}$和$\mbf{Q}$加上时间$t$作为自己的变量，即
+\begin{equation}
+	\mathrm{d} F_1(\mbf{q},\mbf{Q},t) = \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha - \sum_{\alpha=1}^s P_\alpha \mathrm{d} Q_\alpha + (K-H) \mathrm{d} t
+	\label{第一类母函数下的正则变换}
+\end{equation}
+函数$F_1 = F_1(\mbf{q},\mbf{Q},t)$称为{\heiti 第一类母函数}。考虑
+\begin{equation*}
+	\mathrm{d} F_1 = \sum_{\alpha=1}^s \frac{\pl F_1}{\pl q_\alpha} \mathrm{d} q_\alpha + \sum_{\alpha=1}^s \frac{\pl F_1}{\pl Q_\alpha} \mathrm{d} Q_\alpha + \frac{\pl F_1}{\pl t} \mathrm{d} t
+\end{equation*}
+与式\eqref{正则变换需满足的一般条件}对比，可得变换的具体形式
+\begin{equation}
+	\begin{cases}
+		\displaystyle p_\alpha = \frac{\pl F_1}{\pl q_\alpha} = \bar{p}_\alpha(\mbf{q},\mbf{Q},t) \\[1.5ex]
+		\displaystyle P_\alpha = -\frac{\pl F_1}{\pl Q_\alpha} = \bar{P}_\alpha(\mbf{q},\mbf{Q},t) \\[1.5ex]
+		\displaystyle K = H+\frac{\pl F_1}{\pl t}
+	\end{cases}
+\end{equation}
+
+\subsubsection{第二类母函数}
+
+考虑
+\begin{equation*}
+	\sum_{\alpha=1}^s P_\alpha \mathrm{d} Q_\alpha = \mathrm{d} \left(\sum_{\alpha=1}^s P_\alpha Q_\alpha\right) - \sum_{\alpha=1}^s Q_\alpha \mathrm{d} P_\alpha
+\end{equation*}
+因此可以将式\eqref{正则变换需满足的一般条件}改写为
+\begin{equation*}
+	\mathrm{d} \left(F_1 + \sum_{\alpha=1}^s P_\alpha Q_\alpha\right) = \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha + \sum_{\alpha=1}^s Q_\alpha \mathrm{d} P_\alpha + (K-H) \mathrm{d} t
+\end{equation*}
+定义函数
+\begin{equation}
+	F_2 = F_2(\mbf{q},\mbf{P},t) = F_1 + \sum_{\alpha=1}^s P_\alpha Q_\alpha
+	\label{第二类母函数}
+\end{equation}
+于是得到
+\begin{equation}
+	\mathrm{d} F_2(\mbf{q},\mbf{P},t) = \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha + \sum_{\alpha=1}^s Q_\alpha \mathrm{d} P_\alpha + (K-H) \mathrm{d} t
+	\label{第二类母函数下的正则变换}
+\end{equation}
+由此可得变换的具体形式
+\begin{equation}
+	\begin{cases}
+		\displaystyle p_\alpha = \frac{\pl F_2}{\pl q_\alpha} \\[1.5ex]
+		\displaystyle Q_\alpha = \frac{\pl F_2}{\pl P_\alpha} \\[1.5ex]
+		\displaystyle K = H + \frac{\pl F_2}{\pl t}
+	\end{cases}
+\end{equation}
+
+\subsubsection{第三类母函数}
+
+考虑
+\begin{equation*}
+	\sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha = \mathrm{d} \left(\sum_{\alpha=1}^s p_\alpha q_\alpha\right) - \sum_{\alpha=1}^s q_\alpha \mathrm{d} p_\alpha
+\end{equation*}
+因此可以将式\eqref{正则变换需满足的一般条件}改写为
+\begin{equation*}
+	\mathrm{d} \left(F_1 - \sum_{\alpha=1}^s p_\alpha q_\alpha\right) = -\sum_{\alpha=1}^s q_\alpha \mathrm{d} p_\alpha - \sum_{\alpha=1}^s P_\alpha \mathrm{d} Q_\alpha + (K-H) \mathrm{d} t
+\end{equation*}
+定义函数
+\begin{equation}
+	F_3 = F_3(\mbf{p},\mbf{Q},t) = F_1 - \sum_{\alpha=1}^s p_\alpha q_\alpha
+	\label{第三类母函数}
+\end{equation}
+于是得到
+\begin{equation}
+	\mathrm{d} F_3(\mbf{p},\mbf{Q},t) = -\sum_{\alpha=1}^s q_\alpha \mathrm{d} p_\alpha - \sum_{\alpha=1}^s P_\alpha \mathrm{d} Q_\alpha + (K-H) \mathrm{d} t
+	\label{第三类母函数下的正则变换}
+\end{equation}
+由此可得变换的具体形式
+\begin{equation}
+	\begin{cases}
+		\displaystyle q_\alpha = -\frac{\pl F_3}{\pl p_\alpha} \\[1.5ex]
+		\displaystyle P_\alpha = -\frac{\pl F_3}{\pl Q_\alpha} \\[1.5ex]
+		\displaystyle K = H + \frac{\pl F_3}{\pl t}
+	\end{cases}
+\end{equation}
+
+\subsubsection{第四类母函数}
+
+考虑
+\begin{equation*}
+	\sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha = \mathrm{d} \left(\sum_{\alpha=1}^s p_\alpha q_\alpha\right) - \sum_{\alpha=1}^s q_\alpha \mathrm{d} p_\alpha
+\end{equation*}
+因此可以将式\eqref{正则变换需满足的一般条件}改写为
+\begin{equation*}
+	\mathrm{d} \left(F_2 - \sum_{\alpha=1}^s p_\alpha q_\alpha\right) = -\sum_{\alpha=1}^s q_\alpha \mathrm{d} p_\alpha + \sum_{\alpha=1}^s Q_\alpha \mathrm{d} P_\alpha + (K-H) \mathrm{d} t
+\end{equation*}
+定义函数
+\begin{equation}
+	F_4 = F_4(\mbf{p},\mbf{P},t) = F_2 - \sum_{\alpha=1}^s p_\alpha q_\alpha
+	\label{第四类母函数}
+\end{equation}
+于是得到
+\begin{equation}
+	\mathrm{d} F_4(\mbf{p},\mbf{P},t) = -\sum_{\alpha=1}^s q_\alpha \mathrm{d} p_\alpha + \sum_{\alpha=1}^s Q_\alpha \mathrm{d} P_\alpha + (K-H) \mathrm{d} t
+	\label{第四类母函数下的正则变换}
+\end{equation}
+由此可得变换的具体形式
+\begin{equation}
+	\begin{cases}
+		\displaystyle q_\alpha = -\frac{\pl F_4}{\pl p_\alpha} \\[1.5ex]
+		\displaystyle Q_\alpha = \frac{\pl F_4}{\pl P_\alpha} \\[1.5ex]
+		\displaystyle K = H + \frac{\pl F_4}{\pl t}
+	\end{cases}
+\end{equation}
+
+特别地，如果母函数$F_i$不显含时间$t$，即$\dfrac{\pl F_i}{\pl t} = 0$，则有
+\begin{equation*}
+	K=H
+\end{equation*}
+
+\begin{example}[恒等变换]
+恒等变换可以用第二类母函数表示为
+\begin{equation*}
+	F_2(\mbf{q},\mbf{P},t) = \sum_{\beta=1}^s q_\beta P_\beta
+\end{equation*}
+则有
+\begin{equation*}
+	\begin{cases}
+		p_\alpha = \dfrac{\pl F_2}{\pl q_\alpha} = P_\alpha \\[1.5ex]
+		Q_\alpha = \dfrac{\pl F_2}{\pl P_\alpha} = q_\alpha \\[1.5ex]
+		K = H + \dfrac{\pl F_2}{\pl t} = H
+	\end{cases}
+\end{equation*}
+用第三类母函数可以表示为
+\begin{equation*}
+	F_3(\mbf{q},\mbf{P},t) = -\sum_{\beta=1}^s p_\beta Q_\beta
+\end{equation*}
+则有
+\begin{equation*}
+	\begin{cases}
+		q_\alpha = -\dfrac{\pl F_3}{\pl p_\alpha} = Q_\alpha \\[1.5ex]
+		P_\alpha = -\dfrac{\pl F_3}{\pl Q_\alpha} = p_\alpha \\[1.5ex]
+		K = H + \dfrac{\pl F_3}{\pl t} = H
+	\end{cases}
+\end{equation*}
+\end{example}
+
+\begin{example}[平移变换]
+平移变换可以用第二类母函数表示为
+\begin{equation*}
+	F_2(\mbf{q},\mbf{P},t) = \sum_{\beta=1}^s \left(q_\beta P_\beta + a_\beta P_\beta - b_\beta q_\beta\right)
+\end{equation*}
+则有
+\begin{equation*}
+	\begin{cases}
+		p_\alpha = \dfrac{\pl F_2}{\pl q_\alpha} = P_\alpha-b_\alpha \\[1.5ex]
+		Q_\alpha = \dfrac{\pl F_2}{\pl P_\alpha} = q_\alpha+a_\alpha \\[1.5ex]
+		K = H + \dfrac{\pl F_2}{\pl t} = H
+	\end{cases}
+\end{equation*}
+\end{example}
+
+\begin{example}[对偶变换]
+对偶变换可以用第一类母函数表示为
+\begin{equation*}
+	F_1(\mbf{q},\mbf{Q},t) = \sum_{\beta=1}^s q_\beta Q_\beta
+\end{equation*}
+则有
+\begin{equation*}
+	\begin{cases}
+		p_\alpha = \dfrac{\pl F_1}{\pl q_\alpha} = Q_\alpha \\[1.5ex]
+		P_\alpha = -\dfrac{\pl F_1}{\pl Q_\alpha} = -q_\alpha \\[1.5ex]
+		K = H + \dfrac{\pl F_1}{\pl t} = H
+	\end{cases}
+\end{equation*}
+即此变换可以将广义坐标变换为广义动量，将广义动量变换为广义坐标，相当于在相空间做了一个旋转。
+\end{example}
+
+\begin{example}[点变换]
+点变换可以用第二类母函数表示为
+\begin{equation*}
+	F_2(\mbf{q},\mbf{P},t) = \sum_{\beta=1}^s Q_\beta(\mbf{q},t) P_\beta
+\end{equation*}
+则有
+\begin{equation*}
+	\begin{cases}
+		\displaystyle p_\alpha = \frac{\pl F_2}{\pl q_\alpha} = \sum_{\beta=1}^s P_\beta \frac{\pl Q_\beta}{\pl q_\alpha} \\[1.5ex]
+		\displaystyle Q_\alpha = \frac{\pl F_2}{\pl P_\alpha} = Q_\alpha(\mbf{q},t) \\[1.5ex]
+		\displaystyle K = H + \frac{\pl F_2}{\pl t} = H + \sum_{\beta=1}^s P_\beta \frac{\pl Q_\beta}{\pl t}
+	\end{cases}
+\end{equation*}
+\end{example}
+
+\begin{example}[一维谐振子的正则变换求解]
+一维谐振子的Hamilton函数为
+\begin{equation*}
+	H = \frac{p^2}{2m} + \frac12 m\omega^2 q^2
+\end{equation*}
+构造正则变换，使得
+\begin{equation*}
+	\frac{\pl K}{\pl Q} = 0,\quad \frac{\mathrm{d} P}{\mathrm{d} t} = 0
+\end{equation*}
+进而使得新正则方程的求解简化。构造母函数$F_1 = F_1(q,Q,t)$，则有
+\begin{equation*}
+	\begin{cases}
+		\displaystyle p = \frac{\pl F_1}{\pl q} \\[1.5ex]
+		\displaystyle P = -\frac{\pl F_1}{\pl Q} \\[1.5ex]
+		\displaystyle K = H + \frac{\pl F_1}{\pl t}
+	\end{cases}
+\end{equation*}
+考虑到$\dfrac{\mathrm{d} P}{\mathrm{d} t} = 0$，则$P$为运动积分。由于$H$不显含时间，则$H$也为运动积分（为常数），即能量守恒，于是可以令
+\begin{equation}
+	p = f(P) \cos Q,\quad q = \frac{f(P)}{m\omega} \sin Q
+	\label{p,q}
+\end{equation}
+并假设母函数$F_1$不显含时间，则
+\begin{equation*}
+	K = H = \frac{p^2}{2m} + \frac12 m\omega^2 q^2 = \frac{[f(P)]^2}{2m}
+\end{equation*}
+根据变换关系式可得
+\begin{equation*}
+	p = \frac{\pl F_1}{\pl q}(q,Q)
+\end{equation*}
+根据式\eqref{p,q}可得
+\begin{equation*}
+	p = m\omega q \cot Q
+\end{equation*}
+则可得到
+\begin{equation*}
+	F_1 = \frac12 m\omega q^2 \cot Q 
+\end{equation*}
+根据变换关系式可得
+\begin{equation*}
+	P = -\frac{\pl F_1}{\pl Q} = \frac{m\omega q^2}{2\sin^2 Q}
+\end{equation*}
+所以有
+\begin{align*}
+	& q = \sqrt{\frac{2P}{m\omega}} \sin Q \\
+	& f(P) = \sqrt{2m\omega P}
+\end{align*}
+此时
+\begin{equation*}
+	K = H = \omega P
+\end{equation*}
+将体系总能量记作$E$，可有
+\begin{equation*}
+	P = \frac{E}{\omega}
+\end{equation*}
+再由
+\begin{equation*}
+	\dot{Q} = \frac{\pl K}{\pl P} = \omega
+\end{equation*}
+可得
+\begin{equation*}
+	Q = \omega t + \phi
+\end{equation*}
+因此，系统的解为
+\begin{equation*}
+	\begin{cases}
+		q = \sqrt{\dfrac{2E}{m\omega^2}} \sin (\omega t + \phi) \\[1.5ex]
+		p = \sqrt{2mE} \cos(\omega t+\phi)
+	\end{cases}
+\end{equation*}
+\end{example}
+
+\subsection{无穷小正则变换}
+
+考虑第二类母函数
+\begin{equation}
+	F_2(\mbf{q},\mbf{P},t) = \sum_{\alpha=1}^s q_\alpha P_\alpha + \eps G(\mbf{q},\mbf{P},t),\quad \eps \to 0
+\end{equation}
+则有
+\begin{equation*}
+	\begin{cases}
+		\displaystyle p_\alpha = \frac{\pl F_2}{\pl q_\alpha} = P_\alpha + \eps \frac{\pl G}{\pl q_\alpha} \\[1.5ex]
+		\displaystyle Q_\alpha = \frac{\pl F_2}{\pl P_\alpha} = q_\alpha + \eps \frac{\pl G}{\pl P_\alpha} \\[1.5ex]
+		\displaystyle K = H+\frac{\pl F_2}{\pl t} = H + \eps \frac{\pl G}{\pl t}
+	\end{cases}
+\end{equation*}
+其中
+\begin{equation*}
+	\eps \frac{\pl G}{\pl P_\alpha} = \eps \frac{\pl G}{\pl p_\alpha} \frac{\pl p_\alpha}{\pl P_\alpha} = \eps \frac{\pl G}{\pl p_\alpha} + o(\eps)
+\end{equation*}
+略去高阶小量，可得{\heiti 无穷小正则变换}
+\begin{subnumcases}{}
+	Q_\alpha - q_\alpha = \eps \frac{\pl G}{\pl p_\alpha} \\[1.5ex]
+	P_\alpha - p_\alpha = -\eps \frac{\pl G}{\pl q_\alpha} \\[1.5ex]
+	K - H = \eps \frac{\pl G}{\pl t}
+\end{subnumcases}
+式中函数$G(\mbf{q},\mbf{p},t)$则称为{\heiti 无穷小正则变换生成元}。
+
+无穷小正则变换为对称变换，变换后正则方程结构相同，因而运动规律也是相同的。亦即，对体系操作前后，运动是完全相同的。
+
+考虑变换
+\begin{equation*}
+	(\mbf{Q},\mbf{P},t) = (\mbf{q}+\delta \mbf{q},\mbf{p}+\delta \mbf{p},t)
+\end{equation*}
+因此有
+\begin{equation*}
+	\begin{cases}
+		\delta q_\alpha = Q_\alpha-q_\alpha = \eps \dfrac{\pl G}{\pl p_\alpha} \\[1.5ex]
+		\delta p_\alpha = P_\alpha-p_\alpha = -\eps \dfrac{\pl G}{\pl q_\alpha} \\[1.5ex]
+		K(\mbf{Q},\mbf{P},t) - H(\mbf{q},\mbf{p},t) = \eps \dfrac{\pl G}{\pl t}
+	\end{cases}
+\end{equation*}
+由第三式即有
+\begin{equation*}
+	K(\mbf{Q},\mbf{P},t) - H(\mbf{q},\mbf{p},t) - \eps \frac{\pl G}{\pl t} = \delta H - \eps \frac{\pl G}{\pl t} = 0
+\end{equation*}
+而
+\begin{align*}
+	\delta H & = \sum_{\alpha=1}^s \left(\frac{\pl H}{\pl q_\alpha} \delta q_\alpha + \frac{\pl H}{\pl p_\alpha} \delta p_\alpha\right) = \sum_{\alpha=1}^s \left(\frac{\pl H}{\pl q_\alpha} \eps \frac{\pl G}{\pl p_\alpha} - \frac{\pl H}{\pl p_\alpha} \eps \frac{\pl G}{\pl q_\alpha}\alpha\right) \\
+	& = \eps [H,G]
+\end{align*}
+所以有
+\begin{equation*}
+	K(\mbf{Q},\mbf{P},t) - H(\mbf{q},\mbf{p},t) - \eps \frac{\pl G}{\pl t} = -\eps \left([G,H] + \frac{\pl G}{\pl t}\right) = -\eps \frac{\mathrm{d} G}{\mathrm{d} t} = 0
+\end{equation*}
+因此，体系对称则无穷小正则变换生成元守恒；以运动积分为生成元的无穷小正则变换为体系对称变换。
+
+%\begin{example}[空间平移对称性与动量守恒]
+%\end{example}
+
+\subsection{运动方程的无穷小正则变换表示}
+
+将无穷小正则变换生成元取为$G = H(\mbf{q},\mbf{p},t)$，以及$\eps = \mathrm{d} t$，则有
+\begin{equation*}
+	\begin{cases}
+		\displaystyle Q_\alpha(t) - q_\alpha(t) = \frac{\pl H}{\pl p_\alpha} \mathrm{d} t \\[1.5ex]
+		\displaystyle P_\alpha(t) - p_\alpha(t) = -\frac{\pl H}{\pl q_\alpha} \mathrm{d} t \\[1.5ex]
+		\displaystyle K(\mbf{Q},\mbf{P},t) - H(\mbf{q},\mbf{p},t) = \frac{\pl H}{\pl t} \mathrm{d} t
+	\end{cases}
+\end{equation*}
+根据正则方程，可有
+\begin{equation*}
+\begin{cases}
+	\displaystyle Q_\alpha(t) = q_\alpha(t) + \frac{\pl H}{\pl p_\alpha} \mathrm{d} t = q_\alpha(t) + \dot{q}_\alpha \mathrm{d} t = q_\alpha(t+\mathrm{d} t) \\[1.5ex]
+	\displaystyle P_\alpha(t) = p_\alpha(t) - \frac{\pl H}{\pl q_\alpha} \mathrm{d} t = p_\alpha(t) + \dot{p}_\alpha \mathrm{d} t = p_\alpha(t+\mathrm{d} t) \\[1.5ex]
+	\displaystyle \hat{K}(t) = \hat{H}(t) + \frac{\pl H}{\pl t} \mathrm{d} t = \hat{H}(t) + \dot{H} \mathrm{d} t = \hat{H}(t+\mathrm{d}t)
+\end{cases}
+\end{equation*}
+由此，体系随时间的演化可视为一系列无穷小正则变换的累积，其生成元为Hamilton函数。
+
+\subsection{正则变换条件的辛表示}
+
+设变换前后的正则变量分别为
+\begin{equation*}
+	\mbf{\xi} = \begin{pmatrix} \mbf{q} \\ \mbf{p} \end{pmatrix} = \begin{pmatrix} q_1 \\ \vdots \\ q_s \\ p_1 \\ \vdots \\ p_s \end{pmatrix},\quad \mrm{\Xi} = \begin{pmatrix} \mbf{Q} \\ \mbf{P} \end{pmatrix} = \begin{pmatrix} Q_1 \\ \vdots \\ Q_s \\ P_1 \\ \vdots \\ P_s \end{pmatrix}
+\end{equation*}
+设正则变换可以表示为
+\begin{equation}
+	\mrm{\Xi} = \mrm{\Xi}(\mbf{\xi},t),\quad \mbf{\xi} = \mbf{\xi}(\mrm{\Xi},t)
+\end{equation}
+则有
+\begin{equation*}
+	\delta \mrm{\Xi} = \mbf{M} \delta \mbf{\xi},\quad \delta \mbf{\xi} = \mbf{W} \delta \mrm{\Xi}
+\end{equation*}
+其中Jacobi矩阵以及逆变换的Jacobi矩阵可以表示为
+\begin{equation}
+	\mbf{M} = \frac{\pl \mrm{\Xi}}{\pl \mbf{\xi}} = \begin{pmatrix} \dfrac{\pl \mbf{Q}}{\pl \mbf{q}} & \dfrac{\pl \mbf{Q}}{\pl \mbf{p}} \\[1.5ex] \dfrac{\pl \mbf{P}}{\pl \mbf{q}} & \dfrac{\pl \mbf{P}}{\pl \mbf{p}} \end{pmatrix},\quad \mbf{W} = \frac{\pl \mbf{\xi}}{\pl \mrm{\Xi}} = \begin{pmatrix} \dfrac{\pl \mbf{q}}{\pl \mbf{Q}} & \dfrac{\pl \mbf{q}}{\pl \mbf{P}} \\[1.5ex] \dfrac{\pl \mbf{p}}{\pl \mbf{Q}} & \dfrac{\pl \mbf{p}}{\pl \mbf{P}} \end{pmatrix} = \mbf{M}^{-1}
+\end{equation}
+用第一类母函数$F_1=F_1(\mbf{q},\mbf{Q},t)$可以将正则变换的条件表示为
+\begin{equation*}
+	\mathrm{d} F_1 = \sum_{\gamma=1}^s p_\gamma \mathrm{d} q_\gamma - \sum_{\zeta=1}^s P_\zeta \mathrm{d} Q_\zeta + (K-H)\mathrm{d} t
+\end{equation*}
+考虑到$\mbf{Q} = \mbf{Q}(\mbf{q},\mbf{p},t)$，可有
+\begin{equation*}
+	\mathrm{d} Q_\zeta = \sum_{\gamma=1}^s \left(\frac{\pl Q_\zeta}{\pl q_\gamma} \mathrm{d} q_\gamma + \frac{\pl Q_\zeta}{\pl p_\gamma} \mathrm{d} p_\gamma\right) + \frac{\pl Q_\zeta}{\pl t} \mathrm{d} t
+\end{equation*}
+所以
+\begin{align*}
+	\mathrm{d} \bar{F}_1(\mbf{q},\mbf{p},t) & = \sum_{\gamma=1}^s \left[\left(p_\gamma - \sum_{\zeta=1}^s P_\zeta \frac{\pl Q_\zeta}{\pl q_\gamma}\right) \mathrm{d} q_\gamma - \left(\sum_{\zeta=1}^s P_\zeta \frac{\pl Q_\zeta}{\pl p_\gamma}\right) \mathrm{d} p_\gamma\right] \\
+	& \quad {}+ \left(K-H - \sum_{\zeta=1}^s P_\zeta \frac{\pl Q_\zeta}{\pl t}\right) \mathrm{d} t
+\end{align*}
+此处，函数$\bar{F}_1(\mbf{q},\mbf{p},t) = F_1(\mbf{q},\mbf{Q}(\mbf{q},\mbf{p},t),t)$，则有
+\begin{equation*}
+\begin{array}{ll}
+	\displaystyle \frac{\pl \bar{F}_1}{\pl q_\alpha} = p_\alpha - \sum_{\zeta=1}^s P_\zeta \frac{\pl Q_\zeta}{\pl q_\alpha}, & \displaystyle \frac{\pl \bar{F}_1}{\pl q_\beta} = p_\beta - \sum_{\zeta=1}^s P_\zeta \frac{\pl Q_\zeta}{\pl q_\beta} \\[1.5ex]
+	\displaystyle \frac{\pl \bar{F}_1}{\pl p_\alpha} = -\sum_{\zeta=1}^s P_\zeta \frac{\pl Q_\zeta}{\pl p_\alpha}, & \displaystyle \frac{\pl \bar{F}_1}{\pl p_\beta} = -\sum_{\zeta=1}^s P_\zeta \frac{\pl Q_\zeta}{\pl p_\beta}
+\end{array}
+\end{equation*}
+根据$\dfrac{\pl^2 \bar{F}_1}{\pl q_\alpha \pl q_\beta} = \dfrac{\pl^2 \bar{F}_1}{\pl q_\beta \pl q_\alpha}$可得
+\begin{equation*}
+	-\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl q_\beta} \frac{\pl Q_\zeta}{\pl q_\alpha} - \sum_{\zeta=1}^s P_\zeta \frac{\pl^2 Q_\zeta}{\pl q_\alpha \pl q_\beta} = -\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl q_\alpha} \frac{\pl Q_\zeta}{\pl q_\beta} - \sum_{\zeta=1}^s P_\zeta \frac{\pl^2 Q_\zeta}{\pl q_\beta \pl q_\alpha}
+\end{equation*}
+所以有
+\begin{equation*}
+	\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl q_\beta} \frac{\pl Q_\zeta}{\pl q_\alpha} = \sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl q_\alpha} \frac{\pl Q_\zeta}{\pl q_\beta}
+\end{equation*}
+用矩阵表示即
+\begin{equation}
+	\left(\frac{\pl \mbf{Q}}{\pl \mbf{q}}\right)^{\mathrm{T}} \frac{\pl \mbf{P}}{\pl \mbf{q}} - \left(\frac{\pl \mbf{P}}{\pl \mbf{q}}\right)^{\mathrm{T}} \frac{\pl \mbf{Q}}{\pl \mbf{q}} = \mbf{0}
+	\label{正则变换的矩阵表示1}
+\end{equation}
+再根据$\dfrac{\pl^2 \bar{F}_1}{\pl q_\alpha \pl p_\beta} = \dfrac{\pl^2 \bar{F}_1}{\pl p_\beta \pl q_\alpha}$可得
+\begin{equation*}
+	-\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl q_\alpha} \frac{\pl Q_\zeta}{\pl p_\beta} - \sum_{\zeta=1}^s P_\zeta \frac{\pl^2 Q_\zeta}{\pl q_\alpha \pl p_\beta} = \delta_{\alpha\beta}-\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl p_\beta} \frac{\pl Q_\zeta}{\pl q_\alpha} - \sum_{\zeta=1}^s P_\zeta \frac{\pl^2 Q_\zeta}{\pl p_\beta \pl q_\alpha}
+\end{equation*}
+所以有
+\begin{equation*}
+	\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl q_\alpha} \frac{\pl Q_\zeta}{\pl p_\beta} = \sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl p_\beta} \frac{\pl Q_\zeta}{\pl q_\alpha} - \delta_{\alpha\beta}
+\end{equation*}
+用矩阵表示即
+\begin{equation}
+	\left(\frac{\pl \mbf{Q}}{\pl \mbf{q}}\right)^{\mathrm{T}} \frac{\pl \mbf{P}}{\pl \mbf{p}} - \left(\frac{\pl \mbf{P}}{\pl \mbf{q}}\right)^{\mathrm{T}} \frac{\pl \mbf{Q}}{\pl \mbf{p}} = \mbf{I}
+	\label{正则变换的矩阵表示2}
+\end{equation}
+最后根据$\dfrac{\pl^2 \bar{F}_1}{\pl p_\alpha \pl p_\beta} = \dfrac{\pl^2 \bar{F}_1}{\pl p_\beta \pl p_\alpha}$可得
+\begin{equation*}
+	-\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl p_\alpha} \frac{\pl Q_\zeta}{\pl p_\beta} - \sum_{\zeta=1}^s P_\zeta \frac{\pl^2 Q_\zeta}{\pl p_\alpha \pl p_\beta} = -\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl p_\beta} \frac{\pl Q_\zeta}{\pl p_\alpha} - \sum_{\zeta=1}^s P_\zeta \frac{\pl^2 Q_\zeta}{\pl p_\beta \pl p_\alpha}
+\end{equation*}
+所以有
+\begin{equation*}
+	\sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl p_\alpha} \frac{\pl Q_\zeta}{\pl p_\beta} = \sum_{\zeta=1}^s \frac{\pl P_\zeta}{\pl p_\beta} \frac{\pl Q_\zeta}{\pl p_\alpha}
+\end{equation*}
+用矩阵表示即
+\begin{equation}
+	\left(\frac{\pl \mbf{Q}}{\pl \mbf{p}}\right)^{\mathrm{T}} \frac{\pl \mbf{P}}{\pl \mbf{p}} - \left(\frac{\pl \mbf{P}}{\pl \mbf{p}}\right)^{\mathrm{T}} \frac{\pl \mbf{Q}}{\pl \mbf{p}} = \mbf{0}
+	\label{正则变换的矩阵表示3}
+\end{equation}
+综合式\eqref{正则变换的矩阵表示1}、式\eqref{正则变换的矩阵表示2}和式\eqref{正则变换的矩阵表示3}可得
+\begin{equation*}
+	\begin{pmatrix} \left(\dfrac{\pl \mbf{Q}}{\pl \mbf{q}}\right)^{\mathrm{T}} & \left(\dfrac{\pl \mbf{P}}{\pl \mbf{q}}\right)^{\mathrm{T}} \\[1.5ex] \left(\dfrac{\pl \mbf{Q}}{\pl \mbf{p}}\right)^{\mathrm{T}} & \left(\dfrac{\pl \mbf{P}}{\pl \mbf{p}}\right)^{\mathrm{T}} \end{pmatrix} \begin{pmatrix} \mbf{0} & \mbf{I}_s \\ -\mbf{I}_s & \mbf{0} \end{pmatrix} \begin{pmatrix} \dfrac{\pl \mbf{Q}}{\pl \mbf{q}} & \dfrac{\pl \mbf{Q}}{\pl \mbf{p}} \\[1.5ex] \dfrac{\pl \mbf{P}}{\pl \mbf{q}} & \dfrac{\pl \mbf{P}}{\pl \mbf{p}} \end{pmatrix} = \begin{pmatrix} \mbf{0} & \mbf{I}_s \\ -\mbf{I}_s & \mbf{0} \end{pmatrix}
+\end{equation*}
+或者
+\begin{equation}
+	\mbf{M}^{\mathrm{T}} \mbf{J} \mbf{M} = \mbf{J}
+	\label{正则变换的辛条件}
+\end{equation}
+式\eqref{正则变换的辛条件}称为{\heiti 正则变换的辛条件}，反映了正则方程的对称性。所有正则变换的Jacobi矩阵构型{\heiti 辛群}。
+
+由式\eqref{正则变换的辛条件}可有
+\begin{equation*}
+	\det(\mbf{M}^{\mathrm{T}} \mbf{J} \mbf{M}) = \det \mbf{J} = 1
+\end{equation*}
+所以可有
+\begin{equation}
+	\left|\det \mbf{M}\right| = 1
+\end{equation}
+即，正则变换Jacobi行列式的绝对值为$1$。有限正则变换是一系列无限小正则变换的累积，即
+\begin{equation*}
+	\mbf{M} = \prod_{i=1}^\infty \mbf{M}_i(\eps_i,G_i),\quad \eps_i \to 0
+\end{equation*}
+
+\subsection{正则变换的不变量}
+
+\subsubsection{相体积元不变}
+
+在正则变换前，相体积元为
+\begin{equation*}
+	\prod_{i=1}^{2s} \mathrm{d} \xi_i = \prod_{\alpha=1}^s \mathrm{d} q_\alpha \mathrm{d} p_\alpha
+\end{equation*}
+因此，正则变换之后的相体积元为
+\begin{equation*}
+	\prod_{j=1}^{2s} \mathrm{d} \mathnormal{\Xi}_j = \prod_{\beta=1}^s \mathrm{d} Q_\beta \mathrm{d} P_\beta = \left|\det\frac{\pl \mrm{\Xi}}{\pl \mbf{\xi}}\right| \prod_{i=1}^{2s} \mathrm{d} \xi_i = \left|\det \mbf{M}\right| \prod_{i=1}^{2s} \mathrm{d} \xi_i = \prod_{i=1}^{2s} \mathrm{d} \xi_i
+\end{equation*}
+因此，相体积为不依赖于正则变量选取的绝对量。这是经典统计物理的理论基础。
+
+\subsubsection{Poisson括号不变}
+
+设有
+\begin{align*}
+	& f = f_\xi(\mbf{\xi},t) = f_{\mathnormal{\Xi}}(\mrm{\Xi},t) \\
+	& g = g_\xi(\mbf{\xi},t) = g_{\mathnormal{\Xi}}(\mrm{\Xi},t)
+\end{align*}
+变换之前的Poisson括号为
+\begin{equation*}
+	[f,g]_\xi = \sum_{\alpha=1}^s \frac{\pl (f,g)}{\pl (q_\alpha,p_\alpha)} = \left(\frac{\pl f}{\pl \mbf{\xi}}\right)^{\mathrm{T}} \mbf{J} \frac{\pl g}{\pl \mbf{\xi}}
+\end{equation*}
+正则变换之后的Poisson括号为
+\begin{align*}
+	[f,g]_{\mathnormal{\Xi}} & = \left(\frac{\pl f}{\pl \mrm{\Xi}}\right)^{\mathrm{T}} \mbf{J} \frac{\pl g}{\pl \mrm{\Xi}} = \left(\frac{\pl \mbf{\xi}}{\pl \mrm{\Xi}} \frac{\pl f}{\pl \mbf{\xi}} \right)^{\mathrm{T}} \mbf{J} \frac{\pl \mbf{\xi}}{\pl \mrm{\Xi}}  \frac{\pl g}{\pl \mbf{\xi}} \\
+	& = \left(\frac{\pl f}{\pl \mbf{\xi}}\right)^{\mathrm{T}} \mbf{M}^{-\mathrm{T}} \mbf{J} \mbf{M}^{-1} \frac{\pl g}{\pl \mbf{\xi}}
+\end{align*}
+由式\eqref{正则变换的辛条件}可有
+\begin{equation*}
+	\mbf{M}^{-\mathrm{T}} \mbf{J} \mbf{M}^{-1} = \mbf{J}
+\end{equation*}
+所以有
+\begin{align*}
+	[f,g]_{\mathnormal{\Xi}} & = \left(\frac{\pl f}{\pl \mbf{\xi}}\right)^{\mathrm{T}} \mbf{J} \frac{\pl g}{\pl \mbf{\xi}} = [f,g]_\xi
+\end{align*}
+因此，Poisson括号为不依赖于正则变量选取的绝对量。力学Poisson括号形式为不依赖于相坐标系的绝对表示。因此相应地，基本Poisson括号在正则变换下不变，此可作为正则变换的判据。
+
+角动量分量不符合基本泊松括号，因此不可能同时选为正则变量。
+
+\begin{example}
+若新旧正则变量的变换关系为
+\begin{equation*}
+	Q = q^\alpha \cos \beta p,\quad P = q^\alpha \sin \beta p
+\end{equation*}
+当$\alpha,\beta$为何值时，这个变换是正则变换？并找出其母函数。
+\end{example}
+\begin{solution}
+考虑基本泊松括号
+\begin{equation*}
+	[Q,P]_\xi = \begin{vmatrix} \dfrac{\pl Q}{\pl q} & \dfrac{\pl Q}{\pl p} \\[1.5ex] \dfrac{\pl P}{\pl q} & \dfrac{\pl P}{\pl p} \end{vmatrix} = \alpha \beta q^{2\alpha-1} = 1 = [Q,P]_{\mathnormal{\Xi}}
+\end{equation*}
+由此可得$\alpha=\dfrac12,\beta = 2$。所以
+\begin{equation*}
+	\begin{cases}
+		\displaystyle Q = \sqrt{q} \cos 2p \\
+		\displaystyle P = \sqrt{q} \sin 2p
+	\end{cases}
+\end{equation*}
+因此有
+\begin{equation*}
+	\begin{cases}
+		\displaystyle q = \frac{Q^2}{\cos^2 2p} \\
+		\displaystyle P = Q\tan 2p
+	\end{cases}
+\end{equation*}
+考虑第三类母函数$F_3 = F_3(p,Q)$，则有
+\begin{equation*}
+	\mathrm{d} F_3 = -q\mathrm{d} p - P\mathrm{d} Q = -\frac{Q^2}{\cos^2 2p} \mathrm{d} p - Q\tan 2p \mathrm{d}Q = \mathrm{d} \left(-\frac12 Q^2 \tan 2p\right)
+\end{equation*}
+即有第三类母函数
+\begin{equation*}
+	F_3(p,Q) = -\frac12 Q^2 \tan 2p
+\end{equation*}
+\end{solution}
+
+\section{Hamilton-Jacobi方程}
+
+通过适当的正则变换可使新的哈密顿函数$K(\mbf{Q},\mbf{P},t)$的结构简化，从而使正则方程易于求解。最理想的情况是使得$K = 0$，此时新的正则方程就变为
+\begin{equation*}
+	\begin{cases}
+		\dot{Q}_\alpha = 0, \\
+		\dot{P}_\alpha = 0,
+	\end{cases}\quad \alpha = 1,2,\cdots,s
+\end{equation*}
+于是所有正则变量都是可遗变量，即有
+\begin{equation*}
+	\begin{cases}
+		Q_\alpha = C_\alpha = \text{常数}, \\
+		P_\alpha = D_\alpha = \text{常数},
+	\end{cases}\quad \alpha=1,2,\cdots,s
+\end{equation*}
+然后再利用变换关系
+\begin{equation*}
+	\begin{cases}
+		Q_\alpha = Q_\alpha(\mbf{q},\mbf{p},t), \\
+		P_\alpha = P_\alpha(\mbf{q},\mbf{p},t),
+	\end{cases}\quad \alpha = 1,2,\cdots,s
+\end{equation*}
+即可得到原来正则方程的解
+\begin{equation*}
+	\begin{cases}
+		q_\alpha = q_\alpha(\mbf{C},\mbf{D},t) \\
+		p_\alpha = p_\alpha(\mbf{C},\mbf{D},t)
+	\end{cases}
+\end{equation*}
+对于四类正则变换母函数，新旧Hamilton函数间的关系都是
+\begin{equation*}
+	K(\mbf{Q},\mbf{P},t) = H(\mbf{q},\mbf{p},t) + \frac{\pl S}{\pl t}
+\end{equation*}
+此处将母函数记作$S$，欲使$K = 0$，则要求母函数$S$满足关系式
+\begin{equation}
+	H(\mbf{q},\mbf{p},t) + \frac{\pl S}{\pl t} = 0
+\end{equation}
+由此，力学问题便归结为求$S$。
+
+\subsection{Hamilton-Jacobi方程}
+
+考虑第二类母函数$F_2 = S(\mbf{q},\mbf{P},t)$，则由变换关系可有
+\begin{equation*}
+	p_\alpha = \frac{\pl S}{\pl q_\alpha}
+\end{equation*}
+并根据变换需满足的条件，令
+\begin{equation*}
+	P_\alpha = D_\alpha
+\end{equation*}
+即有
+\begin{equation}
+	H\left(\mbf{q},\frac{\pl S}{\pl \mbf{q}},t\right) + \frac{\pl S}{\pl t} = 0
+	\label{Hamilton-Jacobi方程}
+\end{equation}
+式\eqref{Hamilton-Jacobi方程}称为{\heiti Hamilton-Jacobi方程}。它是函数$S(\mbf{q},\mbf{D},t)$的一阶偏微分方程，它有$s+1$个自变量（$\mbf{q}$和$t$），所以应有$s+1$个独立的积分常数，其中一个为相加常数，不影响变换，可略去；其余的$s$个即为$D_\alpha$。含有$s$个任意常数（不包括相加常数）的函数$S(\mbf{q},\mbf{D},t)$称为Hamilton-Jacobi方程的{\bf 完全积分}。
+%利用Hamilton-Jacobi方程\eqref{Hamilton-Jacobi方程}得到函数$S=S(\mbf{q},\mbf{D},t)$之后，便可利用关系
+% \begin{equation*}
+	% \frac{\pl S}{\pl D_\alpha}(\mbf{q},\mbf{D},t) = C_\alpha,\quad \alpha=1,2,\cdots,s
+% \end{equation*}
+% 来直接得到体系的轨道方程$\mbf{q}=\mbf{q}(t)$，其中$C_\alpha$为任意常数。
+
+\subsection{Hamilton主函数}
+
+在Hamilton-Jacobi方程\eqref{Hamilton-Jacobi方程}中，函数$S(\mbf{q},\mbf{D},t)$称为{\heiti Hamilton主函数}。下面来讨论Hamilton主函数的物理意义。考虑
+\begin{equation*}
+	\frac{\mathrm{d} S}{\mathrm{d} t} = \sum_{\alpha=1}^s \frac{\pl S}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl S}{\pl t} = \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H = L
+\end{equation*}
+由此可得
+\begin{equation}
+	S = \int L \mathrm{d} t
+	\label{Hamilton作用函数}
+\end{equation}
+函数$S(\mbf{q},\mbf{D},t)$即为积分限不定的Hamilton作用量，因此也称为{\heiti Hamilton作用函数}。
+
+当Hamilton函数不显含时间$t$，即体系广义能量守恒时\footnote{纯力学问题都属于这一类问题。}，这种情况下方程\eqref{Hamilton-Jacobi方程}可以表示为
+\begin{equation}
+	H\left(\mbf{q},\frac{\pl S}{\pl \mbf{q}}\right) + \frac{\pl S}{\pl t} = E + \frac{\pl S}{\pl t} = 0
+\end{equation}
+此情况下Hamilton作用函数可分离变量
+\begin{equation*}
+	S = S(\mbf{q},\mbf{D},t) = W(\mbf{q},\mbf{D}) + T(t)
+\end{equation*}
+由此即有
+\begin{equation}
+	S(\mbf{q},\mbf{D},t) = W(\mbf{q},\mbf{D}) - Et
+\end{equation}
+Hamilton-Jacobi方程变为
+\begin{equation}
+	H\left(\mbf{q},\frac{\pl W}{\pl \mbf{q}}\right) = E
+	\label{不含时Hamilton-Jacobi方程}
+\end{equation}
+式\eqref{不含时Hamilton-Jacobi方程}称为{\heiti 不含时Hamilton-Jacobi方程}。其中函数
+\begin{equation*}
+	W = W(\mbf{q},\mbf{D}) = W(\mbf{q},E,D_2,\cdots,D_s)
+\end{equation*}
+称为{\heiti Hamilton特征函数}。
+
+考虑到$H=E$，可有
+\begin{equation*}
+	S = \int L \mathrm{d} t = \int \left(\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H\right) \mathrm{d} t = \int \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha - Et + D_0
+\end{equation*}
+上式中$D_0$是相加常数，可略去，由此可得Hamilton特征函数的具体形式
+\begin{equation}
+	W(\mbf{q},\mbf{D}) = \int \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha
+\end{equation}
+
+%下面来考虑正则方程的完全积分$\mbf{q} = \mbf{q}(t),\mbf{p} = \mbf{p}(t)$以及体系运动轨道的关系。首先有
+下面来考虑Hamilton-Jacobi方程的完全积分$S=S(\mbf{q},\mbf{D},t)$与体系运动轨迹$\mbf{q} = \mbf{q}(t),\mbf{p} = \mbf{p}(t)$之间的关系。首先有
+\begin{subnumcases}{\label{chp3:Hamilton-Jacobi方程的完全积分与运动轨道-1}}
+	p_\alpha = \frac{\pl S}{\pl q_\alpha}(\mbf{q},\mbf{D},t), & $\alpha=1,2,\cdots,s$ \label{chp3:Hamilton-Jacobi方程的完全积分与运动轨道-1.1} \\
+	C_\alpha = \frac{\pl S}{\pl D_\alpha}(\mbf{q},\mbf{D},t), & $\alpha=1,2,\cdots,s$ \label{chp3:Hamilton-Jacobi方程的完全积分与运动轨道-1.2}
+\end{subnumcases}
+由方程\eqref{chp3:Hamilton-Jacobi方程的完全积分与运动轨道-1.2}的$s$个方程中（这是代数方程组）可以解出$s$个广义坐标与时间的关系
+\begin{equation*}
+	\mbf{q} = \mbf{q}(t)
+\end{equation*}
+再由方程\eqref{chp3:Hamilton-Jacobi方程的完全积分与运动轨道-1.1}即可得
+\begin{equation*}
+	\mbf{p} = \mbf{p}(t)
+\end{equation*}
+由此便得到完整的相空间轨迹。当体系广义能量守恒时，记$E=D_1$，则有
+\begin{subnumcases}{}
+	p_\alpha = \frac{\pl S}{\pl q_\alpha}(\mbf{q},\mbf{D},t) = \frac{\pl W}{\pl q_\alpha}(\mbf{q},\mbf{D}),& $\alpha=1,2,\cdots,s$ \\
+	C_1 = \frac{\pl S}{\pl D_1}(\mbf{q},\mbf{D},t) = \frac{\pl W}{\pl E}(\mbf{q},\mbf{D}) - t \\
+	C_\alpha = \frac{\pl S}{\pl D_\alpha} = \frac{\pl W}{\pl D_\alpha}(\mbf{q},\mbf{D}),& $\alpha=2,3,\cdots,s$
+\end{subnumcases}
+由此可有
+\begin{equation}
+	C_\alpha = C_\alpha(q_1,q_2,\cdots,q_s;E,D_2,\cdots,D_s),\quad \alpha=2,3,\cdots,s
+	\label{chp3:Hamilton-Jacobi方程的完全积分与运动轨道-3}
+\end{equation}
+由式\eqref{chp3:Hamilton-Jacobi方程的完全积分与运动轨道-3}的$s-1$个方程，可以以$q_1$为参数，解出$q_2,\cdots,q_s$的表达式为
+\begin{equation}
+	q_\alpha = f_\alpha(q_1;C_2,\cdots,C_s;E,D_2,\cdots,D_s),\quad \alpha = 2,3,\cdots,s
+\end{equation}
+此即为位形空间的轨道曲线。
+
+\begin{example}[一维谐振子的Hamilton-Jacobi方程求解]
+一维谐振子的Hamilton函数为
+\begin{equation*}
+	H(q,p) = \frac{p^2}{2m} + \frac12 m\omega^2 q^2
+\end{equation*}
+用Hamilton-Jacobi方程求解此体系的运动。
+\end{example}
+\begin{solution}
+体系的Hamilton函数不显含时间，故根据不含时Hamilton-Jacobi方程\eqref{不含时Hamilton-Jacobi方程}可有
+\begin{equation*}
+	H\left(q,\frac{\pl W}{\pl q}\right) = \frac12 \left(\frac{\pl W}{\pl q}\right)^2 + \frac12 m\omega^2 q^2 = E
+\end{equation*}
+即
+\begin{equation*}
+	\frac{\pl W}{\pl q} = m\omega \sqrt{\frac{2E}{m\omega^2} - q^2} = p
+\end{equation*}
+因此
+\begin{equation*}
+	W = m\omega \int \sqrt{\frac{2E}{m\omega^2} - q^2} \mathrm{d} q
+\end{equation*}
+由此即有
+\begin{equation*}
+	C = \frac{\pl W}{\pl E} - t = \frac{1}{\omega} \int \frac{\mathrm{d} q}{\sqrt{\dfrac{2E}{m\omega^2}-q^2}} - t = \frac{1}{\omega} \arcsin\left(\sqrt{\frac{m\omega^2}{2E}}q\right) - t
+\end{equation*}
+由此可得体系的解
+\begin{equation*}
+\begin{cases}
+	\displaystyle q = \sqrt{\frac{2E}{m\omega^2}} \sin \big[\omega(t+C)\big] \\[1.5ex]
+	\displaystyle p = m\omega \sqrt{\frac{2E}{m\omega^2} - q^2} = \sqrt{2mE} \cos \big[\omega(t+C)\big]
+\end{cases}
+\end{equation*}
+$C,E$是积分常数，故有
+\begin{equation*}
+	C = \frac{1}{\omega} \arcsin\left(\sqrt{\frac{m\omega^2}{2E}}q_0\right) - t_0,\quad E = \frac{p_0^2}{2m} + \frac12 m\omega^2 q_0^2
+\end{equation*}
+\end{solution}
+
+Hamilton-Jacobi理论将常微分方程组求解转化为偏微分方程的全积分问题，在具体应用方面并无方便之处，但是提供了一种全新的力学运动图像。
+
+\subsection{Hamilton-Jacobi方程的分离变量}
+
+在某些特殊情况下，Hamilton-Jacobi方程的完全积分可以通过分离变量的方法求得。假设某一个坐标，将其记作$q_1$，与其相应的导数$\dfrac{\pl S}{\pl q_1}$，在Hamilton-Jacobi方程中仅以某种组合$\phi\left(q_1,\dfrac{\pl S}{\pl q_1}\right)$的方式出现，而这个组合中不包含任何其他坐标，即Hamilton-Jacobi方程\eqref{Hamilton-Jacobi方程}具有如下形式：
+\begin{equation}
+	\varPhi\left(\mbf{q}',t,\frac{\pl S}{\pl \mbf{q}'},\frac{\pl S}{\pl t},\phi\left(q_1,\dfrac{\pl S}{\pl q_1}\right)\right) = 0
+	\label{chp3:Hamilton-Jacobi方程的分离变量-1}
+\end{equation}
+其中$\mbf{q}'$表示除了$q_1$以外的所有坐标。
+
+假设解具有如下形式
+\begin{equation}
+	S(\mbf{q},t) = S_0(\mbf{q}',t)+S_1(q_1)
+	\label{chp3:Hamilton-Jacobi方程的分离变量-2}
+\end{equation}
+将\eqref{chp3:Hamilton-Jacobi方程的分离变量-2}代入式\eqref{chp3:Hamilton-Jacobi方程的分离变量-1}中，即有
+\begin{equation}
+	\varPhi\left(\mbf{q}',t,\frac{\pl S_0}{\pl \mbf{q}'},\frac{\pl S_0}{\pl t},\phi\left(q_1,\dfrac{\mathrm{d} S_1}{\mathrm{d} q_1}\right)\right) = 0
+	\label{chp3:Hamilton-Jacobi方程的分离变量-3}
+\end{equation}
+如果式\eqref{chp3:Hamilton-Jacobi方程的分离变量-2}是方程的解，那么在$q_1$变化时，式\eqref{chp3:Hamilton-Jacobi方程的分离变量-3}应为恒等式。而式\eqref{chp3:Hamilton-Jacobi方程的分离变量-3}中，只有$\phi\left(q_1,\dfrac{\mathrm{d} S_1}{\mathrm{d} q_1}\right)$项含有$q_1$，因此$\phi\left(q_1,\dfrac{\mathrm{d} S_1}{\mathrm{d} q_1}\right)$项应为常数。于是将方程\eqref{chp3:Hamilton-Jacobi方程的分离变量-1}分为两个方程
+\begin{align}
+	& \phi\left(q_1,\dfrac{\mathrm{d} S_1}{\mathrm{d} q_1}\right) = D_1 \label{chp3:Hamilton-Jacobi方程的分离变量-4.1} \\
+	& \varPhi\left(\mbf{q}',t,\frac{\pl S_0}{\pl \mbf{q}'},\frac{\pl S_0}{\pl t},D_1\right) = 0 \label{chp3:Hamilton-Jacobi方程的分离变量-4.2}
+\end{align}
+方程\eqref{chp3:Hamilton-Jacobi方程的分离变量-4.1}是一个常微分方程，而方程\eqref{chp3:Hamilton-Jacobi方程的分离变量-4.2}虽然仍为偏微分方程，但其独立变量数目较之原来减少了一个。
+
+对于循环坐标的情形，由于循环坐标$q_1$不显含于Hamilton函数中，此时$\phi\left(q_1,\dfrac{\pl S}{\pl q_1}\right)$项即为$\dfrac{\pl S}{\pl q_1}$，因此可有
+\begin{equation*}
+	S_1(q_1) = D_1q_1
+\end{equation*}
+而此处常数$D_1$即为与$q_1$共轭的广义动量$p_1=\dfrac{\pl S}{\pl q_1}=D_1$。对于保守系统而言，$-Et$这一项即对应着``循环坐标''时间$t$的分离。
+
+为了能够在Hamilton-Jacobi方程中分离变量，适当选择坐标系非常关键。
+
+\begin{example}[球坐标系中Hamilton-Jacobi方程的分离变量]
+在球坐标系中，Hamilton函数为
+\begin{equation}
+	H(r,\theta,\phi,p_r,p_\theta,p_\phi,t) = \frac{1}{2m}\left(p_r^2+\frac{p_\theta^2}{r^2}+\frac{p_\phi^2}{r^2\sin^2\theta}\right)+V(r,\theta,\phi,t)
+	\label{球坐标系中Hamilton-Jacobi方程的分离变量-1.1}
+\end{equation}
+如果势函数$V(r,\theta,\phi,t)$具有如下形式
+\begin{equation}
+	V(r,\theta,\phi,t) = a(r)+\frac{b(\theta)}{r^2}+\frac{c(\phi)}{r^2\sin^2\theta}
+	\label{球坐标系中Hamilton-Jacobi方程的分离变量-1.2}
+\end{equation}
+其中$a(r),b(\theta),c(\phi)$是任意函数，则分离变量是可能的。此时关于函数$W(r,\theta,\phi)$的不含时Hamilton-Jacobi方程为
+\begin{align}
+	\frac{1}{2m}\left(\frac{\pl W}{\pl r}\right)^2+a(r)& {}+\frac{1}{2mr^2}\left[\left(\frac{\pl W}{\pl \theta}\right)^2+2mb(\theta)\right] \nonumber \\
+	& {}+ \frac{1}{2mr^2\sin^2\theta}\left[\left(\frac{\pl W}{\pl \phi}\right)^2+2mc(\phi)\right] = E
+	\label{球坐标系中Hamilton-Jacobi方程的分离变量-2}
+\end{align}
+
+假设解具有形式
+\begin{equation}
+	S(r,\theta,\phi,t) = -Et+W(r,\theta,\phi) = -Et+S_1(r)+S_2(\theta)+S_3(\phi)
+	\label{球坐标系中Hamilton-Jacobi方程的分离变量-3}
+\end{equation}
+则有
+\begin{subnumcases}{}
+	\left(\frac{\mathrm{d}S_3}{\mathrm{d}\phi}\right)^2+2mc(\phi) = \alpha \label{球坐标系中Hamilton-Jacobi方程的分离变量-4.1} \\
+	\left(\frac{\mathrm{d}S_2}{\mathrm{d}\theta}\right)^2+2mb(\theta)+\frac{\alpha}{\sin^2\theta} = \beta \label{球坐标系中Hamilton-Jacobi方程的分离变量-4.2} \\
+	\frac{1}{2m}\left(\frac{\mathrm{d}S_1}{\mathrm{d}r}\right)^2+a(r)+\frac{\beta}{2mr^2} = E \label{球坐标系中Hamilton-Jacobi方程的分离变量-4.3}
+\end{subnumcases}
+依次积分可得
+\begin{subnumcases}{}
+	S_3(\phi) = \pm\int \sqrt{\alpha-2mc(\phi)} \mathrm{d}\phi \label{球坐标系中Hamilton-Jacobi方程的分离变量-5.1}\\
+	S_2(\theta) = \pm\int \sqrt{\beta-2mb(\theta)-\frac{\alpha}{\sin^2\theta}} \mathrm{d}\theta \label{球坐标系中Hamilton-Jacobi方程的分离变量-5.2} \\
+	S_1(r) = \pm\int \sqrt{2m\big[E-a(r)\big]-\frac{\beta}{r^2}} \mathrm{d}r \label{球坐标系中Hamilton-Jacobi方程的分离变量-5.3}
+\end{subnumcases}
+便得到Hamilton-Jacobi方程的完全积分
+\begin{align}
+	S(r,\theta,\phi,t) & = -Et \pm \int \sqrt{\alpha-2mc(\phi)} \mathrm{d}\phi \pm \int \sqrt{\beta-2mb(\theta)-\frac{\alpha}{\sin^2\theta}} \mathrm{d}\theta \nonumber \\
+	& \quad {} \pm \int \sqrt{2m\big[E-a(r)\big]-\frac{\beta}{r^2}} \mathrm{d}r
+	\label{球坐标系中Hamilton-Jacobi方程的分离变量-6}
+\end{align}
+其中$\alpha,\beta,E$是任意积分常数，将式\eqref{球坐标系中Hamilton-Jacobi方程的分离变量-6}对这三个任意常数求导并使之等于新常数，即可得到运动方程的通解。
+
+在一般的问题中，式\eqref{球坐标系中Hamilton-Jacobi方程的分离变量-1.2}所表示的势场其第三项未必有物理意义，因此在$c(\phi)=0$的情形下，可有Hamilton-Jacobi方程的完全积分为
+\begin{align}
+	S(r,\theta,\phi,t) & = -Et + p_\phi\phi \pm \int \sqrt{\beta-2mb(\theta)-\frac{p_\phi^2}{\sin^2\theta}} \mathrm{d}\theta \pm \int \sqrt{2m\big[E-a(r)\big]-\frac{\beta}{r^2}} \mathrm{d}r
+	\label{球坐标系中Hamilton-Jacobi方程的分离变量-6}
+\end{align}
+\end{example}
+
+\begin{example}[抛物线坐标系中Hamilton-Jacobi方程的分离变量]
+抛物线坐标$(u,v,\phi)$与直角坐标$(x,y,z)$之间的关系由如下变换公式给出
+\begin{equation}
+\begin{cases}
+	x = uv\cos\phi \\
+	y = uv\sin\phi \\
+	z = \dfrac12(u^2-v^2)
+\end{cases}
+(0\leqslant u,v<+\infty,0\leqslant \phi < 2\pi)
+\end{equation}
+$u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，如图\ref{chp3:抛物线坐标系}所示。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//抛物线坐标系的坐标面
+	pair O,i,j,k;
+	O = (0,0);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	draw(-3*k--2.6*k,dashed);
+	draw(Label("$z$",EndPoint),2.6*k--4*k,Arrow);
+	real u0,v0,h0,phi0,h,r;
+	pair f1(real h){
+		real theta,tmp,phi;
+		theta = atan(-j.x/i.x);
+		tmp = v0/sqrt(v0^2+2*h)*(i.x*j.y-i.y*j.x)/k.y/sqrt(i.x^2+j.x^2);
+		phi = asin(tmp)-theta;
+		return sqrt(v0^2+2*h)*v0*cos(phi)*i+sqrt(v0^2+2*h)*v0*sin(phi)*j+h*k;
+	}
+	pair f2(real h){
+		real theta,tmp,phi;
+		theta = atan(-j.x/i.x);
+		tmp = -u0/sqrt(u0^2-2*h)*(i.x*j.y-i.y*j.x)/(k.y*sqrt(i.x^2+j.x^2));
+		phi = asin(tmp)-theta;
+		return sqrt(u0^2-2*h)*u0*cos(phi)*i+sqrt(u0^2-2*h)*u0*sin(phi)*j+h*k;
+	}
+	pair para_up(real phi){
+		real x,y,z,u;
+		u = sqrt(v0^2+2*h);
+		x = u*v0*cos(phi);
+		y = u*v0*sin(phi);
+		z = h;
+		return x*i+y*j+z*k;
+	}
+	pair para_down(real phi){
+		real x,y,z,v;
+		v = sqrt(u0^2-2*h);
+		x = u0*v*cos(phi);
+		y = u0*v*sin(phi);
+		z = h;
+		return x*i+y*j+z*k;
+	}
+	pair intersection_cur_up(real h){
+		real x,y,z,u;
+		u = sqrt(v0^2+2*h);
+		x = u*v0*cos(phi0);
+		y = u*v0*sin(phi0);
+		z = h;
+		return x*i+y*j+z*k;
+	}
+	pair intersection_cur_down(real h){
+		real x,y,z,v;
+		v = sqrt(u0^2-2*h);
+		x = u0*v*cos(phi0);
+		y = u0*v*sin(phi0);
+		z = h;
+		return x*i+y*j+z*k;
+	}
+	path q1,q2,p1,p2;
+	picture tmp;
+	v0 = 0.6;
+	u0 = 0.8;
+	h0 = 0.5*(u0^2-v0^2);
+	q1 = graph(f1,3,h0);
+	p1 = graph(f1,h0,-0.5*v0^2+0.1);
+	draw(q1,linewidth(0.8bp)+red);
+	draw(p1..xscale(-1)*reverse(p1),dashed+red);
+	q2 = graph(f2,-3,h0);
+	p2 = graph(f2,h0,0.5*u0^2-0.1);
+	draw(q2,linewidth(0.8bp)+blue);
+	draw(p2..xscale(-1)*reverse(p2),dashed+blue);
+	real tm;
+	tm = -1.2;
+	h = h0;
+	draw(graph(para_up,tm,pi+tm),green+linewidth(0.8bp));
+	draw(graph(para_up,pi+tm,2*pi+tm),dashed+green);
+	h = 3;
+	draw(graph(para_up,0,2*pi),red);
+	h = -3;
+	draw(graph(para_down,pi+tm,2*pi+tm),dashed+blue);
+	phi0 = pi/3;
+	r = 3;
+	draw(tmp,graph(para_down,tm,pi+tm),blue);
+	draw(tmp,xscale(-1)*q1,linewidth(0.8bp)+red);
+	draw(tmp,xscale(-1)*q2,linewidth(0.8bp)+blue);
+	draw(tmp,Label("$y$",EndPoint),O--3*j,Arrow);
+	path clp;
+	clp = 3*k--r*cos(phi0)*i+r*sin(phi0)*j+3*k--r*cos(phi0)*i+r*sin(phi0)*j-3*k--(-3*k)--cycle;
+	unfill(tmp,clp);
+	add(tmp);
+	erase(tmp);
+	draw(tmp,graph(para_down,tm,pi+tm),blue+dashed);
+	draw(tmp,xscale(-1)*q1,dashed+red);
+	draw(tmp,xscale(-1)*q2,dashed+blue);
+	draw(tmp,Label("$y$",EndPoint),O--3*j,dashed);
+	clip(tmp,clp);
+	add(tmp);
+	draw(3*k--r*cos(phi0)*i+r*sin(phi0)*j+3*k--r*cos(phi0)*i+r*sin(phi0)*j-3*k--intersection_cur_down(-3),green);
+	draw(intersection_cur_down(-3)--(-3*k),green+dashed);
+	draw(graph(intersection_cur_up,3,h0),red+linewidth(0.8bp));
+	draw(graph(intersection_cur_up,h0,-0.5*v0^2),red+dashed);
+	draw(graph(intersection_cur_down,-3,h0),blue+linewidth(0.8bp));
+	draw(graph(intersection_cur_down,h0,0.5*u0^2),blue+dashed);
+	dot(intersection_cur_up(h0));
+	draw(Label("$x$",EndPoint),u0^2*i--6*i,Arrow);
+	draw(O--u0^2*i,dashed);
+	pair P,eu,ev,ephi;
+	eu = v0*cos(phi0)/sqrt(u0^2+v0^2)*i+v0*sin(phi0)/sqrt(u0^2+v0^2)*j+u0/sqrt(u0^2+v0^2)*k;
+	ev = u0*cos(phi0)/sqrt(u0^2+v0^2)*i+u0*sin(phi0)/sqrt(u0^2+v0^2)*j-v0/sqrt(u0^2+v0^2)*k;
+	ephi = -sin(phi0)*i+cos(phi0)*j;
+	P = intersection_cur_up(h0);
+	draw(Label("$\boldsymbol{e}_u$",EndPoint),P--P+eu,Arrow);
+	draw(Label("$\boldsymbol{e}_v$",EndPoint),P--P+ev,Arrow);
+	draw(Label("$\boldsymbol{e}_\phi$",EndPoint),P--P+ephi,Arrow);
+	label("$O$",O,WNW);
+\end{asy}
+\caption{抛物线坐标系的坐标面}
+\label{chp3:抛物线坐标系}
+\end{figure}
+
+在这个坐标系下，系统的Lagrange函数为
+\begin{equation}
+	L = \frac12 m(u^2+v^2)\dot{u}^2+\frac12 m(u^2+v^2)\dot{v}^2+\frac12 mu^2v^2\dot{\phi}^2 - V(u,v,\phi)
+\end{equation}
+此时，广义动量为
+\begin{equation*}
+	p_u = \frac{\pl L}{\pl \dot{u}} = m(u^2+v^2)\dot{u},\quad p_v = \frac{\pl L}{\pl \dot{v}} = m(u^2+v^2)\dot{v},\quad p_\phi = \frac{\pl L}{\pl \dot{\phi}} = mu^2v^2\dot{\phi}
+\end{equation*}
+由此可得体系的Hamilton函数为
+\begin{equation}
+	H = \frac{p_u^2+p_v^2}{2m(u^2+v^2)} + \frac{p_\phi^2}{2mu^2v^2} + V(u,v,\phi)
+\end{equation}
+
+在这种坐标下，物理上有意义的可分离变量情况对应于以下形式的势能：
+\begin{equation}
+	V(u,v,\phi) = \frac{a(u)+b(v)}{u^2+v^2}
+\end{equation}
+所以我们得到关于$W(\mbf{q},\mbf{D})$的方程
+\begin{equation}
+	\frac{1}{2m(u^2+v^2)}\left[\left(\frac{\pl W}{\pl u}\right)^2+\left(\frac{\pl W}{\pl v}\right)^2\right]+ \frac{1}{2mu^2v^2}\left(\frac{\pl W}{\pl \phi}\right)^2 + \frac{a(u)+b(v)}{u^2+v^2} = E
+	\label{chp3:抛物线坐标下的分离变量-1}
+\end{equation}
+在式\eqref{chp3:抛物线坐标下的分离变量-1}两端乘以$2m(u^2+v^2)$并整理，可得
+\begin{align*}
+	\left(\frac{\pl W}{\pl u}\right)^2 + a(u) - 2mEu^2 + \left(\frac{\pl W}{\pl v}\right)^2 +b(u) - 2mEv^2 + \left(\frac{1}{u^2}+\frac{1}{v^2}\right)\left(\frac{\pl W}{\pl \phi}\right)^2 = 0
+\end{align*}
+此处注意到坐标$\phi$是循环坐标，因此可令
+\begin{equation}
+	S(u,v,\phi,t) = -Et + p_\phi\phi + S_1(u)+S_2(v)
+\end{equation}
+由此得到两个方程
+\begin{subnumcases}{}
+	\left(\frac{\mathrm{d}S_2}{\mathrm{d} v}\right)^2 - 2mEv^2+b(v)+\frac{p_\phi^2}{v^2} = \beta \\
+	\left(\frac{\mathrm{d}S_1}{\mathrm{d} u}\right)^2 - 2mEu^2+a(u)+\frac{p_\phi^2}{u^2} = -\beta
+\end{subnumcases}
+由此即有
+\begin{align*}
+	S & = -Et + p_\phi\phi \pm \int \sqrt{2mEv^2-\frac{p_\phi^2}{v^2}-b(v)+\beta} \mathrm{d}v \pm \int \sqrt{2mEu^2-\frac{p_\phi^2}{u^2}-a(u)-\beta} \mathrm{d}u
+\end{align*}
+其中$E,p_\phi,\beta$为任意积分常数。
+\end{example}
+
+\begin{example}[椭圆坐标系中Hamilton-Jacobi方程的分离变量]
+椭圆坐标$(\xi,\eta,\phi)$与直角坐标$(x,y,z)$之间的关系由如下变换公式给出
+\begin{equation}
+\begin{cases}
+	x = \sigma\sqrt{(\xi^2-1)(1-\eta^2)} \cos \phi \\
+	y = \sigma\sqrt{(\xi^2-1)(1-\eta^2)} \sin \phi \\
+	z = \sigma \xi\eta
+\end{cases}(1\leqslant \xi<+\infty,-1\leqslant \eta\leqslant 1,0\leqslant \phi < 2\pi)
+\end{equation}
+其中$\sigma$为常数。设$z$轴上两个点$A_1$和$A_2$的坐标为$z=\sigma$和$z=-\sigma$，则$\xi$为常数的坐标面为以$A_1$和$A_2$为焦点的一族旋转椭球面
+\begin{equation*}
+	\frac{x^2+y^2}{\sigma^2(\xi^2-1)}+ \frac{z^2}{\sigma^2\xi^2} = 1
+\end{equation*}
+而$\eta$为常数的坐标面为以$A_1$和$A_2$为焦点的一族旋转双叶双曲面
+\begin{equation*}
+	-\frac{x^2+y^2}{\sigma^2(1-\eta^2)}+ \frac{z^2}{\sigma^2\eta^2} = 1
+\end{equation*}
+此坐标系即为图\ref{chp3:二维椭圆坐标系}所示的二维椭圆坐标系绕其$z$轴旋转而成。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(250);
+	//二维椭圆坐标系
+	picture tmp;
+	real xi,eta,sigma,xmax,ymax;
+	sigma = 1;
+	xmax = 2.5;
+	ymax = 2.5;
+	pair coor_ell(real theta){
+		return (sigma*sqrt(xi^2-1)*cos(theta),sigma*xi*sin(theta));
+	}
+	pair coor_hyp(real theta){
+		return (sigma*sqrt(1-eta^2)*sinh(theta),sigma*eta*cosh(theta));
+	}
+	for(xi=1;xi<=2.2;xi=xi+0.15){
+		draw(tmp,graph(coor_ell,0,2*pi),red);
+	}
+	for(eta=0;eta<1;eta=eta+0.15){
+		if (eta==0) continue;
+		draw(tmp,graph(coor_hyp,-10,10),blue);
+	}
+	for(eta=0;eta>-1;eta=eta-0.15){
+		if (eta==0) continue;
+		draw(tmp,graph(coor_hyp,-10,10),blue);
+	}
+	clip(tmp,box((-xmax,-ymax),(xmax,ymax)));
+	add(tmp);
+	draw(Label("$x$",EndPoint),(-xmax,0)--(xmax,0),Arrow);
+	draw(Label("$z$",EndPoint),(0,-ymax)--(0,ymax),Arrow);
+	dot("$A_1$",(0,sigma),E);
+	dot("$A_2$",(0,-sigma),E);
+\end{asy}
+\caption{二维椭圆坐标系}
+\label{chp3:二维椭圆坐标系}
+\end{figure}
+
+记$r_1$和$r_2$是点$(\xi,\eta,\phi)$到$A_1$和$A_2$的距离，则有
+\begin{subnumcases}{}
+	r_1 = \sqrt{x^2+y^2+(z-\sigma)^2} = \sigma(\xi-\eta) \\
+	r_2 = \sqrt{x^2+y^2+(z+\sigma)^2} = \sigma(\xi+\eta)
+\end{subnumcases}
+
+在这个坐标系下，系统的Lagrange函数为
+\begin{equation}
+	L = \frac12 m\sigma^2 (\xi^2-\eta^2)\left(\frac{\dot{\xi}^2}{\xi^2-1} + \frac{\dot{\eta}^2}{1-\eta^2}\right) + \frac12 m\sigma^2(\xi^2-1)(1-\eta^2)\dot{\phi}^2 - V(\xi,\eta,\phi)
+	\label{chp3:椭圆坐标下的分离变量-1}
+\end{equation}
+此时，广义动量为
+\begin{equation*}
+	p_\xi = \frac{\pl L}{\pl \dot{\xi}} = m\sigma^2 \frac{\xi^2-\eta^2}{\xi^2-1} \dot{\xi},\quad p_\eta = \frac{\pl L}{\pl \dot{\eta}} = m\sigma^2 \frac{\xi^2-\eta^2}{1-\eta^2} \dot{\eta},\quad p_\phi = \frac{\pl L}{\pl \dot{\phi}} = m\sigma^2(\xi^2-1)(1-\eta^2)\dot{\phi}
+\end{equation*}
+由此可得体系的Hamilton函数为
+\begin{equation}
+	H = \frac{1}{2m\sigma^2(\xi^2-\eta^2)}\left[(\xi^2-1)p_\xi^2+(1-\eta^2)p_\eta^2+\left(\frac{1}{\xi^2-1}+\frac{1}{1-\eta^2}\right)p_\phi^2\right] + V(\xi,\eta,\phi)
+	\label{chp3:椭圆坐标下的分离变量-2}
+\end{equation}
+
+在这种坐标下，物理上有意义的可分离变量情况对应于势能为
+\begin{equation}
+	V(\xi,\eta,\phi) = \frac{a(\xi)+b(\eta)}{\xi^2-\eta^2} = \frac{\sigma^2}{r_1r_2}\left[a\left(\frac{r_1+r_2}{2\sigma}\right)+b\left(\frac{r_1-r_2}{2\sigma}\right)\right]
+	\label{chp3:椭圆坐标下的分离变量-3}
+\end{equation}
+所以我们得到关于$W(\mbf{q},\mbf{D})$的方程
+\begin{align}
+	\frac{1}{2m\sigma^2(\xi^2-\eta^2)} & \left[(\xi^2-1)\left(\frac{\pl W}{\pl \xi}\right)^2+(1-\eta^2)\left(\frac{\pl W}{\pl \eta}\right)^2+\left(\frac{1}{\xi^2-1}+\frac{1}{1-\eta^2}\right)\left(\frac{\pl W}{\pl \phi}\right)^2\right] \nonumber \\
+	& \quad \quad \quad {} + \frac{a(\xi)+b(\eta)}{\xi^2-\eta^2} = E
+	\label{chp3:椭圆坐标下的分离变量-4}
+\end{align}
+在式\eqref{chp3:椭圆坐标下的分离变量-4}两端乘以$2m\sigma^2(\xi^2-\eta^2)$并整理，可得
+\begin{align*}
+	(\xi^2-1)\left(\frac{\pl W}{\pl \xi}\right)^2+2m\sigma^2a(\xi)-2m\sigma^2E\xi^2 & +(1-\eta^2)\left(\frac{\pl W}{\pl \eta}\right)^2+2m\sigma^2b(\eta)+2m\sigma^2E\eta^2 \\
+	& {}+\left(\frac{1}{\xi^2-1}+\frac{1}{1-\eta^2}\right)\left(\frac{\pl W}{\pl \phi}\right)^2 = 0
+\end{align*}
+注意到坐标$\phi$是循环坐标，因此可令
+\begin{equation}
+	S(\xi,\eta,\phi,t) = -Et+p_\phi\phi + S_1(\xi)+S_2(\eta)
+\end{equation}
+由此得到两个方程
+\begin{subnumcases}{}
+	(1-\eta^2)\left(\frac{\mathrm{d}S_2}{\mathrm{d}\eta}\right)^2+2m\sigma^2b(\eta)-2m\sigma^2E(1-\eta^2)+\frac{p_\phi^2}{1-\eta^2} = \beta \\
+	(\xi^2-1)\left(\frac{\mathrm{d}S_1}{\mathrm{d}\xi}\right)^2+2m\sigma^2a(\xi)-2m\sigma^2E(\xi^2-1)+\frac{p_\phi^2}{\xi^2-1} = -\beta
+\end{subnumcases}
+由此即有
+\begin{align}
+	S & = -Et+p_\phi\phi \pm \int \sqrt{2m\sigma^2E+\frac{\beta-2m\sigma^2b(\eta)}{1-\eta^2}- \frac{p_\phi^2}{(1-\eta^2)^2}} \mathrm{d}\eta \nonumber \\
+	& \quad {} \pm \int \sqrt{2m\sigma^2E-\frac{\beta+2m\sigma^2a(\xi)}{\xi^2-1}- \frac{p_\phi^2}{(\xi^2-1)^2}} \mathrm{d}\xi
+\end{align}
+其中$E,p_\phi,\beta$为任意积分常数。
+\end{example}
+
+\subsection{利用Hamilton-Jacobi方程求解Kepler问题}
+
+本节利用Hamilton-Jacobi方程求解Kepler问题，即求解质量为$m$的质点在势场$V = -\dfrac{\alpha}{r}(\alpha>0)$中的运动。
+
+在球坐标系中，此系统的Hamilton函数为
+\begin{equation}
+	H = \frac{p_r^2}{2m}+\frac{p_\theta^2}{2mr^2}+\frac{p_\phi^2}{2mr^2\sin^2\theta} - \frac{\alpha}{r}
+	\label{Hamilton-Jacobi方程解Kepler问题1}
+\end{equation}
+系统的Hamilton函数不显含时间，故根据不含时Hamilton-Jacobi方程\eqref{不含时Hamilton-Jacobi方程}可有
+\begin{equation}
+	\frac{1}{2m}\left[\left(\frac{\pl W}{\pl r}\right)^2 + \frac{1}{r^2}\left(\frac{\pl W}{\pl \theta}\right)^2 + \frac{1}{r^2\sin^2\theta}\left(\frac{\pl W}{\pl \phi}\right)^2\right] - \frac{\alpha}{r} = E
+	\label{Hamilton-Jacobi方程解Kepler问题2}
+\end{equation}
+注意到$\phi$是循环坐标，因此可令
+\begin{equation}
+	S(r,\theta,\phi,t) = -Et + p_\phi\phi + S_1(r) + S_\theta(\theta)
+	\label{Hamilton-Jacobi方程解Kepler问题3}
+\end{equation}
+由此得到两个方程
+\begin{subnumcases}{}
+	\left(\frac{\mathrm{d}S_2}{\mathrm{d}\theta}\right)^2 + \frac{p_\phi^2}{\sin^2\theta} = \beta^2 \label{Hamilton-Jacobi方程解Kepler问题4.1} \\
+	\frac{1}{2m}\left[\left(\frac{\mathrm{d}S_1}{\mathrm{d}r}\right)^2+\frac{\beta^2}{r^2}\right] - \frac{\alpha}{r} = E \label{Hamilton-Jacobi方程解Kepler问题4.2}
+\end{subnumcases}
+由此即有
+\begin{align}
+	S = -Et+p_\phi\phi \pm \int \sqrt{2mE+\frac{2m\alpha}{r}-\frac{\beta^2}{r^2}}\mathrm{d}r \pm \int \sqrt{\beta^2-\frac{p_\phi^2}{\sin^2\theta}}\mathrm{d}\theta
+	\label{Hamilton-Jacobi方程解Kepler问题5}
+\end{align}
+其中$E,p_\phi,\beta$为任意积分常数。为了使结果更具有几何意义，现在用坐标$r$和$\theta$的初始值$r_0$和$\theta_0$来取代积分常数$E$和$p_\phi$，令
+\begin{equation}
+\begin{cases}
+	p_\phi^2 = \beta^2 \sin^2\theta_0 \\
+	E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}
+\end{cases}\label{Hamilton-Jacobi方程解Kepler问题6}
+\end{equation}
+此时可有
+\begin{align}
+	S & = -\left(\frac{\beta^2}{2mr_0^2}-\frac{\alpha}{r_0}\right)t \pm \beta\sin \theta_0 \phi \pm \sqrt{2m}\int \sqrt{\frac{\beta^2}{2m}\left(\frac{1}{r_0^2}-\frac{1}{r^2}\right)-\alpha\left(\frac{1}{r_0}-\frac{1}{r}\right)}\mathrm{d}r \nonumber \\
+	& \quad {} \pm \beta \int \sqrt{1-\frac{\sin^2\theta_0}{\sin^2\theta}}\mathrm{d}\theta
+	\label{Hamilton-Jacobi方程解Kepler问题7}
+\end{align}
+于是，质点在空间中的轨迹由如下方程决定
+\begin{subnumcases}{}
+	\frac{\pl S}{\pl r_0} = -p_{r_0} \label{Hamilton-Jacobi方程解Kepler问题8.1} \\
+	\frac{\pl S}{\pl \theta_0} = -p_{\theta_0} \label{Hamilton-Jacobi方程解Kepler问题8.2} \\
+	\frac{\pl S}{\pl \beta} = -\gamma \label{Hamilton-Jacobi方程解Kepler问题8.3}
+\end{subnumcases}
+首先假设在\eqref{Hamilton-Jacobi方程解Kepler问题7}中都取正号，则式\eqref{Hamilton-Jacobi方程解Kepler问题8.1}化为
+\begin{equation*}
+	-\left(-\frac{\beta^2}{mr_0^3}+\frac{\alpha}{r_0^2}\right)t + \sqrt{\frac{m}{2}} \int \frac{-\dfrac{\beta^2}{mr_0^3}+\dfrac{\alpha}{r_0^2}}{\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right) - \alpha\left(\dfrac{1}{r_0}-\dfrac1r\right)}} \mathrm{d}r = -p_{r_0}
+\end{equation*}
+整理可得\footnote{积分下限的不同取值只会式\eqref{Hamilton-Jacobi方程解Kepler问题9}右端多一个与该固定取值相关的常数，此常数总可以通过选择时间起点来去除。此处将积分下限取为$r_0$，下文会说明，$r=r_0$是$\dot{r}$变号的位置。}
+\begin{equation}
+	\sqrt{\frac{m}{2}} \int_{r_0}^r \frac{\mathrm{d}r}{\sqrt{\left(\dfrac{1}{r_0}-\dfrac1r\right)\left[\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0}+\dfrac1r\right)-\alpha\right]}} = t-t_0
+	\label{Hamilton-Jacobi方程解Kepler问题9}
+\end{equation}
+其中$t_0 = \dfrac{p_{r_0}}{-\dfrac{\beta^2}{mr_0^3}+\dfrac{\alpha}{r_0^2}}$。将式\eqref{Hamilton-Jacobi方程解Kepler问题9}改写为
+\begin{equation*}
+	\sqrt{\frac{mr_0}{2}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)\left[\left(\dfrac{\beta^2}{2mr_0}-\alpha\right)r+\dfrac{\beta^2}{2m}\right]}} = t-t_0
+\end{equation*}
+根据$\dfrac{\beta^2}{2mr_0}-\alpha$的符号，可以分为以下三种情形：
+\begin{enumerate}
+\item $\dfrac{\beta^2}{2mr_0}<\alpha$，此时$E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}<0$，令
+\begin{equation}
+	r_1 = \dfrac{\dfrac{\beta^2}{2m}}{\alpha-\dfrac{\beta^2}{2mr_0}} > 0
+	\label{Hamilton-Jacobi方程解Kepler问题10}
+\end{equation}
+则式\eqref{Hamilton-Jacobi方程解Kepler问题9}可以改写为
+\begin{equation}
+	\frac{mr_0}{\sqrt{2mr_0\alpha-\beta^2}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)(r_1-r)}} = t-t_0
+	\label{Hamilton-Jacobi方程解Kepler问题11}
+\end{equation}
+对式\eqref{Hamilton-Jacobi方程解Kepler问题11}两端同时求对$t$的导数，可得
+\begin{equation}
+	\dot{r} = \frac{\sqrt{2mr_0\alpha-\beta^2}}{mr_0r} \sqrt{(r-r_0)(r_1-r)}
+	\label{Hamilton-Jacobi方程解Kepler问题12}
+\end{equation}
+根据式\eqref{Hamilton-Jacobi方程解Kepler问题12}可得
+\begin{equation}
+	\dot{r}\big|_{r=r_0} = 0,\quad \dot{r}\big|_{r=r_1} = 0
+\end{equation}
+即$r=r_0$和$r=r_1$是轨道的两个拱点。由式\eqref{Hamilton-Jacobi方程解Kepler问题12}中的根式非负也同样可得此运动的径向范围为$r_0\leqslant r \leqslant r_1$，是有界运动。
+
+做变量代换$r = \dfrac{r_0+r_1}{2}-\dfrac{r_1-r_0}{2}\cos \xi$，则有关于矢径长度的参数方程
+\begin{equation}
+\begin{cases}
+	r = \dfrac{r_0+r_1}{2}-\dfrac{r_1-r_0}{2}\cos \xi \\
+	t = \dfrac{mr_0(r_0+r_1)}{2\sqrt{2mr_0\alpha-\beta^2}} \left(\xi - \dfrac{r_1-r_0}{r_1+r_0}\sin \xi\right) + t_0
+\end{cases}
+\label{Hamilton-Jacobi方程解Kepler问题13}
+\end{equation}
+
+\item $\dfrac{\beta^2}{2mr_0}=\alpha$，此时$E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}=0$，则式\eqref{Hamilton-Jacobi方程解Kepler问题9}可以改写为
+\begin{equation}
+	\frac{m\sqrt{r_0}}{\beta} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{r-r_0}} = t-t_0
+	\label{Hamilton-Jacobi方程解Kepler问题14}
+\end{equation}
+对式\eqref{Hamilton-Jacobi方程解Kepler问题14}两端同时求对$t$的导数，可得
+\begin{equation}
+	\dot{r} = \frac{\beta}{mr}\sqrt{\frac{r-r_0}{r_0}}
+	\label{Hamilton-Jacobi方程解Kepler问题15}
+\end{equation}
+即仅当$r=r_0$时，才有$\dot{r} = 0$。由式\eqref{Hamilton-Jacobi方程解Kepler问题15}中的根式非负可得此运动的径向范围为$r\geqslant r_0$，是无界运动。
+
+求出式\eqref{Hamilton-Jacobi方程解Kepler问题14}中的积分，可得矢径长度与时间的关系
+\begin{equation}
+	t = \frac{2m}{3\beta}\sqrt{r_0(r-r_0)}(r+2r_0) + t_0
+	\label{Hamilton-Jacobi方程解Kepler问题16}
+\end{equation}
+由此可见，当$t\to +\infty$时，$r\to +\infty$。
+
+\item $\dfrac{\beta^2}{2mr_0}>\alpha$，此时$E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}>0$，令
+\begin{equation}
+	r_1 = \dfrac{\dfrac{\beta^2}{2m}}{\dfrac{\beta^2}{2mr_0}-\alpha} > 0
+	\label{Hamilton-Jacobi方程解Kepler问题17}
+\end{equation}
+则式\eqref{Hamilton-Jacobi方程解Kepler问题9}可以改写为
+\begin{equation}
+	\frac{mr_0}{\sqrt{\beta^2-2mr_0\alpha}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)(r+r_1)}} = t-t_0
+	\label{Hamilton-Jacobi方程解Kepler问题18}
+\end{equation}
+对式\eqref{Hamilton-Jacobi方程解Kepler问题18}两端同时求对$t$的导数，可得
+\begin{equation}
+	\dot{r} = \frac{\sqrt{\beta^2-2mr_0\alpha}}{mr_0r} \sqrt{(r-r_0)(r+r_1)}
+	\label{Hamilton-Jacobi方程解Kepler问题19}
+\end{equation}
+在$r>0$的范围内，仅当$r=r_0$时，才有$\dot{r}=0$。由式\eqref{Hamilton-Jacobi方程解Kepler问题19}中的根式非负可得此运动的径向范围为$r\geqslant r_0$，是无界运动。
+
+做变量代换$r=-\dfrac{r_1-r_0}{2}+\dfrac{r_0+r_1}{2}\cosh\xi$，则有关于矢径长度的参数方程
+\begin{equation}
+\begin{cases}
+	\displaystyle r = -\dfrac{r_1-r_0}{2}+\dfrac{r_0+r_1}{2}\cosh\xi \\
+	\displaystyle t = \frac{mr_0(r_1-r_0)}{2\sqrt{\beta^2-2mr_0\alpha}} \left(\frac{r_1+r_0}{r_1-r_0}\sinh \xi-\xi\right) + t_0
+\end{cases}
+\label{Hamilton-Jacobi方程解Kepler问题20}
+\end{equation}
+\end{enumerate}
+
+前述三种情形分别对应了三种完全不同的轨道形状，而当$t=t_0$时，$r=r_0$为行星运动过程中距太阳最近的点，该点即称为{\bf 近日点}。
+
+现在来考虑方程\eqref{Hamilton-Jacobi方程解Kepler问题8.2}。假设在方程\eqref{Hamilton-Jacobi方程解Kepler问题8.2}中都取正号，则式\eqref{Hamilton-Jacobi方程解Kepler问题8.2}化为
+\begin{equation*}
+	\beta\cos\theta_0\phi - \beta \int \frac{\sin\theta_0\cos\theta_0\csc^2\theta}{\sqrt{1-\sin^2\theta_0\csc^2\theta}}\mathrm{d}\theta = -p_{\theta_0}
+\end{equation*}
+整理可得\footnote{基于与前面相同的原因，此处将积分下限取为$\theta_0$。}
+\begin{equation}
+	-\int_{\theta_0}^\theta \frac{\sin\theta_0\csc^2\theta}{\sqrt{1-\sin^2\theta_0\csc^2\theta}} \mathrm{d}\theta = -\phi - \frac{p_{\theta_0}}{\beta\cos\theta_0}
+	\label{Hamilton-Jacobi方程解Kepler问题21}
+\end{equation}
+将式\eqref{Hamilton-Jacobi方程解Kepler问题21}左端积分，即有
+\begin{equation}
+	\arccos \frac{\cot\theta}{\cot\theta_0} = \phi + \frac{p_{\theta_0}}{\beta\cos \theta_0}
+	\label{Hamilton-Jacobi方程解Kepler问题22}
+\end{equation}
+整理可得
+\begin{equation}
+	\frac{\cot\theta}{\cot\theta_0} = \sin(\phi-\varOmega)
+	\label{Hamilton-Jacobi方程解Kepler问题23}
+\end{equation}
+其中$\varOmega = -\dfrac{\pi}{2}-\dfrac{p_{\theta_0}}{\beta\cos \theta_0}$。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("amssymb");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(300);
+	//行星的轨道示意图
+	pair O,i,j,k;
+	O = (0,0);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	real r;
+	r = 1;
+	draw(scale(r)*unitcircle,linewidth(0.8bp));
+	real theta0,phi0,phi;
+	theta0 = 0.3*pi;
+	phi0 = pi/6;
+	pair xyplane(real t){
+		return r*cos(t)*i+r*sin(t)*j;
+	}
+	pair yzplane(real t){
+		return r*cos(t)*j+r*sin(t)*k;
+	}
+	pair zxplane(real t){
+		return r*cos(t)*k+r*sin(t)*i;
+	}
+	pair planetplane(real phi){
+		real m,st,ct;
+		m = sin(phi-phi0)/tan(theta0);
+		st = 1/sqrt(m^2+1);
+		ct = m/sqrt(m^2+1);
+		return st*cos(phi)*i+st*sin(phi)*j+ct*k;
+	}
+	pair pqplane(real t){
+		return r*cos(t)*cos(phi0)*i+r*cos(t)*sin(phi0)*j+r*sin(t)*k;
+	}
+	real gettheta_forplanet(real phi,real phi0){
+		real m;
+		m = sin(phi-phi0)/tan(theta0);
+		return asin(1/sqrt(m^2+1));
+	}
+	real tmp;
+	tmp = -1.1;
+	draw(graph(xyplane,tmp,pi+tmp));
+	draw(graph(xyplane,pi+tmp,2*pi+tmp),dashed);
+	tmp = -0.8;
+	draw(graph(yzplane,tmp,pi+tmp));
+	draw(graph(yzplane,pi+tmp,2*pi+tmp),dashed);
+	tmp = -0.2;
+	draw(graph(zxplane,tmp,pi+tmp));
+	draw(graph(zxplane,pi+tmp,2*pi+tmp),dashed);
+	tmp = -1;
+	draw(graph(planetplane,tmp,pi+tmp),red+linewidth(0.8bp));
+	draw(graph(planetplane,pi+tmp,2*pi+tmp),dashed+red);
+	pair n,m,q,p,b;
+	n = intersectionpoint(graph(planetplane,tmp,pi+tmp),graph(xyplane,tmp,pi+tmp));
+	m = intersectionpoint(graph(planetplane,pi+tmp,2*pi+tmp),graph(xyplane,pi+tmp,2*pi+tmp));
+	draw(Label("$\boldsymbol{n}$",MidPoint,Relative(E)),O--n,Arrow);
+	label("$N$",n,S);
+	label("$M$",m,N);
+	phi = 1;
+	p = planetplane(phi);
+	q = r*cos(phi)*i+r*sin(phi)*j;
+	draw(Label("$\boldsymbol{q}$",MidPoint,Relative(W)),O--p,Arrow);
+	label("$P$",p,E);
+	draw(O--q,dashed);
+	label("$Q$",q,SE);
+	draw(Label("$\varOmega$",MidPoint,Relative(E)),graph(xyplane,0,phi0),blue+linewidth(0.8bp));
+	draw(Label("$\phi-\varOmega$",MidPoint,Relative(E)),graph(xyplane,phi0,phi),green+linewidth(0.8bp));
+	draw(Label("$\varTheta$",Relative(0.65),Relative(E)),graph(planetplane,phi0,phi),purple+linewidth(0.8bp));
+	b = sin(phi0)*cos(theta0)*i-cos(phi0)*cos(theta0)*j+sin(theta0)*k;
+	draw(Label("$\boldsymbol{b}$",EndPoint,W),O--b,Arrow);
+	tmp = -1.2;
+	phi0 = phi;
+	draw(graph(pqplane,tmp,pi+tmp),orange);
+	draw(graph(pqplane,pi+tmp,2*pi+tmp),dashed+orange);
+	draw(Label("$\theta$",MidPoint,Relative(E)),graph(pqplane,pi/2-gettheta_forplanet(phi,pi/6),pi/2),orange+blue+linewidth(0.8bp));
+	draw(O--r*i,dashed);
+	draw(O--r*j,dashed);
+	draw(O--r*k,dashed);
+	draw(Label("$x$",EndPoint),r*i--2.5*r*i,Arrow);
+	draw(Label("$y$",EndPoint),r*j--1.5*r*j,Arrow);
+	draw(Label("$z$",EndPoint),r*k--1.5*r*k,Arrow);
+	label("$O$",O,2*W);
+\end{asy}
+\caption{行星的轨道示意图}
+\label{行星的轨道示意图}
+\end{figure}
+
+将式\eqref{Hamilton-Jacobi方程解Kepler问题23}与式\eqref{chp3:球面大圆的参数方程}对比，即与式
+\begin{equation}
+	\frac{\cot\theta}{\cot\left(\theta_0'-\dfrac{\pi}{2}\right)} = \sin\left(\phi-\phi_0'+\frac{\pi}{2}\right)
+	\label{Hamilton-Jacobi方程解Kepler问题24}
+\end{equation}
+对比，可知式\eqref{Hamilton-Jacobi方程解Kepler问题23}所表示的球面曲线为大圆，即行星的轨迹是平面的。如图\ref{行星的轨道示意图}所示，作一个单位球面，利用其上的点表示行星在空间中的角度坐标$(\theta,\phi)$。考虑到当$\phi=\varOmega$时，$\theta=\dfrac{\pi}{2}$，即$\varOmega$表示轨道平面与$xOy$坐标平面的交叉线与$Ox$轴所成的角度。记大圆上任意一点$P$，其球面坐标为$(\theta,\phi)$，则单位向量$\overrightarrow{OP}=:\mbf{q}$可以表示为
+\begin{equation}
+	\mbf{q} = \sin\theta\cos\phi\mbf{e}_1+\sin\theta\sin\phi\mbf{e}_2+\cos\theta\mbf{e}_3
+	\label{Hamilton-Jacobi方程解Kepler问题24-q}
+\end{equation}
+而轨道平面与$xOy$坐标平面交叉线$\overrightarrow{ON}$的方向向量$\mbf{n}$可以表示为
+\begin{equation}
+	\mbf{n} = \cos\varOmega\mbf{e}_1+\sin\varOmega\mbf{e}_2
+	\label{Hamilton-Jacobi方程解Kepler问题24-n}
+\end{equation}
+因此，轨道平面的单位法向量可以表示为
+\begin{equation}
+	\mbf{b} = \frac{\mbf{n}\times \mbf{q}}{|\mbf{n}\times \mbf{q}|}
+	\label{Hamilton-Jacobi方程解Kepler问题25}
+\end{equation}
+其中
+\begin{align}
+	\mbf{n}\times \mbf{q} & = \begin{vmatrix} \mbf{e}_1 & \mbf{e}_2 & \mbf{e}_3 \\ \cos\varOmega & \sin\varOmega & 0 \\ \sin\theta\cos\phi & \sin\theta\sin\phi & \cos\theta \end{vmatrix} \nonumber \\
+	& = \cos\theta\sin\varOmega\mbf{e}_1 - \cos\theta\cos\varOmega\mbf{e}_2+\sin\theta(\sin\phi\cos\varOmega-\cos\phi\sin\varOmega)\mbf{e}_3 \nonumber \\
+	& = \cos\theta\sin\varOmega\mbf{e}_1 - \cos\theta\cos\varOmega\mbf{e}_2+\sin\theta\sin(\phi-\varOmega)\mbf{e}_3
+	\label{Hamilton-Jacobi方程解Kepler问题26}
+\end{align}
+将式\eqref{Hamilton-Jacobi方程解Kepler问题23}带入式\eqref{Hamilton-Jacobi方程解Kepler问题26}中，可得
+\begin{equation}
+	\mbf{n}\times \mbf{q} = \frac{\cos\theta}{\cos\theta_0}\left(\cos\theta_0\sin\varOmega\mbf{e}_1-\cos\theta_0\cos\varOmega\mbf{e}_2+\sin\theta_0\mbf{e}_3\right)
+	\label{Hamilton-Jacobi方程解Kepler问题27}
+\end{equation}
+因此有
+\begin{equation}
+	\mbf{b} = \cos\theta_0\sin\varOmega\mbf{e}_1-\cos\theta_0\cos\varOmega\mbf{e}_2+\sin\theta_0\mbf{e}_3
+	\label{Hamilton-Jacobi方程解Kepler问题28}
+\end{equation}
+即向量$\mbf{b}$为常向量，亦即说明行星的运转轨道是平面曲线，而该平面与$xOy$坐标平面之间的夹角为$\dfrac{\pi}{2}-\theta_0$。
+
+最后考虑方程\eqref{Hamilton-Jacobi方程解Kepler问题8.3}。假设在方程\eqref{Hamilton-Jacobi方程解Kepler问题8.3}中都取正号，则式\eqref{Hamilton-Jacobi方程解Kepler问题8.3}化为
+\begin{align*}
+	-\frac{\beta}{mr_0^2}t + \phi\sin\theta_0 & {}+\sqrt{2m}\int_{r_0}^r \frac{\dfrac{\beta}{m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)}{2\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}}\mathrm{d}r \\
+	& {} + \int_{\theta_0}^\theta \sqrt{1-\frac{\sin^2\theta_0}{\sin^2\theta}}\mathrm{d}\theta = -\gamma
+\end{align*}
+整理可得\footnote{基于与前面相同的原因，此处将积分下限取为$r_0$和$\theta_0$。}
+\begin{align}
+	\frac{\beta}{\sqrt{2m}}\int_{r_0}^r \frac{\dfrac{1}{r_0^2}-\dfrac{1}{r^2}}{\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}} \mathrm{d}r & {}+ \int_{\theta_0}^\theta \sqrt{1-\sin^2\theta_0\csc^2\theta} \mathrm{d}\theta \nonumber \\
+	& = -\gamma + \frac{\beta}{mr_0^2}t - \phi\sin\theta_0
+	\label{Hamilton-Jacobi方程解Kepler问题29}
+\end{align}
+在式\eqref{Hamilton-Jacobi方程解Kepler问题9}两端同时取微分，可得
+\begin{equation}
+	\frac{\mathrm{d}r}{\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}} = \sqrt{\frac{2}{m}}\mathrm{d}t
+	\label{Hamilton-Jacobi方程解Kepler问题30}
+\end{equation}
+将式\eqref{Hamilton-Jacobi方程解Kepler问题30}代入式\eqref{Hamilton-Jacobi方程解Kepler问题29}中，可得
+\begin{equation}
+	-\frac{\beta}{m}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)} + \int_{\theta_0}^\theta \sqrt{1-\sin^2\theta_0\csc^2\theta} \mathrm{d}\theta = -\gamma + \frac{\beta}{mr_0^2}t_0-\phi\sin\theta_0
+	\label{Hamilton-Jacobi方程解Kepler问题31}
+\end{equation}
+考虑式\eqref{Hamilton-Jacobi方程解Kepler问题23}，即
+\begin{equation}
+	\cot\theta = \cot\theta_0\sin(\phi-\varOmega) = \cot\theta\cos\left(\phi-\varOmega-\dfrac{\pi}{2}\right)
+	\label{Hamilton-Jacobi方程解Kepler问题32}
+\end{equation}
+当$\theta=\theta_0$时，有$\phi=\dfrac{\pi}{2}+\varOmega=:\phi_0$，因此将式\eqref{Hamilton-Jacobi方程解Kepler问题31}代入式\eqref{Hamilton-Jacobi方程解Kepler问题31}中可得
+\begin{equation}
+	-\frac{\beta}{m}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)} + \int_{\phi_0}^\phi \frac{\csc\theta_0}{1+\cot^2\theta_0\cos^2(\phi-\phi_0)}\mathrm{d}\phi = -\gamma+\frac{\beta}{mr_0^2}t_0-\phi_0\sin\theta_0
+	\label{Hamilton-Jacobi方程解Kepler问题33}
+\end{equation}
+计算式\eqref{Hamilton-Jacobi方程解Kepler问题33}中的积分如下
+\begin{align*}
+	\int_{\phi_0}^\phi \frac{\csc\theta_0}{1+\cot^2\theta_0\cos^2(\phi-\phi_0)}\mathrm{d}\phi & = \int_{\phi_0}^\phi \frac{\csc\theta_0}{\sin^2(\phi-\phi_0)+(1+\cot^2)\theta_0\cos^2(\phi-\phi_0)} \mathrm{d}\phi \\
+	& = \int_{\phi_0}^\phi \frac{\csc\theta_0}{\sin^2(\phi-\phi_0)+\csc^2\theta_0\cos^2(\phi-\phi_0)} \mathrm{d}\phi \\
+	& = \int_{\phi_0}^\phi \frac{\csc\theta_0\csc^2(\phi-\phi_0)}{1+\csc^2\theta_0\cot^2(\phi-\phi_0)} \mathrm{d}\phi \\
+	& = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big]\bigg|_{\phi_0}^\phi \\
+	& = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big]+\arctan(+\infty) \\
+	& = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big] + \frac{\pi}{2}
+\end{align*}
+记$\displaystyle \varTheta = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big]$，则式\eqref{Hamilton-Jacobi方程解Kepler问题33}化为
+\begin{equation}
+	\varTheta = \frac{\beta}{m}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)}+\varTheta_0
+	\label{Hamilton-Jacobi方程解Kepler问题34}
+\end{equation}
+其中$\varTheta_0=-\dfrac{\pi}{2}-\gamma+\dfrac{\beta}{mr_0^2}t_0-\phi_0\sin\theta_0$，而$(r_0,\theta_0,\phi_0)$即为近日点的球坐标。此处$\varTheta$的几何意义即为图\ref{行星的轨道示意图}中的$\angle NOP$，这是因为根据式\eqref{Hamilton-Jacobi方程解Kepler问题24-q}、式\eqref{Hamilton-Jacobi方程解Kepler问题24-n}和式\eqref{Hamilton-Jacobi方程解Kepler问题23}可得
+\begin{align*}
+	\cos \angle NOP & = \mbf{n}\cdot \mbf{q} = \sin\theta\cos\phi\cos\varOmega+ \sin\theta\sin\phi\sin\varOmega \\
+	& = \sin\theta\cos(\phi-\varOmega) = \frac{\cos(\phi-\varOmega)}{\sqrt{1+\cot^2\theta_0\sin^2(\phi-\varOmega)}}
+\end{align*}
+故
+\begin{equation*}
+	\tan\angle NOP = \csc\theta_0\tan(\phi-\varOmega) = -\csc\theta_0\cot(\phi-\phi_0)
+\end{equation*}
+时间$t_0$代表行星经过近日点$(r_0,\theta_0,\phi_0)$的日期，因此式\eqref{Hamilton-Jacobi方程解Kepler问题34}中的常数$\varTheta_0$代表近日点与升交点$N$之间在单位球面上的角度差，也常以$\tilde{\omega}$表示，又叫做{\bf 自升交点的近日点黄经}。
+
+下面来考虑行星运行轨道的具体形状。将式\eqref{Hamilton-Jacobi方程解Kepler问题34}两端求对$t$的导数可得
+\begin{equation}
+	\frac{\mathrm{d}\varTheta}{\mathrm{d}t} = \frac{\beta}{mr^2}
+	\label{Hamilton-Jacobi方程解Kepler问题35}
+\end{equation}
+同理将式\eqref{Hamilton-Jacobi方程解Kepler问题9}两端求对$t$的导数可得
+\begin{equation}
+	\frac{\mathrm{d}r}{\mathrm{d}t} = \sqrt{\frac{2}{m}\left(\frac{\beta^2}{2mr_0^2}-\frac{\alpha}{r_0}+ \frac{\alpha}{r}- \frac{\beta^2}{2mr^2}\right)} = \sqrt{\frac{2}{m}\left(E+\frac{\alpha}{r}-\frac{\beta^2}{2mr^2}\right)}
+	\label{Hamilton-Jacobi方程解Kepler问题36}
+\end{equation}
+由式\eqref{Hamilton-Jacobi方程解Kepler问题35}和\eqref{Hamilton-Jacobi方程解Kepler问题36}可得
+\begin{equation}
+	\frac{\mathrm{d}r}{\mathrm{d}\varTheta} = r^2\sqrt{\frac{2mE}{\beta^2}+ \frac{2m\alpha}{\beta^2} \frac1r - \frac{1}{r^2}}
+	\label{Hamilton-Jacobi方程解Kepler问题37}
+\end{equation}
+如果令$u = \dfrac1r$可将式\eqref{Hamilton-Jacobi方程解Kepler问题37}化为
+\begin{equation*}
+	-\frac{\mathrm{d}u}{\sqrt{\dfrac{m^2\alpha^2}{\beta^4}\left(1+\dfrac{2\beta^2E}{m\alpha^2}\right) - \left(u - \dfrac{m\alpha}{\beta^2}\right)^2}} = \mathrm{d}\varTheta
+\end{equation*}
+由此可得
+\begin{equation*}
+	r = \frac{\dfrac{\beta^2}{m\alpha}}{1+\sqrt{1+\dfrac{2\beta^2E}{m\alpha^2}}\cos(\varTheta-\varTheta_0)}
+\end{equation*}
+记
+\begin{equation}
+	p = \dfrac{\beta^2}{m\alpha},\quad e = \sqrt{1+\dfrac{2\beta^2E}{m\alpha^2}}
+	\label{Hamilton-Jacobi方程解Kepler问题38}
+\end{equation}
+即有
+\begin{equation}
+	r = \frac{p}{1+e\cos(\varTheta-\varTheta_0)}
+	\label{Hamilton-Jacobi方程解Kepler问题39}
+\end{equation}
+由此可得当$E<0$时，$e<1$，轨道为椭圆；当$E=0$时，$e=1$，轨道为抛物线；当$E>0$时，$e>1$，轨道为双曲线。他们分别对应式\eqref{Hamilton-Jacobi方程解Kepler问题13}、式\eqref{Hamilton-Jacobi方程解Kepler问题16}和式\eqref{Hamilton-Jacobi方程解Kepler问题20}的三种情况。
+
+至此，行星在空间中的绕日运动已经完全解决了。这个问题的六个积分常数分别为$r_0,~\theta_0,~\beta,~t_0,~\varOmega,~\varTheta_0$，而后面三个是常数$p_{r_0},~p_{\theta_0}$和$\gamma$的函数。
+
+\begin{example}
+用Hamilton-Jacobi方程解平面谐振子问题。
+\end{example}
+\begin{solution}
+平面谐振子的Hamilton函数为
+\begin{equation}
+	H = \frac{1}{2m}(p_x^2+p_y^2) + \frac{k}{2}(x^2+y^2)
+	\label{Hamilton-Jacobi方程解平面谐振子问题-1}
+\end{equation}
+系统的Hamilton函数不显含时间，故根据不含时Hamilton-Jacobi方程\eqref{不含时Hamilton-Jacobi方程}可有
+\begin{equation}
+	\frac{1}{2m} \left[\left(\frac{\pl W}{\pl x}\right)^2 + \left(\frac{\pl W}{\pl y}\right)^2\right] + \frac{k}{2}(x^2+y^2) = E
+	\label{Hamilton-Jacobi方程解平面谐振子问题-2}
+\end{equation}
+将其分离变量可设
+\begin{equation}
+	S(x,y,t) = -Et + W(x,y) = -Et + S_1(x) + S_2(y)
+	\label{Hamilton-Jacobi方程解平面谐振子问题-3}
+\end{equation}
+由此得到两个方程
+\begin{subnumcases}{}
+	\left(\frac{\mathrm{d} S_2}{\mathrm{d} y}\right)^2 + \frac{k}{2}y^2 = \frac{k}{2} \beta^2 \label{Hamilton-Jacobi方程解平面谐振子问题-4.1} \\
+	\left(\frac{\mathrm{d} S_1}{\mathrm{d} x}\right)^2 + \frac{k}{2}x^2 = E - \frac{k}{2} \beta^2 \label{Hamilton-Jacobi方程解平面谐振子问题-4.2}
+\end{subnumcases}
+由此即有
+\begin{equation}
+	S(x,y,t) = -Et \pm \sqrt{mk} \int \sqrt{\frac{2E}{k}-\beta^2-x^2} \mathrm{d}x \pm \int \sqrt{\beta^2-y^2} \mathrm{d}y
+	\label{Hamilton-Jacobi方程解平面谐振子问题-5}
+\end{equation}
+为了使式子更加具有对称性，令
+\begin{equation}
+	E = \frac{k}{2}(\alpha^2 + \beta^2)
+	\label{Hamilton-Jacobi方程解平面谐振子问题-6}
+\end{equation}
+则有
+\begin{equation}
+	S(x,y,t) = -\frac{k}{2}(\alpha^2 + \beta^2) t \pm \sqrt{mk} \int \sqrt{\alpha^2-x^2} \mathrm{d}x \pm \sqrt{mk} \int \sqrt{\beta^2-y^2} \mathrm{d}y
+	\label{Hamilton-Jacobi方程解平面谐振子问题-7}
+\end{equation}
+于是质点在空间中的轨迹由如下方程决定
+\begin{subnumcases}{}
+	\frac{\pl S}{\pl \alpha} = -p_{x_0} \label{Hamilton-Jacobi方程解平面谐振子问题-8.1} \\
+	\frac{\pl S}{\pl \beta} = -p_{y_0} \label{Hamilton-Jacobi方程解平面谐振子问题-8.2}
+\end{subnumcases}
+由式\eqref{Hamilton-Jacobi方程解平面谐振子问题-8.1}可得
+\begin{equation}
+	-k\alpha t \pm \sqrt{mk} \int_\alpha^x \frac{\alpha}{\sqrt{\alpha^2-x^2}} \mathrm{d}x = -p_{x_0}
+	\label{Hamilton-Jacobi方程解平面谐振子问题-9}
+\end{equation}
+由此即可得到
+\begin{equation}
+	x = \alpha \cos \left[\sqrt{\frac{k}{m}}\left(t-\frac{p_{x_0}}{\alpha k}\right)\right]
+	\label{Hamilton-Jacobi方程解平面谐振子问题-10}
+\end{equation}
+由式\eqref{Hamilton-Jacobi方程解平面谐振子问题-8.2}可得
+\begin{equation}
+	-k\beta t \pm \sqrt{mk} \int_\beta^y \frac{\beta}{\sqrt{\beta^2-y^2}} \mathrm{d}y = -p_{y_0}
+	\label{Hamilton-Jacobi方程解平面谐振子问题-11}
+\end{equation}
+由此即可得到
+\begin{equation}
+	y = \beta \cos \left[\sqrt{\frac{k}{m}}\left(t-\frac{p_{y_0}}{\beta k}\right)\right]
+	\label{Hamilton-Jacobi方程解平面谐振子问题-12}
+\end{equation}
+至此，平面谐振子的问题就完全解决了，此问题的四个积分常数分别为$\alpha,~\beta,~p_{x_0}$和$p_{y_0}$，其中能量和$\alpha,~\beta$之间的关系为
+\begin{equation}
+	E = \frac{k}{2}(\alpha^2 + \beta^2)
+\end{equation}
+\end{solution}
+
+\subsection{从``几何力学''到``波动力学''}
+
+\subsubsection{作用波与作用波面}
+
+考虑单粒子的Hamilton函数
+\begin{equation*}
+	H(\mbf{r},\mbf{p}) = \frac{\mbf{p}^2}{2m} + V(\mbf{r})
+\end{equation*}
+则有
+\begin{equation*}
+	\mbf{p} = \frac{\pl S}{\pl \mbf{r}} = \bnb S
+\end{equation*}
+考虑不含时Hamilton-Jacobi方程，则有
+\begin{equation*}
+	S(\mbf{r},t) = W(\mbf{r}) - Et
+\end{equation*}
+则不含时Hamilton-Jacobi方程可以写作
+\begin{equation*}
+	\frac{1}{2m} (\bnb W)^2 + V = E
+\end{equation*}
+此处
+\begin{equation*}
+	\left|\bnb W\right| = p = \sqrt{2m(E-V(\mbf{r}))}
+\end{equation*}
+由此可称
+\begin{equation*}
+	S(\mbf{r},t) = W(\mbf{r}) - Et = S_0
+\end{equation*}
+为{\heiti 运动曲面}。即在空间传播的等$S$面可视为{\heiti 作用波}波面，其正交曲线族为粒子在不同初始条件（能量相同，初始动量不同）下的轨道。波面法向亦即轨道切向为粒子动量方向。初始条件决定运动表现为粒子在作用波波面引导下前进。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//作用波波面示意图
+	picture pic;
+	string[] text = {"$t_0$","$t$","$t'$"};
+	real[] taus = {2,2.5,3};
+	real[] sigmas = {2.5,3.5,4.5};
+	for(real tau : taus){
+		pair para1(real sigma){
+			return (sigma*tau,(tau**2-sigma**2)/2);
+		}
+		draw(pic,rotate(56)*graph(para1,2,5),Arrow);
+	}
+	int i = 0;
+	for(real sigma:sigmas){
+		pair para2(real tau){
+			return (sigma*tau,(tau**2-sigma**2)/2);
+		}
+		draw(pic,Label(text[i],BeginPoint,black),rotate(56)*graph(para2,1.8,3.15),red+dashed);
+		i = i+1;
+	}
+	real tau = taus[1];
+	real sigma = sigmas[1];
+	pair para1dir(real sigma,real tau){
+		return (tau,-sigma);
+	}
+	pair para1(real sigma,real tau){
+		return (sigma*tau,(tau**2-sigma**2)/2);
+	}
+	dot(pic,rotate(56)*para1(sigma,tau));
+	draw(pic,Label("$\boldsymbol{p}$",EndPoint,Relative(W)),rotate(56)*(para1(sigma,tau)--para1(sigma,tau)+0.5*para1dir(sigma,tau)),Arrow);
+	label(pic,"$W(\boldsymbol{r})=S_0+Et$",rotate(56)*para1(sigmas[1],taus[2]),6*N);
+	add(pic);
+\end{asy}
+\caption{作用波波面示意图}
+\label{作用波波面示意图}
+\end{figure}
+
+\subsubsection{波动光学与几何光学的关系}
+
+光的``微粒说''与``波动说''的理论统一由Hamilton完成。考虑介质电磁波方程
+\begin{equation}
+	\nabla^2 \varPhi - \frac{1}{u^2} \frac{\pl^2 \varPhi}{\pl t^2} = 0
+	\label{介质电磁波方程}
+\end{equation}
+式中$\varPhi$为电磁场的任一分量，$u(\mbf{r}) = \dfrac{c}{n(\mbf{r})}$为非均匀介质中的波速。
+
+对单色波，其波函数可表示为
+\begin{equation*}
+	\varPhi(\mbf{r},t) = \phi(\mbf{r}) \mathrm{e}^{-\mathrm{i} \omega t}
+\end{equation*}
+将其代入\eqref{介质电磁波方程}中可得振幅$\phi(\mbf{r})$应满足的方程为
+\begin{equation}
+	\nabla^2 \phi + k^2 \phi = 0
+	\label{单色波振幅方程}
+\end{equation}
+式中$k = \dfrac{\omega}{u} = n\dfrac{\omega}{c} = nk_0$，其中$k_0$为此电磁波在真空中的波数。
+
+在均匀介质中，单色波的振幅为
+\begin{equation*}
+	\phi(\mbf{r}) = A\mathrm{e}^{\mathrm{i}\mbf{k}\cdot \mbf{r}} = A \mathrm{e}^{\mathrm{i} k_0 L(\mbf{r})}
+\end{equation*}
+式中，函数$L(\mbf{r}) = \dfrac{\mbf{k}}{k} \cdot n\mbf{r}$称为{\heiti 光程函数}。即单色波在均匀介质中的波函数为
+\begin{equation*}
+	\varPhi(\mbf{r},t) = A \mathrm{e}^{\mathrm{i}(k_0 L(\mbf{r})-\omega t)}
+\end{equation*}
+波函数的等相位面即为{\heiti 波面}，单色波在均匀介质中的波面为平面族：
+\begin{equation*}
+	\theta = k_0 L(\mbf{r}) - \omega t = \theta_0
+\end{equation*}
+波面的正交曲线族即为{\heiti 光线}，单色波在均匀介质中的光线为直线。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//均匀介质中单色波的波面和光线
+	pair A,B,h;
+	A = (0,0);
+	B = (2,0);
+	h = 0.25*dir(90);
+	draw(A--B,Arrow);
+	draw(shift(h)*(A--B),Arrow);
+	draw(shift(2*h)*(A--B),Arrow);
+	draw(Label("$t_0$",BeginPoint,black),interp(A,B,0.15)-0.5*h--interp(A,B,0.15)+2.5*h,red+dashed);
+	draw(Label("$t$",BeginPoint,black),interp(A,B,0.5)-0.5*h--interp(A,B,0.5)+2.5*h,red+dashed);
+	draw(Label("$t'$",BeginPoint,black),interp(A,B,0.85)-0.5*h--interp(A,B,0.85)+2.5*h,red+dashed);
+	dot(interp(A,B,0.5)+h);
+	draw(Label("$\boldsymbol{k}$",EndPoint,Relative(E)),interp(A,B,0.5)+h--interp(A,B,0.5)+h+0.4*dir(0),Arrow);
+\end{asy}
+\caption{均匀介质中单色波的波面和光线}
+\label{均匀介质中单色波的波面和光线}
+\end{figure}
+
+在非均匀介质中，单色波的振幅可以表示为
+\begin{equation*}
+	\phi(\mbf{r}) = A(\mbf{r}) \mathrm{e}^{\mathrm{i}k_0 L(\mbf{r})}
+\end{equation*}
+将其代入式\eqref{单色波振幅方程}中，可得
+\begin{equation*}
+	\nabla^2 \phi = \mathrm{e}^{\mathrm{i}k_0 L} \left[\nabla^2 A + \mathrm{i} k_0(A\nabla^2 L + 2\bnb A \cdot \bnb L) - k_0^2 A(\bnb L)^2 \right] = -k^2 A \mathrm{e}^{\mathrm{i} k_0 L}
+\end{equation*}
+即有
+\begin{equation}
+	\frac{1}{k_0^2} \nabla^2 A + \frac{\mathrm{i}}{k_0} (A\nabla^2 L + 2\bnb A \cdot \bnb L) - \left[(\bnb L)^2 - n^2\right] A = 0
+	\label{非均匀介质中的单色波方程}
+\end{equation}
+在短波长极限（几何光学极限）下，即$\lambda_0 \to 0$时，此时$k_0 \to +\infty$，在此近似下式\eqref{非均匀介质中的单色波方程}的前两项均为小量，忽略之可得{\heiti 程函方程}
+\begin{equation}
+	(\bnb L)^2 = n^2
+	\label{程函方程}
+\end{equation}
+在此情形下，单色波的相位为
+\begin{equation*}
+	\psi(\mbf{r},t) = k_0 L(\mbf{r}) - \omega t
+\end{equation*}
+波面（即波函数的等相位面）的方程为
+\begin{equation*}
+	\psi(\mbf{r},t) = k_0 L(\mbf{r}) - \omega t = \psi_0
+\end{equation*}
+或者
+\begin{equation*}
+	k_0 L(\mbf{r}) = \psi_0 + \omega t
+\end{equation*}
+根据程函方程\eqref{程函方程}可得相位$\psi(\mbf{r},t)$满足
+\begin{equation*}
+	|\bnb \psi| = k_0 n = k
+\end{equation*}
+由此可有
+\begin{equation*}
+	\bnb \psi = \mbf{k}
+\end{equation*}
+即，光线（波面的正交曲线族）可视为``光微粒''的轨道。光的``微粒说''与``波动说''在短波长极限下统一。
+
+\subsubsection{物质波假说与Schr\"{o}dinger方程}
+
+在$\lambda \to 0$时，波动光学的极限即为几何光学。是否在某种极限下，能够有某种波动力学，其极限为经典力学？
+
+de Broglie提出物质波假说，即质点所对应的``物质波''角频率和波数满足
+\begin{equation}
+\begin{cases}
+	E = \hbar \omega \\
+	\mbf{p} = \hbar \mbf{k}
+\end{cases}
+\end{equation}
+假设``单色''物质波振幅同样满足方程\eqref{单色波振幅方程}
+\begin{equation*}
+	\nabla^2 \phi + k^2 \phi = 0
+\end{equation*}
+再考虑到
+\begin{equation*}
+	k = \frac{p}{\hbar} = \frac{\sqrt{2m(E-V(\mbf{r}))}}{\hbar}
+\end{equation*}
+可得物质波振幅应满足的方程为
+\begin{equation}
+	\left[-\frac{\hbar^2}{2m} \nabla^2 + V(\mbf{r})\right] \phi = E\phi
+	\label{定态Schrodinger方程}
+\end{equation}
+方程\eqref{定态Schrodinger方程}即为{\heiti 定态Schr\"{o}dinger方程}。
+
+对于含时的情况下，类比于光学的情况，可设波函数的形式为
+\begin{equation*}
+	\varPhi(\mbf{r},t) = \phi(\mbf{r}) \mathrm{e}^{-\mathrm{i} \omega t} = \phi(\mbf{r}) \mathrm{e}^{-\mathrm{i} \frac{E}{\hbar} t}
+\end{equation*}
+其满足方程
+\begin{equation}
+	\mathrm{i}\hbar \frac{\pl \varPhi}{\pl t} = E\varPhi
+\end{equation}
+将定态Schr\"{o}dinger方程代入上式，即有{\heiti 含时Schr\"{o}dinger方程}
+\begin{equation}
+	\mathrm{i}\hbar \frac{\pl \varPhi}{\pl t} = \left[-\frac{\hbar^2}{2m} \nabla^2 + V(\mbf{r})\right] \phi
+	\label{含时Schrodinger方程}
+\end{equation}
+类比$\bnb \dfrac{S}{\hbar} = \dfrac{\mbf{p}}{\hbar} = \mbf{k}$与波动光学的$\bnb \psi = \mbf{k}$，可知波函数的相位即为$\dfrac{S}{\hbar}$，因此波函数又可表示为
+\begin{equation*}
+	\varPhi(\mbf{r},t) = |\varPhi(\mbf{r},t)| \mathrm{e}^{\mathrm{i}\frac{S(\mbf{r},t)}{\hbar}}
+\end{equation*}
+据此考虑含时Schr\"{o}dinger方程\eqref{含时Schrodinger方程}的实部，即
+\begin{equation*}
+	\frac{\pl S}{\pl t} = -\left[\frac{1}{2m} (\bnb S)^2 + V - \frac{\hbar^2}{2m} \frac{\nabla^2 |\varPhi|}{|\varPhi|}\right]
+\end{equation*}
+取上式在$\hbar \to 0$的极限，可有
+\begin{equation*}
+	\frac{1}{2m} (\bnb S)^2 + V + \frac{\pl S}{\pl t} = 0
+\end{equation*}
+此即为单粒子的Hamilton-Jacobi方程。因此，量子力学在$\hbar \to 0$下的极限即为经典力学。
+
+\section{Hamilton理论在物理学中的应用}
+
+\subsection{连续体系的Lagrange方程}
+
+首先，以一维轻质长弦的横振动为例导出一维弦的Lagrange函数。记弦的质量线密度为$\rho$，各点相对其平衡位置的位移可以表示为$\eta(x)$。首先将弦分为$n$等份，记每段弦的长度为$\Delta x$，作为$n$个质量为$\rho \Delta x$的质点处理。将这些质点的位移分别记作$\eta_i$，则它们的动能可以表示为
+\begin{equation}
+	T = \sum_{i=1}^n \frac12 \rho \Delta x \dot{\eta}_i^2
+	\label{连续体系的Lagrange方程-1}
+\end{equation}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//一维弦的横振动
+	real x,y;
+	x = 2.2;
+	y = 1.4;
+	real f(real x){
+		return atan(x);
+	}
+	draw(Label("$x$",EndPoint),(0,0)--(x,0),Arrow);
+	draw(Label("$y$",EndPoint),(0,0)--(0,y),Arrow);
+	path p = graph(f,0.2,2);
+	draw(p,linewidth(0.8bp));
+	pair A0,A1,A2,A3,A4,A5,A6,T1,T2;
+	A0 = relpoint(p,0.2);
+	A1 = relpoint(p,0.3);
+	A2 = relpoint(p,0.4);
+	T1 = -reldir(p,0.4);
+	A3 = relpoint(p,0.5);
+	A4 = relpoint(p,0.6);
+	T2 = reldir(p,0.6);
+	A5 = relpoint(p,0.7);
+	A6 = relpoint(p,0.8);
+	draw((A0.x,0)--A0,dashed);
+	draw(Label("$\eta_{i-1}$",MidPoint,Relative(E)),(A1.x,0)--A1);
+	draw((A2.x,0)--A2,dashed);
+	draw(Label("$\eta_i$",MidPoint,Relative(E)),(A3.x,0)--A3);
+	draw((A4.x,0)--A4,dashed);
+	draw(Label("$\eta_{i+1}$",MidPoint,Relative(E)),(A5.x,0)--A5);
+	draw((A6.x,0)--A6,dashed);
+	real l,r;
+	l = 0.3;
+	dot(A2);
+	draw(Label("$\boldsymbol{T}$",EndPoint,Relative(E)),A2--A2+l*T1,Arrow);
+	dot(A4);
+	draw(Label("$\boldsymbol{T}$",EndPoint,Relative(W)),A4--A4+l*T2,Arrow);
+	draw(A2--A2+l*dir(180),dashed);
+	draw(A4--A4+l*dir(0),dashed);
+	r = 0.15;
+	draw(Label("$\theta_{i-\frac12}$",BeginPoint),arc(A2,r,180,degrees(T1)));
+	draw(Label("$\theta_{i+\frac12}$",BeginPoint),arc(A4,r,0,degrees(T2)));
+\end{asy}
+\caption{一维弦的横振动}
+\label{chp3:一维弦的横振动}
+\end{figure}
+
+如图\ref{chp3:一维弦的横振动}所示，在微振动假设下，角$\theta_{i-\frac12}$和$\theta_{i+\frac12}$都很小，故有第$i$个质点所受的横向力为
+\begin{align}
+	F_i & = T\sin \theta_{i+\frac12} - T\sin \theta_{i-\frac12} \approx T\tan \theta_{i+\frac12} - T\tan \theta_{i-\frac12} \approx T \frac{\eta_{i+1}-\eta_i}{\Delta x} - T \frac{\eta_i-\eta_{i-1}}{\Delta x} \nonumber \\
+	& = T\frac{\eta_{i+1}-\eta_{i-1}}{\Delta x}
+	\label{连续体系的Lagrange方程-2}
+\end{align}
+由此可推知此体系的势能为
+\begin{equation}
+	V = \sum_{i=1}^n \frac12 T\left(\frac{\eta_{i+1}-\eta_i}{\Delta x}\right)^2 \Delta x
+	\label{连续体系的Lagrange方程-3}
+\end{equation}
+令$n \to \infty$，同时$\Delta x\to 0$，则有
+\begin{align}
+	T & \to \int \frac12 \rho \left(\frac{\pl \eta}{\pl t}\right)^2 \mathrm{d}x \label{连续体系的Lagrange方程-4} \\
+	V & \to \int \frac12 T\left(\frac{\pl \eta}{\pl x}\right)^2 \mathrm{d}x \label{连续体系的Lagrange方程-5}
+\end{align}
+由此得到一维弦的Lagrange函数为
+\begin{equation}
+	L = T-V = \int \left[\frac12 \rho \left(\frac{\pl \eta}{\pl t}\right)^2 - \frac12 T\left(\frac{\pl \eta}{\pl x}\right)^2\right] \mathrm{d}x = \int \mathscr{L} \mathrm{d}x
+	\label{连续体系的Lagrange方程-5}
+\end{equation}
+其中
+\begin{equation}
+	\mathscr{L} = \mathscr{T} - \mathscr{V} = \frac12 \rho \left(\frac{\pl \eta}{\pl t}\right)^2 - \frac12 T \left(\frac{\pl \eta}{\pl x}\right)^2 
+	\label{连续体系的Lagrange方程-6}
+\end{equation}
+称为该连续体系的{\bf Lagrange密度}，而$\mathscr{T}$和$\mathscr{V}$则分别称为该连续体系的{\bf 动能密度}和{\bf 势能密度}。
+
+由上面的讨论可以看出，连续体系的位置坐标$x$在Lagrange函数中并不是广义坐标\footnote{实际上，此连续体系的Lagrange函数与位置坐标$x$无关。}，而仅仅是取代了分离体系中的求和指标$i$。对于每一个$x$和$t$，$\eta(x,t)$是广义坐标，而$x$和$t$同为Lagrange函数的参数。
+
+对于一般的三维连续体系，其广义坐标可以取为$\eta_1(\mbf{x},t),\eta_2(\mbf{x},t),\cdots,\eta_s(\mbf{x},t)$，而体系的Lagrange函数则表示为
+\begin{equation}
+	L = \int_V \mathscr{L} \mathrm{d}V
+	\label{连续体系的Lagrange方程-7}
+\end{equation}
+而三维空间中的Lagrange密度的一般形式为
+\begin{equation*}
+	\mathscr{L} = \mathscr{L} \left(\frac{\pl \eta_1}{\pl t}, \frac{\pl \eta_2}{\pl t}, \cdots, \frac{\pl \eta_s}{\pl t}, \bnb \eta_1, \bnb \eta_2, \cdots, \bnb \eta_s, \eta_1, \eta_2, \cdots, \eta_s, \mbf{x},t\right)
+\end{equation*}
+或者简单地记作
+\begin{equation}
+	\mathscr{L} = \mathscr{L} \left(\frac{\pl \mbf{\eta}}{\pl t}, \bnb \mbf{\eta}, \mbf{\eta}, \mbf{x},t\right)
+	\label{连续体系的Lagrange方程-8}
+\end{equation}
+由此，根据Hamilton原理，体系的Lagrange方程由式
+\begin{equation}
+	\delta S = \delta \int_{t_1}^{t_2} \int_V \mathscr{L} \mathrm{d}V \mathrm{d}t = \int_{t_1}^{t_2} \int_V \delta \mathscr{L} \mathrm{d}V \mathrm{d}t = 0
+	\label{连续体系的Lagrange方程-9}
+\end{equation}
+给出。由于此连续体系的广义坐标为$\mbf{\eta}(\mbf{x},t)$，因此此处的变分运算不仅满足$\delta t = 0$，而且满足$\delta \mbf{x} = \mbf{0}$。因此有
+\begin{align}
+	\delta \mathscr{L} = \sum_{k=1}^s \Bigg[\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)} \delta \dfrac{\pl \eta_k}{\pl t} + \sum_{j=1}^3 \frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)} \delta \dfrac{\pl \eta_k}{\pl x_j} + \frac{\pl \mathscr{L}}{\pl \eta_k} \delta \eta_k\Bigg]
+	\label{连续体系的Lagrange方程-10}
+\end{align}
+由于此处变分是对$\eta_k(\mbf{x},t)$的，因此可有
+\begin{equation*}
+	\delta \frac{\pl \eta_k}{\pl t} = \frac{\pl (\delta \eta_k)}{\pl t},\quad \delta \frac{\pl \eta_k}{\pl x_j} = \frac{\pl (\delta \eta_k)}{\pl x_j}
+\end{equation*}
+据此处理式\eqref{连续体系的Lagrange方程-10}中的各项，可有
+\begin{align}
+	\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)} \delta \dfrac{\pl \eta_k}{\pl t} & = \frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)} \dfrac{\pl (\delta \eta_k)}{\pl t} \nonumber \\
+	& = \frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)} \delta \eta_k\Bigg) - \frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)}\Bigg) \delta \eta_k \label{连续体系的Lagrange方程-11} \\
+	\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)} \delta \dfrac{\pl \eta_k}{\pl x_j} & = \frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)} \dfrac{\pl (\delta \eta_k)}{\pl x_j} \nonumber \\
+	& = \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)} \delta \eta_k\Bigg) - \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)}\Bigg) \delta \eta_k \label{连续体系的Lagrange方程-12}
+\end{align}
+将式\eqref{连续体系的Lagrange方程-11}和式\eqref{连续体系的Lagrange方程-12}代入式\eqref{连续体系的Lagrange方程-10}中，可得
+\begin{align}
+	\delta \mathscr{L} & = \sum_{k=1}^s \Bigg[\frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)} \delta \eta_k\Bigg) + \sum_{j=1}^3 \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)} \delta \eta_k\Bigg)\Bigg] \nonumber \\
+	& \quad {}- \sum_{k=1}^s \Bigg[\frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)}\Bigg) + \sum_{j=1}^3 \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)}\Bigg) - \frac{\pl \mathscr{L}}{\pl \eta_k}\Bigg] \delta \eta_k
+	\label{连续体系的Lagrange方程-13}
+\end{align}
+此处，对函数$f\left(\dfrac{\pl \eta}{\pl t},\bnb \eta,\eta,\mbf{x},t\right)$的求导操作$\dfrac{\mathrm{d} f}{\mathrm{d}t}$和$\dfrac{\mathrm{d} f}{\mathrm{d}x_j}$分别表示对函数
+\begin{equation*}
+	g(\mbf{x},t) = f\left(\dfrac{\pl \eta}{\pl t}(\mbf{x},t),\bnb \eta(\mbf{x},t),\eta(\mbf{x},t),\mbf{x},t\right)
+\end{equation*}
+求$x_j$和$t$的偏导数。将式\eqref{连续体系的Lagrange方程-13}代入式\eqref{连续体系的Lagrange方程-9}可得
+\begin{align}
+	\delta S & = \int_{t_1}^{t_2} \int_V \sum_{k=1}^s \Bigg[\frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)} \delta \eta_k\Bigg) + \sum_{j=1}^3 \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)} \delta \eta_k\Bigg)\Bigg] \mathrm{d}V\mathrm{d}t \nonumber \\
+	& \quad {}- \int_{t_1}^{t_2} \int_V \sum_{k=1}^s \Bigg[\frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)}\Bigg) + \sum_{j=1}^3 \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)}\Bigg) - \frac{\pl \mathscr{L}}{\pl \eta_k}\Bigg] \delta \eta_k \mathrm{d}V\mathrm{d}t \nonumber \\
+	& = \int_V \sum_{k=1}^s \frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)} \delta \eta_k \mathrm{d}V \bigg|_{t_1}^{t_2} + \int_{t_1}^{t_2} \oint_{\pl V} \sum_{k=1}^s \frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)} \delta \eta_k n_j \mathrm{d}S \mathrm{d}t \nonumber \\
+	& \quad {}- \int_{t_1}^{t_2} \int_V \sum_{k=1}^s \Bigg[\frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)}\Bigg) + \sum_{j=1}^3 \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)}\Bigg) - \frac{\pl \mathscr{L}}{\pl \eta_k}\Bigg] \delta \eta_k \mathrm{d}V\mathrm{d}t
+	\label{连续体系的Lagrange方程-14}
+\end{align}
+由于在边界上有$\delta \eta_k = 0$，即$\delta\eta_k(\mbf{x},t_1) = \delta\eta_k(\mbf{x},t_2) = 0$以及在$\pl V$上，$\delta \eta_k(\mbf{x},t) = 0$，因此式\eqref{连续体系的Lagrange方程-14}可化为
+\begin{equation}
+	\delta S = - \int_{t_1}^{t_2} \int_V \sum_{k=1}^s \Bigg[\frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)}\Bigg) + \sum_{j=1}^3 \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)}\Bigg) - \frac{\pl \mathscr{L}}{\pl \eta_k}\Bigg] \delta \eta_k \mathrm{d}V\mathrm{d}t
+	\label{连续体系的Lagrange方程-15}
+\end{equation}
+由于$\delta\eta_k$之间是相互独立的，故可得
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d}t} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl t}\right)}\Bigg) + \sum_{j=1}^3 \frac{\mathrm{d}}{\mathrm{d}x_j} \Bigg(\frac{\pl \mathscr{L}}{\pl \left(\dfrac{\pl \eta_k}{\pl x_j}\right)}\Bigg) - \frac{\pl \mathscr{L}}{\pl \eta_k} = 0,\quad k=1,2,\cdots,s
+	\label{连续体系的Lagrange方程-16}
+\end{equation}
+式\eqref{连续体系的Lagrange方程-16}就是{\bf 连续体系的Lagrange方程}。
+
+\begin{example}
+获得一维轻质长弦在微振动近似下的横振动方程。
+\end{example}
+\begin{solution}
+前文已得出一维轻质长弦在此情形下的Lagrange密度如式\eqref{连续体系的Lagrange方程-6}所示，即
+\begin{equation*}
+	\mathscr{L}\left(\frac{\pl \eta}{\pl t},\frac{\pl \eta}{\pl x},\eta,x,t\right) = \frac12 \rho \left(\frac{\pl \eta}{\pl t}\right)^2 - \frac12 T \left(\frac{\pl \eta}{\pl x}\right)^2 
+\end{equation*}
+将式\eqref{连续体系的Lagrange方程-6}代入\eqref{连续体系的Lagrange方程-16}中，即可得到
+\begin{equation}
+	\rho \frac{\pl^2 \eta}{\pl t^2} - T\frac{\pl^2 \eta}{\pl x^2} = 0
+	\label{连续体系的Lagrange方程-17}
+\end{equation}
+这就是一维轻质长弦微振动的方程。这是一个波动方程，波速为$v = \sqrt{\dfrac{T}{\rho}}$。
+\end{solution}
+
+\subsection{电磁场的Lagrange方程}
+
+真空中的电磁场的运动规律由Maxwell方程组给出：
+\begin{subnumcases}{\label{电磁场的Lagrange方程-1}}
+	\bnb \cdot \mbf{B} = 0 \label{电磁场的Lagrange方程-1.1} \\
+	\bnb \times \mbf{E} + \frac{\pl \mbf{B}}{\pl t} = \mbf{0} \label{电磁场的Lagrange方程-1.2} \\
+	\bnb \cdot \mbf{E} = \frac{\rho}{\eps_0} \label{电磁场的Lagrange方程-1.3} \\
+	\bnb \times \mbf{B} - \eps_0\mu_0\frac{\pl \mbf{E}}{\pl t} = \mu_0 \mbf{j} \label{电磁场的Lagrange方程-1.4}
+\end{subnumcases}
+虽然$\mbf{E}$和$\mbf{B}$总共有$6$个分量，但其中只有$4$个分量是相互独立的\footnote{这一点可以用Maxwell方程组只有$4$个方程来印证。}，因此它们并不适合取为电磁场的广义坐标。此处我们取电磁场的标量势$\phi$和矢量势$\mbf{A}$作为电磁场的广义坐标。此处标量势$\phi$和矢量势$\mbf{A}$与电磁场场变量$\mbf{E}$和$\mbf{B}$之间的关系可以由式\eqref{电磁场的Lagrange方程-1.1}和式\eqref{电磁场的Lagrange方程-1.2}决定，即
+\begin{align}
+	\mbf{E} & = -\bnb \phi - \frac{\pl \mbf{A}}{\pl t} \label{电磁场的Lagrange方程-2} \\
+	\mbf{B} & = \bnb \times \mbf{A} \label{电磁场的Lagrange方程-3}
+\end{align}
+因此，当用$\phi$和$\mbf{A}$描述电磁场时，式\eqref{电磁场的Lagrange方程-1.3}和式\eqref{电磁场的Lagrange方程-1.4}是场的运动方程，而式\eqref{电磁场的Lagrange方程-1.1}和式\eqref{电磁场的Lagrange方程-1.2}则只是$\phi$和$\mbf{A}$的定义而已。
+
+下面来根据场的运动方程式\eqref{电磁场的Lagrange方程-1.3}和式\eqref{电磁场的Lagrange方程-1.4}来构造电磁场的Lagrange密度。首先，电磁场的Lagrange密度中需要包含场量$\phi$、$\mbf{A}$和他们的导数。根据电磁场的时间平移对称性和空间平移对称性，电磁场的Lagrange密度中不能显含时间$t$和空间坐标$\mbf{x}$。记$x_0 = t,~A_0 = \phi$，则可设电磁场的Lagrange密度为\footnote{此处利用了Einstein求和约定，用重复的指标表示求和，求和范围为$0$到$3$。}
+\begin{equation}
+	\mathscr{L} = B_iA_i+ C_{ij}\frac{\pl A_i}{\pl x_j} + D_{ijk}A_i\frac{\pl A_j}{\pl x_k} + E_{ijkl} \frac{\pl A_i}{\pl x_j}\frac{\pl A_k}{\pl x_l}
+	\label{电磁场的Lagrange方程-4}
+\end{equation}
+将式\eqref{电磁场的Lagrange方程-4}代入Lagrange方程\eqref{连续体系的Lagrange方程-16}中，并结合量纲分析可以确定电磁场的Lagrange密度可以取如下的形式\footnote{与Lagrange函数类似，Lagrange密度的形式也是不唯一的，这里取了形式最简单的一种。}
+\begin{align}
+	\mathscr{L} & = \frac12 \left(\eps_0E^2-\frac{B^2}{\mu_0}\right) - \rho \phi + \mbf{j}\cdot \mbf{A} \nonumber \\
+	& = \frac12 \left[\eps_0\left(\bnb\phi+\frac{\pl \mbf{A}}{\pl t}\right)^2-\frac{1}{\mu_0}\left(\bnb \times \mbf{A}\right)^2\right] - \rho \phi + \mbf{j}\cdot \mbf{A}
+	\label{电磁场的Lagrange方程-5}
+\end{align}
+
+\subsection{Schr\"{o}dinger方程的建立}
+
+非相对论量子力学有三种不同的理论形式，它们正好和经典力学Hamilton理论的三种不同形式的动力学方程相对应。1925年10月Heisenberg建立的通常被称为{\bf 矩阵力学}的量子力学，经Dirac研究可表示为量子Poisson括号表示的正则方程的形式；独立于Heisenberg，1926年3月Schr\"{o}dinger所建立的量子力学的波动方程则是直接从Hamilton-Jacobi方程过渡而来的；1948-1950年，Dirac和Fermi建立的路径积分形式的量子力学，则与Hamilton原理的形式类似。
+
+下面我们遵循Schr\"{o}dinger的本意，从氢原子核外电子的Hamilton-Jacobi方程出发，导出定态Schr\"{o}dinger方程。
+
+对于氢原子核外电子，其Hamilton函数为
+\begin{equation}
+	H = \frac{1}{2m}(p_x^2+p_y^2+p_z^2) - \frac{\alpha}{r}
+	\label{Schrodinger方程的建立-1}
+\end{equation}
+其中$r = \sqrt{x^2+y^2+z^2},~ \alpha = \dfrac{e^2}{4\pi \eps_0}$。因此其Hamilton-Jacobi方程为
+\begin{equation}
+	\frac{1}{2m}\left[\left(\frac{\pl W}{\pl x}\right)^2+ \left(\frac{\pl W}{\pl y}\right)^2 + \left(\frac{\pl W}{\pl z}\right)^2\right] - \frac{\alpha}{r} = E
+	\label{Schrodinger方程的建立-2}
+\end{equation}
+其中$W = W(x,y,z)$是经典Hamilton特征函数。作变换
+\begin{equation}
+	W = \hbar \ln \psi
+	\label{Schrodinger方程的建立-3}
+\end{equation}
+式中$\hbar$是一个常数。由于$\ln \psi$不带量纲，因此$\hbar$与Hamilton特征函数$W(x,y,z)$具有相同的量纲，即作用量的量纲。由此，Hamilton-Jacobi方程\eqref{Schrodinger方程的建立-2}可以变换为
+\begin{equation}
+	\left(\frac{\pl \psi}{\pl x}\right)^2 + \left(\frac{\pl \psi}{\pl y}\right)^2 + \left(\frac{\pl \psi}{\pl z}\right)^2 - \frac{2m}{\hbar^2}\left(E+\frac{\alpha}{r}\right)\psi^2 = 0
+	\label{Schrodinger方程的建立-4}
+\end{equation}
+式\eqref{Schrodinger方程的建立-4}是完全经典的，没有附加任何量子假设。
+
+现在假设电子不是一个经典粒子，是具有波粒二象性的。把电子看作是像电磁波那样的“物质波”，取一个适当的Lagrange密度，用Hamilton原理得出电子的波动方程。根据Hamilton原理可得
+\begin{equation}
+	\delta S = \delta \int_{t_1}^{t_2} L \mathrm{d}t = \int_{t_1}^{t_2} \delta L \mathrm{d}t = 0
+	\label{Schrodinger方程的建立-5}
+\end{equation}
+为了使式\eqref{Schrodinger方程的建立-5}成立，可令$\delta L = 0$，即
+\begin{equation}
+	\delta L = \delta \int_V \mathscr{L}\mathrm{d}V
+	\label{Schrodinger方程的建立-6}
+\end{equation}
+对于波动，有一个普遍适用的结论：体系的平均动能恒等于平均势能，又考虑到$\mathscr{L} = \mathscr{T}-\mathscr{V}$，因此我们可以得到电子波的Lagrange函数应该是一个恒等于零的函数。而上面将电子考虑为一个经典粒子，它的Hamilton-Jacobi方程就是式\eqref{Schrodinger方程的建立-4}，这就是一个恒等于零的表达式。因此要将波粒二象性结合起来，最自然的选择就是取式\eqref{Schrodinger方程的建立-4}作为电子波的Lagrange密度\footnote{准确的讲是令其与电子波的Lagrange密度成正比，因为式\eqref{Schrodinger方程的建立-4}与Lagrange密度的量纲是不同的。}。即有
+\begin{equation}
+	\delta J = \delta \int_V \left[\left(\frac{\pl \psi}{\pl x}\right)^2 + \left(\frac{\pl \psi}{\pl y}\right)^2 + \left(\frac{\pl \psi}{\pl z}\right)^2 - \frac{2m}{\hbar^2}\left(E+\frac{\alpha}{r}\right)\psi^2\right] \mathrm{d}V = 0
+	\label{Schrodinger方程的建立-7}
+\end{equation}
+具体计算
+\begin{align*}
+	\delta J & = 2\int_V \left[\frac{\pl \psi}{\pl x} \delta \frac{\pl \psi}{\pl x} + \frac{\pl \psi}{\pl y} \delta \frac{\pl \psi}{\pl y} + \frac{\pl \psi}{\pl z} \delta \frac{\pl \psi}{\pl z} - \frac{2m}{\hbar^2}\left(E+\frac{\alpha}{r}\right) \psi\delta \psi\right] \mathrm{d}V \\
+	& = 2\int_V \bigg[\frac{\pl}{\pl x}\left(\frac{\pl \psi}{\pl x}\delta \psi\right) - \frac{\pl^2 \psi}{\pl x^2} \delta \psi + \frac{\pl}{\pl y}\left(\frac{\pl \psi}{\pl y}\delta \psi\right) - \frac{\pl^2 \psi}{\pl y^2} \delta \psi + \frac{\pl}{\pl z}\left(\frac{\pl \psi}{\pl z}\delta \psi\right) - \frac{\pl^2 \psi}{\pl z^2} \delta \psi \\
+	& \quad {} - \frac{2m}{\hbar^2}\left(E+\frac{\alpha}{r}\right)\psi \delta\psi \bigg] \mathrm{d}V \\
+	& = 2\int_V \left[\frac{\pl}{\pl x}\left(\frac{\pl \psi}{\pl x}\delta \psi\right) + \frac{\pl}{\pl y}\left(\frac{\pl \psi}{\pl y}\delta \psi\right) + \frac{\pl}{\pl z}\left(\frac{\pl \psi}{\pl z}\delta \psi\right) \right] \mathrm{d}V \\
+	& \quad {} - 2\int_V \left[\frac{\pl^2 \psi}{\pl x^2} + \frac{\pl^2 \psi}{\pl y^2} + \frac{\pl^2 \psi}{\pl z^2} + \frac{2m}{\hbar^2}\left(E+\frac{\alpha}{r}\right)\psi \right] \delta\psi \mathrm{d}V \\
+	& = 2\oint_{\pl V} \frac{\pl \psi}{\pl n} \delta \psi \mathrm{d}S - 2\int_V \left[\frac{\pl^2 \psi}{\pl x^2} + \frac{\pl^2 \psi}{\pl y^2} + \frac{\pl^2 \psi}{\pl z^2} + \frac{2m}{\hbar^2}\left(E+\frac{\alpha}{r}\right)\psi \right] \delta\psi \mathrm{d}V = 0
+\end{align*}
+因此可得
+\begin{equation}
+	-\frac{\hbar^2}{2m}\left(\frac{\pl^2 \psi}{\pl x^2} + \frac{\pl^2 \psi}{\pl y^2} + \frac{\pl^2 \psi}{\pl z^2}\right) - \frac{\alpha}{r}\psi = E\psi
+	\label{Schrodinger方程的建立-8}
+\end{equation}
+以及
+\begin{equation}
+	\oint_{\pl V} \frac{\pl \psi}{\pl n} \delta \psi \mathrm{d}S = 0
+	\label{Schrodinger方程的建立-9}
+\end{equation}
+式\eqref{Schrodinger方程的建立-9}是一个面积分为零的表达式，由于$\delta \psi$是任意的，因此可以取$\psi\big|_{\pl V} = 0$以及$\dfrac{\pl \psi}{\pl n}\bigg|_{\pl V} = 0$作为偏微分方程\eqref{Schrodinger方程的建立-8}的边界条件。而偏微分方程\eqref{Schrodinger方程的建立-8}即为氢原子中电子的定态Schr\"{o}dinger方程。

@@ -1,0 +1,32 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-10";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(200);
+//第一章例6图
+pair O,P;
+real r,theta;
+O = (0,0);
+r = 2;
+theta = 40;
+draw(scale(r)*unitcircle);
+draw(Label("$R$",MidPoint,N),O--r*dir(0),dashed);
+P = r*dir(-theta);
+draw(O--P,dashed);
+draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,0.3*r,0,-theta),Arrow);
+dot(P);
+draw(Label("$\boldsymbol{G}$",EndPoint),P--P+dir(-90),Arrow);
+draw(Label("$\boldsymbol{N}$",EndPoint,SW),P--P+dir(180-theta),Arrow);
+draw(Label("$\boldsymbol{f}$",EndPoint,N),P--P+dir(90-theta),Arrow);
+dot((0,r+0.01),invisible);

@@ -1,0 +1,54 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-75";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(250);
+//第六章例4图
+picture tmp;
+pair O,l,co,dash,P;
+real alpha,d,R,f,ff,F,omega,r;
+O = (0,0);
+l = (2,0);
+co = (1.8,0);
+d = 0.1;
+R = 1;
+f = 0.2;
+ff = 0.1;
+alpha = -20;
+F = 1.1;
+dash = 0.07*dir(60);
+omega = 1;
+draw(-l--l);
+draw(tmp,co+(-f,ff)--co+(f,ff));
+draw(tmp,co+(-f,-ff)--co+(f,-ff));
+for(int i=1;i<=5;i=i+1){
+P = co+(-f,ff)+(i-1)*2*f/4.5;
+draw(tmp,P--P+dash);
+P = co+(f,-ff)-(i-1)*2*f/5;
+draw(tmp,P--P-dash);
+}
+add(tmp);
+add(shift(-2*co)*tmp);
+erase(tmp);
+draw(Label("$\boldsymbol{F}_e$",EndPoint,black),co--co+F*dir(-90),red,Arrow);
+draw(Label("$\boldsymbol{F}_e$",EndPoint,black),-co--(-co+F*dir(90)),red,Arrow);
+label("$O$",O,NW);
+fill(rotate(alpha)*box((-d/2,-R),(d/2,R)),0.6white);
+draw(Label("$x$",EndPoint),O--1.3*dir(90+alpha),Arrow);
+draw(Label("$z$",EndPoint),O--1.3*dir(alpha),Arrow);
+draw(Label("$\boldsymbol{\omega}$",EndPoint,Relative(W)),O--omega*dir(0),red,Arrow);
+draw(omega*cos(alpha*pi/180)*dir(alpha)--omega*dir(0)--omega*sin(-alpha*pi/180)*dir(90+alpha),dashed);
+label("$R$",0.5*R*dir(alpha-90),dir(alpha+180));
+r = 0.4;
+draw(Label("$\alpha$",MidPoint,Relative(W)),arc(O,r,0,alpha),Arrow);

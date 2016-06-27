@@ -1,0 +1,742 @@
+\chapter{非惯性系}
+
+由Newton第一定律定义的坐标系称为{\heiti 惯性系}，在惯性系中Newton第二定律成立。
+
+对实际问题，有时在非惯性系中描述运动比较方便。为使非惯性系的运动方程与Newton方程形式一致，必须引入虚拟的{\heiti 惯性力}。
+
+\section{非惯性系的Newton第二定律}
+
+\subsection{不同参考系的速度、加速度变换}
+
+设$S$和$S'$是两个不同的参考系，设$S$是惯性系，而$S'$系相对与$S$系作一般运动。此处类似于刚体的一般运动，$S$系相当于刚体运动中的空间系，而$S'$系即为固连于刚体的本体系。根据Chasles定理\ref{Chasles定理}，$S'$系相对于$S$系的运动既可以分解为$S'$系原点$O'$相对于$S$系的平动，与$S'$系相对于原点同样在$O'$但坐标轴都与$S$系平行的参考系（相当于刚体运动中的平动系）的定点转动，如图\ref{惯性参考系与非惯性参考系}所示。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	usepackage("xeCJK");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//惯性参考系与非惯性参考系
+	pair O,OO,r,i,j,k;
+	picture tmp;
+	O = (0,0);
+	i = 0.5*dir(-135);
+	j = dir(0);
+	k = dir(90);
+	draw(Label("$x$",EndPoint),O--i,Arrow);
+	draw(Label("$y$",EndPoint),O--j,Arrow);
+	draw(Label("$z$",EndPoint),O--k,Arrow);
+	label("$O$",O,SSE);
+	label("$S$",0.5*i+0.7*k);
+	OO = (0.7,0.5);
+	label(tmp,"$O'$",O,2*dir(45-25));
+	draw(tmp,Label("$x'$",EndPoint,S),rotate(-25)*(O--i),Arrow);
+	draw(tmp,Label("$y'$",EndPoint),rotate(-25)*(O--j),Arrow);
+	draw(tmp,Label("$z'$",EndPoint,W),rotate(-25)*(O--k),Arrow);
+	label(tmp,"$S'$",rotate(-25)*(0.2*j+0.7*k));
+	add(shift(OO)*scale(0.9)*tmp);
+	r = (-0.1,0.6);
+	dot(OO+r);
+	label("$P$",OO+r,N);
+	draw(Label("$\boldsymbol{r}_0$",Relative(0.5),Relative(E),black),O--OO,red,Arrow);
+	draw(Label("$\boldsymbol{r}'$",Relative(0.5),Relative(W),black),OO--OO+r,red,Arrow);
+	draw(Label("$\boldsymbol{r}$",Relative(0.5),Relative(W),black),O--OO+r,red,Arrow);
+	//draw(O--(1.7,0),invisible);
+\end{asy}
+\caption{惯性参考系与非惯性参考系}
+\label{惯性参考系与非惯性参考系}
+\end{figure}
+
+设$S'$系相对$S$系的平动为$\mbf{r}_0(t)$，转动角速度为$\mbf{\omega}_0(t)$，首先考虑任意矢量$\mbf{A}$在$S'$系下的分量表示有
+\begin{equation*}
+	\mbf{A} = \sum_{i=1}^3 A'_i \mbf{e}'_i = \mbf{e}' \tilde{\mbf{A}}
+\end{equation*}
+式中，$\mbf{e}' = \begin{pmatrix} \mbf{e}'_1 & \mbf{e}'_2 & \mbf{e}'_3 \end{pmatrix}$为$S'$系的基矢量矩阵，$\mbf{e}'_1,\mbf{e}'_2,\mbf{e}'_3$为$S'$系的基矢量，$\tilde{\mbf{A}} = \begin{pmatrix} A'_1 \\ A'_2 \\ A'_3 \end{pmatrix}$为$\mbf{A}$在$S'$系中的坐标。根据与第\ref{节：刚体运动的矢量-矩阵描述}节类似的方法，可有
+\begin{equation*}
+	\mbf{A} = \mbf{e}' \tilde{\mbf{A}} = \mbf{e} \mbf{U} \tilde{\mbf{A}}
+\end{equation*}
+式中，$\mbf{e} = \begin{pmatrix} \mbf{e}_1 & \mbf{e}_2 & \mbf{e}_3 \end{pmatrix}$为$S$系的基矢量矩阵，$\mbf{e}_1,\mbf{e}_2,\mbf{e}_3$为$S$系的基矢量，$\mbf{U}$为$S$系与$S'$系基矢量之间的旋转变换矩阵，即
+\begin{equation*}
+	\mbf{e}' = \mbf{e} \mbf{U}
+\end{equation*}
+因此可有
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{A}}{\mathrm{d} t} = \mbf{e}' \frac{\mathrm{d} \tilde{\mbf{A}}}{\mathrm{d} t} + \mbf{e} \dot{\mbf{U}} \tilde{\mbf{A}} = \mbf{e}' \frac{\mathrm{d} \tilde{\mbf{A}}}{\mathrm{d} t} + \mbf{e}' \mbf{U}^{\mathrm{T}} \dot{\mbf{U}} \tilde{\mbf{A}}
+\end{equation*}
+记$\displaystyle \frac{\mathrm{d} \tilde{\mbf{A}}}{\mathrm{d} t} = \sum_{i=1}^3 \dot{A}'_i \mbf{e}'_i = \frac{\tilde{\mathrm{d}} \mbf{A}}{\mathrm{d} t}$，再根据第\ref{节：刚体上各点的速度与加速度}节中的相关结论，有$\mbf{e}' \mbf{U}^{\mathrm{T}} \dot{\mbf{U}} \tilde{\mbf{A}} = \mbf{\omega}_0 \times \mbf{A}$。因此可有
+\begin{equation}
+	\frac{\mathrm{d} \mbf{A}}{\mathrm{d} t} = \frac{\tilde{\mathrm{d}} \mbf{A}}{\mathrm{d} t} + \mbf{\omega}_0 \times \mbf{A}
+	\label{相对变化率与绝对变化率的关系}
+\end{equation}
+式中$\displaystyle \frac{\tilde{\mathrm{d}} \mbf{A}}{\mathrm{d} t} = \sum_{i=1}^3 \dot{A}'_i \mbf{e}'_i$称为{\heiti 相对变化率}，$\mbf{\omega}_0 \times \mbf{A}$称为{\heiti 转动牵连变化率}，与式\eqref{Euler动力学方程——角动量定理的矢量形式}的结果相同。
+
+对于$S$系和$S'$系，首先有
+\begin{equation*}
+	\mbf{r} = \mbf{r}_0 + \mbf{r}'
+\end{equation*}
+对上式求时间$t$的导数，并对矢量$\mbf{r}'$应用式\eqref{相对变化率与绝对变化率的关系}可有
+\begin{equation}
+	\mbf{r} = \mbf{r}_0 + \mbf{\omega}_0 \times \mbf{r}' + \mbf{v}'
+	\label{非惯性系中的速度}
+\end{equation}
+式中$\mbf{v}' = \dfrac{\tilde{\mathrm{d}} \mbf{r}'}{\mathrm{d} t}$称为{\heiti 相对速度}，$\mbf{v}_0 = \dfrac{\mathrm{d} \mbf{r}_0}{\mathrm{d} t}$称为{\heiti 平动牵连速度}，$\mbf{\omega}_0 \times \mbf{r}'$称为{\heiti 转动牵连速度}。
+
+再对式\eqref{非惯性系中的速度}求时间$t$的导数，可有
+\begin{align*}
+	\mbf{a} = \mbf{a}_0 + \frac{\tilde{\mathrm{d}}}{\mathrm{d} t} (\mbf{\omega}_0 \times \mbf{r}') + \mbf{\omega_0} \times (\mbf{\omega}_0 \times \mbf{r}') + \mbf{a}' + \mbf{\omega}_0 \times \mbf{v}'
+\end{align*}
+考虑到
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{\omega}_0}{\mathrm{d} t} = \frac{\tilde{\mathrm{d}} \mbf{\omega}_0}{\mathrm{d} t} + \mbf{\omega}_0 \times \mbf{\omega}_0 = \frac{\tilde{\mathrm{d}} \mbf{\omega}_0}{\mathrm{d} t}
+\end{equation*}
+由此可有
+\begin{equation}
+	\mbf{a} = \mbf{a}_0 + \dot{\mbf{\omega}}_0 \times \mbf{r}' + \mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}') + 2\mbf{\omega}_0 \times \mbf{v}' + \mbf{a}'
+\end{equation}
+式中$\mbf{a}' = \dfrac{\tilde{\mathrm{d}} \mbf{v}'}{\mathrm{d} t}$称为{\heiti 相对加速度}，$\mbf{a}_0 = \dfrac{\mathrm{d} \mbf{v}_0}{\mathrm{d} t}$称为{\heiti 平动牵连加速度}，$\dot{\mbf{\omega}}_0 \times \mbf{r}'$称为{\heiti 转动牵连加速度}，$\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}')$称为{\heiti 向轴加速度}，$2\mbf{\omega}_0 \times \mbf{v}'$称为{\heiti Coriolis加速度}。
+
+\subsection{非惯性系的运动方程与惯性力}
+
+$S$系为惯性系，在其中Newton第二定律成立，即有
+\begin{equation*}
+	\mbf{F} = m \mbf{a}
+\end{equation*}
+将此方程在非惯性系$S'$系中投影，可有
+\begin{equation*}
+	\mbf{F} = m \big(\mbf{a}' + \mbf{a}_0 + \dot{\mbf{\omega}}_0 \times \mbf{r}' + \mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}') + 2\mbf{\omega}_0 \times \mbf{v}'\big)
+\end{equation*}
+为了使得非惯性系中Newton第二定律与惯性系中具有相同的形式，将上式写作
+\begin{equation}
+	\mbf{F}' = m \mbf{a}'
+\end{equation}
+式中
+\begin{equation}
+	\mbf{F}' = \mbf{F} - m\mbf{a}_0 - m\dot{\mbf{\omega}}_0 \times \mbf{r}' - m\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}') - 2m\mbf{\omega}_0 \times \mbf{v}'
+	\label{非惯性系中的力}
+\end{equation}
+此处式\eqref{非惯性系中的力}中除$\mbf{F}$项外的其它项即称为{\heiti 惯性力}，其中$-m\mbf{a}_0$称为{\heiti 平动牵连惯性力}，$-m\dot{\mbf{\omega}}_0 \times \mbf{r}'$称为{\heiti 转动牵连惯性力}，$-m\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}')$称为{\heiti 惯性离心力}，$-2m\mbf{\omega}_0 \times \mbf{v}'$称为{\heiti Coriolis力}。
+
+\section{非惯性系的Lagrange动力学}
+
+\subsection{非惯性系质点运动的Lagrange函数}
+
+在非惯性系中，将广义坐标取为非惯性系中的坐标$x',y',z'$，则有
+\begin{equation*}
+	\mbf{r}(x',y',z',t) = \mbf{r}_0(t) + \sum_{i=1}^3 x'_i \mbf{e}'_i(t)
+\end{equation*}
+因此可得
+\begin{equation*}
+	\dot{\mbf{r}} = \sum_{i=1}^3 \frac{\pl \mbf{r}}{\pl x'_i} \dot{x}'_i + \frac{\pl \mbf{r}}{\pl t} = \mbf{v}' + \mbf{v}_0(t) + \mbf{\omega}_0(t) \times \mbf{r}' = \mbf{v}_0(t) + \frac{\mathrm{d} \mbf{r}'}{\mathrm{d} t}
+\end{equation*}
+即有Lagrange函数为
+\begin{align*}
+	L & = T-U = \frac12 m\left[\left(\frac{\mathrm{d} \mbf{r}'}{\mathrm{d} t}\right)^2 + 2\mbf{v}_0 \cdot \frac{\mathrm{d} \mbf{r}'}{\mathrm{d} t} + \mbf{v}_0^2\right] - U(\mbf{r}',\mbf{v}',t) \\
+	& = \frac12 m\left(\frac{\mathrm{d} \mbf{r}'}{\mathrm{d} t}\right)^2 + \frac12 m \mbf{v}_0^2 + \frac{\mathrm{d}}{\mathrm{d} t} (m\mbf{v}_0 \cdot \mbf{r}') -m \mbf{a}_0 \cdot \mbf{r}' - U(\mbf{r}',\mbf{v}',t)
+\end{align*}
+项$\dfrac12 m \mbf{v}_0^2$不含有广义坐标和广义速度，因此对Lagrange方程无贡献，可以略去。项$\dfrac{\mathrm{d}}{\mathrm{d} t} (m\mbf{v}_0 \cdot \mbf{r}')$是广义坐目标函数对时间的全导数，同样对Lagrange方程无贡献，也可以略去。由此，Lagrange函数简化为
+\begin{equation*}
+	L' = \frac12 m\left(\frac{\mathrm{d} \mbf{r}'}{\mathrm{d} t}\right)^2 -m \mbf{a}_0 \cdot \mbf{r}' - U(\mbf{r}',\mbf{v}',t)
+\end{equation*}
+由于$\dfrac{\mathrm{d} \mbf{r}'}{\mathrm{d} t} = \mbf{v}' + \mbf{\omega}_0(t) \times \mbf{r}'$，可有
+\begin{align}
+	L' & = \frac12 m \big( \mbf{v}'^2 + 2\mbf{v}' \cdot (\mbf{\omega}_0 \times \mbf{r}') + (\mbf{\omega}_0 \times \mbf{r}')^2 \big) - m\mbf{a}_0 \cdot \mbf{r}' - U(\mbf{r}',\mbf{v}',t) \nonumber \\
+	& = \frac12 m\mbf{v}'^2 - \left(U + m\mbf{a}_0 \cdot \mbf{r}' - \frac12 m(\mbf{\omega}_0 \times \mbf{r}')^2 - m(\mbf{\omega}_0 \times \mbf{r}') \cdot \mbf{v}'\right)
+	\label{非惯性系的Lagrange函数}
+\end{align}
+定义{\heiti 非惯性系动能}
+\begin{equation}
+	T' = \frac12 m \mbf{v}'^2
+\end{equation}
+和{\heiti 非惯性系等效势能}
+\begin{equation}
+	U' = U + m\mbf{a}_0 \cdot \mbf{r}' - \frac12 m(\mbf{\omega}_0 \times \mbf{r}')^2 - m(\mbf{\omega}_0 \times \mbf{r}') \cdot \mbf{v}'
+\end{equation}
+则在非惯性系中，Lagrange函数与惯性系具有相同的形式
+\begin{equation*}
+	L' = T' - U'
+\end{equation*}
+非惯性系等效势能中，不仅包括真实主动力的势，还包括虚拟惯性力的势。其中
+\begin{equation*}
+	U_1 = m\mbf{a}_0(t) \cdot \mbf{r}',\quad U_2 = -\frac12 m\big[\mbf{\omega}_0(t) \times \mbf{r}'\big]^2
+\end{equation*}
+是速度无关势，其对应的力分别为
+\begin{align*}
+	\mbf{F}'_1 & = -\frac{\pl U_1}{\pl \mbf{r}'} = -m\mbf{a}_0 \\
+	\mbf{F}'_2 & = -\frac{\pl U_2}{\pl \mbf{r}'} = -m\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}')
+\end{align*}
+即$U_1$为{\heiti 平动牵连惯性势}，$U_2$为{\heiti 惯性离心势}。而
+\begin{equation*}
+	U_3 = -m(\mbf{\omega}_0 \times \mbf{r}') \cdot \mbf{v}' = -m(\mbf{v}' \times \mbf{\omega}_0) \cdot \mbf{r}'
+\end{equation*}
+是速度相关势，其对应的力为
+\begin{equation*}
+	\mbf{F}'_3 = \frac{\tilde{\mathrm{d}}}{\mathrm{d} t} \frac{\pl U_3}{\pl \mbf{v}'} - \frac{\pl U_3}{\pl \mbf{r}'} = -m\dot{\mbf{\omega}}_0 \times \mbf{r}' - 2m\mbf{\omega}_0 \times \mbf{v}'
+\end{equation*}
+即$U_3$为{\heiti 转动牵连-Coriolis惯性势}。
+
+\subsection{非惯性系质点运动的Lagrange方程}
+
+在非惯性系中，Lagrange函数与惯性系中的Lagrange函数具有相同的形式
+\begin{equation*}
+	L' = T'-V'
+\end{equation*}
+其中
+\begin{equation*}
+	T' = \frac12 m\mbf{v}'^2,\quad U' = U+m\mbf{a}_0 \cdot \mbf{r}' - \frac12 m (\mbf{\omega}_0 \times \mbf{r}')^2 - m(\mbf{\omega}_0 \times \mbf{r}') \cdot \mbf{v}'
+\end{equation*}
+因此，在非惯性系中，Lagrange方程也与惯性系中的Lagrange方程具有相同的形式，即
+\begin{equation}
+	\frac{\tilde{\mathrm{d}}}{\mathrm{d} t} \frac{\pl L'}{\pl \dot{x}'_i} - \frac{\pl L'}{\pl x'_i} = 0,\quad i=1,2,3
+\end{equation}
+或者简单地记作
+\begin{equation}
+	\frac{\tilde{\mathrm{d}}}{\mathrm{d} t} \frac{\pl L'}{\pl \mbf{v}'} - \frac{\pl L'}{\pl \mbf{r}'} = \mbf{0}
+\end{equation}
+
+\begin{example}
+质量为$m$的小环$M$，套在半径为$R$的光滑圆圈上，并可沿着圆圈滑动。如圆圈在水平面内以角速度$\mbf{\omega}$绕圆圈上某点$O$转动，求小环沿圆周的运动微分方程。
+\end{example}
+\begin{solution}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	usepackage("xeCJK");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(300);
+	//第七章例1图
+	pair O,O1,M;
+	real theta,phi,r,x,y,rr;
+	O = (0,0);
+	theta = 50;
+	phi = 35;
+	r = 1;
+	x = 2.1;
+	y = 2.1;
+	O1 = r*dir(theta);
+	M = O1+r*dir(theta+phi);
+	draw(Label("$x$",EndPoint),O--x*dir(0),Arrow);
+	draw(Label("$y$",EndPoint),O--y*dir(90),Arrow);
+	label("$O$",O,SW);
+	draw(shift(O1)*scale(r)*unitcircle);
+	draw(Label("$x'$",EndPoint),O--1.6*O1,Arrow);
+	draw(Label("$y'$",EndPoint),O1--O1+0.6*r*dir(90+theta),Arrow);
+	label("$O'$",O1,SE);
+	dot(M);
+	label("$M$",M,N);
+	draw(O--M--O1);
+	draw(Label("$\boldsymbol{e}_r$",EndPoint,Relative(E)),O1--O1+0.5*r*dir(theta+phi),Arrow);
+	draw(Label("$\boldsymbol{e}_\theta$",EndPoint,Relative(W)),O1--O1+0.5*r*dir(90+theta+phi),Arrow);
+	rr = 0.2;
+	draw(Label("$\omega t$",MidPoint,Relative(E)),arc(O,rr,0,theta),Arrow);
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O1,rr,theta,theta+phi),Arrow);
+	//draw(O--1.1*x*dir(0),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第七章例1图}
+\end{figure}
+
+取两个坐标系$Oxy$和$O'x'y'$（如图\ref{第七章例1图}所示），则旋转坐标系$O'x'y'$相对于固定坐标系$Oxy$的角速度为$\mbf{\omega}$。取$\theta$作为小环$M$的广义坐标，因此在非惯性系$O'x'y'$中，体系的Lagrange方程为
+\begin{equation*}
+	\frac{\tilde{\mathrm{d}}}{\mathrm{d} t} \frac{\pl L'}{\pl \dot{\theta}} - \frac{\pl L'}{\pl \theta} = 0
+\end{equation*}
+体系的Lagrange函数即为式\eqref{非惯性系的Lagrange函数}
+\begin{equation*}
+	L' = \frac12 m\mbf{v}'^2 - \left(U + m\mbf{a}_0 \cdot \mbf{r}' - \frac12 m(\mbf{\omega}_0 \times \mbf{r}')^2 - m(\mbf{\omega}_0 \times \mbf{r}') \cdot \mbf{v}'\right)
+\end{equation*}
+其中，
+\begin{align*}
+	& \mbf{\omega}_0 = \mbf{\omega} = \omega \mbf{e}_3,\quad \mbf{r}' = R\mbf{e}_r \\
+	& \mbf{v}' = \frac{\tilde{\mathrm{d}} \mbf{r}'}{\mathrm{d} t} = R\dot{\theta} \mbf{e}_\theta,\quad \mbf{r}_0 = R\mbf{e}_1 \\ 
+	& \mbf{v}_0 = \frac{\mathrm{d} \mbf{r}_0}{\mathrm{d} t} = \frac{\mathrm{d} (R\mbf{e}_1)}{\mathrm{d} t} = \frac{\tilde{\mathrm{d}} (R\mbf{e}_1)}{\mathrm{d} t} + \mbf{\omega}_0 \times R\mbf{e}_1 = R\omega \mbf{e}_2 \\
+	& \mbf{a}_0 = \frac{\mathrm{d} \mbf{v}_0}{\mathrm{d} t} = \frac{\tilde{\mathrm{d}} \mbf{v}_0}{\mathrm{d} t} + \mbf{\omega}_0 \times \mbf{v}_0 = -R\omega^2 \mbf{e}_1
+\end{align*}
+由此可有
+\begin{align*}
+	L' & = \frac12 m\mbf{v}'^2 - \left(U + m\mbf{a}_0 \cdot \mbf{r}' - \frac12 m(\mbf{\omega}_0 \times \mbf{r}')^2 - m(\mbf{\omega}_0 \times \mbf{r}') \cdot \mbf{v}'\right) \\
+	& = \frac12 mR^2 \left(\dot{\theta}^2 + 2\omega \dot{\theta} + \omega^2 + 2\omega^2 \cos \theta\right)
+\end{align*}
+然后由非惯性系的Lagrange方程，即有小环$M$的运动微分方程为
+\begin{equation*}
+	\ddot{\theta} + \omega^2 \sin \theta = 0
+\end{equation*}
+
+如果不利用非惯性系，此题目也同样可解。小环$M$的坐标为
+\begin{equation*}
+	\begin{cases}
+		x_M = R\cos \omega t + R\cos (\omega t+\theta) \\
+		y_M = R\sin \omega t + R\sin (\omega t+\theta)
+	\end{cases}
+\end{equation*}
+因此其速度为
+\begin{equation*}
+	\begin{cases}
+		\dot{x}_M = -R\omega \sin \omega t - R(\omega + \dot{\theta}) \sin (\omega t+\theta) \\
+		\dot{y}_M = R \omega \cos \omega t + R(\omega + \dot{\theta}) \cos (\omega t+\theta)
+	\end{cases}
+\end{equation*}
+因此体系的Lagrange函数为
+\begin{align*}
+	L & = \frac12 (\dot{x}_M^2 + \dot{y}_M^2) = \frac12 mR^2 \left[\dot{\theta}^2 + 2\omega \dot{\theta} + 2\omega^2 + 2\omega(\omega+ \dot{\theta}) \cos \theta\right]
+\end{align*}
+根据惯性系中理想完整系的Lagrange方程\eqref{理想完整系的Lagrange方程}可得相同的运动微分方程
+\begin{equation*}
+	\ddot{\theta} + \omega^2 \sin \theta = 0
+\end{equation*}
+\end{solution}
+
+\section{地球自转的动力学效应}
+
+地球不是一个严格的惯性系，地球自转的角速度为
+\begin{equation*}
+	\omega_0 = \frac{2\pi}{24 \times 3600}\si{\per\second} \approx \SI{7.29e-5}{\per\second}
+\end{equation*}
+地球的平均半径为$R = \SI{6.37e6}{\meter}$，因此由于地球自转所引起的向心加速度
+\begin{equation*}
+	a_t \leqslant \omega^2 R = \SI[per-mode=symbol]{0.0338}{\meter\per\second\squared} = \num{3e-3} g
+\end{equation*}
+式中$g$为重力加速度。因此在$g$起作用的问题中，如果计算精度达到$\num{e-3}$量级时，必须考虑重力加速度的这一修正。由于地球自转所引起的Coriolis加速度为
+\begin{equation*}
+	a_C \leqslant 2\omega_0 v
+\end{equation*}
+由此引起的线偏离和角偏离分别为
+\begin{equation*}
+	\Delta s \leqslant \frac12 a_C t^2 = \omega_0 vt,\quad \Delta \theta = \frac{\Delta s}{vt} \leqslant \omega_0 t
+\end{equation*}
+对于段时间的运动，由于$\omega \approx \SI{10e-5}{\per\second}$，这一效应可以忽略，但是对于长时间的运动，这一效应就不能忽略了。
+
+地球公转的角速度是地球自转角速度的$\dfrac{1}{365}$，地球与太阳之间的距离是地球半径的$\num{2.5e4}$倍，因此地球公转的向心力与地球自转的向心力之比为
+\begin{equation*}
+	\left(\frac{1}{365}\right)^2 \times \num{2.5e4} \approx 0.2
+\end{equation*}
+Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转引起的非惯性效应比地球自转引起的非惯性效应要小一至两个数量级，一般可忽略。
+
+\subsection{重力加速度$g$随纬度$\lambda$的变化}
+
+在纬度为$\lambda$处，地面上质量为$m$的物体，在地面参考系中受到地球的引力$\mbf{F}$和惯性离心力$\mbf{F}_t$，实际观察到的重力$m\mbf{g}$是$\mbf{F}$和$\mbf{F}_t$的合力
+\begin{equation*}
+	m\mbf{g} = \mbf{F}+\mbf{F}_t
+\end{equation*}
+如果认为地球是均匀的刚性球体，则$\mbf{F}$的值各地相同，但$\mbf{F}_t$的值随纬度$\lambda$而改变，即
+\begin{equation}
+	F_t = mR\omega_0^2 \cos \lambda
+	\label{地球上惯性离心力的大小}
+\end{equation}
+式中$R$为地球半径。因此，$m\mbf{g}$的大小和方向都随纬度$\lambda$而变化，大小的变化反映在重力加速度$g$随$\lambda$的变化，方向的变化反映在$m\mbf{g}$的方向（即铅直方向）和引力$\mbf{F}$方向（即地球半径的方向）之间的夹角$\alpha$随$\lambda$的变化。
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	usepackage("xeCJK");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(200);
+	//重力引力离心力1
+	pair O;
+	real r,rr,lambda,F,Ft;
+	O = (0,0);
+	r = 1;
+	lambda = 50;
+	F = 0.7;
+	Ft = 0.2;
+	rr = 0.15;
+	draw(shift(O)*scale(r)*unitcircle);
+	draw(O--r*dir(lambda));
+	draw(Label("$\boldsymbol{F}$",EndPoint,Relative(E)),r*dir(lambda)--(r-F)*dir(lambda),Arrow);
+	draw(Label("$\boldsymbol{F}_t$",EndPoint),r*dir(lambda)--r*dir(lambda)+Ft*dir(0),Arrow);
+	draw(Label("$m\boldsymbol{g}$",EndPoint,Relative(W)),r*dir(lambda)--(r-F)*dir(lambda)+Ft*dir(0),Arrow);
+	draw((r-F)*dir(lambda)--(r-F)*dir(lambda)+Ft*dir(0)--r*dir(lambda)+Ft*dir(0),dashed);
+	draw(Label("$\omega_0$",EndPoint),(0,-r)--(0,1.15*r));
+	draw(O--(r,0));
+	draw(Label("$\lambda$",MidPoint,Relative(E)),arc(O,rr,0,lambda),Arrow);
+	draw(Label("$\alpha$",Relative(0.6),Relative(E)),arc(r*dir(lambda),1.8*rr,lambda+180,degrees(-F*dir(lambda)+Ft*dir(0))),Arrow);
+	draw(shift((0,1.15*r))*yscale(1/2)*arc(O,rr,180+30,360-30),Arrow);
+\end{asy}
+\caption{惯性离心力对重力的影响}
+\label{重力引力离心力1}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	usepackage("xeCJK");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(200);
+	//重力引力离心力2
+	pair O;
+	real rr,lambda,F,Ft;
+	O = (0,0);
+	lambda = 50;
+	F = 0.7;
+	Ft = 0.2;
+	draw(Label("$\boldsymbol{F}$",Relative(0.6),Relative(E)),F*dir(lambda)--O,Arrow);
+	draw(Label("$\boldsymbol{F}_t$",MidPoint,Relative(E)),O--Ft*dir(0),Arrow);
+	draw(Label("$m\boldsymbol{g}$",MidPoint,Relative(W)),F*dir(lambda)--Ft*dir(0),Arrow);
+	draw(O--(0,F*dir(lambda).y)--F*dir(lambda),dashed);
+	draw(Ft*dir(0)--Ft*dir(0)+(0,F*dir(lambda).y),dashed);
+	draw(Ft*dir(0)--Ft*dir(0)+Ft*Sin(lambda)*dir(90+lambda),dashed);
+	rr = 0.05;
+	draw(Label("$\lambda$",MidPoint,Relative(E)),arc(O,rr,0,lambda),Arrow);
+	rr = 0.1;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(F*dir(lambda),rr,180+lambda,degrees(Ft*dir(0)-F*dir(lambda))),Arrow);
+	draw(O--F*dir(lambda)+(0,0.005),invisible);
+\end{asy}
+\caption{$m\mbf{g}$、$\mbf{F}$和$\mbf{F}_t$之间的关系}
+\label{重力引力离心力2}
+\end{minipage}
+\end{figure}
+
+根据图\ref{重力引力离心力2}可有
+\begin{subnumcases}{}
+	F_t \sin \lambda = mg\sin \alpha \label{重力与纬度关系1} \\
+	F \sin \lambda = mg\sin (\lambda+ \alpha) \label{重力与纬度关系2} \\
+	F = mg\cos \alpha + F_t \cos \alpha \label{重力与纬度关系3} 
+\end{subnumcases}
+将式\eqref{地球上惯性离心力的大小}代入式\eqref{重力与纬度关系1}中可得
+\begin{equation}
+	\sin \alpha = \frac{R\omega_0^2 \sin 2\lambda}{2g}
+	\label{偏角与纬度和重力加速度的关系1}
+\end{equation}
+由此可以看出，当认为$g$的值不变时，$\alpha$的值在$\ang{45}$处最大，如果将$\lambda= \ang{45}$处实测的$g = \SI[per-mode=symbol]{9.8062}{\meter\per\second\squared}$的值和$\omega_0$及$R$代入，可得
+\begin{equation*}
+	\alpha_{\max} \approx \frac{\omega_0^2 R}{2g} = \ang{;6;}
+\end{equation*}
+所以偏角$\alpha$是很小的，当$\omega_0$作为一阶小量时，$\alpha$是二阶小量。在赤道处，$\alpha=\lambda=0$，由式\eqref{偏角与纬度和重力加速度的关系1}和式\eqref{重力与纬度关系3}可得
+\begin{equation*}
+	F = m(g_0 + R\omega_0^2)
+\end{equation*}
+式中$g_0$是赤道地区的重力加速度，再将上式代入式\eqref{重力与纬度关系2}中，可得
+\begin{equation}
+	g = \frac{(g_0+R\omega_0^2)\sin 2\lambda}{\sin \lambda \cos \alpha+\cos \lambda\sin \alpha}
+	\label{偏角与纬度和重力加速度的关系2}
+\end{equation}
+联立式\eqref{偏角与纬度和重力加速度的关系1}和\eqref{偏角与纬度和重力加速度的关系2}可得$g$作为$\alpha$和$\lambda$很复杂的函数关系。下面作些近似以简化之。首先根据式\eqref{偏角与纬度和重力加速度的关系1}可有近似
+\begin{equation}
+	\sin \alpha \approx \alpha \approx \frac{R\omega_0^2}{2g_0} \sin 2\lambda
+	\label{偏角与纬度和重力加速度的关系3}
+\end{equation}
+然后将式\eqref{偏角与纬度和重力加速度的关系3}代入式\eqref{偏角与纬度和重力加速度的关系2}中，并取$\cos \alpha \approx 1$，略去其中的二阶以上的小量，得
+\begin{align}
+	g & \approx \frac{(g_0+R\omega_0^2) \sin \lambda}{\sin \lambda + \cos \lambda \dfrac{R\omega_0^2}{2g_0}\sin 2\lambda} = \frac{g_0+R\omega_0^2}{1+\dfrac{R\omega_0^2 \cos^2 \lambda}{g_0}} \nonumber\\
+	& \approx g_0\left(1+\frac{R \omega_0^2}{g_0} \sin^2 \lambda\right) \label{偏角与纬度和重力加速度的关系4}
+\end{align}
+式\eqref{偏角与纬度和重力加速度的关系4}和式\eqref{偏角与纬度和重力加速度的关系3}就是$g$和$\alpha$随$\lambda$改变的近似公式。如果再将地球半径随纬度的变化关系考虑进去，可以得到更精确的计算公式。
+
+\subsection{落体偏东}\label{节：落体偏东}
+
+考虑惯性力的情况下，地球表面质点的运动方程为
+\begin{equation*}
+	m\mbf{a}' = \mbf{F} - m\mbf{\omega}_0 \times (\mbf{\omega_0} \times \mbf{v}') - 2m\mbf{\omega_0} \times \mbf{v}'
+\end{equation*}
+由于地球自转角速度$\omega_0$是一个小量，略去上式中$\omega_0^2$项（惯性离心力），可得质点相对于地球的运动方程为
+\begin{equation}
+	m\mbf{a}' = \mbf{F} - 2m\mbf{\omega_0} \times \mbf{v}'
+	\label{地球表面质点的运动微分方程}
+\end{equation}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(250);
+	//地球表面的坐标系
+	pair O,i,j,k;
+	real x,y,z,r;
+	path clp;
+	picture tmp;
+	O = (0,0);
+	x = 2.5;
+	y = 1.5;
+	z = 1.5;
+	r = 1;
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	draw(Label("$x$",EndPoint),O--x*i,Arrow);
+	draw(Label("$y$",EndPoint),O--y*j,Arrow);
+	draw(Label("$z$",EndPoint),O--z*k,Arrow);
+	clp = r*i--r*j--r*k--cycle;
+	unfill(clp);
+	draw(tmp,Label("$x_0$",EndPoint),O--x*i,dashed,Arrow);
+	draw(tmp,Label("$y_0$",EndPoint),O--y*j,dashed,Arrow);
+	draw(tmp,Label("$z_0$",EndPoint),O--z*k,dashed,Arrow);
+	label(tmp,"$O$",O,NW);
+	clip(tmp,clp);
+	add(tmp);
+	erase(tmp);
+	real phi,theta;
+	pair vcir(real t){
+		return r*sin(t)*cos(phi)*i+r*sin(t)*sin(phi)*j+r*cos(t)*k;
+	}
+	pair hcir(real t){
+		return r*sin(theta)*cos(t)*i+r*sin(theta)*sin(t)*j+r*cos(theta)*k;
+	}
+	pair sphcoor(real R,real theta,real phi){
+		return R*sin(theta)*cos(phi)*i+R*sin(theta)*sin(phi)*j+R*cos(theta)*k;
+	}
+	phi = 0;
+	draw(graph(vcir,-0.4,pi-0.4));
+	draw(graph(vcir,pi-0.4,2*pi-0.4),dashed);
+	phi = pi/2;
+	draw(graph(vcir,-0.9,pi-1));
+	draw(graph(vcir,pi-1,2*pi-0.9),dashed);
+	theta = pi/2;
+	draw(graph(hcir,-1,pi-1.2));
+	draw(graph(hcir,pi-1.2,2*pi-1),dashed);
+	theta = pi/4;
+	draw(graph(hcir,-1.3,pi-1.1),orange);
+	draw(graph(hcir,pi-1.1,2*pi-1.3),dashed+orange);
+	phi = pi/3;
+	draw(graph(vcir,-0.5,pi-0.6),orange);
+	draw(graph(vcir,pi-0.6,2*pi-0.5),dashed+orange);
+	draw(scale(r)*unitcircle,linewidth(1bp));
+	pair P,Q,er,et,ep;
+	P = sphcoor(r,theta,phi);
+	Q = sphcoor(r,pi/2,phi);
+	er = 0.6*sphcoor(r,theta,phi);
+	et = 0.6*sphcoor(r,theta+pi/2,phi);
+	ep = 0.6*sphcoor(r,pi/2,phi+pi/2);
+	draw(Label("$A$",EndPoint,ESE),O--P,dashed);
+	draw(O--Q,dashed+orange);
+	draw(Label("$z$",EndPoint,black),P--P+er,red,Arrow);
+	draw(Label("$x$",EndPoint,Relative(W),black),P--P+et,red,Arrow);
+	draw(Label("$y$",EndPoint,black),P--P+ep,red,Arrow);
+	dot(P);
+	r = 0.3;
+	draw(Label("$\lambda$",MidPoint,Relative(E)),graph(vcir,pi/2,theta),Arrow);
+\end{asy}
+\caption{地球表面的坐标系}
+\label{地球表面的坐标系}
+\end{figure}
+
+取固定在地球上的参考系$Axyz$，$x$轴向南，$y$轴向东，$z$轴垂直地面向上，如图\ref{地球表面的坐标系}所示。由于此处忽略了惯性离心力的作用，因此重力方向和$z$轴平行，而
+\begin{equation*}
+	\mbf{\omega}_0 = \omega_0 \mbf{e}_3 = \omega_0(-\cos \lambda \mbf{i} + \sin \lambda \mbf{k})
+\end{equation*}
+式中$\lambda$为$A$点的纬度。由此运动方程\eqref{地球表面质点的运动微分方程}在$Axyz$系中的分量方程可以表示为
+\begin{equation}
+\begin{cases}
+	m\ddot{x} = F_x+2m\omega_0 \dot{y} \sin \lambda \\
+	m\ddot{y} = F_y-2m\omega_0 (\dot{x} \sin \lambda + \dot{z} \cos \lambda) \\
+	m\ddot{z} = F_z+2m\omega_0 \dot{y} \cos \lambda
+\end{cases}
+\label{地球表面质点的运动微分方程的分量形式}
+\end{equation}
+
+如果质点从有限高度$h$以初速度$v' = 0$自由下落，不考虑阻力等其它力的作用，重力$mg$看成常数，则对式\eqref{地球表面质点的运动微分方程的分量形式}积分可得
+\begin{equation}
+	\begin{cases}
+		\dot{x} = 2\omega_0 y\sin \lambda \\
+		\dot{y} = -2\omega_0 \big[x\sin \lambda+(z-h) \cos \lambda\big] \\
+		\dot{z} = -gt + 2\omega_0 y \cos \lambda
+	\end{cases}
+	\label{地球表面的自由落体运动方程}
+\end{equation}
+将式\eqref{地球表面的自由落体运动方程}代入式\eqref{地球表面质点的运动微分方程的分量形式}的右端，并继续略去$\omega_0$的二阶项，得
+\begin{equation*}
+\begin{cases}
+	\ddot{x} = 0 \\
+	\ddot{y} = 2gt\omega_0\cos \lambda \\
+	\ddot{z} = -g
+\end{cases}
+\end{equation*}
+再对时间积分两次可得
+\begin{equation}
+\begin{cases}
+	x = 0 \\[1.5ex]
+	y = \dfrac13 gt^3 \omega_0 \cos \lambda \\[1.5ex]
+	z = h - \dfrac12 gt^2
+\end{cases}
+\label{地球表面的自由落体的解}
+\end{equation}
+消去$t$可得落体的轨道方程为
+\begin{equation*}
+	y^2 = -\frac89 \frac{\omega_0^2 \cos^2 \lambda}{g} (z-h)^3
+\end{equation*}
+这是位于东西铅直平面内的半三次拋物线。当落体落到地面时，落体偏东的数值为
+\begin{equation}
+	y = \frac{2\sqrt{2}}{3} \omega_0 h \sqrt{\frac{h}{g}} \cos \lambda
+\end{equation}
+
+\subsection{Foucault（傅科）摆}
+
+假如在北极悬挂一单摆使之作微振动，在惯性系中的观察者看来摆的振动面始终在铅直平面内，但地球在以$\mbf{\omega}_0$的角速度自转，因此在非惯性系的地球上的观察者看来，摆的振动面应以$-\mbf{\omega}_0$的角速度转动。这是Foucault在1860年首先指出的，藉此可以直接证实地球是具有自转的。除了赤道之外的各地都可以观察到这种效应，下面对此问题作一近似分析。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(250);
+	//Foucault摆示意图
+	pair O,i,j,k;
+	real x,y,z,zz,r,l;
+	O = (0,0);
+	i = 0.5*dir(-135);
+	j = 1*dir(0);
+	k = 1*dir(90);
+	draw(Label("$x$",EndPoint),O--i,Arrow);
+	draw(Label("$y$",EndPoint),O--j,Arrow);
+	draw(Label("$z$",EndPoint,Relative(W)),O--k,Arrow);
+	label("$A$",O,W);
+	zz = 1.2;
+	x = 0.5;
+	y = 0.7;
+	z = 0.4;
+	r = 0.03;
+	draw(k--zz*k);
+	draw(Label("$l$",Relative(0.4),Relative(E)),zz*k--x*i+y*j+z*k);
+	fill(shift(x*i+y*j+z*k)*scale(r)*unitcircle,black);
+	label("$m$",x*i+y*j+z*k,2*E);
+	draw(Label("$\boldsymbol{F}$",EndPoint,Relative(E)),x*i+y*j+z*k--interp(x*i+y*j+z*k,zz*k,0.3),Arrow);
+	draw(x*i+y*j+z*k--x*i+y*j,dashed);
+	draw(x*i--x*i+y*j--y*j,dashed);
+	l = 0.4;
+	draw(shift(zz*k)*(l*dir(180)--l*dir(0)));
+	int imax;
+	pair P,dash,pace;
+	imax = 20;
+	dash = 0.05*dir(60);
+	pace = 2*l/imax*dir(0);
+	P = zz*k+l*dir(180)+0.2*pace;
+	for(int i=1;i<=imax;i=i+1){
+		draw(P--P+dash);
+		P = P+pace;
+	}
+\end{asy}
+\caption{Foucault摆}
+\label{Foucault摆示意图}
+\end{figure}
+
+设摆长为$l$，摆球的质量为$m$，摆杆的张力为$\mbf{F}$，取与节\ref{节：落体偏东}相同的坐标系$Axyz$，其中$A$点为摆球的平衡位置。于是，张力$\mbf{F}$的三个分量为
+\begin{equation*}
+\begin{cases}
+	F_x = -\dfrac{x}{l} F \\[1.5ex]
+	F_y = -\dfrac{y}{l} F \\[1.5ex]
+	F_z = -\dfrac{l-z}{l} F
+\end{cases}
+\end{equation*}
+代入式\eqref{地球表面质点的运动微分方程}可得摆球的运动方程为
+\begin{equation}
+\begin{cases}
+	m\ddot{x} = -\dfrac{x}{l} F+2m\omega_0 \dot{y}\sin \lambda \\[1.5ex]
+	m\ddot{y} = -\dfrac{y}{l} F-2m\omega_0(\dot{x}\sin \lambda+ \dot{z}\cos \lambda) \\[1.5ex]
+	m\ddot{z} = \dfrac{l-z}{l}F-mg+2m\omega_0\dot{y}\cos \lambda
+\end{cases}
+\label{Foucault摆摆球的运动方程}
+\end{equation}
+以及一个约束方程
+\begin{equation}
+	x^2+y^2+(l-z)^2 = l^2
+	\label{Foucault摆摆球的约束方程}
+\end{equation}
+通过解方程组\eqref{Foucault摆摆球的运动方程}和\eqref{Foucault摆摆球的约束方程}，即可得出摆的运动规律。但这组方程很难严格求解，但考虑到微振动条件下，$x$、$y$和$\dot{x}$、$\dot{y}$都是小量，因而由式\eqref{Foucault摆摆球的约束方程}得
+\begin{equation*}
+	l-z = \sqrt{l^2-(x^2+y^2)} = l\left(1-\frac{x^2+y^2}{2l} + o(x^2+y^2)\right)
+\end{equation*}
+因此，$z$是二阶小量，$\dot{z}$和$\ddot{z}$也是二阶小量。在忽略二阶小量的情况下，由方程\eqref{Foucault摆摆球的运动方程}的第三式可得$F=mg$，代入另外两式中可得
+\begin{equation*}
+\begin{cases}
+	\ddot{x} - 2\omega_0 \dot{y}\sin \lambda + \omega^2 x = 0 \\
+	\ddot{y} + 2\omega_0 \dot{x}\sin \lambda + \omega^2 y = 0
+\end{cases}
+\end{equation*}
+式中$\omega^2 =\dfrac{g}{l}$。将第二式乘以$\mathrm{i}$再与第一式相加，可得一个复变数方程
+\begin{equation}
+	\ddot{\xi} + \mathrm{i} 2\omega_0 \dot{\xi} \sin \lambda + \omega^2 \xi = 0
+	\label{Foucault摆复变数微分方程}
+\end{equation}
+其中$\xi = x + \mathrm{i}y$，方程\eqref{Foucault摆复变数微分方程}的通解为
+\begin{equation*}
+	\xi = A\mathrm{e}^{n_1 t} + B\mathrm{e}^{n_2 t}
+\end{equation*}
+其中$A$和$B$为两个复常数，由初始条件决定。$n_1$和$n_2$为特征方程
+\begin{equation*}
+	n^2 + \mathrm{i} \big(2\omega_0 \sin \lambda \big) n + \omega^2 = 0
+\end{equation*}
+的两个根：
+\begin{equation*}
+\begin{cases}
+	n_1 = -\mathrm{i} \omega_0 \sin \lambda + \mathrm{i} \sqrt{\omega_0^2 \sin^2 \lambda + \omega^2} \approx -\mathrm{i} \omega_0 \sin \lambda + \mathrm{i} \omega \\
+	n_2 = -\mathrm{i} \omega_0 \sin \lambda - \mathrm{i} \sqrt{\omega_0^2 \sin^2 \lambda + \omega^2} \approx -\mathrm{i} \omega_0 \sin \lambda - \mathrm{i} \omega
+\end{cases}
+\end{equation*}
+因此可将通解表示为
+\begin{equation}
+	\xi = \mathrm{e}^{-\mathrm{i}(\omega_0\sin \lambda) t} \big(A \mathrm{e}^{\mathrm{i} \omega t} + B \mathrm{e}^{-\mathrm{i} \omega t}\big)
+	\label{Foucault摆通解}
+\end{equation}
+当地球没有自转，即$\omega_0 = 0$时，方程\eqref{Foucault摆摆球的运动方程}的解为
+\begin{equation*}
+	\xi = A \mathrm{e}^{\mathrm{i} \omega t} + B \mathrm{e}^{-\mathrm{i} \omega t} = (A+B) \cos \omega t + \mathrm{i}(A-B) \sin \omega t = x'+\mathrm{i} y'
+\end{equation*}
+所以
+\begin{equation}
+\begin{cases}
+	x' = (A+B)\cos \omega t \\
+	y' = (A-B)\sin \omega t
+\end{cases}
+\end{equation}
+由此可知，当地球自转效应忽略时，摆球走一椭圆轨道，$x'$和$y'$分别为椭圆的两个主轴。当考虑地球自转时，即$\omega_0 \neq 0$时，由式\eqref{Foucault摆通解}可得
+\begin{align*}
+	\xi & = x+\mathrm{i} y = \big[\cos(\omega_0 t\sin \lambda)- \mathrm{i} \sin (\omega_0 t\sin \lambda)\big](x'+\mathrm{i} y') \\
+	& = \big[x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda)\big] + \mathrm{i} \big[-x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)\big]
+\end{align*}
+所以
+\begin{equation}
+\begin{cases}
+	x = x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda) \\
+	y = -x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)
+\end{cases}
+\end{equation}
+这表明，摆球在作周期为
+\begin{equation*}
+	T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{l}{g}}
+\end{equation*}
+的椭圆轨道运动，同时此椭圆的轴$x'$和$y'$又以角速度$-\omega_0 \sin\lambda$绕$Oz$转动，亦即摆的振动面以角速度$-\omega_0 \sin \lambda$旋转，它们的几何关系如图\ref{Foucault摆振动面的旋转}所示。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	import graph;
+	import math;
+	size(250);
+	//Foucault摆振动面的旋转
+	pair O,x,y;
+	real a,b,theta,r;
+	O = (0,0);
+	x = (5,0);
+	y = (0,4);
+	a = 4;
+	b = 3;
+	r = 0.8;
+	theta = -30;
+	label("$O$",O,W);
+	draw(Label("$x'$",EndPoint),rotate(theta)*(O--x),Arrow);
+	draw(Label("$y'$",EndPoint),rotate(theta)*(O--y),Arrow);
+	draw(rotate(theta)*xscale(a)*yscale(b)*unitcircle);
+	draw(Label("$x$",EndPoint),O--x,Arrow);
+	draw(Label("$y$",EndPoint),O--y,Arrow);
+	draw(Label("$\omega_0 t\sin \lambda$",MidPoint,Relative(W)),arc(O,r,0,theta),Arrow);
+\end{asy}
+\caption{Foucault摆振动面的旋转}
+\label{Foucault摆振动面的旋转}
+\end{figure}

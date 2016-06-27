@@ -1,0 +1,50 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-67";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+usepackage("amssymb");
+size(200);
+import graph;
+import math;
+//向心加速度和切向加速度
+pair O,OO,i,j,k,P,tau,n;
+real r,phi;
+O = (0,0);
+i = (-sqrt(2)/4,-sqrt(14)/12);
+j = (sqrt(14)/4,-sqrt(2)/12);
+k = (0,2*sqrt(2)/3);
+pair cir(real theta){
+real xx,yy;
+xx = r*cos(theta);
+yy = r*sin(theta);
+return xx*i+yy*j;
+}
+r = 1;
+draw(graph(cir,0,2*pi));
+draw(Label("$z$",EndPoint),O--1.5*k,Arrow);
+draw(Label("$d$",MidPoint,Relative(W)),O--(-1*j),dashed);
+OO = -1.5*k;
+label("$O$",OO,W);
+draw(Label("$\boldsymbol{\omega}$",EndPoint,W),OO--k,linewidth(0.6bp),Arrow);
+draw(Label("$\boldsymbol{\alpha}$",EndPoint,W),OO--(-0.7*k),linewidth(0.6bp),Arrow);
+phi = 65*pi/180;
+P = r*cos(phi)*i+r*sin(phi)*j;
+tau = -sin(phi)*i+cos(phi)*j;
+n = -0.5*P;
+label("$P$",P,SE);
+draw(O--P,dashed);
+draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),OO--P,linewidth(0.6bp),Arrow);
+draw(Label("$\boldsymbol{a}_\tau$",EndPoint,Relative(E)),P--P+0.7*tau,linewidth(0.6bp),Arrow);
+draw(Label("$\boldsymbol{v}$",EndPoint),P--P+tau,linewidth(0.6bp),Arrow);
+draw(Label("$\boldsymbol{a}_n$",EndPoint,Relative(W)),P--P+n,linewidth(0.6bp),Arrow);
+draw(Label("$\boldsymbol{a}$",EndPoint,Relative(W)),P--P+n+0.7*tau,linewidth(0.6bp),Arrow);
+draw(P+0.7*tau--P+0.7*tau+n--P+n,dashed);

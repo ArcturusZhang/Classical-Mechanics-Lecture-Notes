@@ -1,0 +1,35 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-50";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(300);
+//静止靶粒子情形下的速度
+pair O;
+real V,v1,theta;
+O = (0,0);
+V = 1;
+v1 = 2.5;
+theta = 35;
+draw(Label("$\boldsymbol{v}'_{1f}$",Relative(0.7),Relative(E),black),O--v1*dir(theta),red,Arrow);
+draw(Label("$\boldsymbol{v}_{1f}$",Relative(0.7),Relative(W),black),V*dir(180)--v1*dir(theta),red,Arrow);
+draw(V*dir(180)--O,Arrow);
+label("$\boldsymbol{V}$",O,N);
+draw(Label("$\boldsymbol{v}'_{2f}$",Relative(0.7),Relative(W),black),O--V*dir(180+theta),blue,Arrow);
+draw(Label("$\boldsymbol{v}_{2f}$",Relative(0.7),Relative(E),black),V*dir(180)--V*dir(180+theta),blue,Arrow);
+draw(Label("$\boldsymbol{v}'_{1i}$",EndPoint,black),O--v1*dir(0),red,Arrow);
+draw(v1*dir(theta)--((v1*dir(theta)).x,0),dashed);
+draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,0.3,0,theta),Arrow);
+draw(Label("$\mathnormal{\Theta}_1$",MidPoint,Relative(E)),arc(V*dir(180),0.3,0,degrees(v1*dir(theta)-V*dir(180))),Arrow);
+draw(Label("$\mathnormal{\Theta}_2$",MidPoint,Relative(W)),arc(V*dir(180),0.2,360,degrees(V*dir(180+theta)-V*dir(180))),Arrow);
+//draw(O--(3,0),invisible);

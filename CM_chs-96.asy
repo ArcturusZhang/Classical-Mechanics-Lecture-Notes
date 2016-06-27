@@ -1,0 +1,51 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-96";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+import graph;
+import math;
+size(250);
+//Foucault摆示意图
+pair O,i,j,k;
+real x,y,z,zz,r,l;
+O = (0,0);
+i = 0.5*dir(-135);
+j = 1*dir(0);
+k = 1*dir(90);
+draw(Label("$x$",EndPoint),O--i,Arrow);
+draw(Label("$y$",EndPoint),O--j,Arrow);
+draw(Label("$z$",EndPoint,Relative(W)),O--k,Arrow);
+label("$A$",O,W);
+zz = 1.2;
+x = 0.5;
+y = 0.7;
+z = 0.4;
+r = 0.03;
+draw(k--zz*k);
+draw(Label("$l$",Relative(0.4),Relative(E)),zz*k--x*i+y*j+z*k);
+fill(shift(x*i+y*j+z*k)*scale(r)*unitcircle,black);
+label("$m$",x*i+y*j+z*k,2*E);
+draw(Label("$\boldsymbol{F}$",EndPoint,Relative(E)),x*i+y*j+z*k--interp(x*i+y*j+z*k,zz*k,0.3),Arrow);
+draw(x*i+y*j+z*k--x*i+y*j,dashed);
+draw(x*i--x*i+y*j--y*j,dashed);
+l = 0.4;
+draw(shift(zz*k)*(l*dir(180)--l*dir(0)));
+int imax;
+pair P,dash,pace;
+imax = 20;
+dash = 0.05*dir(60);
+pace = 2*l/imax*dir(0);
+P = zz*k+l*dir(180)+0.2*pace;
+for(int i=1;i<=imax;i=i+1){
+draw(P--P+dash);
+P = P+pace;
+}

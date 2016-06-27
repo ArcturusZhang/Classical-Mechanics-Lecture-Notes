@@ -1,0 +1,31 @@
+if(!settings.multipleView) settings.batchView=false;
+settings.tex="xelatex";
+defaultfilename="CM_chs-116";
+if(settings.render < 0) settings.render=4;
+settings.outformat="";
+settings.inlineimage=true;
+settings.embed=true;
+settings.toolbar=false;
+viewportmargin=(2,2);
+
+texpreamble("\usepackage{xeCJK}");
+texpreamble("\setCJKmainfont{SimSun}");
+usepackage("amsmath");
+usepackage("siunitx");
+import graph;
+import math;
+size(150);
+//45页5.15受力分析
+pair O;
+real a,r,theta,l,da;
+O = (0,0);
+a = 1;
+r = 1.6;
+l = 4;
+da = 0.4;
+theta = 50;
+draw(box((-da,-da),(da,da)));
+draw(Label("$\boldsymbol{P}$",EndPoint),O--1.5*dir(-90),Arrow);
+draw(Label("$\boldsymbol{T}$",EndPoint),O--dir(l*dir(90)-r*dir(theta)),Arrow);
+draw(Label("$\boldsymbol{N}$",EndPoint),O--0.9*dir(0),Arrow);
+draw(Label("$\boldsymbol{f}$",EndPoint,Relative(W)),O--dir(-90),Arrow);

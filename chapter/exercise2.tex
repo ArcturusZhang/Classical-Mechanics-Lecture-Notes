@@ -1,0 +1,2170 @@
+\section{理论力学习题集（部分）}
+
+\subsection{平面力系}
+
+\begin{question}[37页4.56]
+在两光滑斜面$OA$和$OB$之间放置两个相互接触的光滑匀质圆柱。中心为$C_1$的圆柱重$P_1 = \SI{10}{\newton}$，中心为$C_2$的圆柱中$P_2 = \SI{30}{\newton}$。设$\angle AOx_1 = \ang{60}$，$\angle BOx = \ang{30}$，求直线$C_1C_2$与水平线$xOx_1$的夹角$\phi$、两圆柱对鞋面的压力$N_1$和$N_2$，以及两圆柱之间的压力$N$。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//37页4.56
+	pair O,A,B,C1,C2;
+	real r1,r2,l1,l,alpha,beta,delta;
+	O = (0,0);
+	l = 2;
+	A = l*dir(30+90);
+	B = l*dir(30);
+	draw(Label("$A$",EndPoint),O--A,linewidth(0.8bp));
+	draw(Label("$B$",EndPoint),O--B,linewidth(0.8bp));
+	draw(Label("$x$",EndPoint),O--(B.x,0),dashed);
+	draw(Label("$x_1$",EndPoint),O--(A.x,0),dashed);
+	r1 = 0.4;
+	l1 = 1.2;
+	alpha = aTan(r1/l1);
+	C1 = l1*dir(A)+rotate(-90)*r1*dir(A);
+	draw(shift(C1)*scale(r1)*unitcircle);
+	beta = 45-alpha;
+	r2 = l1*Tan(beta);
+	C2 = l1*dir(B)+rotate(90)*r2*dir(B);
+	draw(shift(C2)*scale(r2)*unitcircle);
+	pair CC1,CC2,CCt;
+	CC1 = interp(C1,C2,-0.2);
+	CC2 = interp(C1,C2,1.8);
+	CCt = CC2+(2*r1+r2)*dir(180);
+	draw(CC1--CC2--CCt,dashed);
+	delta = 10;
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(CC2,r1+r2,degrees(CC1-CC2)-delta,degrees(CC1-CC2)),Arrow);
+	draw(arc(CC2,r1+r2,180+delta,180),Arrow);
+	pair P,dash,pace;
+	int imax;
+	imax = 30;
+	dash = 0.1*dir(-110);
+	pace = (B-O)/imax;
+	P = O;
+	for(int i=1;i<=imax+1;i=i+1){
+		draw(P--P+dash);
+		P = P+pace;
+	}
+	pace = (A-O)/imax;
+	P = O;
+	for(int i=2;i<=imax+1;i=i+1){
+		draw(P--P+dash);
+		P = P+pace;
+	}
+	dot(C1,UnFill);
+	label("$C_1$",C1,N);
+	dot(C2,UnFill);
+	label("$C_2$",C2,N);
+	draw(Label("$\ang{30}$",MidPoint,Relative(E)),arc(O,0.5,0,degrees(B)),Arrows);
+	draw(Label("$\ang{60}$",MidPoint,Relative(W)),arc(O,0.5,180,degrees(A)),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{37页4.56}
+\end{figure}
+\end{question}
+\begin{solution}
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(180);
+	//37页4.56受力分析1
+	pair O;
+	real P,r;
+	O = (0,0);
+	P = 2;
+	draw(Label("$\boldsymbol{N}_1$",EndPoint,Relative(E)),O--P*Sin(30)*dir(30),Arrow);
+	draw(Label("$\boldsymbol{N}_2$",EndPoint,Relative(E)),P*Sin(30)*dir(30)--P*dir(90),Arrow);
+	draw(Label("$\boldsymbol{P}_1+\boldsymbol{P}_2$",MidPoint,Relative(E)),P*dir(90)--O,Arrow);
+	r = 0.2;
+	draw(O--0.3*P*dir(0),dashed);
+	draw(Label("$\ang{30}$",MidPoint,Relative(E)),arc(O,r,0,30),Arrow);
+	draw(P*Sin(30)*dir(30)--P*Sin(30)*dir(30)+0.3*P*dir(180),dashed);
+	draw(Label("$\ang{60}$",MidPoint,Relative(W)),arc(P*Sin(30)*dir(30),r,180,120),Arrow);
+\end{asy}
+\caption{题\thequestion 受力分析1}
+\label{37页4.56受力分析1}
+\end{minipage}
+\hspace{0.7cm}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(180);
+	//37页4.56受力分析2
+	pair O;
+	real P,NN,r,delta;
+	O = (0,0);
+	P = 2;
+	NN = P*Sin(30)*Cos(30);
+	draw(Label("$\boldsymbol{N}_1$",EndPoint,Relative(E)),O--P*Sin(30)*dir(30),Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint,Relative(E)),O--NN*dir(180-6.86989764584402),Arrow);
+	draw(Label("$\boldsymbol{P}_1$",MidPoint,Relative(E)),O--0.25*P*dir(-90),Arrow);
+	r = 0.2;
+	draw(O--0.3*P*dir(0),dashed);
+	draw(Label("$\ang{30}$",MidPoint,Relative(E)),arc(O,r,0,30),Arrow);
+	draw(O--0.3*P*dir(180),dashed);
+	r = 0.5;
+	delta = 15;
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(O,r,180-6.86989764584402-delta,180-6.86989764584402),Arrow);
+	draw(arc(O,r,180+delta,180),Arrow);
+\end{asy}
+\caption{题\thequestion 受力分析2}
+\label{37页4.56受力分析2}
+\end{minipage}
+\end{figure}
+
+取两圆柱整体受力分析（如图\ref{37页4.56受力分析1}），可有
+\begin{equation*}
+\begin{cases}
+	N_1 = (P_1+P_2)\sin \ang{30} = \dfrac12 (P_1+P_2) = \SI{20}{\newton} \\
+	N_2 = (P_1+P_2)\sin \ang{60} = \dfrac{\sqrt{3}}{2} (P_1+P_2) = \SI{34.6}{\newton}
+\end{cases}
+\end{equation*}
+然后取圆柱$C_1$受力分析（如图\ref{37页4.56受力分析2}），可有
+\begin{equation*}
+\begin{cases}
+	N \cos \phi = N_1 \cos \ang{30} \\
+	N \sin \phi + N_1 \sin \ang{30} = P_1
+\end{cases}
+\end{equation*}
+可得$\phi = 0$以及$N= \SI{17.3}{\newton}$。
+\end{solution}
+
+\begin{question}[37页4.57]
+两个光滑匀质球$C_1$和$C_2$的半径分别为$R_1$和$R_2$，重量分别为$P_1$和$P_2$。这两球用绳子$AB$和$AD$挂在$A$点，且$AB = l_1,\,AD = l_2,\,l_1+R_1 = l_2 +R_2$，$\angle BAD = \alpha$。求绳子$AD$与水平面$AE$的夹角$\theta$、绳子的张力$T_1$和$T_2$，以及两球之间的压力。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//37页4.57
+	pair A,B,D,C1,C2;
+	real r1,r2,l1,l2,l,alpha,theta,r;
+	A = (0,0);
+	l = 2;
+	theta = -130;
+	alpha = 50;
+	C1 = l*dir(theta+alpha);
+	C2 = l*dir(theta);
+	r2 = 0.7;
+	r1 = 2*l*Sin(alpha/2)-r2;
+	l1 = l-r1;
+	l2 = l-r2;
+	draw(A--l1*dir(theta+alpha));
+	
+	draw(A--l2*dir(theta));
+	draw(l1*dir(theta+alpha)--C1--C2--l2*dir(theta),dashed);
+	draw(shift(C1)*scale(r1)*unitcircle);
+	draw(shift(C2)*scale(r2)*unitcircle);
+	draw(Label("$E$",EndPoint),A+0.6*l*dir(180)--A+0.6*l*dir(0),linewidth(0.8bp));
+	pair P,dash,pace;
+	int imax;
+	imax = 30;
+	dash = 0.1*dir(60);
+	pace = 2*0.6*l*dir(0)/imax;
+	P = A+0.6*l*dir(180)+0.2*pace;
+	for(int i=1;i<=imax;i=i+1){
+		draw(P--P+dash);
+		P = P+pace;
+	}
+	dot(C1,UnFill);
+	label("$C_1$",C1,S);
+	dot(C2,UnFill);
+	label("$C_2$",C2,S);
+	label("$A$",A,3*N);
+	label("$B$",l1*dir(theta+alpha),NW);
+	label("$D$",l2*dir(theta),2*N);
+	r = 0.5;
+	draw(Label("$\alpha$",MidPoint,Relative(W)),arc(A,r,theta+alpha,theta),Arrows);
+	r = 0.25;
+	draw(Label("$\theta$",Relative(0.4),Relative(W)),arc(A,r,0,theta),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{37页4.57}
+\end{figure}
+\end{question}
+\begin{solution}
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//37页4.57受力分析1
+	pair O;
+	real theta,alpha,P,T1,T2,l,r;
+	O = (0,0);
+	theta = 130;
+	alpha = 50;
+	P = 2;
+	T1 = P/Sin(180-alpha)*Sin(theta-90);
+	T2 = P/Sin(180-alpha)*Sin(alpha-theta+90);
+	draw(Label("$\boldsymbol{T}_2$",EndPoint,Relative(E)),O--T2*dir(180-theta),Arrow);
+	draw(Label("$\boldsymbol{T}_1$",EndPoint,Relative(E)),T2*dir(180-theta)--T2*dir(180-theta)+T1*dir(alpha+180-theta),Arrow);
+	draw(Label("$\boldsymbol{P}_1+\boldsymbol{P}_2$",EndPoint,Relative(E)),T2*dir(180-theta)+T1*dir(alpha+180-theta)--O,Arrow);
+	l = T2/Sin(theta-alpha)*Sin(alpha);
+	r = 0.1;
+	draw(l*dir(-theta)--O--l*dir(0),dashed);
+	draw(T2*dir(180-theta)--T2*dir(180-theta)+l*dir(-theta+alpha),dashed);
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,r,-theta,0),Arrows);
+	r = 0.15;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(T2*dir(180-theta),r,-theta,-theta+alpha),Arrows);
+\end{asy}
+\caption{题\thequestion 受力分析1}
+\label{37页4.57受力分析1}
+\end{minipage}
+\hspace{0.7cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//37页4.57受力分析2
+	pair O;
+	real theta,alpha,phi,P,T1,NN,l,r,delta;
+	O = (0,0);
+	theta = 130;
+	alpha = 50;
+	phi = theta-alpha/2-90;
+	P = 2;
+	T1 = P/Sin(theta-alpha-phi)*Sin(90+phi);
+	NN = P/Sin(theta-alpha-phi)*Sin(90-theta+alpha);
+	draw(Label("$\boldsymbol{N}$",EndPoint,Relative(E)),O--NN*dir(-phi),Arrow);
+	draw(Label("$\boldsymbol{T}_1$",MidPoint,Relative(E)),NN*dir(-phi)--NN*dir(-phi)+T1*dir(180-theta+alpha),Arrow);
+	draw(Label("$\boldsymbol{P}_1$",EndPoint,Relative(E)),NN*dir(-phi)+T1*dir(180-theta+alpha)--O,Arrow);
+	l = NN/Sin(180-theta+alpha)*Sin(theta-alpha-phi);
+	r = 0.1;
+	draw(NN*dir(-phi)+T1*dir(180-theta+alpha)--NN*dir(-phi)+T1*dir(180-theta+alpha)+l*dir(0),dashed);
+	draw(Label("$\theta-\alpha$",MidPoint,Relative(E)),arc(NN*dir(-phi)+T1*dir(180-theta+alpha),r,-theta+alpha,0),Arrows);
+	delta = 15;
+	draw(O--l*dir(0),dashed);
+	r = 0.2;
+	draw(Label("$\phi$",BeginPoint,E),arc(O,r,delta,0),Arrow);
+	draw(arc(O,r,-phi-delta,-phi),Arrow);
+	r = 0.15;
+	//draw(Label("$\alpha$",MidPoint,Relative(E)),arc(T2*dir(180-theta),r,-theta,-theta+alpha),Arrows);
+	
+	dot(NN*dir(-phi)+T1*dir(180-theta+alpha)+(0,0.01),invisible);
+\end{asy}
+\caption{题\thequestion 受力分析2}
+\label{37页4.57受力分析2}
+\end{minipage}
+\end{figure}
+
+取两圆柱整体受力分析（如图\ref{37页4.57受力分析1}），根据正弦定理可有
+\begin{equation*}
+	\frac{T_1}{\sin\left(\theta-\dfrac{\pi}{2}\right)} = \frac{T_2}{\sin\left(\alpha-\theta+\dfrac{\pi}{2}\right)} = \frac{P_1+P_2}{\sin(\pi-\alpha)}
+\end{equation*}
+由此可得
+\begin{subnumcases}{}
+	T_1 = -\dfrac{\cos \theta}{\sin \alpha} (P_1+P_2) \label{4.57-1} \\
+	T_2 = \dfrac{\cos(\theta-\alpha)}{\sin \alpha} (P_1+P_2) \label{4.57-2}
+\end{subnumcases}
+然后取圆柱$C_1$受力分析（如图\ref{37页4.57受力分析2}），记$\phi = \theta-\alpha-\dfrac{\pi-\alpha}{2} = \theta-\dfrac{\alpha}{2} - \dfrac{\pi}{2}$为$C_1C_2$与水平方向的夹角，则可有
+\begin{equation*}
+	\frac{P_1}{\sin(\theta-\alpha-\phi)} = \frac{T_1}{\sin\left(\dfrac{\pi}{2}+\phi\right)} = \frac{N}{\sin \left(\dfrac{\pi}{2} - \theta+\alpha\right)}
+\end{equation*}
+由此可得
+\begin{subnumcases}{}
+	T_1 = \dfrac{\sin \left(\theta-\dfrac{\alpha}{2}\right)}{\cos \dfrac{\alpha}{2}} P_1 \label{4.57-3} \\
+	N = \dfrac{\cos(\theta-\alpha)}{\cos \dfrac{\alpha}{2}}P_1 \label{4.57-4}
+\end{subnumcases}
+由式\eqref{4.57-1}和式\eqref{4.57-3}可得
+\begin{equation*}
+	\tan \theta = -\frac{P_2+P_1\cos\alpha}{P_1\sin \alpha}
+\end{equation*}
+绳子的张力$T_1$和$T_2$以及两球之间的压力$N$前面已求出。
+\end{solution}
+
+\begin{question}[45页5.14]
+重$Q$的圆柱放在支座$A$和$B$上，这两支座关于圆柱中垂线对称。圆柱与支座之间的摩擦系数等于$\mu$。问：当切向力$T$多大时，圆柱开始转动？又当角$\theta$多大时该装置自锁？
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//45页5.14
+	picture tmp;
+	pair O,A,B,P,dash,pace;
+	real R,r,l,d,dd,theta;
+	int imax;
+	path clp;
+	O = (0,0);
+	r = 1;
+	l = 0.2;
+	d = 0.15;
+	theta = 50;
+	A = (r+l)*dir(-theta-90);
+	B = (r+l)*dir(theta-90);
+	draw(tmp,A+1.5*d*dir(180-theta)--A-1.5*d*dir(180-theta),linewidth(0.8bp));
+	draw(tmp,A+d*dir(180-theta)--A+d*dir(180-theta)+(l+r)*dir(90-theta)--A-d*dir(180-theta)+(l+r)*dir(90-theta)--A-d*dir(180-theta));
+	imax = 8;
+	dash = 0.5*dir(-90);
+	pace = -2*1.5*d*dir(180-theta)/imax;
+	P = A+1.5*d*dir(180-theta)-4*pace;
+	for(int i=1;i<=2*imax;i=i+1){
+		draw(tmp,P--P+dash);
+		P = P+pace;
+	}
+	dd = 0.08;
+	clp = A+1.5*d*dir(180-theta)-dd*dir(90-theta)--A+1.5*d*dir(180-theta)+(l+r)*dir(90-theta)--A-1.5*d*dir(180-theta)+(l+r)*dir(90-theta)--A-1.5*d*dir(180-theta)-dd*dir(90-theta)--cycle;
+	clip(tmp,clp);
+	add(tmp);
+	add(xscale(-1)*tmp);
+	unfill(shift(O)*scale(r)*unitcircle);
+	draw(shift(O)*scale(r)*unitcircle);
+	draw(O--1.1*A,dashed);
+	draw(O--1.1*B,dashed);
+	draw((r+l)*dir(180)--(r+l)*dir(0),dashed);
+	draw(Label("$\boldsymbol{Q}$",EndPoint),O--(r+l)*dir(-90),Arrow);
+	draw(Label("$\boldsymbol{T}$",BeginPoint,Relative(W)),r*dir(0)+0.9*(r+l)*dir(90)--r*dir(0),Arrow);
+	R = 0.2;
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,R,theta-90,-90),Arrows);
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,R,-90,-90-theta),Arrows);
+	label("$A$",A,3*W);
+	label("$B$",B,3*E);
+\end{asy}
+\caption{题\thequestion}
+\label{45页5.14}
+\end{figure}
+\end{question}
+\begin{solution}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//45页5.14受力分析
+	picture tmp;
+	pair O,A,B,P,dash,pace;
+	real R,r,l,d,dd,theta;
+	int imax;
+	path clp;
+	O = (0,0);
+	r = 1;
+	l = 0.2;
+	d = 0.15;
+	theta = 50;
+	A = (r+l)*dir(-theta-90);
+	B = (r+l)*dir(theta-90);
+	draw(tmp,A+1.5*d*dir(180-theta)--A-1.5*d*dir(180-theta),linewidth(0.8bp));
+	draw(tmp,A+d*dir(180-theta)--A+d*dir(180-theta)+(l+r)*dir(90-theta)--A-d*dir(180-theta)+(l+r)*dir(90-theta)--A-d*dir(180-theta));
+	imax = 8;
+	dash = 0.5*dir(-90);
+	pace = -2*1.5*d*dir(180-theta)/imax;
+	P = A+1.5*d*dir(180-theta)-4*pace;
+	for(int i=1;i<=2*imax;i=i+1){
+		draw(tmp,P--P+dash);
+		P = P+pace;
+	}
+	dd = 0.08;
+	clp = A+1.5*d*dir(180-theta)-dd*dir(90-theta)--A+1.5*d*dir(180-theta)+(l+r)*dir(90-theta)--A-1.5*d*dir(180-theta)+(l+r)*dir(90-theta)--A-1.5*d*dir(180-theta)-dd*dir(90-theta)--cycle;
+	clip(tmp,clp);
+	add(tmp);
+	add(xscale(-1)*tmp);
+	unfill(shift(O)*scale(r)*unitcircle);
+	draw(shift(O)*scale(r)*unitcircle);
+	draw(O--1.1*A,dashed);
+	draw(O--1.1*B,dashed);
+	draw((r+l)*dir(180)--(r+l)*dir(0),dashed);
+	draw(Label("$\boldsymbol{Q}$",EndPoint),O--(r+l)*dir(-90),Arrow);
+	draw(Label("$\boldsymbol{T}$",BeginPoint,Relative(W)),r*dir(0)+0.9*(r+l)*dir(90)--r*dir(0),Arrow);
+	R = 0.2;
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,R,theta-90,-90),Arrows);
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,R,-90,-90-theta),Arrows);
+	label("$A$",A,3*W);
+	label("$B$",B,3*E);
+	A = r*dir(-theta-90);
+	B = r*dir(theta-90);
+	draw(Label("$\boldsymbol{f}_1$",EndPoint),A--A+2*l*dir(-theta),Arrow);
+	draw(Label("$\boldsymbol{N}_1$",EndPoint,Relative(W)),A--A+2.5*l*dir(90-theta),Arrow);
+	draw(Label("$\boldsymbol{f}_2$",EndPoint),B--B+2*l*dir(theta),Arrow);
+	draw(Label("$\boldsymbol{N}_2$",EndPoint,Relative(E)),B--B+2.5*l*dir(theta+90),Arrow);
+\end{asy}
+\caption{题\thequestion 受力分析}
+\label{45页5.14受力分析}
+\end{figure}
+
+根据受力平衡和力矩平衡，可有
+\begin{subnumcases}{}
+	Q+T+f_1\sin \theta = N_1 \cos \theta + N_2 \cos \theta + f_2 \sin \theta \label{5.14-1} \\
+	f_1 \cos \theta + f_2 \cos \theta + N_1 \sin \theta = N_2 \sin \theta \label{5.14-2} \\
+	TR = f_1 R + f_2 R \label{5.14-3} \\
+	f_1 = \mu N_1 \label{5.14-4} \\
+	f_2 = \mu N_2 \label{5.14-5}
+\end{subnumcases}
+将式\eqref{5.14-1}和式\eqref{5.14-2}两端乘以$\mu$，并考虑到式\eqref{5.14-4}和式\eqref{5.14-5}，可得
+\begin{equation*}
+\begin{cases}
+	\displaystyle f_1 (\mu - \cos \theta + \mu \sin \theta) + f_2 (\mu - \cos \theta - \mu \sin \theta) = -\mu Q \\
+	\displaystyle f_1 (\sin \theta + \mu \cos \theta) - f_2 (\sin \theta - \mu \cos \theta) = 0
+\end{cases}
+\end{equation*}
+解此方程组可得
+\begin{equation*}
+\begin{cases}
+	\displaystyle f_1 = \dfrac{\mu Q(\sin \theta - \mu \cos \theta)}{2\sin \theta \big[(1+\mu^2) \cos \theta - \mu\big]} \\[1.5ex]
+	\displaystyle f_2 = \dfrac{\mu Q(\sin \theta + \mu \cos \theta)}{2\sin \theta \big[(1+\mu^2) \cos \theta - \mu\big]}
+\end{cases}
+\end{equation*}
+再由式\eqref{5.14-3}可得
+\begin{equation*}
+	T = f_1 + f_2 = \dfrac{\mu Q}{(1+\mu^2) \cos \theta - \mu}
+\end{equation*}
+该体系不会自锁的条件为
+\begin{equation*}
+	T = \dfrac{\mu Q}{(1+\mu^2) \cos \theta - \mu} \geqslant 0
+\end{equation*}
+即
+\begin{equation*}
+	\theta \leqslant \arccos \frac{\mu}{1+\mu^2}
+\end{equation*}
+\end{solution}
+
+\begin{question}[45页5.15]
+不计曲柄机构的滑块$A$和导轨之间的摩擦，也不计机构上所有铰链和轴承的摩擦，机构在图标位置能提起重物$Q$，试求力$P$的大小。如果滑块$A$和导轨之间的摩擦系数是$\mu$，为使重物$Q$不动，求力$P$的最大值和最小值。
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.5\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(300);
+	//45页5.15
+	picture tmp,dashpic;
+	pair O;
+	real a,r,theta,l,da,d,ri,ro,tri;
+	O = (0,0);
+	a = 1;
+	r = 1.6;
+	l = 4;
+	da = 0.4;
+	d = 0.05;
+	theta = 50;
+	draw(shift(O)*scale(a)*unitcircle,linewidth(0.8bp));
+	draw(tmp,O--r*dir(theta)--l*dir(90),dashed);
+	draw(tmp,O--l*dir(90),dashed);
+	draw(box(l*dir(90)-(da,da),l*dir(90)+(da,da)));
+	draw(tmp,rotate(theta)*box((0,-d),(r,d)),linewidth(0.8bp));
+	draw(tmp,shift(r*dir(theta))*rotate(degrees(l*dir(90)-r*dir(theta)))*box((0,-d),(length(l*dir(90)-r*dir(theta)),d)),linewidth(0.8bp));
+	ri = 0.04;
+	ro = 0.08;
+	draw(tmp,r*dir(theta)--r*dir(theta)+1*r*dir(theta-90));
+	unfill(tmp,shift(r*dir(theta))*scale(ro)*unitcircle);
+	draw(tmp,shift(r*dir(theta))*scale(ro)*unitcircle);
+	draw(tmp,shift(r*dir(theta))*scale(ri)*unitcircle);
+	unfill(tmp,shift(l*dir(90))*scale(ro)*unitcircle);
+	draw(tmp,shift(l*dir(90))*scale(ro)*unitcircle);
+	draw(tmp,shift(l*dir(90))*scale(ri)*unitcircle);
+	unfill(tmp,shift(O)*scale(a)*unitcircle);
+	draw(tmp,Label("$a$",MidPoint,Relative(E)),O--a*dir(150),Arrow);
+	draw(tmp,a*dir(180)--a*dir(0),dashed);
+	draw(tmp,O--a*dir(90),dashed);
+	draw(tmp,O--a*dir(theta),dashed);
+	draw(tmp,O--1*r*dir(theta-90));
+	tri = 0.35;
+	draw(tmp,O--tri*a*dir(-60)--tri*a*dir(-120)--cycle);
+	unfill(tmp,shift(O)*scale(ro)*unitcircle);
+	draw(tmp,shift(O)*scale(ro)*unitcircle);
+	draw(tmp,shift(O)*scale(ri)*unitcircle);
+	add(tmp);
+	erase(tmp);
+	pair dash,P,pace;
+	int imax;
+	imax = 20;
+	dash = 1*dir(120);
+	pace = 4*da*dir(0)/imax;
+	P = 2*da*dir(180);
+	draw(dashpic,2*da*dir(180)--2*da*dir(0),linewidth(1bp));
+	for(int i=1;i<=imax;i=i+1){
+		draw(dashpic,P--P+dash);
+		P = P+pace;
+	}
+	add(tmp,dashpic);
+	clip(tmp,box((-0.3*a,-1),(0.3*a,0.15*a)));
+	add(shift(tri*Sin(60)*dir(-90))*yscale(-1)*tmp);
+	erase(tmp);
+	add(tmp,dashpic);
+	clip(tmp,box((-1.5*da,-1),(1.5*da,0.15*a)));
+	add(shift(1.15*da*dir(180)+l*dir(90))*rotate(90)*tmp);
+	add(shift(1.15*da*dir(0)+l*dir(90))*rotate(-90)*tmp);
+	label("$A$",l*dir(90),E);
+	draw(Label("$\boldsymbol{P}$",BeginPoint,Relative(E)),(l+da)*dir(90)+dir(90)--(l+da)*dir(90),Arrow);
+	draw(a*dir(180)--a*dir(180)+1.2*a*dir(-90),linewidth(0.8bp));
+	unfill(box(a*dir(180)+1.2*a*dir(-90)-(0.5*da,0.5*da),a*dir(180)+1.2*a*dir(-90)+(0.5*da,0.5*da)));
+	draw(box(a*dir(180)+1.2*a*dir(-90)-(0.5*da,0.5*da),a*dir(180)+1.2*a*dir(-90)+(0.5*da,0.5*da)));
+	draw(Label("$\boldsymbol{Q}$",EndPoint,Relative(W)),a*dir(180)+1.2*a*dir(-90)--a*dir(180)+2.2*a*dir(-90),Arrow);
+	draw(Label("$r$",MidPoint,Relative(E)),0.8*r*dir(theta-90)--r*dir(theta)+0.8*r*dir(theta-90),Arrows);
+	real rr = 0.5;
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,rr,theta,90),Arrows);
+	rr = 1.2;
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(l*dir(90),rr,360-90,degrees(r*dir(theta)-l*dir(90))),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{45页5.15}
+\end{minipage}
+\hspace{0.7cm}
+\begin{minipage}[t]{0.40\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(150);
+	//45页5.15受力分析
+	pair O;
+	real a,r,theta,l,da;
+	O = (0,0);
+	a = 1;
+	r = 1.6;
+	l = 4;
+	da = 0.4;
+	theta = 50;
+	draw(box((-da,-da),(da,da)));
+	draw(Label("$\boldsymbol{P}$",EndPoint),O--1.5*dir(-90),Arrow);
+	draw(Label("$\boldsymbol{T}$",EndPoint),O--dir(l*dir(90)-r*dir(theta)),Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint),O--0.9*dir(0),Arrow);
+	draw(Label("$\boldsymbol{f}$",EndPoint,Relative(W)),O--dir(-90),Arrow);
+\end{asy}
+\caption{题\thequestion 受力分析}
+\label{45页5.15受力分析}
+\end{minipage}
+\end{figure}
+\end{question}
+\begin{solution}
+根据转轮对其中心的力矩平衡，可有
+\begin{equation}
+	Tr\cos \left(\frac{\pi}{2}-\phi-\theta\right) = Qa
+	\label{5.15-1}
+\end{equation}
+考虑滑块$A$的受力，如图\ref{45页5.15受力分析}所示，即有
+\begin{equation}
+\begin{cases}
+	P+f=T\cos \phi \\
+	T\sin \phi = N
+\end{cases}
+\label{5.15-2}
+\end{equation}
+当不计曲柄机构的滑块$A$和导轨之间的摩擦时，有$f=0$，此时可解得
+\begin{equation*}
+	P = \frac{Qa\cos \phi}{r\sin (\theta+\phi)}
+\end{equation*}
+当计及摩擦时，可得摩擦力$f$的取值范围为
+\begin{equation}
+	-\mu N \leqslant f \leqslant \mu N
+	\label{5.15-3}
+\end{equation}
+由式\eqref{5.15-1}和式\eqref{5.15-2}解出$f$和$N$可有
+\begin{equation*}
+\begin{cases}
+	f = \dfrac{Qa\cos \phi}{r\sin(\phi+\theta)}-P \\[1.5ex]
+	N = \dfrac{Qa\sin \phi}{r\sin(\phi+\theta)}
+\end{cases}
+\end{equation*}
+根据式\eqref{5.15-3}可有$P$的取值范围
+\begin{equation*}
+	\frac{Qa(\cos \phi-\mu\sin\phi)}{r\sin(\phi+\theta)} \leqslant P \leqslant \frac{Qa(\cos \phi+\mu\sin\phi)}{r\sin(\phi+\theta)}
+\end{equation*}
+\end{solution}
+
+\begin{question}[45页5.16]
+沿不光滑曲面提升重为$P$的物体$B$过程中，依靠绳索$BAD$保持平衡。该曲面是四分之一圆柱面。曲面和重物间的摩擦系数是$\mu=\tan \phi$，其中$\phi$是摩擦角\footnote{全反力（即法向反力与摩擦力的合力）与接触面法线间夹角的最大值称为摩擦角。}。试以角$\alpha$的函数表示出绳索的张力$T$，为使绳索中的张力取极值，角$\alpha$必须满足什么条件？重物和滑轮的尺寸不计。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(300);
+	//45页5.16
+	picture tmp;
+	pair O,A,AO,B,C,D,dash,P;
+	real r,l1,l2,r0,rr,d,alpha;
+	path rail,clp;
+	O = (0,0);
+	r = 1;
+	l1 = 0.5;
+	l2 = 0.5;
+	rail = (l1+r)*dir(180)--arc(O,r,180,270)--r*dir(-90)+l2*dir(0);
+	draw(tmp,rail,linewidth(1bp));
+	dash = 0.05*dir(-120);
+	for(real p=0;p<=1;p=p+0.012){
+		P = relpoint(rail,p);
+		draw(tmp,P--P+dash);
+	}
+	alpha = 30;
+	r0 = 0.02;
+	d = 0.1;
+	AO = r*dir(180)+r0*dir(45);
+	B = (r-r0)*dir(-90-alpha);
+	draw(shift(B)*rotate(-alpha)*box((-d,-1.2*r0),(d,1.2*r0)));
+	clip(rail--O--cycle);
+	draw(r*dir(-90)--O--r*dir(-90-alpha),dashed);
+	draw(shift(AO)*scale(r0)*unitcircle);
+	rr = 0.2;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,rr,-90-alpha,-90),Arrows);
+	A = AO+r0*dir(degrees(B-AO)+aCos(r0/length(B-AO)));
+	draw(tmp,(l1+r)*dir(180)+2*r0*dir(90)--arc(AO,r0,90,degrees(B-AO)+aCos(r0/length(B-AO)))--B,linewidth(0.8bp));
+	clip(tmp,box((-r-0.8*l1,-2*r),(0.5*l2,r)));
+	add(tmp);
+	label("$D$",(-r-0.8*l1,2*r0),W);
+	label("$A$",A,NE);
+	label("$B$",B,2*dir(30));
+	label("$C$",r*dir(-90),NE);
+\end{asy}
+\caption{题\thequestion}
+\label{45页5.16}
+\end{figure}
+\end{question}
+\begin{solution}
+摩擦系数为$\mu=\tan \phi$，即摩擦角为$\phi$，因此摩擦力与支持力的合力与支持力方向的夹角最大为$\phi$。据此可作出矢量三角形关系如图\ref{45页5.16受力分析}所示。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//45页5.16受力分析
+	pair O;
+	real alpha,phi,P,R,RR,r;
+	alpha = 30;
+	phi = 40;
+	P = 1;
+	R = P/Sin(45+phi+alpha/2)*Sin(45-alpha/2);
+	RR = P/Sin(45+alpha/2)*Sin(45-alpha/2);
+	r = 0.1;
+	draw(Label("$\boldsymbol{P}$",EndPoint,Relative(E)),O--P*dir(-90),Arrow);
+	draw(Label("$\boldsymbol{R}$",EndPoint,Relative(E)),P*dir(-90)--P*dir(-90)+R*dir(90-alpha-phi),Arrow);
+	draw(Label("$\boldsymbol{T}$",Relative(0.7),Relative(E)),P*dir(-90)+R*dir(90-alpha-phi)--O,Arrow);
+	draw(P*dir(-90)--P*dir(-90)+RR*dir(90-alpha),dashed);
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(P*dir(-90),r,90-alpha-phi,90-alpha),Arrows);
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(P*dir(-90),r,90-alpha,90),Arrows);
+	draw(P*dir(-90)--interp(P*dir(-90)+R*dir(90-alpha-phi),O,0.2),dashed,Arrow);
+	draw(O--R*Sin(alpha+phi)*dir(0),dashed);
+	draw(Label("$\dfrac{\pi}{4}+\dfrac{\alpha}{2}$",MidPoint,Relative(E)),arc(O,r,-45-alpha/2,0),Arrows);
+\end{asy}
+\caption{题\thequestion 的矢量三角形}
+\label{45页5.16受力分析}
+\end{figure}
+
+在图示条件下，根据正弦定理可有
+\begin{equation*}
+	\frac{P}{\sin\left(\phi+\dfrac{\alpha}{2}+\dfrac{\pi}{4}\right)} = \frac{R}{\sin \left(\dfrac{\pi}{4}-\dfrac{\alpha}{2}\right)} = \frac{T}{\sin (\alpha+\phi)}
+\end{equation*}
+所以有
+\begin{equation*}
+	T = P\frac{\sin (\alpha+\phi)}{\sin\left(\phi+\dfrac{\alpha}{2}+\dfrac{\pi}{4}\right)}
+\end{equation*}
+考虑
+\begin{equation*}
+	\dfrac{\mathrm{d} T}{\mathrm{d} \alpha} = P \frac{\cos(\alpha+\phi)\sin \left(\phi+\dfrac{\alpha}{2}+\dfrac{\pi}{4}\right) - \dfrac12 \cos \left(\phi+\dfrac{\alpha}{2}+\dfrac{\pi}{4}\right) \sin (\alpha+\phi)}{\sin^2 \left(\phi+\dfrac{\alpha}{2}+\dfrac{\pi}{4}\right)} = 0
+\end{equation*}
+即当
+\begin{equation*}
+	\frac{\tan (\alpha+\phi)}{\tan \left(\phi+\dfrac{\alpha}{2}+\dfrac{\pi}{4}\right)} = 2
+\end{equation*}
+时，$T$取极值。
+\end{solution}
+
+\begin{question}[48页5.27]
+梯子$AB$靠在铅直墙上，下端搁在水平地板上。梯子与墙、地板之间的摩擦系数分别为$\mu_1,\mu_2$。梯子联通站在上面的人共重$P$，重力作用点$C$按比值$m:n$两分梯子的长度。在平衡状态下，求梯子与墙之间的最大夹角，并求当$\alpha$等于该值时墙和地板反力的法向分量$N_A$和$N_B$。
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//48页5.27
+	picture tmp;
+	pair O,dash,P,C;
+	real l,alpha,rate,ddash,d;
+	path wall;
+	O = (0,0);
+	l = 2;
+	alpha = 35;
+	rate = 0.4;
+	wall = l*dir(90)--O--l*dir(0);
+	dash = dir(-135);
+	draw(tmp,wall,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.01){
+		P = relpoint(wall,r);
+		draw(tmp,P--P+dash);
+	}
+	ddash = 0.05;
+	clip(tmp,box((-ddash,-ddash),(1.1*l*Sin(alpha),1.1*l*Cos(alpha))));
+	add(tmp);
+	d = 0.05;
+	draw(l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+d*dir(alpha)--l*Cos(alpha)*dir(90)+d*dir(alpha)--l*Cos(alpha)*dir(90)--cycle,linewidth(0.8bp));
+	C = interp(l*Cos(alpha)*dir(90)+0.5*d*dir(alpha),l*Sin(alpha)*dir(0)+0.5*d*dir(alpha),rate);
+	dot(C);
+	draw(Label("$\boldsymbol{P}$",EndPoint),C--C+0.7*dir(-90),Arrow);
+	label("$A$",l*Cos(alpha)*dir(90),2*W);
+	label("$B$",0.85*l*Sin(alpha)*dir(0),N);
+	label("$C$",C,dir(alpha-180));
+	draw(l*Sin(alpha)*dir(0)+d*dir(alpha)--l*Sin(alpha)*dir(0)+4*d*dir(alpha));
+	draw(C+d*dir(alpha)--C+4*d*dir(alpha));
+	draw(l*Cos(alpha)*dir(90)+d*dir(alpha)--l*Cos(alpha)*dir(90)+4*d*dir(alpha));
+	draw(Label("$na$",MidPoint,Relative(E)),C+3*d*dir(alpha)--l*Cos(alpha)*dir(90)+3*d*dir(alpha),Arrows);
+	draw(Label("$ma$",MidPoint,Relative(W)),C+3*d*dir(alpha)--l*Sin(alpha)*dir(0)+3*d*dir(alpha),Arrows);
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(l*Cos(alpha)*dir(90),0.3,-90,-90+alpha),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{48页5.27}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//48页5.27受力分析
+	picture tmp;
+	pair O,dash,P,C;
+	real l,alpha,rate,ddash,d;
+	path wall;
+	O = (0,0);
+	l = 2;
+	alpha = 35;
+	rate = 0.4;
+	wall = l*dir(90)--O--l*dir(0);
+	dash = dir(-135);
+	draw(tmp,wall,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.01){
+		P = relpoint(wall,r);
+		draw(tmp,P--P+dash);
+	}
+	ddash = 0.05;
+	clip(tmp,box((-ddash,-ddash),(1.1*l*Sin(alpha),1.1*l*Cos(alpha))));
+	add(tmp);
+	d = 0.05;
+	draw(l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+d*dir(alpha)--l*Cos(alpha)*dir(90)+d*dir(alpha)--l*Cos(alpha)*dir(90)--cycle,linewidth(0.8bp));
+	C = interp(l*Cos(alpha)*dir(90)+0.5*d*dir(alpha),l*Sin(alpha)*dir(0)+0.5*d*dir(alpha),rate);
+	dot(C);
+	draw(Label("$\boldsymbol{P}$",EndPoint),C--C+0.7*dir(-90),Arrow);
+	label("$A$",l*Cos(alpha)*dir(90),2*W);
+	label("$B$",0.86*l*Sin(alpha)*dir(0),N);
+	label("$C$",C,dir(alpha-180));
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(l*Cos(alpha)*dir(90),0.3,-90,-90+alpha),Arrows);
+	draw(Label("$\boldsymbol{f}_A$",EndPoint,Relative(E)),l*Cos(alpha)*dir(90)--l*Cos(alpha)*dir(90)+0.4*dir(90),Arrow);
+	draw(Label("$\boldsymbol{N}_A$",EndPoint),l*Cos(alpha)*dir(90)--l*Cos(alpha)*dir(90)+0.4*dir(0),Arrow);
+	draw(Label("$\boldsymbol{f}_B$",EndPoint,Relative(E)),l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+0.4*dir(180),Arrow);
+	draw(Label("$\boldsymbol{N}_B$",EndPoint),l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+0.6*dir(90),Arrow);
+\end{asy}
+\caption{题\thequestion 受力分析}
+\label{48页5.27受力分析}
+\end{minipage}
+\end{figure}
+\end{question}
+\begin{solution}
+在夹角最大时，梯子在该状态下恰不能滑动，因此摩擦力均取最大值，即有方程组
+\begin{subnumcases}{}
+	N_A - f_B = 0 \label{5.27-1} \\
+	f_A + N_B - P = 0 \label{5.27-2} \\
+	N_A na \cos \alpha + f_A na \sin \alpha + f_B ma \cos \alpha - N_B ma \sin \alpha = 0 \label{5.27-3} \\
+	f_A = \mu_1 N_A \label{5.27-4} \\
+	f_B = \mu_2 N_B \label{5.27-5}
+\end{subnumcases}
+由式\eqref{5.27-3}可得
+\begin{equation*}
+	\tan \alpha = \frac{nN_A+mf_B}{mN_B-nf_A}
+\end{equation*}
+由式\eqref{5.27-1}、式\eqref{5.27-4}和式\eqref{5.27-5}可得
+\begin{equation*}
+	f_B = N_A,\quad N_B = \frac{1}{\mu_2}N_A,\quad f_A = \mu_1 N_A
+\end{equation*}
+由此可有
+\begin{equation*}
+	\tan \alpha = \frac{(m+n)\mu_2}{m-n\mu_1\mu_2}
+\end{equation*}
+再考虑到式\eqref{5.27-2}即有
+\begin{equation*}
+	N_A = \frac{\mu_2 P}{1+\mu_1\mu_2},\quad N_B = \frac{P}{1+\mu_1\mu_2}
+\end{equation*}
+\end{solution}
+
+\begin{question}[48页5.28]
+重$P$的梯子$AB$靠在光滑的墙上，并搁置在不光滑的水平地面上。梯子与地板的摩擦系数为$\mu$。为使重$p$的人能沿梯子爬到顶端，求梯子与地板的夹角$\alpha$。
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//48页5.28
+	picture tmp;
+	pair O,dash,P,C;
+	real l,alpha,rate,ddash,d;
+	path wall;
+	O = (0,0);
+	l = 2;
+	alpha = 35;
+	rate = 0.5;
+	wall = l*dir(90)--O--l*dir(0);
+	dash = dir(-135);
+	draw(tmp,wall,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.01){
+		P = relpoint(wall,r);
+		draw(tmp,P--P+dash);
+	}
+	ddash = 0.05;
+	clip(tmp,box((-ddash,-ddash),(1.1*l*Sin(alpha),1.1*l*Cos(alpha))));
+	add(tmp);
+	d = 0.05;
+	draw(l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+d*dir(alpha)--l*Cos(alpha)*dir(90)+d*dir(alpha)--l*Cos(alpha)*dir(90)--cycle,linewidth(0.8bp));
+	//C = interp(l*Cos(alpha)*dir(90)+0.5*d*dir(alpha),l*Sin(alpha)*dir(0)+0.5*d*dir(alpha),rate);
+	//dot(C);
+	//draw(Label("$\boldsymbol{P}$",EndPoint),C--C+0.7*dir(-90),Arrow);
+	label("$A$",l*Cos(alpha)*dir(90),2*W);
+	label("$B$",1.1*l*Sin(alpha)*dir(0),N);
+	//label("$C$",C,dir(alpha-180));
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(l*Sin(alpha)*dir(0),0.3,90+alpha,180),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{48页5.28}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//48页5.28受力分析
+	picture tmp;
+	pair O,dash,P,C;
+	real l,alpha,rate,ddash,d;
+	path wall;
+	O = (0,0);
+	l = 2;
+	alpha = 35;
+	rate = 0.5;
+	wall = l*dir(90)--O--l*dir(0);
+	dash = dir(-135);
+	draw(tmp,wall,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.01){
+		P = relpoint(wall,r);
+		draw(tmp,P--P+dash);
+	}
+	ddash = 0.05;
+	clip(tmp,box((-ddash,-ddash),(1.1*l*Sin(alpha),1.1*l*Cos(alpha))));
+	add(tmp);
+	d = 0.05;
+	draw(l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+d*dir(alpha)--l*Cos(alpha)*dir(90)+d*dir(alpha)--l*Cos(alpha)*dir(90)--cycle,linewidth(0.8bp));
+	C = interp(l*Cos(alpha)*dir(90)+0.5*d*dir(alpha),l*Sin(alpha)*dir(0)+0.5*d*dir(alpha),rate);
+	dot(C);
+	draw(Label("$\boldsymbol{P}$",EndPoint),C--C+0.55*dir(-90),Arrow);
+	label("$A$",l*Cos(alpha)*dir(90),2*W);
+	label("$B$",1.1*l*Sin(alpha)*dir(0),N);
+	//label("$C$",C,dir(alpha-180));
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(l*Sin(alpha)*dir(0),0.1,90+alpha,180),Arrows);
+	draw(Label("$\boldsymbol{p}$",EndPoint,Relative(W)),l*Cos(alpha)*dir(90)--l*Cos(alpha)*dir(90)+0.4*dir(-90),Arrow);
+	draw(Label("$\boldsymbol{N}_A$",EndPoint),l*Cos(alpha)*dir(90)--l*Cos(alpha)*dir(90)+0.4*dir(0),Arrow);
+	draw(Label("$\boldsymbol{f}_B$",EndPoint,Relative(E)),l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+0.4*dir(180),Arrow);
+	draw(Label("$\boldsymbol{N}_B$",EndPoint),l*Sin(alpha)*dir(0)--l*Sin(alpha)*dir(0)+0.6*dir(90),Arrow);
+\end{asy}
+\caption{题\thequestion 受力分析}
+\label{48页5.28受力分析}
+\end{minipage}
+\end{figure}
+\end{question}
+\begin{solution}
+根据图\ref{48页5.28受力分析}所示的受力分析，可有
+\begin{subnumcases}{}
+	N_A - f_B = 0 \label{5.28-1} \\
+	N_B - p - P = 0 \label{5.28-2} \\
+	N_A l \sin \alpha + f_B l \sin \alpha - N_B l \cos \alpha - pl \cos \alpha = 0 \label{5.28-3} \\
+	f_B \leqslant \mu N_B \label{5.28-4}
+\end{subnumcases}
+由式\eqref{5.27-1}和式\eqref{5.27-2}可得
+\begin{equation*}
+	N_A = f_B,\quad N_B = p+P
+\end{equation*}
+再根据式\eqref{5.27-3}可得
+\begin{equation*}
+	f_B = \frac12 (2p+P) \cot \alpha
+\end{equation*}
+由此根据式\eqref{5.27-4}可有
+\begin{equation*}
+	\frac12 (2p+P) \cot \alpha \leqslant \mu(p+P)
+\end{equation*}
+即有
+\begin{equation*}
+	\tan \alpha = \frac{2p+P}{2\mu(p+P)}
+\end{equation*}
+\end{solution}
+
+\iffalse
+\begin{question}[49页5.32]
+匀质杆两端$A$和$B$可沿粗糙的圆周滑动。圆周在铅垂平面内，半径是$a$。杆到圆心的距离为$b$，杆与圆周间的摩擦系数是$\mu$。当杆平衡时，求直线$OC$与圆周的铅垂直径的夹角$\phi$。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//49页5.32
+	picture tmp;
+	pair O;
+	real r,phi,theta,d,rr;
+	O = (0,0);
+	r = 1;
+	d = 0.05;
+	rr = 0.2;
+	phi = 30;
+	theta = 50;
+	draw(shift(O)*scale(r)*unitcircle);
+	draw(r*dir(theta-phi-90)--r*dir(theta-phi-90)+d*dir(90-phi)--r*dir(-theta-phi-90)+d*dir(90-phi)--r*dir(-theta-phi-90)--cycle,linewidth(1bp));
+	draw(1.1*r*dir(90)--1.1*r*dir(-90),dashed);
+	draw(O--(r*Cos(theta)-d)*dir(-90-phi),dashed);
+	label("$O$",O,E);
+	label("$a$",0.5*r*dir(90),W);
+	label("$b$",0.5*r*Cos(theta)*dir(-90-phi),dir(180-phi));
+	label("$C$",r*Cos(theta)*dir(-90-phi),dir(-90-phi));
+	label("$A$",r*dir(-theta-phi-90),W);
+	label("$B$",r*dir(theta-phi-90),SE);
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(O,rr,-90-phi,-90),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{49页5.32}
+\end{figure}
+\end{question}
+\begin{solution}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(250);
+	//49页5.32受力分析
+	picture tmp;
+	pair O;
+	real r,phi,theta,d,rr;
+	O = (0,0);
+	r = 1;
+	d = 0.05;
+	rr = 0.2;
+	phi = 30;
+	theta = 50;
+	draw(shift(O)*scale(r)*unitcircle);
+	draw(r*dir(theta-phi-90)--r*dir(theta-phi-90)+d*dir(90-phi)--r*dir(-theta-phi-90)+d*dir(90-phi)--r*dir(-theta-phi-90)--cycle,linewidth(1bp));
+	draw(1.1*r*dir(90)--1.1*r*dir(-90),dashed);
+	draw(O--(r*Cos(theta)-d)*dir(-90-phi),dashed);
+	label("$O$",O,E);
+	label("$a$",0.5*r*dir(90),W);
+	label("$b$",0.5*r*Cos(theta)*dir(-90-phi),dir(180-phi));
+	label("$C$",r*Cos(theta)*dir(-90-phi),dir(-90-phi));
+	label("$A$",r*dir(-theta-phi-90),W);
+	label("$B$",r*dir(theta-phi-90),SE);
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(O,rr,-90-phi,-90),Arrows);
+	draw(Label("$\boldsymbol{P}$",EndPoint),(r*Cos(theta)-d/2)*dir(-90-phi)--(r*Cos(theta)-d/2)*dir(-90-phi)+0.8*dir(-90),Arrow);
+	draw(Label("$\boldsymbol{N}_1$",EndPoint,Relative(W)),r*dir(-theta-phi-90)--r*dir(-theta-phi-90)-0.6*r*dir(-theta-phi-90),Arrow);
+	draw(Label("$\boldsymbol{f}_1$",EndPoint),r*dir(-theta-phi-90)--r*dir(-theta-phi-90)-rotate(90)*0.4*r*dir(-theta-phi-90),Arrow);
+	draw(Label("$\boldsymbol{N}_2$",EndPoint,Relative(E)),r*dir(theta-phi-90)--r*dir(theta-phi-90)-0.6*r*r*dir(theta-phi-90),Arrow);
+	draw(Label("$\boldsymbol{f}_2$",EndPoint),r*dir(theta-phi-90)--r*dir(theta-phi-90)-rotate(90)*0.4*r*r*dir(theta-phi-90),Arrow);
+\end{asy}
+\caption{题\thequestion 受力分析}
+\label{49页5.32受力分析}
+\end{figure}
+
+由图\ref{49页5.32受力分析}所示的受力分析，在其恰好平衡时，可列出方程组
+\begin{subnumcases}{}
+	f_1\sin (\theta+\phi) - f_2 \sin(\theta-\phi) + N_1 \cos(\theta+\phi) + N_2\cos(\theta-\phi) = P \\
+	f_1\cos (\theta+\phi) - f_2 \cos(\theta-\phi) - N_1 \sin(\theta+\phi) + N_2\sin(\theta-\phi) = 0 \\
+	f_1 a + f_2 a = Pb\sin \phi \\
+	f_1 = \mu N_1 \\
+	f_2 = \mu N_2
+\end{subnumcases}
+竟然解不出。
+\end{solution}\fi
+
+\subsection{空间力系}
+
+\begin{question}[57页6.21]
+在直角坐标轴上离原点$O$为$l$的$A,B,C$三点各自系有细绳$AD=BD=CD=L$，这三根细绳的另一端结在点$D$，其坐标为
+\begin{equation*}
+	x=y=z=\dfrac13 \left(l-\sqrt{3L^2-2l^2}\right)
+\end{equation*}
+在点$D$挂有重物$Q$，设$\sqrt{\dfrac23}l < L < l$，求三根细绳的张力$T_A$，$T_B$和$T_C$。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(250);
+	//57页6.21
+	pair O,i,j,k;
+	real l,L,x,y,z,d1,d2;
+	O = (0,0);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	l = 1;
+	L = 0.82;
+	x = (l-sqrt(3*L**2-2*l**2))/3;
+	y = x;
+	z = x;
+	d1 = 0.1;
+	d2 = 0.08;
+	draw(Label("$x$",EndPoint),O--1.4*i,Arrow);
+	draw(Label("$y$",EndPoint),O--1.4*j,Arrow);
+	draw(Label("$z$",EndPoint),O--1.4*k,Arrow);
+	label("$O$",O,W);
+	draw(i--x*i+y*j+z*k--k,linewidth(0.8bp));
+	draw(x*i+y*j+z*k--j,linewidth(0.8bp));
+	draw(x*i+y*j+z*k--x*i+y*j+z*k-0.5*l*k);
+	unfill(box(x*i+y*j+z*k-0.5*l*k-(d1,d2),x*i+y*j+z*k-0.5*l*k+(d1,d2)));
+	draw(box(x*i+y*j+z*k-0.5*l*k-(d1,d2),x*i+y*j+z*k-0.5*l*k+(d1,d2)));
+	label("$Q$",x*i+y*j+z*k-0.5*l*k);
+	label("$A$",i,E);
+	label("$B$",j,NE);
+	label("$C$",k,E);
+	label("$D$",x*i+y*j+z*k,NE);
+	label("$E$",x*i+y*j+z*k-0.5*l*k+d2*k,NE);
+	dot(i,UnFill);
+	dot(j,UnFill);
+	dot(k,UnFill);
+	dot(x*i+y*j+z*k,UnFill);
+\end{asy}
+\caption{题\thequestion}
+\label{57页6.21}
+\end{figure}
+\end{question}
+\begin{solution}
+首先写出各点的坐标为
+\begin{equation*}
+	A = \begin{pmatrix} l \\ 0 \\ 0 \end{pmatrix},\quad B = \begin{pmatrix} 0 \\ l \\ 0 \end{pmatrix},\quad C = \begin{pmatrix} 0 \\ 0 \\ l \end{pmatrix},\quad D = \begin{pmatrix} \dfrac13 \left(l-\sqrt{3L^2-2l^2}\right) \\[1.5ex] \dfrac13 \left(l-\sqrt{3L^2-2l^2}\right) \\[1.5ex] \dfrac13 \left(l-\sqrt{3L^2-2l^2}\right) \end{pmatrix}
+\end{equation*}
+据此求出四条线的方向矢量
+\begin{align*}
+	& \mbf{l}_{DA} = \begin{pmatrix} \dfrac23 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex] -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex] -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \end{pmatrix},\quad
+	\mbf{l}_{DB} = \begin{pmatrix}-\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex] \dfrac23 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex] -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \end{pmatrix}, \\
+	& \mbf{l}_{DC} = \begin{pmatrix} -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex] -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex] \dfrac23 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \end{pmatrix},\quad
+	\mbf{l}_{DE} = \begin{pmatrix} 0 \\ 0 \\ -1 \end{pmatrix}
+\end{align*}
+平衡方程为
+\begin{equation*}
+	\mbf{T}_A + \mbf{T}_B + \mbf{T}_C + \mbf{Q} = \mbf{0}
+\end{equation*}
+即
+\begin{equation*}
+	T_A\mbf{l}_{DA} + T_B\mbf{l}_{DB} + T_C\mbf{l}_{DC} + Q\mbf{l}_{DE} = \mbf{0}
+\end{equation*}
+写成矩阵形式为
+\begin{equation*}
+	\begin{pmatrix} 
+		\dfrac23 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} & -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} & -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex]
+		-\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} & \dfrac23 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} & -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} \\[1.5ex]
+		-\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} & -\dfrac13 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2} & \dfrac23 \dfrac{l}{L} + \dfrac13 \sqrt{3-2\left(\dfrac{l}{L}\right)^2}
+	\end{pmatrix} \begin{pmatrix} T_A \\ T_B \\ T_C \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ Q \end{pmatrix}
+\end{equation*}
+可解得
+\begin{equation*}
+	\begin{pmatrix} T_A \\ T_B \\ T_C \end{pmatrix} = \begin{pmatrix} \dfrac{l-\sqrt{3L^2-2l^2}}{3l\sqrt{3L^2-2l^2}}LQ \\[1.5ex] \dfrac{l-\sqrt{3L^2-2l^2}}{3l\sqrt{3L^2-2l^2}}LQ \\[1.5ex] \dfrac{l+2\sqrt{3L^2-2l^2}}{3l\sqrt{3L^2-2l^2}}LQ \end{pmatrix}
+\end{equation*}
+\end{solution}
+
+\subsection{点的运动学}
+
+\begin{question}[86页11.4]
+如图\ref{86页11.4}所示的曲柄连杆机构，曲柄$OA$以匀角速度$\omega$运动，求此机构的连杆中点$M$和滑块$B$的速度随时间的变化规律。已知长度$OA=OB=a$。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(250);
+	//86页11.4
+	picture tmp,dashpic;
+	pair O,A,B,dash,P;
+	real phi,a,x,y,ri,ro,tri,d;
+	path tre;
+	O = (0,0);
+	phi = 35;
+	a = 1;
+	x = 2.3;
+	y = 1;
+	A = a*dir(phi);
+	B = A+a*dir(-phi);
+	ri = 0.018;
+	ro = 0.035;
+	tri = 0.1;
+	tre = 0.5*x*dir(180)--0.5*x*dir(0);
+	dash = a*dir(-60);
+	draw(dashpic,tre,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.02){
+		P = relpoint(tre,r);
+		draw(dashpic,P--P+dash);
+	}
+	d = 0.05;
+	add(tmp,dashpic);
+	clip(tmp,box((-1.5*tri,1),(1.5*tri,-d)));
+	add(shift(tri*Sin(60)*dir(-90))*tmp);
+	erase(tmp);
+	add(tmp,dashpic);
+	clip(tmp,box((-3*tri,1),(3*tri,-d)));
+	add(shift(B)*tmp);
+	erase(tmp);
+	draw(Label("$x$",EndPoint),O--x*dir(0),Arrow);
+	draw(Label("$y$",EndPoint),O--y*dir(90),Arrow);
+	unfill(shift(B)*scale(1.2)*box((-tri,-d),(tri,d)));
+	draw(shift(B)*scale(1.2)*box((-tri,-d),(tri,d)),linewidth(0.8bp));
+	draw(O--A--B,linewidth(0.8bp));
+	draw(O--tri*dir(-60)--tri*dir(-120)--cycle,linewidth(0.8bp));
+	unfill(shift(O)*scale(ro)*unitcircle);
+	draw(shift(O)*scale(ri)*unitcircle,linewidth(0.8bp));
+	draw(shift(O)*scale(ro)*unitcircle,linewidth(0.8bp));
+	unfill(shift(A)*scale(ro)*unitcircle);
+	draw(shift(A)*scale(ri)*unitcircle,linewidth(0.8bp));
+	draw(shift(A)*scale(ro)*unitcircle,linewidth(0.8bp));
+	unfill(shift(B)*scale(ro)*unitcircle);
+	draw(shift(B)*scale(ri)*unitcircle,linewidth(0.8bp));
+	draw(shift(B)*scale(ro)*unitcircle,linewidth(0.8bp));
+	label("$O$",O,NW);
+	label("$A$",A,2*N);
+	label("$B$",B,4*N);
+	dot((A+B)/2);
+	label("$M$",(A+B)/2,NE);
+	draw(Label("$\phi=\omega t$",MidPoint,Relative(E)),arc(O,5*ro,0,phi),Arrow);
+\end{asy}
+\caption{题\thequestion}
+\label{86页11.4}
+\end{figure}
+\end{question}
+\begin{solution}
+根据几何关系，可以求出$A$点、$B$点和$M$点的坐标
+\begin{align*}
+	& x_A = a \cos \omega t,\quad y_A = a \sin \omega t \\
+	& x_B = 2a \cos \omega t,\quad y_B = 0 \\
+	& x_M = \frac32 a \cos \omega t,\quad y_M = \frac12 a \sin \omega t
+\end{align*}
+由此可有$B$点和$M$点的速度
+\begin{align*}
+	& \dot{x}_B = -2a \omega \sin \omega t,\quad \dot{y}_B = 0 \\
+	& \dot{x}_M = -\frac32 a \omega \sin \omega t,\quad \dot{y}_M = \frac12 a \omega \cos \omega t
+\end{align*}
+即
+\begin{align*}
+	& v_B = \sqrt{\dot{x}_B^2 + \dot{y}_B^2} = 2a \omega \sin \omega t \\
+	& v_M = \sqrt{\dot{x}_M^2 + \dot{y}_M^2} = \frac12 a\omega \sqrt{8\sin^2 \omega t+1}
+\end{align*}
+\end{solution}
+
+\begin{question}[91页12.19]
+在半径为$r$的铁丝圈上套有一个小环$M$，杆$OA$穿过小环并绕铁丝圈上的点$O$匀速转动，角速度为$\omega$。求小环$M$的速度$v$和加速度$a$。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(200);
+	//91页12.19
+	picture tmp;
+	pair O,C,M;
+	real phi,r,ro,ri;
+	C = (0,0);
+	phi = 55;
+	r = 1;
+	ri = 0.02;
+	ro = 0.04;
+	O = r*dir(180);
+	M = r*dir(phi);
+	draw(scale(r)*unitcircle,linewidth(0.8bp));
+	draw(O--O+0.5*dir(90));
+	draw(Label("$A$",EndPoint),O--interp(O,M,1.3),linewidth(0.8bp));
+	unfill(shift(O)*scale(ro)*unitcircle);
+	draw(shift(O)*scale(ri)*unitcircle,linewidth(0.8bp));
+	draw(shift(O)*scale(ro)*unitcircle,linewidth(0.8bp));
+	unfill(shift(M)*scale(ro)*unitcircle);
+	draw(shift(M)*scale(ro)*unitcircle,linewidth(0.8bp));
+	draw(tmp,arc(C,r,0,phi),linewidth(0.8bp));
+	clip(tmp,shift(M)*scale(ro)*unitcircle);
+	add(tmp);
+	label("$O$",O,W);
+	label("$M$",M,2*N);
+	draw(Label("$\phi$",Relative(0.7),Relative(W)),arc(O,9*ro,90,degrees(M-O)),Arrow);
+	draw(O--C--M,dashed);
+	draw(Label("$2\phi$",MidPoint,Relative(E)),arc(C,3*ro,phi,180),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{91页12.19}
+\end{figure}
+\end{question}
+
+\begin{solution}
+以$O$为原点建立坐标系，可得$M$点的坐标
+\begin{equation*}
+\begin{cases}
+	x_M = r+r\cos(\pi-2\phi) = r-r\cos 2\phi = r-r\cos 2\omega t \\
+	y_M = r\sin(\pi-2\phi) = r\sin 2\phi = r\sin 2\omega t
+\end{cases}
+\end{equation*}
+因此可有
+\begin{equation*}
+\begin{cases}
+	\dot{x}_M = 2r\omega \sin 2\omega t \\
+	\dot{y}_M = 2r\omega \cos 2\omega t
+\end{cases},\quad 
+\begin{cases}
+	\ddot{x}_M = 4r\omega^2 \cos 2\phi \\
+	\ddot{y}_M = -4r\omega^2 \sin 2\phi
+\end{cases}
+\end{equation*}
+因此，可有
+\begin{equation*}
+	v = \sqrt{\dot{x}_M^2 + \dot{y}_M^2} = 2r\omega,\quad a = \sqrt{\ddot{x}_M^2 + \ddot{y}_M^2} = 4r\omega^2 
+\end{equation*}
+实际上，小环$M$在以$2\omega$的角速度做圆周运动。
+\end{solution}
+
+\begin{question}[91页12.31]
+杆$AB$的一段$A$以匀速$v_A$沿直线导轨$CD$移动，杆$AB$始终穿过一个与导轨$CD$相距为$a$的可转动套筒$O$。杆$AB$上点$M$至滑块$A$的距离是$b$。取$O$为极点，试用极坐标$r,\phi$表示点$M$的速度和加速度。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(250);
+	//91页12.31
+	picture dashpic;
+	pair O,A,M,dash,P;
+	real phi,a,b,l1,l2,d,dd,r,tri;
+	path tre;
+	O = (0,0);
+	phi = 60;
+	a = 1;
+	b = 0.8;
+	l1 = a/Cos(phi);
+	l2 = 1.1;
+	d = 0.05;
+	dd = 1.5*d;
+	r = 0.04;
+	dash = dir(-135);
+	tre = a*dir(90)--a*dir(-90);
+	draw(dashpic,tre,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.02){
+		P = relpoint(tre,r);
+		draw(dashpic,P--P+dash);
+	}
+	draw(Label("$x$",EndPoint),O--1.5*a*dir(0),Arrow);
+	draw(Label("$D$",BeginPoint,Relative(W)),a*dir(0)+a*dir(-90)--a*dir(0)+1.3*l1*dir(90));
+	label("$C$",a*dir(0)+1.3*l1*dir(90),W);
+	draw(rotate(phi)*box((-l2,-d),(l1,d)),linewidth(0.8bp));
+	draw(Label("$B$",EndPoint),l1*dir(phi)--1.05*l2*dir(phi-180),dashed);
+	draw(O--0.4*a*dir(-90));
+	M = (l1-b)*dir(phi);
+	A = l1*dir(phi);
+	draw(M--M+0.4*a*dir(phi+90));
+	draw(A--A+0.4*a*dir(phi+90));
+	draw(Label("$\boldsymbol{v}_A$",EndPoint,Relative(E)),A--A+0.5*dir(90),Arrow);
+	tri = 0.23;
+	draw(O--tri*dir(180-30)--tri*dir(180+30)--cycle,linewidth(0.8bp));
+	clip(dashpic,box((-2*d,-tri),(1,tri)));
+	add(shift(tri*Sin(60)*dir(180))*dashpic);
+	unfill(rotate(phi)*box((-1.8*dd,-dd),(1.8*dd,dd)));
+	draw(rotate(phi)*box((-1.8*dd,-dd),(1.8*dd,dd)),linewidth(0.8bp));
+	draw(shift(O)*scale(r)*unitcircle,linewidth(0.8bp));
+	unfill(shift(A)*rotate(90)*box((-1.8*dd,-dd),(1.8*dd,dd)));
+	draw(shift(A)*rotate(90)*box((-1.8*dd,-dd),(1.8*dd,dd)),linewidth(0.8bp));
+	draw(shift(A)*scale(r)*unitcircle,linewidth(0.8bp));
+	draw(Label("$a$",MidPoint,Relative(E)),0.3*a*dir(-90)--a*dir(0)+0.3*a*dir(-90),Arrows);
+	draw(Label("$b$",MidPoint,Relative(W)),M+0.3*a*dir(phi+90)--A+0.3*a*dir(phi+90),Arrows);
+	label("$A$",A,2*E);
+	dot(M);
+	label("$M$",M,SE);
+	label("$O$",O,2.5*dir(110));
+	r = 0.4;
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(O,r,0,phi),Arrow);
+\end{asy}
+\caption{题\thequestion}
+\label{91页12.31}
+\end{figure}
+\end{question}
+\begin{solution}
+首先计算$A$点的坐标为
+\begin{equation*}
+	x_A = a,\quad y_A = a\tan \phi
+\end{equation*}
+由此有
+\begin{equation*}
+	v_A = \dot{y}_A = a\sec^2 \phi \dot{\phi}
+\end{equation*}
+所以
+\begin{equation*}
+	\dot{\phi} = \frac{v_A}{a} \cos^2 \phi
+\end{equation*}
+点$M$的极坐标$r = a\sec \phi - b$。因此，由式\eqref{第一章：柱坐标系中的速度}可得极坐标下的速度分量
+\begin{equation*}
+\begin{cases}
+	v_r = \dot{r} = a \dot{\phi} \sec \phi \tan \phi = v_A \sin \phi \\
+	v_\phi = r \dot{\phi} = \dfrac{v_A r}{a} \cos^2 \phi
+\end{cases}
+\end{equation*}
+因此，$M$点的速度为
+\begin{equation*}
+	v = \sqrt{v_r^2+v_\phi^2} = \frac{v_A}{a}\sqrt{a^2 \sin^2 \phi + r^2 \cos^4 \phi}
+\end{equation*}
+由式\eqref{第一章：柱坐标系中的加速度}可得极坐标下的加速度分量
+\begin{equation*}
+\begin{cases}
+	\displaystyle a_r = \ddot{r}-r\dot{\phi}^2 = v_A\dot{\phi} \cos \phi - r\dot{\phi}^2 = \frac{b v_A^2}{a^2} \cos^4 \phi \\[1.5ex]
+	\displaystyle a_\phi = r\ddot{\phi} + 2\dot{r}\dot{\phi} = \frac{2bv_A^2}{a^2}\sin \phi \cos^3 \phi
+\end{cases}
+\end{equation*}
+因此，$M$点的加速度为
+\begin{equation*}
+	a = \sqrt{a_r^2 + a_\phi^2} = \frac{b v_A^2}{a^2} \cos^3 \phi \sqrt{\cos^2\phi + 4\sin^2 \phi} = \frac{b v_A^2}{a^2} \cos^3 \phi \sqrt{1 + 3\sin^2 \phi}
+\end{equation*}
+\end{solution}
+
+\subsection{刚体的运动学}
+
+\begin{question}[100页14.8]
+半长轴和半转轴分别为$a$和$b$的椭圆齿轮副中，齿轮$I$的角速度$\omega_1$为常数，求此椭圆齿轮副的传动规律。已知两齿轮轴间的距离是$O_1O_2=2a$，$\phi$是两转动轴的联机与椭圆齿轮$I$的长轴之间的夹角。两转动轴各自通过椭圆的一个焦点。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(300);
+	//100页14.8
+	picture ell,tmp,dashpic;
+	pair O,O1,O2,C,M,dash,P;
+	real phi,theta,a,b,c,e,l,p,r1,tri,ri,ro,d;
+	path tre;
+	O = (0,0);
+	phi = 35;
+	a = 3;
+	b = 1.5;
+	c = sqrt(a**2-b**2);
+	e = c/a;
+	p = b**2/a;
+	l = 2*a;
+	tri = 0.3;
+	ri = 0.05;
+	ro = 0.1;
+	d = 0.112;
+	dash = dir(-135);
+	tre = a*dir(180)--a*dir(0);
+	draw(dashpic,tre,linewidth(1.5bp));
+	for(real r=0;r<=1;r=r+0.015){
+		P = relpoint(tre,r);
+		draw(dashpic,P--P+dash);
+	}
+	O1 = (-c,0);
+	draw(tmp,O--tri*dir(-60)--tri*dir(-120)--cycle,linewidth(0.8bp));
+	clip(dashpic,box((-tri,-d),(tri,1)));
+	add(tmp,shift(tri*Sin(60)*dir(-90))*dashpic);
+	add(shift(O1)*rotate(180)*tmp);
+	draw(ell,xscale(a)*yscale(b)*unitcircle,linewidth(0.8bp));
+	draw(ell,1.1*a*dir(180)--1.1*a*dir(0),dashed);
+	add(rotate(phi,O1)*ell);
+	r1 = p/(1-e*Cos(phi));
+	M = O1+r1*dir(0);
+	C = O1+2c*dir(phi);
+	draw(O1--M--C,dashed);
+	unfill(shift(O1)*scale(ro)*unitcircle);
+	draw(shift(O1)*scale(ro)*unitcircle,linewidth(0.8bp));
+	draw(shift(O1)*scale(ri)*unitcircle,linewidth(0.8bp));
+	unfill(shift(C)*scale(ri)*unitcircle);
+	draw(shift(C)*scale(ri)*unitcircle,linewidth(0.8bp));
+	draw(Label("$\omega_1$",MidPoint,Relative(W)),arc(O1,10*ro,85,phi+5),Arrow);
+	draw(Label("$\phi$",MidPoint,Relative(W)),arc(O1,10*ro,phi,0),Arrows);
+	label("$r_1$",O1+0.5*r1*dir(0),S);
+	label("$I$",O1+c*dir(phi),dir(phi+90));
+	label("$N_1$",O1+(1.1*a-c)*dir(phi-180),dir(phi-180));
+	label("$M_1$",O1+(1.1*a+c)*dir(phi),dir(phi));
+	label("$O_1$",O1,SE);
+	label("$O'_1$",C,WNW);
+	O2 = O1+(l,0);
+	theta = aCos((1-p/(l-r1))/e);
+	C = O2+2*c*dir(theta-180);
+	add(shift(O2)*tmp);
+	add(rotate(theta,O2)*shift((l-2*c)*dir(0))*ell);
+	draw(O2--M--C,dashed);
+	unfill(shift(O2)*scale(ro)*unitcircle);
+	draw(shift(O2)*scale(ro)*unitcircle,linewidth(0.8bp));
+	draw(shift(O2)*scale(ri)*unitcircle,linewidth(0.8bp));
+	unfill(shift(C)*scale(ri)*unitcircle);
+	draw(shift(C)*scale(ri)*unitcircle,linewidth(0.8bp));
+	unfill(shift(M)*scale(ri)*unitcircle);
+	draw(shift(M)*scale(ri)*unitcircle,linewidth(0.8bp));
+	draw(Label("$\omega_2$",EndPoint),arc(O2,10*ro,180-15,180+theta+5),Arrow);
+	label("$M$",M,SE);
+	label("$r_2$",O2+0.5*(l-r1)*dir(180),N);
+	label("$II$",O2+c*dir(theta-180),dir(theta-90));
+	label("$N_2$",O2+(1.1*a+c)*dir(theta-180),dir(theta-180));
+	label("$M_2$",O2+(1.1*a-c)*dir(theta),dir(theta));
+	label("$O_2$",O2,NW);
+	label("$O'_2$",C,ESE);
+\end{asy}
+\caption{题\thequestion}
+\label{100页14.8}
+\end{figure}
+\end{question}
+\begin{solution}
+以$O_1$为极点，$O_1M_1$方向为极径建立极坐标系，则在此坐标系中，椭圆$I$的方程可以表示为
+\begin{equation*}
+	r_1 = \frac{p}{1-e\cos \xi}
+\end{equation*}
+其中$p = \dfrac{a^2-c^2}{a}$为半通径，$e=\dfrac{c}{a}$为离心率，$c=\sqrt{a^2-b^2}$为椭圆的焦距，$\xi$为极角。则椭圆的弧长可以表示为
+\begin{equation*}
+	s = \int_0^\phi \sqrt{\left(\frac{\mathrm{d} r_1}{\mathrm{d} \xi}\right)^2+r_1^2} \mathrm{d} \xi = \int_0^\phi p \frac{\sqrt{1-2e\cos\xi+e^2}}{(1-e\cos\xi)^2} \mathrm{d} \xi
+\end{equation*}
+由此可得$M$点的速度为
+\begin{equation*}
+	v_M = \dot{s} = p \frac{\sqrt{1-2e\cos\phi+e^2}}{(1-e\cos\phi)^2} \dot{\phi} = p \frac{\sqrt{1-2e\cos\phi+e^2}}{(1-e\cos\phi)^2} \omega_1
+\end{equation*}
+同样地，以$O_2$为极点，$O_2N_2$方向为极径建立极坐标系，则在此坐标系中，椭圆$II$的方程可以表示为
+\begin{equation*}
+	r_2 = \frac{p}{1-e\cos \xi}
+\end{equation*}
+记$O_2N_2$与$O_1O_2$的夹角为$\theta$，则在此坐标系中可得椭圆的弧长可以表示为
+\begin{equation*}
+	s = \int_{-\theta}^0 p \frac{\sqrt{1-2e\cos\xi+e^2}}{(1-e\cos\xi)^2} \mathrm{d} \xi = -\int_0^{-\theta} p \frac{\sqrt{1-2e\cos\xi+e^2}}{(1-e\cos\xi)^2} \mathrm{d} \xi
+\end{equation*}
+由此可得$M$点的速度为
+\begin{equation*}
+	v_M = \dot{s} = -p \frac{\sqrt{1-2e\cos\theta+e^2}}{(1-e\cos\theta)^2} (-\dot{\theta}) = p \frac{\sqrt{1-2e\cos\theta+e^2}}{(1-e\cos\theta)^2} \omega_2
+\end{equation*}
+由此可得椭圆齿轮副之间的传动规律为
+\begin{equation*}
+	p \frac{\sqrt{1-2e\cos\phi+e^2}}{(1-e\cos\phi)^2} \omega_1 = p \frac{\sqrt{1-2e\cos\theta+e^2}}{(1-e\cos\theta)^2} \omega_2
+\end{equation*}
+即
+\begin{equation}
+	\frac{\omega_1}{\omega_2} = \sqrt{\frac{1-2e\cos\phi+e^2}{1-2e\cos\theta+e^2}} \left(\frac{1-e\cos\theta}{1-e\cos\phi}\right)^2 = \sqrt{\frac{a^2-2ac\cos \phi + c^2}{a^2-2ac\cos \theta + c^2}} \left(\frac{a-c\cos\theta}{a-c\cos\phi}\right)^2
+	\label{14.8-1}
+\end{equation}
+角度$\theta$和$\phi$的关系由$O_1O_2$的长度来确定，即
+\begin{equation*}
+	2a = r_1+r_2 = \frac{p}{1-e\cos \phi} + \frac{p}{1-e\cos \theta}
+\end{equation*}
+所以有
+\begin{equation}
+	\cos \theta = \frac{2ac-(a^2+c^2)\cos \phi}{a^2-2ac\cos \phi + c^2}
+	\label{14.8-2}
+\end{equation}
+将式\eqref{14.8-2}代入传动规律\eqref{14.8-1}中，可得此椭圆齿轮副的传动关系为
+\begin{equation*}
+	\frac{\omega_1}{\omega_2} = \frac{a^2-c^2}{a^2-2ac\cos\phi+c^2}
+\end{equation*}
+\end{solution}
+
+\begin{question}[102页14.13]
+偏心轮的直径$d=2r$，转轴$O$到轮心$C$的距离$OC=a$。轴$Ox$沿着推杆的方向，参考原点在转轴$O$上。求推杆的运动规律。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(250);
+	//102页14.13
+	picture dashpic;
+	pair O,A,C,dash,P;
+	real phi,theta,a,r,l,ll,tri,ri,ro,d;
+	path tre;
+	O = (0,0);
+	phi = 60;
+	a = 1;
+	r = 1.4;
+	l = 2.2;
+	ll = 0.7*l;
+	d = 0.07;
+	tri = 0.3;
+	ri = 0.05;
+	ro = 0.1;
+	dash = dir(-135);
+	tre = a*dir(180)--a*dir(0);
+	draw(dashpic,tre,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.04){
+		P = relpoint(tre,r);
+		draw(dashpic,P--P+dash);
+	}
+	C = a*dir(90-phi);
+	draw(Label("$x$",EndPoint),O--(2*a+l)*dir(90),dashed);
+	draw(Label("$a$",MidPoint,Relative(E)),O--C);
+	draw(shift(C)*scale(r)*unitcircle,linewidth(0.8bp));
+	draw(O--tri*dir(-60)--tri*dir(-120)--cycle,linewidth(0.8bp));
+	clip(dashpic,box((-tri,-1.6*d),(tri,1)));
+	add(shift(tri*Sin(60)*dir(-90))*dashpic);
+	theta = aSin(a/(r+ro)*Sin(phi));
+	A = C+(r+ro)*dir(theta+90);
+	draw(Label("$r$",MidPoint,Relative(W)),A--C,dashed);
+	draw(shift(A)*box((-d,0),(d,l)),linewidth(0.8bp));
+	unfill(shift(A)*scale(ro)*unitcircle);
+	draw(shift(A)*scale(ro)*unitcircle,linewidth(0.8bp));
+	draw(shift(A)*scale(ri)*unitcircle,linewidth(0.8bp));
+	unfill(shift(C)*scale(ro)*unitcircle);
+	draw(shift(C)*scale(ro)*unitcircle,linewidth(0.8bp));
+	draw(shift(C)*scale(ri)*unitcircle,linewidth(0.8bp));
+	unfill(shift(O)*scale(ro)*unitcircle);
+	draw(shift(O)*scale(ro)*unitcircle,linewidth(0.8bp));
+	draw(shift(O)*scale(ri)*unitcircle,linewidth(0.8bp));
+	tri = 0.7*tri;
+	clip(dashpic,box((-tri,-1.6*d),(tri,1)));
+	draw(dashpic,(-tri,0)--(-tri,-1.6*d),linewidth(1bp));
+	draw(dashpic,(tri,0)--(tri,-1.6*d),linewidth(1bp));
+	add(shift(A+ll*dir(90)+1.5*d*dir(0))*rotate(90)*dashpic);
+	add(shift(A+ll*dir(90)+1.5*d*dir(180))*rotate(-90)*dashpic);
+	label("$O$",O,2*W);
+	label("$C$",C,2*E);
+	label("$A$",A,2*W);
+	r = 0.4;
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(O,r,90-phi,90),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{102页14.13}
+\end{figure}
+\end{question}
+\begin{solution}
+推杆的坐标可用$A$点的坐标$x$表示，记$\angle OAC = \theta$，则在$\triangle OAC$中根据正弦定理可有
+\begin{equation*}
+	\frac{a}{\sin\theta} = \frac{r}{\sin \phi}
+\end{equation*}
+即有
+\begin{equation*}
+	\sin \theta = \frac{a}{r} \sin \phi,\quad \cos \theta = \sqrt{1-\sin^2 \theta} = \sqrt{1-\frac{a^2}{r^2}\sin^2 \phi}
+\end{equation*}
+所以有
+\begin{equation*}
+	x = a\cos \phi + r\cos \theta = a\cos \phi + r\sqrt{1-\frac{a^2}{r^2}\sin^2 \phi} = a\cos \phi + \sqrt{r^2 - a^2 \sin^2 \phi}
+\end{equation*}
+\end{solution}
+
+\begin{question}[106页15.6]
+沿直线导轨滑动的套筒$A$和$B$与长为$l$的连杆$AB$连接，套筒$A$以匀速$v_A$运动。设套筒$A$是从$O$点开始运动的，以$A$为基点，写出杆$AB$的运动方程。其中$\angle BOA = \pi-\alpha$。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(250);
+	//106页15.6
+	picture dashpic,tmp;
+	pair O,A,B,dash,P;
+	real alpha,phi,a,b,l,d,d1,d2,r,r0,dl1,dl2;
+	path tre;
+	O = (0,0);
+	alpha = 50;
+	a = 2;
+	l = 3;
+	b = sqrt(l**2-(a*Sin(alpha))**2)-a*Cos(alpha);
+	phi = aSin(a/l*Sin(alpha));
+	A = a*dir(180-alpha);
+	B = b*dir(0);
+	draw(Label("$x$",EndPoint,Relative(E)),(1.5*A.x,0)--2.3*B);
+	draw(Label("$y$",EndPoint,Relative(E)),O--(0,1.5*A.y));
+	draw(1.5*A--O--2*B,linewidth(1bp));
+	d = 0.07;
+	d1 = 0.2;
+	d2 = 0.1;
+	r = d;
+	unfill(shift(A)*rotate(180-alpha)*box((-d1,-d2),(d1,d2)));
+	draw(shift(A)*rotate(180-alpha)*box((-d1,-d2),(d1,d2)),linewidth(0.8bp));
+	unfill(shift(B)*box((-d1,-d2),(d1,d2)));
+	draw(shift(B)*box((-d1,-d2),(d1,d2)),linewidth(0.8bp));
+	unfill(shift(B)*rotate(-phi)*box((-l,-d),(0,d)));
+	draw(shift(B)*rotate(-phi)*box((-l,-d),(0,d)),linewidth(0.8bp));
+	unfill(shift(A)*scale(r)*unitcircle);
+	draw(shift(A)*scale(r)*unitcircle,linewidth(0.8bp));
+	unfill(shift(B)*scale(r)*unitcircle);
+	draw(shift(B)*scale(r)*unitcircle,linewidth(0.8bp));
+	draw(A--interp(A,B,1.2),dashed);
+	r0 = 0.4;
+	draw(Label("$\phi$",MidPoint,Relative(W)),arc(B,r0,0,-phi),Arrows);
+	r0 = 0.8;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,r0,180-alpha,180),Arrows);
+
+	dl2 = 0.18;
+	dash = dl2*dir(-135);
+	tre = O--l*dir(0);
+	//draw(dashpic,tre,linewidth(1bp));
+	for(real rp=0;rp<=1;rp=rp+0.02){
+		P = relpoint(tre,rp);
+		draw(dashpic,P--P+dash);
+	}
+	dl1 = 0.4*b;
+	add(tmp,dashpic);
+	clip(tmp,box((0,1),(dl1,-dl2)));
+	add(shift(2*B-dl1*dir(0))*tmp);
+	dl1 = 0.25*a;
+	clip(tmp,box((0,1),(dl1,-dl2)));
+	add(shift(1.5*A)*rotate(-alpha)*tmp);
+	erase(tmp);
+	erase(dashpic);
+	tre = r0*dir(A)--O--r0*dir(B);
+	for(real rp=0;rp<=1;rp=rp+0.04){
+		P = relpoint(tre,rp);
+		draw(dashpic,P--P+dash);
+	}
+	clip(dashpic,box(0.6*r0*dir(A)+2*dl2*dir(180),0.7*r0*dir(B)+dl2*dir(-90)));
+	add(dashpic);
+	label("$O$",O,2*S);
+	label("$A$",A,2*NNE);
+	label("$B$",B,2*NNE);
+\end{asy}
+\caption{题\thequestion}
+\label{106页15.6}
+\end{figure}
+\end{question}
+\begin{solution}
+点$A$的坐标为
+\begin{equation*}
+	x_A = -v_A t \cos \alpha,\quad y_A = v_A t \sin \alpha
+\end{equation*}
+在$\triangle OAB$中应用正弦定理可得
+\begin{equation*}
+	\frac{l}{\sin(\pi-\alpha)} = \frac{v_A t}{\sin \phi}
+\end{equation*}
+由此可得
+\begin{equation*}
+	\phi = \arcsin\left(\frac{v_A t}{l} \sin \alpha\right)
+\end{equation*}
+\end{solution}
+
+\subsection{质点动力学}
+
+\begin{question}[209页31.28]
+质点$A$在重力作用下沿粗糙的螺旋面运动。螺旋面的轴$Oz$是铅垂的，方程为$z = a\phi+f(r)$。螺旋面与质点的摩擦系数为$k$，设$a$为常数。在什么条件下，质点在运动时，保持到轴$Oz$的距离$AB = r_0$不变，即质点将沿螺旋线运动？并求质点的速度。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(350);
+	//209页31.28
+	picture tmp;
+	pair O,i,j,k,A,B,tau,n,dirtau,dirn,ctau;
+	real a,h,h0,r,theta0,thetam;
+	path clp1,clp2;
+	O = (0,0);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	pair topcir(real theta){
+		return r*cos(theta)*i+r*sin(theta)*j+h0*k;
+	}
+	pair botcir(real theta){
+		return r*cos(theta)*i+r*sin(theta)*j;
+	}
+	pair helix(real theta){
+		return r*cos(theta)*i+r*sin(theta)*j+(a*theta)*k;
+	}
+	r = 1;
+	h = 3;
+	h0 = h;
+	draw(Label("$x$",EndPoint),O--2*r*i,Arrow);
+	draw(Label("$y$",EndPoint),O--1.5*r*j,Arrow);
+	draw(Label("$z$",EndPoint),O--1.2*h*k,Arrow);
+	clp1 = graph(botcir,0,2*pi)--cycle;
+	clp2 = box(r*dir(180),r*dir(0)+h*k);
+	unfill(clp1);
+	unfill(clp2);
+	draw(tmp,O--2*r*i,dashed);
+	draw(tmp,O--1.5*r*j,dashed);
+	draw(tmp,O--1.2*h*k,dashed);
+	clip(tmp,clp1);
+	add(tmp);
+	erase(tmp);
+	draw(tmp,O--2*r*i,dashed);
+	draw(tmp,O--1.5*r*j,dashed);
+	draw(tmp,O--1.2*h*k,dashed);
+	unfill(tmp,clp1);
+	clip(tmp,clp2);
+	add(tmp);
+	erase(tmp);
+	draw(graph(topcir,0,2*pi),linewidth(1bp));
+	theta0 = 1.9;
+	draw(graph(botcir,theta0,theta0+pi),dashed);
+	draw(graph(botcir,theta0+pi,theta0+2*pi),linewidth(1bp));
+	draw(r*dir(0)--r*dir(0)+h*k,linewidth(1bp));
+	draw(r*dir(180)--r*dir(180)+h*k,linewidth(1bp));
+	h0 = 1.5;
+	draw(graph(topcir,0,2*pi),dashed);
+	a = 0.208;
+	thetam = atan(j.x/i.x)+pi;
+	//draw(graph(helix,0,h/a),linewidth(1bp));
+	draw(graph(helix,0,thetam),linewidth(1bp));
+	draw(graph(helix,thetam,thetam+pi),dashed);
+	thetam = thetam+pi;
+	draw(graph(helix,thetam,thetam+pi),linewidth(1bp));
+	thetam = thetam+pi;
+	draw(graph(helix,thetam,thetam+pi),dashed);
+	thetam = thetam+pi;
+	draw(graph(helix,thetam,h/a),linewidth(1bp));
+	theta0 = h0/a;
+	A = helix(theta0);
+	B = h0*k;
+	dot(A);
+	label("$A$",A,SE);
+	label("$B$",B,W);
+	draw(A--B,dashed);
+	tau = -r*sin(theta0)*i+r*cos(theta0)*j+a*k;
+	n = -r*cos(theta0)*i-r*sin(theta0)*j;
+	dirtau = tau/(sqrt(r**2+a**2));
+	dirn = n/r;
+	ctau = -r*sin(theta0)*i+r*cos(theta0)*j;
+	draw(Label("$\boldsymbol{\tau}$",EndPoint),A--A+0.8*tau,Arrow);
+	draw(A--A+0.8*ctau,dashed);
+	draw(Label("$\boldsymbol{n}$",EndPoint,SSW),A--A+0.8*n,Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint,ENE),A--A+0.6*dirtau+1.4*dirn,Arrow);
+	draw(Label("$\boldsymbol{v}$",EndPoint),A--A-0.7*tau,Arrow);
+	draw(A--A-h0*k--O,dashed);
+	draw(Label("$\boldsymbol{g}$",EndPoint,Relative(W)),A--A-0.8*k,Arrow);
+	r = 0.2;
+	draw(Label("$\beta$",MidPoint,Relative(E)),arc(A,r,degrees(0.6*dirtau+1.4*dirn),degrees(n)));
+	r = 0.3;
+	draw(arc(A,r,degrees(ctau),degrees(tau)));
+	draw(Label("$\alpha$",EndPoint),A+r*dir((degrees(ctau)+degrees(tau))/2)--A+r*dir((degrees(ctau)+degrees(tau))/2)+0.11*dir(-95));
+	//draw(A+r*dir((degrees(0.6*dirtau+1.4*dirn)+degrees(n))/2)--A+r*dir((degrees(0.6*dirtau+1.4*dirn)+degrees(n))/2)+0.11*dir(80));
+	draw(Label("$\phi$",MidPoint,Relative(E)),graph(botcir,0,theta0-2*pi),Arrows);
+\end{asy}
+\caption{题\thequestion}
+\label{209页31.28}
+\end{figure}
+\end{question}
+\begin{solution}
+质点$A$运动的螺旋线的柱坐标方程为
+\begin{equation*}
+\begin{cases}
+	r = r_0 \\
+	z = a\phi+f(r)
+\end{cases}
+\end{equation*}
+用直角坐标下的矢量可表示为
+\begin{equation*}
+	\mbf{r}(\phi) = \begin{pmatrix} r_0 \cos \phi \\ r_0 \sin \phi \\ a\phi + f(r_0) \end{pmatrix}
+\end{equation*}
+因此，螺旋线的单位切矢量为
+\begin{equation*}
+	\mbf{\tau}(\phi) = \frac{\mbf{r}'(\phi)}{|\mbf{r}'(\phi)|} = \frac{1}{\sqrt{a^2+r_0^2}} \begin{pmatrix} -r_0 \sin \phi \\ r_0 \cos \phi \\ a \end{pmatrix}
+\end{equation*}
+主法线单位矢量为
+\begin{equation*}
+	\mbf{n}(\phi) = \frac{\mbf{r}''(\phi)}{|\mbf{r}''(\phi)|} = \begin{pmatrix} -\cos \phi \\ -\sin \phi \\ 0 \end{pmatrix}
+\end{equation*}
+副法线单位矢量为
+\begin{equation*}
+	\mbf{b}(\phi) = \mbf{\tau}(\phi) \times \mbf{n}(\phi) = \frac{1}{\sqrt{a^2+r_0^2}} \begin{pmatrix} a\sin \phi \\ -a\cos \phi \\ r_0 \end{pmatrix}
+\end{equation*}
+曲率半径为
+\begin{equation*}
+	\rho(\phi) = \frac{|\mbf{r}'(\phi)|^3}{|\mbf{r}'(\phi) \times \mbf{r}''(\phi)|} = \frac{a^2+r_0^2}{r_0}
+\end{equation*}
+
+螺旋面用矢量可以表示为
+\begin{equation*}
+	\mbf{\varSigma}(r,\phi) = \begin{pmatrix} r\cos \phi \\ r\sin \phi \\ a\phi+f(r) \end{pmatrix}
+\end{equation*}
+由此可得螺旋面的法线单位矢量
+\begin{equation*}
+	\mbf{n}_\varSigma = \frac{\dfrac{\pl \mbf{\varSigma}}{\pl r} \times \dfrac{\pl \mbf{\varSigma}}{\pl \phi}}{\left|\dfrac{\pl \mbf{\varSigma}}{\pl r} \times \dfrac{\pl \mbf{\varSigma}}{\pl \phi}\right|} = \frac{1}{\sqrt{a^2+\big[(f'(r))^2+1\big] r^2}} \begin{pmatrix} a\sin\phi-rf'(r)\cos\phi \\ -a\cos\phi-rf'(r)\sin\phi \\ r \end{pmatrix}
+\end{equation*}
+直接计算可以得到
+\begin{align*}
+	& \mbf{n}_\varSigma \cdot \mbf{\tau} = 0,\quad \mbf{n}_\varSigma \cdot \mbf{n} = \frac{r_0 f'(r_0)}{\sqrt{a^2+ \big[(f'(r_0))^2+1\big] r_0^2}} = \cos \beta\\ 
+	& \mbf{n}_\varSigma \cdot \mbf{b} = \frac{\sqrt{a^2+r_0^2}}{\sqrt{a^2+ \big[(f'(r_0))^2+1\big] r_0^2}} = \sin \beta 
+\end{align*}
+在$\mbf{\tau},\mbf{n},\mbf{b}$的方向上分解运动方程，记$\tan \alpha = \dfrac{a}{r_0}$，可以得到
+\begin{subnumcases}{}
+	kN - mg\sin \alpha = ma_\tau \label{31.28-1} \\
+	N\cos \beta = m\frac{v^2}{\rho} \label{31.28-2} \\
+	N\sin \beta - mg\cos \alpha = 0 \label{31.28-3}
+\end{subnumcases}
+由式\eqref{31.28-3}可有
+\begin{equation*}
+	N = \frac{\cos \alpha}{\sin \beta} mg
+\end{equation*}
+是常数值，因此由\eqref{31.28-2}，速度的大小$v$也是常数值，故$a_\tau=0$。由此可得速度的大小为
+\begin{equation*}
+	v = \sqrt{\frac{\cos \alpha}{\tan \beta} \rho g} = \sqrt{gr_0f'(r_0)}
+\end{equation*}
+由式\eqref{31.28-1}可得质点沿螺旋线运动的条件为
+\begin{equation*}
+	\tan \alpha = \frac{k}{\sin \beta} = k\sqrt{\frac{a^2+\big[(f'(r_0))^2+1\big]r_0^2}{a^2+r_0^2}} = k\sqrt{1+(f'(r_0))^2 \cos^2 \alpha}
+\end{equation*}
+\end{solution}
+
+\begin{question}[215页32.31]
+质量为$m$的物体$A$可在水平直线上移动，系有劲度系数为$k$的弹簧，弹簧的另一端固定在点$B$。当$\alpha=\alpha_0$时，弹簧没有变形。求物体微振动频率和周期。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(300);
+	//215页32.31
+	picture dashpic,tmp;
+	pair O,A,B,P,dash;
+	real alpha,l,lspring,lstart,d1,d2,r0,d,h,ldash;
+	int nmax;
+	path pdash;
+	guide spring,springunit;
+	//画阴影
+	ldash = 10;
+	pdash = ldash*dir(180)--ldash*dir(0);
+	dash = ldash*dir(-135);
+	draw(dashpic,pdash,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.004){
+		P = relpoint(pdash,r);
+		draw(dashpic,P--P+dash);
+	}
+	//画弹簧
+	d = 0.2;
+	h = 0.1;
+	nmax = 12;
+	spring = O--(d/2,h/2);
+	springunit = (d/2,-3*h/2)--(-d/2,-h/2)--(d/2,h/2);
+	for(int i=1;i<nmax;i=i+1){
+		spring = spring--shift(2*i*h*dir(90))*springunit;
+	}
+	spring = spring--(-d/2,nmax*2*h-h/2)--(0,nmax*2*h);
+	//画小车和链接的弹簧
+	O = (0,0);
+	alpha = 35;
+	l = 3;
+	lstart = 0.2*l;
+	lspring = 0.7*l;
+	d1 = 0.8;
+	d2 = 0.3;
+	A = d1*dir(0);
+	B = l*dir(180-alpha);
+	draw(box(A-(d1,d2),A+(d1,d2)),linewidth(1bp));
+	spring = O--shift(lstart*dir(180-alpha))*rotate(90-alpha)*scale(lspring/(nmax*2*h))*spring--B;
+	draw(spring,linewidth(1bp));
+	label("$A$",A);
+	add(tmp,dashpic);
+	h = 0.1;
+	d = 0.25;
+	clip(tmp,box((-d,-h),(d,1)));
+	add(shift(B)*rotate(90-alpha)*yscale(-1)*tmp);
+	erase(tmp);
+	draw(O--l*dir(180),dashed);
+	draw(Label("$\alpha$",MidPoint,Relative(W)),arc(O,0.6*lstart,180,180-alpha),Arrow);
+	label("$B$",B,2*ENE);
+	r0 = 0.07;
+	draw(shift(A+(-d1/2,-d2-r0))*scale(r0)*unitcircle,linewidth(1bp));
+	draw(shift(A+(d1/2,-d2-r0))*scale(r0)*unitcircle,linewidth(1bp));
+	add(tmp,dashpic);
+	d = 1.4*d1;
+	clip(tmp,box((-d,-h),(d,1)));
+	add(shift(A+(0,-d2-2*r0))*tmp);
+	erase(tmp);
+	draw(Label("$h$",MidPoint,Relative(W)),(B.x,0)--B,dashed);
+	label("$O$",(B.x,0),S);
+\end{asy}
+\caption{题\thequestion}
+\label{215页32.31}
+\end{figure}
+\end{question}
+\begin{solution}
+体系的广义坐标为$\alpha$，记$B$点的坐标为$(0,h)$，则小车的坐标可以表示为
+\begin{equation*}
+	x_A = h\cot \alpha
+\end{equation*}
+由此，体系的Lagrange函数可以表示为
+\begin{align*}
+	L & = \frac12 m \dot{x}_A^2 - \frac12 k \left(\frac{h}{\sin \alpha} - \frac{h}{\sin \alpha_0}\right)^2 = \frac{mh^2}{2\sin^4 \alpha} \dot{\alpha}^2 - \frac12 k \left(\frac{h}{\sin \alpha} - \frac{h}{\sin \alpha_0}\right)^2
+\end{align*}
+体系的平衡位置为$\alpha = \alpha_0$，将Lagrange函数在该点附近展开至两阶，可有
+\begin{align*}
+	L & = \frac{mh^2}{2\sin^4 \alpha_0} \dot{\alpha}^2 - \frac{kh^2 \cos^2 \alpha_0}{2 \sin^4 \alpha_0}(\alpha-\alpha_0)^2 
+\end{align*}
+由此，系统的运动方程为
+\begin{equation*}
+	\ddot{\alpha} + \frac{k\cos^2 \alpha_0}{m} (\alpha-\alpha_0) = 0
+\end{equation*}
+因此，体系微振动的角频率和周期分别为
+\begin{equation*}
+	\omega = \sqrt{\frac{k\cos^2 \alpha_0}{m}},\quad T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{m}{k\cos^2 \alpha_0}}
+\end{equation*}
+\end{solution}
+
+\begin{question}[216页32.34]
+质量为$m$的重物$M$固定在杆上。杆在$O$点用铰链固连，并用三根垂直弹簧与基础相连，三个弹簧的劲度系数分别是$k_1,k_2,k_3$，三弹簧在杆上的联结点到铰链的距离分别是$a_1,a_2,a_3$，重物在杆上的联结点到铰链的距离是$b$。杆平衡时沿水平方向。求重物微振动的频率。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("siunitx");
+	import graph;
+	import math;
+	size(300);
+	//216页32.34
+	picture dashpic,tmp;
+	pair O,A,B,P,dash,Ps,Pe;
+	real alpha,a[],b,l[],ls,le,tri,ldash,ddash,ri,ro,M,d,h;
+	path pdash;
+	int nmax;
+	//画阴影
+	ldash = 10;
+	pdash = ldash*dir(180)--ldash*dir(0);
+	dash = ldash*dir(-135);
+	draw(dashpic,pdash,linewidth(1bp));
+	for(real r=0;r<=1;r=r+0.0025){
+		P = relpoint(pdash,r);
+		draw(dashpic,P--P+dash);
+	}
+	//画弹簧
+	guide spring(real d,real h,int nmax){
+		guide temp,springunit;
+		temp = O--(d/2,h/2);
+		springunit = (d/2,-3*h/2)--(-d/2,-h/2)--(d/2,h/2);
+		for(int i=1;i<nmax;i=i+1){
+			temp = temp--shift(2*i*h*dir(90))*springunit;
+		}
+		temp = temp--(-d/2,nmax*2*h-h/2)--(0,nmax*2*h);
+		return temp;
+	}
+	O = (0,0);
+	l[1] = 2;
+	l[2] = 0.7;
+	alpha = 15;
+	a[1] = 1.9;
+	a[2] = 1.4;
+	a[3] = 0.9;
+	ddash = 0.06;
+	draw(l[1]*dir(180-alpha)--l[2]*dir(-alpha),linewidth(1bp));
+	M = 0.05;
+	fill(shift(l[2]*dir(-alpha))*scale(M)*unitcircle);
+	label("$M$",l[2]*dir(-alpha),2*S);
+	draw(O--0.6*l[2]*dir(90-alpha));
+	draw(a[1]*dir(180-alpha)--a[1]*dir(180-alpha)+0.6*l[2]*dir(90-alpha));
+	draw(Label("$a_1$",MidPoint,Relative(W)),a[1]*dir(180-alpha)+0.9*0.6*l[2]*dir(90-alpha)--0.9*0.6*l[2]*dir(90-alpha),Arrows);
+	draw(a[2]*dir(180-alpha)--a[2]*dir(180-alpha)+0.4*l[2]*dir(90-alpha));
+	draw(Label("$a_2$",MidPoint,Relative(W)),a[2]*dir(180-alpha)+0.9*0.4*l[2]*dir(90-alpha)--0.9*0.4*l[2]*dir(90-alpha),Arrows);
+	draw(a[3]*dir(180-alpha)--a[3]*dir(180-alpha)+0.2*l[2]*dir(90-alpha));
+	draw(Label("$a_3$",MidPoint,Relative(W)),a[3]*dir(180-alpha)+0.9*0.2*l[2]*dir(90-alpha)--0.9*0.2*l[2]*dir(90-alpha),Arrows);
+	draw(l[2]*dir(-alpha)--l[2]*dir(-alpha)+0.4*l[2]*dir(90-alpha));
+	draw(Label("$b$",MidPoint,Relative(E)),l[2]*dir(-alpha)+0.9*0.4*l[2]*dir(90-alpha)--0.9*0.4*l[2]*dir(90-alpha),Arrows);
+	ro = 0.05;
+	ri = 0.025;
+	tri = 0.12;
+	unfill(shift(O)*scale(ro)*unitcircle);
+	draw(O--tri*dir(-60)--tri*dir(-120)--cycle,linewidth(1bp));
+	unfill(shift(O)*scale(ri)*unitcircle);
+	draw(shift(O)*arc(O,ro,-alpha,180-alpha),linewidth(1bp));
+	draw(shift(O)*scale(ri)*unitcircle,linewidth(1bp));
+	add(tmp,dashpic);
+	clip(tmp,box((-1.3*tri,-ddash),(1.3*tri,1)));
+	add(shift(tri*Sin(60)*dir(-90))*tmp);
+	label("$O$",O,2*ENE);
+	l[3] = 1;
+	erase(tmp);
+	add(tmp,dashpic);
+	clip(tmp,box((-0.5*a[2],-ddash),(0.5*a[2],1)));
+	add(shift(a[2]*dir(180)+l[3]*dir(-90))*tmp);
+	unfill(shift(a[1]*dir(180-alpha))*scale(ro)*unitcircle);
+	unfill(shift(a[2]*dir(180-alpha))*scale(ro)*unitcircle);
+	unfill(shift(a[3]*dir(180-alpha))*scale(ro)*unitcircle);
+	draw(shift(a[1]*dir(180-alpha))*arc(O,ro,-alpha,180-alpha),linewidth(1bp));
+	draw(shift(a[2]*dir(180-alpha))*arc(O,ro,-alpha,180-alpha),linewidth(1bp));
+	draw(shift(a[3]*dir(180-alpha))*arc(O,ro,-alpha,180-alpha),linewidth(1bp));
+	Ps = a[1]*dir(180-alpha);
+	Pe = a[1]*dir(180)+l[3]*dir(-90);
+	ls = 0.1;
+	le = 0.1;
+	nmax = 8;
+	h = (length(Ps-Pe)-ls-le)/2/nmax;
+	d = 0.1;
+	draw(Pe--shift(Pe+le*dir(Ps-Pe))*rotate(degrees(Ps-Pe)-90)*spring(d,h,nmax)--Ps,linewidth(1bp));
+	label("$k_1$",(Pe+Ps)/2,2*W);
+	Ps = a[2]*dir(180-alpha);
+	Pe = a[2]*dir(180)+l[3]*dir(-90);
+	ls = 0.1;
+	le = 0.1;
+	nmax = 6;
+	h = (length(Ps-Pe)-ls-le)/2/nmax;
+	d = 0.1;
+	draw(Pe--shift(Pe+le*dir(Ps-Pe))*rotate(degrees(Ps-Pe)-90)*spring(d,h,nmax)--Ps,linewidth(1bp));
+	label("$k_2$",(Pe+Ps)/2,2*W);
+	Ps = a[3]*dir(180-alpha);
+	Pe = a[3]*dir(180)+l[3]*dir(-90);
+	ls = 0.1;
+	le = 0.1;
+	nmax = 14;
+	h = (length(Ps-Pe)-ls-le)/2/nmax;
+	d = 0.1;
+	draw(Pe--shift(Pe+le*dir(Ps-Pe))*rotate(degrees(Ps-Pe)-90)*spring(d,h,nmax)--Ps,linewidth(1bp));
+	label("$k_3$",(Pe+Ps)/2,2*W);
+	unfill(shift(a[1]*dir(180-alpha))*scale(ri)*unitcircle);
+	unfill(shift(a[2]*dir(180-alpha))*scale(ri)*unitcircle);
+	unfill(shift(a[3]*dir(180-alpha))*scale(ri)*unitcircle);
+	draw(shift(a[1]*dir(180-alpha))*scale(ri)*unitcircle,linewidth(1bp));
+	draw(shift(a[2]*dir(180-alpha))*scale(ri)*unitcircle,linewidth(1bp));
+	draw(shift(a[3]*dir(180-alpha))*scale(ri)*unitcircle,linewidth(1bp));
+	unfill(shift(a[1]*dir(180)+l[3]*dir(-90))*scale(ri)*unitcircle);
+	unfill(shift(a[2]*dir(180)+l[3]*dir(-90))*scale(ri)*unitcircle);
+	unfill(shift(a[3]*dir(180)+l[3]*dir(-90))*scale(ri)*unitcircle);
+	draw(shift(a[1]*dir(180)+l[3]*dir(-90))*scale(ri)*unitcircle,linewidth(1bp));
+	draw(shift(a[2]*dir(180)+l[3]*dir(-90))*scale(ri)*unitcircle,linewidth(1bp));
+	draw(shift(a[3]*dir(180)+l[3]*dir(-90))*scale(ri)*unitcircle,linewidth(1bp));
+\end{asy}
+\caption{题\thequestion}
+\label{216页32.34}
+\end{figure}
+\end{question}
+\begin{solution}
+体系的广义坐标为杆与水平方向的夹角$\theta$，在此广义坐标下，系统的Lagrange函数为
+\begin{align*}
+	L = \frac12 m(b\dot{\theta})^2 - \left(\frac12 k_1 (a_1\sin \theta)^2 + \frac12 k_2 (a_2\sin \theta)^2 + \frac12 k_3 (a_3\sin \theta)^2\right)
+\end{align*}
+保留到二阶小量的情形下，系统的Lagrange函数为
+\begin{align*}
+	L = \frac12 mb^2 \dot{\theta}^2 - \frac12 \left(k_1 a_1^2 + k_2 a_2^2 + k_3 a_3^2\right) \theta^2
+\end{align*}
+此时系统的运动方程为
+\begin{equation*}
+	\ddot{\theta} + \frac{k_1 a_1^2 + k_2 a_2^2 + k_3 a_3^2}{b^2} \theta = 0
+\end{equation*}
+因此重物微振动的角频率为
+\begin{equation*}
+	\omega = \sqrt{\frac{k_1 a_1^2 + k_2 a_2^2 + k_3 a_3^2}{mb^2}}
+\end{equation*}
+\end{solution}

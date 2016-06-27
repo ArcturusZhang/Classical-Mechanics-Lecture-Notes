@@ -1,0 +1,25 @@
+This is XeTeX, Version 3.14159265-2.6-0.99992 (MiKTeX 2.9) (preloaded format=xelatex 2016.1.11)  1 MAY 2016 00:05
+entering extended mode
+**./chapter3.tex
+(chapter3.tex
+LaTeX2e <2015/10/01> patch level 2
+Babel <3.9m> and hyphenation patterns for 69 languages loaded.
+! Undefined control sequence.
+l.1 \chapter
+            {Hamilton动力学}
+? 
+! Emergency stop.
+l.1 \chapter
+            {Hamilton动力学}
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 5 strings out of 428721
+ 54 string characters out of 3166282
+ 52234 words of memory out of 3000000
+ 3468 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 1096 hyphenation exceptions out of 8191
+ 5i,0n,1p,38b,8s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.
