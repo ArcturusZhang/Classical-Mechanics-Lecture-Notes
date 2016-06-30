@@ -17,7 +17,6 @@
 \usepackage{multirow}
 \usepackage{textcomp}
 \usepackage[top=2.54cm, bottom=2.54cm, left=3.18cm, right=3.18cm]{geometry}
-\usepackage[toc]{multitoc}
 
 \usepackage{asymptote}
 
@@ -41,19 +40,15 @@
 \usepackage{fancyhdr}	%页眉页脚
 
 \usepackage{enumitem}
-\setlist[enumerate,1]{leftmargin=0pt,itemindent=2em,itemsep=0ex,listparindent=2em,parsep = 0ex,topsep = 1ex}
-\setlist[enumerate,2]{leftmargin=0pt,itemsep=0ex,listparindent=2em,parsep = 0ex,topsep = 1ex}
-\setlist[enumerate,3]{leftmargin=0pt,itemsep=0ex,listparindent=2em,parsep = 0ex,topsep = 1ex}
-\setlist[itemize,1]{itemsep = 0ex, parsep = 0ex, topsep = 1ex}
-\setlist[description]{listparindent=2em, itemsep=0ex, parsep = 0ex,topsep = 1ex}
+\setlist[description,1]{leftmargin=0pt,itemindent=2em}
+\setlist[enumerate,1]{leftmargin=0pt,itemindent=2em}
+\setlist[enumerate,2]{leftmargin=1em,itemindent=2em}
+\setlist[enumerate,3]{leftmargin=1em,itemindent=2em}
 
-\ctexset{
-	figurename={\kaishu 图},
+\ctexset{figurename={\kaishu 图},
 	tablename={表},
 	contentsname={目\quad 录},
-	listfigurename={插图目录}
-}
-
+	listfigurename={插图目录}}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\mbf}{\boldsymbol}
 \newcommand{\mrm}[1]{\boldsymbol{\mathnormal{#1}}}
@@ -65,7 +60,6 @@
 \newcommand{\tn}{\mathrm{tn}\,}
 \newcommand{\dn}{\mathrm{dn}\,}
 \newcommand{\am}{\mathrm{am}\,}
-\newcommand{\mathd}{\mathrm{d}}
 \renewcommand{\bf}{\heiti}
 \renewcommand{\bfseries}{\heiti}
 
@@ -131,7 +125,7 @@
 
 \allowdisplaybreaks[3]
 
-\title{《经典力学》讲义}
+\title{《经典力学》讲稿}
 \author{徐晓华\\ 整理：张大鹏\thanks{有修改和删节。所有插图均为重新绘制。}\\ Email:\url{13110290004@fudan.edu.cn}}
 %\date{}
 
@@ -149,6 +143,11 @@
 %在插图目录图编号前加上“图”
 %\usepackage{titletoc}
 %\titlecontents{figure}[0.5cm]{\songti}{\figurename~\thecontentslabel\quad}{\hspace*{-1.5cm}}{\titlerule*[0.12cm]{.}\contentspage}[\addvspace{6pt}]
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures
+}
 
 %旧的样式
 %\usepackage{titlesec}
@@ -161,7 +160,6 @@
 \usepackage[T1]{fontenc}
  
 \definecolor{titlecolor}{rgb}{0.503906,0.503906,0.734375}
-%\definecolor{titlecolor}{RGB}{100,50,255}
 \newcommand{\hwyk}{\heiti}
  
 \newcommand{\mytitle}[1]{
@@ -173,13 +171,11 @@
 }
  
 \newcommand{\mycont}[1]{
-\vspace{-0.5cm}
 \begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
 \cellcolor{black} &\cellcolor{titlecolor} \textcolor{white}
 {\newline\hwyk\LARGE #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
-\vspace{-2.0cm}
 }
  
 \newcommand{\mysection}[1]{
@@ -212,6 +208,22 @@
 \end{tabular}
 \arrayrulewidth=0.4pt
 \vspace{-0.5cm}
+}
+ 
+\definecolor{titlecolor}{rgb}{0.503906,0.503906,0.734375}
+
+\includeonly{
+chapter/chapter0,
+chapter/chapter1,
+chapter/chapter2,
+chapter/chapter3,
+chapter/chapter4,
+chapter/chapter5,
+chapter/chapter6,
+chapter/chapter7,
+chapter/exercise,
+chapter/exercise2,
+chapter/bibliography
 }
 
 \begin{document}
@@ -255,46 +267,40 @@
 {0pc}{1.5ex plus .1ex minus .2ex}{.2pc}
 
 %第零章——引言
-\input{chapter/chapter0}
+\include{chapter/chapter0}
 
 %第一章——牛顿力学
-\input{chapter/chapter1}
+\include{chapter/chapter1}
 
 %第二章——拉格朗日力学
-\input{chapter/chapter2}
+\include{chapter/chapter2}
 
 %第三章——哈密顿力学
-\input{chapter/chapter3}
+\include{chapter/chapter3}
 
 %第四章——两体问题
-\input{chapter/chapter4}
+\include{chapter/chapter4}
 
 %第五章——多自由度微振动与阻尼
-\input{chapter/chapter5}
+\include{chapter/chapter5}
 
 %第六章——刚体
-\input{chapter/chapter6}
+\include{chapter/chapter6}
 
 %第七章——非惯性系
-\input{chapter/chapter7}
+\include{chapter/chapter7}
 
 %附录——金尚年《经典力学》
-\input{chapter/exercise}
+\include{chapter/exercise}
 
 %附录——理论力学习题集
-\input{chapter/exercise2}
+\include{chapter/exercise2}
 
 \backmatter
 
-\addcontentsline{toc}{part}{\listfigurename}{%
-\let\oldnumberline\numberline%
-\renewcommand{\numberline}{\figurename~\oldnumberline}%
-\listoffigures
-}
-
-%\listoffigures
+\addcontentsline{toc}{part}{\listfigurename}\listoffigures
 
 %参考文献
-\input{chapter/bibliography}
+\include{chapter/bibliography}
 
 \end{document}
