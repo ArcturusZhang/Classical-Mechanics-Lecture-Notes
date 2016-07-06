@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (MiKTeX 2.9) (preloaded format=xelatex 2016.5.12)  30 JUN 2016 10:55
+This is XeTeX, Version 3.14159265-2.6-0.99996 (MiKTeX 2.9) (preloaded format=xelatex 2016.5.12)  6 JUL 2016 09:50
 entering extended mode
 **./CM_chs.tex
 (CM_chs.tex
@@ -1869,35 +1869,35 @@ LaTeX Warning: Label `连续体系的Lagrange方程-5' multiply defined.
 )
 \openout1 = `CM_chs.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 217.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 217.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 218.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 218.
  (C:\CTEX\MiKTeX\tex\latex\tipa\t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 217.
-LaTeX Font Info:    ... okay on input line 217.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 218.
+LaTeX Font Info:    ... okay on input line 218.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 217.
+LaTeX Info: Redefining \selectfont on input line 218.
 .................................................
 . fontspec info: "setup-math"
 . 
@@ -1905,57 +1905,57 @@ LaTeX Info: Redefining \selectfont on input line 217.
 .................................................
 \symlegacymaths=\mathgroup8
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 217.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 217.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 217.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 217.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 217.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 217.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 217.
-LaTeX Font Info:    Redeclaring math accent \check on input line 217.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 217.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 217.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 217.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 217.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 217.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 218.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 218.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 218.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 218.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 218.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 218.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 218.
+LaTeX Font Info:    Redeclaring math accent \check on input line 218.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 218.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 218.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 218.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 218.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 217.
+(Font)              `operators' in the math version `normal' on input line 218.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> EU1/qpl/m/n on input line 217.
+(Font)                  OT1/cmr/m/n --> EU1/qpl/m/n on input line 218.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 217.
+(Font)              `operators' in the math version `bold' on input line 218.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> EU1/qpl/m/n on input line 217.
+(Font)                  OT1/cmr/bx/n --> EU1/qpl/m/n on input line 218.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  EU1/qpl/m/n --> EU1/qpl/m/n on input line 217.
+(Font)                  EU1/qpl/m/n --> EU1/qpl/m/n on input line 218.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> EU1/qpl/m/it on input line 217.
+(Font)                  OT1/cmr/m/it --> EU1/qpl/m/it on input line 218.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> EU1/qpl/b/n on input line 217.
+(Font)                  OT1/cmr/bx/n --> EU1/qpl/b/n on input line 218.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 217.
+(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 218.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 217.
+(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 218.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  EU1/qpl/m/n --> EU1/qpl/b/n on input line 217.
+(Font)                  EU1/qpl/m/n --> EU1/qpl/b/n on input line 218.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> EU1/qpl/b/it on input line 217.
+(Font)                  OT1/cmr/bx/it --> EU1/qpl/b/it on input line 218.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> EU1/lmss/b/n on input line 217.
+(Font)                  OT1/cmss/bx/n --> EU1/lmss/b/n on input line 218.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> EU1/lmtt/b/n on input line 217.
+(Font)                  OT1/cmtt/m/n --> EU1/lmtt/b/n on input line 218.
 
 (C:\CTEX\MiKTeX\tex\latex\beamer\base\translator\dicts\translator-basic-diction
 ary\translator-basic-dictionary-English.dict
@@ -1998,7 +1998,7 @@ File: siunitx-abbreviations.cfg 2016/03/01 v2.6q siunitx: Abbreviated units
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box92
-Package hyperref Info: Link coloring ON on input line 217.
+Package hyperref Info: Link coloring ON on input line 218.
 (C:\CTEX\MiKTeX\tex\latex\hyperref\nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -2007,9 +2007,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count269
 )
-LaTeX Info: Redefining \ref on input line 217.
-LaTeX Info: Redefining \pageref on input line 217.
-LaTeX Info: Redefining \nameref on input line 217.
+LaTeX Info: Redefining \ref on input line 218.
+LaTeX Info: Redefining \pageref on input line 218.
+LaTeX Info: Redefining \nameref on input line 218.
  (CM_chs.out)
 (CM_chs.out)
 \@outlinefile=\write5
@@ -2018,37 +2018,37 @@ LaTeX Info: Redefining \nameref on input line 217.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \Pifont with sig. 'm' on line 217.
+. Redefining command \Pifont with sig. 'm' on line 218.
 .................................................
 \c__siunitx_mathsf_int=\count270
-LaTeX Font Info:    Try loading font information for EU1+qpl on input line 217.
+LaTeX Font Info:    Try loading font information for EU1+qpl on input line 218.
 
-LaTeX Font Info:    No file EU1qpl.fd. on input line 217.
+LaTeX Font Info:    No file EU1qpl.fd. on input line 218.
 
 
 LaTeX Font Warning: Font shape `EU1/qpl/m/n' undefined
-(Font)              using `EU1/lmr/m/n' instead on input line 217.
+(Font)              using `EU1/lmr/m/n' instead on input line 218.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 217.
+LaTeX Font Info:    Try loading font information for U+msa on input line 218.
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 217.
+LaTeX Font Info:    Try loading font information for U+msb on input line 218.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 217.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 218.
 
 (C:\CTEX\MiKTeX\tex\latex\jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
-(Font)              size <10.95> substituted on input line 217.
+(Font)              size <10.95> substituted on input line 218.
 
 \c__siunitx_mathtt_int=\count271
-LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 217
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 218
 .
 (C:\CTEX\MiKTeX\tex\latex\euenc\eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -2069,7 +2069,7 @@ File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 . 
 . Could not resolve font FangSong/I (it probably doesn't exist).
 .................................................
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 220.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 221.
 
 
 (C:\CTEX\MiKTeX\tex\latex\lm\t1lmtt.fd
@@ -2125,14 +2125,14 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <18.06749> not available
-(Font)              size <17.28> substituted on input line 236.
+(Font)              size <17.28> substituted on input line 237.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <15.05624> not available
-(Font)              size <14.4> substituted on input line 236.
+(Font)              size <14.4> substituted on input line 237.
 
 
-Overfull \hbox (15.63632pt too wide) in paragraph at lines 236--236
+Overfull \hbox (15.63632pt too wide) in paragraph at lines 237--237
 |  []
  []
 
@@ -2998,7 +2998,7 @@ Overfull \hbox (13.79666pt too wide) in paragraph at lines 3703--3703
  []
 
 [114] [115])
-Overfull \hbox (1.56488pt too wide) in paragraph at lines 3764--268
+Overfull \hbox (1.56488pt too wide) in paragraph at lines 3764--269
 \EU1/SimSun(0)/m/n/10.53937 式[]是 一 个 面 积 分 为 零 的 表 达 式，|  由 于 $\OML/cmm/m/it/10
 .53937 ^^N $ \EU1/SimSun(0)/m/n/10.53937 是 任 意 的，|  因 此 可 以 取 $\OML/cmm/m/it/10
 .53937  [][] \OT1/cmr/m/n/10.53937 = 0$ \EU1/SimSun(0)/m/n/10.53937 以 及 $[][][]
@@ -3006,7 +3006,7 @@ Overfull \hbox (1.56488pt too wide) in paragraph at lines 3764--268
  []
 
 
-Overfull \hbox (21.29974pt too wide) in paragraph at lines 3764--268
+Overfull \hbox (21.29974pt too wide) in paragraph at lines 3764--269
 \OT1/cmr/m/n/10.53937 0$ \EU1/SimSun(0)/m/n/10.53937 作 为 偏 微 分 方 程[]的 边 界 条 件。|
   而 偏 微 分 方 程[]即 为 氢 原 子 中 电 子 的 定 态 \T1/qpl/m/n/10.53937 Schrödinger
  []
@@ -3733,20 +3733,20 @@ Overfull \hbox (13.79666pt too wide) in paragraph at lines 538--538
 |[]   []
  []
 
-[208]
-Overfull \hbox (13.79666pt too wide) in paragraph at lines 633--633
+[208] [209] [210]
+Overfull \hbox (13.79666pt too wide) in paragraph at lines 735--735
 |[]   []
  []
 
-[209] [210] [211]
-Overfull \hbox (13.79666pt too wide) in paragraph at lines 771--771
+[211] [212] [213]
+Overfull \hbox (13.79666pt too wide) in paragraph at lines 873--873
 |[]   []
  []
 
 \openout3 = `CM_chs-102.asy'.
 
 File: "CM_chs-102".pdf Graphic file (type QTm)
-<use  ""CM_chs-102".pdf" > [212]
+<use  ""CM_chs-102".pdf" > [214]
 \openout3 = `CM_chs-103.asy'.
 
 File: "CM_chs-103".pdf Graphic file (type QTm)
@@ -3755,19 +3755,19 @@ File: "CM_chs-103".pdf Graphic file (type QTm)
 
 File: "CM_chs-104".pdf Graphic file (type QTm)
 
-<use  ""CM_chs-104".pdf" > [213] [214] [215]
-Overfull \hbox (13.79666pt too wide) in paragraph at lines 1097--1097
+<use  ""CM_chs-104".pdf" > [215] [216] [217]
+Overfull \hbox (13.79666pt too wide) in paragraph at lines 1199--1199
 |[]   []
  []
 
 \openout3 = `CM_chs-105.asy'.
 
 File: "CM_chs-105".pdf Graphic file (type QTm)
-<use  ""CM_chs-105".pdf" > [216]
+<use  ""CM_chs-105".pdf" > [218]
 \openout3 = `CM_chs-106.asy'.
 
 File: "CM_chs-106".pdf Graphic file (type QTm)
- <use  ""CM_chs-106".pdf" > [217])
+ <use  ""CM_chs-106".pdf" > [219])
 (chapter/exercise2.tex
 Overfull \hbox (15.80814pt too wide) in paragraph at lines 1--1
 |[]   []
@@ -3790,27 +3790,23 @@ File: "CM_chs-108".pdf Graphic file (type QTm)
 
 File: "CM_chs-109".pdf Graphic file (type QTm)
 
-<use  ""CM_chs-109".pdf" >
-Underfull \vbox (badness 1097) has occurred while \output is active []
-
- [218]
+<use  ""CM_chs-109".pdf" > [220]
 \openout3 = `CM_chs-110.asy'.
 
 File: "CM_chs-110".pdf Graphic file (type QTm)
-
-<use  ""CM_chs-110".pdf" >
+ <use  ""CM_chs-110".pdf" >
 \openout3 = `CM_chs-111.asy'.
 
 File: "CM_chs-111".pdf Graphic file (type QTm)
- <use  ""CM_chs-111".pdf" >
+
+<use  ""CM_chs-111".pdf" >
 \openout3 = `CM_chs-112.asy'.
 
 File: "CM_chs-112".pdf Graphic file (type QTm)
-
-<use  ""CM_chs-112".pdf" > [219]
+ <use  ""CM_chs-112".pdf" > [221]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [220]
+ [222]
 \openout3 = `CM_chs-113.asy'.
 
 File: "CM_chs-113".pdf Graphic file (type QTm)
@@ -3819,7 +3815,7 @@ File: "CM_chs-113".pdf Graphic file (type QTm)
 \openout3 = `CM_chs-114.asy'.
 
 File: "CM_chs-114".pdf Graphic file (type QTm)
- <use  ""CM_chs-114".pdf" > [221]
+ <use  ""CM_chs-114".pdf" > [223]
 \openout3 = `CM_chs-115.asy'.
 
 File: "CM_chs-115".pdf Graphic file (type QTm)
@@ -3828,7 +3824,7 @@ File: "CM_chs-115".pdf Graphic file (type QTm)
 \openout3 = `CM_chs-116.asy'.
 
 File: "CM_chs-116".pdf Graphic file (type QTm)
- <use  ""CM_chs-116".pdf" > [222]
+ <use  ""CM_chs-116".pdf" > [224]
 \openout3 = `CM_chs-117.asy'.
 
 File: "CM_chs-117".pdf Graphic file (type QTm)
@@ -3837,7 +3833,7 @@ File: "CM_chs-117".pdf Graphic file (type QTm)
 \openout3 = `CM_chs-118.asy'.
 
 File: "CM_chs-118".pdf Graphic file (type QTm)
- <use  ""CM_chs-118".pdf" > [223]
+ <use  ""CM_chs-118".pdf" > [225]
 \openout3 = `CM_chs-119.asy'.
 
 File: "CM_chs-119".pdf Graphic file (type QTm)
@@ -3849,7 +3845,7 @@ File: "CM_chs-120".pdf Graphic file (type QTm)
  <use  ""CM_chs-120".pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [224]
+ [226]
 \openout3 = `CM_chs-121.asy'.
 
 File: "CM_chs-121".pdf Graphic file (type QTm)
@@ -3858,7 +3854,7 @@ File: "CM_chs-121".pdf Graphic file (type QTm)
 \openout3 = `CM_chs-122.asy'.
 
 File: "CM_chs-122".pdf Graphic file (type QTm)
- <use  ""CM_chs-122".pdf" > [225]
+ <use  ""CM_chs-122".pdf" > [227]
 Overfull \hbox (13.79666pt too wide) in paragraph at lines 1079--1079
 |[]   []
  []
@@ -3869,12 +3865,12 @@ File: "CM_chs-123".pdf Graphic file (type QTm)
 <use  ""CM_chs-123".pdf" >
 Underfull \vbox (badness 2245) has occurred while \output is active []
 
- [226]
+ [228]
 Overfull \hbox (29.81352pt too wide) detected at line 1162
 [] [] \OT1/cmr/m/n/10.53937 = []
  []
 
-[227]
+[229]
 Overfull \hbox (13.79666pt too wide) in paragraph at lines 1169--1169
 |[]   []
  []
@@ -3886,12 +3882,12 @@ File: "CM_chs-124".pdf Graphic file (type QTm)
 \openout3 = `CM_chs-125.asy'.
 
 File: "CM_chs-125".pdf Graphic file (type QTm)
- <use  ""CM_chs-125".pdf" > [228]
+ <use  ""CM_chs-125".pdf" > [230]
 \openout3 = `CM_chs-126.asy'.
 
 File: "CM_chs-126".pdf Graphic file (type QTm)
 
-<use  ""CM_chs-126".pdf" > [229]
+<use  ""CM_chs-126".pdf" > [231]
 Overfull \hbox (13.79666pt too wide) in paragraph at lines 1437--1437
 |[]   []
  []
@@ -3899,16 +3895,16 @@ Overfull \hbox (13.79666pt too wide) in paragraph at lines 1437--1437
 \openout3 = `CM_chs-127.asy'.
 
 File: "CM_chs-127".pdf Graphic file (type QTm)
-<use  ""CM_chs-127".pdf" > [230]
+<use  ""CM_chs-127".pdf" > [232]
 \openout3 = `CM_chs-128.asy'.
 
 File: "CM_chs-128".pdf Graphic file (type QTm)
- <use  ""CM_chs-128".pdf" > [231]
+ <use  ""CM_chs-128".pdf" > [233]
 \openout3 = `CM_chs-129.asy'.
 
 File: "CM_chs-129".pdf Graphic file (type QTm)
 
-<use  ""CM_chs-129".pdf" > [232]
+<use  ""CM_chs-129".pdf" > [234]
 Overfull \hbox (13.79666pt too wide) in paragraph at lines 1758--1758
 |[]   []
  []
@@ -3916,7 +3912,7 @@ Overfull \hbox (13.79666pt too wide) in paragraph at lines 1758--1758
 \openout3 = `CM_chs-130.asy'.
 
 File: "CM_chs-130".pdf Graphic file (type QTm)
-<use  ""CM_chs-130".pdf" > [233] [234]
+<use  ""CM_chs-130".pdf" > [235] [236]
 \openout3 = `CM_chs-131.asy'.
 
 File: "CM_chs-131".pdf Graphic file (type QTm)
@@ -3925,12 +3921,12 @@ File: "CM_chs-131".pdf Graphic file (type QTm)
 
 File: "CM_chs-132".pdf Graphic file (type QTm)
 
-<use  ""CM_chs-132".pdf" > [235]) [236]
-Overfull \hbox (15.63632pt too wide) in paragraph at lines 292--292
+<use  ""CM_chs-132".pdf" > [237]) [238]
+Overfull \hbox (15.63632pt too wide) in paragraph at lines 293--293
 |  []
  []
 
-(chapter/bibliography.tex [237
+(chapter/bibliography.tex [239
 
 
 ]
@@ -3939,14 +3935,14 @@ Overfull \hbox (15.63632pt too wide) in paragraph at lines 1--1
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 300.
- [238
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 301.
+ [240
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 300.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 301.
  (CM_chs.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 300.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 300.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 301.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 301.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -3958,15 +3954,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 300.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 301.
  ) 
 Here is how much of TeX's memory you used:
- 33343 strings out of 428410
- 650552 string characters out of 3163061
- 691888 words of memory out of 3000000
- 36152 multiletter control sequences out of 15000+200000
- 54923 words of font info for 173 fonts, out of 3000000 for 9000
+ 33346 strings out of 428410
+ 650582 string characters out of 3163061
+ 691828 words of memory out of 3000000
+ 36154 multiletter control sequences out of 15000+200000
+ 57816 words of font info for 174 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  65i,20n,89p,10440b,1097s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on CM_chs.pdf (244 pages).
+Output written on CM_chs.pdf (246 pages).

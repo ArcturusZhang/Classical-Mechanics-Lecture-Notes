@@ -190,18 +190,18 @@
 \contentsline {subsection}{\numberline {7.3.2}落体偏东}{197}{subsection.7.3.2}
 \contentsline {subsection}{\numberline {7.3.3}Foucault（傅科）摆}{198}{subsection.7.3.3}
 \contentsline {chapter}{\numberline {第八章\hspace {0.3em}}习题及解答}{202}{chapter.8}
-\contentsline {section}{\numberline {8.1}金尚年《理论力学》习题（部分）}{202}{section.8.1}
+\contentsline {section}{\numberline {8.1}课后习题解答}{202}{section.8.1}
 \contentsline {subsection}{\numberline {8.1.1}牛顿力学}{202}{subsection.8.1.1}
 \contentsline {subsection}{\numberline {8.1.2}Lagrange力学}{206}{subsection.8.1.2}
 \contentsline {subsection}{\numberline {8.1.3}Hamilton力学}{208}{subsection.8.1.3}
-\contentsline {subsection}{\numberline {8.1.4}两体问题}{210}{subsection.8.1.4}
-\contentsline {subsection}{\numberline {8.1.5}多自由度微振动与阻尼}{212}{subsection.8.1.5}
-\contentsline {subsection}{\numberline {8.1.6}刚体}{216}{subsection.8.1.6}
-\contentsline {section}{\numberline {8.2}理论力学习题集（部分）}{218}{section.8.2}
-\contentsline {subsection}{\numberline {8.2.1}平面力系}{218}{subsection.8.2.1}
-\contentsline {subsection}{\numberline {8.2.2}空间力系}{226}{subsection.8.2.2}
-\contentsline {subsection}{\numberline {8.2.3}点的运动学}{228}{subsection.8.2.3}
-\contentsline {subsection}{\numberline {8.2.4}刚体的运动学}{230}{subsection.8.2.4}
-\contentsline {subsection}{\numberline {8.2.5}质点动力学}{233}{subsection.8.2.5}
-\contentsline {part}{插图目录}{237}{figure.8.35}
-\contentsline {part}{参考文献}{238}{chapter*.4}
+\contentsline {subsection}{\numberline {8.1.4}两体问题}{212}{subsection.8.1.4}
+\contentsline {subsection}{\numberline {8.1.5}多自由度微振动与阻尼}{214}{subsection.8.1.5}
+\contentsline {subsection}{\numberline {8.1.6}刚体}{218}{subsection.8.1.6}
+\contentsline {section}{\numberline {8.2}理论力学习题集（部分）}{220}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}平面力系}{220}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}空间力系}{228}{subsection.8.2.2}
+\contentsline {subsection}{\numberline {8.2.3}点的运动学}{230}{subsection.8.2.3}
+\contentsline {subsection}{\numberline {8.2.4}刚体的运动学}{232}{subsection.8.2.4}
+\contentsline {subsection}{\numberline {8.2.5}质点动力学}{235}{subsection.8.2.5}
+\contentsline {part}{插图目录}{239}{figure.8.35}
+\contentsline {part}{参考文献}{240}{chapter*.4}
