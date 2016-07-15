@@ -17,7 +17,7 @@
 \usepackage{multirow}
 \usepackage{textcomp}
 \usepackage[top=2.54cm, bottom=2.54cm, left=3.18cm, right=3.18cm]{geometry}
-\usepackage[toc]{multitoc}
+\usepackage[toc,lof]{multitoc}
 
 \usepackage{asymptote}
 
@@ -180,7 +180,7 @@
 {\newline\hwyk\LARGE #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
-\vspace{-2.0cm}
+\vspace{-1.5cm}
 }
  
 \newcommand{\mysection}[1]{
@@ -213,6 +213,14 @@
 \end{tabular}
 \arrayrulewidth=0.4pt
 \vspace{-0.5cm}
+}
+
+\newcommand{\mybackmatter}[1]{
+\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\cellcolor{black} &\cellcolor{titlecolor} \textcolor{white}
+{\newline\hwyk\LARGE #1}
+\end{tabular}
+\arrayrulewidth=0.4pt
 }
 
 \begin{document}
@@ -286,6 +294,9 @@
 \input{chapter/exercise2}
 
 \backmatter
+ 
+\titleformat{\chapter}[hang]{\hwyk\LARGE}
+{}{0mm}{\hspace{-0.4cm}\mybackmatter}
 
 \addcontentsline{toc}{part}{\listfigurename}{%
 \let\oldnumberline\numberline%
