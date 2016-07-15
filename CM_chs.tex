@@ -298,15 +298,13 @@
 \titleformat{\chapter}[hang]{\hwyk\LARGE}
 {}{0mm}{\hspace{-0.4cm}\mybackmatter}
 
-\addcontentsline{toc}{part}{\listfigurename}{%
+\addcontentsline{toc}{chapter}{\listfigurename}{%
 \let\oldnumberline\numberline%
 \renewcommand{\numberline}{\figurename~\oldnumberline}%
 \listoffigures
 }
 
-%\listoffigures
-
 %参考文献
-\input{chapter/bibliography}
+\input{chapter/bibliography.tex}
 
 \end{document}
