@@ -161,8 +161,9 @@
 \usepackage{tgpagella}
 \usepackage[T1]{fontenc}
  
-\definecolor{titlecolor}{rgb}{0.503906,0.503906,0.734375}
-%\definecolor{titlecolor}{RGB}{100,50,255}
+\definecolor{titlecolor}{RGB}{129,129,188}
+\definecolor{contentcolor}{RGB}{129,188,129}
+\definecolor{backcolor}{RGB}{129,188,129}
 \newcommand{\hwyk}{\heiti}
  
 \newcommand{\mytitle}[1]{
@@ -176,7 +177,7 @@
 \newcommand{\mycont}[1]{
 \vspace{-0.5cm}
 \begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
-\cellcolor{black} &\cellcolor{titlecolor} \textcolor{white}
+\cellcolor{black} &\cellcolor{contentcolor} \textcolor{white}
 {\newline\hwyk\LARGE #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
@@ -215,9 +216,51 @@
 \vspace{-0.5cm}
 }
 
+
+\newcommand{\myappendix}[1]{
+\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\cellcolor{black} &\cellcolor{backcolor} \textcolor{white}
+{\newline\hwyk\LARGE 附录\thechapter \  \ #1}%\Alph{\thechapter}
+\end{tabular}
+\arrayrulewidth=0.4pt
+}
+
+ 
+\newcommand{\appendixsection}[1]{
+\setlength\arrayrulewidth{1pt}\arrayrulecolor{backcolor}
+\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\hline
+\cellcolor{backcolor} &  \textcolor{black}{\hwyk\LARGE \thesection ~ #1}
+\end{tabular}
+\arrayrulewidth=0.4pt
+\vspace{-0.7cm}
+}
+
+\newcommand{\appendixsubsection}[1]{
+\setlength\arrayrulewidth{1pt}\arrayrulecolor{backcolor}
+\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\hline
+\cellcolor{backcolor} &  \textcolor{black}{\hwyk\Large \thesubsection ~ #1} \\
+\hline
+\end{tabular}
+\arrayrulewidth=0.4pt
+\vspace{-0.5cm}
+}
+
+\newcommand{\appendixsubsubsection}[1]{
+\setlength\arrayrulewidth{1pt}\arrayrulecolor{backcolor}
+\begin{tabular}{p{0.01\textwidth}p{0.95\textwidth}p{0.01\textwidth}}
+\hline
+\cellcolor{backcolor} &  \textcolor{black}{\hwyk\Large \thesubsubsection ~ #1} & \cellcolor{backcolor} \\
+\hline
+\end{tabular}
+\arrayrulewidth=0.4pt
+\vspace{-0.5cm}
+}
+
 \newcommand{\mybackmatter}[1]{
 \begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
-\cellcolor{black} &\cellcolor{titlecolor} \textcolor{white}
+\cellcolor{black} &\cellcolor{backcolor} \textcolor{white}
 {\newline\hwyk\LARGE #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
