@@ -269,7 +269,14 @@
 \begin{document}
 
 \begin{asydef}
-texpreamble("\usepackage[nosetpagesize]{color,graphicx}"); 
+	texpreamble("\usepackage[nosetpagesize]{color,graphicx}");
+	texpreamble("\usepackage{xeCJK}");
+	texpreamble("\setCJKmainfont{SimSun}");
+	usepackage("amsmath");
+	usepackage("amssymb");
+	usepackage("siunitx");
+	import graph;
+	import math;
 \end{asydef}
 
 \maketitle

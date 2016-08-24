@@ -13,10 +13,6 @@
 \begin{figure}[htb]
 \centering
 \begin{asy}
-	usepackage("xeCJK");
-	usepackage("amsmath");
-	import graph;
-	import math;
 	size(300);
 	//惯性参考系与非惯性参考系
 	pair O,OO,r,i,j,k;
@@ -202,10 +198,6 @@ $S$系为惯性系，在其中Newton第二定律成立，即有
 \begin{figure}[htb]
 \centering
 \begin{asy}
-	usepackage("xeCJK");
-	usepackage("amsmath");
-	import graph;
-	import math;
 	size(300);
 	//第七章例1图
 	pair O,O1,M;
@@ -332,10 +324,6 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \begin{asy}
-	usepackage("xeCJK");
-	usepackage("amsmath");
-	import graph;
-	import math;
 	size(200);
 	//重力引力离心力1
 	pair O;
@@ -365,10 +353,6 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \begin{asy}
-	usepackage("xeCJK");
-	usepackage("amsmath");
-	import graph;
-	import math;
 	size(200);
 	//重力引力离心力2
 	pair O;
@@ -445,11 +429,6 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 \begin{figure}[htb]
 \centering
 \begin{asy}
-	texpreamble("\usepackage{xeCJK}");
-	texpreamble("\setCJKmainfont{SimSun}");
-	usepackage("amsmath");
-	import graph;
-	import math;
 	size(250);
 	//地球表面的坐标系
 	pair O,i,j,k;
@@ -577,11 +556,6 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 \begin{figure}[htb]
 \centering
 \begin{asy}
-	texpreamble("\usepackage{xeCJK}");
-	texpreamble("\setCJKmainfont{SimSun}");
-	usepackage("amsmath");
-	import graph;
-	import math;
 	size(250);
 	//Foucault摆示意图
 	pair O,i,j,k;
@@ -692,33 +666,17 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 	y' = (A-B)\sin \omega t
 \end{cases}
 \end{equation}
+
 由此可知，当地球自转效应忽略时，摆球走一椭圆轨道，$x'$和$y'$分别为椭圆的两个主轴。当考虑地球自转时，即$\omega_0 \neq 0$时，由式\eqref{Foucault摆通解}可得
 \begin{align*}
 	\xi & = x+\mathrm{i} y = \big[\cos(\omega_0 t\sin \lambda)- \mathrm{i} \sin (\omega_0 t\sin \lambda)\big](x'+\mathrm{i} y') \\
 	& = \big[x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda)\big] + \mathrm{i} \big[-x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)\big]
 \end{align*}
-所以
-\begin{equation}
-\begin{cases}
-	x = x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda) \\
-	y = -x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)
-\end{cases}
-\end{equation}
-这表明，摆球在作周期为
-\begin{equation*}
-	T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{l}{g}}
-\end{equation*}
-的椭圆轨道运动，同时此椭圆的轴$x'$和$y'$又以角速度$-\omega_0 \sin\lambda$绕$Oz$转动，亦即摆的振动面以角速度$-\omega_0 \sin \lambda$旋转，它们的几何关系如图\ref{Foucault摆振动面的旋转}所示。
 
 \begin{figure}[htb]
 \centering
 \begin{asy}
-	texpreamble("\usepackage{xeCJK}");
-	texpreamble("\setCJKmainfont{SimSun}");
-	usepackage("amsmath");
-	import graph;
-	import math;
-	size(250);
+	size(200);
 	//Foucault摆振动面的旋转
 	pair O,x,y;
 	real a,b,theta,r;
@@ -740,3 +698,16 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 \caption{Foucault摆振动面的旋转}
 \label{Foucault摆振动面的旋转}
 \end{figure}
+所以
+\begin{equation}
+\begin{cases}
+	x = x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda) \\
+	y = -x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)
+\end{cases}
+\end{equation}
+这表明，摆球在作周期为
+\begin{equation*}
+	T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{l}{g}}
+\end{equation*}
+的椭圆轨道运动，同时此椭圆的轴$x'$和$y'$又以角速度$-\omega_0 \sin\lambda$绕$Oz$转动，亦即摆的振动面以角速度$-\omega_0 \sin \lambda$旋转，它们的几何关系如图\ref{Foucault摆振动面的旋转}所示。
+
