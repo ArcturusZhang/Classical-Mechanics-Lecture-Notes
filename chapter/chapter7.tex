@@ -74,7 +74,7 @@
 \end{equation*}
 对上式求时间$t$的导数，并对矢量$\mbf{r}'$应用式\eqref{相对变化率与绝对变化率的关系}可有
 \begin{equation}
-	\mbf{r} = \mbf{r}_0 + \mbf{\omega}_0 \times \mbf{r}' + \mbf{v}'
+	\mbf{v} = \mbf{v}_0 + \mbf{\omega}_0 \times \mbf{r}' + \mbf{v}'
 	\label{非惯性系中的速度}
 \end{equation}
 式中$\mbf{v}' = \dfrac{\tilde{\mathrm{d}} \mbf{r}'}{\mathrm{d} t}$称为{\heiti 相对速度}，$\mbf{v}_0 = \dfrac{\mathrm{d} \mbf{r}_0}{\mathrm{d} t}$称为{\heiti 平动牵连速度}，$\mbf{\omega}_0 \times \mbf{r}'$称为{\heiti 转动牵连速度}。
@@ -176,7 +176,7 @@ $S$系为惯性系，在其中Newton第二定律成立，即有
 
 在非惯性系中，Lagrange函数与惯性系中的Lagrange函数具有相同的形式
 \begin{equation*}
-	L' = T'-V'
+	L' = T'-U'
 \end{equation*}
 其中
 \begin{equation*}
@@ -298,7 +298,7 @@ $S$系为惯性系，在其中Newton第二定律成立，即有
 \begin{equation*}
 	\Delta s \leqslant \frac12 a_C t^2 = \omega_0 vt,\quad \Delta \theta = \frac{\Delta s}{vt} \leqslant \omega_0 t
 \end{equation*}
-对于段时间的运动，由于$\omega \approx \SI{10e-5}{\per\second}$，这一效应可以忽略，但是对于长时间的运动，这一效应就不能忽略了。
+对于短时间的运动，由于$\omega \approx \SI{10e-5}{\per\second}$，这一效应可以忽略，但是对于长时间的运动，这一效应就不能忽略了。
 
 地球公转的角速度是地球自转角速度的$\dfrac{1}{365}$，地球与太阳之间的距离是地球半径的$\num{2.5e4}$倍，因此地球公转的向心力与地球自转的向心力之比为
 \begin{equation*}
@@ -402,7 +402,7 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 	g = \frac{(g_0+R\omega_0^2)\sin 2\lambda}{\sin \lambda \cos \alpha+\cos \lambda\sin \alpha}
 	\label{偏角与纬度和重力加速度的关系2}
 \end{equation}
-联立式\eqref{偏角与纬度和重力加速度的关系1}和\eqref{偏角与纬度和重力加速度的关系2}可得$g$作为$\alpha$和$\lambda$很复杂的函数关系。下面作些近似以简化之。首先根据式\eqref{偏角与纬度和重力加速度的关系1}可有近似
+联立式\eqref{偏角与纬度和重力加速度的关系1}和\eqref{偏角与纬度和重力加速度的关系2}可得$g$作为$\alpha$和$\lambda$很复杂的函数关系，下面作些近似以简化之。首先根据式\eqref{偏角与纬度和重力加速度的关系1}可有近似
 \begin{equation}
 	\sin \alpha \approx \alpha \approx \frac{R\omega_0^2}{2g_0} \sin 2\lambda
 	\label{偏角与纬度和重力加速度的关系3}
