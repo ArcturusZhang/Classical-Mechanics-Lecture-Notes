@@ -512,6 +512,87 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \end{equation*}
 \end{solution}
 
+\begin{question}
+单摆必须振幅很小才是谐振动，如果要求不论振幅大小总是作谐振动，质点应该在什么样的曲线上运动？
+\end{question}
+\begin{solution}
+记质点所在位置到平衡位置之间的弧长为$s$，质点所在位置的坐标为$(x,y)$，其中$y=y(s)$。取弧长$s$为广义坐标，则该质点的Lagrange函数为
+\begin{equation*}
+	L = \frac12 m\dot{s}^2 - mgy(s)
+\end{equation*}
+由Lagrange方程可得质点的运动方程为
+\begin{equation*}
+	m\ddot{s} + mg\frac{\mathd y}{\mathd s} = 0
+\end{equation*}
+质点作谐振动的条件应为
+\begin{equation*}
+	g\frac{\mathd y}{\mathd s} = k^2s
+\end{equation*}
+记$\dfrac{k^2}{g} = \dfrac{1}{16a}$，则有
+\begin{equation*}
+	\frac{\mathd y}{\mathd s} = \frac{1}{16a} s
+\end{equation*}
+所以$y = \dfrac{1}{8a} s^2+y_0$，由$y(0)=0$可得
+\begin{equation*}
+	y = \frac{1}{8a} s^2
+\end{equation*}
+由于$\ds s = \int_0^y \sqrt{1+\left(\frac{\mathd x}{\mathd y}\right)^2}\mathd y$，可得
+\begin{equation*}
+	\sqrt{y} = \frac{1}{\sqrt{8a}}\int_0^y \sqrt{1+\left(\frac{\mathd x}{\mathd y}\right)^2}\mathd y
+\end{equation*}
+将上式两端对$y$求导数可得
+\begin{equation*}
+	\frac{1}{2\sqrt{y}} = \frac{1}{\sqrt{8a}}\sqrt{1+\frac{1}{y'^2}}
+\end{equation*}
+整理可得微分方程
+\begin{equation*}
+	\left(\frac{\mathd y}{\mathd x}\right)^2 = \frac{y}{2a-y}
+\end{equation*}
+令$y=a(1-\cos t)$，则方程可化简为
+\begin{equation*}
+	\dot{x} = a(1+\cos t)
+\end{equation*}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(250);
+	//Lagrange力学最后一题
+	real x1,x2,y1,y2,a,r;
+	pair f(real t){
+		return (a*(t+sin(t)),a*(1-cos(t)));
+	}
+	a = 1;
+	draw(graph(f,-pi,pi),linewidth(0.8bp));
+	x1 = -(a*pi+0.5);
+	x2 = a*pi+0.5;
+	y1 = -0.5;
+	y2 = 2*a+0.5;
+	draw(Label("$x$",EndPoint),(x1,0)--(x2,0),Arrow);
+	draw(Label("$y$",EndPoint),(0,y1)--(0,y2),Arrow);
+	label("$O$",(0,0),SW);
+	pair P;
+	r = 0.08;
+	P = f(2)+r*dir(120);
+	fill(circle(P,r),black);
+	draw((P.x,0)--P--(0,P.y),dashed);
+	label("$x$",(P.x,0),S);
+	label("$y$",(0,P.y),W);
+	label("$s$",f(1),NW);
+\end{asy}
+\caption{题\thequestion}
+\label{Lagrange力学最后一题}
+\end{figure}
+由此可解得所求曲线的参数方程为
+\begin{equation*}
+\begin{cases}
+	x(t) = a(t+\sin t) \\
+	y(t) = a(1-\cos t)
+\end{cases}
+\end{equation*}
+该曲线为一倒悬的摆线，如图\ref{Lagrange力学最后一题}所示。
+\end{solution}
+
 \subsection{Hamilton力学}
 
 \begin{question}[金尚年《理论力学》272页8.1]
