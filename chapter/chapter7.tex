@@ -280,6 +280,119 @@ $S$系为惯性系，在其中Newton第二定律成立，即有
 \end{equation*}
 \end{solution}
 
+\begin{example}
+直管$AB$长为$l$，以匀角速度$\omega_0$绕固定点$O$在水平面内转动。固定点$O$与直管两端的连线互相垂直。管的内壁是光滑的。管内有一质点，开始时它在$A$处，相对管的速度为$v'$，方向指向$B$端。试求解质点的运动，并求它对管的压力和离管所需的时间。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//第七章例2图
+	picture tmp;
+	real R1,R2,d,alpha,r;
+	pair O,A,B;
+	R1 = 1;
+	R2 = 0.6;
+	O = (0,0);
+	A = (-R1,0);
+	B = (0,R2);
+	d = 0.02;
+	alpha = degrees(B-A);
+	draw(interp(A,O,-.1)--O--interp(O,B,1.1),dashed);
+	draw(A+d*dir(-90+alpha)--B+d*dir(-90+alpha),linewidth(0.8bp));
+	draw(A-d*dir(-90+alpha)--B-d*dir(-90+alpha),linewidth(0.8bp));
+	label("$R_2$",A/2,S);
+	label("$R_1$",B/2,E);
+	r = 0.15;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(A,r,0,alpha));
+	label("$B$",A,S);
+	label("$A$",B,E);
+	real x,y;
+	x = 0.7;
+	y = 0.8;
+	draw(Label("$x$",EndPoint),O--x*dir(alpha),Arrow);
+	draw(Label("$y$",EndPoint),O--y*dir(alpha+90),Arrow);
+	label("$O$",O,S);
+	pair M;
+	M = interp(A,B,0.56);
+	fill(circle(M,d));
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),O--M-d*dir(M),Arrow);
+	r = 0.1;
+	draw(Label("$\boldsymbol{\omega}_0$",Relative(0.75),Relative(E)),arc(O,r,0,70),Arrow);
+	label("$h$",R1*Cos(alpha)/2*dir(alpha+90),dir(alpha));
+\end{asy}
+\caption{例\theexample}
+\label{第七章例2图}
+\end{figure}
+\end{example}
+\begin{solution}
+取一绕$O$点以相同角速度$\omega_0$转动的参考系，如图\ref{第七章例2图}所示，此参考系为非惯性系。在此坐标系下，$t$时刻质点的位矢为
+\begin{align*}
+	\mbf{r}' = x\mbf{i}+h\mbf{j}
+\end{align*}
+则质点在非惯性系中的速度和加速度为
+\begin{equation*}
+	\mbf{v}' = \dot{x}\mbf{i},\quad \mbf{a}' = \ddot{x}\mbf{i}
+\end{equation*}
+在非惯性系中，质点受到支持力$\mbf{N} = N_y\mbf{j}+N_z\mbf{k}$，重力$m\mbf{g}=-mg\mbf{k}$以及惯性力
+\begin{align*}
+	\mbf{F}'_1 & = -m\mbf{a}_0 = \mbf{0} \\
+	\mbf{F}'_2 & = -m\frac{\mathd\mbf{\omega}}{\mathd t} \times \mbf{r}' = \mbf{0} \\
+	\mbf{F}'_3 & = -m\mbf{\omega} \times (\mbf{\omega} \times \mbf{r}') = m\omega_0^2\mbf{r}' = m\omega_0^2(\dot{x}\mbf{i}+h\mbf{j}) \\
+	\mbf{F}'_c & = -2m\mbf{\omega} \times \mbf{v}' = -2m\omega_0\dot{x}\mbf{j}
+\end{align*}
+根据非惯性系中的Newton第二定律$m\mbf{a}'=\mbf{N}+m\mbf{g}+\mbf{F}'_1+\mbf{F}'_2+\mbf{F}'_3+\mbf{F}'_c$可得
+\begin{equation*}
+\begin{cases}
+	m\ddot{x} = m\omega_0x \\
+	0 = N_y+m\omega_0^2h-2m\omega_0\dot{x} \\
+	0 = N_z-mg
+\end{cases}
+\end{equation*}
+由第一式可解得
+\begin{equation*}
+	x = A\mathe^{\omega_0t}+B\mathe^{-\omega_0t}
+\end{equation*}
+由初始条件，$t=0$时，$x=R_1\sin\alpha=\dfrac{R_1^2}{l}, \dot{x}=-v'$，可得
+\begin{equation*}
+	A = \frac12 \left(\frac{R_1^2}{l} - \frac{v'}{\omega_0}\right),\quad B = \frac12 \left(\frac{R_1^2}{l} + \frac{v'}{\omega_0}\right)
+\end{equation*}
+由此可得
+\begin{equation*}
+	x = \frac12 \left(\frac{R_1^2}{l} - \frac{v'}{\omega_0}\right)\mathe^{\omega_0t}+\frac12 \left(\frac{R_1^2}{l} + \frac{v'}{\omega_0}\right)
+\end{equation*}
+以及
+\begin{equation*}
+	N_y = m\omega_0^2\left[\left(\frac{R_1^2}{l} - \frac{v'}{\omega_0}\right)\mathe^{\omega_0t}-\left(\frac{R_1^2}{l} + \frac{v'}{\omega_0}\right)\mathe^{-\omega_0t}-h\right],\quad N_z=mg
+\end{equation*}
+
+当质点由$B$端离开直管时，可有
+\begin{equation*}
+	\frac12 \left(\frac{R_1^2}{l} - \frac{v'}{\omega_0}\right)\mathe^{\omega_0t}+\frac12 \left(\frac{R_1^2}{l} + \frac{v'}{\omega_0}\right) = -\frac{R_2^2}{l}
+\end{equation*}
+可以解得
+\begin{equation*}
+	\mathe^{\omega_0t} = \frac{-\omega_0R_2^2\pm \sqrt{\omega_0^2R_2^4-\omega_0^2R_1^4+l^2v'^2}}{\omega_0R_1^2-lv'}
+\end{equation*}
+上式右端为正需要满足$\ds\frac{R_1^2}{l} - \frac{v'}{\omega_0} > 0$即$v'>\dfrac{\omega_0R_1^2}{l}$，因此离管所需的时间为
+\begin{equation*}
+	t = \frac{1}{\omega_0} \ln \frac{\omega_0R_2^2+\sqrt{\omega_0^2R_2^4-\omega_0^2R_1^4+l^2v'^2}}{lv'-\omega_0R_1^2}
+\end{equation*}
+
+当质点由$A$端离开直管时，可有
+\begin{equation*}
+	\frac12 \left(\frac{R_1^2}{l} - \frac{v'}{\omega_0}\right)\mathe^{\omega_0t}+\frac12 \left(\frac{R_1^2}{l} + \frac{v'}{\omega_0}\right) = \frac{R_1^2}{l}
+\end{equation*}
+可以解得
+\begin{equation*}
+	\mathe^{-\omega_0t} = \frac{\omega_0R_1^2\pm lv'}{\omega_0R_1^2-lv'}
+\end{equation*}
+上式右端为正需要满足$\omega_0R_1^2-lv'>0$即$v'<\dfrac{\omega_0R_1^2}{l}$，因此离管所需的时间为
+\begin{equation*}
+	t = \frac{1}{\omega_0}\ln \frac{\omega_0R_1^2+lv'}{\omega_0R_1^2-lv'}
+\end{equation*}
+\end{solution}
+
 \section{地球自转的动力学效应}
 
 地球不是一个严格的惯性系，地球自转的角速度为
@@ -549,6 +662,129 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 	y = \frac{2\sqrt{2}}{3} \omega_0 h \sqrt{\frac{h}{g}} \cos \lambda
 \end{equation}
 
+\subsection{地转偏向力}
+
+%由于地球不是一个严格的惯性系，因此在地球表面附近运动的物体相当于受到了额外的Coriolis力。一般又将Coriolis力称为{\bf 地转偏向力}。
+
+下面以地球表面炮弹平射轨道受地转偏向力影响为例来定量计算地转偏向力对长时间运动的影响。取固定在地球上的参考系$Axyz$，$x$轴向南，$y$轴向东，$z$轴垂直地面向上，如图\ref{地球表面的坐标系}所示。同样忽略惯性离心力，则质点相对于地球的运动方程将由式\eqref{地球表面质点的运动微分方程}来表示，其分量形式即为式\eqref{地球表面质点的运动微分方程的分量形式}，其中$F_x=F_y=0, F_z=-mg$，则有
+\begin{equation}
+\begin{cases}
+	\ddot{x} = 2\omega_0\dot{y}\sin\lambda \\
+	\ddot{y} = -2\omega_0(\dot{x}\sin\lambda+\dot{z}\cos\lambda) \\
+	\ddot{z} = -g+2\omega_0\dot{y}\cos\lambda
+\end{cases}
+\label{chapter7:地转偏向力方程分量形式}
+\end{equation}
+对式\eqref{chapter7:地转偏向力方程分量形式}积分，并利用初始条件，即$t=0$时，$x=y=z=0, \dot{x}=v_0\sin\theta, \dot{y}=v_0\cos\theta, \dot{z}=0$，其中$\theta$为初始速度与正东方向的夹角，则有
+\begin{equation}
+\begin{cases}
+	\dot{x} = v_0\sin\theta + 2\omega_0y\sin\lambda \\
+	\dot{y} = v_0\cos\theta - 2\omega_0(x\sin\lambda+z\cos\lambda) \\
+	\dot{z} = -gt+2\omega_0y\cos\lambda
+\end{cases}
+\label{chapter7:地转偏向力中间结果1}
+\end{equation}
+将式\eqref{chapter7:地转偏向力中间结果1}代入式\eqref{chapter7:地转偏向力方程分量形式}中，并略去$\omega_0$的二阶项，可得
+\begin{equation}
+\begin{cases}
+	\ddot{x} = 2\omega_0 v_0 \sin\lambda\cos\theta \\
+	\ddot{y} = -2\omega_0v_0 \sin\lambda\sin\theta + 2g\omega_0 t\cos\lambda \\
+	\ddot{z} = -g+2\omega_0v_0 \cos\lambda\cos\theta
+\end{cases}
+\label{chapter7:地转偏向力中间结果2}
+\end{equation}
+将式\eqref{chapter7:地转偏向力中间结果2}积分两次，可得
+\begin{equation}
+\begin{cases}
+	x = v_0t\sin\theta + \omega_0v_0t^2\sin\lambda\cos\theta \\
+	y = v_0t\cos\theta - \omega_0v_0t^2\sin\theta\sin\lambda + \dfrac13gt^3 \omega_0\cos\lambda \\
+	z = -\dfrac12 gt^2 + \omega_0v_0t^2\cos\theta\cos\lambda
+\end{cases}
+\label{chapter7:地转偏向力结果1}
+\end{equation}
+式\eqref{chapter7:地转偏向力结果1}中，第二式的第三项即为第\ref{节：落体偏东}节中落体偏东的结果。因此可见，Coriolis力引起的偏离为
+\begin{equation}
+\begin{cases}
+	\Delta x = \omega_0v_0t^2 \cos\theta\sin\lambda \\
+	\Delta y = -\omega_0v_0t^2 \sin\theta\sin\lambda \\
+	\Delta z = \omega_0v_0t^2 \cos\theta\cos\lambda
+\end{cases}
+\end{equation}
+由此可以看出，在北半球$\lambda>0$，则$\Delta x>0,\Delta y<0$，炮弹向右偏离；而在南半球$\lambda<0$，则$\Delta x<0,\Delta y>0$，炮弹向左偏离。设炮弹通过的路程为$l$，则其水平偏移量为
+\begin{equation}
+	\Delta s = \sqrt{\Delta x^2 + \Delta y^2} = \omega_0v_0t^2\sin\lambda = \omega_0v_0\left(\frac{l}{v_0}\right)^2\sin\lambda = \frac{\omega_0l^2}{v_0}\sin\lambda
+\end{equation}
+
+实际上，本节的公式也可以适用于求解落体偏东，只需令$v_0=0$即可。
+
+本节是利用逐次逼近的方法求解微分方程组\eqref{chapter7:地转偏向力中间结果2}的，而实际上，方程\eqref{chapter7:地转偏向力中间结果2}是可以严格求解的。
+
+将方程\eqref{chapter7:地转偏向力中间结果2}中第一式乘以$\sin\lambda$加上第三式乘以$\cos\lambda$，可得
+\begin{equation*}
+\begin{cases}
+	\ddot{x}\sin\lambda+\ddot{z}\cos\lambda = -g\cos\lambda + 2\omega_0 \dot{y} \\
+	\ddot{y} = -2\omega_0(\dot{x}\sin\lambda+\dot{z}\cos\lambda)
+\end{cases}
+\end{equation*}
+令$\xi = \dot{x}\sin\lambda+\dot{z}\cos\lambda, \eta = \dot{y}$，则有
+\begin{equation}
+\begin{cases}
+	\dot{\xi} = -g\cos\lambda + 2\omega_0\eta \\
+	\dot{\eta} = -2\omega_0\xi
+\end{cases}
+\label{chapter7:地转偏向力-严格求解1}
+\end{equation}
+在方程\eqref{chapter7:地转偏向力-严格求解1}中消去$\eta$可得方程
+\begin{equation*}
+	\ddot{\xi} + 4\omega_0^2 \xi = 0
+\end{equation*}
+由此可解得
+\begin{equation}
+\begin{cases}
+	\xi = A\cos2\omega_0t+B\sin2\omega_0t \\
+	\eta = \dfrac{g}{2\omega_0}\cos\lambda - A\sin 2\omega_0t+B\cos2\omega_0t
+\end{cases}
+\label{chapter7:地转偏向力-严格求解2}
+\end{equation}
+利用初始条件，即
+\begin{equation*}
+\begin{cases}
+	\xi|_{t=0} = \dot{x}|_{t=0}\sin\lambda+\dot{z}|_{t=0}\cos\lambda = v_0\sin\theta\sin\lambda \\
+	\eta|_{t=0} = \dot{y}|_{t=0} = v_0\cos\theta
+\end{cases}
+\end{equation*}
+由此可得
+\begin{equation}
+\begin{cases}
+	\ds \xi = v_0\sin\theta\sin\lambda \cos2\omega_0t+\left(v_0\cos\theta-\frac{g}{2\omega_0}\cos\lambda\right)\sin2\omega_0t \\
+	\ds \eta = \dot{y} = -v_0\sin\theta\sin\lambda\sin2\omega_0t+v_0\cos\theta\cos2\omega_0t+\frac{g}{2\omega_0}\cos\lambda\left(1-\cos2\omega_0t\right)
+\end{cases}
+\label{chapter7:地转偏向力-严格求解3}
+\end{equation}
+将\eqref{chapter7:地转偏向力-严格求解3}的第二式代入方程\eqref{chapter7:地转偏向力中间结果2}的右端并积分，可得
+\begin{equation}
+\begin{cases}
+	\ds \dot{x} = v_0\sin\theta+v_0\sin\theta\sin^2\lambda(\cos2\omega_0t-1) + v_0\cos\theta\sin\lambda\sin 2\omega_0t \\
+	\ds \phantom{\dot{x} = }{} + g\sin\lambda\cos\lambda\left(t-\frac{1}{2\omega_0}\sin2\omega_0t\right) \\
+	\ds \dot{z} = -gt + v_0\sin\theta\sin\lambda\cos\lambda(\cos2\omega_0t-1) + v_0\cos\theta\cos\lambda\sin2\omega_0t \\
+	\ds \phantom{\dot{z} = }{} + g\cos^2\lambda\left(t-\frac{1}{2\omega_0}\sin2\omega_0t\right)
+\end{cases}
+\label{chapter7:地转偏向力-严格求解4}
+\end{equation}
+将式\eqref{chapter7:地转偏向力-严格求解4}和\eqref{chapter7:地转偏向力-严格求解3}的第二式再积分一次，即可得
+\begin{equation}
+\begin{cases}
+	\ds x = v_0t\sin\theta+v_0\sin\theta\sin^2\lambda\left(\frac{1}{2\omega_0}\sin2\omega_0t-t\right) - \frac{v_0}{2\omega_0}\cos\theta\sin\lambda(\cos 2\omega_0t-1) \\
+	\ds \phantom{\dot{x} = }{} + g\sin\lambda\cos\lambda\left(\frac12t^2-\frac{1}{4\omega_0^2}\cos2\omega_0t+\frac{1}{4\omega_0^2}\right) \\
+	\ds y = \frac{v_0}{2\omega_0}\sin\theta\sin\lambda(\cos2\omega_0t-1) +\frac{g}{2\omega_0}\cos\lambda\left(t-\frac{1}{2\omega_0}\sin2\omega_0t\right) \\
+	\ds \phantom{\dot{x} = }{} +\frac{v_0}{2\omega_0}\cos\theta\sin2\omega_0t \\
+	\ds z = -\frac12gt^2 + g\cos^2\lambda\left(\frac12t^2-\frac{1}{4\omega_0^2}\cos2\omega_0t+\frac{1}{4\omega_0^2}\right) \\
+	\ds \phantom{\dot{x} = }{}+v_0\sin\theta\sin\lambda\cos\lambda\left(\frac{1}{2\omega_0}\sin2\omega_0t-t\right) - \frac{v_0}{2\omega_0}\cos\theta\cos\lambda(\cos2\omega_0t-1)
+\end{cases}
+\label{chapter7:地转偏向力-严格求解-解}
+\end{equation}
+式\eqref{chapter7:地转偏向力-严格求解-解}即为方程\eqref{chapter7:地转偏向力中间结果2}的严格解，如果将其按$\omega_0$的幂级数展开，并保留至$\omega_0$的一阶项，将得到与式\eqref{chapter7:地转偏向力结果1}相同的结果。
+
 \subsection{Foucault（傅科）摆}
 
 假如在北极悬挂一单摆使之作微振动，在惯性系中的观察者看来摆的振动面始终在铅直平面内，但地球在以$\mbf{\omega}_0$的角速度自转，因此在非惯性系的地球上的观察者看来，摆的振动面应以$-\mbf{\omega}_0$的角速度转动。这是Foucault在1860年首先指出的，藉此可以直接证实地球是具有自转的。除了赤道之外的各地都可以观察到这种效应，下面对此问题作一近似分析。
@@ -672,6 +908,18 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 	\xi & = x+\mathrm{i} y = \big[\cos(\omega_0 t\sin \lambda)- \mathrm{i} \sin (\omega_0 t\sin \lambda)\big](x'+\mathrm{i} y') \\
 	& = \big[x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda)\big] + \mathrm{i} \big[-x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)\big]
 \end{align*}
+所以
+\begin{equation}
+\begin{cases}
+	x = x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda) \\
+	y = -x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)
+\end{cases}
+\end{equation}
+这表明，摆球在作周期为
+\begin{equation*}
+	T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{l}{g}}
+\end{equation*}
+的椭圆轨道运动，同时此椭圆的轴$x'$和$y'$又以角速度$-\omega_0 \sin\lambda$绕$Oz$转动，亦即摆的振动面以角速度$-\omega_0 \sin \lambda$旋转，它们的几何关系如图\ref{Foucault摆振动面的旋转}所示。
 
 \begin{figure}[htb]
 \centering
@@ -698,16 +946,3 @@ Coriolis力大小之比为$\dfrac{1}{365} \approx 0.03$。因此，地球公转�
 \caption{Foucault摆振动面的旋转}
 \label{Foucault摆振动面的旋转}
 \end{figure}
-所以
-\begin{equation}
-\begin{cases}
-	x = x'\cos(\omega_0 t\sin \lambda) + y'\sin(\omega t\sin \lambda) \\
-	y = -x'\sin(\omega_0 t\sin \lambda) + y'\cos(\omega_0 t\sin \lambda)
-\end{cases}
-\end{equation}
-这表明，摆球在作周期为
-\begin{equation*}
-	T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{l}{g}}
-\end{equation*}
-的椭圆轨道运动，同时此椭圆的轴$x'$和$y'$又以角速度$-\omega_0 \sin\lambda$绕$Oz$转动，亦即摆的振动面以角速度$-\omega_0 \sin \lambda$旋转，它们的几何关系如图\ref{Foucault摆振动面的旋转}所示。
-

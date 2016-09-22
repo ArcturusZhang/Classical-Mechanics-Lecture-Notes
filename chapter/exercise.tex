@@ -593,6 +593,95 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 该曲线为一倒悬的摆线，如图\ref{Lagrange力学最后一题}所示。
 \end{solution}
 
+\begin{question}
+如图\ref{Lagrange力学补充题目1}所示，质量为$M$的光滑三棱柱放在光滑水平桌面上，不可伸长的轻绳绕过棱脊的轻滑轮，两端各系着质量分别为$m_1$和$m_2$的物体，这两物体分别在棱柱的两个光滑斜面上。求解两物体和棱柱的运动情况。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//Lagrange力学补充题目1
+	real a,b,alpha,beta,h,r;
+	h = 1;
+	alpha = 60;
+	beta = 40;
+	a = h/Tan(alpha);
+	b = h/Tan(beta);
+	draw((-a,0)--(0,h)--(b,0)--cycle,linewidth(0.8bp));
+	// draw((b,0)--(0,h),linewidth(0.8bp));
+	r = 0.1;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc((-a,0),r,0,alpha));
+	r = 0.15;
+	draw(Label("$\beta$",MidPoint,Relative(E)),arc((b,0),r,180-beta,180));
+	pair A,A1,A2,B1,B2;
+	A = (0,h);
+	real R,L;
+	R = 0.03;
+	L = 0.05;
+	draw(A--A+L*dir(90));
+	draw(circle(A+L*dir(90),R));
+	real d,dd,l1,l2,d1,d2,h1,h2;
+	l1 = 0.4;
+	l2 = 0.6;
+	h1 = 0.1;
+	d1 = 0.15;
+	h2 = 0.15;
+	d2 = 0.2;
+	d = L*Cos(alpha)+R;
+	dd = L*Cos(beta)+R;
+	A1 = A+L*dir(90)+R*dir(alpha+90);
+	A2 = A+L*dir(90)+R*dir(90-beta);
+	B1 = A1+l1*dir(alpha-180);
+	B2 = A2+l2*dir(-beta);
+	draw(A1--B1);
+	draw(A2--B2);
+	draw(shift(B1+d*dir(alpha-90))*rotate(180+alpha)*box((0,0),(d1,-h1)));
+	draw(shift(B2-dd*dir(90-beta))*rotate(-beta)*box((0,0),(d2,h2)));
+	picture tmp;
+	label(tmp,scale(0.75)*"$m_1$",(-d1/2,h1/2));
+	add(shift(B1+d*dir(alpha-90))*rotate(alpha)*tmp);
+	erase(tmp);
+	label(tmp,scale(0.75)*"$m_2$",(d2/2,h2/2));
+	add(shift(B2-dd*dir(90-beta))*rotate(-beta)*tmp);
+	erase(tmp);
+\end{asy}
+\caption{题\thequestion}
+\label{Lagrange力学补充题目1}
+\end{figure}
+\end{question}
+\begin{solution}
+将绳端的两物体和滑轮视为质点，以三棱柱的顶点为坐标原点，取三棱柱的横坐标$x$和左端绳子的长度$l$为广义坐标，则可求得$m_1$和$m_2$的坐标分别为
+\begin{equation*}
+\begin{cases}
+	x_1 = x-l\cos \alpha \\
+	y_1 = -l\sin \alpha
+\end{cases},\quad 
+\begin{cases}
+	x_2 = x+(l_0-l)\cos \beta \\
+	y_2 = -(l_0-l)\sin \beta
+\end{cases}
+\end{equation*}
+其中$l_0$为绳子的总长度。则此体系的Lagrange函数为
+\begin{align*}
+	L & = \frac12 M\dot{x}^2 + \frac12 m_1\dot{x}_1^2 + \frac12 m_2\dot{x}_2^2 - m_1gy_1 - m_2gy_2 \\
+	& = \frac12 (M+m_1+m_2) \dot{x}^2 - (m_1\cos\alpha+m_2\cos\beta)\dot{x}\dot{l} + \frac12 (m_1+m_2)\dot{l}^2 + m_1 gl\sin\alpha+m_2g(l_0-l)\sin\beta
+\end{align*}
+根据Lagrange方程可得体系的运动方程为
+\begin{equation*}
+\begin{cases}
+	(M+m_1+m_2)\ddot{x} - (m_1\cos\alpha+m_2\cos\beta)\ddot{l} = 0 \\
+	- (m_1\cos\alpha+m_2\cos\beta)\ddot{x}+(m_1+m_2)\ddot{l} = (m_1\sin\alpha-m_2\sin\beta)g
+\end{cases}
+\end{equation*}
+从中可以解得三棱柱和物体$m_1$的加速度
+\begin{equation*}
+\begin{cases}
+	\ddot{x} = \dfrac{(m_1\sin\alpha-m_2\sin\beta)(m_1\cos\alpha+m_2\cos\beta)g}{(M+m_1+m_2)(m_1+m_2)-(m_1\cos\alpha+m_2\cos\beta)^2} \\[1.5ex]
+	\ddot{l} = \dfrac{(m_1\sin\alpha-m_2\sin\beta)(M+m_1+m_2)g}{(M+m_1+m_2)(m_1+m_2)-(m_1\cos\alpha+m_2\cos\beta)^2}
+\end{cases}
+\end{equation*}
+\end{solution}
+
 \subsection{Hamilton力学}
 
 \begin{question}[金尚年《理论力学》272页8.1]
@@ -926,6 +1015,87 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 	\mbf{e} = \frac{\mbf{A}}{\alpha} = \frac{1}{\alpha} \mbf{v} \times \mbf{L} + \frac{\mbf{r}}{r}
 \end{equation*}
 离心率矢量也是守恒量，其方向沿极轴，大小为轨道的离心率。
+\end{solution}
+
+\begin{question}
+根据万有引力定律，水星运行的椭圆轨道应精确闭合。但长期的天文观测表明，水星轨道的近日点并非固定不动的，而是在运动平面内极其缓慢地移动。很多人试图用万有引力定律来解释这个现象，均告失败。直到20世纪初，广义相对论问世以后，水星近日点的旋进问题才得以圆满的解释。根据广义相对论，水星除了受经典的Newton引力势作用之外，还需附加一项与距离3次方成反比的附加势能（相对论效应），即水星的实际引力势应为
+\begin{equation*}
+	V(r) = -\frac{GMm}{r} - \frac{GML^2}{mc^2r^3}
+\end{equation*}
+其中$m$和$M$分别为水星和太阳的质量，$L$为水星相对太阳的角动量，$c$为光速，$G$为引力常数。试求上述力作用下水星近日点在一个周期内的进动量$\Delta\phi$。
+\end{question}
+\begin{solution}
+当有心力等效势为$U(r) = \dfrac{L^2}{2mr^2}+V(r)$时，一个周期内近日点的进动角可由式\eqref{chapter4:近日点进动角}得到，即
+\begin{equation*}
+	\Delta \theta = 2\int_{r_{\mathrm{min}}}^{r_{\mathrm{max}}} \frac{\dfrac{L}{r^2}}{\sqrt{2m\left(E-U\left(r\right)\right)}}\mathrm{d} r = 2\int_{u_{\mathrm{min}}}^{u_{\mathrm{max}}} \frac{L}{\sqrt{2m\left[E-U\left(\dfrac{1}{u}\right)\right]}}\mathrm{d} u
+\end{equation*}
+
+对于经典Newton引力势$V_0(r) = -\dfrac{GMm}{r}$，近日点进动角为
+\begin{align*}
+	\Delta \theta & = 2\int_{u_{\min}}^{u_{\max}} \frac{L}{\sqrt{2m\left(E+GMmu-\dfrac{L^2}{2m}u^2\right)}} \mathd u = 2\int_{u_{\min}}^{u_{\max}} \frac{\mathd u}{\sqrt{\dfrac{2mE}{L^2}+\dfrac{2GMm^2}{L^2}u-u^2}} \\
+	& = 2\int_{u_{\min}}^{u_{\max}} \frac{\mathd u}{\sqrt{\dfrac{2mE}{L^2}+\dfrac{G^2M^2m^4}{L^4} - \left(u-\dfrac{GMm^2}{L^2}\right)^2}} = \left.2\arcsin \frac{u-\dfrac{GMm^2}{L^2}}{\sqrt{\dfrac{2mE}{L^2}+\dfrac{G^2M^2m^4}{L^4}}}\right|_{u_{\min}}^{u_{\max}}
+\end{align*}
+其中$u_{\min}$和$u_{\max}$分别为方程$E+GMmu-\dfrac{L^2}{2m}u^2=0$的较小根和较大根，即\footnote{注意，在椭圆轨道的情形下，$E<0$，因此这两个根都是正的。}
+\begin{equation*}
+	u_{\min} = \frac{GMm^2}{L^2} - \sqrt{\frac{2mE}{L^2}+\frac{G^2M^2m^4}{L^4}},\quad u_{\max} = \frac{GMm^2}{L^2} + \sqrt{\frac{2mE}{L^2}+\frac{G^2M^2m^4}{L^4}}
+\end{equation*}
+由此可有
+\begin{equation*}
+	\Delta \theta = 2\left(\arcsin \frac{u_{\max}-\dfrac{GMm^2}{L^2}}{\sqrt{\dfrac{2mE}{L^2}+\dfrac{G^2M^2m^4}{L^4}}} - \arcsin \frac{u_{\min}-\dfrac{GMm^2}{L^2}}{\sqrt{\dfrac{2mE}{L^2}+\dfrac{G^2M^2m^4}{L^4}}}\right) = 2\pi
+\end{equation*}
+由此可知，在Newton引力势下，椭圆轨道将是闭合的。
+
+当有扰动势$\delta V(r)=-\dfrac{GML^2}{mc^2r^3}$时，近日点进动角为
+\begin{align*}
+	\Delta \theta' & = 2\int_{r_{\min}}^{r_{\max}} \frac{\dfrac{L}{r^2}}{\sqrt{2m\left(E-U(r)\right)}} \mathd r = 2\int_{r_{\min}}^{r_{\max}} \frac{\dfrac{L}{r^2}}{\sqrt{2m\left[E-V_0(r)-\delta V(r)-\dfrac{L^2}{2mr^2}\right]}} \mathd r
+\end{align*}
+上式无法解析算出，由于$\delta V$与其他项相比是小量，可以考虑将上式按$\delta V$展开来近似。注意到积分限$r_{\min}$和$r_{\max}$是方程$E-V_0(r)-\dfrac{L^2}{2mr^2} = 0$的两个根，以及上式的展开式各项系数分母中都含有因子$E-V_0(r)-\dfrac{L^2}{2mr^2}$，因此上式的展开式中的积分将为广义积分，有可能发散。为了避免发散，将上式改写为
+\begin{equation*}
+	\Delta \theta' = -2\frac{\pl}{\pl L}\int_{r_{\min}}^{r_{\max}} \sqrt{2m\left[E-V_0(r)-\delta V(r)-\dfrac{L^2}{2mr^2}\right]} \mathd r
+\end{equation*}
+注意，此处对$L$的偏导数并不针对$V(r)$或$\delta V(r)$表达式中可能会出现的$L$。由此可将上式展开为$\delta V(r)$的幂级数并保留至一阶项，可得
+\begin{align*}
+	\Delta \theta' & = -2\frac{\pl}{\pl L} \int_{r_{\min}}^{r_{\max}} \sqrt{2m\left(E-V_0(r)-\dfrac{L^2}{2mr^2}\right)} \mathd r \\
+	& \quad {} + 2\frac{\pl}{\pl L} \int_{r_{\min}}^{r_{\max}} \frac{m}{\sqrt{2m\left(E-V_0(r)-\dfrac{L^2}{2mr^2}\right)}} \delta V(r)\mathd r
+\end{align*}
+上式第一项即为无微扰时的近日点进动角$2\pi$，对上式第二项沿无微扰的轨道（即椭圆轨道）积分，此时由能量守恒可得
+\begin{equation*}
+	E-V_0(r)-\dfrac{L^2}{2mr^2} = \frac12 m\dot{r}^2
+\end{equation*}
+于是有
+\begin{align*}
+	\Delta \theta' & = 2\pi + \frac{\pl}{\pl L} \int_{r_{\min}}^{r_{\max}} 2\delta V(r) \frac{1}{\dot{r}} \mathd r = 2\pi + \frac{\pl}{\pl L} \int_0^\pi 2\delta V(r)\frac{1}{\dot{\theta}} \mathd \theta
+\end{align*}
+此处利用了关系$\frac{1}{\dot{r}} \mathd r = \frac{1}{\dot{\theta}} \mathd \theta = \mathd t$，再根据角动量的定义可得$mr^2\dot{\theta} = L$，则有
+\begin{equation*}
+	\Delta \theta' = 2\pi + \frac{\pl}{\pl L} \int_0^{\pi} \frac{2mr^2}{L} \delta V(r) \mathd \theta
+\end{equation*}
+由此可得水星近日点一个周期内的进动量为
+\begin{equation*}
+	\Delta \phi = \Delta\theta' - 2\pi = \frac{\pl}{\pl L} \int_0^{\pi} \frac{2mr^2}{L} \delta V(r) \mathd \theta
+\end{equation*}
+这里对$L$的求导不应包含$\delta V(r)$表达式中的$L$，因此将其记作$\delta V(r) = -\dfrac{GML^2}{mc^2r^3} = -\dfrac{\gamma}{r^3}$，则有
+\begin{equation*}
+	\Delta \phi = -\frac{\pl}{\pl L} \int_0^\pi \frac{2m\gamma}{Lr(\theta)} \mathd \theta
+\end{equation*}
+将无微扰时的运动方程$r(\theta) = \dfrac{p}{1+e\cos\theta} = \dfrac{L^2}{GMm^2} \dfrac{1}{1+e\cos\theta}$代入，可得
+\begin{align*}
+	\Delta \phi & = -\frac{\pl}{\pl L} \int_0^\pi \frac{2m\gamma}{L} \frac{GMm^2}{L^2}(1+e\cos\theta) \mathd \theta = -\frac{\pl}{\pl L} \frac{2\pi GMm^3\gamma}{L^3} = \frac{6\pi GMm^3\gamma}{L^4} \\
+	& = 6\pi \left(\frac{GMm}{cL}\right)^2
+\end{align*}
+由于$L^2=GMm^2a(1-e^2)$，可将$\Delta \phi$用轨道参数$a, e$表示为
+\begin{equation*}
+	\Delta \phi = \frac{6\pi GM}{ac^2(1-e^2)}
+\end{equation*}
+
+所有行星的轨道由于相对论效应都有旋进，上式表明半长轴$a$越小，轨道离心率$e$越大，其轨道近日点的进动量就越大。水星是离太阳最近的行星，其轨道离心率也是所有大行星中最大的。将$G=\SI{6.672e-11}{\m^3/(\kg\cdot \s^2)}$，太阳质量$M=\SI{1.989e30}{\kg}$，光速$c=\SI{2.998e8}{\m/\s}$，水星轨道的半长轴$a=\SI{5.786e10}{\m}$和水星轨道的离心率$e=0.2056$代入上式中，可得
+\begin{equation*}
+	\Delta \phi = \SI{5.022e-7}{\radian}
+\end{equation*}
+由于水星的公转周期为\num{87.969}天，故一地球年（\num{365.256}天）将转\num{4.1521}圈，因此水星近日点一个世纪进动的角度为
+\begin{equation*}
+	\num{5.022e-7}\times 4.1521 \times 100 \times \frac{360}{\pi} \times 3600 \approx \ang{;;43}
+\end{equation*}
 \end{solution}
 
 \subsection{多自由度微振动与阻尼}
@@ -1426,8 +1596,8 @@ $A$点的加速度为
 \end{equation*}
 由此，动能和角速度分别为
 \begin{align*}
-	T & = \frac12 \mbf{\omega}^{\mathrm{T}} \mbf{L} \mbf{\omega} = \frac{m}{10} \left[(b^2+c^2) \dot{\theta}^2 \cos^2 \phi + (a^2+c^2) \dot{\theta}^2 \sin^2 \phi + (a^2+b^2) \dot{\phi}^2\right] \\
-	\mbf{L} & = \mbf{L} \mbf{\omega} = \frac{m}{5} \left[(b^2+c^2) \dot{\theta} \cos \phi \mbf{e}_x + (a^2+c^2) \dot{\theta} \sin \phi \mbf{e}_y + (a^2+b^2) \dot{\phi} \mbf{e}_z \right]
+	T & = \frac12 \mbf{\omega}^{\mathrm{T}} \mbf{I} \mbf{\omega} = \frac{m}{10} \left[(b^2+c^2) \dot{\theta}^2 \cos^2 \phi + (a^2+c^2) \dot{\theta}^2 \sin^2 \phi + (a^2+b^2) \dot{\phi}^2\right] \\
+	\mbf{L} & = \mbf{I} \mbf{\omega} = \frac{m}{5} \left[(b^2+c^2) \dot{\theta} \cos \phi \mbf{e}_x + (a^2+c^2) \dot{\theta} \sin \phi \mbf{e}_y + (a^2+b^2) \dot{\phi} \mbf{e}_z \right]
 \end{align*}
 \end{solution}
 
