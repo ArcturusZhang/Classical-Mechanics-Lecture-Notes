@@ -1,0 +1,297 @@
+\chapter{撞击运动理论}
+
+\section{撞击的基本概念}
+
+设力学系统由$N$个质点$m_i(i=1,2,\cdots,N)$构成，如果从某时刻$t=t_0$开始的短时间$\tau$内，系统质点的速度发生了{\bf 突变}\footnote{前面各章中，无论是质点还是刚体，其速度都是连续变化的。}，而其位置却没有显著变化，这种情况下我们称{\bf 系统受到撞击}。被抛向墙壁并反弹回来的弹性球就是一个系统受到撞击的例子。
+
+在撞击过程中，系统内部产生很大的相互作用力，而这些力的作用时间$\tau$非常小，以至于系统来不及发生显著的位移，这样的内部相互作用力称为{\bf 撞击力}。而系统在撞击力作用下的运动称为{\bf 撞击运动}。
+
+设作用在质点$m_i$上的撞击力为$\mbf{F}_i$，将其冲量
+\begin{equation}
+	\mbf{J}_i = \int_{t_0}^{t_0+\tau}\mbf{F}_i\mathd t
+	\label{chapter8:撞击冲量的定义}
+\end{equation}
+称为{\bf 撞击冲量}。在分析撞击运动时，总是假设撞击时间$\tau$是无穷小量，但撞击冲量的大小是有限的。由于在撞击时间$\tau$内系统中质点的速度都是有限量，因此当$\tau\to0$时其位移可以忽略，而它们的加速度$\mbf{a}_i$无穷大。研究撞击运动时，我们不关注撞击过程，而只关注撞击时刻$t_0$前瞬时的速度（称为{\bf 撞击前速度}）和$t_0$后瞬时的速度（称为{\bf 撞击后速度}），分别记作$\mbf{v}_i^-$和$\mbf{v}_i^+$。
+
+对于质点$m_i$，其受到的所有撞击力以外的常规力都是有限量，因此其冲量在撞击时间$\tau\to 0$时是可以忽略不计的小量，根据动量定理可得
+\begin{equation}
+	m_i(\mbf{v}_i^+-\mbf{v}_i^-) = \mbf{J}_i
+	\label{chapter8:撞击运动基本方程}
+\end{equation}
+式\eqref{chapter8:撞击运动基本方程}称为{\bf 撞击运动基本方程}。当撞击作用在有约束的系统上时，通常会产生碰撞约束反力，在这种情况下，式\eqref{chapter8:撞击运动基本方程}的右端还应包含约束反力的撞击冲量。根据撞击冲量的定义式\eqref{chapter8:撞击冲量的定义}，可以将Newton第三定律推广到撞击冲量上，即相互碰撞的两个质点之间的撞击冲量大小相等、方向相反、作用在同一条直线上。
+
+而在研究质点系$m_i(i=1,2,\cdots,N)$的撞击运动时，经常将撞击冲量分为外冲量和内冲凉，即分别为系统外力和内力的冲量。据此将撞击基本方程\eqref{chapter8:撞击运动基本方程}写作
+\begin{equation}
+	m_i\Delta \mbf{v}_i = \mbf{J}_i^{(e)}+\mbf{J}_i^{(i)}\quad (i=1,2,\cdots,N)
+	\label{chapter8:撞击运动基本方程2}
+\end{equation}
+其中$\Delta \mbf{v}_i = \mbf{v}_i^+-\mbf{v}_i^-$为撞击前后速度的该变量，$\mbf{J}_i^{(e)}$是作用在质点$m_i$上的外撞击冲量之和，$\mbf{J}_i^{(i)}$则为作用在该质点上所有内撞击冲量之和。
+
+将系统所有撞击冲量之和
+\begin{equation}
+	\mbf{S} = \sum_{i=1}^N \mbf{J}_i
+\end{equation}
+称为撞击冲量的{\bf 主矢量}。
+
+设$\mbf{r}_i$为$O$点到质点$m_i$的矢径，则撞击冲量对$O$点的冲量矩之和
+\begin{equation}
+	\mbf{K}_O = \sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i
+\end{equation}
+称为撞击冲量对$O$点的{\bf 主矩}。
+
+由于相互碰撞的两个质点之间的撞击冲量大小相等、方向相反，所以可有
+\begin{equation}
+	\mbf{S} = \mbf{S}^{(e)} = \sum_{i=1}^N\mbf{J}_i^{(e)},\quad \mbf{K}_O = \mbf{K}_O^{(e)} = \sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i^{(e)}
+\end{equation}
+即系统撞击冲量的主矢量和主矩分别等于外撞击冲量的主矢量和主矩。
+
+\section{撞击运动的动力学普遍方程}
+
+将方程\eqref{chapter8:撞击运动基本方程2}对所有质点求和，可得
+\begin{equation*}
+	\Delta \left(\sum_{i=1}^Nm_i\mbf{v}_i\right) = \sum_{i=1}^N\mbf{J}_i^{(e)}+\sum_{i=1}^N\mbf{J}_i^{(i)}
+\end{equation*}
+或者
+\begin{equation}
+	\Delta \mbf{P} = \mbf{S}^{(e)}
+	\label{chapter8:系统撞击的动力学普遍方程-前置}
+\end{equation}
+即在撞击中系统动量的该变量等于外撞击冲量的主矢量，式\eqref{chapter8:系统撞击的动力学普遍方程-前置}即为撞击运动的动量定理。
+
+由于$\mbf{P}=M\mbf{v}_C$，其中$M$是系统的总质量，$\mbf{v}_C$是质心的速度，于是方程\eqref{chapter8:系统撞击的动力学普遍方程-前置}可以写作
+\begin{equation}
+	M\Delta \mbf{v}_C = \mbf{S}^{(e)}
+	\label{chapter8:系统撞击的动量定理}
+\end{equation}
+
+设点$A$是空间中的某一点\footnote{这一点可以是固定点也可以是运动的点。}，$\mbf{r}_i$是$A$点到质点$m_i$的矢径，将方程\eqref{chapter8:撞击运动基本方程2}两端左叉乘$\mbf{r}_i$之后对所有质点求和，可得
+\begin{equation*}
+	\Delta \left(\sum_{i=1}^N\mbf{r}_i\times m_i\mbf{v}_i\right) = \sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i^{(e)}+\sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i^{(i)}
+\end{equation*}
+或者
+\begin{equation}
+	\Delta\mbf{L}_A = \mbf{K}_A^{(e)}
+	\label{chapter8:系统撞击的角动量定理}
+\end{equation}
+即系统对任意点的角动量的该变量等于外撞击冲量对该点的主矩，式\eqref{chapter8:系统撞击的角动量定理}即为撞击运动的角动量定理。
+
+下面来导出撞击运动中的动能定理。记$T^-$和$T^+$分别为系统撞击前后的动能，则根据动能的定义可得
+\begin{equation}
+	T^- = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^-)^2,\quad T^+ = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+)^2
+\end{equation}
+将式\eqref{chapter8:撞击运动基本方程2}两端点乘$\mbf{v}_i^+$可得
+\begin{equation*}
+	m_i(\mbf{v}_i^+-\mbf{v}_i^-)\cdot\mbf{v}_i^+ = \mbf{J}_i^{(e)}\cdot\mbf{v}_i^+ + \mbf{J}_i^{(i)}\cdot\mbf{v}_i^-
+\end{equation*}
+将上式对所有质点求和，并将其左端的$\mbf{v}_i^+$改写为
+\begin{equation*}
+	\mbf{v}_i^+ = \frac12 \big[(\mbf{v}_i^++\mbf{v}_i^-)+(\mbf{v}_i^+-\mbf{v}_i^-)\big]
+\end{equation*}
+可得
+\begin{equation*}
+	\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2+\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+)^2-\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^-)^2 = \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot\mbf{v}_i^+ + \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot\mbf{v}_i^+
+\end{equation*}
+即有
+\begin{equation}
+	T^--T^+ = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2 - \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot\mbf{v}_i^+ - \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot\mbf{v}_i^+
+	\label{chapter8:撞击运动的动能定理-中间步骤1}
+\end{equation}
+类似地，在式\eqref{chapter8:撞击运动基本方程2}两端点乘$\mbf{v}_i^-$，并将其中的$\mbf{v}_i^-$改写为
+\begin{equation*}
+	\mbf{v}_i^- = \frac12 \big[(\mbf{v}_i^++\mbf{v}_i^-)-(\mbf{v}_i^+-\mbf{v}_i^-)\big]
+\end{equation*}
+再将其对所有质点求和，可得
+\begin{equation}
+	T^+-T^- = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2 + \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot\mbf{v}_i^- + \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot\mbf{v}_i^-
+	\label{chapter8:撞击运动的动能定理-中间步骤2}
+\end{equation}
+用式\eqref{chapter8:撞击运动的动能定理-中间步骤2}减去式\eqref{chapter8:撞击运动的动能定理-中间步骤1}再除以$2$，即可得到{\bf 撞击运动的动能定理}
+\begin{equation}
+	T^+-T^- = \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot \frac{\mbf{v}_i^++\mbf{v}_i^-}{2} + \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot \frac{\mbf{v}_i^++\mbf{v}_i^-}{2}
+	\label{chapter8:撞击运动的动能定理}
+\end{equation}
+
+\begin{example}\label{chapter8:例1}
+质量为$m$长为$l$的均匀细杆处于静止状态，在其一端垂直于杆作用冲量$J$，如图\ref{chapter8:例1图}所示。求撞击后杆的运动状态。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第八章例1
+	real x,d,J;
+	x = 1;
+	d = 0.02;
+	draw(box((-x,-d),(x,d)),linewidth(0.8bp));
+	dot("$O$",(0,0),2*S);
+	J = 0.6;
+	draw(Label("$\boldsymbol{J}$",Relative(0.8),E),(x,-J)--(x,-d),Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:例1图}
+\end{figure}
+\end{example}
+\begin{solution}
+设$v$为撞击后杆质心的速度，$\omega$为撞击后杆的角速度，则由动量定理\eqref{chapter8:系统撞击的动量定理}和角动量定理\eqref{chapter8:系统撞击的角动量定理}可得
+\begin{equation*}
+\begin{cases}
+	\ds mv = J \\
+	\ds \frac{1}{12}ml^2\omega = \frac{l}{2}J
+\end{cases}
+\end{equation*}
+由此可得
+\begin{equation*}
+	v = \frac{J}{m},\quad \omega = \frac{6J}{ml}
+\end{equation*}
+\end{solution}
+
+\begin{example}
+如果将例\ref{chapter8:例1}中的杆一端用铰链固定，求此情形下撞击后杆的运动状态。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第八章例2
+	real x,d,J,JA;
+	x = 1;
+	d = 0.02;
+	draw(box((-x,-d),(x,d)),linewidth(0.8bp));
+	J = 0.6;
+	draw(Label("$\boldsymbol{J}$",Relative(0.8),E),(x,-J)--(x,-d),Arrow);
+	JA = 0.55;
+	draw(Label("$\boldsymbol{J}_A$",EndPoint),(-x,d)--(-x,J),Arrow);
+	picture tmp;
+	real l,r;
+	r = 0.025;
+	l = 0.1;
+	draw(tmp,(0,0)--l*dir(-60)--l*dir(-120)--cycle);
+	draw(tmp,(-0.8*l,-l*Cos(30))--(0.8*l,-l*Cos(30)),linewidth(0.8bp));
+	add(shift(-x,0)*tmp);
+	unfill(circle((-x,0),r));
+	draw(circle((-x,0),r));
+	erase(tmp);
+	real dashl;
+	pair dashp;
+	dashp = dir(-135);
+	dashl = 0.02;
+	for(real p=-l;p<=l;p=p+dashl){
+		pair P = (p,-l*Cos(30));
+		draw(tmp,P--P+dashp);
+	}
+	clip(tmp,box((-0.8*l,0),(0.8*l,-1.2*l)));
+	add(shift(-x,0)*tmp);
+	label("$A$",(-x,0),2*W);
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:例2图}
+\end{figure}
+\end{example}
+\begin{solution}
+撞击后杆将绕$A$点转动，根据角动量定理\eqref{chapter8:系统撞击的角动量定理}可得
+\begin{equation*}
+	\left(\frac{1}{12}ml^2+\frac14ml^2\right)\omega = Jl
+\end{equation*}
+由此可得
+\begin{equation*}
+	\omega = \frac{3J}{ml}
+\end{equation*}
+
+额外还可以求出铰链对杆的未知撞击冲量$\mbf{J}_A$。根据动量定理\eqref{chapter8:系统撞击的动量定理}可得
+\begin{equation*}
+	mv = J+J_A
+\end{equation*}
+其中$v$为撞击后杆质心的速度，其值为$v = \omega\dfrac l2 = \dfrac{3J}{2m}$，因此可得
+\begin{equation*}
+	J_A = mv - J = \frac12J
+\end{equation*}
+\end{solution}
+
+\section{刚体的撞击运动}
+
+\subsection{自由刚体的撞击}
+
+由于刚体的运动状态可以完全由刚体上任意一点的速度和刚体的角速度决定，因此自由刚体的撞击运动问题可以完全归结为求撞击时刚体上某点的速度和刚体的角速度这两个矢量。
+
+为了简化问题，取刚体的质心为坐标原点，坐标轴选为其惯量主轴，其主惯量分别记作$I_1, I_2, I_3$，则根据撞击运动的动量定理\eqref{chapter8:系统撞击的动量定理}和角动量定理\eqref{chapter8:系统撞击的角动量定理}可得
+\begin{equation}
+\begin{cases}
+	\ds v_{Cx}^+-v_{Cx}^- = \frac{S_x}{m},\quad v_{Cy}^+-v_{Cy}^- = \frac{S_y}{m},\quad v_{Cz}^+-v_{Cz}^- = \frac{S_z}{m} \\[1.5ex]
+	\ds \omega_x^+-\omega_x^- = \frac{K_x}{I_1},\quad \omega_y^+-\omega_y^- = \frac{K_y}{I_2},\quad \omega_z^+-\omega_z^- = \frac{K_z}{I_3}
+\end{cases}
+\label{chapter8:自由刚体的撞击方程}
+\end{equation}
+
+如果刚体做平面平行运动，例如平行于$xOy$平面，则方程\eqref{chapter8:自由刚体的撞击方程}中的6个关系式中将只剩下3个：
+\begin{equation}
+	v_{Cx}^+-v_{Cx}^- = \frac{S_x}{m},\quad v_{Cy}^+-v_{Cy}^- = \frac{S_y}{m},\quad \omega_z^+-\omega_z^- = \frac{K_z}{I_3}
+	\label{chapter8:自由刚体的平面平行运动撞击方程}
+\end{equation}
+
+刚体的动能根据K\"onig定理\eqref{Konig定理}可以表示为
+\begin{equation*}
+	T = \frac12 mv_C^2 + \frac12 \left(I_1\omega_x^2+I_2\omega_y^2+I_3\omega_3^2\right)
+\end{equation*}
+将撞击前后的质心速度和刚体的角速度代入上式然后相减，并注意到动能定理\eqref{chapter8:系统撞击的动量定理}和角动量定理\eqref{chapter8:系统撞击的角动量定理}可得
+\begin{equation}
+	T^+-T^- = \mbf{S}^{(e)}\cdot \frac{\mbf{v}_C^+-\mbf{v}_C^-}{2} + \mbf{K}_C^{(e)}\cdot \frac{\mbf{\omega}^+-\mbf{\omega}^-}{2}
+\end{equation}
+如果利用式\eqref{chapter8:自由刚体的撞击方程}消去碰撞后的速度和角速度，可以将动能的变化量用撞击冲量的主矢量$\mbf{S}^{(e)}$和主矩$\mbf{K}_C^{(e)}$以及$\mbf{v}_C^-$和$\mbf{\omega}^-$来表示：
+\begin{equation}
+	T^+-T^- = \frac12\left(\frac{S_x^2+S_y^2+S_z^2}{m}+\frac{K_x^2}{I_1}+\frac{K_y^2}{I_2}+\frac{K_z^2}{I_3}\right) + \mbf{S}^{(e)}\cdot\mbf{v}_C^- + \mbf{K}_C^{(e)}\cdot\mbf{\omega}^-
+\end{equation}
+
+\begin{example}
+如图\ref{chapter8:第八章例3图}所示，用水平台球杆撞击台球，杆距离球质心的高度$h$为多少时，撞击后球将无滑动地滚动？
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第八章例3
+	picture dashpic;
+	real groud,dashd,dashh;
+	pair dashdir;
+	groud = 1.8;
+	dashdir = 10*dir(-135);
+	dashd = 0.06;
+	dashh = 0.12;
+	draw(dashpic,(-groud,0)--(groud,0),linewidth(2bp));
+	for(real p=-2*groud;p<2*groud;p=p+dashd){
+		pair P = (p,0);
+		draw(dashpic,P--P+dashdir);
+	}
+	clip(dashpic,box((-groud,dashh),(groud,-dashh)));
+	add(dashpic);
+	real R,h,r,v,J;
+	r = 1;
+	h = 0.3;
+	v = 0.5;
+	J = 0.5;
+	draw(circle((0,r),r),linewidth(0.8bp));
+	draw((0,0)--(0,2*r));
+	label("$R$",(0,r/2),W);
+	label("$h$",(0,r+h/2),E);
+	draw(Label("$\boldsymbol{v}$",EndPoint),(0,r)--(v,r),Arrow);
+	draw(Label("$\boldsymbol{J}$",Relative(0.3),N),(-sqrt(r^2-h^2)-J,r+h)--(-sqrt(r^2-h^2),r+h),Arrow);
+	draw((-sqrt(r^2-h^2),r+h)--(0,r+h));
+	R = 1.2;
+	draw(Label("$\boldsymbol{\omega}$",MidPoint,Relative(W)),arc((0,r),R,110,70),Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:例3图}
+\end{figure}
+\end{example}
+\begin{solution}
+设台球的质量为$m$，半径为$R$，撞击冲量为$J$，则根据撞击运动的动量定理和角动量定理可得
+\begin{equation*}
+\begin{cases}
+	mv = J \\
+	\dfrac25mR^2\omega = Jh
+\end{cases}
+\end{equation*}
+而无滑动滚动要求$v=\omega R$，由此可解得$h=\dfrac25 R$。
+\end{solution}
+
+\subsection{定点运动刚体的撞击}
+

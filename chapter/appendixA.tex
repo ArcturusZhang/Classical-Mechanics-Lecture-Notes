@@ -1,0 +1,126 @@
+%\setcounter{chapter}{0}
+%\renewcommand{\thechapter}{\Alph{chapter}}
+
+\appendix
+
+\titleformat{\chapter}[hang]{\hwyk\LARGE}
+{}{0mm}{\hspace{-0.4cm}\myappendix}
+ 
+\titleformat{\section}[hang]{\hwyk\LARGE}
+{}{0mm}{\hspace{-0.5cm}\appendixsection}
+
+\titleformat{\subsection}[hang]{\hwyk\large}
+{}{0mm}{\hspace{-0.5cm}\appendixsubsection}
+
+\titleformat{\subsubsection}[hang]{\hwyk\large}
+{}{0mm}{\hspace{-0.5cm}\appendixsubsubsection}
+
+\chapter{Legendre椭圆积分与Jacobi椭圆函数}\label{椭圆积分与Jacobi椭圆函数}
+
+\section{Legendre椭圆积分}
+
+定义函数\footnote{本节提到的三类椭圆积分在不同的文献上可能会有不同的形式。}
+\begin{equation}
+	F(k,x) = \int_0^x \frac{\mathrm{d}t}{\sqrt{(1-t^2)(1-k^2t^2)}} = \int_0^{\arcsin x} \frac{\mathrm{d}\phi}{\sqrt{1-k^2\sin^2\phi}}
+	\label{第一类椭圆积分-定义}
+\end{equation}
+为{\bf 第一类椭圆积分}。当$x=1$时，记
+\begin{equation}
+	K(k) = \int_0^1 \frac{\mathrm{d}t}{\sqrt{(1-t^2)(1-k^2t^2)}} = \int_0^{\frac{\pi}{2}} \frac{\mathrm{d}\phi}{\sqrt{1-k^2\sin^2\phi}}
+	\label{chp6:第一类完全椭圆积分-定义}
+\end{equation}
+称为{\bf 第一类完全椭圆积分}。
+
+第一类椭圆积分可以用级数表示为
+\begin{align}
+	F(k,x) & = \int_0^{\arcsin x} \left[1+\sum_{n=1}^\infty \frac{(2n-1)!!}{(2n)!!}k^{2n}\sin^{2n}\phi\right]\mathrm{d}\phi \nonumber \\
+	& = \arcsin x + \sum_{n=1}^\infty \frac{(2n-1)!!}{(2n)!!}k^{2n}\int_0^{\arcsin x} \sin^{2n}\phi \mathrm{d}\phi
+	\label{chp6:第一类椭圆积分-级数表示}
+\end{align}
+由此可得第一类完全椭圆积分的级数表示为
+\begin{align}
+	K(k) & = \arcsin 1 + \sum_{n=1}^\infty \frac{(2n-1)!!}{(2n)!!}k^{2n}\int_0^{\frac{\pi}{2}} \sin^{2n}\phi \mathrm{d}\phi \nonumber \\
+	& = \frac{\pi}{2}\left[1+\sum_{n=1}^\infty \left(\frac{(2n-1)!!}{(2n)!!}\right)^2k^{2n}\right]
+	\label{chp6:第一类完全椭圆积分-级数表示}
+\end{align}
+
+定义函数
+\begin{equation}
+	E(k,x) = \int_0^x \sqrt{\frac{1-k^2t^2}{1-t^2}}\mathrm{d}t = \int_0^{\arcsin x} \sqrt{1-k^2\sin^2\phi}\mathrm{d}\phi
+	\label{第二类椭圆积分-定义}
+\end{equation}
+为{\bf 第二类椭圆积分}。当$x=1$时，记
+\begin{equation}
+	E(k) = \int_0^1 \sqrt{\frac{1-k^2t^2}{1-t^2}}\mathrm{d}t = \int_0^{\frac{\pi}{2}} \sqrt{1-k^2\sin^2\phi}\mathrm{d}\phi
+	\label{第二类完全椭圆积分-定义}
+\end{equation}
+称为{\bf 第二类完全椭圆积分}。
+
+第二类椭圆积分可以用级数表示为
+\begin{align}
+	E(k,x) & = \int_0^{\arcsin x} \left[1-\sum_{n=1}^\infty \frac{1}{2n-1}\frac{(2n-1)!!}{(2n)!!}k^{2n}\sin^{2n}\phi\right]\mathrm{d}\phi \nonumber \\
+	& = \arcsin x - \sum_{n=1}^\infty \frac{1}{2n-1}\frac{(2n-1)!!}{(2n)!!}k^{2n}\int_0^{\arcsin x} \sin^{2n}\phi \mathrm{d}\phi
+	\label{第二类椭圆积分-级数表示}
+\end{align}
+由此可得第二类完全椭圆积分的级数表示为
+\begin{align}
+	E(k) & = \arcsin 1 - \sum_{n=1}^\infty \frac{1}{2n-1}\frac{(2n-1)!!}{(2n)!!}k^{2n}\int_0^{\frac{\pi}{2}} \sin^{2n}\phi \mathrm{d}\phi \nonumber \\
+	& = \frac{\pi}{2}\left[1-\sum_{n=1}^\infty \frac{1}{2n-1}\left(\frac{(2n-1)!!}{(2n)!!}\right)^2k^{2n}\right]
+	\label{chp6:第二类完全椭圆积分-级数表示}
+\end{align}
+
+定义函数
+\begin{align}
+	\varPi(h,k,x) & = \int_0^x \frac{\mathrm{d}t}{(1+ht^2)\sqrt{(1-t^2)(1-k^2t^2)}} \nonumber \\
+	& = \int_0^{\arcsin x} \frac{\mathrm{d}\phi}{(1+h\sin^2\phi)\sqrt{1-k^2\sin^2\phi}}
+\end{align}
+为{\bf 第三类椭圆积分}。当$x=1$时，记
+\begin{equation}
+	\varPi(h,k) = \int_0^1 \frac{\mathrm{d}t}{(1+ht^2)\sqrt{(1-t^2)(1-k^2t^2)}} = \int_0^{\frac{\pi}{2}} \frac{\mathrm{d}\phi}{(1+h\sin^2\phi)\sqrt{1-k^2\sin^2\phi}}
+\end{equation}
+称为{\bf 第三类完全椭圆积分}。
+
+\section{Jacobi椭圆函数}
+
+第一类椭圆积分\eqref{第一类椭圆积分-定义}
+\begin{equation*}
+	x = \int_0^s \frac{\mathrm{d}t}{\sqrt{(1-t^2)(1-k^2t^2)}}
+\end{equation*}
+的反函数记作
+\begin{equation}
+	s = \sn x
+\end{equation}
+称为{\bf 椭圆正弦函数}。
+
+令
+\begin{equation}
+	\sin \phi = \sn x
+\end{equation}
+则称$\phi$为{\bf 椭圆振幅函数}，记作$\phi = \am x$。
+
+定义
+\begin{equation}
+	\cn x = \cos \phi = \sqrt{1-\sn^2 x}
+\end{equation}
+称为{\bf 椭圆余弦函数}。定义
+\begin{equation}
+	\tn x = \tan \phi = \frac{\sn x}{\cn x} = \frac{\sn x}{\sqrt{1-\cn^2 x}}
+\end{equation}
+称为{\bf 椭圆正切函数}。定义
+\begin{equation}
+	\dn x = \sqrt{1-k^2\sn^2x}
+\end{equation}
+称为{\bf 椭圆幅度函数}。
+
+当$k\to 0$时，根据式\eqref{第一类椭圆积分-定义}可得
+\begin{equation*}
+	F(0,s) = \int_0^s \frac{\mathrm{d}t}{\sqrt{1-t^2}} = \arcsin s
+\end{equation*}
+由此，当$k\to 0$时，有
+\begin{equation}
+	\sn x \to \sin x
+\end{equation}
+根据其余椭圆函数的定义，当$k\to 0$时，有
+\begin{equation}
+	\cn x \to \cos x,\quad \dn x \to 1
+\end{equation}
