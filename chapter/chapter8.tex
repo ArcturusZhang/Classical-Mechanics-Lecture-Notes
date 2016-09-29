@@ -295,3 +295,49 @@
 
 \subsection{定点运动刚体的撞击}
 
+在定点运动中，取固定点$O$为坐标原点，坐标轴$Ox, Oy, Oz$分别与刚体对$O$点的惯量主轴重合，用$\mbf{S}$和$\mbf{K}$来表示主动撞击冲量的主矢量和对$O$点的主矩，需要求解该刚体角速度改变量$\Delta \mbf{\omega}$和$O$点的约束撞击冲量。
+
+根据方程\eqref{chapter8:自由刚体的撞击方程}可得该刚体角速度改变量$\Delta \mbf{\omega}$满足
+\begin{equation}
+	\Delta \omega_x = \frac{K_x}{I_1},\quad \Delta \omega_y = \frac{K_y}{I_2},\quad \Delta \omega_z = \frac{K_z}{I_3}
+\end{equation}
+撞击运动过程中质心的坐标不变，故有$\Delta\mbf{v}_C = \Delta\mbf{\omega}\times \mbf{r}_C$，其中$\mbf{r}_C$为质心相对$O$点位矢。约束撞击冲量$\mbf{J}'$可以由撞击运动的动量定理\eqref{chapter8:系统撞击的动量定理}来确定，即
+\begin{equation*}
+	m\Delta \mbf{v}_C = \mbf{S}+\mbf{J}'
+\end{equation*}
+由此可得
+\begin{equation}
+	\mbf{J}' = m\Delta\mbf{\omega}\times \mbf{r}_C - \mbf{S}
+	\label{chapter8:定点运动刚体撞击时的约束撞击冲量}
+\end{equation}
+
+下面考虑一种特殊情况：在刚体上某一点作用一个撞击冲量$\mbf{J}$，当这个撞击冲量作用在刚体上的哪一点时，不会引起撞击约束反力？例如需要对静止的刚体施加撞击使其开始定点转动，但不能确信约束具有足够的强度。
+
+设该刚体的质心坐标为$x_C,y_C,z_C$，而撞击冲量$\mbf{J}$作用点$P$的坐标为$x,y,z$，令$\mbf{J}'=\mbf{0}$，则根据式\eqref{chapter8:定点运动刚体撞击时的约束撞击冲量}可得
+\begin{equation}
+\begin{cases}
+	\ds z_C\frac{zJ_x-xJ_z}{I_2}-y_C\frac{xJ_y-yJ_x}{I_3} = \frac{J_x}{m} \\[1.5ex]
+	\ds x_C\frac{xJ_y-yJ_x}{I_3}-z_C\frac{yJ_z-zJ_y}{I_1} = \frac{J_y}{m} \\[1.5ex]
+	\ds z_C\frac{yJ_z-zJ_y}{I_1}-x_C\frac{zJ_x-xJ_z}{I_2} = \frac{J_z}{m}
+\end{cases}
+\end{equation}
+这个方程对冲量$\mbf{J}$的三个分量是线性齐次的，因此冲量$\mbf{J}$的大小是任意的，只需要作用点坐标满足
+\begin{equation}
+	\begin{vmatrix}
+		\dfrac{y_Cy}{I_3}+\dfrac{z_Cz}{I_2}-\dfrac1m & -\dfrac{y_Cx}{I_3} & -\dfrac{z_Cx}{I_2} \\[1.5ex]
+		-\dfrac{x_Cy}{I_3} & \dfrac{x_Cx}{I_3}+\dfrac{z_Cz}{I_1}-\dfrac1m & -\dfrac{z_Cy}{I_1} \\[1.5ex]
+		-\dfrac{x_Cz}{I_2} & -\dfrac{y_Cz}{I_1} & \dfrac{x_Cx}{I_2}+\dfrac{y_Cy}{I_1}-\dfrac1m \\[1.5ex]
+	\end{vmatrix} = 0
+	\label{chapter8:定点运动刚体撞击时约束撞击冲量为零需要满足的条件}
+\end{equation}
+即可使得约束撞击冲量为零。方程\eqref{chapter8:定点运动刚体撞击时约束撞击冲量为零需要满足的条件}表明，在一般情况下$P$点的可能位置为于一个三次曲面上，在该曲面上的任意点作用冲量都不会引起撞击约束反力。将该曲面上选定点的坐标$x,y,z$代入方程\eqref{chapter8:定点运动刚体撞击时约束撞击冲量为零需要满足的条件}中即可确定冲量$\mbf{J}$的作用线。
+
+当固定点$O$位于刚体的某个惯量主轴上时，不妨将该主轴取为$z$轴，此时有$x_C=y_C=0$，方程\eqref{chapter8:定点运动刚体撞击时约束撞击冲量为零需要满足的条件}变为
+\begin{equation*}
+	-\frac1m \left(\frac{z_Cz}{I_1}-\frac1m\right) \left(\frac{z_Cz}{I_2}-\frac1m\right) = 0
+\end{equation*}
+即$P$点位于两个平面
+\begin{equation*}
+	z = \frac{I_1}{mz_C}\quad \text{或}\quad z = \frac{I_2}{mz_C}
+\end{equation*}
+上。这两个平面都垂直于惯量主轴$Oz$且与刚体的质心位于$O$点的同一侧。当$P$点位于$z = \dfrac{I_1}{mz_C}$上时，冲量$\mbf{J}$应平行于$Oy$轴；当$P$点位于$z = \dfrac{I_2}{mz_C}$上时，冲量$\mbf{J}$应平行于$Ox$轴。对于满足$I_1=I_2$的对称刚体，这两个平面重合，此时冲量$\mbf{J}$可以在该平面内沿任意方向。
