@@ -738,7 +738,7 @@ $\delta x$是独立的广义虚位移，因此有
 \end{equation*}
 由此，动能可以表示为
 \begin{align*}
-	T & = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i = \sum_{i=1}^n \frac12 m_i \left(\sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}\right) \cdot \left(\sum_{\beta=1}^s \frac{\pl \mbf{r}_i}{\pl q_\beta} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}\right) \\
+	T & = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i = \sum_{i=1}^n \frac12 m_i \left(\sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}\right) \cdot \left(\sum_{\beta=1}^s \frac{\pl \mbf{r}_i}{\pl q_\beta} \dot{q}_\beta + \frac{\pl \mbf{r}_i}{\pl t}\right) \\
 	& = \frac12 \sum_{\alpha,\beta=1}^s \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl q_\beta} \dot{q}_\alpha \dot{q}_\beta + \sum_{\alpha=1}^s \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl t} \dot{q}_\alpha + \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2 \\
 	& = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta + \sum_{\alpha=1}^s P_\alpha(\mbf{q},t) \dot{q}_\alpha + T_0(\mbf{q},t)
 \end{align*}
@@ -900,7 +900,7 @@ Lagrange函数为
 \end{equation}
 则系统的Lagrange方程与式\eqref{理想完整有势系的Lagrange方程}相同，即
 \begin{equation}
-	\frac{\mathrm{d}}{\mathrm{d}} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+	\frac{\mathrm{d}}{\mathrm{d}t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
 \end{equation}
 考虑动能$\displaystyle T = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i$满足
 \begin{equation*}
@@ -1473,7 +1473,7 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 \end{equation*}
 所以
 \begin{align}
-	\mathrm{d} (Lt') & = L\mathrm{d} t' + t'\mathrm{d} L = \sum_{\alpha=1}^s p'_\alpha \mathrm{d} q_\alpha - H' \mathrm{d} t + \sum_{\alpha=1}^s p_\alpha t' (\mathrm{d} q'_\alpha - \dot{q}_\alpha \mathrm{d} t') + L\mathrm{d} t' \nonumber \\
+	\mathrm{d} (Lt') & = L\mathrm{d} t' + t'\mathrm{d} L = \sum_{\alpha=1}^s p'_\alpha \mathrm{d} q_\alpha - H' \mathrm{d} t + \sum_{\alpha=1}^s p_\alpha (\mathrm{d} q'_\alpha - \dot{q}_\alpha \mathrm{d} t') + L\mathrm{d} t' \nonumber \\
 	& = \sum_{\alpha=1}^s p'_\alpha \mathrm{d} q_\alpha + p'_t \mathrm{d} t + \sum_{\alpha=1}^s p_\alpha t' \mathrm{d} q'_\alpha + p_t\mathrm{d} t'
 	\label{推广的Lagrange函数中间步骤}
 \end{align}
