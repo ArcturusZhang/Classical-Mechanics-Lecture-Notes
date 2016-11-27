@@ -25,7 +25,7 @@
 	m_i\Delta \mbf{v}_i = \mbf{J}_i^{(e)}+\mbf{J}_i^{(i)}\quad (i=1,2,\cdots,N)
 	\label{chapter8:撞击运动基本方程2}
 \end{equation}
-其中$\Delta \mbf{v}_i = \mbf{v}_i^+-\mbf{v}_i^-$为撞击前后速度的该变量，$\mbf{J}_i^{(e)}$是作用在质点$m_i$上的外撞击冲量之和，$\mbf{J}_i^{(i)}$则为作用在该质点上所有内撞击冲量之和。
+其中$\Delta \mbf{v}_i = \mbf{v}_i^+-\mbf{v}_i^-$为撞击前后速度的改变量，$\mbf{J}_i^{(e)}$是作用在质点$m_i$上的外撞击冲量之和，$\mbf{J}_i^{(i)}$则为作用在该质点上所有内撞击冲量之和。
 
 将系统所有撞击冲量之和
 \begin{equation}
@@ -239,10 +239,11 @@
 如果利用式\eqref{chapter8:自由刚体的撞击方程}消去碰撞后的速度和角速度，可以将动能的变化量用撞击冲量的主矢量$\mbf{S}^{(e)}$和主矩$\mbf{K}_C^{(e)}$以及$\mbf{v}_C^-$和$\mbf{\omega}^-$来表示：
 \begin{equation}
 	T^+-T^- = \frac12\left(\frac{S_x^2+S_y^2+S_z^2}{m}+\frac{K_x^2}{I_1}+\frac{K_y^2}{I_2}+\frac{K_z^2}{I_3}\right) + \mbf{S}^{(e)}\cdot\mbf{v}_C^- + \mbf{K}_C^{(e)}\cdot\mbf{\omega}^-
+	\label{chapter8:自由刚体撞击的动能变化}
 \end{equation}
 
 \begin{example}
-如图\ref{chapter8:第八章例3图}所示，用水平台球杆撞击台球，杆距离球质心的高度$h$为多少时，撞击后球将无滑动地滚动？
+如图\ref{chapter8:例3图}所示，用水平台球杆撞击台球，杆距离球质心的高度$h$为多少时，撞击后球将无滑动地滚动？
 
 \begin{figure}[htb]
 \centering
@@ -341,3 +342,529 @@
 	z = \frac{I_1}{mz_C}\quad \text{或}\quad z = \frac{I_2}{mz_C}
 \end{equation*}
 上。这两个平面都垂直于惯量主轴$Oz$且与刚体的质心位于$O$点的同一侧。当$P$点位于$z = \dfrac{I_1}{mz_C}$上时，冲量$\mbf{J}$应平行于$Oy$轴；当$P$点位于$z = \dfrac{I_2}{mz_C}$上时，冲量$\mbf{J}$应平行于$Ox$轴。对于满足$I_1=I_2$的对称刚体，这两个平面重合，此时冲量$\mbf{J}$可以在该平面内沿任意方向。
+
+\begin{example}\label{chapter8:定点转动刚体的碰撞例1}
+刚体绕$O$点作定点运动，在某时刻刚体的角速度等于$\mbf{\omega}^-$，这时突然固定第二个点$O_1$，此后刚体即只能绕着过$O$点和$O_1$点的固定轴$u$转动，求刚体定轴转动的角速度大小$\omega^+$。记定轴$u$与刚体三个惯量主轴的方向余弦分别为$\alpha, \beta, \gamma$，其三个主惯量为$I_1,I_2,I_3$。
+\end{example}
+
+\begin{solution}
+记轴$u$的单位方向矢量为$\mbf{n}$，则在主轴系中有$\mbf{n}=\alpha\mbf{e}_1+\beta\mbf{e}_2+\gamma\mbf{e}_3$。在这个撞击过程中，刚体受到的撞击冲量对$O_1$点的主矩$\mbf{K}_{O_1} = \vec{OO_1}\times \mbf{J} \perp \mbf{n}$，所以$\mbf{K}_{O_1}\cdot \mbf{n}=0$，因此有$\Delta \mbf{L}\cdot \mbf{n}=0$，即刚体在撞击前后角动量在$u$轴上的投影是不变的，亦即刚体对轴$u$的角动量不变。
+
+在撞击前后，刚体对轴$u$的角动量分别为
+\begin{align*}
+	L_u^- & = \mbf{n}^{\mathrm{T}}\mbf{I}\mbf{\omega}^- = I_1\alpha\omega_1^-+I_2\beta\omega_2^-+I_3\gamma\omega_3^- \\
+	L_u^+ & = \mbf{n}^{\mathrm{T}}\mbf{I}\mbf{\omega}^+ = \mbf{n}^{\mathrm{T}}\mbf{I}\mbf{n}\omega^+ = (I_1\alpha^2+I_2\beta^2+I_3\gamma^2)\omega^+
+\end{align*}
+由$L_u^-=L_u^+$可得
+\begin{equation*}
+	\omega^+ = \frac{I_1\alpha\omega_1^-+I_2\beta\omega_2^-+I_3\gamma\omega_3^-}{I_1\alpha^2+I_2\beta^2+I_3\gamma^2}
+\end{equation*}
+\end{solution}
+
+\subsection{定轴转动刚体的撞击}
+
+设刚体绕着过$O$和$O_1$的轴转动（如图\ref{chapter8:定轴转动刚体的撞击图}所示），在刚体上$P$点作用撞击冲量$\mbf{J}$，求刚体的角速度改变量以及$O$和$O_1$两点的撞击约束冲量。
+
+\begin{figure}[ht]
+\centering
+\begin{asy}
+	size(250);
+	//定轴转动刚体的撞击
+	pair O,i,j,k;
+	real x,y,z;
+	O = (0,0);
+	x = 1.8;
+	y = 1.5;
+	z = 3;
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	draw(Label("$x$",EndPoint),O--x*i,Arrow);
+	draw(Label("$y$",EndPoint),O--y*j,Arrow);
+	draw(Label("$z$",EndPoint),O--z*k,Arrow);
+	label("$O$",O,S);
+	pair A[];
+	A[0] = (0,2.5);
+	A[1] = (-.7,1.7);
+	A[2] = (-.6,0);
+	A[3] = (0,-0.5);
+	A[4] = (.8,0);
+	A[5] = (.8,1.6);
+	guide p;
+	for(pair P:A) {
+		p = p..P;
+	}
+	p = p..cycle;
+	draw(p,linewidth(0.8bp));
+	pair O1 = 2*k;
+	dot("$O_1$",O1,SE);
+	pair Ip = .7*dir(120);
+	draw(Label("$\boldsymbol{J}'$",EndPoint),O--O+Ip,Arrow);
+	pair Ipp = 1.2*dir(45);
+	draw(Label("$\boldsymbol{J}''$",EndPoint),O1--O1+Ipp,Arrow);
+	pair C = (-0.3,1.5);
+	dot("$C$",C,S);
+	pair I = 1*dir(-35);
+	pair P = (-.6,1.1);
+	draw(Label("$\boldsymbol{J}$",Relative(0.2),Relative(W)),P-I--P,Arrow);
+	dot("$P$",P,S);
+\end{asy}
+\caption{定轴转动刚体的撞击}
+\label{chapter8:定轴转动刚体的撞击图}
+\end{figure}
+
+以$O$为原点建立坐标系$Oxyz$，其中$Oz$轴沿着转动轴，$Ox$轴与撞击冲量$\mbf{J}$垂直，因此撞击冲量$\mbf{J}$的分量为$0,J_y,J_z$。记质心$C$和撞击冲量作用点$P$的坐标分别为$x_C,y_C,z_C$和$x_*,y_*,z_*$，角速度大小为$\omega$，在$O$点和$O_1$点的撞击约束冲量$\mbf{J}'$和$\mbf{J}''$的分量分别为$J_x',J_y',J_z'$和$J_x'',J_y'',J_z''$，点$O$和$O_1$之间的距离为$h$，刚体对$O$点的惯量矩阵表示为$\mbf{I}$，则由动量定理和角动量定理可得
+\begin{equation}
+\begin{cases}
+	m\Delta \mbf{\omega}\times \vec{OC} = \mbf{J}+\mbf{J}'+\mbf{J}'' \\
+	\mbf{I}\Delta \mbf{\omega} = \vec{OP}\times \mbf{J}+\mbf{OO_1}\times\mbf{J}''
+\end{cases}
+\label{chapter8:定轴转动刚体的撞击方程}
+\end{equation}
+方程\eqref{chapter8:定轴转动刚体的撞击方程}的分量形式为
+\begin{subnumcases}{}
+	-my_C\Delta\omega = J'_x+J''_x \label{chapter8:定轴转动刚体的撞击方程-分量形式-1}\\
+	mx_C\Delta\omega = J_y+J'_y+J''_y \label{chapter8:定轴转动刚体的撞击方程-分量形式-2}\\
+	0 = J_z+J'_z+J''_z \label{chapter8:定轴转动刚体的撞击方程-分量形式-3}\\
+	I_{13}\Delta\omega = y_*J_z-z_*J_y-hJ''_y \label{chapter8:定轴转动刚体的撞击方程-分量形式-4}\\
+	I_{23}\Delta\omega = -x_*J_z+hJ''_x \label{chapter8:定轴转动刚体的撞击方程-分量形式-5}\\
+	I_{33}\Delta\omega = x_*J_y \label{chapter8:定轴转动刚体的撞击方程-分量形式-6}
+\end{subnumcases}
+由方程\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-6}可以确定角速度改变量$\Delta\omega$。如果撞击冲量$\mbf{J}$与刚体转动轴不共面（即$J_y\neq 0$），则$\Delta\omega\neq 0$。而方程\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-1}-\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-5}这五个方程无法完全确定撞击约束冲量$\mbf{J}'$和$\mbf{J}''$的六个分量，而只能求出四个分量$J'_x,J'_y,J''_x,J''_y$以及$J'_z+J''_z$。
+
+假设$\Delta\omega\neq 0$，来求解不产生撞击约束反力的条件。当$\mbf{J}'=\mbf{J}''=\mbf{0}$时，由方程\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-3}可知$I_z=0$，即撞击冲量平行于$y$轴；再由方程\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-1}可知$y_C=0$，这说明质心位于垂直于冲量且过转动轴的平面内。但是如果$x_C=0$，即质心位于转动轴上，则方程组无解，即当$\mbf{I}\neq \mbf{0}$时总是会产生撞击约束反力。
+
+由方程\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-2}和\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-4}可得
+\begin{equation*}
+	I_{13}+mx_Cz_*=0
+\end{equation*}
+亦即
+\begin{equation}
+	\int \rho x(z-z_*)\mathd V = 0
+	\label{chapter8:无约束反力情况撞击方程1}
+\end{equation}
+由方程\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-5}可得$I_{23}=0$，再由$y_C=0$可得
+\begin{equation*}
+	I_{23}+my_Cz^*=0
+\end{equation*}
+亦即
+\begin{equation}
+	\int \rho y(z-z_*)\mathd V = 0
+	\label{chapter8:无约束反力情况撞击方程2}
+\end{equation}
+式\eqref{chapter8:无约束反力情况撞击方程1}和\eqref{chapter8:无约束反力情况撞击方程2}表明转动轴是刚体对$(0,0,z_*)$的惯量主轴。
+
+由此即说明，当转动轴是刚体的惯量主轴，且撞击冲量垂直于转动轴与质心构成的平面时，任意大小的撞击冲量都不会使$O$和$O_1$点产生撞击约束反力。
+
+最后由式\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-2}和\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-6}可得
+\begin{equation}
+	x_*=\frac{I{33}}{mx_C}
+	\label{chapter8:定轴转动刚体的撞击轴}
+\end{equation}
+式\eqref{chapter8:定轴转动刚体的撞击轴}确定了撞击冲量的作用线，称为{\bf 撞击轴}，它与过转动轴和质心构成的平面的交点称为{\bf 撞击中心}。
+
+\begin{example}
+边长分别为$a,b,c$的均匀长方体沿着光滑平面滑动，长为$c$的棱边沿着竖直方向（如图\ref{chapter8:定轴转动撞击例1图}所示），滑动方向垂直于长为$b$的棱边。忽然固定这个棱边使其不动，求能够使得长方体翻到的滑动速度$v$。
+
+\begin{figure}[ht]
+\centering
+\begin{asy}
+	size(200);
+	//定轴转动刚体的撞击
+	pair O,i,j,k;
+	real a,b,c;
+	O = (0,0);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	a = 1;
+	b = 1;
+	c = 1.5;
+	pair cov(real x,real y,real z){
+		return x*i+y*j+z*k;
+	}
+	draw(O--cov(a,0,0),dashed);
+	draw(cov(0,b,0)--O--cov(0,0,c),dashed);
+	draw(cov(a,0,0)--cov(a,b,0)--cov(0,b,0)--cov(0,b,c)--cov(a,b,c)--cov(a,0,c)--cycle,linewidth(0.8bp));
+	draw(cov(a,0,c)--cov(0,0,c)--cov(0,b,c),linewidth(0.8bp));
+	draw(cov(a,b,0)--cov(a,b,c),linewidth(0.8bp));
+	label("$a$",cov(a,b/2,0),S);
+	label("$b$",cov(a/2,b,0),SE);
+	label("$c$",cov(0,b,c/2),E);
+	draw(Label("$\boldsymbol{v}$",MidPoint,Relative(W)),cov(0,b+0.1,0.75*c)--cov(0,b+0.6,0.75*c),Arrow);
+	real gap = 0.3;
+	draw(cov(a+gap,b,0)--cov(a,b,0));
+	draw(Label("$u$",BeginPoint,E),cov(-gap,b,0)--cov(0,b,0));
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:定轴转动撞击例1图}
+\end{figure}
+\end{example}
+
+\begin{solution}
+根据与例\ref{chapter8:定点转动刚体的碰撞例1}类似的讨论，刚体在撞击前后，对转轴$u$的角动量守恒，即有
+\begin{equation*}
+	\frac12 mvc = I_u\omega
+\end{equation*}
+其中$\omega$为长方体撞击后的角速度。$I_u=\dfrac13m(a^2+c^2)$是长方体对转轴$u$的转动惯量。设长方体质心运动到最高点的角速度为$\omega_*$，则有
+\begin{equation*}
+	\frac12I_u\omega^2+\frac12mgc=\frac12 I_u\omega_*^2+\frac12mg\sqrt{a^2+c^2}
+\end{equation*}
+长方体能越过最高点要求$\dfrac12 I_u\omega_*^2>0$，即
+\begin{equation*}
+	\frac12 I_u\omega^2 > \frac12mg(\sqrt{a^2+c^2}-c)
+\end{equation*}
+由此可得
+\begin{equation*}
+	v^2 > \frac{4g(a^2+c^2)(\sqrt{a^2+c^2}-c)}{3c^2}
+\end{equation*}
+\end{solution}
+
+\section{刚体碰撞}
+
+\subsection{恢复系数}
+
+设两个运动的刚体$B_1$和$B_2$在时刻$t=t_0$以其表面上的$O_1$和$O_2$点相互接触（如图\ref{chapter8:刚体碰撞的恢复系数图}所示），该时刻$O_1$和$O_2$点的相对速度不在公共切平面内，那么刚体相互撞击，在切点产生撞击力，分别作用于两个刚体，大小相等方向相反。
+
+\begin{figure}[ht]
+\centering
+\begin{asy}
+	size(250);
+	//刚体碰撞
+	pair C1,C2;
+	pair i1,j1,k1,i2,j2,k2;
+	real x1,y1,z1,x2,y2,z2;
+	C1 = (0,0);
+	i1 = dir(-150);
+	j1 = dir(0);
+	k1 = dir(100);
+	C2 = (3.7,0.2);
+	i2 = dir(-160);
+	j2 = dir(-30);
+	k2 = dir(85);
+	x1 = 0.9;
+	y1 = 1;
+	z1 = 1.1;
+	x2 = 0.8;
+	y2 = 1;
+	z2 = 1;
+	label("$C_1$",C1,S);
+	draw(Label("$x_1$",EndPoint),C1--C1+x1*i1,Arrow);
+	draw(Label("$y_1$",EndPoint),C1--C1+y1*j1,Arrow);
+	draw(Label("$z_1$",EndPoint),C1--C1+z1*k1,Arrow);
+	picture pic;
+	label(pic,"$C_2$",C2,S);
+	draw(pic,Label("$x_2$",EndPoint),C2--C2+x2*i2,Arrow);
+	draw(pic,Label("$y_2$",EndPoint),C2--C2+y2*j2,Arrow);
+	draw(pic,Label("$z_2$",EndPoint),C2--C2+z2*k2,Arrow);
+	pair A[],B[];
+	A[0] = (1.1,-0.8);
+	A[1] = (1.6,1);
+	A[2] = (.9,2.4);
+	path p1,p2;
+	p1 = A[0]..A[1]..A[2];
+	draw(p1,linewidth(0.8bp));
+	B[0] = (2.7,-0.8);
+	B[1] = (2.2,1);
+	B[2] = (2.6,2.4);
+	p2 = B[0]..B[1]..B[2];
+	draw(pic,p2,linewidth(0.8bp));
+	pair n1,n2;
+	pair P1,P2;
+	real l = 0.5;
+	n1 = dir(180);
+	n2 = dir(0);
+	P1 = intersectionpoint(p1,(-10,.8)--(10,.8));
+	P2 = intersectionpoint(p2,(-10,.8)--(10,.8));
+	draw(Label("$\boldsymbol{n}_1$",EndPoint),P1--P1+l*n1,Arrow);
+	draw(pic,Label("$\boldsymbol{n}_2$",EndPoint),P2--P2+l*n2,Arrow);
+	label("$O_1$",P1,E);
+	label(pic,"$O_2$",P2,W);
+	add(shift(0.7,0)*pic);
+\end{asy}
+\caption{刚体碰撞}
+\label{chapter8:刚体碰撞的恢复系数图}
+\end{figure}
+
+我们认为刚体是绝对光滑的，那么撞击力及其冲量$\mbf{J}_1$和$\mbf{J}_2$都垂直于刚体$B_1$和$B_2$的相撞曲面的公共切面。设$\mbf{n}$是刚体接触点的法向单位矢量，指向第二个刚体，而$\mbf{n}_k$是刚体$B_k$在$O_k$点的法向单位矢量，指向刚体内部，那么显然有
+\begin{equation}
+	\mbf{n}=\mbf{n}_2=-\mbf{n}_1,\quad \mbf{I}_k=I\mbf{n}_k\quad (k=1,2)
+	\label{chapter8:刚体碰撞基本关系式}
+\end{equation}
+其中$I$是撞击冲量的大小。
+
+与前面讨论的问题不同之处在于，此处撞击冲量$I$的值事先是不知道的。刚体碰撞问题是已知碰撞前运动状态求碰撞后运动状态和撞击冲量。然而，即使是在最简单的碰撞问题中，未知数也多于动力学定理给出的方程数，因此还需补充其他物理假设。
+
+绝对刚体的假设在这里已经失效，此处必须假设刚体在碰撞点附近有很小的变形。碰撞过程分为两个阶段：在$t=t_0$到$t=t_0+\tau_1$的第一阶段内，两个刚体沿着公共法线相互接近，并且$O_1$点和$O_2$点在公共法向上的投影减小，当其减小至零时，碰撞的第一阶段结束。在第一阶段结束时刚体的变形最大，然后开始第二阶段。$O_1$和$O_2$点的相对速度在公共法向上的投影在$t=t_0+\tau_1$时改变符号，在$t>t_0+\tau_1$时增大，恢复变形的刚体沿着公共法向相互远离。当$t=t_0+\tau_2$时，两个刚体以一个点相接触，碰撞的第二个阶段结束。然后刚体互相分开，整个碰撞过程结束。
+
+观察发现，$O_1$和$O_2$点的相对速度在公共法向上的投影一般不会达到碰撞前的值。刚体碰撞过程的全面研究需要详细分析其构成材料的物理性质，为了简化碰撞现象的复杂性质，这次采用Newton提出的运动学假设：碰撞后与碰撞前刚体接触点的相对速度在公共法向投影的绝对值之比为某个常数，它不依赖于相对速度和刚体的尺寸，只依赖于材料。这个比值称为{\bf 恢复系数}，用$\chi$表示。
+
+设$\mbf{v}_{O_k}^-$和$\mbf{v}_{O_k}^+$是$O_k$点在碰撞前后的速度（$k=1,2$），那么
+\begin{equation}
+	(\mbf{v}_{O_1}^+-\mbf{v}_{O_2}^+) \cdot \mbf{n} = -\chi(\mbf{v}_{O_1}^--\mbf{v}_{O_2}^-) \cdot \mbf{n}
+	\label{chapter8:刚体碰撞相对速度关系式}
+\end{equation}
+利用式\eqref{chapter8:刚体碰撞基本关系式}的关系，可以将式\eqref{chapter8:刚体碰撞相对速度关系式}改写为
+\begin{equation}
+	\mbf{v}_{O_1}^+\cdot \mbf{n}_1+\mbf{v}_{O_2}^+\cdot\mbf{n}_2 = -\chi(\mbf{v}_{O_1}^-\cdot \mbf{n}_1+\mbf{v}_{O_2}^-\cdot\mbf{n}_2)
+	\label{chapter8:刚体碰撞相对速度关系式2}
+\end{equation}
+
+恢复系数刻画碰撞后相对速度的法向分量的恢复程度，因此其取值范围为$0\leqslant \chi \leqslant 1$。如果$\chi=0$则称为{\bf 完全非弹性碰撞}，这种情况下碰撞过程只有第一个阶段，当达到最大压缩时，不发生恢复变形，两个刚体一起运动。如果$\chi=1$则称为{\bf 完全弹性碰撞}，在碰撞的第二个阶段变形完全恢复，接触点相对速度的法向分量的绝对值达到碰撞前。$0<\chi<1$是实际物理情况，称为{\bf 非弹性碰撞}。
+
+使用假设\eqref{chapter8:刚体碰撞相对速度关系式}时需了解，它是实际物体真实碰撞规律的一阶近似。
+
+\begin{example}
+如图\ref{chapter8:质点与固定曲面的碰撞图}质量为$m$的质点以初始速度$\mbf{v}^-$撞向固定曲面，其方向与固定曲面法向的夹角为$\alpha$，设碰撞恢复系数为$\chi$，求质点碰撞后的速度大小$v^+$、碰撞后速度与固定曲面的夹角$\beta$和撞击冲量$\mbf{I}$的大小。
+
+\begin{figure}[ht]
+\centering
+\begin{asy}
+	size(250);
+	//质点与固定曲面的碰撞
+	real R,alpha;
+	R = 10;
+	alpha = 17.5;
+	picture dashpic;
+	real dashl;
+	pair dashdir;
+	dashl = 0.3;
+	dashdir = 100*dir(-120);
+	path p = arc((0,0),R,0,180);
+	draw(dashpic,p,linewidth(0.8bp));
+	for(real r=0;r<=1;r=r+0.0065){
+		pair P = relpoint(p,r);
+		draw(dashpic,P--P+dashdir);
+	}
+	path clp;
+	clp = arc((0,0),R-dashl,90+alpha,90-alpha)--arc((0,0),1.5*R,90-alpha,90+alpha)--cycle;
+	clip(dashpic,clp);
+	add(dashpic);
+	pair P = (0,R);
+	pair n = 1.3*dir(-90);
+	real alpha,beta,li,lf;
+	li = 1.8;
+	alpha = 35;
+	beta = 50;
+	lf = li*Sin(alpha)/Sin(beta);
+	pair vi = li*dir(alpha-90);
+	pair vf = lf*dir(90-beta);
+	pair J = 2.4*dir(90);
+	draw(Label("$\boldsymbol{n}$",EndPoint),P--P+n,Arrow);
+	draw(Label("$\boldsymbol{J}$",EndPoint),P--P+J,Arrow);
+	draw(Label("$\boldsymbol{v}^-$",EndPoint),P--P+vi,Arrow);
+	draw(Label("$\boldsymbol{v}^+$",EndPoint),P--P+vf,Arrow);
+	draw(P--P-1.2*vi,dashed);
+	real r=0.7;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(P,r,degrees(J),degrees(-vi)));
+	r = 0.5;
+	draw(Label("$\beta$",MidPoint,Relative(E)),arc(P,r,degrees(vf),degrees(J)));
+\end{asy}
+\caption{质点与固定曲面的碰撞}
+\label{chapter8:质点与固定曲面的碰撞图}
+\end{figure}
+\end{example}
+\begin{solution}
+根据碰撞的动量定理可以得到如下两个方程
+\begin{align*}
+	& v^+\sin\beta-v^-\sin\alpha=0 \\
+	& m(v^+\cos\beta-v^-\cos\alpha)=I
+\end{align*}
+再根据恢复系数关系可得
+\begin{equation*}
+	v^+\sin\beta = \chi v^-\sin\alpha
+\end{equation*}
+由此可以解得
+\begin{equation*}
+	\tan\beta = \dfrac1\chi\tan\alpha,\quad v^+=v^-\sqrt{\sin^2\alpha +\chi^2\cos^2\alpha},\quad I = m(1+\chi)v^-\cos\alpha
+\end{equation*}
+由此结果可以看出，碰撞前后切向速度不变；在完全弹性碰撞的情形下，反射角等于入射角且速度大小不变（$\beta=\alpha, v^+=v^-$）；而在非弹性碰撞的情形下，反射角大于入射角且速度变小（$\beta>\alpha, v^+<v^-$）。
+\end{solution}
+
+\begin{example}
+均匀杆可以绕通过其质心的水平轴转动，当它处于平衡状态时，一个质量为$m$、速度为$v$的小球击中杆的一端。设杆的质量为$M$，长度为$2a$，碰撞的恢复系数为$\chi$，小球可以看作质点，求杆和小球碰撞后的运动状态。
+\end{example}
+\begin{solution}
+设$v^+$为小球碰撞后的速度大小，$\omega^+$为杆碰撞后的角速度大小，则根据角动量定理可得
+\begin{equation*}
+	mva = \dfrac13Ma\omega^++mv^+a
+\end{equation*}
+再根据恢复系数关系可得
+\begin{equation*}
+	v^+-\omega^+a=-\chi v
+\end{equation*}
+由此解得
+\begin{equation*}
+	v^+ = \frac{3m-\chi M}{M+3m}v,\quad \omega^+ = \frac{3(1+\chi)m}{M+3m}\frac{v}{a}
+\end{equation*}
+\end{solution}
+
+\subsection{两个光滑刚体相撞的一般问题}
+
+两个光滑刚体相撞的一般问题可以表述为：设刚体$B_k(k=1,2)$的本体系$C_kx_ky_kz_k$固连在其质心$C_k$上，其坐标轴沿着刚体的惯性主轴，用$I_{x_k},I_{y_k},I_{z_k}$表示其主惯量，$m_k$表示其质量。设在坐标系$C_kx_ky_kz_k$中，$O_k$的坐标为$(x_k,y_k,z_k)$，法向单位矢量$\mbf{n}_k$的坐标为$(\alpha_k,\beta_k,\gamma_k)$。已知$\mbf{\omega}_k$是刚体$B_k$的角速度，$\mbf{v}_k$是刚体$B_k$质心的速度，求碰撞后它们的值。
+
+记$\Delta\mbf{\omega}_k=\mbf{\omega}_k^+-\mbf{\omega}_k^-$和$\Delta\mbf{v}_k=\mbf{v}_k^+-\mbf{v}_k^-$在坐标系$C_kx_ky_kz_k$中的分量分别表示为$\Delta\omega_{x_k},\Delta\omega_{y_k},\Delta\omega_{z_k}$和$\Delta v_{x_k},\Delta v_{y_k},\Delta v_{z_k}$。撞击冲量$\mbf{J}_k$相对质心$C_k$的冲量矩$\mbf{K}_k=\vec{C_kO_k}\times\mbf{J}_k$在坐标系$C_kx_ky_kz_k$的分量表示为
+\begin{equation}
+\begin{cases}
+	K_{x_k} = J(y_k\gamma_k-z_k\beta_k) =: J\xi_k \\
+	K_{y_k} = J(z_k\alpha_k-x_k\gamma_k) =: J\eta_k\\
+	K_{z_k} = J(x_k\beta_k-y_k\alpha_k) =: J\zeta_k
+\end{cases}
+\end{equation}
+此处为了简便起见引入了三个坐标
+\begin{equation*}
+	\xi_k = y_k\gamma_k-z_k\beta_k,\quad \eta_k = z_k\alpha_k-x_k\gamma_k,\quad \zeta_k = x_k\beta_k-y_k\alpha_k
+\end{equation*}
+由动量定理和角动量定理可得如下共12个方程：
+\begin{equation}
+\begin{cases}
+	I_{x_k}\Delta \omega_{x_k} = J\xi_k,\quad I_{y_k}\Delta \omega_{y_k} = J\eta_k, \quad I_{z_k}\Delta \omega_{z_k} = J\zeta_k \\
+	m_k\Delta v_{x_k} = J\alpha_k,\quad m_k\Delta v_{y_k} = J\beta_k,\quad m_k\Delta v_{z_k} = J\gamma_k
+\end{cases}
+\label{chapter8:刚体碰撞一般问题的动量定理和角动量定理}
+\end{equation}
+由此可以求出碰撞后刚体$B_k$的角速度$\mbf{\omega}_k^+$和质心速度$\mbf{v}_k^+$：
+\begin{align}
+	& \omega_{x_k}^+ = \omega_{x_k}^-+J\frac{\xi_k}{I_{x_k}},\quad \omega_{y_k}^+ = \omega_{y_k}^-+J\frac{\eta_k}{I_{y_k}},\quad \omega_{z_k}^+ = \omega_{z_k}^-+J\frac{\zeta_k}{I_{z_k}} \label{chapter8:刚体碰撞后的角速度} \\
+	& v_{x_k}^+ = v_{x_k}^-+J\frac{\alpha_k}{m_k},\quad v_{y_k}^+ = v_{y_k}^-+J\frac{\beta_k}{m_k},\quad v_{z_k}^+ = v_{z_k}^-+J\frac{\gamma_k}{m_k} \label{chapter8:刚体碰撞后的质心速度}
+\end{align}
+由式\eqref{chapter8:刚体碰撞后的质心速度}可知，刚体碰撞后其质心速度的切向分量没有变化。
+
+在式\eqref{chapter8:刚体碰撞后的角速度}和\eqref{chapter8:刚体碰撞后的质心速度}中包含未知的碰撞冲量$J$，如果将其求出并代入式\eqref{chapter8:刚体碰撞后的角速度}和\eqref{chapter8:刚体碰撞后的质心速度}中，两个光滑刚体的一般碰撞问题就完全解决了。
+
+下面利用式\eqref{chapter8:刚体碰撞相对速度关系式2}来求$J$的大小。首先根据$\mbf{v}_{O_k}^+=\mbf{v}_k^++\mbf{\omega}_k^+\times \vec{C_kO_k}, \mbf{v}_{O_k}^-=\mbf{v}_k^-+\mbf{\omega}_k^-\times\vec{C_kO_k}$可得
+\begin{align*}
+	(\mbf{v}_{O_k}^+-\mbf{v}_{O_k}^-) \cdot \mbf{n}_k & = \Delta\mbf{v}_k \cdot \mbf{n}_k + (\Delta\mbf{\omega}_k\times \vec{C_kO_k})\cdot \mbf{n}_k \\
+	& = \Delta\mbf{v}_k \cdot \mbf{n}_k + (\vec{C_kO_k} \times \mbf{n}_k)\cdot \Delta\mbf{\omega}_k
+\end{align*}
+再将式\eqref{chapter8:刚体碰撞一般问题的动量定理和角动量定理}的结果和各个向量的分量代入上式，可得
+\begin{equation*}
+	(\mbf{v}_{O_k}^+-\mbf{v}_{O_k}^-) \cdot \mbf{n}_k = J\left(\frac{1}{m_k}+\frac{\xi_k^2}{I_{x_k}}+\frac{\eta_k^2}{I_{y_k}}+\frac{\zeta_k^2}{I_{z_k}}\right)
+\end{equation*}
+将其对$k$求和可得
+\begin{equation}
+	(\mbf{v}_{O_1}^+-\mbf{v}_{O_1}^-) \cdot \mbf{n}_1 + (\mbf{v}_{O_2}^+-\mbf{v}_{O_2}^-) \cdot \mbf{n}_2 = \mu^2J
+	\label{chapter8:刚体碰撞的一般问题-求解过程1}
+\end{equation}
+其中
+\begin{equation}
+	\mu^2 = \sum_{k=1}^2\left(\frac{1}{m_k}+\frac{\xi_k^2}{I_{x_k}}+\frac{\eta_k^2}{I_{y_k}}+\frac{\zeta_k^2}{I_{z_k}}\right)
+\end{equation}
+然后，将式\eqref{chapter8:刚体碰撞相对速度关系式2}改写为
+\begin{equation}
+	(\mbf{v}_{O_1}^+-\mbf{v}_{O_1}^-) \cdot \mbf{n}_1 + (\mbf{v}_{O_2}^+-\mbf{v}_{O_2}^-) \cdot \mbf{n}_2 = -(1+\chi)(\mbf{v}_{O_1}^-\cdot \mbf{n}_1+\mbf{v}_{O_2}^-\cdot \mbf{n}_2)
+	\label{chapter8:刚体碰撞的一般问题-求解过程2}
+\end{equation}
+将式\eqref{chapter8:刚体碰撞的一般问题-求解过程1}代入式\eqref{chapter8:刚体碰撞的一般问题-求解过程2}中可得
+\begin{equation}
+	J = -\frac{1+\chi}{\mu^2}(\mbf{v}_{O_1}^-\cdot \mbf{n}_1+\mbf{v}_{O_2}^-\cdot \mbf{n}_2)
+	\label{chapter8:刚体碰撞的一般问题-碰撞冲量的大小-初步}
+\end{equation}
+其中，量$-(\mbf{v}_{O_1}^-\cdot \mbf{n}_1+\mbf{v}_{O_2}^-\cdot \mbf{n}_2)$是碰撞前刚体$B_1$上接触点$O_1$相对刚体$B_2$接触点$O_2$的速度在$B_2$的内法向投影，记作$v_{rn}$。由于碰撞前两个刚体相互接近，所以$v_{rn}$是正的。由此可以将式\eqref{chapter8:刚体碰撞的一般问题-碰撞冲量的大小-初步}改写为
+\begin{equation}
+	J = \frac{1+\chi}{\mu^2}v_{rn}
+	\label{chapter8:刚体碰撞的一般问题-碰撞冲量的大小}
+\end{equation}
+式\eqref{chapter8:刚体碰撞的一般问题-碰撞冲量的大小}右端的所有量都是已知的，因此式\eqref{chapter8:刚体碰撞的一般问题-碰撞冲量的大小}确定了碰撞冲量的大小，再将其代入式\eqref{chapter8:刚体碰撞后的角速度} 和 \eqref{chapter8:刚体碰撞后的质心速度}中，两个光滑刚体相撞的一般问题就解决了。
+
+% \begin{example}[刚体撞墙]
+% 设刚体$B_2$为固定障碍物，令$\mbf{v}_2^-=\mbf{0},\mbf{\omega}_2^-=\mbf{0}$并且$m_2, I_{x_2}, I_{y_2}, I_{z_2}$都为无穷大，求刚体$B_1$碰撞后的运动状态。
+% \end{example}
+% \begin{solution}
+% 简便起见，略去刚体$B_1$的下标$1$，则有
+% \begin{equation*}
+	% \mu^2 = \frac1m + \frac{(y\gamma-z\beta)^2}{I_x} + \frac{(z\alpha-x\gamma)^2}{I_y} + \frac{(x\beta-y\alpha)^2}{I_z}
+% \end{equation*}
+% \end{solution}
+
+\begin{example}
+半径为$R$的均质轮在竖直平面内沿着水平面无滑动滚动，碰到一个高为$h$的障碍物($h<R$)。设碰撞时没有摩擦，恢复系数为$\chi$。试证明：如果$\ds h>\left(1-\sqrt{\frac{\chi}{1+\chi}}\right)R$，则无论碰撞前轮心速度为多大，轮都无法翻越障碍。
+
+\begin{figure}[ht]
+\centering
+\begin{asy}
+	size(250);
+	//轮子翻越障碍
+	picture dashpic;
+	pair dashdir = dir(-120);
+	path p = (-10,0)--(10,0);
+	real dashh = 0.1;
+	draw(dashpic,p,linewidth(0.8bp));
+	for(real r=0;r<=1;r=r+0.005){
+		pair P = relpoint(p,r);
+		draw(dashpic,P--P+dashdir);
+	}
+	real dashwidth = 1.25;
+	clip(dashpic,box((-dashwidth,0),(dashwidth,-dashh)));
+	add(dashpic);
+	real x,y,R;
+	x = 1.5;
+	y = 2.5;
+	R = 1;
+	draw(Label("$x$",EndPoint),(0,0)--(x,0),Arrow);
+	draw(Label("$y$",EndPoint),(0,0)--(0,y),Arrow);
+	draw(circle((0,R),R),linewidth(0.8bp));
+	label("$R$",(0,0.5*R),W);
+	label("$C$",(0,R),W);
+	real alpha = -30;
+	draw((0,R)--(0,R)+R*dir(alpha),dashed);
+	real r = 0.1;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc((0,R),r,-90,alpha));
+	label("$O$",(0,R)+R*dir(alpha),E);
+	draw((0,R)+R*dir(alpha)--(R*Cos(alpha),0),linewidth(0.8bp));
+	label("$h$",(R*Cos(alpha),-R*Sin(alpha)/2),E);
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:刚体的一般碰撞例1图}
+\end{figure}
+\end{example}
+\begin{solution}
+设$\alpha$为轮心$C$到障碍物最高点$O$连线与竖直方向的夹角。设碰撞前轮心速度为$v$，碰撞后轮子的质心速度分量分别为$v_x^+$和$v_y^+$，由于碰撞时没有摩擦，因此撞击冲量沿$\vec{OC}$方向，所以碰撞后角速度不变。由此，根据撞击动量定理和恢复系数关系，可得如下方程
+\begin{equation*}
+\begin{cases}
+	m(v_x^+-v)=-J\sin\alpha \\
+	mv_y^+=J\cos\alpha \\
+	-v_x^+\sin\alpha+v_y^+\cos\alpha=\chi v\sin\alpha
+\end{cases}
+\end{equation*}
+由此可解得
+\begin{equation*}
+	J = (1+\chi)mv\sin\alpha,\quad v_x^+=v\left[1-(1+\chi)\sin^2\alpha\right],\quad v_y^+=(1+\chi)v\sin\alpha\cos\alpha
+\end{equation*}
+如果$v_x^+<0$则轮不能翻越障碍物，此时有$(1+\chi)\sin^2\alpha>1$，又由于
+\begin{equation*}
+	\sin^2\alpha = \frac{R^2-(R-h)^2}{R^2}
+\end{equation*}
+所以可有
+\begin{equation*}
+	\frac{R^2-(R-h)^2}{R^2} > \frac{1}{1+\chi}
+\end{equation*}
+即
+\begin{equation*}
+	h>\left(1-\sqrt{\frac{\chi}{1+\chi}}\right)R
+\end{equation*}
+\end{solution}
+
+\subsection{光滑刚体碰撞的动能变化}
+
+对每个刚体应用式\eqref{chapter8:自由刚体撞击的动能变化}的结论，可得
+\begin{align*}
+	\Delta T_k & = T_k^+-T_k^- = \frac12 \left(\frac{J_k^2}{m_k} + \frac{K_{x_k}^2}{I_{x_k}} + \frac{K_{y_k}^2}{I_{y_k}} + \frac{K_{z_k}^2}{I_{z_k}}\right) + \left(\mbf{J}_k\cdot \mbf{v}_k^-+\mbf{K}_k\cdot \mbf{\omega}_k^-\right) \\
+	& = \frac{J^2}{2}\left(\frac{1}{m_k} + \frac{\xi_k^2}{I_{x_k}} + \frac{\eta_k^2}{I_{y_k}} + \frac{\zeta_k^2}{I_{z_k}}\right) + J\left(\mbf{v}_k^-+\mbf{\omega}_k^-\times \vec{C_kO_k}\right) \cdot \mbf{n}_k
+\end{align*}
+由于$\mbf{v}_k^-+\mbf{\omega}_k^-\times \vec{C_kO_k} = \mbf{v}_{O_k}^-$，所以有两个刚体的动能改变量为
+\begin{equation*}
+	\Delta T = \Delta T_1+\Delta T_2 = \frac12 \mu^2J^2+J(\mbf{v}_{O_1}\cdot \mbf{n}_1 + \mbf{v}_{O_2}^-\cdot \mbf{n}_2)
+\end{equation*}
+将撞击冲量的大小\eqref{chapter8:刚体碰撞的一般问题-碰撞冲量的大小}代入可得
+\begin{equation}
+	\Delta T = -\frac{(1-\chi^2)}{2\mu^2}v_{rn}^2
+	\label{chapter8:光滑刚体碰撞的动能变化式}
+\end{equation}
+由此可以看出，只有当碰撞是完全弹性($\chi=1$)时，两个刚体动能之和不变，其余情况下都会有动能损失。
+
+\subsection{两个光滑刚体的对心正碰撞}
+
+垂直于两个刚体接触点公切面并过接触点的直线称为{\bf 碰撞线}。如果碰撞前质心的速度$\mbf{v}_k^-$平行于碰撞线，这种情况称为{\bf 正碰撞}。对于光滑刚体的碰撞，碰撞前后速度的切向分量不变，因此在正碰撞的情况下，碰撞后的速度$\mbf{v}_k^+$也平行于碰撞线。
+
+如果碰撞前刚体的质心位于碰撞线上，则称为{\bf 对心碰撞}。在对心碰撞的情形下，碰撞冲量对质心的矩$\mbf{K}_k=\vec{C_kO_k}\times \mbf{J}_k$等于零，此时$\xi_k=\eta_k=\zeta_k=0$。根据式\eqref{chapter8:刚体碰撞后的角速度}可知，在对心碰撞的情形下，两个刚体的角速度不变。

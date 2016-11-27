@@ -40,8 +40,8 @@
 
 \usepackage{enumitem}
 \setlist[enumerate,1]{leftmargin=0pt,itemindent=2em,itemsep=0ex,listparindent=2em,parsep = 0ex,topsep = 1ex}
-\setlist[enumerate,2]{leftmargin=0pt,itemsep=0ex,listparindent=2em,parsep = 0ex,topsep = 1ex}
-\setlist[enumerate,3]{leftmargin=0pt,itemsep=0ex,listparindent=2em,parsep = 0ex,topsep = 1ex}
+\setlist[enumerate,2]{leftmargin=1em,itemsep=0ex,itemindent=2em,listparindent=2em,parsep = 0ex,topsep = 1ex}
+\setlist[enumerate,3]{leftmargin=1em,itemsep=0ex,itemindent=2em,listparindent=2em,parsep = 0ex,topsep = 1ex}
 \setlist[itemize,1]{itemsep = 0ex, parsep = 0ex, topsep = 1ex}
 \setlist[description]{listparindent=2em, itemsep=0ex, parsep = 0ex,topsep = 1ex}
 
@@ -66,6 +66,7 @@
 \newcommand{\am}{\mathrm{am}\,}
 \newcommand{\mathd}{\mathrm{d}}
 \newcommand{\mathe}{\mathrm{e}}
+\renewcommand{\vec}{\overrightarrow}
 \renewcommand{\bf}{\heiti}
 \renewcommand{\bfseries}{\heiti}
 
@@ -208,7 +209,7 @@
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{titlecolor}
 \begin{tabular}{p{0.01\textwidth}p{0.95\textwidth}p{0.01\textwidth}}
 \hline
-\cellcolor{titlecolor} &  \textcolor{black}{\hwyk\Large \thesubsubsection ~ #1} & \cellcolor{titlecolor} \\
+\cellcolor{titlecolor} &  \textcolor{black}{\hwyk\large \thesubsubsection ~ #1} & \cellcolor{titlecolor} \\
 \hline
 \end{tabular}
 \arrayrulewidth=0.4pt
@@ -250,7 +251,7 @@
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{backcolor}
 \begin{tabular}{p{0.01\textwidth}p{0.95\textwidth}p{0.01\textwidth}}
 \hline
-\cellcolor{backcolor} &  \textcolor{black}{\hwyk\Large \thesubsubsection ~ #1} & \cellcolor{backcolor} \\
+\cellcolor{backcolor} &  \textcolor{black}{\hwyk\large \thesubsubsection ~ #1} & \cellcolor{backcolor} \\
 \hline
 \end{tabular}
 \arrayrulewidth=0.4pt
@@ -316,41 +317,43 @@
 \titlespacing{\chapter}
 {0pc}{1.5ex plus .1ex minus .2ex}{.2pc}
 
-%第零章——引言
-\input{chapter/chapter0}
+\input{chapter/chapter0}%第零章——引言
 
-%第一章——牛顿力学
-\input{chapter/chapter1}
+\input{chapter/chapter1}%第一章——牛顿力学
 
-%第二章——拉格朗日力学
-\input{chapter/chapter2}
+\input{chapter/chapter2}%第二章——拉格朗日力学
 
-%第三章——哈密顿力学
-\input{chapter/chapter3}
+\input{chapter/chapter4}%第四章——两体问题
 
-%第四章——两体问题
-\input{chapter/chapter4}
+\input{chapter/chapter5}%第五章——多自由度微振动与阻尼
 
-%第五章——多自由度微振动与阻尼
-\input{chapter/chapter5}
+\input{chapter/chapter6}%第六章——刚体
 
-%第六章——刚体
-\input{chapter/chapter6}
+\input{chapter/chapter8}%第八章——撞击运动理论
 
-%第七章——非惯性系
-\input{chapter/chapter7}
+\input{chapter/chapter7}%第七章——非惯性系
 
-%第八章——撞击运动理论
-\input{chapter/chapter8}
+\input{chapter/chapter3}%第三章——哈密顿力学
 
-%附录——金尚年《经典力学》
-\input{chapter/exercise}
+\appendix
 
-%附录——理论力学习题集
-\input{chapter/exercise2}
+\titleformat{\chapter}[hang]{\hwyk\LARGE}
+{}{0mm}{\hspace{-0.4cm}\myappendix}
+ 
+\titleformat{\section}[hang]{\hwyk\LARGE}
+{}{0mm}{\hspace{-0.5cm}\appendixsection}
 
-%附录——椭圆函数理论
-\input{chapter/appendixA.tex}
+\titleformat{\subsection}[hang]{\hwyk\large}
+{}{0mm}{\hspace{-0.5cm}\appendixsubsection}
+
+\titleformat{\subsubsection}[hang]{\hwyk\large}
+{}{0mm}{\hspace{-0.5cm}\appendixsubsubsection}
+
+\input{chapter/exercise}%附录——金尚年《经典力学》
+
+\input{chapter/exercise2}%附录——理论力学习题集
+
+\input{chapter/appendixA.tex}%附录——椭圆函数理论
 
 \backmatter
  

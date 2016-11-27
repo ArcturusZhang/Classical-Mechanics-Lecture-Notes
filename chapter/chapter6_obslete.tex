@@ -1,0 +1,1537 @@
+% \section{无力矩陀螺（Euler陀螺）}
+
+% \subsection{运动方程与守恒量}
+
+% 不受外力矩作用的定点转动刚体，又称为{\heiti Euler陀螺}，即$\mbf{M} = \mbf{0}$，由Euler动力学方程\eqref{Euler动力学方程}可得陀螺的运动方程为
+% \begin{equation}
+	% \begin{cases}
+		% I_1 \dot{\omega}_1 - (I_2-I_3)\omega_2 \omega_3 = 0 \\
+		% I_2 \dot{\omega}_2 - (I_3-I_1)\omega_3 \omega_1 = 0 \\
+		% I_3 \dot{\omega}_3 - (I_1-I_2)\omega_1 \omega_2 = 0
+	% \end{cases}
+	% \label{Euler陀螺的运动方程}
+% \end{equation}
+% 将\eqref{Euler陀螺的运动方程}各式分别乘以$I_1\omega_1$、$I_2\omega_2$、$I_3\omega_3$相加，得
+% \begin{equation*}
+	% I_1^2 \omega_1 \dot{\omega}_1 + I_2^2 \omega_2 \dot{\omega}_2 + I_3^2 \omega_3 \dot{\omega}_3 = 0
+% \end{equation*}
+% 即有角动量守恒\footnote{也可同角动量定理得到。}
+% \begin{equation}
+	% \sum_{i=1}^3 I_i^2 \omega_i^2 = L^2 \quad\text{（常数）}
+	% \label{Euler陀螺角动量守恒}
+% \end{equation}
+% 将\eqref{Euler陀螺的运动方程}各式分别乘以$\omega_1$、$\omega_2$、$\omega_3$相加，得
+% \begin{equation*}
+	% I_1 \omega_1 \dot{\omega}_1 + I_2 \omega_2 \dot{\omega}_2 + I_3 \omega_3 \dot{\omega}_3 = 0
+% \end{equation*}
+% 即有能量守恒\footnote{也可同动能定理得到。}
+% \begin{equation}
+	% \frac12 \sum_{i=1}^3 I_i \omega_i^2 = T \quad\text{（常数）}
+	% \label{Euler陀螺能量守恒}
+% \end{equation}
+
+% \subsection{对称Euler陀螺}
+
+% 至少有两个主惯量相等的刚体即可称为{\heiti 对称刚体}。不妨设有$I_1=I_2$，此时Euler动力学方程化为
+% \begin{equation}
+	% \begin{cases}
+		% I_1 \dot{\omega}_1 - (I_1-I_3)\omega_2 \omega_3 = 0 \\
+		% I_1 \dot{\omega}_2 - (I_3-I_1)\omega_3 \omega_1 = 0 \\
+		% I_3 \dot{\omega}_3 = 0
+	% \end{cases}
+	% \label{对称Euler陀螺的运动方程}
+% \end{equation}
+% 由方程\eqref{对称Euler陀螺的运动方程}中的第三式可得
+% \begin{equation}
+	% \omega_3 = \varOmega \quad \text{（常数）}
+	% \label{对称Euler陀螺的解-1}
+% \end{equation}
+% 记$n = \dfrac{I_3-I_1}{I_1} \varOmega$，则方程\eqref{对称Euler陀螺的运动方程}的第一二式化为
+% \begin{equation*}
+	% \begin{cases}
+		% \dot{\omega}_1 + n\omega_2 = 0 \\
+		% \dot{\omega}_2 - n\omega_1 = 0
+	% \end{cases}
+% \end{equation*}
+% 从中消去$\omega_2$可得
+% \begin{equation*}
+	% \ddot{\omega}_1 + n^2\omega_1 = 0
+% \end{equation*}
+% 由此解得
+% \begin{equation}
+% \begin{cases}
+	% \omega_1 = \omega_0 \cos(nt+\eps) \\
+	% \omega_2 = \omega_0 \sin(nt+\eps)
+% \end{cases}
+% \label{对称Euler陀螺的解-2}
+% \end{equation}
+% 综上可得刚体的角速度为
+% \begin{equation}
+	% \mbf{\omega} = \omega_1 \mbf{e}_1 + \omega_2 \mbf{e}_2 + \omega_3 \mbf{e}_3 = \omega_0 \cos(nt+\eps) \mbf{e}_1 + \omega_0 \sin(nt+\eps) \mbf{e}_2 + \varOmega \mbf{e}_3
+	% \label{对称Euler陀螺的解-3}
+% \end{equation}
+% 角速度的大小为
+% \begin{equation*}
+	% \omega = \sqrt{\omega_1^2 +\omega_2^2 +\omega_3^2} = \sqrt{\omega_0^2 + \varOmega^2}\quad \text{（常数）}
+% \end{equation*}
+% 该角速度与主轴系$z$轴夹角是固定的$\alpha = \arctan \dfrac{\omega_0}{\varOmega}$。
+
+% 对称Euler陀螺的角速度位于主轴系的一个半顶角为$\alpha$，$z$轴为对称轴的锥面（称为{\heiti 本体极锥}）上，绕$z$轴以匀角速度$n$旋转。
+
+% \begin{figure}[htb]
+% \centering
+% \begin{minipage}[t]{0.45\textwidth}
+% \centering
+% \begin{asy}
+	% size(200);
+	% //对称Euler陀螺的角速度矢量
+	% picture tmp;
+	% pair O,i,j,k;
+	% real r,h,rr,pos;
+	% O = (0,0);
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pos = 1.6;
+	% draw(Label("$x$",EndPoint),O--2*i,Arrow);
+	% draw(Label("$y$",EndPoint),O--2*j,Arrow);
+	% draw(Label("$z$",EndPoint),O--2*k,Arrow);
+	% label("$O$",O,W);
+	% r = 1;
+	% h = 1.5;
+	% rr = 0.4;
+	% pair cir(real theta){
+		% return r*cos(theta)*i+r*sin(theta)*j+h*k;
+	% }
+	% pair bot(real theta){
+		% return rr*cos(theta)*i+rr*sin(theta)*j;
+	% }
+	% draw(graph(cir,0,2*pi),dashed);
+	% draw(O--cir(pos),dashed);
+	% draw(xscale(-1)*(O--cir(pos)),dashed);
+	% draw(Label("$\alpha$",MidPoint,Relative(W)),arc(O,rr,90,degrees(cir(pos))),Arrow);
+	% draw(Label("$\boldsymbol{\omega}$",EndPoint,black),O--cir(pi/3),red,Arrow);
+	% draw(Label("$\boldsymbol{\omega}_0$",EndPoint,black),O--cir(pi/3)-h*k,red,Arrow);
+	% draw(Label("$\boldsymbol{\varOmega}$",EndPoint,Relative(W),black),O--h*k,red,Arrow);
+	% draw(h*k--cir(pi/3)--cir(pi/3)-h*k,dashed);
+	% draw(Label("$nt+\varepsilon$",MidPoint,Relative(E)),graph(bot,0,pi/3),Arrow);
+% \end{asy}
+% \caption{对称Euler陀螺的角速度矢量}
+% \label{对称Euler陀螺的角速度矢量}
+% \end{minipage}
+% \hspace{0.5cm}
+% \begin{minipage}[t]{0.45\textwidth}
+% \centering
+% \begin{asy}
+	% size(200);
+	% //对称Euler陀螺的角动量矢量
+	% picture tmp;
+	% pair O,i,j,k;
+	% real r,h,rr,pos;
+	% O = (0,0);
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pos = 1.8;
+	% draw(Label("$x$",EndPoint),O--2*i,Arrow);
+	% draw(Label("$y$",EndPoint),O--2*j,Arrow);
+	% draw(Label("$z$",EndPoint),O--2*k,Arrow);
+	% label("$O$",O,W);
+	% r = 0.8;
+	% h = 1.6;
+	% rr = 0.4;
+	% pair cir(real theta){
+		% return r*cos(theta)*i+r*sin(theta)*j+h*k;
+	% }
+	% pair bot(real theta){
+		% return rr*cos(theta)*i+rr*sin(theta)*j;
+	% }
+	% draw(graph(cir,0,2*pi),dashed);
+	% draw(O--cir(pos),dashed);
+	% draw(xscale(-1)*(O--cir(pos)),dashed);
+	% draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,rr,90,degrees(cir(pos))),Arrow);
+	% draw(Label("$Z$",EndPoint,black),O--1.4*cir(pi/3),Arrow);
+	% draw(Label("$\boldsymbol{L}$",EndPoint,NW,black),O--cir(pi/3),blue,Arrow);
+	% draw(Label("$I_1\boldsymbol{\omega}_0$",EndPoint,black),O--cir(pi/3)-h*k,blue,Arrow);
+	% draw(Label("$I_3\boldsymbol{\varOmega}$",EndPoint,Relative(W),black),O--h*k,blue,Arrow);
+	% draw(h*k--cir(pi/3)--cir(pi/3)-h*k,dashed);
+	% draw(Label("$nt+\varepsilon$",MidPoint,Relative(E)),graph(bot,0,pi/3),Arrow);
+% \end{asy}
+% \caption{对称Euler陀螺的角动量矢量}
+% \label{对称Euler陀螺的角动量矢量}
+% \end{minipage}
+% \end{figure}
+
+% 下面考虑角动量矢量$\mbf{L}$。根据角动量守恒，$\mbf{L}$为常矢量，方向不变，可取平动系基矢量为$\mbf{E}_Z = \dfrac{\mbf{L}}{L}$。具体可有
+% \begin{equation*}
+	% \mbf{L} = I_1(\omega_1 \mbf{e}_1+\omega_2 \mbf{e}_2) + I_3 \omega_3 \mbf{e}_3 = I_1 \omega_0 \big[\cos(nt+\eps)\mbf{e}_1 + \sin(nt+\eps)\mbf{e}_2\big] + I_3 \varOmega \mbf{e}_3
+% \end{equation*}
+% 由此可以看出矢量$\mbf{e}_3$、$\mbf{\omega}$和$\mbf{L}$共面，角速度的大小
+% \begin{equation*}
+	% L = \sqrt{I_1^2 \omega_1^2+ I_2^2 \omega_2^2+ I_3^2 \omega_3^2} = \sqrt{I_1^2 \omega_0^2 + I_3^2 \varOmega^2}\quad \text{（常数）}
+% \end{equation*}
+% 章动角$\theta$满足
+% \begin{equation*}
+	% \tan \theta = \frac{I_1 \omega_0}{I_3 \varOmega} = \frac{I_1}{I_3} \tan \alpha \quad \text{（常数）}
+% \end{equation*}
+% 即有$\dot{\theta} = 0$，无章动。
+
+% 再由Euler运动学方程
+% \begin{equation*}
+	% \begin{cases}
+		% \omega_1 = \dot{\phi} \sin \theta \sin \psi \\
+		% \omega_2 = \dot{\phi} \sin \theta \cos \psi \\
+		% \omega_3 = \dot{\phi} \cos \theta + \dot{\psi}
+	% \end{cases}
+% \end{equation*}
+% 由此可得自转角$\psi$满足
+% \begin{equation*}
+	% \tan \psi = \frac{\omega_1}{\omega_2} = \cot (nt+\eps)
+% \end{equation*}
+% 即有自转角$\psi = -nt+ \dfrac{\pi}{2} - \eps$。由此可得自转角速度以及进动角速度
+% \begin{equation*}
+	% \begin{cases}
+		% \displaystyle \dot{\psi} = -n = \frac{I_1-I_3}{I_1} \varOmega \quad \text{（常数）} \\[1.5ex]
+		% \displaystyle \dot{\phi} = \frac{\omega_3 - \dot{\psi}}{\cos \theta} = \frac{L}{I_1}>0 \quad \text{（常数）}
+	% \end{cases}
+% \end{equation*}
+% 即有第三主轴绕角速度矢量以匀角速度逆时针进动。章动角恒定，进动和自转角速度恒定的转动称为{\heiti 规则进动}。考虑到$\mbf{e}_z$、$\mbf{\omega}$和$\mbf{L}$共面，故角速度绕角动量矢量以匀角速度逆时针旋转，由于
+% \begin{equation*}
+	% \mbf{\omega} \cdot \frac{\mbf{L}}{L} = \frac{2T}{L}\quad \text{（常数）}
+% \end{equation*}
+% 故角速度位于空间系锥面（称为{\heiti 空间极锥}）上。角$\alpha$和$\theta$满足
+% \begin{equation*}
+	% \frac{\tan \theta}{\tan \alpha} = \frac{I_1}{I_3}
+% \end{equation*}
+% 它们决定了空间极锥与本体极锥之间的相对位置。Euler陀螺可能的三种空间极锥与本体极锥之间的相对位置关系如图\ref{空间极锥与本体极锥情形1}、\ref{空间极锥与本体极锥情形2}和\ref{空间极锥与本体极锥情形3}所示。
+
+% \begin{figure}[htbp]
+% \centering
+% \begin{minipage}[t]{0.45\textwidth}
+% \centering
+% \begin{asy}
+	% size(200);
+	% //空间极锥与本体极锥情形1
+	% picture tmp;
+	% pair O,i,j,k;
+	% real r,r1,r2,h,h1,h2,theta,alpha,pos,L;
+	% O = (0,0);
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pos = 1.88;
+	% r1 = 0.5;
+	% r2 = 0.8;
+	% h1 = 1.6;
+	% h2 = sqrt(r1*r1+h1*h1-r2*r2);
+	% L = 2;
+	% pair cir(real theta){
+		% return r*cos(theta)*i+r*sin(theta)*j+h*k;
+	% }
+	% r = r1;
+	% h = h1;
+	% draw(graph(cir,0,2*pi),blue+dashed);
+	% draw(O--cir(pos),blue+dashed);
+	% draw(xscale(-1)*(O--cir(pos)),blue+dashed);
+	% theta = 90-degrees(cir(pos));
+	% r = r2;
+	% h = h2;
+	% pos = 1.80;
+	% draw(tmp,graph(cir,0,2*pi),red+dashed);
+	% draw(tmp,O--cir(pos),red+dashed);
+	% draw(tmp,xscale(-1)*(O--cir(pos)),red+dashed);
+	% alpha = 90-degrees(cir(pos));
+	% add(rotate(alpha+theta)*tmp);
+	% draw(Label("$\boldsymbol{L}$",EndPoint,black),O--L*dir(90),blue,Arrow);
+	% draw(Label("$\boldsymbol{e}_3$",EndPoint),O--L*dir(90+alpha+theta),Arrow);
+	% //画角速度
+	% real omega,phi,psi,ralpha,rtheta,r0;
+	% ralpha = alpha*pi/180;
+	% rtheta = theta*pi/180;
+	% omega = 1;
+	% phi = sin(ralpha)/sin(ralpha+rtheta)*omega;
+	% psi = sin(rtheta)/sin(ralpha+rtheta)*omega;
+	% draw(Label("$\boldsymbol{\omega}$",EndPoint,Relative(W),black),O--omega*dir(90+theta),red,Arrow);
+	% draw(Label("$\dot{\phi}$",EndPoint,Relative(E),black),O--phi*dir(90),red,Arrow);
+	% draw(Label("$\dot{\psi}$",EndPoint,Relative(W),black),O--psi*dir(90+alpha+theta),red,Arrow);
+	% draw(psi*dir(90+alpha+theta)--omega*dir(90+theta)--phi*dir(90),dashed);
+	% r0 = 0.3;
+	% draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,r0,90+theta,90+alpha+theta),Arrow);
+	% r0 = 0.3;
+	% draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,r0,90,90+theta),Arrow);
+% \end{asy}
+% \caption{$I_1=I_2>I_3$，$\theta>\alpha$}
+% \label{空间极锥与本体极锥情形1}
+% \end{minipage}
+% \hspace{0.5cm}
+% \begin{minipage}[t]{0.45\textwidth}
+% \centering
+% \begin{asy}
+	% size(200);
+	% //空间极锥与本体极锥情形2
+	% picture tmp;
+	% pair O,i,j,k;
+	% real r,r1,r2,h,h1,h2,theta,alpha,pos,L;
+	% O = (0,0);
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pos = 1.88;
+	% r1 = 0.5;
+	% r2 = 0.8;
+	% h1 = 1.6;
+	% h2 = sqrt(r1*r1+h1*h1-r2*r2);
+	% L = 2;
+	% pair cir(real theta){
+		% return r*cos(theta)*i+r*sin(theta)*j+h*k;
+	% }
+	% theta = 0;
+	% r = r2;
+	% h = h2;
+	% pos = 1.80;
+	% draw(tmp,graph(cir,0,2*pi),red+dashed);
+	% draw(tmp,O--cir(pos),red+dashed);
+	% draw(tmp,xscale(-1)*(O--cir(pos)),red+dashed);
+	% alpha = 90-degrees(cir(pos));
+	% add(rotate(alpha+theta)*tmp);
+	% draw(Label("$\boldsymbol{L}$",EndPoint,black),O--L*dir(90),blue,Arrow);
+	% draw(Label("$\boldsymbol{e}_3$",EndPoint),O--L*dir(90+alpha+theta),Arrow);
+	% //画角速度
+	% real omega,r0;
+	% omega = 1;
+	% draw(Label("$\boldsymbol{\omega}$",EndPoint,Relative(E),black),O--omega*dir(90+theta),red,Arrow);
+	% label("$\dot{\phi}$",0.8*omega*dir(90),E);
+	% r0 = 0.3;
+	% draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,r0,90,90+alpha),Arrow);
+	% r0 = 0.3;
+	% draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,r0,90+alpha,90+2*alpha),Arrow);
+% \end{asy}
+% \caption{$I_1=I_2=I_3$，$\theta=\alpha$}
+% \label{空间极锥与本体极锥情形2}
+% \end{minipage}
+% \\
+% \vspace{0.2cm}
+% \begin{minipage}{0.45\textwidth}
+% \centering
+% \begin{asy}
+	% size(250);
+	% //空间极锥与本体极锥情形3
+	% picture tmp;
+	% pair O,i,j,k;
+	% real r,r1,r2,h,h1,h2,theta,alpha,pos,L;
+	% O = (0,0);
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pos = 1.88;
+	% r1 = 0.5;
+	% r2 = 0.8;
+	% h1 = 1.6;
+	% h2 = sqrt(r1*r1+h1*h1-r2*r2);
+	% L = 2;
+	% pair cir(real theta){
+		% return r*cos(theta)*i+r*sin(theta)*j+h*k;
+	% }
+	% r = r1;
+	% h = h1;
+	% draw(graph(cir,0,2*pi),blue+dashed);
+	% draw(O--cir(pos),blue+dashed);
+	% draw(xscale(-1)*(O--cir(pos)),blue+dashed);
+	% theta = 90-degrees(cir(pos));
+	% r = r2;
+	% h = h2;
+	% pos = 1.80;
+	% draw(tmp,graph(cir,0,2*pi),red+dashed);
+	% draw(tmp,O--cir(pos),red+dashed);
+	% draw(tmp,xscale(-1)*(O--cir(pos)),red+dashed);
+	% alpha = 90-degrees(cir(pos));
+	% add(rotate(alpha-theta)*tmp);
+	% draw(Label("$\boldsymbol{L}$",EndPoint,black),O--L*dir(90),blue,Arrow);
+	% draw(Label("$\boldsymbol{e}_3$",EndPoint),O--L*dir(90+alpha-theta),Arrow);
+	% //画角速度
+	% real omega,phi,psi,ralpha,rtheta,r0;
+	% theta = -theta;
+	% ralpha = alpha*pi/180;
+	% rtheta = theta*pi/180;
+	% omega = 0.3;
+	% phi = sin(ralpha)/sin(ralpha+rtheta)*omega;
+	% psi = sin(rtheta)/sin(ralpha+rtheta)*omega;
+	% draw(Label("$\boldsymbol{\omega}$",EndPoint,Relative(E),black),O--omega*dir(90+theta),red,Arrow);
+	% draw(Label("$\dot{\phi}$",EndPoint,Relative(E),black),O--phi*dir(90),red,Arrow);
+	% draw(Label("$\dot{\psi}$",EndPoint,Relative(W),black),O--psi*dir(90+alpha+theta),red,Arrow);
+	% draw(psi*dir(90+alpha+theta)--omega*dir(90+theta)--phi*dir(90),dashed);
+	% r0 = 0.2;
+	% draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,r0,90+alpha+theta,90+2*alpha+theta),Arrow);
+	% r0 = 0.5;
+	% draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,r0,90,90+theta),Arrow);
+% \end{asy}
+% \caption{$I_1=I_2<I_3$，$\theta<\alpha$}
+% \label{空间极锥与本体极锥情形3}
+% \end{minipage}
+% \end{figure}
+
+% 由于本体极锥相对本体系静止，故本体极锥的运动即代表了刚体额运动，角速度线上的各点在平动系中瞬时静止，即为瞬时转轴方向。对称Euler陀螺运动的几何图像即为本体极锥贴着空间极锥作纯滚动。
+
+% \subsection{非对称Euler陀螺}
+
+% 现在利用Euler动力学方程研究三个主惯量各不相等的非对称陀螺的自由转动。为方便起见，假定
+% \begin{equation*}
+	% I_3>I_2>I_1
+% \end{equation*}
+% 由角动量守恒和能量守恒可得
+% \begin{subnumcases}{\label{非对称Euler陀螺的守恒律方程}}
+	% I_1^2 \omega_1^2+I_2^2 \omega_2^2+I_3^2 \omega_3^2 = L^2 \\
+	% I_1 \omega_1^2+I_2 \omega_2^2+I_3 \omega_3^2 = 2T
+% \end{subnumcases}
+% 其中$L$和$T$为常数。这两个等式可以用$\mbf{L}$的三个分量表示为
+% \begin{subnumcases}{}
+	% L_1^2+L_2^2+L_3^2 = L^2 \label{非对称Euler陀螺-角动量守恒} \\
+	% \frac{L_1^2}{I_1}+\frac{L_2^2}{I_2}+\frac{L_3^2}{I_3} = 2T \label{非对称Euler陀螺-能量守恒} 
+% \end{subnumcases}
+% 在以$L_1,L_2,L_3$为轴的坐标系中，方程\eqref{非对称Euler陀螺-能量守恒}是半轴分别
+% \begin{equation*}
+	% \sqrt{2I_1T},\sqrt{2I_2T},\sqrt{2I_3T}
+% \end{equation*}
+% 的椭球面，而方程\eqref{非对称Euler陀螺-角动量守恒}则为半径为$L$的球面方程。当矢量$\mbf{L}$相对陀螺的主轴移动时，其端点将沿着这两个曲面的交线运动。交线存在的条件由不等式
+% \begin{equation}
+	% 2I_1T<L^2<2I_3T
+% \end{equation}
+% 给出，即表示球\eqref{非对称Euler陀螺-角动量守恒}的半径介于椭球\eqref{非对称Euler陀螺-能量守恒}的最长半轴和最短半轴之间。图\ref{不同情况下角动量矢量末端的轨迹}画出了椭球与不同半径的球面的一系列这样的交线。
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(300);
+	% //不同情况下角动量矢量末端的轨迹
+	% pair O,i,j,k;
+	% real a,b,c,L;
+	% O = (0,0);
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% a = 3;
+	% b = 2;
+	% c = 1;
+	% pair ell1(real t){
+		% return a*cos(t)*i+b*sin(t)*j;
+	% }
+	% pair ell2(real t){
+		% return b*cos(t)*j+c*sin(t)*k;
+	% }
+	% pair ell3(real t){
+		% return c*cos(t)*k+a*sin(t)*i;
+	% }
+	% real la,lb,theta;
+	% la = 2.175;
+	% lb = 1.315;
+	% theta = 10.5;
+	% draw(rotate(theta)*xscale(la)*yscale(lb)*unitcircle,linewidth(0.8bp));
+	% real tmp1,tmp2;
+	% tmp1 = -1.15;
+	% draw(graph(ell1,tmp1,tmp1+pi),linewidth(0.5bp));
+	% draw(graph(ell1,tmp1+pi,tmp1+2*pi),dashed);
+	% tmp1 = -0.5;
+	% draw(graph(ell2,tmp1,tmp1+pi),linewidth(0.5bp));
+	% draw(graph(ell2,tmp1+pi,tmp1+2*pi),dashed);
+	% tmp1 = -0.9;
+	% draw(graph(ell3,tmp1,tmp1+pi),linewidth(0.5bp));
+	% draw(graph(ell3,tmp1+pi,tmp1+2*pi),dashed);
+	% pair ell_cur1(real t){
+		% real x,y,z;
+		% x = a*cos(t)/sqrt((a^2-c^2)/(L^2-c^2));
+		% y = b*sin(t)/sqrt((b^2-c^2)/(L^2-c^2));
+		% z = sqrt(L^2-x^2-y^2);
+		% return x*i+y*j+z*k;
+	% }
+	% pair ell_cur2(real t){
+		% real x,y,z;
+		% x = a*cos(t)/sqrt((a^2-c^2)/(L^2-c^2));
+		% y = b*sin(t)/sqrt((b^2-c^2)/(L^2-c^2));
+		% z = -sqrt(L^2-x^2-y^2);
+		% return x*i+y*j+z*k;
+	% }
+	% L = 1.2;
+	% draw(graph(ell_cur1,0,2*pi),linewidth(0.8bp)+red);
+	% draw(graph(ell_cur2,0,2*pi),dashed+red);
+	% L = 1.5;
+	% draw(graph(ell_cur1,0,2*pi),linewidth(0.8bp)+0.7red+0.3blue);
+	% draw(graph(ell_cur2,0,2*pi),dashed+0.7red+0.3blue);
+	% L = 1.8;
+	% draw(graph(ell_cur1,0,2*pi),linewidth(0.8bp)+0.3red+0.7blue);
+	% draw(graph(ell_cur2,0,2*pi),dashed+0.3red+0.7blue);
+	% L = 2;
+	% tmp1 = -1.15;
+	% tmp2 = 2*pi-2.8;
+	% draw(graph(ell_cur1,tmp1,tmp2),linewidth(0.8bp)+blue);
+	% draw(graph(ell_cur1,tmp2,2*pi+tmp1),dashed+blue);
+	% draw(graph(ell_cur2,pi+tmp1,pi+tmp2),dashed+blue);
+	% draw(graph(ell_cur2,pi+tmp2,3*pi+tmp1),linewidth(0.8bp)+blue);
+	% pair ell_cur3(real t){
+		% real x,y,z;
+		% y = b*cos(t)/sqrt((a^2-b^2)/(a^2-L^2));
+		% z = c*sin(t)/sqrt((a^2-c^2)/(a^2-L^2));
+		% x = sqrt(L^2-y^2-z^2);
+		% return x*i+y*j+z*k;
+	% }
+	% pair ell_cur4(real t){
+		% real x,y,z;
+		% y = b*cos(t)/sqrt((a^2-b^2)/(a^2-L^2));
+		% z = c*sin(t)/sqrt((a^2-c^2)/(a^2-L^2));
+		% x = -sqrt(L^2-y^2-z^2);
+		% return x*i+y*j+z*k;
+	% }
+	% L = 2.2;
+	% draw(graph(ell_cur3,0,2*pi),linewidth(0.8bp)+0.8blue+0.2green);
+	% draw(graph(ell_cur4,0,2*pi),dashed+0.8blue+0.2green);
+	% L = 2.5;
+	% draw(graph(ell_cur3,0,2*pi),linewidth(0.8bp)+0.5blue+0.5green);
+	% draw(graph(ell_cur4,0,2*pi),dashed+0.5blue+0.5green);
+	% L = 2.8;
+	% draw(graph(ell_cur3,0,2*pi),linewidth(0.8bp)+green);
+	% draw(graph(ell_cur4,0,2*pi),dashed+green);
+	% // draw(O--a*i,dashed);
+	% // draw(O--b*j,dashed);
+	% // draw(O--c*k,dashed);
+	% draw(Label("$x_3$",EndPoint),a*i--(a+2)*i,Arrow);
+	% draw(Label("$x_2$",EndPoint),b*j--(b+0.6)*j,Arrow);
+	% draw(Label("$x_1$",EndPoint),c*k--(c+1)*k,Arrow);
+% \end{asy}
+% \caption{不同情况下角动量矢量末端的轨迹}
+% \label{不同情况下角动量矢量末端的轨迹}
+% \end{figure}
+
+% 现在考虑在给定能量$T$时，$L$的变化引起矢量$\mbf{L}$的端点的轨迹性质的变化。当$L^2$略大于$2I_1T$时，球和椭球相交于椭球极点附近围绕$x_1$轴的两条很小的封闭曲线（图\ref{不同情况下角动量矢量末端的轨迹}中红色线）。当$L^2\to 2I_1T$时，两条曲线分别收缩到极点。随着$L^2$的增大，曲线也随之扩大，当$L^2=2I_2T$时，曲线变成两条平面曲线（椭圆，图\ref{不同情况下角动量矢量末端的轨迹}中蓝色线），并相交于椭球在$x_2$轴上的极点。$L^2$再继续增大，将再次出现两条分离的封闭曲线，分别围绕$x_3$轴的两个极点（图\ref{不同情况下角动量矢量末端的轨迹}中绿色线）。而当$L^2\to 2I_3T$时，这两条曲线再次收缩到两个极点。
+
+% 首先，轨迹的封闭性意味着矢量$\mbf{L}$在本体系中的运动是周期性的。其次，在椭球不同极点附近的轨迹性质具有本质的区别。在$x_1$轴和$x_3$轴附近，轨迹完全位于相应的极点周围，而在$x_2$轴极点附近的轨迹将远离这个极点。这种差别即相应于陀螺绕三个惯量主轴转动时有不同的稳定性。绕$x_1$轴和$x_3$轴（对应于陀螺三个主惯量中的最小值和最大值）的转动是稳定的，即如果使陀螺稍微偏离这些状态时，陀螺将继续在初始状态附近运动。而绕$x_2$轴的转动是不稳定的，即任意小的偏离都足以引起陀螺远离其初始位置运动。关于稳定性的更多讨论请见%第\ref{Euler陀螺的转动稳定性}节。
+% 下文。
+
+% 为了得到$\mbf{\omega}$分量对时间的依赖关系，利用方程\eqref{非对称Euler陀螺的守恒律方程}将$\omega_1$和$\omega_3$用$\omega_2$表示，可得
+% \begin{subnumcases}{}
+	% \omega_1^2 = \frac{(2I_3T-L^2)-I_2(I_3-I_2)\omega_2^2}{I_1(I_3-I_1)} \\
+	% \omega_3^2 = \frac{(L^2-2I_1T)-I_2(I_2-I_1)\omega_2^2}{I_3(I_3-I_1)}
+% \end{subnumcases}
+% 将上述两个关系代入Euler动力学方程\eqref{Euler动力学方程-2}中，即有
+% \begin{align}
+	% \frac{\mathrm{d}\omega_2}{\mathrm{d}t} & = \frac{\sqrt{\big[(2I_3T-L^2)-I_2(I_3-I_2)\omega_2^2\big] \big[(L^2-2I_1T)-I_2(I_2-I_1)\omega_2^2\big]}}{I_2\sqrt{I_1I_3}}
+	% \label{非对称Euler陀螺的运动方程}
+% \end{align}
+% 方程\eqref{非对称Euler陀螺的运动方程}可以分离变量，将其积分即可得到关系$t(\omega_2)$。为了将其化为标准形式，明确起见，首先假设
+% \begin{equation*}
+	% L^2>2I_2T
+% \end{equation*}
+% 作变量代换
+% \begin{equation}
+	% \tau = \sqrt{\frac{(I_3-I_2)(L^2-2I_1T)}{I_1I_2I_3}}t,\quad s = \sqrt{\frac{I_2(I_3-I_2)}{2I_3T-L^2}}\omega_2
+% \end{equation}
+% 并引入参数
+% \begin{equation}
+	% k^2 = \frac{(I_2-I_1)(2I_3T-L^2)}{(I_3-I_2)(L^2-2I_1T)}<1
+% \end{equation}
+% 可将方程\eqref{非对称Euler陀螺的运动方程}化为
+% \begin{equation*}
+	% \frac{\mathrm{d}s}{\mathrm{d}\tau} = \sqrt{(1-s^2)(1-k^2s^2)}
+% \end{equation*}
+% 将其分离变量并积分，可得
+% \begin{equation}
+	% \tau = \int_0^s \frac{\mathrm{d}\xi}{\sqrt{(1-\xi^2)(1-k^2\xi^2)}} = K(s,k)
+	% \label{非对称Euler陀螺的运动方程的解1}
+% \end{equation}
+% 此处选择$\omega_2=0$的时刻为时间起点。式\eqref{非对称Euler陀螺的运动方程的解1}中右端的函数为{\bf 第一类不完全椭圆积分}\footnote{关于椭圆积分和Jacobi椭圆函数的相关知识，请见第\ref{椭圆积分与Jacobi椭圆函数}节。}。求其反函数可得Jacobi椭圆函数
+% \begin{equation*}
+	% s = \sn \tau
+% \end{equation*}
+% 即
+% \begin{equation}
+	% \omega_2 = \sqrt{\frac{2I_3T-L^2}{I_2(I_3-I_2)}}\sn \tau = \sqrt{\frac{2I_3T-L^2}{I_2(I_3-I_2)}}\sn \left(\sqrt{\frac{(I_3-I_2)(L^2-2I_1T)}{I_1I_2I_3}}t\right)
+% \end{equation}
+% 由此可得如下公式
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle \omega_1 = \sqrt{\frac{2I_3T-L^2}{I_1(I_3-I_1)}}\cn \tau = \sqrt{\frac{2I_3T-L^2}{I_1(I_3-I_1)}}\cn \left(\sqrt{\frac{(I_3-I_2)(L^2-2I_1T)}{I_1I_2I_3}}t\right) \\
+	% \displaystyle \omega_2 = \sqrt{\frac{2I_3T-L^2}{I_2(I_3-I_2)}}\sn \tau = \sqrt{\frac{2I_3T-L^2}{I_2(I_3-I_2)}}\sn \left(\sqrt{\frac{(I_3-I_2)(L^2-2I_1T)}{I_1I_2I_3}}t\right) \\
+	% \displaystyle \omega_3 = \sqrt{\frac{L^2-2I_1T}{I_3(I_3-I_1)}}\dn \tau = \sqrt{\frac{L^2-2I_1T}{I_3(I_3-I_1)}}\dn \left(\sqrt{\frac{(I_3-I_2)(L^2-2I_1T)}{I_1I_2I_3}}t\right)
+% \end{cases}
+% \label{非对称Euler陀螺的运动方程的解2}
+% \end{equation}
+% 函数$\sn \tau$是周期的，对变量$\tau$的周期为$4K$，其中$K$可用第一类完全椭圆积分表示为
+% \begin{equation*}
+	% K = \int_0^1 \frac{\mathrm{d}s}{\sqrt{(1-s^2)(1-k^2s^2)}} = \int_0^{\frac{\pi}{2}} \frac{\mathrm{d}\phi}{\sqrt{1-k^2\sin^2\phi}}
+% \end{equation*}
+% 因而，解\eqref{非对称Euler陀螺的运动方程的解2}对时间$t$的周期为
+% \begin{equation}
+	% T_0 = 4K\sqrt{\frac{I_1I_2I_3}{(I_3-I_2)(L^2-2I_1T)}}
+% \end{equation}
+% 即经过时间$T_0$后，矢量$\mbf{\omega}$在本体系中回到原位置，然而在空间系中，陀螺自身则不见得会回到原位。
+
+% 下面考虑陀螺在空间系中的绝对运动，即相对于固定坐标系$OXYZ$的运动。令$Z$轴沿着矢量$\mbf{L}$的方向，由于方向$Z$相对$x_1,x_2,x_3$轴的极角和方位角分别为$\theta$和$\dfrac{\pi}{2}-\psi$\footnote{可见图\ref{刚体定点转动的Euler角}。此处“极角”和“方位角”即为球坐标系
+% \begin{equation*}
+% \begin{cases}
+	% x = r\sin\theta\cos\phi\\
+	% y = r\sin\theta\sin\phi\\
+	% z = r\cos\theta
+% \end{cases}
+% \end{equation*}
+% 中的$\theta$和$\phi$。}，则矢量$\mbf{L}$沿$x_1,x_2,x_3$的分量分别为
+% \begin{subnumcases}{\label{非对称Euler陀螺的Euler角-1}}
+	% I_1\omega_1 = L\sin\theta\sin\psi \\
+	% I_2\omega_2 = L\sin\theta\cos\psi \\
+	% I_3\omega_3 = L\cos\theta
+% \end{subnumcases}
+% 由此可得
+% \begin{equation}
+	% \cos \theta = \frac{I_3\omega_3}{L},\quad \tan\psi = \frac{I_1\omega_1}{I_2\omega_2}
+	% \label{非对称Euler陀螺的Euler角-2}
+% \end{equation}
+% 将式\eqref{非对称Euler陀螺的运动方程的解2}的结果代入，即有
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle \cos \theta = \sqrt{\frac{I_3(L^2-2I_1T)}{L^2(I_3-I_1)}}\dn \tau \\
+	% \displaystyle \tan \psi = \sqrt{\frac{I_1(I_3-I_2)}{I_2(I_3-I_1)}}\frac{\cn \tau}{\sn \tau}
+% \end{cases}
+% \end{equation}
+% 由此获得角$\theta$和$\psi$随时间的关系，它们都是周期为$T_0$的函数。为了获得角$\phi$随时间的关系，根据Euler运动学方程\eqref{Euler运动学方程}可有
+% \begin{equation*}
+% \begin{cases}
+	% \omega_1 = \dot{\phi}\sin \theta\sin \psi+\dot{\theta}\cos \psi \\
+	% \omega_2 = \dot{\phi}\sin \theta\cos \psi-\dot{\theta}\sin \psi
+% \end{cases}
+% \end{equation*}
+% 从中解得
+% \begin{equation*}
+	% \dot{\phi} = \frac{\omega_1\sin\psi+\omega_2\cos\psi}{\sin \theta}
+% \end{equation*}
+% 将式\eqref{非对称Euler陀螺的Euler角-1}代入，即有
+% \begin{equation}
+	% \frac{\mathrm{d}\phi}{\mathrm{d}t} = L\frac{I_1\omega_1^2+I_2\omega_2^2}{L^2-I_3^2\omega_3^2} = L\frac{I_1\omega_1^2+I_2\omega_2^2}{I_1^2\omega_1^2+I_2^2\omega_2^2}
+	% \label{非对称Euler陀螺的Euler角-3}
+% \end{equation}
+% 由此便可确定$\phi$与时间的关系$\phi(t)$，这个解可以用$\varTheta$-函数表示，而且是非周期的，因此，陀螺在经过$T_0$时间后，其角速度矢量$\mbf{\omega}$相对本体系回到原位，但陀螺本身在空间系中却不能回到它的初始位置。
+
+% 当
+% \begin{equation*}
+	% L^2<2I_2T
+% \end{equation*}
+% 时，作变量代换
+% \begin{equation}
+	% \tau = \sqrt{\frac{(I_2-I_1)(2I_3T-L^2)}{I_1I_2I_3}}t,\quad s = \sqrt{\frac{I_2(I_2-I_1)}{L^2-2I_1T}}\omega_2
+% \end{equation}
+% 并引入参数
+% \begin{equation}
+	% k^2 = \frac{(I_3-I_2)(L^2-2I_1T)}{(I_2-I_1)(2I_3T-L^2)}<1
+% \end{equation}
+% 可将方程\eqref{非对称Euler陀螺的运动方程}化为
+% \begin{equation*}
+	% \frac{\mathrm{d}s}{\mathrm{d}\tau} = \sqrt{(1-s^2)(1-k^2s^2)}
+% \end{equation*}
+% 将其积分可得
+% \begin{equation*}
+	% s = \sn \tau
+% \end{equation*}
+% 此时的解为
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle \omega_1 = \sqrt{\frac{2I_3T-L^2}{I_1(I_3-I_1)}}\dn \tau = \sqrt{\frac{2I_3T-L^2}{I_1(I_3-I_1)}}\dn \left(\sqrt{\frac{(I_2-I_1)(2I_3T-L^2)}{I_1I_2I_3}}t\right) \\
+	% \displaystyle \omega_2 = \sqrt{\frac{L^2-2I_1T}{I_2(I_2-I_1)}}\sn \tau = \sqrt{\frac{L^2-2I_1T}{I_2(I_2-I_1)}}\sn \left(\sqrt{\frac{(I_2-I_1)(2I_3T-L^2)}{I_1I_2I_3}}t\right) \\
+	% \displaystyle \omega_3 = \sqrt{\frac{L^2-2I_1T}{I_3(I_3-I_1)}}\cn \tau = \sqrt{\frac{L^2-2I_1T}{I_3(I_3-I_1)}}\cn \left(\sqrt{\frac{(I_2-I_1)(2I_3T-L^2)}{I_1I_2I_3}}t\right)
+% \end{cases}
+% \label{非对称Euler陀螺的运动方程的解3}
+% \end{equation}
+
+% 当$I_1=I_2$时，考虑当$I_1\to I_2$时，参数$k^2\to 0$，椭圆函数退化为三角函数，级
+% \begin{equation*}
+	% \sn \tau \to \sin \tau,\quad \cn\tau \to \cos \tau,\quad \dn \tau \to 1
+% \end{equation*}
+% 于是，解\eqref{非对称Euler陀螺的运动方程的解2}就变回到式\eqref{对称Euler陀螺的解-1}和式\eqref{对称Euler陀螺的解-2}的结果。
+
+% 当$L^2=2I_3T$时，有
+% \begin{equation*}
+	% \omega_1 = \omega_2 = 0,\quad \omega_3 = \sqrt{\frac{2T}{I_3}}\,\,\text{（常数）}
+% \end{equation*}
+% 即矢量$\mbf{\omega}$的方向总是沿着对称轴$x_3$，即陀螺绕$x_3$轴匀速转动。类似地，当$L^2=2I_1T$时，有
+% \begin{equation*}
+	% \omega_1 = \sqrt{\frac{2T}{I_1}}\,\,\text{（常数）},\quad \omega_2 = \omega_3 = 0
+% \end{equation*}
+
+% 当$L^2=2I_2T$时，式\eqref{非对称Euler陀螺的运动方程}变为
+% \begin{equation}
+	% \frac{\mathrm{d}\omega_2}{\mathrm{d}t} = \sqrt{\left(\frac{I_2}{I_1}-1\right)\left(1-\frac{I_2}{I_3}\right)}\left(\frac{2T}{I_2}-\omega_2^2\right)
+	% \label{Euler陀螺的稳定性-5}
+% \end{equation}
+% 记$\varOmega = \sqrt{\dfrac{2T}{I_2}}$，作变量代换
+% \begin{equation}
+	% \tau = \varOmega\sqrt{\left(\frac{I_2}{I_1}-1\right)\left(1-\frac{I_2}{I_3}\right)} t,\quad s = \frac{\omega_2}{\varOmega}
+	% \label{Euler陀螺的稳定性-6}
+% \end{equation}
+% 可将方程\eqref{Euler陀螺的稳定性-5}化为
+% \begin{equation*}
+	% \frac{\mathrm{d}s}{\mathrm{d}\tau} = 1-s^2
+% \end{equation*}
+% 将其积分可得
+% \begin{equation}
+	% s = \tanh \tau
+% \end{equation}
+% 由此可得
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle \omega_1 = \sqrt{\frac{I_2(I_3-I_2)}{I_1(I_3-I_1)}}\varOmega \frac{1}{\cosh \tau} \\
+	% \displaystyle \omega_2 = \varOmega \tanh \tau \\
+	% \displaystyle \omega_3 = \sqrt{\frac{I_2(I_2-I_1)}{I_3(I_3-I_1)}}\varOmega \frac{1}{\cosh \tau}
+	% \label{Euler陀螺的稳定性-7}
+% \end{cases}
+% \end{equation}
+% 其中$\displaystyle \varOmega = \sqrt{\frac{2T}{I_2}},\tau = \varOmega\sqrt{\left(\frac{I_2}{I_1}-1\right)\left(1-\frac{I_2}{I_3}\right)} t$。如果我们令$\mbf{L}$的方向为$Z$轴，$\theta$为$Z$轴与$x_2$轴之间的夹角，则式\eqref{非对称Euler陀螺的Euler角-2}和式\eqref{非对称Euler陀螺的Euler角-3}中只要对下标做置换$123\to 312$即有
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle \cos\theta = \frac{I_2\omega_2}{L} \\[1.5ex]
+	% \displaystyle \tan\psi = \frac{I_3\omega_3}{I_1\omega_1} \\[1.5ex]
+	% \displaystyle \dot{\phi} = L\frac{I_1\omega_1^2+I_3\omega_3^2}{I_1^2\omega_1^2+I_3^2\omega_3^2}
+% \end{cases}
+% \label{非对称Euler陀螺自由转动特殊情形-1}
+% \end{equation}
+% 将式\eqref{Euler陀螺的稳定性-7}带入即有
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle \cos\theta = \tanh \tau \\
+	% \displaystyle \tan\psi = \sqrt{\frac{I_3(I_2-I_1)}{I_1(I_3-I_2)}} \\
+	% \displaystyle \phi = \varOmega t+\phi_0
+% \end{cases}
+% \end{equation}
+% 由上面各式可以看出，当$t\to \infty$时，矢量$\mbf{\omega}$渐近地趋于$x_2$轴，同时$x_2$轴也渐近地趋于固定轴$Z$。
+
+% 当刚体的角动量$\mbf{L}$与$x_1$轴有微小偏离时\footnote{此时即$\sqrt{2I_3T-L^2}$为一阶小量。}，那么$L_2,L_3$是一阶小量。根据Euler动力学方程\eqref{Euler陀螺的运动方程}可得
+% \begin{subnumcases}{}
+	% I_1\dot{\omega}_1-(I_2-I_3)\omega_2\omega_3 = 0 \label{Euler陀螺的稳定性-1.1} \\
+	% I_2\dot{\omega}_2-(I_3-I_1)\omega_1\omega_3 = 0 \label{Euler陀螺的稳定性-1.2} \\
+	% I_3\dot{\omega}_3-(I_1-I_2)\omega_1\omega_2 = 0 \label{Euler陀螺的稳定性-1.3}
+% \end{subnumcases}
+% 由于$L_2,L_3$是一阶小量，故$\omega_2,\omega_3$也是一阶小量，故由方程\eqref{Euler陀螺的稳定性-1.1}可得
+% \begin{equation*}
+	% I_1\dot{\omega}_1 = 0
+% \end{equation*}
+% 即有
+% \begin{equation*}
+	% \omega_1 = \varOmega \quad \text{（常数）}
+% \end{equation*}
+% 而式\eqref{Euler陀螺的稳定性-1.2}和\eqref{Euler陀螺的稳定性-1.3}则可写作
+% \begin{equation*}
+% \begin{cases}
+	% \dot{\omega}_2 = \dfrac{I_3-I_1}{I_2}\varOmega\omega_3 \\
+	% \dot{\omega}_3 = \dfrac{I_1-I_2}{I_3}\varOmega\omega_2
+% \end{cases}
+% \end{equation*}
+% 由此可以解得
+% \begin{equation*}
+% \begin{cases}
+	% \displaystyle \omega_2 = \frac{La}{I_2} \sqrt{1-\frac{I_1}{I_2}} \sin (\omega_0t+\phi_0) \\
+	% \displaystyle \omega_3 = \frac{La}{I_2} \sqrt{1-\frac{I_1}{I_3}} \cos (\omega_0t+\phi_0)
+% \end{cases}
+% \end{equation*}
+% 其中$a$是一个小常数（一阶小量），$\omega_0 = \sqrt{\left(1-\dfrac{I_1}{I_2}\right)\left(1-\dfrac{I_1}{I_3}\right)}\varOmega$。由于
+% \begin{equation*}
+	% \mbf{L} = I_1\omega_1\mbf{e}_1+I_2\omega_2\mbf{e}_2+I_3\omega_3\mbf{e}_3
+% \end{equation*}
+% 则有
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle L_1 = I_1\varOmega \approx L \\
+	% \displaystyle L_2 = La\sqrt{1-\frac{I_1}{I_2}} \sin (\omega_0t+\phi_0) \\
+	% \displaystyle L_3 = La\sqrt{1-\frac{I_1}{I_3}} \cos (\omega_0t+\phi_0)
+% \end{cases}
+% \label{Euler陀螺的稳定性-2}
+% \end{equation}
+% 式\eqref{Euler陀螺的稳定性-2}表明，矢量$\mbf{L}$的端点，以圆频率$\omega_0$绕着$x_1$轴上的极点画出小椭圆（即图\ref{不同情况下角动量矢量末端的轨迹}中的红色线）。
+
+% 对于刚体的角动量$\mbf{L}$与$x_3$轴有微小偏离的情形，根据类似的过程可以得到
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle \omega_1 = \frac{La}{I_1}\sqrt{\frac{I_3}{I_2}-1} \sin (\omega_0t+\phi_0) \\
+	% \displaystyle \omega_2 = \frac{La}{I_2}\sqrt{\frac{I_3}{I_1}-1} \sin (\omega_0t+\phi_0) \\
+	% \displaystyle \omega_3 = \varOmega
+% \end{cases}
+% \label{Euler陀螺的稳定性-3}
+% \end{equation}
+% 其中$a$是一个小常数（一阶小量），$\omega_0 = \sqrt{\left(\dfrac{I_3}{I_1}-1\right)\left(\dfrac{I_3}{I_2}-1\right)}\varOmega$，对角动量则有
+% \begin{equation}
+% \begin{cases}
+	% \displaystyle L_1 = La\sqrt{\frac{I_3}{I_2}-1} \sin (\omega_0t+\phi_0) \\
+	% \displaystyle L_2 = La\sqrt{\frac{I_3}{I_1}-1} \sin (\omega_0t+\phi_0) \\
+	% \displaystyle L_3 = I_3\varOmega \approx L
+% \end{cases}
+% \label{Euler陀螺的稳定性-4}
+% \end{equation}
+% 式\eqref{Euler陀螺的稳定性-4}表明，矢量$\mbf{L}$的端点，以圆频率$\omega_0$绕着$x_3$轴上的极点画出小椭圆（即图\ref{不同情况下角动量矢量末端的轨迹}中的绿色线）。
+
+% 以上的讨论表明，非对称Euler陀螺绕其主惯量最大或最小的轴自由旋转的运动是稳定的。
+
+% 而对于刚体的角动量$\mbf{L}$与$x_2$轴有微小偏离的情形，精确到一阶小量可得
+% \begin{subnumcases}{}
+	% \dot{\omega}_1 = \frac{I_2-I_3}{I_1}\varOmega\omega_3 \\
+	% \dot{\omega}_3 = \frac{I_1-I_2}{I_3}\varOmega\omega_1
+% \end{subnumcases}
+% 从中消去其中$\omega_1$或$\omega_3$可得
+% \begin{subnumcases}{}
+	% \ddot{\omega}_1 - \frac{(I_2-I_1)(I_3-I_2)}{I_1I_3}\varOmega^2\omega_1 = 0 \\
+	% \ddot{\omega}_3 - \frac{(I_2-I_1)(I_3-I_2)}{I_1I_3}\varOmega^2\omega_3 = 0
+% \end{subnumcases}
+% 由于$I_1<I_2<I_3$，故有
+% \begin{equation*}
+	% - \frac{(I_2-I_1)(I_3-I_2)}{I_1I_3}\varOmega^2 < 0
+% \end{equation*}
+% 因此，非对称Euler陀螺绕其主惯量取中间值的轴自由旋转的运动是不稳定的。
+
+% \subsection{Poinsot几何图像}
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(250);
+	% //角速度的方向与角动量的方向
+	% pair O,a,b,L,omega;
+	% real rx,ry,theta,lL,lomega;
+	% path rect,cir;
+	% picture tmp1,tmp2;
+	% O = (0,0);
+	% a = (2,0);
+	% b = (0.7,0.8);
+	% L = (0,-0.9);
+	% omega = L+0.7*dir(190);
+	% lL = 2.2;
+	% lomega = lL/cos((degrees(omega)-degrees(L))*pi/180);
+	% rx = 1.5;
+	% ry = 1;
+	% theta = 50;
+	% rect = L+a+b--L+a-b--L-a-b--L-a+b--cycle;
+	% cir = rotate(theta)*xscale(rx)*yscale(ry)*unitcircle;
+	% dot(O);
+	% label("$O$",O,N);
+	% draw(cir);
+	% draw(tmp1,rect);
+	% unfill(tmp1,cir);
+	% add(tmp1);
+	% erase(tmp1);
+	% draw(tmp1,O--lL*L,blue+dashed,Arrow);
+	% draw(tmp1,O--lomega*omega,red+dashed,Arrow);
+	% add(tmp2,tmp1);
+	% clip(tmp1,rect);
+	% add(tmp1);
+	% clip(tmp2,cir);
+	% unfill(tmp2,rect);
+	% add(tmp2);
+	% erase(tmp1);
+	% erase(tmp2);
+	% draw(tmp1,O--lL*dir(L),blue,Arrow);
+	% draw(tmp1,Label("$\boldsymbol{\omega}$",EndPoint,S,black),O--lomega*dir(omega),red,Arrow);
+	% label(tmp1,"$\boldsymbol{L}$（常矢量）",lL*dir(L)+(0.6,0),S);
+	% unfill(tmp1,rect);
+	% unfill(tmp1,cir);
+	% add(tmp1);
+	% erase(tmp1);
+	% dot(omega);
+	% dot(L);
+	% label("$N$",omega,N);
+	% label("$L$",L,NE);
+	% draw(L--omega,dashed);
+% \end{asy}
+% \caption{Poinsot几何图像}
+% \label{Poinsot几何图像示意}
+% \end{figure}
+
+% 根据惯量椭球的几何意义，角动量$\mbf{L}$沿角速度$\mbf{\omega}$与惯量椭球交点处切平面的法线方向。对于Euler陀螺，角动量守恒，即$\mbf{L}$为常矢量，因此在Euler陀螺运动的过程中，切平面在各个时刻是相互平行的。再考虑到惯量椭球中心到切平面的距离为
+% \begin{equation*}
+	% x_N = \mbf{x}_N \cdot \frac{\mbf{L}}{L} = \frac{\mbf{\omega}}{\sqrt{2T}} \cdot \frac{\mbf{L}}{L} = \frac{\sqrt{2T}}{L}\quad \text{（常数）}
+% \end{equation*}
+% 因此，Euler陀螺在运动过程中，惯量椭球极点处的切平面固定，称为{\heiti Poinsot平面}。
+
+% 于是得到Euler陀螺的Poinsot几何解释：惯量椭球随着刚体的运动在Poinsot平面上纯滚动，极点为瞬时接触点，其瞬时速度为零\footnote{由于极点在角速度矢量$\mbf{\omega}$方向上，故极点速度为零。}。
+
+% 在刚体运动时，极点在惯性椭球上画出的曲线称为{\heiti 本体极迹}，相应地极点在Poinsot平面上画出的曲线称为{\heiti 空间极迹}。显然，本体极迹是刚体定点运动中本体极锥的准线，而空间极迹是刚体定点运动的空间极锥的准线。
+
+% \iffalse
+% \subsection{Euler陀螺的转动稳定性}\label{Euler陀螺的转动稳定性}
+
+% 如果Euler陀螺的初始角速度沿其任一主轴，即$\mbf{\omega} = \omega \mbf{e}_i$，则有
+% \begin{equation*}
+	% \mbf{L} = I_i \omega \mbf{e}_i = I_i \mbf{\omega}
+% \end{equation*}
+% 此时瞬时转动轴与Poinsot平面垂直，空间极迹和本体极迹退化为一点，角速度（瞬时转动轴）不变，刚体做定轴转动。
+
+% 下面考虑这种定轴转动在刚体角速度稍微偏离主轴时的稳定性。将初始转轴的方向取为$z$轴，当角速度方向稍微偏离$z$轴时，有$\omega_1,\omega_2 \ll 1$，根据Euler动力学方程\eqref{Euler动力学方程-3}可有
+% \begin{equation*}
+	% I_3 \dot{\omega}_3 +(I_1-I_2) \omega_1 \omega_2 = 0
+% \end{equation*}
+% 即有$I_3 \dot{\omega}_3 \approx 0$，所以有
+% \begin{equation*}
+	% \omega_3 = \varOmega \quad \text{（常数）}
+% \end{equation*}
+% 由此Euler动力学方程\eqref{Euler动力学方程-1}和\eqref{Euler动力学方程-2}可有
+% \begin{equation*}
+	% \begin{cases}
+		% I_1 \dot{\omega}_1 - (I_2-I_3)\varOmega \omega_2 = 0 \\
+		% I_2 \dot{\omega}_2 - (I_3-I_1)\varOmega \omega_1 = 0
+	% \end{cases}
+% \end{equation*}
+% 分别消去$\omega_1$和$\omega_2$可得
+% \begin{subnumcases}{\label{Euler陀螺的转动稳定性}}
+	% \ddot{\omega}_1 + \frac{(I_1-I_3)(I_2-I_3)\varOmega^2}{I_1I_2} \omega_1 = 0 \\
+	% \ddot{\omega}_2 + \frac{(I_1-I_3)(I_2-I_3)\varOmega^2}{I_1I_2} \omega_2 = 0
+% \end{subnumcases}
+% 当$I_1>I_3,\,I_2>I_3$或者$I_1<I_3,\,I_2<I_3$时，$\dfrac{(I_1-I_3)(I_2-I_3)\varOmega^2}{I_1I_2} > 0$，方程\eqref{Euler陀螺的转动稳定性}为两个谐振方程，角速度的另外两个分量在小范围内周期性变化，因而转动是稳定的。
+
+% 综上，主惯量最大或最小的主轴为稳定转动轴，而主惯量取中间值的主轴为不稳定转动轴。\fi
+
+% \section{对称重陀螺（Lagrange陀螺）}
+
+% 满足如下条件的定点转动刚体称为{\heiti 对称重陀螺}，又称为{\heiti Lagrange陀螺}：
+% \begin{enumerate}
+	% \item 对定点的两个主惯量相等，即$I_1=I_2$；
+	% \item 质心在第三主轴上，且与定点不重合，即$l = OC \neq 0$；
+	% \item 刚体仅受重力矩作用。
+% \end{enumerate}
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(250);
+	% //Lagrange陀螺的运动
+	% pair O,r,i,j,k,C;
+	% picture tmp;
+	% O = (0,0);
+	% i = 0.5*dir(-135);
+	% j = dir(0);
+	% k = dir(90);
+	% draw(tmp,Label("$X$",EndPoint,SE,black),O--i,blue,Arrow);
+	% draw(tmp,Label("$Y$",EndPoint,black),O--j,blue,Arrow);
+	% draw(tmp,Label("$Z$",EndPoint,black),O--1.6*k,blue,Arrow);
+	% label(tmp,"$O$",O,SSE);
+	% add(tmp);
+	% erase(tmp);
+	% real f(real x){
+		% return x**2;
+	% }
+	% draw(tmp,graph(f,-1.5,1.5),linewidth(1bp));
+	% draw(tmp,shift((0,f(1.5)))*yscale(1/3)*scale(1.5)*unitcircle,linewidth(1bp));
+	% add(rotate(25)*xscale(0.8)*scale(0.5)*tmp);
+	% erase(tmp);
+	% draw(tmp,Label("$x$",EndPoint,S,black),rotate(25)*(O--i),red,Arrow);
+	% draw(tmp,Label("$y$",EndPoint,black),rotate(25)*(O--j),red,Arrow);
+	% draw(tmp,Label("$z$",EndPoint,W,black),rotate(25)*(O--1.6*k),red,Arrow);
+	% add(tmp);
+	% real r;
+	% r = 0.3;
+	% C = rotate(25)*(0.8*k);
+	% draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,r,90,90+25),Arrow);
+	% dot(C);
+	% label("$C$",C,E);
+	% draw(Label("$Mg$",EndPoint,W),C--C+0.8*dir(-90),Arrow);
+% \end{asy}
+% \caption{Lagrange陀螺的运动}
+% \label{Lagrange陀螺的运动}
+% \end{figure}
+
+% \subsection{Lagrange函数与守恒量}
+
+% 刚体的动能和势能分别为
+% \begin{equation*}
+	% T = \frac12 \sum_{i=1}^3 I_i \omega_i^2,\quad V = Mgl\cos \theta
+% \end{equation*}
+% 其中角速度$\omega_1,\omega_2,\omega_3$与广义坐标和广义速度的关系由Euler运动学方程\eqref{Euler运动学方程}给出
+% \begin{equation*}
+% \begin{cases}
+	% \omega_1 = \dot{\phi} \sin \theta \sin \psi + \dot{\theta} \cos \psi \\
+	% \omega_2 = \dot{\phi} \sin \theta \cos \psi - \dot{\theta} \sin \psi \\
+	% \omega_3 = \dot{\phi} \cos \theta + \dot{\psi}
+% \end{cases}
+% \end{equation*}
+% 因此Lagrange陀螺的Lagrange函数\footnote{Lagrange函数和角动量矢量的符号都是$L$，但因为角动量为矢量，是黑体的$L$，因此不会产生混淆。}为
+% \begin{equation}
+	% L = T-V = \frac12 I_1 (\dot{\theta}^2 + \dot{\phi}^2 \sin^2 \theta) + \frac12 I_3 (\dot{\psi} + \dot{\phi} \cos \theta)^2 - Mgl\cos \theta
+	% \label{Lagrange陀螺的Lagrange函数}
+% \end{equation}
+% 由$\dfrac{\pl L}{\pl \phi} = 0$可得
+% \begin{equation}
+	% p_\phi = \frac{\pl L}{\pl \dot{\phi}} = (I_1 \sin^2 \theta + I_3 \cos^2 \theta) \dot{\phi} + I_3 \dot{\psi} \cos \theta = L_Z \quad \text{（常数）}
+	% \label{Lagrange陀螺守恒量——Z轴角动量}
+% \end{equation}
+% 由$\dfrac{\pl L}{\pl \psi} = 0$可得
+% \begin{equation}
+	% p_\psi = \frac{\pl L}{\pl \dot{\psi}} = I_3(\dot{\psi}+\dot{\phi}\cos \theta) = L_3 \quad \text{（常数）}
+	% \label{Lagrange陀螺守恒量——3轴角动量}
+% \end{equation}
+% 由$\dfrac{\pl L}{\pl t} = 0$可得
+% \begin{equation}
+	% H = \frac12 I_1 (\dot{\theta}^2 + \dot{\phi}^2 \sin^2 \theta) + \frac12 I_3 (\dot{\psi} + \dot{\phi} \cos \theta)^2 + Mgl\cos \theta = E \quad \text{（常数）}
+	% \label{Lagrange陀螺守恒量——能量}
+% \end{equation}
+
+% \subsection{等效势与求解}
+
+% 由式\eqref{Lagrange陀螺守恒量——Z轴角动量}和式\eqref{Lagrange陀螺守恒量——3轴角动量}中可以得到
+% \begin{subnumcases}{\label{Lagrange陀螺的进动角速度和自转角速度}}
+	% \dot{\phi} = \frac{L_Z - L_3 \cos \theta}{I_1 \sin^2 \theta} \label{Lagrange陀螺的进动角速度和自转角速度1} \\
+	% \dot{\psi} = \frac{L_3}{I_3} - \frac{(L_Z-L_3 \cos \theta)\cos \theta}{I_1 \sin^2 \theta} \label{Lagrange陀螺的进动角速度和自转角速度2}
+% \end{subnumcases}
+% 将式\eqref{Lagrange陀螺的进动角速度和自转角速度1}和式\eqref{Lagrange陀螺的进动角速度和自转角速度2}代入式\eqref{Lagrange陀螺守恒量——能量}中，可得
+% \begin{equation}
+	% \frac12 I_1 \dot{\theta}^2 + Mgl\cos \theta + \frac{(L_Z-L_3 \cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3} = E
+% \end{equation}
+% 令
+% \begin{equation}
+	% U(\theta) = Mgl\cos \theta + \frac{(L_Z-L_3 \cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3}
+	% \label{Lagrange陀螺等效势}
+% \end{equation}
+% 为重力与惯性力合力矩的{\heiti 等效势}，由此对$\theta$的微分方程为
+% \begin{equation}
+	% \frac12 I_1 \dot{\theta}^2 + U(\theta) = E
+	% \label{Lagrange陀螺章动角方程}
+% \end{equation}
+% 因此，Lagrange陀螺的章动相当于在等效保守力矩作用下的定轴转动。
+
+% 方程\eqref{Lagrange陀螺章动角方程}可以分离变量为
+% \begin{equation*}
+	% \int_{t_0}^t \mathrm{d} t = \pm \sqrt{\frac{I_1}{2}} \int_{\theta_0}^\theta \frac{\mathrm{d} \theta}{\sqrt{E-U(\theta)}}
+% \end{equation*}
+% 由此可得$\theta = \theta(t)$，于是由\eqref{Lagrange陀螺的进动角速度和自转角速度}可有
+% \begin{equation*}
+	% \begin{cases}
+		% \displaystyle \phi-\phi_0 = \int_{t_0}^t \frac{L_Z - L_3 \cos \theta(t)}{I_1 \sin^2 \theta(t)} \mathrm{d} t \\[1.5ex]
+		% \displaystyle \psi-\psi_0 = \int_{t_0}^t \left[\frac{L_3}{I_3} - \frac{\big(L_Z-L_3\cos \theta(t) \big) \cos \theta(t)}{I_1 \sin^2 \theta(t)} \right] \mathrm{d} t
+	% \end{cases}
+% \end{equation*}
+
+% \subsection{定性图像}
+
+% 对等效势
+% \begin{equation*}
+	% U(\theta) = Mgl\cos \theta + \frac{(L_Z-L_3 \cos \theta)^2}{2I_1 \sin^2 \theta} + \frac{L_3^2}{2I_3}
+% \end{equation*}
+% 进行能图分析。
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(250);
+	% //Lagrange陀螺等效势能曲线
+	% picture tmp;
+	% pair O;
+	% real mgl,LZ,L3,I1,I3,x,thetam,theta1,theta2,theta0,bot,top;
+	% path clp;
+	% real U(real theta){
+		% return mgl*cos(theta)+(LZ-L3*cos(theta))*(LZ-L3*cos(theta))/(2*I1*sin(theta)*sin(theta)) + L3*L3/(2*I3);
+	% }
+	% real dU(real theta){
+		% return -mgl*sin(theta)+(L3*(sin(theta))**2*(LZ-L3*cos(theta))-sin(theta)*cos(theta)*(LZ-L3*cos(theta))**2)/(I1*(sin(theta))**3);
+	% }
+	% real Utheta1(real theta){
+		% return mgl*cos(theta)+(LZ-L3*cos(theta))*(LZ-L3*cos(theta))/(2*I1*sin(theta)*sin(theta)) + L3*L3/(2*I3)-U(theta1);
+	% }
+	% real bis(real f(real),real x1,real x2,real eps){
+		% int imax;
+		% real a,b,fab,fa,fb;
+		% a = x1;
+		% b = x2;
+		% imax = 1000;
+		% for(int i=1;i<=imax;i=i+1){
+			% fa = f(a);
+			% fb = f(b);
+			% fab = f((a+b)/2);
+			% if(fab == 0) return (a+b)/2;
+			% if(fab*fa<0){
+				% b = (a+b)/2;
+			% }
+			% else {
+				% a = (a+b)/2;
+			% }
+			% if(abs(b-a)<eps){
+				% return (a+b)/2;
+			% }
+		% }
+		% return (a+b)/2;
+	% }
+	% mgl = 10;
+	% LZ = -.6;
+	% L3 = 2;
+	% I1 = 2;
+	% I3 = 1;
+	% x = 20;
+	% bot = -10;
+	% top = 60;
+	% draw(tmp,xscale(x)*graph(U,0.01,pi-0.01),linewidth(1bp));
+	% clp = box((0,bot),(x*pi,80));
+	% clip(tmp,clp);
+	% draw(tmp,clp);
+	% clp = box((-1,bot),(x*pi,top));
+	% clip(tmp,clp);
+	% add(tmp);
+	% thetam = bis(dU,2,3,1e-10)-0.04;
+	% draw((0,U(thetam))--(x*pi,U(thetam)),red);
+	% draw((x*thetam,bot)--(x*thetam,U(thetam)),dashed);
+	% theta1 = 1.7;
+	% theta2 = bis(Utheta1,2,3,1e-10);
+	% theta0 = acos(LZ/L3);
+	% draw((0,U(theta1))--(x*pi,U(theta1)),blue);
+	% draw((x*theta1,bot)--(x*theta1,U(theta1)),dashed);
+	% draw((x*theta2,bot)--(x*theta2,U(theta2)),dashed);
+	% //draw((0,U(theta0))--(x*pi,U(theta0)),dashed+green);
+	% //draw((x*theta0,bot)--(x*theta0,U(theta0)),dashed+green);
+	% label("$0$",(x*0,bot),S);
+	% label("$\theta_1$",(x*theta1,bot),S);
+	% label("$\theta_m$",(x*thetam,bot),S);
+	% label("$\theta_2$",(x*theta2,bot),S);
+	% //label("$\theta_0$",(x*theta0,bot),S);
+	% label("$\pi$",(x*pi,bot),S);
+	% label("$\theta$",(x*pi,bot),E);
+	% label("$E$",(0,U(theta1)),W);
+	% label("$U$",(0,top),N);
+% \end{asy}
+% \caption{Lagrange陀螺的等效势能曲线}
+% \label{Lagrange陀螺等效势能曲线}
+% \end{figure}
+
+% 分以下几种情况考虑：
+% \begin{enumerate}
+	% \item $\left|\dfrac{L_Z}{L_3}\right| \neq 1$，而且$E>U_{\min}$。根据图\ref{Lagrange陀螺等效势能曲线}，当$E>U_{\min}$时，章动角的取值范围为$\theta_1 \leqslant \theta \leqslant \theta_2$，此时章动为往复周期运动。进动角速度为
+	% \begin{equation*}
+		% \dot{\phi} = \frac{L_Z-L_3 \cos \theta}{I_1\sin^2 \theta}
+	% \end{equation*}
+	% \begin{enumerate}
+		% \item $\left|\dfrac{L_Z}{L_3}\right| < 1$。令$\theta_0 = \arccos \dfrac{L_Z}{L_3}$，则有
+		% \begin{equation*}
+			% U(\theta) = Mgl\cos \theta + \frac{L_3^2(\cos \theta_0-\cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3}
+		% \end{equation*}
+		% 以及
+		% \begin{equation*}
+			% \dot{\phi}(\theta_0) = 0,\quad U(\theta_0) = Mgl\cos \theta_0 + \frac{L_3^2}{2I_3}
+		% \end{equation*}
+		% 即，如果$\theta_0$在章动的范围中，进动角速度将在运动中不断改变符号。实际章动的范围由不等式$E \geqslant U(\theta)$决定。
+		
+% \begin{figure}[htb]
+% \centering
+% \begin{minipage}[t]{0.3\textwidth}
+% \centering
+% \begin{asy}
+	% size(150);
+	% //Lagrange陀螺进动1
+	% pair i,j,k;
+	% real r,theta0,thetam,w,theta;
+	% r = 1;
+	% theta0 = pi/4;
+	% thetam = pi/10;
+	% w = 9;
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pair spconvert(real r,real theta,real phi){
+		% return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
+	% }
+	% pair thetaphi(real phi){
+		% return spconvert(r,theta0-thetam*sin(w*r*sin(theta0)*phi),phi);
+	% }
+	% pair phicir(real phi){
+		% return spconvert(r,theta,phi);
+	% }
+	% draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
+	% theta = theta0-thetam;
+	% draw(graph(phicir,-1.8,2.57),dashed);
+	% label("$\theta_1$",phicir(2.57),NE);
+	% theta = theta0+thetam;
+	% draw(graph(phicir,-1.4,2.1),dashed);
+	% label("$\theta_2$",phicir(2.1),NE);
+	% draw(graph(thetaphi,-1.4,2.4,200),linewidth(0.8bp)+red);
+	% draw(scale(r)*unitcircle,linewidth(0.8bp));
+% \end{asy}
+% \label{Lagrange陀螺进动1}
+% \caption{$\theta_0<\theta_1<\theta_2$}
+% \end{minipage}
+% \hspace{0.2cm}
+% \begin{minipage}[t]{0.3\textwidth}
+% \centering
+% \begin{asy}
+	% size(150);
+	% //Lagrange陀螺进动2
+	% pair i,j,k;
+	% real r,theta0,thetam,w,theta;
+	% r = 1;
+	% theta0 = pi/4;
+	% thetam = pi/10;
+	% w = 7.5;
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pair spconvert(real r,real theta,real phi){
+		% return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
+	% }
+	% pair thetaphi(real t){
+		% real x,y;
+		% x = t-sin(t);
+		% y = cos(t);
+		% return spconvert(r,theta0-thetam*y,x/r/sin(theta0)/w-0.2);
+	% }
+	% pair phicir(real phi){
+		% return spconvert(r,theta,phi);
+	% }
+	% draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
+	% theta = theta0-thetam;
+	% draw(graph(phicir,-1.8,2.57),dashed);
+	% label("$\theta_1$",phicir(2.57),NE);
+	% theta = theta0+thetam;
+	% draw(graph(phicir,-1.4,2.1),dashed);
+	% label("$\theta_2$",phicir(2.1),NE);
+	% draw(graph(thetaphi,-8,14,200),linewidth(0.8bp)+red);
+	% draw(scale(r)*unitcircle,linewidth(0.8bp));
+% \end{asy}
+% \label{Lagrange陀螺进动2}
+% \caption{$\theta_0=\theta_1<\theta_2$}
+% \end{minipage}
+% \hspace{0.2cm}
+% \begin{minipage}[t]{0.3\textwidth}
+% \centering
+% \begin{asy}
+	% size(150);
+	% //Lagrange陀螺进动3
+	% pair i,j,k;
+	% real r,theta0,thetam,w,theta,d;
+	% r = 1;
+	% theta0 = pi/4;
+	% thetam = pi/10;
+	% w = 10;
+	% d = 2.5;
+	% i = (-sqrt(2)/4,-sqrt(14)/12);
+	% j = (sqrt(14)/4,-sqrt(2)/12);
+	% k = (0,2*sqrt(2)/3);
+	% pair spconvert(real r,real theta,real phi){
+		% return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
+	% }
+	% pair thetaphi(real t){
+		% real x,y;
+		% x = t-d*sin(t);
+		% y = cos(t);
+		% return spconvert(r,theta0-thetam*y,x/r/sin(theta0)/w-0.1);
+	% }
+	% pair phicir(real phi){
+		% return spconvert(r,theta,phi);
+	% }
+	% draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
+	% theta = theta0-thetam;
+	% draw(graph(phicir,-1.8,2.57),dashed);
+	% label("$\theta_1$",phicir(2.57),NE);
+	% theta = theta0+thetam;
+	% draw(graph(phicir,-1.4,2.1),dashed);
+	% label("$\theta_2$",phicir(2.1),NE);
+	% draw(graph(thetaphi,-9.3,15.5,200),linewidth(0.8bp)+red);
+	% draw(scale(r)*unitcircle,linewidth(0.8bp));
+% \end{asy}
+% \label{Lagrange陀螺进动3}
+% \caption{$\theta_1<\theta_0<\theta_2$}
+% \end{minipage}
+% \end{figure}
+		
+		% \begin{enumerate}
+			% \item $U(\theta) \leqslant E < U(\theta_0)$。此时
+			% \begin{equation*}
+				% Mgl\cos \theta + \frac{L_3^2(\cos \theta_0-\cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3} < Mgl\cos \theta_0 + \frac{L_3^2}{2I_3}
+			% \end{equation*}
+			% 即有$\theta_0 < \theta_1 < \theta_2$。此时进动角速度在运动中不变号，进动方向不变，如图\ref{Lagrange陀螺进动1}所示。
+			% \item $U(\theta) \leqslant E = U(\theta_0)$。此时
+			% \begin{equation*}
+				% Mgl\cos \theta + \frac{L_3^2(\cos \theta_0-\cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3} \leqslant Mgl\cos \theta_0 + \frac{L_3^2}{2I_3}
+			% \end{equation*}
+			% 即有$\theta_0 = \theta_1 < \theta_2$。此时在最小章动角位置，进动角速度为零，如图\ref{Lagrange陀螺进动2}所示。
+			% \item $E>U(\theta_0)$。此时有$\theta_1 < \theta_0 < \theta_2$，进动角速度在运动中周期性改变符号，进动方向周期性改变，如图\ref{Lagrange陀螺进动3}所示。
+		% \end{enumerate}
+		
+		% \item $\left|\dfrac{L_Z}{L_3}\right| > 1$。进动角速度
+		% \begin{equation*}
+			% \dot{\phi} = \frac{L_Z - L_3 \cos \theta}{I_1 \sin^2 \theta}
+		% \end{equation*}
+		% 在章动角$\theta$取任何值时都不可能等于零，此时不存在进动角速度为零的章动角，进动方向始终不变。
+	% \end{enumerate}
+	% \item $E>U_{\min}$。此时$\theta = \theta_m$不变，无章动。因此进动角速度和自转角速度
+	% \begin{equation*}
+		% \dot{\phi} = \frac{L_Z-L_3\cos \theta_m}{I_1\sin^2 \theta_m},\quad \dot{\psi} = \frac{L_3}{I_3} - \dot{\phi}\cos \theta_m
+	% \end{equation*}
+	% 都是常数，因此此时Lagrange陀螺为规则进动。此时有$U'(\theta_m) = 0$，由此可得$\theta_m$满足的方程为
+	% \begin{equation*}
+		% \frac{(L_Z-L_3\cos \theta_m)(L_Z\cos \theta_m-L_3)}{I_1 \sin^3 \theta_m} + Mgl\sin \theta_m = 0
+	% \end{equation*}
+	% 由此，根据式\eqref{Lagrange陀螺守恒量——能量}可得
+	% \begin{equation*}
+		% \sin \theta_m (I_1 \dot{\phi}^2 \cos \theta_m - L_3 \dot{\phi} + Mgl) = 0
+	% \end{equation*}
+	% 上式有解的条件为
+	% \begin{equation}
+		% L_3^2 \geqslant 4I_1 Mgl\cos \theta_m
+		% \label{Lagrange陀螺规则进动条件}
+	% \end{equation}
+	% 式\eqref{Lagrange陀螺规则进动条件}即为Lagrange陀螺的规则进动条件。
+	% \item $\left|\dfrac{L_Z}{L_3}\right| = 1$。
+	% \begin{enumerate}
+		% \item $L_Z = L_3 \neq 0$。此时等效势能为
+		% \begin{equation*}
+			% U(\theta) = \frac{L_3^2}{2I_3} + Mgl + \frac{L_3^2}{2I_1} \tan^2 \frac{\theta}{2} - 2Mgl\sin^2 \frac{\theta}{2}
+		% \end{equation*}
+		% 当$\theta=0$时，有$E = \dfrac{L_3^2}{2I_3}+Mgl$，因此在$\theta=0$附近，等效势能可以展开为
+		% \begin{equation*}
+			% U(\theta) = \frac{L_3^2}{2I_3} + Mgl + \frac14 \left(\frac{L_3^2}{2I_1} - 2Mgl\right) \theta^2 + \frac{1}{24} \left(\frac{L_3^2}{2I_1}+Mgl\right) \theta^4 + o(\theta^4)
+		% \end{equation*}
+		% 因此，在$\theta = 0$点处，当
+		% \begin{enumerate}
+			% \item $L_3^2 > 4I_1Mgl$时，Lagrange陀螺作稳定直立转动；
+			% \item $L_3^2 = 4I_1Mgl$时，Lagrange陀螺作次稳定直立转动；
+			% \item $L_3^2 < 4I_1Mgl$时，Lagrange陀螺作不稳定直立转动。
+		% \end{enumerate}
+	
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(250);
+	% //直立转动Lagrange陀螺的等效势能曲线
+	% picture tmp;
+	% pair O,P;
+	% real a,b,top,bot,x,left,right,height;
+	% path clp;
+	% real U(real theta){
+		% return a*(tan(theta/2))**2-b*(sin(theta/2))**2;
+	% }
+	% O = (0,0);
+	% top = 70;
+	% bot = -15;
+	% x = 25;
+	% draw(tmp,O--(pi,0));
+	% a = 4;
+	% b = 2;
+	% draw(tmp,graph(U,0,3),green+linewidth(0.8bp));
+	% a = 2;
+	% b = 2;
+	% draw(tmp,graph(U,0,3),orange+linewidth(0.8bp));
+	% a = 0.1;
+	% b = 10;
+	% draw(tmp,graph(U,0,3.141),red+linewidth(0.8bp));
+	% clp = box((0,bot),(pi,top));
+	% clip(tmp,clp);
+	% draw(tmp,clp);
+	% top = 60;
+	% clp = box((-1,bot),(pi,top));
+	% clip(tmp,clp);
+	% add(xscale(x)*tmp);
+	% label("$0$",(0,bot),S);
+	% label("$\pi$",(x*pi,bot),S);
+	% label("$\theta$",(x*pi,bot),E);
+	% label("$U$",(0,top),N);
+	% label("$E$",O,W);
+	% left = 2;
+	% right = 28;
+	% height = 20;
+	% top = top-2;
+	% fill(shift((1,-1))*box((left,top),(right,top-height)),black);
+	% unfill(box((left,top),(right,top-height)));
+	% draw(box((left,top),(right,top-height)));
+	% P = ((left+right)/2,top-height/6);
+	% label("$L_3^2 > 4I_1 Mgl$",P,green);
+	% P = ((left+right)/2,top-3*height/6);
+	% label("$L_3^2 = 4I_1 Mgl$",P,orange);
+	% P = ((left+right)/2,top-5*height/6);
+	% label("$L_3^2 < 4I_1 Mgl$",P,red);
+	% //draw(O--(x*pi*1.1,0),invisible);
+% \end{asy}
+% \caption{直立转动Lagrange陀螺的等效势能曲线}
+% \label{直立转动Lagrange陀螺的等效势能曲线}
+% \end{figure}
+
+		% \item $L_Z = -L_3 \neq 0$。此时等效势能为
+		% \begin{equation*}
+			% U(\theta) = \frac{L_3^2}{2I_3} - Mgl + \frac{L_3^2}{2I_1} \cot^2 \frac{\theta}{2} + 2Mgl\cos^2 \frac{\theta}{2}
+		% \end{equation*}
+		% 当$\theta=\pi$时，有$E = \dfrac{L_3^2}{2I_3}-Mgl$，因此在$\theta = \pi$附近，等效势能可以展开为
+		% \begin{equation*}
+			% U(\theta) = \frac{L_3^2}{2I_3} - Mgl + \frac14\left(\frac{L_3^2}{2I_1}+2Mgl\right) (\theta-\pi)^2 + o((\theta-\pi)^2)
+		% \end{equation*}
+		% 此时Lagrange陀螺作稳定倒悬转动。
+	% \end{enumerate}
+% \end{enumerate}
+
+% \begin{example}
+% 一陀螺由半径为$2r$的薄圆盘及通过圆盘中心$C$，并和盘面垂直的场为$r$的杆轴所组成，杆的质量可忽略不计。将杆的另一端$O$放在水平面上，使其作无滑动的转动。如起始时杆$OC$与铅直线的夹角为$\alpha$，起始时的总角速度为$\omega$，方向沿着$\alpha$角的平分线，证明经过
+% \begin{equation*}
+	% t = \int_0^\alpha \frac{\mathrm{d} \theta}{\omega\sqrt{1 - \cos^2 \dfrac{\alpha}{2} \sec^2 \dfrac{\theta}{2} + \dfrac{g}{r\omega^2}(\cos \alpha-\cos \theta)}}
+% \end{equation*}
+% 后杆将直立起来，式中$\theta$为任意瞬时杆轴与铅直线的夹角。
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(250);
+	% //第六章例6图
+	% pair O,dash,P;
+	% real alpha,r,d;
+	% O = (0,0);
+	% r = 1;
+	% d = 0.05;
+	% alpha = 30;
+	% fill(rotate(alpha)*box((r-d,-2*r),(r+d,2*r)),0.6white);
+	% draw(Label("$z$",EndPoint),O--2.5*r*dir(alpha),Arrow);
+	% draw(Label("$Z$",EndPoint),O--2.5*r*dir(90),Arrow);
+	% draw(Label("$\boldsymbol{\omega}_0$",EndPoint,black),O--2.5*r*dir(alpha+(90-alpha)/2),red,Arrow);
+	% draw((-r/2,0)--(r/2,0));
+	% dash = 2*d*dir(-120);
+	% for(int i=1;i<=6;i=i+1){
+		% P = (r/2-r/6*(i-1),0);
+		% draw(P--P+dash);
+	% }
+	% label("$O$",O,NW);
+	% label("$C$",r*dir(alpha),2*E);
+	% label("$r$",1/2*r*dir(alpha),dir(alpha-90));
+	% label("$2r$",r*dir(alpha)+r*dir(alpha-90),dir(alpha-180));
+	% draw(Label("$\dfrac{\alpha}{2}$",Relative(0.3),Relative(E)),arc(O,0.4*r,alpha,alpha+(90-alpha)/2),Arrow);
+	% draw(Label("$\dfrac{\alpha}{2}$",Relative(0.5),Relative(E)),arc(O,0.4*r,alpha+(90-alpha)/2,90),Arrow);
+	% //draw(O--(2.5,0),invisible);
+% \end{asy}
+% \caption{例\theexample}
+% \label{第六章例6图}
+% \end{figure}
+% \end{example}
+
+% \begin{solution}
+% 圆盘对$C$的惯量矩阵为
+% \begin{equation*}
+	% \mbf{I}' = \begin{pmatrix} mr^2 & 0 & 0 \\ 0 & mr^2 & 0 \\ 0 & 0 & 2mr^2 \end{pmatrix}
+% \end{equation*}
+% 质心对$O$点的坐标为$\mbf{X}_C = \begin{pmatrix} 0 \\ 0 \\ r \end{pmatrix}$，因此有质心对$O$的转动惯量为
+% \begin{equation*}
+	% \mbf{I}_C = \begin{pmatrix} mr^2 & 0 & 0 \\ 0 & mr^2 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+% \end{equation*}
+% 根据平行轴定理可得圆盘对$O$的转动惯量为
+% \begin{equation*}
+	% \mbf{I} = \mbf{I}_C + \mbf{I}' = \begin{pmatrix} 2mr^2 & 0 & 0 \\ 0 & 2mr^2 & 0 \\ 0 & 0 & 2mr^2 \end{pmatrix}
+% \end{equation*}
+% 故圆盘为Lagrange陀螺。其转动惯量和动能分别为
+% \begin{equation*}
+	% \mbf{L} = \mbf{I} \mbf{\omega} = 2mr^2 \mbf{\omega},\quad T = \frac12 \mbf{\omega}\cdot \mbf{L} = mr^2 \omega^2
+% \end{equation*}
+% 由此可得三个积分常数为
+% \begin{equation*}
+	% \begin{cases}
+		% L_Z = L_{Z0} = 2mr^2 \omega_{Z0} = 2mr^2 \omega \cos \dfrac{\alpha}{2} \\
+		% L_3 = L_{30} = 2mr^2 \omega_{30} = 2mr^2 \omega \cos \dfrac{\alpha}{2} \\
+		% E = E_0 = mr^2 \omega^2 + mgr\cos \alpha
+	% \end{cases}
+% \end{equation*}
+% 此时，章动等效势为
+% \begin{equation*}
+	% U(\theta) = mr^2 \omega^2 \cos^2 \frac{\alpha}{2} \sec^2 \frac{\theta}{2} + mgr\cos \theta = mgr\left(\frac{r\omega^2}{g}\cos^2 \frac{\alpha}{2} \sec^2 \frac{\theta}{2} + \cos \theta\right)
+% \end{equation*}
+% 章动方程为
+% \begin{equation*}
+	% \frac12 I_1 \dot{\theta}^2 + U(\theta) = E
+% \end{equation*}
+% 初始时刻有
+% \begin{equation*}
+	% \frac12 I_1 \dot{\theta}_0^2 = E - U(\alpha) = 0
+% \end{equation*}
+% 即初始章动角速度为零，章动处于极限角位置。下面按$\dfrac{r\omega^2}{g}$可能的取值分类讨论，每种情况对应的等效势能曲线如图\ref{第六章例6势能曲线}所示。
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(400);
+	% //直立转动Lagrange陀螺的等效势能曲线
+	% picture tmp;
+	% pair O,P;
+	% real alpha,beta,top,bot,x,left,right,height;
+	% path clp;
+	% real U(real theta){
+		% return 10*(beta*(cos(alpha/2))**2*(sec(theta/2))**2+cos(theta));
+	% }
+	% O = (0,0);
+	% alpha = 1.3;
+	% beta = 0;
+	% top = 70;
+	% bot = U(pi);
+	% x = 20;
+	% draw(tmp,O--(pi,0));
+	% draw(tmp,(alpha,bot)--(alpha,top),dashed);
+	% beta = 0;
+	% draw(tmp,graph(U,0,pi),black+linewidth(1bp));
+	% draw(tmp,Label("$E_1$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),black);
+	% beta = (cos(alpha/2))**2;
+	% draw(tmp,graph(U,0,3),red+linewidth(1bp));
+	% draw(tmp,Label("$E_2$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),red);
+	% beta = 2*(cos(alpha/2))**2;
+	% draw(tmp,graph(U,0,3),orange+linewidth(1bp));
+	% draw(tmp,Label("$E_3$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),orange);
+	% beta = (2*(cos(alpha/2))**2+2)/2;
+	% draw(tmp,graph(U,0,3),green+linewidth(1bp));
+	% draw(tmp,Label("$E_4$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),green);
+	% beta = 2;
+	% draw(tmp,graph(U,0,3),blue+linewidth(1bp));
+	% draw(tmp,Label("$E_5$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),blue);
+	% beta = (2+2*(sec(alpha/2))**2)/2;
+	% draw(tmp,graph(U,0,3),darkblue+linewidth(1bp));
+	% draw(tmp,Label("$E_6$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),darkblue);
+	% beta = 2*(sec(alpha/2))**2;
+	% draw(tmp,graph(U,0,3),purple+linewidth(1bp));
+	% draw(tmp,Label("$E_7$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),purple);
+	% beta = 3*(sec(alpha/2))**2;
+	% draw(tmp,graph(U,0,3),brown+linewidth(1bp));
+	% draw(tmp,Label("$E_8$",BeginPoint),(0,U(alpha))--(pi,U(alpha)),brown);
+	% clp = box((-10,bot),(pi,top));
+	% clip(tmp,clp);
+	% clp = box((0,bot),(pi,top));
+	% draw(tmp,clp);
+	% top = 60;
+	% clp = box((-1,bot),(pi,top));
+	% clip(tmp,clp);
+	% add(xscale(x)*tmp);
+	% label("$0$",(0,bot),S);
+	% label("$\pi$",(x*pi,bot),S);
+	% label("$\alpha$",(x*alpha,bot),S);
+	% label("$\theta$",(x*pi,bot),E);
+	% label("$U$",(0,top),N);
+	% label("$0$",O,W);
+	% left = x*pi+4;
+	% right = x*pi+30;
+	% height = 66;
+	% top = top-2;
+	% fill(shift((1,-1))*box((left,top),(right,top-height)),black);
+	% unfill(box((left,top),(right,top-height)));
+	% draw(box((left,top),(right,top-height)));
+	% P = ((left+right)/2,top-height+height/16);
+	% label("$\dfrac{r\omega^2}{g} = 0$",P,black);
+	% P = ((left+right)/2,top-height+3*height/16);
+	% label("$0 < \dfrac{r\omega^2}{g} < 2\cos^2 \dfrac{\alpha}{2}$",P,red);
+	% P = ((left+right)/2,top-height+5*height/16);
+	% label("$\dfrac{r\omega^2}{g} = 2\cos^2 \dfrac{\alpha}{2}$",P,orange);
+	% P = ((left+right)/2,top-height+7*height/16);
+	% label("$2\cos^2 \dfrac{\alpha}{2} < \dfrac{r\omega^2}{g} < 2$",P,green);
+	% P = ((left+right)/2,top-height+9*height/16);
+	% label("$\dfrac{r\omega^2}{g} = 2$",P,blue);
+	% P = ((left+right)/2,top-height+11*height/16);
+	% label("$2 < \dfrac{r\omega^2}{g} < 2\sec^2 \dfrac{\alpha}{2}$",P,darkblue);
+	% P = ((left+right)/2,top-height+13*height/16);
+	% label("$\dfrac{r\omega^2}{g} = 2\sec^2 \dfrac{\alpha}{2}$",P,purple);
+	% P = ((left+right)/2,top-height+15*height/16);
+	% label("$\dfrac{r\omega^2}{g} > 2\sec^2 \dfrac{\alpha}{2}$",P,brown);
+	% //draw(O--(right*1.05,0),invisible);
+% \end{asy}
+% \caption{例\theexample 势能曲线}
+% \label{第六章例6势能曲线}
+% \end{figure}
+
+% \begin{enumerate}
+	% \item $\dfrac{r\omega^2}{g} = 0$。此时$U(\theta) = mgr\cos \theta$，刚体为复摆，平衡位置在$\theta = \pi$，不可能直立。
+	% \item $0 < \dfrac{r\omega^2}{g} < 2\cos^2 \dfrac{\alpha}{2}$。此时$U'(\alpha)<0$，刚体进行初始向下的往复章动，不可能直立。
+	% \item $\dfrac{r\omega^2}{g} = 2\cos^2 \dfrac{\alpha}{2}$。此时$U'(\alpha) = 0$，刚体进行规则进动，不可能直立。
+	% \item $2\cos^2 \dfrac{\alpha}{2} < \dfrac{r\omega^2}{g} < 2$。此时$U'(\alpha) > 0,\,U(0) > E$，刚体进行初始向上的往复章动，不可能直立。
+	% \item $\dfrac{r\omega^2}{g} = 2$。此时$U(0) = E$，恰能直立，刚体将以无限小章动角速度趋于直立位置，所需时间为无穷大。
+	% \item $2 < \dfrac{r\omega^2}{g} < 2\sec^2 \dfrac{\alpha}{2}$。此时$U(0)<E,\,U''(0)<0$，章动角速度先增后减，渐趋匀速，故刚体可在有限时间之内直立起来。
+	% \item $\dfrac{r\omega^2}{g} = 2\sec^2 \dfrac{\alpha}{2}$。此时$U''(0) = 0,\,U^{(4)}(0) > 0$，章动角速度递增，较快趋于匀速，故刚体可在有限时间之内直立起来。
+	% \item $\dfrac{r\omega^2}{g} > 2\sec^2 \dfrac{\alpha}{2}$。此时$U''(0) > 0$，章动角速度递增，较慢趋于匀速，故刚体可在有限时间之内直立起来。
+% \end{enumerate}
+% 综上，刚体能够直立的条件为$\ds\frac{r\omega^2}{g} \geqslant 2$。由章动方程$\dfrac12 I_1 \dot{\theta}^2 + U(\theta) = E$可得
+% \begin{equation*}
+	% \frac{\mathrm{d} \theta}{\mathrm{d} t} = -\sqrt{\frac{2(E-U(\theta))}{I_1}}
+% \end{equation*}
+% 此处，由于直立过程中，章动角随时间减小，故开方取负。因此，从初始章动角位置至直立所需时间为
+% \begin{equation*}
+	% t = -\sqrt{\frac{I_1}{2}} \int_\alpha^0 \frac{\mathrm{d} \theta}{\sqrt{E-U(\theta)}} = \int_0^\alpha \frac{\mathrm{d} \theta}{\omega\sqrt{1 - \cos^2 \dfrac{\alpha}{2} \sec^2 \dfrac{\theta}{2} + \dfrac{g}{r\omega^2}(\cos \alpha-\cos \theta)}}
+% \end{equation*}
+% \end{solution}

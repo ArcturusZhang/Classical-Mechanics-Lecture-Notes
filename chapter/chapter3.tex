@@ -78,7 +78,7 @@ Lagrange函数具有形式
 \end{equation*}
 考虑做Legendre变换
 \begin{align*}
-	\mathrm{d} L & = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \mathrm{d} \dot{q}_\alpha + \sum_{i=1}^s \frac{\pl L}{\pl q_\alpha} + \frac{\pl L}{\pl t} \mathrm{d} t \\
+	\mathrm{d} L & = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \mathrm{d} \dot{q}_\alpha + \sum_{i=1}^s \frac{\pl L}{\pl q_\alpha} \mathd q_\alpha + \frac{\pl L}{\pl t} \mathrm{d} t \\
 	& = \sum_{\alpha=1}^s p_\alpha \mathrm{d} \dot{q}_\alpha + \sum_{\alpha=1}^s \dot{p}_\alpha \mathrm{d} q_\alpha - \dot{H} \mathrm{d} t \\
 	& = \mathrm{d} \left(\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha \right) - \sum_{\alpha=1}^s \dot{q}_\alpha \mathrm{d} p_\alpha + \sum_{\alpha=1}^s \dot{p}_\alpha \mathrm{d}q_\alpha - \dot{H} \mathrm{d} t
 \end{align*}
@@ -88,7 +88,7 @@ Lagrange函数具有形式
 \end{equation}
 即
 \begin{equation*}
-	H = \sum_{\alpha=1}^s \frac{\pl H}{\pl p_\alpha} \mathrm{d} p_\alpha + \sum_{\alpha=1}^s \frac{\pl H}{\pl q_\alpha} \mathrm{d} q_\alpha + \frac{\pl H}{\pl t} \mathrm{d} t = \sum_{\alpha=1}^s \dot{q}_\alpha \mathrm{d} p_\alpha - \sum_{\alpha=1}^s \dot{p}_\alpha \mathrm{d} q_\alpha + \dot{H} \mathrm{d} t
+	\mathd H = \sum_{\alpha=1}^s \frac{\pl H}{\pl p_\alpha} \mathrm{d} p_\alpha + \sum_{\alpha=1}^s \frac{\pl H}{\pl q_\alpha} \mathrm{d} q_\alpha + \frac{\pl H}{\pl t} \mathrm{d} t = \sum_{\alpha=1}^s \dot{q}_\alpha \mathrm{d} p_\alpha - \sum_{\alpha=1}^s \dot{p}_\alpha \mathrm{d} q_\alpha + \dot{H} \mathrm{d} t
 \end{equation*}
 由此可得
 \begin{equation}
