@@ -1,11 +1,11 @@
 \chapter{多自由度微振动与阻尼}
 
-体系在稳定平衡位形附近的小幅振动即称为{\heiti 微振动}。
+系统在稳定平衡位形附近的小幅振动即称为{\heiti 微振动}。
 
 \section{微振动近似与求解}
 
-\begin{example}[单摆]
-对于单摆，自由度$s=1$。取摆角$\theta$为广义坐标，体系的动能为
+\begin{example}[单摆]\label{chapter5:example-单摆}
+对于单摆，自由度$s=1$。取摆角$\theta$为广义坐标，系统的动能为
 \begin{equation*}
 	T = \frac12 ml^2 \dot{\theta}^2
 \end{equation*}
@@ -87,11 +87,11 @@
 \begin{equation*}
 	V = \frac12 mgl\theta^2 + o(\theta^2)
 \end{equation*}
-由此在线性近似下体系的Lagrange函数
+由此在线性近似下系统的Lagrange函数
 \begin{equation*}
 	L = \frac12 ml^2 \dot{\theta}^2 - \frac12 mgl\theta^2 
 \end{equation*}
-是广义坐标$\theta$和广义速度$\dot{\theta}$的二次型，进而体系的运动方程
+是广义坐标$\theta$和广义速度$\dot{\theta}$的二次型，进而系统的运动方程
 \begin{equation*}
 	ml^2\ddot{\theta} + mgl\theta = 0
 \end{equation*}
@@ -138,7 +138,7 @@
 \label{第五章弹性耦合摆}
 \end{figure}
 
-选两个摆角$\theta_1,\theta_2$为广义坐标，则体系的动能为
+选两个摆角$\theta_1,\theta_2$为广义坐标，则系统的动能为
 \begin{equation*}
 	T = \frac12 ml^2 \left(\dot{\theta}_1^2+\dot{\theta}_2^2\right)
 \end{equation*}
@@ -150,11 +150,11 @@
 \begin{align*}
 	V & = \frac12 mgl(\theta_1^2+\theta_2^2) + \frac12 kl^2 (\theta_2-\theta_1)^2 + o(\theta_1^2+\theta_2^2)
 \end{align*}
-取新的广义坐标$x_1 = l\theta_1,x_2 = l\theta_2$，可有体系在线性近似下的Lagrange函数为
+取新的广义坐标$x_1 = l\theta_1,x_2 = l\theta_2$，可有系统在线性近似下的Lagrange函数为
 \begin{equation*}
 	L = \frac12 m(\dot{x}_1^2+\dot{x}_2^2) - \frac{mg}{2l} (x_1^2+x_2^2) - \frac12 k(x_1^2-2x_1x_2+x_2^2)
 \end{equation*}
-进而体系的运动方程为
+进而系统的运动方程为
 \begin{equation*}
 	\begin{cases}
 		\displaystyle m\ddot{x}_1 + \left(k +\frac{mg}{l}\right) x_1 - kx_2 = 0 \\[1.5ex]
@@ -165,7 +165,7 @@
 \begin{equation*}
 	\mbf{M} = \begin{pmatrix} m & 0 \\ 0 & m \end{pmatrix},\quad \mbf{K} = \begin{pmatrix} \dfrac{mg}{l}+k & -k \\[1.5ex] -k & \dfrac{mg}{l} + k \end{pmatrix}
 \end{equation*}
-其中矩阵$\mbf{M}$称为{\heiti 惯性矩阵}，$\mbf{K}$称为{\heiti 弹性矩阵}，由此体系的运动方程可以简单的表示为
+其中矩阵$\mbf{M}$称为{\heiti 惯性矩阵}，$\mbf{K}$称为{\heiti 弹性矩阵}，由此系统的运动方程可以简单的表示为
 \begin{equation*}
 	\mbf{M} \ddot{\mbf{x}} + \mbf{K} \mbf{x} = \mbf{0}
 \end{equation*}
@@ -208,9 +208,9 @@
 \begin{equation*}
 	\begin{pmatrix} \xi_1 \\ \xi_2 \end{pmatrix} = \begin{pmatrix} C_1 \cos (\omega_1 t + \phi_1) \\ C_2 \cos (\omega_2 t + \phi_2) \end{pmatrix}
 \end{equation*}
-此处得到的两个相互独立的简谐振动称为{\heiti 简正振动}，其频率为{\heiti 本征频率}，简正振动对应的坐标$\xi_1,\xi_2$称为{\heiti 简正坐标}。在简正坐标下，体系的Lagrange函数$L = \dfrac12 \dot{\mbf{x}}^{\mathrm{T}} \mbf{M} \dot{\mbf{x}} - \dfrac12 \mbf{x}^{\mathrm{T}} \mbf{K} \mbf{x}$可以转化为
+此处得到的两个相互独立的简谐振动称为{\heiti 简正振动}，其频率为{\heiti 本征频率}，简正振动对应的坐标$\xi_1,\xi_2$称为{\heiti 简正坐标}。在简正坐标下，系统的Lagrange函数$L = \dfrac12 \dot{\mbf{x}}^{\mathrm{T}} \mbf{M} \dot{\mbf{x}} - \dfrac12 \mbf{x}^{\mathrm{T}} \mbf{K} \mbf{x}$可以转化为
 \begin{align*}
-	L & = \frac12 \dot{\mbf{\xi}}^{\mathrm{T}} \mbf{S}^{\mathrm{T}} \mbf{M} \mbf{S} \dot{\mbf{\xi}} - \frac12 \mbf{\xi}^{\mathrm{T}} \mbf{S}^{\mathrm{T}} \mbf{K} \mbf{S} \mbf{x} = \frac12 \dot{\mbf{\xi}}^{\mathrm{T}} \mbf{M}' \dot{\mbf{\xi}} - \frac12 \mbf{\xi}^{\mathrm{T}} \mbf{K}' \mbf{x}
+	L & = \frac12 \dot{\mbf{\xi}}^{\mathrm{T}} \mbf{S}^{\mathrm{T}} \mbf{M} \mbf{S} \dot{\mbf{\xi}} - \frac12 \mbf{\xi}^{\mathrm{T}} \mbf{S}^{\mathrm{T}} \mbf{K} \mbf{S} \mbf{x} = \frac12 \dot{\mbf{\xi}}^{\mathrm{T}} \mbf{M}' \dot{\mbf{\xi}} - \frac12 \mbf{\xi}^{\mathrm{T}} \mbf{K}' \mbf{\xi}
 \end{align*}
 其中
 \begin{align*}
@@ -219,11 +219,11 @@
 \end{align*}
 都为对角矩阵。因此，引入简正坐标，可以使$\mbf{M}$和$\mbf{K}$同时对角化，不同自由度的振动解耦，即简正振动模式。
 
-\section{多自由度微振动体系}
+\section{多自由度微振动系统}
 
 \subsection{微振动近似}
 
-考虑保守体系，其广义坐标取为$q_\alpha\,(\alpha=1,2,\cdots,s)$，不失一般性，规定其稳定平衡位形处有$q_{\alpha 0} = 0,V_0 = 0$，由此平衡条件可以表示为
+考虑保守系统，其广义坐标取为$q_\alpha\,(\alpha=1,2,\cdots,s)$，不失一般性，规定其稳定平衡位形处有$q_{\alpha 0} = 0,V_0 = 0$，由此平衡条件可以表示为
 \begin{equation*}
 	\left(\frac{\pl V}{\pl q_\alpha}\right)_0 = 0,\quad \alpha = 1,2,\cdots,s
 \end{equation*}
@@ -260,7 +260,7 @@
 \begin{equation}
 	T = \frac12 \sum_{\alpha,\beta=1}^s m_{\alpha\beta} \dot{q}_\alpha \dot{q}_\beta = \frac12 \dot{\mbf{q}}^{\mathrm{T}} \mbf{M} \dot{\mbf{q}}
 \end{equation}
-动能必然是非负的，而且只有$\dot{\mbf{q}}=\mbf{0}$时为零，故矩阵$\mbf{M}$正定。因此体系的Lagrange函数为
+动能必然是非负的，而且只有$\dot{\mbf{q}}=\mbf{0}$时为零，故矩阵$\mbf{M}$正定。因此系统的Lagrange函数为
 \begin{equation*}
 	L = \frac12 \dot{\mbf{q}}^{\mathrm{T}} \mbf{M} \dot{\mbf{q}} - \frac12 \mbf{q}^{\mathrm{T}} \mbf{K} \mbf{q}
 \end{equation*}
@@ -270,14 +270,14 @@
 	& = \frac12 \sum_{\beta=1}^s (m_{\alpha\beta} + m_{\beta\alpha}) \dot{q}_\beta = \sum_{\beta=1}^s m_{\alpha\beta} \dot{q}_\beta \\
 	\frac{\pl L}{\pl q_\alpha} & = -\sum_{\beta=1}^s k_{\alpha\beta} q_\beta
 \end{align*}
-由此得到体系的运动方程为
+由此得到系统的运动方程为
 \begin{equation*}
 	\sum_{\beta=1}^s (m_{\alpha\beta} \ddot{q}_\beta + k_{\alpha\beta} q_\beta) = 0,\quad \alpha=1,2,\cdots,s
 \end{equation*}
 用矩阵可以表示为
 \begin{equation}
 	\mbf{M} \ddot{\mbf{q}} + \mbf{K} \mbf{q} = \mbf{0}
-	\label{多自由度微振动体系的运动方程}
+	\label{多自由度微振动系统的运动方程}
 \end{equation}
 即，Lagrange函数在稳定平衡位形处取二阶近似，可得线性振动方程。
 
@@ -287,17 +287,17 @@
 \begin{equation*}
 	\mbf{q} = \mbf{a} \cos (\omega t+\phi)
 \end{equation*}
-则体系的运动方程\eqref{多自由度微振动体系的运动方程}可化为
+则系统的运动方程\eqref{多自由度微振动系统的运动方程}可化为
 \begin{equation}
 	(\mbf{K} - \omega^2 \mbf{M})\mbf{a} = \mbf{0}
 	\label{多自由度微振动本征方程}
 \end{equation}
-式\eqref{多自由度微振动本征方程}称为体系的{\heiti 本征方程}，体系有振动解要求本征方程\eqref{多自由度微振动本征方程}有非平凡解，即要求
+式\eqref{多自由度微振动本征方程}称为系统的{\heiti 本征方程}，系统有振动解要求本征方程\eqref{多自由度微振动本征方程}有非平凡解，即要求
 \begin{equation}
 	\det (\mbf{K} - \omega^2 \mbf{M}) = 0
 	\label{久期方程或频率方程}
 \end{equation}
-式\eqref{久期方程或频率方程}称为体系的{\heiti 久期方程}或{\heiti 频率方程}，它是$\omega^2$的$s$次方程。因为矩阵$\mbf{K}$至少是半正定的，矩阵$\mbf{M}$是正定的，所以方程\eqref{久期方程或频率方程}必然有$s$个非负的解，即有
+式\eqref{久期方程或频率方程}称为系统的{\heiti 久期方程}或{\heiti 频率方程}，它是$\omega^2$的$s$次方程。因为矩阵$\mbf{K}$至少是半正定的，矩阵$\mbf{M}$是正定的，所以方程\eqref{久期方程或频率方程}必然有$s$个非负的解，即有
 \begin{equation*}
 	\omega^2 = \omega_\mu^2,\quad \mu = 1,2,\cdots,s
 \end{equation*}
@@ -305,7 +305,7 @@
 \begin{equation*}
 	(\mbf{K} - \omega_\mu^2 \mbf{M}) \mbf{a}_\mu = \mbf{0},\quad \mu = 1,2,\cdots,s
 \end{equation*}
-解出每个本征频率对应的本征矢量$\mbf{a}_\mu$。体系运动的通解即为上述$s$个特解的线性组合
+解出每个本征频率对应的本征矢量$\mbf{a}_\mu$。系统运动的通解即为上述$s$个特解的线性组合
 \begin{equation}
 	\mbf{q} = \sum_{\mu=1}^s \mbf{a}_\mu C_\mu \cos (\omega_\mu t + \phi_\mu)
 	\label{多自由度微振动通解}
@@ -314,7 +314,7 @@
 
 \subsection{简正坐标与简正振动}
 
-将体系运动的通解\eqref{多自由度微振动通解}表示为
+将系统运动的通解\eqref{多自由度微振动通解}表示为
 \begin{equation*}
 	\mbf{q} = \begin{pmatrix} \mbf{a}_1 & \cdots & \mbf{a}_s \end{pmatrix} \begin{pmatrix} C_1 \cos (\omega_1 t + \phi_1) \\ \vdots \\ C_s \cos (\omega_s t + \phi_s) \end{pmatrix}
 \end{equation*}
@@ -326,7 +326,7 @@
 \begin{equation*}
 	\mbf{A} = \begin{pmatrix} \mbf{a}_1 & \cdots & \mbf{a}_s \end{pmatrix} = \begin{pmatrix} a_{11} & \cdots & a_{1s} \\ \vdots & & \vdots \\ a_{s1} & \cdots & a_{ss} \end{pmatrix}
 \end{equation*}
-则体系的解可以用新变量表示为
+则系统的解可以用新变量表示为
 \begin{equation}
 	\mbf{\xi} = \begin{pmatrix} C_1 \cos (\omega_1 t + \phi_1) \\ \vdots \\ C_s \cos (\omega_s t + \phi_s) \end{pmatrix}
 \end{equation}
@@ -334,7 +334,7 @@
 \begin{equation}
 	\xi_\mu = C_\mu \cos (\omega_\mu t+ \phi_\mu)
 \end{equation}
-即，新坐标可以将体系的运动表示为相互独立的简谐振动，坐标$\mbf{\xi}$称为体系的{\heiti 简正坐标}。
+即，新坐标可以将系统的运动表示为相互独立的简谐振动，坐标$\mbf{\xi}$称为系统的{\heiti 简正坐标}。
 
 \begin{theorem}[同时对角化]
 设$n$阶方阵$\mbf{A},\mbf{B}$都是对称矩阵，其中$\mbf{A}$是正定矩阵，则唯一存在一个非奇异方阵$\mbf{P}$满足
@@ -368,14 +368,14 @@
 以简正坐标表示的各自由度的振动相互独立。
 
 \begin{example}[双摆]
-双摆体系的自由度$s=2$，取两个摆角$\theta_1,\theta_2$为广义坐标，则两个摆球的坐标分别为
+双摆系统的自由度$s=2$，取两个摆角$\theta_1,\theta_2$为广义坐标，则两个摆球的坐标分别为
 \begin{equation*}
 \begin{array}{ll}
 	x_1 = l\sin\theta_1,& y_1 = l\cos\theta_1 \\
 	x_2 = l\sin\theta_1+l\sin\theta_2,& y_2 = l\cos\theta_1+l\cos\theta_2
 \end{array}
 \end{equation*}
-体系的势能为
+系统的势能为
 \begin{equation*}
 	V = mg(2l-y_2)+mg(l-y_1) = mgl(3-2\cos\theta_1 - \cos \theta_2)
 \end{equation*}
@@ -429,7 +429,7 @@
 	\dot{x}_2 = l \dot{\theta}_1\cos\theta_1+l \dot{\theta}_2\cos\theta_2,& \dot{y}_2 = -l \dot{\theta}_1\sin\theta_1-l \dot{\theta}_2\sin\theta_2
 \end{array}
 \end{equation*}
-体系的动能为
+系统的动能为
 \begin{equation*}
 	T = \frac12 m(\dot{x}_1^2+\dot{y}_1^2) + \frac12 m(\dot{x}_2^2+\dot{y}_2^2) = \frac12 ml^2 \dot{\theta}_1^2 + \frac12 m\left[l^2 \dot{\theta}_1^2 + l^2 \dot{\theta}_2^2 + 2l^2 \dot{\theta}_1 \dot{\theta}_2 \cos (\theta_1 - \theta_2)\right]
 \end{equation*}
@@ -457,11 +457,11 @@
 \begin{equation*}
 	\mbf{a}_1 = \begin{pmatrix} 1 \\ \sqrt{2} \end{pmatrix},\quad \mbf{a}_2 = \begin{pmatrix} 1 \\ -\sqrt{2} \end{pmatrix}
 \end{equation*}
-因此，体系的运动解为
+因此，系统的运动解为
 \begin{equation*}
 	\begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 \\ \sqrt{2} \end{pmatrix} C_1 \cos (\omega_1 t+\phi_1) + \begin{pmatrix} 1 \\ -\sqrt{2} \end{pmatrix} C_2 \cos (\omega_2 t+\phi_2)
 \end{equation*}
-体系的简正坐标$\xi_1,\xi_2$满足
+系统的简正坐标$\xi_1,\xi_2$满足
 \begin{equation*}
 	\begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ \sqrt{2} & -\sqrt{2} \end{pmatrix} \begin{pmatrix} \xi_1 \\ \xi_2 \end{pmatrix}
 \end{equation*}
@@ -508,7 +508,7 @@
 
 \subsection{一维阻尼振动}
 
-取体系的平衡位置为广义坐标原点，并假定阻力是速度的一次函数\footnote{在微振动情况下，这个近似是可以接受的。}，则物体的运动方程为
+取系统的平衡位置为广义坐标原点，并假定阻力是速度的一次函数\footnote{在微振动情况下，这个近似是可以接受的。}，则物体的运动方程为
 \begin{equation*}
 	m\ddot{x} = -kx - c\dot{x}
 \end{equation*}
@@ -825,7 +825,7 @@ $\kappa$随阻尼因子$\gamma$和频率比值$\dfrac{\omega_p}{\omega_0}$的变
 \begin{equation*}
 	f_\alpha = -\frac{\pl D}{\pl \dot{q}_\alpha}
 \end{equation*}
-如果体系内其余主动力皆为有势力，则可有系统方程
+如果系统内其余主动力皆为有势力，则可有系统方程
 \begin{equation*}
 	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = f_\alpha,\quad \alpha = 1,2,\cdots,s
 \end{equation*}
@@ -859,7 +859,7 @@ $\kappa$随阻尼因子$\gamma$和频率比值$\dfrac{\omega_p}{\omega_0}$的变
 \end{equation*}
 此处$c_{\alpha\beta}$只与广义坐标$\mbf{q}$有关，而与广义速度$\dot{\mbf{q}}$无关，因此Rayleigh耗散函数$D$是广义速度$\dot{\mbf{q}}$的二次齐次函数。特别地，在微振动问题中，$T$和$V$都只保留至二阶小量，因此$D$也只要保留到二阶小量即可，在这种情况下，$c_{\alpha\beta}$可以看成常数。
 
-耗散函数$D$具有能量变化率的量纲，它决定了力学体系能量的耗散率$-\dfrac{\mathrm{d}E}{\mathrm{d}t}$。对于Rayleigh耗散函数，当$c_{\alpha\beta}$为常数时，可有
+耗散函数$D$具有能量变化率的量纲，它决定了力学系统能量的耗散率$-\dfrac{\mathrm{d}E}{\mathrm{d}t}$。对于Rayleigh耗散函数，当$c_{\alpha\beta}$为常数时，可有
 \begin{align*}
 	\frac{\mathrm{d} E}{\mathrm{d} t} & = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{\alpha=1}^s \dot{q}_\alpha \frac{\pl L}{\pl \dot{q}_\alpha} - L\right) = \sum_{\alpha=1}^s \dot{q}_\alpha \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha}\right)
 \end{align*}
@@ -875,4 +875,4 @@ $\kappa$随阻尼因子$\gamma$和频率比值$\dfrac{\omega_p}{\omega_0}$的变
 \begin{equation}
 	-\frac{\mathrm{d} E}{\mathrm{d} t} = 2D
 \end{equation}
-即单位时间内体系内耗散的能量等于耗散函数的两倍。
+即单位时间内系统内耗散的能量等于耗散函数的两倍。

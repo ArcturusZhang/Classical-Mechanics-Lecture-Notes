@@ -1,6 +1,6 @@
 \chapter{两体问题}
 
-无外力的两质点体系在相互作用下的运动求解问题称为{\heiti 两体问题}。
+无外力的两质点系统在相互作用下的运动求解问题称为{\heiti 两体问题}。
 
 两体中心力是自然界最普遍、最典型的力场之一。中心力问题研究肇始于行星运动的理论解释，对原子核式模型的确立起了关键性的作用。
 
@@ -8,7 +8,7 @@
 
 \subsection{Lagrange函数及其分离变量}
 
-在两体系统不受外力作用时，设两个质点之间的相互作用势表示为$V = V(\mbf{r}_1 - \mbf{r}_2)$，则系统的Lagrange函数为
+在两系统统不受外力作用时，设两个质点之间的相互作用势表示为$V = V(\mbf{r}_1 - \mbf{r}_2)$，则系统的Lagrange函数为
 \begin{equation}
 	L = \frac12 m_1 \dot{\mbf{r}}_1^2 + \frac12 m_2 \dot{\mbf{r}}_2^2 - V(\mbf{r}_1 - \mbf{r}_2)
 \end{equation}
@@ -46,7 +46,7 @@
 \begin{equation}
 	\mbf{r} = \mbf{r}_1 - \mbf{r}_2
 \end{equation}
-为广义坐标。记$M = m_1+m_2$为体系的{\heiti 总质量}，$\mu = \dfrac{m_1m_2}{m_1+m_2}$为两体{\heiti 约化质量}，则有
+为广义坐标。记$M = m_1+m_2$为系统的{\heiti 总质量}，$\mu = \dfrac{m_1m_2}{m_1+m_2}$为两体{\heiti 约化质量}，则有
 \begin{equation}
 	\begin{cases}
 		\displaystyle \mbf{r}_1 = \mbf{R} + \frac{m_2}{M}\mbf{r} = \mbf{R} + \frac{\mu}{m_1} \mbf{r} \\[1.5ex]
@@ -74,7 +74,7 @@
 \end{equation*}
 为内秉角动量。
 
-由于两体系统的整体运动即为惯性运动，因此后面的讨论集中于相对运动的求解。
+由于两系统统的整体运动即为惯性运动，因此后面的讨论集中于相对运动的求解。
 
 \subsection{两体中心力场}
 
@@ -126,7 +126,7 @@ Lagrange函数$L'$不显含时间，故
 	H = \frac12 \mu \left(\dot{r}^2+r^2\dot{\theta}^2\right) + V(r) = E\,\text{（常数）}
 	\label{两体内能守恒}
 \end{equation}
-即两体内能守恒。
+即两体机械能守恒。
 
 \subsection{运动解}
 
@@ -731,7 +731,7 @@ Lagrange函数$L'$不显含时间，故
 
 %在斥力的情形下，$\alpha>0$，$E>0$，则有$e>1$，轨道为双曲线。
 
-在引力的情形下，$\alpha<0$，按照体系能量的区别可以分为以下4种情况：
+在引力的情形下，$\alpha<0$，按照系统能量的区别可以分为以下4种情况：
 \begin{enumerate}
 	\item 当$E>0$时，$e>1$，轨道为双曲线；
 	\item 当$E=0$时，$e=1$，轨道为拋物线；
@@ -893,7 +893,7 @@ Lagrange函数$L'$不显含时间，故
 
 \subsection{Laplace-Runge-Lenz矢量}
 
-在任意有心力场$V(r) = \dfrac{\alpha}{r}$中存在其特有的运动积分，称为{\bf Laplace-Runge-Lenz矢量}
+在Kepler势场$V(r) = \dfrac{\alpha}{r}$中存在其特有的运动积分，称为{\bf Laplace-Runge-Lenz矢量}
 \begin{equation}
 	\mbf{A} = \mbf{v} \times \mbf{l} + \frac{\alpha \mbf{r}}{r}
 \end{equation}
@@ -907,7 +907,13 @@ Lagrange函数$L'$不显含时间，故
 \begin{equation*}
 	\frac{\mathrm{d}\mbf{A}}{\mathrm{d}t} = \mbf{0}
 \end{equation*}
-由此便验证了Laplace-Runge-Lenz矢量$\mbf{A}$是运动积分。
+由此便验证了Laplace-Runge-Lenz矢量$\mbf{A}$是运动积分。再考虑
+\begin{align*}
+	A^2 & = \mbf{A} \cdot \mbf{A} = \left(\mbf{v} \times \mbf{l} + \alpha \mbf{e}_r\right) \cdot \left(\mbf{v} \times \mbf{l} + \alpha \mbf{e}_r\right) = v^2 l^2 + 2\alpha \mbf{e}_r \cdot (\mbf{v} \times \mbf{l}) + \alpha^2 \\
+	& = v^2 l^2 + \frac{2\alpha}{mr} \mbf{l} \cdot (\mbf{r} \times \mbf{p}) + \alpha^2 = v^2 l^2 + \frac{2\alpha}{mr} l^2 + \alpha^2 = \frac{2}{m}\left(\frac12 mv^2 + \frac{\alpha}{r}\right) l^2 + \alpha^2 \\
+	& = \frac{2EL^2}{m} + \alpha^2 = \alpha^2 e^2
+\end{align*}
+即Laplace-Runge-Lenz矢量的大小与离心率成正比
 
 \begin{figure}[htb]
 \centering

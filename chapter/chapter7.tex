@@ -8,7 +8,7 @@
 
 \subsection{不同参考系的速度、加速度变换}
 
-设$S$和$S'$是两个不同的参考系，设$S$是惯性系，而$S'$系相对与$S$系作一般运动。此处类似于刚体的一般运动，$S$系相当于刚体运动中的空间系，而$S'$系即为固连于刚体的本体系。根据Chasles定理\ref{Chasles定理}，$S'$系相对于$S$系的运动既可以分解为$S'$系原点$O'$相对于$S$系的平动，与$S'$系相对于原点同样在$O'$但坐标轴都与$S$系平行的参考系（相当于刚体运动中的平动系）的定点转动，如图\ref{惯性参考系与非惯性参考系}所示。
+设$S$和$S'$是两个不同的参考系，设$S$是惯性系，而$S'$系相对与$S$系作一般运动。此处类似于刚体的一般运动，$S$系相当于刚体运动中的空间系，而$S'$系即为固连于刚体的本系统。根据Chasles定理\ref{Chasles定理}，$S'$系相对于$S$系的运动既可以分解为$S'$系原点$O'$相对于$S$系的平动，与$S'$系相对于原点同样在$O'$但坐标轴都与$S$系平行的参考系（相当于刚体运动中的平动系）的定点转动，如图\ref{惯性参考系与非惯性参考系}所示。
 
 \begin{figure}[htb]
 \centering
@@ -93,7 +93,7 @@
 \end{equation}
 式中$\mbf{a}' = \dfrac{\tilde{\mathrm{d}} \mbf{v}'}{\mathrm{d} t}$称为{\heiti 相对加速度}，$\mbf{a}_0 = \dfrac{\mathrm{d} \mbf{v}_0}{\mathrm{d} t}$称为{\heiti 平动牵连加速度}，$\dot{\mbf{\omega}}_0 \times \mbf{r}'$称为{\heiti 转动牵连加速度}，$\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}')$称为{\heiti 向轴加速度}，$2\mbf{\omega}_0 \times \mbf{v}'$称为{\heiti Coriolis加速度}。
 
-\subsection{非惯性系的运动方程与惯性力}
+\subsection{非惯性系的运动方程与惯性力}\label{chapter7:subsection-非惯性系的运动方程与惯性力}
 
 $S$系为惯性系，在其中Newton第二定律成立，即有
 \begin{equation*}
@@ -112,7 +112,7 @@ $S$系为惯性系，在其中Newton第二定律成立，即有
 	\mbf{F}' = \mbf{F} - m\mbf{a}_0 - m\dot{\mbf{\omega}}_0 \times \mbf{r}' - m\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}') - 2m\mbf{\omega}_0 \times \mbf{v}'
 	\label{非惯性系中的力}
 \end{equation}
-此处式\eqref{非惯性系中的力}中除$\mbf{F}$项外的其它项即称为{\heiti 惯性力}，其中$-m\mbf{a}_0$称为{\heiti 平动牵连惯性力}，$-m\dot{\mbf{\omega}}_0 \times \mbf{r}'$称为{\heiti 转动牵连惯性力}，$-m\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}')$称为{\heiti 惯性离心力}，$-2m\mbf{\omega}_0 \times \mbf{v}'$称为{\heiti Coriolis力}。
+此处式\eqref{非惯性系中的力}中除$\mbf{F}$项外的其它项即称为{\heiti 惯性力}，其中$-m\mbf{a}_0$称为{\heiti 平动牵连惯性力}，$-m\dot{\mbf{\omega}}_0 \times \mbf{r}'$称为{\heiti 转动牵连惯性力}，$-m\mbf{\omega}_0 \times (\mbf{\omega}_0 \times \mbf{r}')$称为{\heiti 惯性离心力}，$-2m\mbf{\omega}_0 \times \mbf{v}'$称为{\heiti Coriolis惯性力}。
 
 \section{非惯性系的Lagrange动力学}
 
@@ -231,11 +231,11 @@ $S$系为惯性系，在其中Newton第二定律成立，即有
 \label{第七章例1图}
 \end{figure}
 
-取两个坐标系$Oxy$和$O'x'y'$（如图\ref{第七章例1图}所示），则旋转坐标系$O'x'y'$相对于固定坐标系$Oxy$的角速度为$\mbf{\omega}$。取$\theta$作为小环$M$的广义坐标，因此在非惯性系$O'x'y'$中，体系的Lagrange方程为
+取两个坐标系$Oxy$和$O'x'y'$（如图\ref{第七章例1图}所示），则旋转坐标系$O'x'y'$相对于固定坐标系$Oxy$的角速度为$\mbf{\omega}$。取$\theta$作为小环$M$的广义坐标，因此在非惯性系$O'x'y'$中，系统的Lagrange方程为
 \begin{equation*}
 	\frac{\tilde{\mathrm{d}}}{\mathrm{d} t} \frac{\pl L'}{\pl \dot{\theta}} - \frac{\pl L'}{\pl \theta} = 0
 \end{equation*}
-体系的Lagrange函数即为式\eqref{非惯性系的Lagrange函数}
+系统的Lagrange函数即为式\eqref{非惯性系的Lagrange函数}
 \begin{equation*}
 	L' = \frac12 m\mbf{v}'^2 - \left(U + m\mbf{a}_0 \cdot \mbf{r}' - \frac12 m(\mbf{\omega}_0 \times \mbf{r}')^2 - m(\mbf{\omega}_0 \times \mbf{r}') \cdot \mbf{v}'\right)
 \end{equation*}
@@ -270,11 +270,11 @@ $S$系为惯性系，在其中Newton第二定律成立，即有
 		\dot{y}_M = R \omega \cos \omega t + R(\omega + \dot{\theta}) \cos (\omega t+\theta)
 	\end{cases}
 \end{equation*}
-因此体系的Lagrange函数为
+因此系统的Lagrange函数为
 \begin{align*}
 	L & = \frac12 (\dot{x}_M^2 + \dot{y}_M^2) = \frac12 mR^2 \left[\dot{\theta}^2 + 2\omega \dot{\theta} + 2\omega^2 + 2\omega(\omega+ \dot{\theta}) \cos \theta\right]
 \end{align*}
-根据惯性系中理想完整系的Lagrange方程\eqref{理想完整系的Lagrange方程}可得相同的运动微分方程
+根据惯性系中理想完整系的Lagrange方程\eqref{chapter2:理想完整系的Lagrange方程}可得相同的运动微分方程
 \begin{equation*}
 	\ddot{\theta} + \omega^2 \sin \theta = 0
 \end{equation*}

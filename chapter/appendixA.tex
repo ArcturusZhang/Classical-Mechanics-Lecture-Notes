@@ -24,7 +24,7 @@
 	F(k,x) = \int_0^x \frac{\mathrm{d}t}{\sqrt{(1-t^2)(1-k^2t^2)}} = \int_0^{\arcsin x} \frac{\mathrm{d}\phi}{\sqrt{1-k^2\sin^2\phi}}
 	\label{第一类椭圆积分-定义}
 \end{equation}
-为{\bf 第一类椭圆积分}。当$x=1$时，记
+为{\bf 第一类椭圆积分}，其中参数$k$称为椭圆积分的{\bf 模}。当$x=1$时，记
 \begin{equation}
 	K(k) = \int_0^1 \frac{\mathrm{d}t}{\sqrt{(1-t^2)(1-k^2t^2)}} = \int_0^{\frac{\pi}{2}} \frac{\mathrm{d}\phi}{\sqrt{1-k^2\sin^2\phi}}
 	\label{chp6:第一类完全椭圆积分-定义}
@@ -69,6 +69,13 @@
 	\label{chp6:第二类完全椭圆积分-级数表示}
 \end{align}
 
+根据第一类和第二类椭圆积分的定义式\eqref{第一类椭圆积分-定义}和\eqref{第二类椭圆积分-定义}可得
+\begin{align}
+	\dfrac{\pl F}{\pl k}(k,x) & = \frac{1}{k'^2}\left(\frac{E(k,x)-k'^2F(k,x)}{k}-\frac{kx\sqrt{1-x^2}}{1-k^2x^2}\right) \\
+	\dfrac{\pl E}{\pl k}(k,x) & = \frac{E(k,x)-F(k,x)}{k}
+\end{align}
+其中$k'^2=1-k^2$，$k'$称为{\bf 补模}。
+
 定义函数
 \begin{align}
 	\varPi(h,k,x) & = \int_0^x \frac{\mathrm{d}t}{(1+ht^2)\sqrt{(1-t^2)(1-k^2t^2)}} \nonumber \\
@@ -104,13 +111,56 @@
 \end{equation}
 称为{\bf 椭圆余弦函数}。定义
 \begin{equation}
-	\tn x = \tan \phi = \frac{\sn x}{\cn x} = \frac{\sn x}{\sqrt{1-\cn^2 x}}
+	\tn x = \tan \phi = \frac{\sn x}{\cn x} = \frac{\sn x}{\sqrt{1-\sn^2 x}}
 \end{equation}
 称为{\bf 椭圆正切函数}。定义
 \begin{equation}
 	\dn x = \sqrt{1-k^2\sn^2x}
 \end{equation}
 称为{\bf 椭圆幅度函数}。
+
+其中函数$\sn x, \cn x$和$\tn x$是周期为$4K(k)$的周期函数，而$\dn x$是周期为$2K(k)$的周期函数。它们的图像如图\ref{appendixA:椭圆函数的图像}所示。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	import gsl;
+	size(350);
+	picture pic;
+	real k;
+	real sn(real x){
+		return sncndn(x,k^2)[0];
+	}
+	real cn(real x){
+		return sncndn(x,k^2)[1];
+	}
+	real dn(real x){
+		return sncndn(x,k^2)[2];
+	}
+	real x,y,K;
+	k = 0.5;
+	K = F(pi/2,k);
+	x = 7.5;
+	y = 1.25;
+	draw(pic,Label("$x$",EndPoint,N),(0,0)--(x,0),Arrow);
+	draw(pic,Label("$y$",EndPoint,W),(0,-y)--(0,y),Arrow);
+	draw(pic,Label("$\mathrm{sn}\,x$",Relative(0.45),NE),graph(sn,0,4*K));
+	draw(pic,Label("$\mathrm{cn}\,x$",Relative(0.375),SW),graph(cn,0,4*K));
+	draw(pic,Label("$\mathrm{dn}\,x$",Relative(0.75),S),graph(dn,0,4*K),linewidth(0.8bp));
+	label(pic,"$O$",(0,0),W);
+	draw(pic,(0,-1)--(x-0.5,-1));
+	draw(pic,(0,1)--(x-0.5,1));
+	label(pic,"$-1$",(0,-1),W);
+	label(pic,"$1$",(0,1),W);
+	label(pic,"$K$",(K,0),SW);
+	label(pic,"$2K$",(2*K,0),SW);
+	label(pic,"$3K$",(3*K,0),SE);
+	label(pic,"$4K$",(4*K,0),SE);
+	add(xscale(0.5)*pic);
+\end{asy}
+\caption{椭圆函数的图像（$k=\dfrac12$）}
+\label{appendixA:椭圆函数的图像}
+\end{figure}
 
 当$k\to 0$时，根据式\eqref{第一类椭圆积分-定义}可得
 \begin{equation*}
@@ -124,3 +174,15 @@
 \begin{equation}
 	\cn x \to \cos x,\quad \dn x \to 1
 \end{equation}
+
+Jacobi椭圆函数满足如下很容易验证的恒等式：
+\begin{align}
+	& \sn^2x+\cn^2x=1 \\
+	& \dn^2x+k^2\sn^2x=1
+\end{align}
+以及如下的导数关系
+\begin{align}
+	\difOp{x}\sn x & = \cn x\cdot \dn x \\
+	\difOp{x}\cn x & = -\sn x\cdot \dn x \\
+	\difOp{x}\dn x & = -k^2\sn x\cdot \cn x
+\end{align}

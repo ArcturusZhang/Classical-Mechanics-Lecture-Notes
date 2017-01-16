@@ -38,7 +38,7 @@
 
 \usepackage{fancyhdr}	%页眉页脚
 
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
 \setlist[enumerate,1]{leftmargin=0pt,itemindent=2em,itemsep=0ex,listparindent=2em,parsep = 0ex,topsep = 1ex}
 \setlist[enumerate,2]{leftmargin=1em,itemsep=0ex,itemindent=2em,listparindent=2em,parsep = 0ex,topsep = 1ex}
 \setlist[enumerate,3]{leftmargin=1em,itemsep=0ex,itemindent=2em,listparindent=2em,parsep = 0ex,topsep = 1ex}
@@ -66,9 +66,19 @@
 \newcommand{\am}{\mathrm{am}\,}
 \newcommand{\mathd}{\mathrm{d}}
 \newcommand{\mathe}{\mathrm{e}}
+\newcommand{\mathi}{\mathrm{i}}
+\newcommand{\mathj}{\mathrm{j}}
+\newcommand{\mathk}{\mathrm{k}}
 \renewcommand{\vec}{\overrightarrow}
 \renewcommand{\bf}{\heiti}
 \renewcommand{\bfseries}{\heiti}
+\newcommand{\ddt}{\dfrac{\mathd}{\mathd t}}
+\newcommand{\difOp}[1]{\dfrac{\mathd}{\mathd #1}}
+\newcommand{\dif}[2]{\dfrac{\mathd #1}{\mathd #2}}
+\newcommand{\pldif}[2]{\dfrac{\pl #1}{\pl #2}}
+\newcommand{\trans}{\mathrm{T}}
+\renewcommand{\Re}{\mathrm{Re}\,}
+\renewcommand{\Im}{\mathrm{Im}\,}
 
 \newtheoremstyle{theoremwithoutdot}% 类型名
   {}%                   Space above, empty = `usual value'
@@ -101,7 +111,7 @@
 \newtheorem{question}{题}[section]
 \newtheorem{property}[theorem]{性质}
 %\renewcommand{\thequestion}{\arabic{chapter}.\arabic{section}.\arabic{question}}
-\theoremstyle{solutionstyle}
+%\theoremstyle{solutionstyle}
 \newtheorem*{solution}{解}
 %去掉证明后面的点
 \makeatletter
@@ -323,17 +333,21 @@
 
 \input{chapter/chapter2}%第二章——拉格朗日力学
 
-\input{chapter/chapter4}%第四章——两体问题
+\input{chapter/chapter4}%第三章——两体问题
 
-\input{chapter/chapter5}%第五章——多自由度微振动与阻尼
+\input{chapter/chapter5}%第四章——多自由度微振动与阻尼
 
-\input{chapter/chapter6}%第六章——刚体
+\input{chapter/chapter6}%第五章——刚体
 
-\input{chapter/chapter8}%第八章——撞击运动理论
+\input{chapter/chapter8}%第六章——撞击运动理论
 
 \input{chapter/chapter7}%第七章——非惯性系
 
-\input{chapter/chapter3}%第三章——哈密顿力学
+\input{chapter/chapter3}%第八章——哈密顿力学
+
+\input{chapter/chapter9}%第九章——积分变分原理
+
+\input{chapter/chapter10}%第十章——正则变换、HJ方程
 
 \appendix
 
@@ -348,6 +362,10 @@
 
 \titleformat{\subsubsection}[hang]{\hwyk\large}
 {}{0mm}{\hspace{-0.5cm}\appendixsubsubsection}
+
+\renewcommand{\chaptermark}[1]{\markboth{附录\ \ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ \ \rm #1}{}}	%这两个命令第一次必须出现在\pagestyle{fancy}之后，否则\pagestyle{fancy}会覆盖掉其效果
+\markboth{\leftmark}{\rightmark}
 
 \input{chapter/exercise}%附录——金尚年《经典力学》
 

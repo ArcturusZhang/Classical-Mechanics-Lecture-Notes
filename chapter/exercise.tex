@@ -38,15 +38,15 @@
 \label{理论力学：30页1.13}
 \end{figure}
 \begin{enumerate}
-	\item 问此动力学体系的动量、角动量、能量是否守恒，并解释之；
-	\item 用质点系动量定理写出体系的运动微分方程；
+	\item 问此动力学系统的动量、角动量、能量是否守恒，并解释之；
+	\item 用质点系动量定理写出系统的运动微分方程；
 	\item 若$t=0$时，质点$A$离$O$的距离为$a$，速度为$v_0 = \sqrt{\dfrac{9ag}{2}}$，其方向垂直于$OA$，且$m_A=m_B=m$，证明以后质点$A$离$O$点的距离始终在$a$和$3a$之间。
 \end{enumerate}
 \end{question}
 \begin{solution}
 \begin{enumerate}
-\item 体系合外力非零，因此体系动量不守恒；体系对$O$点力矩为零，因此体系角动量守恒；体系非保守外力（绳子张力）不做功，其余外力（重力）为保守力，因此体系能量守恒。
-\item 首先求得体系的动量
+\item 系统合外力非零，因此系统动量不守恒；系统对$O$点力矩为零，因此系统角动量守恒；系统非保守外力（绳子张力）不做功，其余外力（重力）为保守力，因此系统能量守恒。
+\item 首先求得系统的动量
 \begin{equation*}
 	\mbf{p} = \mbf{p}_A + \mbf{p}_B = m_A(\dot{r} \mbf{e}_r + r\dot{\theta} \mbf{e}_\theta) + m_B \dot{z} \mbf{e}_z
 \end{equation*}
@@ -59,11 +59,11 @@
 \begin{equation*}
 	\dot{\mbf{e}}_r = \dot{\theta} \mbf{e}_\theta,\quad \dot{\mbf{e}}_\theta = -\dot{\theta} \mbf{e}_r
 \end{equation*}
-以及约束$r-z=\text{常数}$。体系受到的外力为
+以及约束$r-z=\text{常数}$。系统受到的外力为
 \begin{equation*}
 	\mbf{F} = -F_T \mbf{e}_r + (F_T-m_Bg) \mbf{e}_z
 \end{equation*}
-因此根据质点系动量定理$\dfrac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \mbf{F}$可得体系的运动微分方程为
+因此根据质点系动量定理$\dfrac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \mbf{F}$可得系统的运动微分方程为
 \begin{subnumcases}{}
 	m_A(\ddot{r}-r\dot{\theta}^2) = -F_T \label{理论力学：1.13-1} \\
 	m_A(2\dot{r}\dot{\theta} + r\ddot{\theta}) = 0 \label{理论力学：1.13-2} \\
@@ -381,7 +381,7 @@ Lagrange函数不显含时间，故有广义能量守恒，即
 \end{solution}
 
 \begin{question}[金尚年《理论力学》65页2.19]
-由两个相同的重物$P$和用铰链链接着的四根长度为$l$的轻棒及一个质量可忽略的弹簧$k$所组成的力学体系，其结构如图\ref{理论力学：65页2.19}所示。体系处于铅直平面内，$O$点是固定的，当图中的$\theta = \ang{45}$时弹簧处于固有长度，求平衡时体系的位置。
+由两个相同的重物$P$和用铰链链接着的四根长度为$l$的轻棒及一个质量可忽略的弹簧$k$所组成的力学系统，其结构如图\ref{理论力学：65页2.19}所示。系统处于铅直平面内，$O$点是固定的，当图中的$\theta = \ang{45}$时弹簧处于固有长度，求平衡时系统的位置。
 \begin{figure}[htb]
 \centering
 \begin{asy}
@@ -457,7 +457,7 @@ Lagrange函数不显含时间，故有广义能量守恒，即
 \end{figure}
 \end{question}
 \begin{solution}
-以$\theta$为广义坐标，可以求得体系的势能为
+以$\theta$为广义坐标，可以求得系统的势能为
 \begin{equation*}
 	V = 2Pl\cos \theta + \frac12 k\left(2l\cos \theta - \sqrt{2}l\right)^2 
 \end{equation*}
@@ -661,12 +661,13 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 	y_2 = -(l_0-l)\sin \beta
 \end{cases}
 \end{equation*}
-其中$l_0$为绳子的总长度。则此体系的Lagrange函数为
+其中$l_0$为绳子的总长度。则此系统的Lagrange函数为
 \begin{align*}
 	L & = \frac12 M\dot{x}^2 + \frac12 m_1\dot{x}_1^2 + \frac12 m_2\dot{x}_2^2 - m_1gy_1 - m_2gy_2 \\
-	& = \frac12 (M+m_1+m_2) \dot{x}^2 - (m_1\cos\alpha+m_2\cos\beta)\dot{x}\dot{l} + \frac12 (m_1+m_2)\dot{l}^2 + m_1 gl\sin\alpha+m_2g(l_0-l)\sin\beta
+	& = \frac12 (M+m_1+m_2) \dot{x}^2 - (m_1\cos\alpha+m_2\cos\beta)\dot{x}\dot{l} + \frac12 (m_1+m_2)\dot{l}^2 + m_1 gl\sin\alpha \\
+	& \quad {} + m_2g(l_0-l)\sin\beta
 \end{align*}
-根据Lagrange方程可得体系的运动方程为
+根据Lagrange方程可得系统的运动方程为
 \begin{equation*}
 \begin{cases}
 	(M+m_1+m_2)\ddot{x} - (m_1\cos\alpha+m_2\cos\beta)\ddot{l} = 0 \\
@@ -678,203 +679,6 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \begin{cases}
 	\ddot{x} = \dfrac{(m_1\sin\alpha-m_2\sin\beta)(m_1\cos\alpha+m_2\cos\beta)g}{(M+m_1+m_2)(m_1+m_2)-(m_1\cos\alpha+m_2\cos\beta)^2} \\[1.5ex]
 	\ddot{l} = \dfrac{(m_1\sin\alpha-m_2\sin\beta)(M+m_1+m_2)g}{(M+m_1+m_2)(m_1+m_2)-(m_1\cos\alpha+m_2\cos\beta)^2}
-\end{cases}
-\end{equation*}
-\end{solution}
-
-\subsection{Hamilton力学}
-
-\begin{question}[金尚年《理论力学》272页8.1]
-写出自由质点在柱坐标和球坐标中的Hamilton函数。
-\end{question}
-\begin{solution}
-在球坐标系中，质点的速度可以表示为
-\begin{equation*}
-	\mbf{v} = \dot{r} \mbf{e}_r + r\dot{\theta} \mbf{e}_\theta + r \dot{\phi} \sin \theta \mbf{e}_\phi
-\end{equation*}
-因此自由质点的Lagrange函数为
-\begin{equation*}
-	L = \frac12 m(\dot{r}^2 + r^2 \dot{\theta}^2 + r^2 \dot{\phi}^2 \sin^2 \theta)
-\end{equation*}
-广义动量分别为
-\begin{equation*}
-	p_r = \frac{\pl L}{\pl \dot{r}} = m\dot{r},\quad p_\theta = \frac{\pl L}{\pl \dot{\theta}} = mr^2 \dot{\theta},\quad p_\phi = \frac{\pl L}{\pl \dot{\theta}} = mr^2 \dot{\phi} \sin^2 \theta
-\end{equation*}
-所以Hamilton函数为
-\begin{equation*}
-	H = \sum_{\alpha=1}^3 p_\alpha \dot{q}_\alpha - L = \frac{p_r^2}{2m} + \frac{p_\theta^2}{2mr^2} + \frac{p_\phi^2}{2mr^2\sin^2 \theta}
-\end{equation*}
-\end{solution}
-
-\begin{question}[金尚年《理论力学》272页8.4]
-假定在两个固定点$(x_1,y_1)$和$(x_2,y_2)$之间作一条曲线，并让它绕$y$轴旋转而形成一个旋转曲面，求使此旋转曲面的表面积为极小的曲线方程式。
-\end{question}
-\begin{solution}
-设曲线的方程可以表示为$x=f(y)$，则旋转体的表面积可以表示为
-\begin{equation*}
-	S[f(y)] = \int_{y_1}^{y_2} 2\pi f(y) \sqrt{1+\big[f'(y)\big]^2} \mathrm{d} y
-\end{equation*}
-此旋转体表面积取极小值的条件为$\delta S = 0$，根据Euler-Lagrange方程可有
-\begin{equation*}
-	\frac{\mathrm{d}}{\mathrm{d} y} \frac{\pl F}{\pl f'} - \frac{\pl F}{\pl f} = 0
-\end{equation*}
-其中$\displaystyle F(f,f',y) = 2\pi f(y) \sqrt{1+\big[f'(y)\big]^2}$，由于$F(f,f',y)$中不含有自变量$y$，故Euler-Lagrange方程有初积分
-\begin{equation*}
-	F - f'\frac{\pl F}{\pl f'} = a\, \text{（常数）}
-\end{equation*}
-由此方程整理可得
-\begin{equation*}
-	f'(y) = \sqrt{\frac{f^2(y)}{a^2}-1} = \frac{1}{a} \sqrt{x^2-a^2}
-\end{equation*}
-分离变量可有
-\begin{equation*}
-	\frac{\mathrm{d} x}{\sqrt{x^2-a^2}} = \frac{1}{a} \mathrm{d} y
-\end{equation*}
-两端积分，可有
-\begin{equation*}
-	\arcosh \frac{x}{a} = \frac{1}{a}(y-b)
-\end{equation*}
-因此所求曲线的方程为
-\begin{equation*}
-	x = a\cosh \frac{y-b}{a}
-\end{equation*}
-式中$a,b$是积分常数，可由边界条件
-\begin{equation*}
-\begin{cases}
-	\displaystyle x_1 = a\cosh \frac{y_1-b}{a} \\
-	\displaystyle x_2 = a\cosh \frac{y_2-b}{a}
-\end{cases}
-\end{equation*}
-确定。
-\end{solution}
-
-\begin{question}[金尚年《理论力学》273页8.8]
-质量为$m$的质点在重力场中自由落下。试利用正则变换母函数$F_1(y,\theta) = -mg\left(\dfrac{g}{6} \theta^3 + y\theta\right)$写出新的Hamilton函数和正则方程，并求解。
-\end{question}
-\begin{solution}
-此系统原本的Hamilton函数为
-\begin{equation*}
-	H = \frac{p^2}{2m}+mgy
-\end{equation*}
-根据第一类正则变换母函数的结论，可有
-\begin{equation*}
-\begin{cases}
-	\ds p = \frac{\pl F_1}{\pl y} = -mg\theta \\
-	\ds P_\theta = -\frac{\pl F_1}{\pl \theta} = \frac12 mg^2\theta^2 + mgy \\
-	\ds K = H+\frac{\pl F_1}{\pl t} = \frac{p^2}{2m}+mgy
-\end{cases}
-\end{equation*}
-利用前两式消去$K$表达式中的$p$和$y$即可得新的Hamilton函数为
-\begin{equation*}
-	K = \frac{p^2}{2m}+mgy = \frac{(mg\theta)^2}{2m}+P_\theta-\frac12 mg^2\theta^2 = P_\theta
-\end{equation*}
-因此，新的正则方程为
-\begin{equation*}
-\begin{cases}
-	\ds \dot{\theta} = \frac{\pl K}{\pl P_\theta} = 1 \\
-	\ds \dot{P}_\theta = -\frac{\pl K}{\pl \theta} = 0
-\end{cases}
-\end{equation*}
-因此可有
-\begin{equation*}
-	\theta = t+\beta,\quad P_\theta = \gamma
-\end{equation*}
-其中$\beta, \gamma$为积分常数。再由变换关系可得原问题的解为
-\begin{equation*}
-	y = \frac{1}{mg}\left(P_\theta-\frac12 mg^2\theta^2\right) = \frac{\gamma}{mg} - \frac12 g(t+\beta)^2
-\end{equation*}
-\end{solution}
-
-\begin{question}[金尚年《理论力学》273页8.10]
-证明$q = \sqrt{\dfrac{2Q}{k}}\cos P,\,p = \sqrt{2kQ}\sin P$（$k$为常数）是一正则变换。若原来的Hamilton函数为$H = \dfrac12 (p^2+k^2q^2)$，求用新正则变量表示的正则方程。
-\end{question}
-\begin{solution}
-正则变换保持基本Poisson括号不变，因此考虑
-\begin{equation*}
-	[q,p] = \frac{\pl q}{\pl Q} \frac{\pl p}{\pl P} - \frac{\pl q}{\pl P} \frac{\pl p}{\pl Q} = 1
-\end{equation*}
-故此变换为正则变换。在此变换下，新的Hamilton函数满足
-\begin{equation*}
-	K = \frac12 \left[\left(\sqrt{2kQ}\sin P\right)^2 + k^2 \left(\sqrt{2kQ}\sin P\right)^2\right] = kQ
-\end{equation*}
-由此，新的正则方程为
-\begin{equation*}
-\begin{cases}
-	\dot{Q} = \dfrac{\pl K}{\pl P} = 0 \\[1.5ex]
-	\dot{P} = -\dfrac{\pl K}{\pl Q} = k
-\end{cases}
-\end{equation*}
-\end{solution}
-
-\begin{question}[{\it Classical Mechanics}(Goldstein) 10.3]
-用Hamilton-Jacobi方法求解竖直平面内的斜抛运动。假设物体在$t=0$时刻由原点以速度$v_0$抛出，初始速度与水平方向夹角为$\alpha$。
-\end{question}
-\begin{solution}
-此问题的Hamilton函数为
-\begin{equation*}
-	H = \frac{p_x^2}{2m}+\frac{p_y^2}{2m}+mgy
-\end{equation*}
-进而可获得其Hamilton-Jacobi方程为
-\begin{equation*}
-	\frac{\pl S}{\pl t} + \frac{1}{2m}\left(\frac{\pl S}{\pl x}\right)^2 + \frac{1}{2m}\left(\frac{\pl S}{\pl y}\right)^2 + mgy = 0
-\end{equation*}
-由于Hamilton函数不显含时间$t$和坐标$x$，因此可令
-\begin{equation*}
-	S(x,y,t) = -Et+\gamma x+S_2(y)
-\end{equation*}
-其中$\gamma$和$E$为积分常数。由此可得方程
-\begin{equation*}
-	\frac{\gamma^2}{2m} + \frac{1}{2m}\left(\frac{\mathd S_2}{\mathd y}\right)^2 + mgy = E
-\end{equation*}
-由此可以解得
-\begin{equation*}
-	\frac{\mathd S_2}{\mathd y} = \pm \sqrt{2mE-\gamma^2-2m^2gy}
-\end{equation*}
-假设开方前取正号，积分可得
-\begin{equation*}
-	S_2(y) = \int \sqrt{2mE-\gamma^2-2m^2gy} \mathd y = -\frac{1}{3m^2g}\left[2mE-\gamma^2-2m^2gy\right]^{\frac32}
-\end{equation*}
-由此即有
-\begin{equation*}
-	S = -Et + \gamma x - \frac{1}{3m^2g}\left[2mE-\gamma^2-2m^2gy\right]^{\frac32}
-\end{equation*}
-其中$\gamma$和$E$为积分常数。于是，此问题的解由如下方程决定：
-\begin{equation*}
-\begin{cases}
-	\ds \beta_1 = \frac{\pl S}{\pl E} = -\frac{1}{mg} \sqrt{2mE-\gamma^2-2m^2gy} - t \\
-	\ds \beta_2 = \frac{\pl S}{\pl \gamma} = x + \frac{\gamma}{m^2g}\sqrt{2mE-\gamma^2-2m^2gy}
-\end{cases}
-\end{equation*}
-从上式中反解出$x$和$y$可得
-\begin{equation*}
-\begin{cases}
-	\ds x = \beta_2 +\frac{\gamma}{m}(t+\beta_1) \\
-	\ds y = \frac{E}{mg}-\frac{\gamma^2}{2m^2g} - \frac12 g(t+\beta_1)^2
-\end{cases}
-\end{equation*}
-利用初始条件确定解中的4个积分常数$E, \gamma, \beta_1$和$\beta_2$：
-\begin{equation*}
-\begin{cases}
-	\ds x(0) = \beta_2+\frac{\gamma\beta_1}{m} = 0 \\
-	\ds y(0) = \frac{E}{mg}-\frac{\gamma^2}{2m^2g} - \frac12 g\beta_1^2 = 0 \\
-	\ds \dot{x}(0) = \frac{\gamma}{m} = v_0\cos\alpha \\
-	\ds \dot{y}(0) = -g\beta_1 = v_0\sin\alpha
-\end{cases}
-\end{equation*}
-由此解得
-\begin{equation*}
-\begin{cases}
-	\ds \gamma = mv_0\cos\alpha \\
-	\ds E = \frac12 mv_0^2 \\
-	\ds \beta_1 = -\frac{v_0}{g}\sin\alpha \\
-	\ds \beta_2 = \frac{v_0^2}{g}\cos\alpha\sin\alpha
-\end{cases}
-\end{equation*}
-最终可得此问题的解为
-\begin{equation*}
-\begin{cases}
-	\ds x(t) = v_0t\cos\alpha \\
-	\ds y(t) = v_0t\sin\alpha - \frac12 gt^2
 \end{cases}
 \end{equation*}
 \end{solution}
@@ -1101,7 +905,7 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \subsection{多自由度微振动与阻尼}
 
 \begin{question}[金尚年《理论力学》207页6.1]
-质量为$m$的质点，用一固有长度为$l$，劲度系数为$k$，质量可以忽略的弹簧悬挂于$O$点，质点约束在铅直平面内运动（如图\ref{理论力学：207页6.1}所示），求体系作微振动时的振动频率。
+质量为$m$的质点，用一固有长度为$l$，劲度系数为$k$，质量可以忽略的弹簧悬挂于$O$点，质点约束在铅直平面内运动（如图\ref{理论力学：207页6.1}所示），求系统作微振动时的振动频率。
 \begin{figure}[htb]
 \centering
 \begin{asy}
@@ -1152,11 +956,11 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \end{figure}
 \end{question}
 \begin{solution}
-此体系的自由度为$2$，取摆长$x$和摆动角$\theta$作为广义坐标，则体系的Lagrange函数可以表示为
+此系统的自由度为$2$，取摆长$x$和摆动角$\theta$作为广义坐标，则系统的Lagrange函数可以表示为
 \begin{equation*}
 	L = \frac12 m \left(\dot{x}^2 + x^2 \dot{\theta}^2\right) + mgx\cos \theta - \frac12 k (x-l)^2
 \end{equation*}
-体系的平衡位置可以通过
+系统的平衡位置可以通过
 \begin{equation*}
 \begin{cases}
 	\left.\dfrac{\pl V}{\pl x}\right|_{x=x_0} = 0 \\[1.5ex]
@@ -1172,21 +976,21 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 	L & = \frac12 m \left(\dot{q}^2 + (q+x_0)^2 \dot{\theta}^2\right) + mg(q+x_0) \cos \theta - \frac12 k(q+x_0-l)^2 \\
 	& = \frac12 m \dot{q}^2 + \frac12 m x_0^2 \dot{\theta}^2 - \frac12 kq^2 - \frac12 mgx_0 \theta^2 + mgx_0 - \frac{m^2 g^2}{2k}
 \end{align*}
-由此，体系微振动的运动方程为
+由此，系统微振动的运动方程为
 \begin{equation*}
 \begin{cases}
 	m\ddot{q}+kq = 0 \\
 	mx_0^2 \ddot{\theta} + mgx_0 \theta = 0
 \end{cases}
 \end{equation*}
-因此，体系作微振动的频率为
+因此，系统作微振动的频率为
 \begin{equation*}
 	\omega_1 = \sqrt{\frac{k}{m}},\quad \omega_2 = \sqrt{\frac{g}{x_0}} = \sqrt{\frac{g}{l + \dfrac{mg}{k}}}
 \end{equation*}
 \end{solution}
 
 \begin{question}[金尚年《理论力学》208页6.6]
-有一弹簧连着一个质量为$m_1$的滑块，滑块可沿光滑水平直线自由滑动，在滑块上系有一摆长为$l$，质量为$m_2$的单摆，求体系的振动频率。
+有一弹簧连着一个质量为$m_1$的滑块，滑块可沿光滑水平直线自由滑动，在滑块上系有一摆长为$l$，质量为$m_2$的单摆，求系统的振动频率。
 \begin{figure}[htb]
 \centering
 \begin{minipage}[t]{0.6\textwidth}
@@ -1275,7 +1079,7 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \begin{equation*}
 	v_2^2 = \dot{x}^2+l^2 \dot{\theta}^2 - 2l\dot{x} \dot{\theta} \cos \theta
 \end{equation*}
-因此，此体系的Lagrange函数为
+因此，此系统的Lagrange函数为
 \begin{equation*}
 	L = \frac12 m_1 \dot{x}^2 + \frac12 m_2 \left(\dot{x}^2+l^2 \dot{\theta}^2 - 2l\dot{x} \dot{\theta} \cos \theta\right) - \frac12 kx^2 + m_2 gl \cos \theta
 \end{equation*}
@@ -1292,7 +1096,7 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \begin{equation*}
 	\mbf{M} = \begin{pmatrix} m_1+m_2 & -m_2l \\ -m_2l & m_2l^2 \end{pmatrix},\quad \mbf{K} = \begin{pmatrix} k & 0 \\ 0 & m_2gl \end{pmatrix}
 \end{equation*}
-体系的运动方程为
+系统的运动方程为
 \begin{equation*}
 	\mbf{M} \ddot{\mbf{q}} + \mbf{K} \mbf{q} = \mbf{0}
 \end{equation*}
@@ -1304,7 +1108,7 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \begin{equation*}
 	|\mbf{K} - \omega^2 \mbf{M}| = \begin{vmatrix} k-\omega^2(m_1+m_2) & \omega^2 m_2l \\ \omega^2 m_2l & m_2 gl - \omega^2 m_2l^2 \end{vmatrix} = 0
 \end{equation*}
-即体系的频率为方程
+即系统的频率为方程
 \begin{equation*}
 	\omega^4-\left(\frac{k}{m_1} + \frac{m_1+m_2}{m_1} \frac{g}{l}\right) \omega^2 + \frac{kg}{m_1l} = 0
 \end{equation*}
@@ -1312,14 +1116,14 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \end{solution}
 
 \begin{question}[金尚年《理论力学》209页6.14]
-设一体系的Lagrange函数为
+设一系统的Lagrange函数为
 \begin{equation*}
 	L = \frac12 (\dot{x}^2+\dot{y}^2) - \frac12 \omega_0^2 (x^2+y^2) + \alpha xy
 \end{equation*}
-它表示两个固有频率为$\omega_0$的一维振子以相互作用$\alpha xy$耦合起来，求此体系的振动频率。
+它表示两个固有频率为$\omega_0$的一维振子以相互作用$\alpha xy$耦合起来，求此系统的振动频率。
 \end{question}
 \begin{solution}
-记$\mbf{q} = \begin{pmatrix} x \\ y \end{pmatrix}$，则体系的Lagrange函数可以表示为
+记$\mbf{q} = \begin{pmatrix} x \\ y \end{pmatrix}$，则系统的Lagrange函数可以表示为
 \begin{equation*}
 	L = \frac12 \dot{\mbf{q}}^{\mathrm{T}} \mbf{M} \dot{\mbf{\mbf{q}}} - \frac12 \mbf{q}^{\mathrm{T}} \mbf{K} \mbf{q}
 \end{equation*}
@@ -1327,26 +1131,26 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \begin{equation*}
 	\mbf{M} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},\quad \mbf{K} = \begin{pmatrix} \omega_0^2 & -\alpha \\ -\alpha & \omega_0^2 \end{pmatrix}
 \end{equation*}
-体系的频率满足久期方程
+系统的频率满足久期方程
 \begin{equation*}
 	|\mbf{K}-\omega^2 \mbf{M}| = \begin{vmatrix} \omega_0^2-\omega^2 & -\alpha \\ -\alpha & \omega_0^2-\omega^2 \end{vmatrix} = 0
 \end{equation*}
-由此可解得体系的频率为
+由此可解得系统的频率为
 \begin{equation*}
 	\omega_1 = \omega_0 \sqrt{1-\frac{\alpha}{\omega_0^2}},\quad \omega_2 = \omega_0 \sqrt{1+\frac{\alpha}{\omega_0^2}}
 \end{equation*}
 \end{solution}
 
 \begin{question}[金尚年《理论力学》209页6.18]
-设具有三个广义坐标$q_1,q_2,q_3$的力学体系产生微振动，其动能$T$和势能$V$可写作
+设具有三个广义坐标$q_1,q_2,q_3$的力学系统产生微振动，其动能$T$和势能$V$可写作
 \begin{align*}
 	T & = \frac12 (\dot{q}_1^2 + \dot{q}_2^2 + \dot{q}_3^2) \\
 	V & = -q_1q_2 - q_2q_3 + 2q_1^2 + \frac52 q_2^2 + 2q_3^2
 \end{align*}
-已知$t=0$时，$q_1 = q_{10},q_2 = q_{20},q_3 = q_{30},\dot{q}_1 = \dot{q}_2 = \dot{q}_3 = 0$，求此体系的运动。
+已知$t=0$时，$q_1 = q_{10},q_2 = q_{20},q_3 = q_{30},\dot{q}_1 = \dot{q}_2 = \dot{q}_3 = 0$，求此系统的运动。
 \end{question}
 \begin{solution}
-记$\mbf{q}=\begin{pmatrix} q_1 \\ q_2 \\ q_3 \end{pmatrix}$，则体系的Lagrange函数为
+记$\mbf{q}=\begin{pmatrix} q_1 \\ q_2 \\ q_3 \end{pmatrix}$，则系统的Lagrange函数为
 \begin{align*}
 	L & = \frac12 (\dot{q}_1^2 + \dot{q}_2^2 + \dot{q}_3^2) - q_1q_2 + q_2q_3 - 2q_1^2 - \frac52 q_2^2 - 2q_3^2 \\
 	& = \frac12 \dot{\mbf{q}}^{\mathrm{T}} \mbf{M} \dot{\mbf{q}} - \frac12 \mbf{q}^{\mathrm{T}} \mbf{K} \mbf{q}
@@ -1355,7 +1159,7 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \begin{equation*}
 	\mbf{M} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix},\quad \mbf{K} = \begin{pmatrix} 4 & -1 & 0 \\ -1 & 5 & -1 \\ 0 & -1 & 4 \end{pmatrix}
 \end{equation*}
-于是，体系的运动方程可以表示为
+于是，系统的运动方程可以表示为
 \begin{equation*}
 	\mbf{M} \ddot{\mbf{q}} + \mbf{K} \mbf{q} = \mbf{0}
 \end{equation*}
@@ -1375,7 +1179,7 @@ Lagrange函数中不含坐标$\phi$，故$\phi$是循环坐标，即有
 \begin{equation*}
 	\mbf{a}_1 = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix},\quad \mbf{a}_2 = \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix},\quad \mbf{a}_3 = \begin{pmatrix} 1 \\ -2 \\ 1 \end{pmatrix}
 \end{equation*}
-因此，体系运动的通解为
+因此，系统运动的通解为
 \begin{align*}
 	\mbf{q} & = C_1 \mbf{a}_1 \cos(\omega_1 t + \phi_1) + C_2 \mbf{a}_2 \cos(\omega_2 t + \phi_2) + C_3 \mbf{a}_3 \cos(\omega_3 t + \phi_3)
 \end{align*}
@@ -1609,6 +1413,203 @@ $A$点的加速度为
 
 \end{solution}
 
-作业：p146-149，4.29（Lagrange陀螺），4.31
-
 \subsection{非惯性系}\fi
+
+
+\subsection{Hamilton力学}
+
+\begin{question}[金尚年《理论力学》272页8.1]
+写出自由质点在柱坐标和球坐标中的Hamilton函数。
+\end{question}
+\begin{solution}
+在球坐标系中，质点的速度可以表示为
+\begin{equation*}
+	\mbf{v} = \dot{r} \mbf{e}_r + r\dot{\theta} \mbf{e}_\theta + r \dot{\phi} \sin \theta \mbf{e}_\phi
+\end{equation*}
+因此自由质点的Lagrange函数为
+\begin{equation*}
+	L = \frac12 m(\dot{r}^2 + r^2 \dot{\theta}^2 + r^2 \dot{\phi}^2 \sin^2 \theta)
+\end{equation*}
+广义动量分别为
+\begin{equation*}
+	p_r = \frac{\pl L}{\pl \dot{r}} = m\dot{r},\quad p_\theta = \frac{\pl L}{\pl \dot{\theta}} = mr^2 \dot{\theta},\quad p_\phi = \frac{\pl L}{\pl \dot{\theta}} = mr^2 \dot{\phi} \sin^2 \theta
+\end{equation*}
+所以Hamilton函数为
+\begin{equation*}
+	H = \sum_{\alpha=1}^3 p_\alpha \dot{q}_\alpha - L = \frac{p_r^2}{2m} + \frac{p_\theta^2}{2mr^2} + \frac{p_\phi^2}{2mr^2\sin^2 \theta}
+\end{equation*}
+\end{solution}
+
+\begin{question}[金尚年《理论力学》272页8.4]
+假定在两个固定点$(x_1,y_1)$和$(x_2,y_2)$之间作一条曲线，并让它绕$y$轴旋转而形成一个旋转曲面，求使此旋转曲面的表面积为极小的曲线方程式。
+\end{question}
+\begin{solution}
+设曲线的方程可以表示为$x=f(y)$，则旋转体的表面积可以表示为
+\begin{equation*}
+	S[f(y)] = \int_{y_1}^{y_2} 2\pi f(y) \sqrt{1+\big[f'(y)\big]^2} \mathrm{d} y
+\end{equation*}
+此旋转体表面积取极小值的条件为$\delta S = 0$，根据Euler-Lagrange方程可有
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} y} \frac{\pl F}{\pl f'} - \frac{\pl F}{\pl f} = 0
+\end{equation*}
+其中$\displaystyle F(f,f',y) = 2\pi f(y) \sqrt{1+\big[f'(y)\big]^2}$，由于$F(f,f',y)$中不含有自变量$y$，故Euler-Lagrange方程有初积分
+\begin{equation*}
+	F - f'\frac{\pl F}{\pl f'} = a\, \text{（常数）}
+\end{equation*}
+由此方程整理可得
+\begin{equation*}
+	f'(y) = \sqrt{\frac{f^2(y)}{a^2}-1} = \frac{1}{a} \sqrt{x^2-a^2}
+\end{equation*}
+分离变量可有
+\begin{equation*}
+	\frac{\mathrm{d} x}{\sqrt{x^2-a^2}} = \frac{1}{a} \mathrm{d} y
+\end{equation*}
+两端积分，可有
+\begin{equation*}
+	\arcosh \frac{x}{a} = \frac{1}{a}(y-b)
+\end{equation*}
+因此所求曲线的方程为
+\begin{equation*}
+	x = a\cosh \frac{y-b}{a}
+\end{equation*}
+式中$a,b$是积分常数，可由边界条件
+\begin{equation*}
+\begin{cases}
+	\displaystyle x_1 = a\cosh \frac{y_1-b}{a} \\
+	\displaystyle x_2 = a\cosh \frac{y_2-b}{a}
+\end{cases}
+\end{equation*}
+确定。
+\end{solution}
+
+\begin{question}[金尚年《理论力学》273页8.8]
+质量为$m$的质点在重力场中自由落下。试利用正则变换母函数$F_1(y,\theta) = -mg\left(\dfrac{g}{6} \theta^3 + y\theta\right)$写出新的Hamilton函数和正则方程，并求解。
+\end{question}
+\begin{solution}
+此系统原本的Hamilton函数为
+\begin{equation*}
+	H = \frac{p^2}{2m}+mgy
+\end{equation*}
+根据第一类正则变换母函数的结论，可有
+\begin{equation*}
+\begin{cases}
+	\ds p = \frac{\pl F_1}{\pl y} = -mg\theta \\
+	\ds P_\theta = -\frac{\pl F_1}{\pl \theta} = \frac12 mg^2\theta^2 + mgy \\
+	\ds K = H+\frac{\pl F_1}{\pl t} = \frac{p^2}{2m}+mgy
+\end{cases}
+\end{equation*}
+利用前两式消去$K$表达式中的$p$和$y$即可得新的Hamilton函数为
+\begin{equation*}
+	K = \frac{p^2}{2m}+mgy = \frac{(mg\theta)^2}{2m}+P_\theta-\frac12 mg^2\theta^2 = P_\theta
+\end{equation*}
+因此，新的正则方程为
+\begin{equation*}
+\begin{cases}
+	\ds \dot{\theta} = \frac{\pl K}{\pl P_\theta} = 1 \\
+	\ds \dot{P}_\theta = -\frac{\pl K}{\pl \theta} = 0
+\end{cases}
+\end{equation*}
+因此可有
+\begin{equation*}
+	\theta = t+\beta,\quad P_\theta = \gamma
+\end{equation*}
+其中$\beta, \gamma$为积分常数。再由变换关系可得原问题的解为
+\begin{equation*}
+	y = \frac{1}{mg}\left(P_\theta-\frac12 mg^2\theta^2\right) = \frac{\gamma}{mg} - \frac12 g(t+\beta)^2
+\end{equation*}
+\end{solution}
+
+\begin{question}[金尚年《理论力学》273页8.10]
+证明$q = \sqrt{\dfrac{2Q}{k}}\cos P,\,p = \sqrt{2kQ}\sin P$（$k$为常数）是一正则变换。若原来的Hamilton函数为$H = \dfrac12 (p^2+k^2q^2)$，求用新正则变量表示的正则方程。
+\end{question}
+\begin{solution}
+正则变换保持基本Poisson括号不变，因此考虑
+\begin{equation*}
+	[q,p] = \frac{\pl q}{\pl Q} \frac{\pl p}{\pl P} - \frac{\pl q}{\pl P} \frac{\pl p}{\pl Q} = 1
+\end{equation*}
+故此变换为正则变换。在此变换下，新的Hamilton函数满足
+\begin{equation*}
+	K = \frac12 \left[\left(\sqrt{2kQ}\sin P\right)^2 + k^2 \left(\sqrt{2kQ}\sin P\right)^2\right] = kQ
+\end{equation*}
+由此，新的正则方程为
+\begin{equation*}
+\begin{cases}
+	\dot{Q} = \dfrac{\pl K}{\pl P} = 0 \\[1.5ex]
+	\dot{P} = -\dfrac{\pl K}{\pl Q} = k
+\end{cases}
+\end{equation*}
+\end{solution}
+
+\begin{question}[{\it Classical Mechanics}(Goldstein) 10.3]
+用Hamilton-Jacobi方法求解竖直平面内的斜抛运动。假设物体在$t=0$时刻由原点以速度$v_0$抛出，初始速度与水平方向夹角为$\alpha$。
+\end{question}
+\begin{solution}
+此问题的Hamilton函数为
+\begin{equation*}
+	H = \frac{p_x^2}{2m}+\frac{p_y^2}{2m}+mgy
+\end{equation*}
+进而可获得其Hamilton-Jacobi方程为
+\begin{equation*}
+	\frac{\pl S}{\pl t} + \frac{1}{2m}\left(\frac{\pl S}{\pl x}\right)^2 + \frac{1}{2m}\left(\frac{\pl S}{\pl y}\right)^2 + mgy = 0
+\end{equation*}
+由于Hamilton函数不显含时间$t$和坐标$x$，因此可令
+\begin{equation*}
+	S(x,y,t) = -Et+\gamma x+S_2(y)
+\end{equation*}
+其中$\gamma$和$E$为积分常数。由此可得方程
+\begin{equation*}
+	\frac{\gamma^2}{2m} + \frac{1}{2m}\left(\frac{\mathd S_2}{\mathd y}\right)^2 + mgy = E
+\end{equation*}
+由此可以解得
+\begin{equation*}
+	\frac{\mathd S_2}{\mathd y} = \pm \sqrt{2mE-\gamma^2-2m^2gy}
+\end{equation*}
+假设开方前取正号，积分可得
+\begin{equation*}
+	S_2(y) = \int \sqrt{2mE-\gamma^2-2m^2gy} \mathd y = -\frac{1}{3m^2g}\left[2mE-\gamma^2-2m^2gy\right]^{\frac32}
+\end{equation*}
+由此即有
+\begin{equation*}
+	S = -Et + \gamma x - \frac{1}{3m^2g}\left[2mE-\gamma^2-2m^2gy\right]^{\frac32}
+\end{equation*}
+其中$\gamma$和$E$为积分常数。于是，此问题的解由如下方程决定：
+\begin{equation*}
+\begin{cases}
+	\ds \beta_1 = \frac{\pl S}{\pl E} = -\frac{1}{mg} \sqrt{2mE-\gamma^2-2m^2gy} - t \\
+	\ds \beta_2 = \frac{\pl S}{\pl \gamma} = x + \frac{\gamma}{m^2g}\sqrt{2mE-\gamma^2-2m^2gy}
+\end{cases}
+\end{equation*}
+从上式中反解出$x$和$y$可得
+\begin{equation*}
+\begin{cases}
+	\ds x = \beta_2 +\frac{\gamma}{m}(t+\beta_1) \\
+	\ds y = \frac{E}{mg}-\frac{\gamma^2}{2m^2g} - \frac12 g(t+\beta_1)^2
+\end{cases}
+\end{equation*}
+利用初始条件确定解中的4个积分常数$E, \gamma, \beta_1$和$\beta_2$：
+\begin{equation*}
+\begin{cases}
+	\ds x(0) = \beta_2+\frac{\gamma\beta_1}{m} = 0 \\
+	\ds y(0) = \frac{E}{mg}-\frac{\gamma^2}{2m^2g} - \frac12 g\beta_1^2 = 0 \\
+	\ds \dot{x}(0) = \frac{\gamma}{m} = v_0\cos\alpha \\
+	\ds \dot{y}(0) = -g\beta_1 = v_0\sin\alpha
+\end{cases}
+\end{equation*}
+由此解得
+\begin{equation*}
+\begin{cases}
+	\ds \gamma = mv_0\cos\alpha \\
+	\ds E = \frac12 mv_0^2 \\
+	\ds \beta_1 = -\frac{v_0}{g}\sin\alpha \\
+	\ds \beta_2 = \frac{v_0^2}{g}\cos\alpha\sin\alpha
+\end{cases}
+\end{equation*}
+最终可得此问题的解为
+\begin{equation*}
+\begin{cases}
+	\ds x(t) = v_0t\cos\alpha \\
+	\ds y(t) = v_0t\sin\alpha - \frac12 gt^2
+\end{cases}
+\end{equation*}
+\end{solution}
+

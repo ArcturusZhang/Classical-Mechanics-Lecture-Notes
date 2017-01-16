@@ -47,9 +47,7 @@
 
 \subsection{Euler情形下动力学对称刚体的运动}\label{chapter6:subsection-Euler情形下动力学对称刚体的运动}
 
-如果刚体对定点的某两个主惯量相等，不妨设有$I_1=I_2$，则称刚体{\bf 动力学对称}，轴$Oz$称为{\bf 动力学对称轴}。
-
-当$I_1=I_2$时，此时Euler动力学方程化为
+如果刚体对定点的某两个主惯量相等，不妨设有$I_1=I_2$，则称刚体{\bf 动力学对称}，轴$Oz$称为{\bf 动力学对称轴}。此时Euler动力学方程化为
 \begin{equation}
 	\begin{cases}
 		I_1 \dot{\omega}_1 - (I_1-I_3)\omega_2 \omega_3 = 0 \\
@@ -388,7 +386,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \end{minipage}
 \end{figure}
 
-由于本体极锥相对本体系静止，故本体极锥的运动即代表了刚体额运动，角速度线上的各点在平动系中瞬时静止，即为瞬时转轴方向。Euler情形下动力学对称刚体运动的几何图像即为本体极锥贴着空间极锥作纯滚动。
+由于本体极锥相对本体系静止，故本体极锥的运动即代表了刚体的运动，角速度线上的各点在平动系中瞬时静止，即为瞬时转轴方向。Euler情形下动力学对称刚体运动的几何图像即为本体极锥贴着空间极锥作纯滚动。
 
 \begin{example}
 试证明，在Euler情形下，当主惯量满足$I_1=I_2<I_3$时，刚体空间极锥的轴和母线的夹角不超过$\arctan\dfrac{\sqrt{2}}{4}$。
@@ -1142,7 +1140,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \end{equation}
 \end{enumerate}
 
-\subsection{陀螺}
+\subsection{陀螺}\label{chapter6:subsection-陀螺}
 
 %\subsubsection{陀螺基本公式}
 
@@ -1259,9 +1257,9 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \label{Lagrange陀螺的运动}
 \end{figure}
 
-\subsection{Lagrange函数与守恒量}
+\subsection{Lagrange函数与运动积分}
 
-Lagrange情形下刚体的运动方程和守恒量已经在第\ref{chapter6:subsection-重刚体定点运动方程及其守恒量}节中列出，但在Lagrange情形下，刚体的Lagrange函数形式相对简单，因此此处用刚体的Euler作为广义坐标，使用Lagrange方程再重新推导一次Lagrange陀螺的守恒量。
+Lagrange情形下刚体的运动方程和运动积分已经在第\ref{chapter6:subsection-重刚体定点运动方程及其守恒量}节中列出，但在Lagrange情形下，刚体的Lagrange函数形式相对简单，因此此处用刚体的Euler作为广义坐标，使用Lagrange方程再重新推导一次Lagrange陀螺的运动积分。
 
 在Lagrange情形下，刚体的动能和势能分别为
 \begin{equation*}
@@ -1275,7 +1273,7 @@ Lagrange情形下刚体的运动方程和守恒量已经在第\ref{chapter6:subs
 	\omega_3 = \dot{\phi} \cos \theta + \dot{\psi}
 \end{cases}
 \end{equation*}
-因此Lagrange陀螺的Lagrange函数\footnote{Lagrange函数和角动量大小的符号都是$L$，但在Lagrange情形下，刚体的角动量大小并不是守恒量，因此下文将避免使用角动量大小$L$，而仅使用角动量的分量（带有脚标的$L$），以免产生混淆。}为
+因此Lagrange陀螺的Lagrange函数\footnote{Lagrange函数和角动量大小的符号都是$L$，但在Lagrange情形下，刚体的角动量大小并不是运动积分，因此下文将避免使用角动量大小$L$，而仅使用角动量的分量（带有脚标的$L$），以免产生混淆。}为
 \begin{equation}
 	L = T-V = \frac12 I_1 (\dot{\theta}^2 + \dot{\phi}^2 \sin^2 \theta) + \frac12 I_3 (\dot{\psi} + \dot{\phi} \cos \theta)^2 - Mgl\cos \theta
 	\label{Lagrange陀螺的Lagrange函数}
@@ -1296,48 +1294,312 @@ Lagrange情形下刚体的运动方程和守恒量已经在第\ref{chapter6:subs
 	\label{Lagrange陀螺守恒量——能量}
 \end{equation}
 
-\subsection{等效势与求解}
+\subsection{Lagrange情形下的运动求解}
 
-由式\eqref{Lagrange陀螺守恒量——Z轴角动量}和式\eqref{Lagrange陀螺守恒量——3轴角动量}中可以得到
-\begin{subnumcases}{\label{Lagrange陀螺的进动角速度和自转角速度}}
-	\dot{\phi} = \frac{L_Z - L_3 \cos \theta}{I_1 \sin^2 \theta} \label{Lagrange陀螺的进动角速度和自转角速度1} \\
-	\dot{\psi} = \frac{L_3}{I_3} - \frac{(L_Z-L_3 \cos \theta)\cos \theta}{I_1 \sin^2 \theta} \label{Lagrange陀螺的进动角速度和自转角速度2}
+记$\varOmega=\dfrac{L_3}{I_3}, a = \dfrac{2Mgl}{I_1}, b = \dfrac{I_3}{I_1}, \alpha = \dfrac{2E}{I_1}-b\varOmega^2, \beta = \dfrac{L_Z}{I_1}$，则Lagrange情形下的三个运动积分\eqref{Lagrange陀螺守恒量——Z轴角动量}、\eqref{Lagrange陀螺守恒量——3轴角动量}和\eqref{Lagrange陀螺守恒量——能量}可以用这些参数写为
+\begin{subnumcases}{}
+	\sin^2\theta \dot{\phi} = \beta-b\varOmega\cos\theta \label{chapter6-Lagrange情形运动积分-1} \\
+	\dot{\psi}+\dot{\phi}\cos\theta = \varOmega \label{chapter6-Lagrange情形运动积分-2} \\
+	\dot{\theta}^2+\dot{\phi}^2\sin^2\theta = \alpha - a\cos\theta \label{chapter6-Lagrange情形运动积分-3}
 \end{subnumcases}
-将式\eqref{Lagrange陀螺的进动角速度和自转角速度1}和式\eqref{Lagrange陀螺的进动角速度和自转角速度2}代入式\eqref{Lagrange陀螺守恒量——能量}中，可得
+作变量代换$u=\cos\theta$，则式\eqref{chapter6-Lagrange情形运动积分-1}和\eqref{chapter6-Lagrange情形运动积分-2}可以写作
+\begin{subnumcases}{}
+	\dot{\phi} = \frac{\beta-b\varOmega u}{1-u^2} \label{chapter6:进动角的方程} \\
+	\dot{\psi} = \varOmega - u\frac{\beta-b\varOmega u}{1-u^2} \label{chapter6:自转角的方程}
+\end{subnumcases}
+而式\eqref{chapter6-Lagrange情形运动积分-3}则化为
 \begin{equation}
-	\frac12 I_1 \dot{\theta}^2 + Mgl\cos \theta + \frac{(L_Z-L_3 \cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3} = E
+	\dot{u}^2 = (\alpha-au)(1-u^2)-(\beta-b\varOmega u)^2 = G(u)
+	\label{chapter6:章动角的控制方程}
 \end{equation}
-令
+式中函数$G(u)$为
 \begin{equation}
-	U(\theta) = Mgl\cos \theta + \frac{(L_Z-L_3 \cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3}
-	\label{Lagrange陀螺等效势}
+	G(u) = (\alpha-au)(1-u^2)-(\beta-b\varOmega u)^2
+	\label{chapter6:函数G(u)的表达式}
 \end{equation}
-为重力与惯性力合力矩的{\heiti 等效势}，由此对$\theta$的微分方程为
+求解出\eqref{chapter6:章动角的控制方程}的解之后可得函数$u=u(t)$，进而可得$\theta=\theta(t)$，再将$u=u(t)$的结果代入式\eqref{chapter6:进动角的方程}和\eqref{chapter6:自转角的方程}，那么三个Euler角关于时间的关系都得到了，刚体定点运动的Lagrange情形就解决了。
+
+首先注意到方程\eqref{chapter6:章动角的控制方程}右端应该是非负的，以及$u=\cos\theta$，所以方程\eqref{chapter6:章动角的控制方程}具有物理意义的解应该要求函数$G(u)$在$[-1,1]$区间上有非负的区域。很容易发现
+\begin{align*}
+	G(\pm 1) = -(\beta \mp b\varOmega)^2 < 0,\quad G(-\infty) < 0
+\end{align*}
+因此，函数$G(u)$有三个根，它的图像如图\ref{chapter6:figure-G(u)的图像}所示。如果将它们从小到大分别记作$u_1,u_2,u_3$，则它们分布在如下区域内：
 \begin{equation}
-	\frac12 I_1 \dot{\theta}^2 + U(\theta) = E
-	\label{Lagrange陀螺章动角方程}
+	-1 < u_1<u_2<1<u_3
 \end{equation}
-因此，Lagrange陀螺的章动相当于在等效保守力矩作用下的定轴转动。
+因此，$u$只能在$u_1\leqslant u\leqslant u_2$的区域内变动，对应的章动角$\theta$也只能在$\theta_2\leqslant \theta\leqslant \theta_1$的区域内变动，其中$u_1=\cos\theta_1, u_2=\cos\theta_2$。这个运动对应的是陀螺的对称轴与空间系的$OZ$轴之间的夹角在$\theta_2$到$\theta_1$之间往复摆动。
 
-方程\eqref{Lagrange陀螺章动角方程}可以分离变量为
-\begin{equation*}
-	\int_{t_0}^t \mathrm{d} t = \pm \sqrt{\frac{I_1}{2}} \int_{\theta_0}^\theta \frac{\mathrm{d} \theta}{\sqrt{E-U(\theta)}}
-\end{equation*}
-由此可得$\theta = \theta(t)$，于是由\eqref{Lagrange陀螺的进动角速度和自转角速度}可有
-\begin{equation*}
-	\begin{cases}
-		\displaystyle \phi-\phi_0 = \int_{t_0}^t \frac{L_Z - L_3 \cos \theta(t)}{I_1 \sin^2 \theta(t)} \mathrm{d} t \\[1.5ex]
-		\displaystyle \psi-\psi_0 = \int_{t_0}^t \left[\frac{L_3}{I_3} - \frac{\big(L_Z-L_3\cos \theta(t) \big) \cos \theta(t)}{I_1 \sin^2 \theta(t)} \right] \mathrm{d} t
-	\end{cases}
-\end{equation*}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(250);
+	//Lagrange情形下G(u)的图像
+	real alpha,beta,a,b,Omega;
+	real G(real u){
+		return (alpha-a*u)*(1-u^2)-(beta-b*Omega*u)^2;
+	}
+	alpha = 2;
+	a = 2;
+	b = 1/2;
+	beta = 1.2;
+	Omega = 1;
+	real xmin,xmax,xm,ym;
+	xm = 2;
+	ym = 2;
+	xmin = -1.9;
+	xmax = 1.9;
+	draw(Label("$u$",EndPoint),(-xm,0)--(xm,0),Arrow);
+	draw(Label("$G(u)$",EndPoint,W),(0,-ym)--(0,ym),Arrow);
+	path p = graph(G,xmin,xmax);
+	picture tmp;
+	draw(tmp,p,linewidth(0.8bp));
+	clip(tmp,box((xmin,-ym),(xmax,ym)));
+	add(tmp);
+	real l = 0.05;
+	draw(Label("$-1$",BeginPoint),(-1,0)--(-1,l));
+	draw(Label("$1$",BeginPoint),(1,0)--(1,l));
+	pair P[];
+	P = intersectionpoints(p,(-xm,0)--(xm,0));
+	label("$u_1$",P[0],dir(-50));
+	label("$u_2$",P[1],SSW);
+	label("$u_3$",P[2],SE);
+\end{asy}
+\caption{函数$G(u)$的图像}
+\label{chapter6:figure-G(u)的图像}
+\end{figure}
 
-\subsection{定性图像}
+注意到当$u=\dfrac{\beta}{b\varOmega}$时，进动角速度$\dot{\phi}=0$，因此Lagrange陀螺的进动运动有三种情形：
+\begin{enumerate}
+\item 如果$u_1<\dfrac{\beta}{b\varOmega}<u_2$，则进动角速度$\dot{\phi}$有时为正有时为负，进动的方向不断改变。这种情况下陀螺的对称轴线在单位球面上画出的轨迹形状如图\ref{chapter6:figure-Lagrange陀螺进动1}所示。
 
-对等效势
-\begin{equation*}
-	U(\theta) = Mgl\cos \theta + \frac{(L_Z-L_3 \cos \theta)^2}{2I_1 \sin^2 \theta} + \frac{L_3^2}{2I_3}
-\end{equation*}
-进行能图分析。
+\item 如果$\dfrac{\beta}{b\varOmega}<u_1$或者$\dfrac{\beta}{b\varOmega}>u_2$，则进动角速度$\dot{\phi}$恒正或恒负，进动的方向不变。这种情况下陀螺的对称轴线在单位球面上画出的轨迹形状如图\ref{chapter6:figure-Lagrange陀螺进动2}所示。
+
+\item 如果$\dfrac{\beta}{b\varOmega}=u_1$或者$\dfrac{\beta}{b\varOmega}=u_2$，则进动角速度$\dot{\phi}$除了在某些时刻为零之外恒正或恒负，进动的方向仍然不变，但是陀螺轴线运动到$\dot{\phi}=0$时会有一个反向折回的现象。这种情况下陀螺的对称轴线在单位球面上画出的轨迹形状如图\ref{chapter6:figure-Lagrange陀螺进动3}所示。
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\begin{asy}
+	size(150);
+	//Lagrange陀螺进动3
+	pair i,j,k;
+	real r,theta0,thetam,w,theta,d;
+	r = 1;
+	theta0 = pi/4;
+	thetam = pi/10;
+	w = 10;
+	d = 2.5;
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	pair spconvert(real r,real theta,real phi){
+		return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
+	}
+	pair thetaphi(real t){
+		real x,y;
+		x = t-d*sin(t);
+		y = cos(t);
+		return spconvert(r,theta0-thetam*y,x/r/sin(theta0)/w-0.1);
+	}
+	pair phicir(real phi){
+		return spconvert(r,theta,phi);
+	}
+	draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
+	theta = theta0-thetam;
+	draw(graph(phicir,-1.8,2.57),dashed);
+	label("$\theta_2$",phicir(2.57),NE);
+	theta = theta0+thetam;
+	draw(graph(phicir,-1.4,2.1),dashed);
+	label("$\theta_1$",phicir(2.1),NE);
+	draw(graph(thetaphi,-9.3,15.5,200),linewidth(0.8bp)+red);
+	draw(scale(r)*unitcircle,linewidth(0.8bp));
+\end{asy}
+\caption{$u_1<\dfrac{\beta}{b\varOmega}<u_2$}
+\label{chapter6:figure-Lagrange陀螺进动1}
+\end{minipage}
+\hspace{0.2cm}
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\begin{asy}
+	size(150);
+	//Lagrange陀螺进动1
+	pair i,j,k;
+	real r,theta0,thetam,w,theta;
+	r = 1;
+	theta0 = pi/4;
+	thetam = pi/10;
+	w = 9;
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	pair spconvert(real r,real theta,real phi){
+		return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
+	}
+	pair thetaphi(real phi){
+		return spconvert(r,theta0-thetam*sin(w*r*sin(theta0)*phi),phi);
+	}
+	pair phicir(real phi){
+		return spconvert(r,theta,phi);
+	}
+	draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
+	theta = theta0-thetam;
+	draw(graph(phicir,-1.8,2.57),dashed);
+	label("$\theta_2$",phicir(2.57),NE);
+	theta = theta0+thetam;
+	draw(graph(phicir,-1.4,2.1),dashed);
+	label("$\theta_1$",phicir(2.1),NE);
+	draw(graph(thetaphi,-1.4,2.4,200),linewidth(0.8bp)+red);
+	draw(scale(r)*unitcircle,linewidth(0.8bp));
+\end{asy}
+\caption{$u_1<u_2<\dfrac{\beta}{b\varOmega}$}
+\label{chapter6:figure-Lagrange陀螺进动2}
+\end{minipage}
+\hspace{0.2cm}
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\begin{asy}
+	size(150);
+	//Lagrange陀螺进动2
+	pair i,j,k;
+	real r,theta0,thetam,w,theta;
+	r = 1;
+	theta0 = pi/4;
+	thetam = pi/10;
+	w = 7.5;
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	pair spconvert(real r,real theta,real phi){
+		return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
+	}
+	pair thetaphi(real t){
+		real x,y;
+		x = t-sin(t);
+		y = cos(t);
+		return spconvert(r,theta0-thetam*y,x/r/sin(theta0)/w-0.2);
+	}
+	pair phicir(real phi){
+		return spconvert(r,theta,phi);
+	}
+	draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
+	theta = theta0-thetam;
+	draw(graph(phicir,-1.8,2.57),dashed);
+	label("$\theta_2$",phicir(2.57),NE);
+	theta = theta0+thetam;
+	draw(graph(phicir,-1.4,2.1),dashed);
+	label("$\theta_1$",phicir(2.1),NE);
+	draw(graph(thetaphi,-8,14,200),linewidth(0.8bp)+red);
+	draw(scale(r)*unitcircle,linewidth(0.8bp));
+\end{asy}
+\caption{$u_1<u_2=\dfrac{\beta}{b\varOmega}$}
+\label{chapter6:figure-Lagrange陀螺进动3}
+\end{minipage}
+\end{figure}
+
+常数$\dfrac{\beta}{b\varOmega}$的值完全由初始条件决定，它与$u_1, u_2$之间的关系，则由函数值$G\left(\dfrac{\beta}{b\varOmega}\right)$的正负决定。如果$G\left(\dfrac{\beta}{b\varOmega}\right)>0$，则$\dfrac{\beta}{b\varOmega}$在$u_1,u_2$之间，进动对应的是第一种情况；相反，如果$G\left(\dfrac{\beta}{b\varOmega}\right)<0$，则$\dfrac{\beta}{b\varOmega}<u_1$或者$\dfrac{\beta}{b\varOmega}>u_2$，进动对应的是第二种情况。如果$G\left(\dfrac{\beta}{b\varOmega}\right)=0$，则进动对应的是第三种情况。
+
+根据式\eqref{chapter6:函数G(u)的表达式}可得
+\begin{equation}
+	G\left(\dfrac{\beta}{b\varOmega}\right)= \left(\alpha-\frac{a\beta}{b\varOmega}\right)\left(1-\dfrac{\beta^2}{b^2\varOmega^2}\right)
+\end{equation}
+对其正负的讨论需要根据$\left|\dfrac{\beta}{b\varOmega}\right|=\left|\dfrac{L_Z}{L_3}\right|$与$1$的关系分为如下几类：
+\begin{enumerate}
+\item $\left|\dfrac{\beta}{b\varOmega}\right|=\left|\dfrac{L_Z}{L_3}\right|<1$。在这种情况下，前文所述的三种情形都有可能发生。
+\begin{enumerate}
+\item 当$\alpha>\dfrac{a\beta}{b\varOmega}$，即$E>\dfrac{L_3^2}{2I_3}+Mgl\dfrac{L_Z}{L_3}$时，此时有$u_1<\dfrac{\beta}{b\varOmega}<u_2$，进动运动为第一种情况，如图\ref{chapter6:figure-Lagrange陀螺进动1}所示。
+
+\item 当$\alpha>\dfrac{a\beta}{b\varOmega}$，即$E<\dfrac{L_3^2}{2I_3}+Mgl\dfrac{L_Z}{L_3}$时，进动运动为第二种情况，如图\ref{chapter6:figure-Lagrange陀螺进动2}所示。
+
+\item 当$\alpha=\dfrac{a\beta}{b\varOmega}$，即$E=\dfrac{L_3^2}{2I_3}+Mgl\dfrac{L_Z}{L_3}$时，进动运动为第三种情况，如图\ref{chapter6:figure-Lagrange陀螺进动3}所示。特别地，在这种情况下，一定有$\dfrac{\beta}{b\varOmega}=u_2>u_1$，因而进动角速度为零的点必然在章动区域的上边缘。为了说明这一点，将参数$\alpha=\dfrac{a\beta}{b\varOmega}$代入$G(u)$的表达式中可得
+\begin{equation}
+	G(u) = \left(\frac{\beta}{b\varOmega}-u\right)\left[a(1-u^2)-b^2\varOmega^2\left(\frac{\beta}{b\varOmega}-u\right)\right]
+\end{equation}
+$G(u)$的一个根是$\dfrac{\beta}{b\varOmega}$，另外两个根由方程
+\begin{equation}
+	b^2\varOmega^2\left(\frac{\beta}{b\varOmega}-u\right) = a(1-u^2)
+	\label{chapter6:G(u)另一根的方程}
+\end{equation}
+来决定，其中一个根是$u_3>1$，而另一个根为$u_1,u_2$其中之一，不论是哪一个，都满足$u^2<1$，据此根据方程\eqref{chapter6:G(u)另一根的方程}的左端为正可得这个根小于$\dfrac{a\beta}{b\varOmega}$，由此即说明$\dfrac{a\beta}{b\varOmega}=u_2>u_1$。
+\end{enumerate}
+
+\item $\left|\dfrac{\beta}{b\varOmega}\right|=\left|\dfrac{L_Z}{L_3}\right|\geqslant 1$。在这种情况下，只有第二种运动是可能的，如图\ref{chapter6:figure-Lagrange陀螺进动2}。
+\end{enumerate}
+
+下面对方程\eqref{chapter6:章动角的控制方程}进行解析求解以分析其运动的周期性。利用函数$G(u)$的三个根，可以将方程\eqref{chapter6:章动角的控制方程}表示为
+\begin{equation}
+	\dot{u}^2 = a(u-u_1)(u-u_2)(u-u_3)
+	\label{chapter6:针对章动角的微分方程}
+\end{equation}
+作变量代换
+\begin{equation}
+	u = u_1 + (u_2-u_1)\sin^2v
+\end{equation}
+可以将方程\eqref{chapter6:针对章动角的微分方程}变换为
+\begin{equation}
+	\dot{v} = \frac{a(u_3-u_1)}{4}\left(1-k^2\sin^2v\right)
+	\label{chapter6:针对章动角的微分方程-变换后}
+\end{equation}
+其中
+\begin{equation}
+	k^2=\dfrac{u_2-u_1}{u_3-u_1} \quad (0\leqslant k^2\leqslant 1)
+\end{equation}
+取$u=u_1$的时刻为初始时刻，则积分方程\eqref{chapter6:针对章动角的微分方程-变换后}可得
+\begin{equation}
+	\frac{\sqrt{a(u_3-u_1)}}{2}t = \int_0^v \frac{\mathd w}{\sqrt{1-k^2\sin^2w}} = F(\sin v,k)
+\end{equation}
+由此可得
+\begin{equation}
+	\sin v = \sn \left(\frac{\sqrt{a(u_3-u_1)}}{2}t\right)
+\end{equation}
+所以
+\begin{equation}
+	u = u_1+(u_2-u_1)\sn^2 \left(\frac{\sqrt{a(u_3-u_1)}}{2}t\right)
+\end{equation}
+进而可得
+\begin{equation}
+	\theta = \arccos \left[u_1+(u_2-u_1)\sn^2 \left(\frac{\sqrt{a(u_3-u_1)}}{2}t\right)\right]
+\end{equation}
+由函数$\sn \tau$的周期为$4K(k)$可得函数$\sn^2\tau$的周期为$2K(k)$，因此函数$u$的周期为$\dfrac{4K(k)}{\sqrt{a(u_3-u_1)}}$，即章动角变化的周期为
+\begin{equation}
+	T = \dfrac{4K(k)}{\sqrt{a(u_3-u_1)}}
+\end{equation}
+再根据式\eqref{chapter6:进动角的方程}和\eqref{chapter6:自转角的方程}可得函数$\dot{\phi}$和$\dot{\psi}$的周期也为$T = \dfrac{4K(k)}{\sqrt{a(u_3-u_1)}}$，根据
+\begin{equation}
+	\dif{\phi}{t}(t+T) = \dif{\phi}{t}(t),\quad \dif{\psi}{t}(t+T) = \dif{\psi}{t}(t)
+\end{equation}
+两端积分可得
+\begin{equation}
+	\phi(t+T)=\phi(t)+\Delta \phi,\quad \psi(t+T)=\psi(t)+\Delta\psi
+\end{equation}
+其中$\Delta \phi$和$\Delta \psi$分别为进动角和自转角一周期内的改变量，这可以根据\eqref{chapter6:进动角的方程}和\eqref{chapter6:自转角的方程}直接积分得到。
+
+Lagrange情形下运动的周期性，将取决于$\theta_2-\theta_1, \Delta\phi, \Delta\psi$这三个量之间的比值是否能够化为有理数之比。或者将条件放宽，不考虑自转运动，那么周期性的条件为$\dfrac{\theta_2-\theta_1}{\Delta\phi}$是否为有理数。如果比值$\dfrac{\theta_2-\theta_1}{\Delta\phi}$是有理数，那么图\ref{chapter6:figure-Lagrange陀螺进动1}-\ref{chapter6:figure-Lagrange陀螺进动3}上的轨迹将是闭合的；如果比值$\dfrac{\theta_2-\theta_1}{\Delta\phi}$不是有理数，那么图\ref{chapter6:figure-Lagrange陀螺进动1}-\ref{chapter6:figure-Lagrange陀螺进动3}上的轨迹在足够长的时间内将充满$\theta_1$和$\theta_2$之间的球面区域。
+
+\subsection{Lagrange情形下刚体规则进动的条件}
+
+作为一种特殊情况，来看一下在Lagrange情形下刚体作规则进动的条件。直接用方程\eqref{chapter6:针对章动角的微分方程}来考虑的话，需要$u_1=u_2$，这样方程\eqref{chapter6:针对章动角的微分方程}的解只有$\dot{u}=0$，则$\theta$为常数，即对应规则进动。但是函数$G(u)$满足$u_1=u_2$的条件比较复杂，因此此处利用等效势来讨论刚体在Lagrange情形下刚体规则进动的条件。
+
+将方程\eqref{Lagrange陀螺守恒量——Z轴角动量}和\eqref{Lagrange陀螺守恒量——3轴角动量}联立可得与方程\eqref{chapter6:进动角的方程}和\eqref{chapter6:自转角的方程}相同的结果：
+\begin{subnumcases}{}
+	\dot{\phi} = \frac{L_Z-L_3\cos\theta}{I_1\sin^2\theta} \label{chapter6:进动角的方程-重写} \\
+	\dot{\psi} = \frac{L_3}{I_3}-\frac{(L_Z-L_3\cos\theta)\cos\theta}{I_1\sin^2\theta} \label{chapter6:自转角的方程-重写}
+\end{subnumcases}
+将式\eqref{chapter6:进动角的方程-重写}和\eqref{chapter6:自转角的方程-重写}代入能量积分\eqref{Lagrange陀螺守恒量——能量}可得
+\begin{equation}
+	\frac12 I_1\dot{\theta}^2 + \frac{(L_Z-L_3\cos\theta)^2}{2I_1\sin^2\theta}+\frac{L_3^2}{2I_3}+Mgl\cos\theta = E
+	\label{chapter6:Lagrange情形下的章动等效运动方程}
+\end{equation}
+此方程可以视为关于$\theta$的一维运动方程，令
+\begin{equation}
+	U(\theta) = \frac{(L_Z-L_3\cos\theta)^2}{2I_1\sin^2\theta}+\frac{L_3^2}{2I_3}+Mgl\cos\theta
+\end{equation}
+为重力矩与惯性力矩的{\bf 等效势}，由此方程\eqref{chapter6:Lagrange情形下的章动等效运动方程}可以表示为
+\begin{equation}
+	\frac12 I_1\dot{\theta}^2 + U(\theta) = E
+\end{equation}
+等效势的图像如图\ref{Lagrange陀螺等效势能曲线}所示。
 
 \begin{figure}[htb]
 \centering
@@ -1404,283 +1666,35 @@ Lagrange情形下刚体的运动方程和守恒量已经在第\ref{chapter6:subs
 	draw((0,U(theta1))--(x*pi,U(theta1)),blue);
 	draw((x*theta1,bot)--(x*theta1,U(theta1)),dashed);
 	draw((x*theta2,bot)--(x*theta2,U(theta2)),dashed);
-	//draw((0,U(theta0))--(x*pi,U(theta0)),dashed+green);
-	//draw((x*theta0,bot)--(x*theta0,U(theta0)),dashed+green);
 	label("$0$",(x*0,bot),S);
-	label("$\theta_1$",(x*theta1,bot),S);
+	label("$\theta_2$",(x*theta1,bot),S);
 	label("$\theta_m$",(x*thetam,bot),S);
-	label("$\theta_2$",(x*theta2,bot),S);
-	//label("$\theta_0$",(x*theta0,bot),S);
+	label("$\theta_1$",(x*theta2,bot),S);
 	label("$\pi$",(x*pi,bot),S);
 	label("$\theta$",(x*pi,bot),E);
 	label("$E$",(0,U(theta1)),W);
 	label("$U$",(0,top),N);
 \end{asy}
-\caption{Lagrange陀螺的等效势能曲线}
+\caption{Lagrange情形下的等效势}
 \label{Lagrange陀螺等效势能曲线}
 \end{figure}
 
-分以下几种情况考虑：
-\begin{enumerate}
-	\item $\left|\dfrac{L_Z}{L_3}\right| \neq 1$，而且$E>U_{\min}$。根据图\ref{Lagrange陀螺等效势能曲线}，当$E>U_{\min}$时，章动角的取值范围为$\theta_1 \leqslant \theta \leqslant \theta_2$，此时章动为往复周期运动。进动角速度为
-	\begin{equation*}
-		\dot{\phi} = \frac{L_Z-L_3 \cos \theta}{I_1\sin^2 \theta}
-	\end{equation*}
-	\begin{enumerate}
-		\item $\left|\dfrac{L_Z}{L_3}\right| < 1$。令$\theta_0 = \arccos \dfrac{L_Z}{L_3}$，则有
-		\begin{equation*}
-			U(\theta) = Mgl\cos \theta + \frac{L_3^2(\cos \theta_0-\cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3}
-		\end{equation*}
-		以及
-		\begin{equation*}
-			\dot{\phi}(\theta_0) = 0,\quad U(\theta_0) = Mgl\cos \theta_0 + \frac{L_3^2}{2I_3}
-		\end{equation*}
-		即，如果$\theta_0$在章动的范围中，进动角速度将在运动中不断改变符号。实际章动的范围由不等式$E \geqslant U(\theta)$决定。
-		
-\begin{figure}[htb]
-\centering
-\begin{minipage}[t]{0.3\textwidth}
-\centering
-\begin{asy}
-	size(150);
-	//Lagrange陀螺进动1
-	pair i,j,k;
-	real r,theta0,thetam,w,theta;
-	r = 1;
-	theta0 = pi/4;
-	thetam = pi/10;
-	w = 9;
-	i = (-sqrt(2)/4,-sqrt(14)/12);
-	j = (sqrt(14)/4,-sqrt(2)/12);
-	k = (0,2*sqrt(2)/3);
-	pair spconvert(real r,real theta,real phi){
-		return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
-	}
-	pair thetaphi(real phi){
-		return spconvert(r,theta0-thetam*sin(w*r*sin(theta0)*phi),phi);
-	}
-	pair phicir(real phi){
-		return spconvert(r,theta,phi);
-	}
-	draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
-	theta = theta0-thetam;
-	draw(graph(phicir,-1.8,2.57),dashed);
-	label("$\theta_1$",phicir(2.57),NE);
-	theta = theta0+thetam;
-	draw(graph(phicir,-1.4,2.1),dashed);
-	label("$\theta_2$",phicir(2.1),NE);
-	draw(graph(thetaphi,-1.4,2.4,200),linewidth(0.8bp)+red);
-	draw(scale(r)*unitcircle,linewidth(0.8bp));
-\end{asy}
-\caption{$\theta_0<\theta_1<\theta_2$}
-\label{chapter6:figure-Lagrange陀螺进动1}
-\end{minipage}
-\hspace{0.2cm}
-\begin{minipage}[t]{0.3\textwidth}
-\centering
-\begin{asy}
-	size(150);
-	//Lagrange陀螺进动2
-	pair i,j,k;
-	real r,theta0,thetam,w,theta;
-	r = 1;
-	theta0 = pi/4;
-	thetam = pi/10;
-	w = 7.5;
-	i = (-sqrt(2)/4,-sqrt(14)/12);
-	j = (sqrt(14)/4,-sqrt(2)/12);
-	k = (0,2*sqrt(2)/3);
-	pair spconvert(real r,real theta,real phi){
-		return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
-	}
-	pair thetaphi(real t){
-		real x,y;
-		x = t-sin(t);
-		y = cos(t);
-		return spconvert(r,theta0-thetam*y,x/r/sin(theta0)/w-0.2);
-	}
-	pair phicir(real phi){
-		return spconvert(r,theta,phi);
-	}
-	draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
-	theta = theta0-thetam;
-	draw(graph(phicir,-1.8,2.57),dashed);
-	label("$\theta_1$",phicir(2.57),NE);
-	theta = theta0+thetam;
-	draw(graph(phicir,-1.4,2.1),dashed);
-	label("$\theta_2$",phicir(2.1),NE);
-	draw(graph(thetaphi,-8,14,200),linewidth(0.8bp)+red);
-	draw(scale(r)*unitcircle,linewidth(0.8bp));
-\end{asy}
-\caption{$\theta_0=\theta_1<\theta_2$}
-\label{chapter6:figure-Lagrange陀螺进动2}
-\end{minipage}
-\hspace{0.2cm}
-\begin{minipage}[t]{0.3\textwidth}
-\centering
-\begin{asy}
-	size(150);
-	//Lagrange陀螺进动3
-	pair i,j,k;
-	real r,theta0,thetam,w,theta,d;
-	r = 1;
-	theta0 = pi/4;
-	thetam = pi/10;
-	w = 10;
-	d = 2.5;
-	i = (-sqrt(2)/4,-sqrt(14)/12);
-	j = (sqrt(14)/4,-sqrt(2)/12);
-	k = (0,2*sqrt(2)/3);
-	pair spconvert(real r,real theta,real phi){
-		return r*sin(theta)*cos(phi)*i+r*sin(theta)*sin(phi)*j+r*cos(theta)*k;
-	}
-	pair thetaphi(real t){
-		real x,y;
-		x = t-d*sin(t);
-		y = cos(t);
-		return spconvert(r,theta0-thetam*y,x/r/sin(theta0)/w-0.1);
-	}
-	pair phicir(real phi){
-		return spconvert(r,theta,phi);
-	}
-	draw(Label("$Z$",EndPoint),r*k--1.4*r*k,Arrow);
-	theta = theta0-thetam;
-	draw(graph(phicir,-1.8,2.57),dashed);
-	label("$\theta_1$",phicir(2.57),NE);
-	theta = theta0+thetam;
-	draw(graph(phicir,-1.4,2.1),dashed);
-	label("$\theta_2$",phicir(2.1),NE);
-	draw(graph(thetaphi,-9.3,15.5,200),linewidth(0.8bp)+red);
-	draw(scale(r)*unitcircle,linewidth(0.8bp));
-\end{asy}
-\caption{$\theta_1<\theta_0<\theta_2$}
-\label{chapter6:figure-Lagrange陀螺进动3}
-\end{minipage}
-\end{figure}
-		
-		\begin{enumerate}
-			\item $U(\theta) \leqslant E < U(\theta_0)$。此时
-			\begin{equation*}
-				Mgl\cos \theta + \frac{L_3^2(\cos \theta_0-\cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3} < Mgl\cos \theta_0 + \frac{L_3^2}{2I_3}
-			\end{equation*}
-			即有$\theta_0 < \theta_1 < \theta_2$。此时进动角速度在运动中不变号，进动方向不变，如图\ref{chapter6:figure-Lagrange陀螺进动1}所示。
-			\item $U(\theta) \leqslant E = U(\theta_0)$。此时
-			\begin{equation*}
-				Mgl\cos \theta + \frac{L_3^2(\cos \theta_0-\cos \theta)^2}{2I_1\sin^2 \theta} + \frac{L_3^2}{2I_3} \leqslant Mgl\cos \theta_0 + \frac{L_3^2}{2I_3}
-			\end{equation*}
-			即有$\theta_0 = \theta_1 < \theta_2$。此时在最小章动角位置，进动角速度为零，如图\ref{chapter6:figure-Lagrange陀螺进动2}所示。
-			\item $E>U(\theta_0)$。此时有$\theta_1 < \theta_0 < \theta_2$，进动角速度在运动中周期性改变符号，进动方向周期性改变，如图\ref{chapter6:figure-Lagrange陀螺进动3}所示。
-		\end{enumerate}
-		
-		\item $\left|\dfrac{L_Z}{L_3}\right| > 1$。进动角速度
-		\begin{equation*}
-			\dot{\phi} = \frac{L_Z - L_3 \cos \theta}{I_1 \sin^2 \theta}
-		\end{equation*}
-		在章动角$\theta$取任何值时都不可能等于零，此时不存在进动角速度为零的章动角，进动方向始终不变。
-	\end{enumerate}
-	\item $E>U_{\min}$。此时$\theta = \theta_m$不变，无章动。因此进动角速度和自转角速度
-	\begin{equation*}
-		\dot{\phi} = \frac{L_Z-L_3\cos \theta_m}{I_1\sin^2 \theta_m},\quad \dot{\psi} = \frac{L_3}{I_3} - \dot{\phi}\cos \theta_m
-	\end{equation*}
-	都是常数，因此此时Lagrange陀螺为规则进动。此时有$U'(\theta_m) = 0$，由此可得$\theta_m$满足的方程为
-	\begin{equation*}
-		\frac{(L_Z-L_3\cos \theta_m)(L_Z\cos \theta_m-L_3)}{I_1 \sin^3 \theta_m} + Mgl\sin \theta_m = 0
-	\end{equation*}
-	由此，根据式\eqref{Lagrange陀螺守恒量——能量}可得
-	\begin{equation*}
-		\sin \theta_m (I_1 \dot{\phi}^2 \cos \theta_m - L_3 \dot{\phi} + Mgl) = 0
-	\end{equation*}
-	上式有解的条件为
-	\begin{equation}
-		L_3^2 \geqslant 4I_1 Mgl\cos \theta_m
-		\label{Lagrange陀螺规则进动条件}
-	\end{equation}
-	式\eqref{Lagrange陀螺规则进动条件}即为Lagrange陀螺的规则进动条件。
-	\item $\left|\dfrac{L_Z}{L_3}\right| = 1$。
-	\begin{enumerate}
-		\item $L_Z = L_3 \neq 0$。此时等效势能为
-		\begin{equation*}
-			U(\theta) = \frac{L_3^2}{2I_3} + Mgl + \frac{L_3^2}{2I_1} \tan^2 \frac{\theta}{2} - 2Mgl\sin^2 \frac{\theta}{2}
-		\end{equation*}
-		当$\theta=0$时，有$E = \dfrac{L_3^2}{2I_3}+Mgl$，因此在$\theta=0$附近，等效势能可以展开为
-		\begin{equation*}
-			U(\theta) = \frac{L_3^2}{2I_3} + Mgl + \frac14 \left(\frac{L_3^2}{2I_1} - 2Mgl\right) \theta^2 + \frac{1}{24} \left(\frac{L_3^2}{2I_1}+Mgl\right) \theta^4 + o(\theta^4)
-		\end{equation*}
-		因此，在$\theta = 0$点处，当
-		\begin{enumerate}
-			\item $L_3^2 > 4I_1Mgl$时，Lagrange陀螺作稳定直立转动；
-			\item $L_3^2 = 4I_1Mgl$时，Lagrange陀螺作次稳定直立转动；
-			\item $L_3^2 < 4I_1Mgl$时，Lagrange陀螺作不稳定直立转动。
-		\end{enumerate}
-	
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(250);
-	//直立转动Lagrange陀螺的等效势能曲线
-	picture tmp;
-	pair O,P;
-	real a,b,top,bot,x,left,right,height;
-	path clp;
-	real U(real theta){
-		return a*(tan(theta/2))**2-b*(sin(theta/2))**2;
-	}
-	O = (0,0);
-	top = 70;
-	bot = -15;
-	x = 25;
-	draw(tmp,O--(pi,0));
-	a = 4;
-	b = 2;
-	draw(tmp,graph(U,0,3),green+linewidth(0.8bp));
-	a = 2;
-	b = 2;
-	draw(tmp,graph(U,0,3),orange+linewidth(0.8bp));
-	a = 0.1;
-	b = 10;
-	draw(tmp,graph(U,0,3.141),red+linewidth(0.8bp));
-	clp = box((0,bot),(pi,top));
-	clip(tmp,clp);
-	draw(tmp,clp);
-	top = 60;
-	clp = box((-1,bot),(pi,top));
-	clip(tmp,clp);
-	add(xscale(x)*tmp);
-	label("$0$",(0,bot),S);
-	label("$\pi$",(x*pi,bot),S);
-	label("$\theta$",(x*pi,bot),E);
-	label("$U$",(0,top),N);
-	label("$E$",O,W);
-	left = 2;
-	right = 28;
-	height = 20;
-	top = top-2;
-	fill(shift((1,-1))*box((left,top),(right,top-height)),black);
-	unfill(box((left,top),(right,top-height)));
-	draw(box((left,top),(right,top-height)));
-	P = ((left+right)/2,top-height/6);
-	label("$L_3^2 > 4I_1 Mgl$",P,green);
-	P = ((left+right)/2,top-3*height/6);
-	label("$L_3^2 = 4I_1 Mgl$",P,orange);
-	P = ((left+right)/2,top-5*height/6);
-	label("$L_3^2 < 4I_1 Mgl$",P,red);
-	//draw(O--(x*pi*1.1,0),invisible);
-\end{asy}
-\caption{直立转动Lagrange陀螺的等效势能曲线}
-\label{直立转动Lagrange陀螺的等效势能曲线}
-\end{figure}
-
-		\item $L_Z = -L_3 \neq 0$。此时等效势能为
-		\begin{equation*}
-			U(\theta) = \frac{L_3^2}{2I_3} - Mgl + \frac{L_3^2}{2I_1} \cot^2 \frac{\theta}{2} + 2Mgl\cos^2 \frac{\theta}{2}
-		\end{equation*}
-		当$\theta=\pi$时，有$E = \dfrac{L_3^2}{2I_3}-Mgl$，因此在$\theta = \pi$附近，等效势能可以展开为
-		\begin{equation*}
-			U(\theta) = \frac{L_3^2}{2I_3} - Mgl + \frac14\left(\frac{L_3^2}{2I_1}+2Mgl\right) (\theta-\pi)^2 + o((\theta-\pi)^2)
-		\end{equation*}
-		此时Lagrange陀螺作稳定倒悬转动。
-	\end{enumerate}
-\end{enumerate}
+在图\ref{Lagrange陀螺等效势能曲线}中，$U(\theta)=E$所对应的$\theta$就是前文所提到的章动角转折点$\theta_1$和$\theta_2$，在这两点有$\dot{\theta}=0$。规则进动的条件$u_1=u_2$等价于$\theta_1=\theta_2$，因此只需要有$E=U(\theta_m)$即可，其中$\theta_m$为函数$U(\theta)$的极值点。因此，$\theta_m$需要满足方程
+\begin{equation}
+	U'(\theta) = \frac{(L_3-L_Z\cos\theta)(L_Z-L_3\cos\theta)}{I_1\sin^3\theta} - Mgl\sin \theta = 0
+	\label{chapter6:Lagrange情形下规则进动的条件1}
+\end{equation}
+将式\eqref{chapter6:进动角的方程-重写}表示的$L_Z$代入整理，可得
+\begin{equation}
+	I_1\dot{\phi}^2\cos\theta_m-L_3\dot{\phi} + Mgl = 0
+	\label{chapter6:Lagrange情形下规则进动的条件2}
+\end{equation}
+由于$\dot{\phi}$应该为实数，方程\eqref{chapter6:Lagrange情形下规则进动的条件2}有解的条件为
+\begin{equation}
+	L_3^2 \geqslant 4MglI_1\cos\theta_m
+	\label{chapter6:Lagrange情形下规则进动的条件3}
+\end{equation}
+式中$\theta_m$由方程\eqref{chapter6:Lagrange情形下规则进动的条件1}决定。因此，Lagrange情形下，规则进动的条件为$E=U(\theta_m)$和式\eqref{chapter6:Lagrange情形下规则进动的条件3}。
 
 \begin{example}
 一陀螺由半径为$2r$的薄圆盘及通过圆盘中心$C$，并和盘面垂直的场为$r$的杆轴所组成，杆的质量可忽略不计。将杆的另一端$O$放在水平面上，使其作无滑动的转动。如起始时杆$OC$与铅直线的夹角为$\alpha$，起始时的总角速度为$\omega$，方向沿着$\alpha$角的平分线，证明经过

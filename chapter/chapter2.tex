@@ -1,22 +1,29 @@
 \chapter{Lagrange动力学}
+%\chapter{分析动力学微分方程}
 
-1788年，Lagrange发表名著《分析力学》。全书无图，藉助数学分析建立运动方程。
-
-\section{约束与广义坐标}
+\section{约束}
 
 \subsection{约束及其分类}
 
-在运动过程中，质点的位置和速度受到的限制称为{\heiti 约束}。对于质点系，其中各质点的位矢为$\mbf{r}_i,\,i=1,2,\cdots,n$，其约束方程可以表示为
+在质点系的运动过程中，各质点的位置和速度受到的限制称为{\heiti 约束}。如果系统不受约束，则称系统是{\bf 自由的}或者为{\bf 自由系统}，相应地，如果系统受到一个或更多约束的作用，则称系统是{\bf 非自由的}。
+
+如果系统中各质点的位矢为$\mbf{r}_i\,(i=1,2,\cdots,n)$，那么各质点的速度可以表示为$\dot{\mbf{r}}\,(i=1,2,\cdots,n)$，约束可以用方程表示为
 \begin{equation}
-	f(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;\dot{\mbf{r}}_1,\dot{\mbf{r}}_2,\cdots,\dot{\mbf{r}}_n;t) = 0
+	f(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,\dot{\mbf{r}}_1,\dot{\mbf{r}}_2,\cdots,\dot{\mbf{r}}_n,t) = 0
 	\label{约束方程}
 \end{equation}
+或者
+\begin{equation}
+	f(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,\dot{\mbf{r}}_1,\dot{\mbf{r}}_2,\cdots,\dot{\mbf{r}}_n,t) \geqslant 0
+	\label{单面约束方程}
+\end{equation}
+类似式\eqref{约束方程}只有等号成立的约束称为{\bf 双面约束}，而类似式\eqref{单面约束方程}等号和不等号都可以成立的约束称为{\bf 单面约束}。
 
-约束可以分为以下两类：
-\begin{itemize}
-	\item {\heiti 几何约束}：与速度无关，仅对几何位形加以限制。即
+约束可以按其是否与质点的速度有关而分为以下两类：
+\begin{enumerate}
+	\item {\heiti 几何约束}：约束与速度无关，仅对几何位形加以限制。即
 	\begin{equation}
-		f(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;t) = 0
+		f(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) = 0
 	\end{equation}
 	一个几何约束减少一个独立坐标与一个独立速度分量。例如，单摆（如图\ref{单摆的几何约束}所示）的约束可以表示为
 	\begin{equation*}
@@ -36,10 +43,8 @@
 	draw(Label("$x$",EndPoint),O--x,Arrow);
 	draw(Label("$y$",EndPoint),O--y,Arrow);
 	label("$O$",O,W);
-	filldraw(shift(r)*scale(0.2)*unitcircle,yellow,black);
-	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),O--r,Arrow);
-	draw(Label("$l$",MidPoint,Relative(W)),O--r,Arrow);
-	//draw(O--(4.5,0),invisible);
+	draw(Label("$l$",MidPoint,Relative(W)),O--r);
+	fill(shift(r)*scale(0.15)*unitcircle,black);
 \end{asy}
 \caption{单摆的几何约束}
 \label{单摆的几何约束}
@@ -100,21 +105,19 @@
 	label("$(x,y)$",P+r*k,E);
 	label("$\theta$",P+r*k,WSW);
 	label("$\phi$",P-0.7*dplanecur(x0),2*S);
-	
-	//draw(O--(1.7,0),invisible);
 \end{asy}
 \caption{作曲线运动的纯滚动直立圆盘}
 \label{作曲线运动的纯滚动直立圆盘}
 \end{minipage}
 \end{figure}
-	\item {\heiti 运动约束}：涉及体系运动情况（即涉及质点的速度）。运动约束条件对坐标取值无限制，只对坐标变动有限制，不减少独立坐标个数。但一个运动约束减少一个独立速度分量。例如，作曲线运动的纯滚动直立圆盘（如图\ref{作曲线运动的纯滚动直立圆盘}所示）的约束可以表示为
+	\item {\heiti 运动约束}：约束与速度有关，同时对系统的几何位形和运动情况加以限制。运动约束条件不减少独立坐标个数，但每个运动约束减少一个独立速度分量。例如，作曲线运动的纯滚动直立圆盘（如图\ref{作曲线运动的纯滚动直立圆盘}所示）的约束可以表示为
 	\begin{equation*}
 		\begin{cases}
 			\dot{x} - R\dot{\theta}\cos \phi = 0 \\
 			\dot{y} - R\dot{\theta}\sin \phi = 0
 		\end{cases}
 	\end{equation*}
-	圆盘可由任一指定初位形出发，到达任一指定末位形。但如果圆盘作直线运动，此时$\phi = \phi_0(\text{常数})$，则运动约束可积\footnote{在求解运动前。}（此时即称为{\heiti 可积运动约束}），即
+	圆盘可由任一指定初位形出发，到达任一指定末位形。但如果圆盘作直线运动，此时$\phi = \phi_0\text{（常数）}$，则运动约束可积\footnote{在求解运动前。}（此时即称为{\heiti 可积运动约束}），即
 	\begin{equation*}
 		\begin{cases}
 			x - R\theta\cos \phi_0 + C_1 = 0 \\
@@ -122,93 +125,88 @@
 		\end{cases}
 	\end{equation*}
 	可积运动约束实质上等价于几何约束。
-\end{itemize}
-
-几何约束与可积运动约束称为{\heiti 完整约束}，一个完整约束方程同时减少一个独立坐标与一个独立速度分量。不可积运动约束则称为{\heiti 非完整约束}，一个非完整约束方程只减少一个独立速度分量。如果一个体系的所有约束皆为完整约束，则该体系称为{\heiti 完整体系}，否则称为{\heiti 非完整体系}。
-
-\subsection{自由度}
-
-体系可独立变动（并非取值）坐目标个数，即独立速度分量个数，称为体系的{\heiti 自由度}。
-
-设某$n$质点体系具有完整约束
-\begin{equation}
-	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;t) = 0,\quad j = 1,2,\cdots,k
-\end{equation}
-和非完整约束
-\begin{equation}
-	f_{j'}(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;\dot{\mbf{r}}_1,\dot{\mbf{r}}_2,\cdots,\dot{\mbf{r}}_n;t) = 0,\quad j' = 1,2,\cdots,k'
-\end{equation}
-则体系的独立坐标数$s = 3n-k$，自由度$f = 3n-k-k'$。对于完整体系，$k'=0$，自由度与独立坐标数相等$f = s$。对于非完整体系，$k'>0$，则有$f < s$。
-
-\subsection{广义坐标}
-
-以双摆为例（如图\ref{双摆系统}所示），其约束为
-\begin{equation*}
-	\begin{cases}
-		x_1^2 + y_1^2 - l_1^2 = 0 \\
-		(x_2-x_1)^2 + (y_2-y_1)^2 - l_2^2 = 0
-	\end{cases}
-\end{equation*}
-因此，体系的自由度为$2$，可以在四个坐标中任选独立的两个确定位形。但如此做并不方便，因此任选两个独立参量确定位形，如两个角度$(\theta_1,\theta_2)$，其转换关系为
-\begin{equation*}
-	\begin{cases}
-		x_1 = l_1 \cos \theta_1 \\ 
-		y_1 = l_1 \sin \theta_1 \\
-		x_2 = l_1 \cos \theta_1 + l_2 \cos \theta_2 \\
-		y_2 = l_1 \sin \theta_1 + l_2 \sin \theta_2 
-	\end{cases}
-\end{equation*}
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(200);
-	//双摆系统
-	pair O,x,y,P1,P2;
-	real theta1,theta2,l1,l2,r;
-	O = (0,0);
-	x = (4,0);
-	y = (0,-4);
-	l1 = 2;
-	l2 = 3;
-	theta1 = 30;
-	theta2 = 50;
-	draw(Label("$x$",EndPoint),O--x,Arrow);
-	draw(Label("$y$",EndPoint),O--y,Arrow);
-	P1 = l1*dir(theta1-90);
-	P2 = P1 + l2*dir(theta2-90);
-	r = 0.1;
-	fill(shift(P1)*scale(r)*unitcircle,black);
-	fill(shift(P2)*scale(r)*unitcircle,black);
-	draw(Label("$l_1$",MidPoint,Relative(W)),O--P1);
-	draw(Label("$l_2$",MidPoint,Relative(W)),P1--P2);
-	draw(P1--P1+1.5*dir(-90),dashed);
-	label("$\theta_1$",0.6*dir(theta1/2-90));
-	label("$\theta_2$",P1+0.5*dir(theta2/2-90));
-	label("$(x_1,y_1)$",P1,NE);
-	label("$(x_2,y_2)$",P2+(0.1,0),E);
-	
-	//draw(O--(4.5,0),invisible);
-\end{asy}
-\caption{双摆系统}
-\label{双摆系统}
-\end{figure}
-
-此处，确定力学体系位形的任意一组独立变量，称为{\heiti 广义坐标}。各质点坐标与广义坐标间的函数关系称为{\heiti 坐标变换方程}，其使得约束方程自动满足。广义坐目标引入使完整约束方程与不独立坐标一起消去。
-
-广义坐目标特点：
-\begin{enumerate}
-	\item 可任选，一般要求相互独立，并能确定体系的位形；
-	\item 不必具有长度量纲或明显的几何意义；
-	\item 属于整个体系，而非个别质点，因而任一广义坐目标变化一般会引起全部质点的位移，反之亦然。
 \end{enumerate}
 
-由广义坐标张成的$s$维抽象空间，称为{\heiti 位形空间}。体系的位形及其随时间的演化分别对应该空间的一点与一条曲线。
+几何约束与可积运动约束称为{\heiti 完整约束}，一个完整约束方程同时减少一个独立坐标与一个独立速度分量。不可积运动约束则称为{\heiti 非完整约束}，一个非完整约束方程只减少一个独立速度分量。如果一个系统的所有约束皆为完整约束，则该系统称为{\heiti 完整系统}，否则称为{\heiti 非完整系统}。
 
-\section{虚位移与约束力}
+根据前面对约束的分类，今后在研究质点系的运动时，我们只考虑完整系统，或者具有线性非完整约束的非完整系统。即系统的约束为
+\begin{subnumcases}{}
+	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t)=0 \quad (j=1,2,\cdots,k) \label{chapter2:完整约束的一般形式} \\
+	\sum_{i=1}^n \mbf{A}_{ji}(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) \cdot \mbf{v}_i + A_{j0}(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t)=0 \quad (j=1,2,\cdots,k') \label{chapter2:非完整约束的一般形式}
+\end{subnumcases}
+其中$\mbf{v}_i=\dot{\mbf{r}}_i$，在特殊情况下$k$和$k'$可以等于零。
 
-\subsection{虚位移}
+如果在完整约束\eqref{chapter2:完整约束的一般形式}中不显含时间$t$，则该完整约束称为{\bf 定常的}或{\bf 稳定的}。如果在非完整约束\eqref{chapter2:非完整约束的一般形式}中矢量函数$\mbf{A}_{ji}$不显含时间$t$，且标量函数$A_{j0}$恒等于零，则该非完整约束称为{\bf 定常的}或{\bf 稳定的}。如果一个系统是自由的或者所有约束都是定常约束，则该系统称为{\bf 定常系统}，如果至少有一个约束是非定常的，则称为{\bf 非定常系统}。
 
-实时的、约束允许的任意虚拟无限小位置变动，称为{\heiti 虚位移}，记作$\delta \mbf{r}$以区别于实位移$\mathrm{d} \mbf{r}$。力与虚位移之内积相应地称为{\heiti 虚功}。
+\subsection{约束对质点系的限制·自由度}
+
+非自由系统的质点不能在空间中任意运动，约束允许的位矢、速度和加速度应该满足约束方程\eqref{chapter2:完整约束的一般形式}和\eqref{chapter2:非完整约束的一般形式}，或者它们的导出形式。
+
+设给定某个时刻$t=t^*$，如果该时刻内系统内各质点的位矢$\mbf{r}_i=\mbf{r}_i^*$满足完整约束\eqref{chapter2:完整约束的一般形式}，则称在该给定时刻系统处于{\bf 可能位形}。
+
+约束同样限制了系统中质点的速度。将式\eqref{chapter2:完整约束的一般形式}两端对时间求导，可得\footnote{此处，算符$\dfrac{\pl}{\pl \mbf{r}}$定义为\begin{equation*} \frac{\pl}{\pl \mbf{r}} = \mbf{e}_1 \frac{\pl}{\pl x}+\mbf{e}_2 \frac{\pl}{\pl y}+\mbf{e}_3 \frac{\pl}{\pl z} = \bnb \end{equation*}
+后文不再特别说明。}
+\begin{equation}
+	\sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i}\cdot \mbf{v}_i + \frac{\pl f_j}{\pl t} = 0 \quad (j=1,2,\cdots,k)
+	\label{chapter2:完整约束对质点系中质点速度的限制}
+\end{equation}
+当然速度还需满足非完整约束\eqref{chapter2:非完整约束的一般形式}，即
+\begin{equation}
+	\sum_{i=1}^n \mbf{A}_{ji} \cdot \mbf{v}_i + A_{j0}=0 \quad (j=1,2,\cdots,k')
+	\label{chapter2:非完整约束对质点系中质点速度的限制}
+\end{equation}
+当系统处于给定时刻的可能位形时，满足线性方程组\eqref{chapter2:完整约束对质点系中质点速度的限制}、\eqref{chapter2:非完整约束对质点系中质点速度的限制}的矢量$\mbf{v}_i=\mbf{v}_i^*$集合称为该时刻的{\bf 可能速度}。
+
+约束也将限制系统中质点的加速度，将式\eqref{chapter2:完整约束对质点系中质点速度的限制}和\eqref{chapter2:非完整约束对质点系中质点速度的限制}分别对时间求导，可得
+\begin{equation}
+	\sum_{i=1}^n \frac{\pl f_j}{\pl\mbf{r}_i}\cdot \mbf{a}_i + \sum_{i,l=1}^n \frac{\pl^2 f_j}{\pl \mbf{r}_i\pl \mbf{r}_l} \cdot \mbf{v}_l\cdot\mbf{v}_i + 2\sum_{i=1}^n \frac{\pl^2 f_j}{\pl \mbf{r}_i\pl t} \cdot \mbf{v}_i + \frac{\pl^2 f_j}{\pl t^2} = 0 \quad (j=1,2,\cdots,k) \label{chapter2:完整约束对质点系中质点加速度的限制}
+\end{equation}
+和
+\begin{equation}
+	\sum_{i=1}^n \mbf{A}_{ji}\cdot \mbf{a}_i + \sum_{i,l=1}^n \frac{\pl \mbf{A}_{ji}}{\pl \mbf{r}_l} \cdot \mbf{v}_l \cdot \mbf{v}_i + \sum_{i=1}^n \frac{\pl A_{j0}}{\pl \mbf{r}_i} \cdot \mbf{v}_i + \frac{\pl A_{j0}}{\pl t} = 0 \quad (j=1,2,\cdots,k') \label{chapter2:非完整约束对质点系中质点加速度的限制}
+\end{equation}
+当系统处于给定时刻的可能位形并且具有可能速度时，满足线性方程组\eqref{chapter2:完整约束对质点系中质点加速度的限制}、\eqref{chapter2:非完整约束对质点系中质点加速度的限制}的矢量$\mbf{a}_i=\mbf{a}_i^*$集合称为该时刻的{\bf 可能加速度}。
+
+由于可能速度和可能加速度分别需要满足线性方程组\eqref{chapter2:完整约束对质点系中质点速度的限制}、\eqref{chapter2:非完整约束对质点系中质点速度的限制}和方程组\eqref{chapter2:完整约束对质点系中质点加速度的限制}、\eqref{chapter2:非完整约束对质点系中质点加速度的限制}，每个方程组中都有$k+k'$个方程，因此整数$3n-k-k'$应该是一个正数，否则约束的限制过强，将使得系统不可能运动或者只能按照约束给定的规律运动。这个整数，记作$f=3n-k-k'$，称为系统的{\bf 自由度}。
+
+由此可以看出，确定系统可能速度和可能加速度的方程数（$k+k'$个）小于它们的分量数（$3n$个），因此在给定时刻系统将存在无穷多组满足约束的可能速度$\mbf{v}_i^*$和可能加速度$\mbf{a}_i^*$。
+
+设在给定时刻$t=t^*$系统处于可能位形$\mbf{r}_i^*$，并且具有可能速度$\mbf{v}_i^*$和可能加速度$\mbf{a}_i^*$，而在$t=t^*+\Delta t$时刻系统相应的可能位形为$\mbf{r}_i^*+\Delta \mbf{r}_i$，则$\Delta \mbf{r}_i$称为系统从时刻$t=t^*$的给定位置$\mbf{r}_i^*$在$\Delta t$时间内的{\bf 可能位移}。对于充分小的$\Delta t$，系统的可能位移可以写作
+\begin{equation}
+	\Delta \mbf{r}_i = \mbf{v}_i^*\Delta t + \frac12 \mbf{a}_i^*(\Delta t)^2 + \cdots\quad (i=1,2,\cdots,n)
+	\label{chapter2:可能位移}
+\end{equation}
+忽略式\eqref{chapter2:可能位移}中高于$\Delta t$的项，由式\eqref{chapter2:完整约束对质点系中质点速度的限制}和\eqref{chapter2:非完整约束对质点系中质点速度的限制}可得可能位移满足的相对$\Delta t$的线性方程组：
+\begin{subnumcases}{}
+	\sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i}\cdot \Delta \mbf{r}_i + \frac{\pl f_j}{\pl t}\Delta t = 0 \quad (j=1,2,\cdots,k') \label{chapter2:可能位移方程1} \\
+	\sum_{i=1}^n \mbf{A}_{ji}\cdot \Delta \mbf{r}_i + A_{j0}\Delta t = 0 \quad (j=1,2,\cdots,k') \label{chapter2:可能位移方程2}
+\end{subnumcases}
+式中各系数都是在时刻$t=t^*$以及可能位形$\mbf{r}_i=\mbf{r}_i^*$处取值的。
+
+\section{虚位移与广义坐标}
+
+\subsection{实位移与虚位移·等时变分}\label{chapter2:subsection-实位移与虚位移}
+
+当在可能位移\eqref{chapter2:可能位移}中取$\Delta t\to 0$的极限时，可得$\mathd \mbf{r}_i = \mbf{v}_i^*\mathd t$，此处的$\mathd \mbf{r}_i$是无穷小位移，称为{\bf 实位移}或{\bf 真实位移}。实位移满足类似\eqref{chapter2:可能位移方程1}和\eqref{chapter2:可能位移方程2}的方程组：
+\begin{subnumcases}{}
+	\sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i}\cdot \mathd \mbf{r}_i + \frac{\pl f_j}{\pl t}\mathd t = 0 \quad (j=1,2,\cdots,k') \label{chapter2:实位移方程1} \\
+	\sum_{i=1}^n \mbf{A}_{ji}\cdot \mathd \mbf{r}_i + A_{j0}\mathd t = 0 \quad (j=1,2,\cdots,k') \label{chapter2:实位移方程2}
+\end{subnumcases}
+式中各系数都是在时刻$t=t^*$以及可能位形$\mbf{r}_i=\mbf{r}_i^*$处取值的。需要注意的是，实位移满足的方程组\eqref{chapter2:实位移方程1}、\eqref{chapter2:实位移方程2}与可能位移的一阶近似方程组\eqref{chapter2:可能位移方程1}、\eqref{chapter2:可能位移方程2}形式上完全一致，但它们的物理意义是完全不同的。实位移是系统真实发生的位移，其不仅与约束有关，还与系统的受力状态等外部条件相关，而可能位移仅是在约束允许下可能产生的位移。实位移必然在可能位移集合中。
+
+由于当自由度$f>0$时，实位移分量数$3n$多于确定实位移方程组\eqref{chapter2:实位移方程1}、\eqref{chapter2:实位移方程2}的方程数，因此无法仅通过约束唯一确定系统的实位移。
+
+与实位移相对应，{\bf 虚位移}在分析力学中有着十分重要的地位。设在$t=t^*$时刻，系统处于可能位形$\mbf{r}_i^*$上，虚位移是指满足下面线性齐次方程组的$\delta \mbf{r}_i$集合：
+\begin{subnumcases}{}
+	\sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i}\cdot \delta \mbf{r}_i = 0\quad (j=1,2,\cdots,k) \label{chapter2:虚位移方程1} \\
+	\sum_{i=1}^n A_{ji}\cdot \delta \mbf{r}_i = 0 \quad (j=1,2,\cdots,k') \label{chapter2:虚位移方程2}
+\end{subnumcases}
+式中各系数都是在时刻$t=t^*$以及可能位形$\mbf{r}_i=\mbf{r}_i^*$处取值的。显然所有虚位移分量共有$3n$个，大于方程组\eqref{chapter2:虚位移方程1}、\eqref{chapter2:虚位移方程2}的方程数，因此虚位移有无数多个。对比方程组\eqref{chapter2:虚位移方程1}、\eqref{chapter2:虚位移方程2}和\eqref{chapter2:实位移方程1}、\eqref{chapter2:实位移方程2}可知，对于定常系统，实位移是虚位移的一个。
+
+通常假设虚位移$\delta \mbf{r}_i$是无穷小量，由虚位移满足的方程组\eqref{chapter2:虚位移方程1}、\eqref{chapter2:虚位移方程2}和可能位移满足的方程组\eqref{chapter2:可能位移方程1}、\eqref{chapter2:可能位移方程2}可知，对于定常系统，与$\Delta t$成线性关系的可能位移集合与虚位移集合完全相同，可以说，虚位移是在约束“冻结”在$t=t^*=\text{常数}$情况下的可能位移。
+
+\begin{example}
+
 \begin{figure}[htb]
 \centering
 \begin{asy}
@@ -245,115 +243,300 @@
 \label{约束在曲面上的质点}
 \end{figure}
 
-考虑于约束在曲面（曲面可移动，可变形）上运动的质点，曲面的方程表示为$f(\mbf{r},t)=0$，则$t$时刻该质点的位矢满足方程
+考虑被约束在曲面（曲面可移动，可变形）上运动的质点（如图\ref{约束在曲面上的质点}所示），曲面的方程表示为$f(\mbf{r},t)=0$，则$t$时刻该质点的位矢满足方程
 \begin{equation*}
 	f(\mbf{r},t) = 0
 \end{equation*}
-设质点具有虚位移$\delta \mbf{r}$则有\footnote{此处需考虑到虚位移是“实时”的无限小位置变动。}
+设质点具有虚位移$\delta \mbf{r}$，则虚位移满足
 \begin{equation*}
-	f(\mbf{r}+\delta \mbf{r},t) = 0
+	\frac{\pl f}{\pl \mbf{r}} \cdot \delta \mbf{r} = 0
 \end{equation*}
-所以
-\begin{equation*}
-	0 = f(\mbf{r}+\delta \mbf{r},t)-f(\mbf{r},t) = \frac{\pl f}{\pl \mbf{r}} \cdot \delta \mbf{r}
-\end{equation*}
-由于$\dfrac{\pl f}{\pl \mbf{r}} \parallel \mbf{n}$\footnote{此处，算符$\dfrac{\pl}{\pl \mbf{r}}$定义为\begin{equation*} \frac{\pl}{\pl \mbf{r}} = \mbf{e}_1 \frac{\pl}{\pl x}+\mbf{e}_2 \frac{\pl}{\pl y}+\mbf{e}_3 \frac{\pl}{\pl z} = \bnb \end{equation*}后文不再特别说明。}，所以有$\delta \mbf{r} \perp \mbf{n}$。此时虚位移即为质点所在处曲面切平面内的无限小位移。
+由于$\dfrac{\pl f}{\pl \mbf{r}} \parallel \mbf{n}$，所以有$\delta \mbf{r} \perp \mbf{n}$。此时虚位移即为质点所在处曲面切平面内的无限小位移。
 
 对于实位移则有
 \begin{equation*}
-	\begin{cases}
-		f(\mbf{r},t) = 0 \\
-		f(\mbf{r}+\mathrm{d} \mbf{r},t+\mathrm{d} t) = 0
-	\end{cases}
-\end{equation*}
-所以
-\begin{equation*}
-	0 = f(\mbf{r}+\mathrm{d} \mbf{r},t+\mathrm{d} t) - f(\mbf{r},t) = \frac{\pl f}{\pl \mbf{r}} \cdot \mathrm{d}\mbf{r} + \frac{\pl f}{\pl t} \mathrm{d} t
+	\frac{\pl f}{\pl \mbf{r}} \cdot \mathrm{d}\mbf{r} + \frac{\pl f}{\pl t} \mathrm{d} t = 0
 \end{equation*}
 即有
 \begin{equation*}
 	\frac{\pl f}{\pl \mbf{r}} \cdot \mathrm{d} \mbf{r} = - \frac{\pl f}{\pl t} \mathrm{d} t
 \end{equation*}
-如果约束为{\heiti 稳定约束}（约束方程不显含时间），则有$\dfrac{\pl f}{\pl t} = 0$，所以
+当约束为定常约束时，$\dfrac{\pl f}{\pl t} = 0$，即有
 \begin{equation*}
 	\frac{\pl f}{\pl \mbf{r}} \cdot \mathrm{d} \mbf{r} = 0
 \end{equation*}
-即$\mathrm{d} \mbf{r} \in \{\delta \mbf{r}\}$，实位移是全体虚位移中的一个。如果约束为{\heiti 不稳定约束}（约束方程显含时间），则有$\dfrac{\pl f}{\pl t} \neq 0$，所以
+此时$\mathrm{d} \mbf{r} \in \{\delta \mbf{r}\}$，实位移是全体虚位移中的一个。如果约束为非定常约束，则$\dfrac{\pl f}{\pl t} \neq 0$，所以
 \begin{equation*}
 	\frac{\pl f}{\pl \mbf{r}} \cdot \mathrm{d} \mbf{r} \neq 0
 \end{equation*}
 即$\mathrm{d} \mbf{r} \notin \{\delta \mbf{r}\}$，实位移不在虚位移集合中。
+\end{example}
 
-引入等时变分$\delta$运算，其运算规则等同于微分运算$\mathrm{d}$，但作用于时间时结果为零，即$\delta t=0$。考虑
-\begin{equation*}
-	\delta f = \frac{\pl f}{\pl \mbf{r}} \cdot \delta \mbf{r} + \frac{\pl f}{\pl t} \delta t = \frac{\pl f}{\pl \mbf{r}} \cdot \delta \mbf{r} = 0
-\end{equation*}
-可知，位矢的等时变分即为虚位移。
+无穷小增量$\delta \mbf{r}_i$\footnote{实际上就是坐标$x_i,y_i$和$z_i$的无穷小增量$\delta x_i,\delta y_i$和$\delta z_i$。}是在$t=t^*$固定时，从位矢$\mbf{r}_i^*$确定的位置，变化到无限接近由位矢$\mbf{r}_i^*+\delta \mbf{r}_i$确定的位置过程中的无穷小增量，称为{\bf 等时变分}。在等时变分中我们不考虑系统的运动过程，而是比较系统在给定时刻约束允许的无限接近的构型。
 
-对于完整约束
+前面也提到，虚位移（或者称为坐标的等时变分）满足的方程组与实位移（它是位矢的普通微分）满足的方程组形式十分相似，只是缺少了所有对应于$\mathd t$的项。因此不妨将等时变分同时也作为一种操作，当其作用在函数上时，与普通微分运算规则完全相同，但是附加一个条件：等时变分作用在时间上结果为零，即$\delta t=0$。例如对函数$f=f(\mbf{r},t)$做等时变分将得到
 \begin{equation*}
-	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n;t) = 0,\quad j = 1,2,\cdots,k
+	\delta f = \frac{\pl f}{\pl \mbf{r}}\cdot \delta \mbf{r}
 \end{equation*}
-则有
-\begin{equation*}
-	\delta f_j = \sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i = 0,\quad j = 1,2,\cdots,k
-\end{equation*}
-即各虚位移分量线性相关，$k$个方程共减少$k$独立分量。对于线性非完整约束（只含有速度一次项）
-\begin{equation*}
-	\sum_{i=1}^n \mbf{A}_{ji}(\mbf{r},t) \cdot \dot{\mbf{r}}_i + A_{j0}(\mbf{r},t) = 0,\quad j=1,2,\cdots,k'
-\end{equation*}
-或者
-\begin{equation*}
-	\sum_{i=1}^n \mbf{A}_{ji}(\mbf{r},t) \cdot \mathrm{d} \mbf{r}_i + A_{j0}(\mbf{r},t) \mathrm{d}t = 0,\quad j=1,2,\cdots,k'
-\end{equation*}
-则有
-\begin{equation*}
-	\sum_{i=1}^n \mbf{A}_{ji}(\mbf{r},t) \cdot \delta \mbf{r}_i = 0,\quad j=1,2,\cdots,k'
-\end{equation*}
-即$k'$个方程共减少$k'$个独立虚位移分量。因此，系统的独立虚位移分量（即坐标变分）数为$3n-k-k'=f$。体系自由度即等于独立坐标变分个数。
 
-\subsection{约束力}
+下面考虑一些满足其他条件的等时变分。考虑两个在相同$\Delta t$内的可能位移，根据式\eqref{chapter2:可能位移}可得
+\begin{equation*}
+\begin{cases}
+	\ds \Delta_1\mbf{r}_i = \mbf{v}_{i1}^*\Delta t+\frac12 \mbf{a}_{i1}(\Delta t)^2+\cdots \\[1.5ex]
+	\ds \Delta_2\mbf{r}_i = \mbf{v}_{i2}^*\Delta t+\frac12 \mbf{a}_{i2}(\Delta t)^2+\cdots 
+\end{cases}
+\end{equation*}
+其中可能速度$\mbf{v}_{is}^*(s=1,2)$和可能加速度$\mbf{a}_{is}^*(s=1,2)$分别满足方程组\eqref{chapter2:完整约束对质点系中质点速度的限制}、\eqref{chapter2:非完整约束对质点系中质点速度的限制}和方程组\eqref{chapter2:完整约束对质点系中质点加速度的限制}、\eqref{chapter2:非完整约束对质点系中质点加速度的限制}。将两组可能位移相减，可得
+\begin{equation}
+	\Delta_1\mbf{r}_i-\Delta_2\mbf{r}_i = (\mbf{v}_{i1}^*-\mbf{v}_{i2}^*)\Delta t + \frac12 (\mbf{a}_{i1}^*-\mbf{a}_{i2}^*)(\Delta t)^2+\cdots
+	\label{chapter2:其他形式的等时变分}
+\end{equation}
 
-起约束作用的物体对被约束质点施加的作用力$\mbf{R}_i$称为{\heiti 约束力}，而体系质点除约束力之外的受力$\mbf{F}_i$称为{\heiti 主动力}。一般情况下，主动力是已知力，约束力是未知力，由主动力和质点运动情况决定。
+如果$\delta \mbf{v}_i = \mbf{v}_{i1}^*-\mbf{v}_{i2}^*\neq \mbf{0}$，则式\eqref{chapter2:其他形式的等时变分}中的主要部分是$\Delta t$的线性项，它等于$\delta\mbf{v}_i\Delta t$，并且根据方程组\eqref{chapter2:完整约束对质点系中质点速度的限制}、\eqref{chapter2:非完整约束对质点系中质点速度的限制}可以证明它满足虚位移方程组\eqref{chapter2:虚位移方程1}、\eqref{chapter2:虚位移方程2}，即
+\begin{equation}
+	\delta \mbf{r}_i = \delta \mbf{v}_i\Delta t \label{chapter2:Jordan变分}
+\end{equation}
+是虚位移。在$\mbf{v}_{i1}\neq \mbf{v}_{i2}$的假设下，等时变分\eqref{chapter2:Jordan变分}称为{\bf Jordan变分}。
 
-约束力总虚功为零的约束称为{\heiti 理想约束}，下列几种常见的约束都是理想约束。
+如果$\mbf{v}_{i1}^*=\mbf{v}_{i2}^*$但$\delta \mbf{a}_i = \mbf{a}_{i1}^*-\mbf{a}_{i2}^*\neq \mbf{0}$，则式\eqref{chapter2:其他形式的等时变分}中的主要部分是$\dfrac12 \delta\mbf{a}_i(\Delta t)^2$，并且根据方程组\eqref{chapter2:完整约束对质点系中质点加速度的限制}、\eqref{chapter2:非完整约束对质点系中质点加速度的限制}可以证明它满足虚位移方程组\eqref{chapter2:虚位移方程1}、\eqref{chapter2:虚位移方程2}，即
+\begin{equation}
+	\delta \mbf{r}_i = \frac12 \delta \mbf{a}_i(\Delta t)^2 \label{chapter2:Gauss变分}
+\end{equation}
+是虚位移。在$\mbf{v}_{i1}=\mbf{v}_{i2}$但$\mbf{a}_{i1}^*\neq \mbf{a}_{i2}^*$的假设下，等时变分\eqref{chapter2:Gauss变分}称为{\bf Gauss变分}。
+
+% 将$t=t^*, \mbf{r}_i=\mbf{r}_i^*$和$\mbf{v}_{is}^*(s=1,2)$分别代入方程组\eqref{chapter2:完整约束对质点系中质点速度的限制}、\eqref{chapter2:非完整约束对质点系中质点速度的限制}中，并用$s=1$的方程减去$s=2$的方程然后两端乘以$\Delta t$，可得
+% \begin{subnumcases}{}
+	% \sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i}\cdot (\mbf{v}_{i1}^*-\mbf{v}_{i2}^*)\Delta t = 0 \quad (j=1,2,\cdots,k) \label{chapter2:Jordan变分可能速度方程1}
+	% \sum_{i=1}^n \mbf{A}_{ji}\cdot (\mbf{v}_{i1}^*-\mbf{v}_{i2}^*)\Delta t = 0  \quad (j=1,2,\cdots,k')\label{chapter2:Jordan变分可能速度方程2}
+% \end{subnumcases}
+
+\subsection{广义坐标与位形空间}\label{chapter2:subsection-广义坐标与位形空间}
+
+假设质点系的约束可以用式\eqref{chapter2:完整约束的一般形式}和\eqref{chapter2:非完整约束的一般形式}来表示，而且其中的$k$个函数$f_j(j=1,2,\cdots,k)$之间是相互独立的。
+
+能够确定系统位形的参数的最小数目称为{\bf 独立广义坐标数}，可以唯一确定系统位形的一组参数则称为{\bf 广义坐标}。由于函数$f_j(j=1,2,\cdots,k)$之间是相互独立的，所以此时独立广义坐标数$s=3n-k$。广义坐标可以从各质点的$3n$个笛卡尔坐标$x_i,y_i,z_k$中选取$s$个，使得其他坐标可以利用方程\eqref{chapter2:完整约束的一般形式}解出。但一般来说，广义坐标没有必要取为笛卡尔坐标，可以选取任意$s$个独立的可以确定系统位形的量$q_\alpha(\alpha=1,2,\cdots,s)$，它们可以是距离、角度、面积，也可以是没有直接几何意义的，只需要它们互相之间相互独立，并且可以将各质点的位矢$\mbf{r}_i$用$\mbf{q}$\footnote{此处用$\mbf{q}$来{\it 形式上}表示由所有广义坐标作为分量的一个向量，其各个分量的量纲不必相同，因此任何试图计算$\mbf{q}$内积的运算（例如求其长度）都是不合法的，后文不再解释。}和时间$t$表示出来：
+\begin{equation}
+	\mbf{r}_i = \mbf{r}_i(\mbf{q},t)\quad (i=1,2,\cdots,n)
+	\label{chapter2:广义坐标变换方程}
+\end{equation}
+式\eqref{chapter2:广义坐标变换方程}称为{\bf 广义坐标变换方程}，这些变换将使得式\eqref{chapter2:完整约束的一般形式}所表示的$k$个完整约束自动满足，而且由于$q_\alpha(\alpha=1,2,\cdots,s)$之间互相独立，所以矩阵
+\begin{equation}
+	\begin{pmatrix}
+		\dfrac{\pl \mbf{r}_1}{\pl q_1} & \cdots & \dfrac{\pl \mbf{r}_1}{\pl q_s} \\
+		\vdots & & \vdots \\
+		\dfrac{\pl \mbf{r}_n}{\pl q_1} & \cdots & \dfrac{\pl \mbf{r}_n}{\pl q_s}
+	\end{pmatrix}
+	\label{chapter2:坐标变换方程的Jacobi矩阵}
+\end{equation}
+是满秩的。
+
+我们假设选择广义坐标$\mbf{q}$使得系统的任意位形都能在$\mbf{q}$取某个值的时候利用坐标变换方程\eqref{chapter2:广义坐标变换方程}得到。如果不能得到所有可能的位置，则可以局部地引入广义坐标，对于不同的可能位置集引入不同的广义坐标。并且假设坐标变换方程\eqref{chapter2:广义坐标变换方程}右端的函数对其所有自变量都是二阶连续可微的。另外，如果系统是定常的，则总可以通过选择广义坐标使得坐标变换方程\eqref{chapter2:广义坐标变换方程}中同样不显含时间。
+
+在实际操作时，通常完全不需要首先建立约束方程\eqref{chapter2:完整约束的一般形式}\footnote{尤其是几何约束。}，而根据问题的物理意义可以知道需要确定系统可能位形所必须的广义坐标的数量，并利用几何关系直接设出广义坐标。
+
+对于每个时刻$t$，系统的可能位形与$s$维抽象空间$(q_1,q_2,\cdots,q_s)$之间一一对应，这个$s$维抽象空间$(q_1,q_2,\cdots,q_s)$称为{\bf 位形空间}或{\bf 广义坐标空间}。系统的每个可能位形都对应于位形空间的某个点，该点称为{\bf 映射点}。系统的运动即对应于映射点在位形空间中的运动。
+
+\begin{example}[单摆]\label{chapter2:example-单摆}
+由不可伸长、不计质量的细绳悬挂于固定点的一个质点在竖直平面内的运动即构成一个单摆（数学摆），如图\ref{chapter2:figure-单摆和单摆的位形空间}所示。单摆有一个几何约束，可选择摆角$\theta$作为单摆的广义坐标，由此单摆的位形由摆角$\theta$唯一确定。此时单摆的坐标变换方程为
+\begin{equation*}
+\begin{cases}
+	x = l\cos\theta \\
+	y = l\sin\theta
+\end{cases}
+\end{equation*}
+
+由于数轴上不同的点$\theta$和$\theta+2k\pi(k=\pm 1,\pm 2,\cdots)$对应着单摆的同一个位形，因此单摆的位形和整个数轴不是一一对应。但我们可以在数轴上划分出一个半开区间$0\leqslant\theta<2\pi$\footnote{任意长度为$2\pi$的半开区间都可以。}，即可实现与单摆位置的一一对应。
+
+但上面的做法又破坏了连续性，因为单摆的两个临近位置$\theta=0+0$和$\theta=2\pi-0$不是相邻点。为了保持连续性，需要认为$\theta=0$和$\theta=2\pi$是同一点\footnote{这种条件又称为“周期性边界条件”。}。直观上可以这样操作：将区间的$\theta=0$和$\theta=2\pi$“粘接”起来，得到的几何形状——单位圆周$S^1$就是单摆的坐标空间。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//单摆和单摆的位形空间
+	pair O,x,y,r;
+	O = (0,0);
+	x = (4,0);
+	y = (0,-4.5);
+	r = (3,-4);
+	draw(Label("$x$",EndPoint),O--x,Arrow);
+	draw(Label("$y$",EndPoint),O--y,Arrow);
+	label("$O$",O,W);
+	draw(Label("$l$",MidPoint,Relative(W)),O--r);
+	fill(shift(r)*scale(0.1)*unitcircle,black);
+	real R=0.4;
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,R,-90,degrees(r)));
+	picture pic;
+	real l = 2;
+	real theta = 1.5;
+	draw(pic,Label("$\theta$",EndPoint),(-l,0)--(l,0),Arrow);
+	draw(pic,(-theta,0)--(theta,0),linewidth(0.8bp));
+	real r = 1.5;
+	pair C = (0,-2.75);
+	draw(pic,Label("$\theta$",Relative(0.095),Relative(E)),circle(C,r),linewidth(0.8bp));
+	add(pic,arrow(circle(C,r),invisible,FillDraw(black),Relative(0.1)));
+	real b = 0.05;
+	draw(pic,Label("$0$",EndPoint),(-theta,b)--(-theta,-b),linewidth(0.8bp));
+	draw(pic,Label("$2\pi$",EndPoint),(theta,b)--(theta,-b),linewidth(0.8bp));
+	pair P = C+r*dir(0);
+	draw(pic,Label("$0$",EndPoint),P+(-b,0)--P+(b,0),linewidth(0.8bp));
+	add(shift(7,0)*pic);
+\end{asy}
+\caption{单摆系统和单摆的位形空间}
+\label{chapter2:figure-单摆和单摆的位形空间}
+\end{figure}
+\end{example}
+
+\begin{example}[双摆]
+在一个单摆的质点上再悬挂另外一个单摆，并限制两个单摆都只能在竖直平面内运动，由此构成的系统称为双摆系统。双摆系统有两个几何约束，因此可选择两个摆与竖直方向的夹角$\theta_1,\theta_2$作为广义坐标。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//双摆系统和双摆的位形空间
+	pair O,x,y,P1,P2;
+	real theta1,theta2,l1,l2,r;
+	O = (0,0);
+	x = (4,0);
+	y = (0,-4);
+	l1 = 2;
+	l2 = 3;
+	theta1 = 30;
+	theta2 = 50;
+	draw(Label("$x$",EndPoint),O--x,Arrow);
+	draw(Label("$y$",EndPoint),O--y,Arrow);
+	P1 = l1*dir(theta1-90);
+	P2 = P1 + l2*dir(theta2-90);
+	r = 0.1;
+	fill(shift(P1)*scale(r)*unitcircle,black);
+	fill(shift(P2)*scale(r)*unitcircle,black);
+	draw(Label("$l_1$",MidPoint,Relative(W)),O--P1);
+	draw(Label("$l_2$",MidPoint,Relative(W)),P1--P2);
+	draw(P1--P1+1.25*dir(-90),dashed);
+	real R = 0.5;
+	draw(Label("$\theta_1$",MidPoint,Relative(E)),arc(O,R,-90,theta1-90));
+	R = 0.4;
+	draw(Label("$\theta_2$",MidPoint,Relative(E)),arc(P1,R,-90,theta2-90));
+	label("$(x_1,y_1)$",P1,NE);
+	label("$(x_2,y_2)$",P2+(0.1,0),E);
+	picture pic;
+	real x,y;
+	x = 3.75;
+	y = 3.75;
+	draw(pic,Label("$\theta_1$",EndPoint),O--(x,0),Arrow);
+	draw(pic,Label("$\theta_2$",EndPoint),O--(0,y),Arrow);
+	label(pic,"$O$",O,SW);
+	real theta = 2.75;
+	filldraw(pic,box(O,(theta,theta)),0.75white,linewidth(0.8bp));
+	label(pic,"$2\pi$",(theta,0),S);
+	label(pic,"$2\pi$",(0,theta),W);
+	add(shift(5.5,-4)*pic);
+\end{asy}
+\caption{双摆系统和双摆的位形空间}
+\label{chapter2:figure-双摆系统和双摆的位形空间}
+\end{figure}
+
+基于与单摆中类似的原因，广义坐标$\theta_1$和$\theta_2$的取值应该限制在$0\leqslant \theta_1<2\pi, 0\leqslant \theta_2<2\pi$上\footnote{取法不唯一。}，并认为$\theta_1=0$的线段和$\theta_1=2\pi$的线段是同一条线段，$\theta_2=0$的线段和$\theta_2=2\pi$的线段也是同一条线段，即得到双摆系统的位形空间。直观上可以这样做：将正方形的对边“粘接”在一起，第一次粘接得到圆柱，第二次粘接则得到圆环面$S^1\times S^1$。
+\end{example}
+
+\subsection{广义速度、广义加速度与广义虚位移}
+
+广义坐标的导数$\dot{q}_\alpha(\alpha=1,2,\cdots,s)$称为{\bf 广义速度}，广义速度的导数$\ddot{q}_\alpha(\alpha=1,2,\cdots,s)$称为{\bf 广义加速度}。利用广义速度$\dot{q}_\alpha$和广义加速度$\ddot{q}_\alpha$可以表示出系统中各个质点的速度和加速度：
+\begin{align}
+	 & \mbf{v}_i = \dot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha}\dot{q}_\alpha+\frac{\pl \mbf{r}_i}{\pl t} \label{chapter2:各质点速度与广义速度的关系} \\
+	 & \mbf{a}_i = \ddot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha}\ddot{q}_\alpha + \sum_{\alpha,\beta=1}^s \frac{\pl^2 \mbf{r}_i}{\pl q_\alpha\pl q_\beta}\dot{q}_\alpha\dot{q}_\beta + 2\sum_{\alpha=1}^s\frac{\pl^2 \mbf{r}_i}{\pl q_\alpha\pl t} \dot{q}_\alpha + \frac{\pl^2 \mbf{r}_i}{\pl t^2} \label{chapter2:各质点加速度与广义速度和广义加速度的关系}
+\end{align}
+式中$i=1,2,\cdots,n$。将$\dot{\mbf{r}}_i$看作是广义坐标和广义速度的函数，即$\dot{\mbf{r}}_i=\dot{\mbf{r}}_i(\mbf{q},\dot{\mbf{q}},t)$，则可由式\eqref{chapter2:各质点速度与广义速度的关系}导出两个十分重要的关系式，称为{\bf 经典Lagrange关系}：
+\begin{equation}
+	\frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha} = \frac{\pl \mbf{r}_i}{\pl q_\alpha}, \quad \frac{\mathd}{\mathd t}\frac{\pl \mbf{r}_i}{\pl q_\alpha} = \frac{\pl \dot{\mbf{r}}_i}{\pl q_\alpha}\quad (\alpha=1,2,\cdots,s)
+	\label{chapter2:经典Lagrange关系}
+\end{equation}
+式\eqref{chapter2:经典Lagrange关系}中的第一个式子可以通过\eqref{chapter2:各质点速度与广义速度的关系}直接求偏导数得到。下面推导式\eqref{chapter2:经典Lagrange关系}中的另一式。注意到$\dfrac{\pl \mbf{r}_i}{\pl q_\alpha}=\dfrac{\pl \mbf{r}_i}{\pl q_\alpha}(\mbf{q},t)$与广义速度无关，所以有
+\begin{equation*}
+	\frac{\mathd}{\mathd t}\frac{\pl \mbf{r}_i}{\pl q_\alpha} = \sum_{\beta=1}^s \frac{\pl^2 \mbf{r}_i}{\pl q_\alpha\pl q_\beta}\dot{q}_\beta + \frac{\pl^2 \mbf{r}_i}{\pl q_\alpha\pl t} = \frac{\pl}{\pl q_\alpha} \left(\sum_{\beta=1}^s \frac{\pl \mbf{r}_i}{\pl q_\beta}\dot{q}_\beta + \frac{\pl \mbf{r}_i}{\pl t}\right) = \frac{\pl \dot{\mbf{r}}_i}{\pl q_\alpha}
+\end{equation*}
+
+在上面的推导中，完全没有用到任何关于函数$\mbf{r}=\mbf{r}(\mbf{q},t)$的具体性质，因此将其中的$\mbf{r}$替换为任何关于广义坐标$\mbf{q}$和时间$t$的函数，经典Lagrange关系都成立，即对于任意函数$f=f(\mbf{q},t)$都有
+\begin{equation}
+	\frac{\pl \dot{f}}{\pl \dot{q}_\alpha} = \frac{\pl f}{\pl q_\alpha}, \quad \frac{\mathd}{\mathd t}\left(\frac{\pl f}{\pl q_\alpha}\right) = \frac{\pl \dot{f}}{\pl q_\alpha}\quad (\alpha=1,2,\cdots,s)
+	\label{chapter2:推广经典Lagrange关系}
+\end{equation}
+式\eqref{chapter2:推广经典Lagrange关系}表示的关系称为{\bf 推广经典Lagrange关系}。
+
+下面将非完整约束方程\eqref{chapter2:非完整约束的一般形式}写成广义坐标的形式。将坐标变换方程\eqref{chapter2:广义坐标变换方程}和式\eqref{chapter2:各质点速度与广义速度的关系}代入非完整约束方程\eqref{chapter2:非完整约束的一般形式}中，可得
+\begin{equation}
+	\sum_{\alpha=1}^s B_{j\alpha}(\mbf{q},t) \dot{q}_\alpha + B_{j0}(\mbf{q},t) = 0\quad (j=1,2,\cdots,k')
+	\label{chapter2:用广义坐标表示的非完整约束}
+\end{equation}
+其中的系数$B_{j\alpha}$和$B_{j0}$为
+\begin{equation}
+	B_{j\alpha}(\mbf{q},t) = \sum_{i=1}^n \mbf{A}_{ji}\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha},\quad B_{j0}(\mbf{q},t) = \sum_{i=1}^n \mbf{A}_{ji}\cdot \frac{\pl \mbf{r}_i}{\pl t}+A_{j0}
+	\label{chapter2:用广义坐标表示的非完整约束-系数}
+\end{equation}
+对于完整系统，广义速度$\dot{q}_\alpha$之间相互独立且可任意取值。对于非完整系统，广义坐标与完整系统一样可以任意取值，但广义速度不是独立的，它们受$k'$个关系式\eqref{chapter2:用广义坐标表示的非完整约束}限制。
+
+广义坐标的等时变分$\delta q_\alpha(\alpha=1,2,\cdots,s)$称为{\bf 广义虚位移}，根据第\ref{chapter2:subsection-实位移与虚位移}节所述的等时变分运算规则可得
+\begin{equation}
+	\delta \mbf{r}_i = \sum_{\alpha=1}^s\frac{\pl \mbf{r}_i}{\pl q_\alpha}\delta q_\alpha \quad (i=1,2,\cdots,n)
+	\label{chapter2:虚位移与广义虚位移之间的关系}
+\end{equation}
+对于完整系统，广义虚位移$\delta q_\alpha$之间相互独立，可以任意取值。对于非完整系统，将式\eqref{chapter2:用广义坐标表示的非完整约束}两端乘以$\mathd t$，将$\mathd q_\alpha$替换为$\delta q_\alpha$，并去掉含有$\mathd t$的项\footnote{可以如此处理是由于等时变分的运算规则与普通微分完全相同，但对时间结果为零。}，可得
+\begin{equation}
+	\sum_{\alpha=1}^s B_{j\alpha}(\mbf{q},t) \delta q_\alpha=0 \quad (j=1,2,\cdots,k')
+	\label{chapter2:非完整约束的虚位移表示}
+\end{equation}
+由此可知，非完整系统中可以独立取值的广义虚位移数要比完整系统少$k'$个。
+
+\section{约束反力与理想约束}
+
+\subsection{主动力与约束反力}\label{chapter2:subsection-主动力与约束反力}
+
+在一个系统中，设$m_i$是其中第$i$个质点的质量，$\mbf{r}_i$为其位矢，如果系统是自由的，则第$i$个质点的加速度由Newton第二定律确定，即$m_i\ddot{\mbf{r}}_i=\mbf{F}_i$，其中$\mbf{F}_i$为作用在第$i$个质点上的合力。
+
+如果系统不是自由的，则系统中每个质点的加速度都将受到约束的限制，此时，一般来说，加速度$\ddot{\mbf{r}}_i=\dfrac{\mbf{F}_i}{m_i}$将不能满足可能加速度的方程\eqref{chapter2:完整约束对质点系中质点加速度的限制}和\eqref{chapter2:非完整约束对质点系中质点加速度的限制}，即非自由系统中第$i$个质点的加速度$\mbf{a}_i$不同于自由系统情况下的加速度$\ddot{\mbf{r}}_i$，因此约束导致出现了附加的加速度$\mbf{a}_i-\ddot{\mbf{r}}_i$。Newton第二定律表明，质点的任何加速度都是由其上作用的某些力而产生的，这个产生附加加速度的力是由于约束的存在才出现的，称为{\bf 约束反力}。为了不混淆约束反力和作用在非自由系统上的其他里，我们称其他力为{\bf 主动力}。前面所述的$\mbf{F}_i$实际上是质点$i$所有主动力的合力。
+
+主动力也可以称为{\bf 给定力}，如果约束瞬间消失，这些力仍然保持作用在系统上。而约束反力有时也称为{\bf 被动力}，它们不是事先已知的，不仅依赖于实现约束的物理机制，而且依赖于主动力和系统的运动。
+
+如果用$\mbf{R}_i$表示作用在质点$i$上的约束反力的合力，则可得到运动方程
+\begin{equation}
+	m_i\mbf{a}_i = \mbf{F}_i+\mbf{R}_i \quad (i=1,2,\cdots,n)
+	\label{chapter2:非自由系统中质点的Newton第二定律方程}
+\end{equation}
+这个方程表明，在动力学中，非自由系统可以看作主动力和约束反力共同作用下的自由系统。
+
+\subsection{理想约束}
+
+如果约束反力在任意虚位移上所做的功都等于零，即
+\begin{equation}
+	\sum_{i=1}^n\mbf{R}_i\cdot \delta\mbf{r}_i = 0
+\end{equation}
+则该约束称为{\bf 理想约束}。理想约束的条件不是由约束方程得到的，是附加条件。
+
+下列几种常见的约束都是理想约束。
 \begin{enumerate}
-	\item 质点沿光滑曲面运动，如图\ref{质点沿光滑曲面运动约束}所示。此时约束力$\mbf{R}$沿曲面在该点的法线方向，而虚位移$\delta \mbf{r}$根据上节讨论则在切平面内，即有
-	\begin{equation*}
-		\mbf{R} \cdot \delta \mbf{r} = 0
-	\end{equation*}
-	\item 刚性联结的两质点（包括刚体中任意两点），如图\ref{刚性联结的两质点约束}所示。此时约束力$\mbf{R}_1$和$\mbf{R}_2$沿联结方向，根据Newton第三定律可有$\mbf{R}_2=-\mbf{R}_1$。考虑到
-	\begin{equation*}
-		\mbf{r}_{12} \cdot \mbf{r}_{12} = l^2
-	\end{equation*}
-	所以
-	\begin{equation*}
-		2\mbf{r}_{12} \cdot \delta \mbf{r}_{12} = 0
-	\end{equation*}
-	即有
-	\begin{equation*}
-		\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{R}_1 \cdot (\delta \mbf{r}_1 - \delta \mbf{r}_2) = \mbf{R}_1 \cdot \delta \mbf{r}_{12} = 0
-	\end{equation*}
-	此处考虑到了$\mbf{R}_1 \parallel \mbf{r}_{12}$。
-	\item 两个物体以完全粗糙的表面相接触（不滑动，只能作纯滚动），如图\ref{两个物体以完全粗糙的表面相接触约束}所示。此时接触点上的约束力满足$\mbf{R}_2 =- \mbf{R}_1$，相对速度$\mbf{v}_2-\mbf{v}_1= \mbf{0}$，即有$\delta \mbf{r}_2-\delta \mbf{r}_1 = \mbf{0}$，因此
-	\begin{equation*}
-		\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{R}_1 \cdot (\delta \mbf{r}_1 - \delta \mbf{r}_2) = 0
-	\end{equation*}
-	\item 两个质点以柔软而不可伸长的绳子相联结，如图\ref{两个质点以柔软而不可伸长的绳子相联结约束}所示。此时约束力$\mbf{R}_1$和$\mbf{R}_2$都沿相应质点处的绳子方向，且大小相等记作$T$。将两个质点的虚位移$\delta \mbf{r}_1$和$\delta \mbf{r}_2$按沿绳和正交于绳的方向进行分解，将沿绳方向的虚位移记作$\delta \mbf{r}_1^\parallel = \delta l_1\mbf{e}_1$和$\delta \mbf{r}_2^\parallel = \delta l_2 \mbf{e}_2$。正交于绳方向的虚位移对应的虚功自然为零，考虑沿绳方向虚位移对应的虚功
-	\begin{equation*}
-		\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = T\delta l_1 + T\delta l_2
-	\end{equation*}
-	由于绳不可伸长，所以有$\delta l_1 + \delta l_2 = 0$，故有
-	\begin{equation*}
-		\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{0}
-	\end{equation*}
-\end{enumerate}
+\item 质点沿光滑（固定或运动的）曲面运动：如图\ref{质点沿光滑曲面运动约束}所示。此时约束反力$\mbf{R}$沿曲面在该点的法线方向，而虚位移$\delta \mbf{r}$则在切平面内，即有
+\begin{equation*}
+	\mbf{R} \cdot \delta \mbf{r} = 0
+\end{equation*}
+\item 刚性联结的两质点（包括刚体\footnote{刚体是一种理想模型，指任何情况下都不会发生形变的物体。}中任意两点）：此时约束反力$\mbf{R}_1$和$\mbf{R}_2$沿联结方向，根据Newton第三定律可有$\mbf{R}_2=-\mbf{R}_1$。考虑到
+\begin{equation*}
+	\mbf{r}_{12} \cdot \mbf{r}_{12} = l^2
+\end{equation*}
+所以
+\begin{equation*}
+	2\mbf{r}_{12} \cdot \delta \mbf{r}_{12} = 0
+\end{equation*}
+即有
+\begin{equation*}
+	\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{R}_1 \cdot (\delta \mbf{r}_1 - \delta \mbf{r}_2) = \mbf{R}_1 \cdot \delta \mbf{r}_{12} = 0
+\end{equation*}
+此处考虑到了$\mbf{R}_1 \parallel \mbf{r}_{12}$。
 \begin{figure}[htb]
 \centering
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \begin{asy}
-	size(200);
+	size(175);
 	//质点沿光滑曲面运动约束
 	pair O,A[],vec,P,tan;
 	path surf;
@@ -382,33 +565,139 @@
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \begin{asy}
-	size(200);
-	//刚性联结的两质点约束
-	pair O,P1,P2;
-	O = (0,0);
-	P1 = (0,1.5);
-	P2 = (0.8,1);
-	label("$O$",O,W);
-	dot(P1);
-	dot(P2);
-	label("$P_1$",P1,N);
-	label("$P_2$",P2,N);
-	draw(Label("$\boldsymbol{r}_1$",MidPoint,Relative(W)),O--P1,Arrow);
-	draw(Label("$\boldsymbol{r}_2$",MidPoint,Relative(E)),O--P2,Arrow);
-	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),P2--P1,Arrow);
-	draw(Label("$\boldsymbol{R}_1$",EndPoint),P1--interp(P1,P2,-0.6),Arrow);
-	draw(Label("$\boldsymbol{R}_2$",EndPoint),P2--interp(P2,P1,-0.6),Arrow);
+	size(175);
+	//定点运动的刚体
+	pair A[];
+	A[0] = (0,0);
+	A[1] = (1,1);
+	A[2] = (1,2);
+	A[3] = (0,3);
+	A[4] = (-1,3);
+	A[5] = (-1.3,2);
+	A[6] = (-0.9,1);
+	guide p;
+	for(pair P:A){
+		p = p..P;
+	}
+	p = p..cycle;
+	draw(p,linewidth(0.8bp));
+	real l = 0.3;
+	draw((0,0)--l*dir(-120)--l*dir(-60)--cycle);
+	dot("$O$",(0,0),WSW);
+	picture dashpic;
+	path p = (-10,0)--(10,0);
+	draw(dashpic,p,linewidth(0.8bp));
+	pair dash = dir(-135);
+	real h = 0.1;
+	for(real r=0;r<=1;r=r+0.005){
+		pair P = relpoint(p,r);
+		draw(dashpic,P--P+dash);
+	}
+	clip(dashpic,box((-l,0.1),(l,-h)));
+	add(shift(0,-l*Sin(60))*dashpic);
+	draw(Label("$\boldsymbol{R}$",EndPoint),(0,0)--1.2*dir(55),Arrow);
 \end{asy}
-\caption{刚性联结的两质点}
-\label{刚性联结的两质点约束}
+\caption{定点运动的刚体}
+\label{定点运动的刚体约束}
 \end{minipage}
-\hspace{0.4cm}
+\end{figure}
+
+\item 定点运动的刚体：如图\ref{定点运动的刚体约束}所示。因为$\delta\mbf{r}=0$（因为约束反力$\mbf{R}$的作用点不运动），因此有
+\begin{equation*}
+	\mbf{R} \cdot \delta \mbf{r} = 0
+\end{equation*}
+\item 定轴转动的刚体：定轴转动相当于刚体上有两个固定点，因此必然有$\mbf{R}_1 \cdot \delta \mbf{r}_1+\mbf{R}_2 \cdot \delta \mbf{r}_2 = 0$。
+\item 两个刚体用铰链连接于一点：如图\ref{两个刚体用铰链连接于一点约束}所示。因为$\mbf{R}_1=-\mbf{R}_2$，$\delta\mbf{r}_1=\delta\mbf{r}_2$，所以
+\begin{equation*}
+	\mbf{R}_1 \cdot \delta \mbf{r}_1+\mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{R}_1\cdot (\delta \mbf{r}_1-\delta\mbf{r}_2) = 0
+\end{equation*}
+\item 两个刚体以光滑表面相切：如图\ref{两个刚体以光滑表面相切约束}所示。两个刚体的切点之间的相对速度位于公共切平面内，因此$\delta\mbf{r}_1-\delta\mbf{r}_2$也在切平面内。而且约束反力$\mbf{R}_1$和$\mbf{R}_2$都垂直于这个切平面，并且$\mbf{R}_1=-\mbf{R}_2$，所以
+\begin{equation*}
+	\mbf{R}_1 \cdot \delta \mbf{r}_1+\mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{R}_1\cdot (\delta \mbf{r}_1-\delta\mbf{r}_2) = 0
+\end{equation*}
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	size(175);
+	//两个刚体用铰链连接于一点
+	pair O,A[],B[],P,Q,B[];
+	O = (0,0);
+	A[0] = (0,0);
+	A[1] = (1,1);
+	A[2] = (1.3,2);
+	A[3] = (0,3);
+	A[4] = (-1.5,2);
+	A[5] = (-1,0.5);
+	path bodyA,bodyB;
+	bodyA = rotate(40)*yscale(0.8)*(A[0]..A[1]..A[2]..A[3]..A[4]..A[5]..A[0]);
+	P = A[0];
+	B[0] = (0,0);
+	B[1] = (0.56,-0.2);
+	B[2] = (1,-1);
+	B[3] = (0.5,-1.5);
+	B[4] = (-0.7,-0.8);
+	B[5] = (-0.2,-0.25);
+	bodyB = rotate(45)*(B[0]..B[1]..B[2]..B[3]..B[4]..B[5]..B[0]);
+	draw(bodyA,linewidth(0.8bp));
+	draw(bodyB,linewidth(0.8bp));
+	pair R = dir(-30);
+	draw(Label("$\boldsymbol{R}_1$",EndPoint),P--P-R,Arrow);
+	draw(Label("$\boldsymbol{R}_2$",EndPoint),P--P+R,Arrow);
+	dot("$O$",P,1.5*dir(-110),UnFill);
+\end{asy}
+\caption{两个刚体用铰链连接于一点}
+\label{两个刚体用铰链连接于一点约束}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	size(175);
+	//两个刚体以光滑表面相切
+	pair O,A[],B[],vec,P,Q,tan;
+	O = (0,0);
+	A[1] = (0.2,0);
+	A[2] = (0.3,0.1);
+	A[3] = (0.5,0.6);
+	A[4] = (1,0.8);
+	A[5] = (1.7,0.3);
+	A[6] = (1.65,0);
+	path bodyA,bodyB;
+	bodyA = A[1]..A[2]..A[3]..A[4]..A[5]..A[6];
+	draw(bodyA,linewidth(0.8bp));
+	real l = 2;
+	real h = 0.07;
+	picture pic;
+	pair dash = dir(-135);
+	path p = (-1,0)--(l+1,0);
+	draw(pic,p,linewidth(0.8bp));
+	for(real r=0;r<=1;r=r+0.0175){
+		pair P = relpoint(p,r);
+		draw(pic,P--P+dash);
+	}
+	clip(pic,box((0,0.1),(l,-h)));
+	add(pic);
+	P = relpoint(bodyA,0.65);
+	tan = 0.5*reldir(bodyA,0.65);
+	Q = P+0.7*(0.2,0.5);
+	label("$P$",P,SW);
+	draw(circle(Q,length(Q-P)),linewidth(0.8bp));
+	draw(Label("$\delta \boldsymbol{r}_1-\delta \boldsymbol{r}_2$",EndPoint),P--P-tan,Arrow);
+	draw(Label("$\boldsymbol{R}_1$",EndPoint),P--P-rotate(90)*tan,Arrow);
+	draw(Label("$\boldsymbol{R}_2$",EndPoint),P--P+rotate(90)*tan,Arrow);
+\end{asy}
+\caption{两个刚体以光滑表面相切}
+\label{两个刚体以光滑表面相切约束}
+\end{minipage}\\
 
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \begin{asy}
-	size(200);
-	//两个物体以完全粗糙的表面相接触约束
+	size(175);
+	//两个刚体以粗糙表面相切
 	pair O,O1,A[],B[],vec,P,Q,tan;
 	O = (0,0);
 	O1 = (2,0);
@@ -438,22 +727,22 @@
 	draw(Label("$\boldsymbol{R}_1$",EndPoint),P--P-0.5*dir(80),Arrow);
 	draw(Label("$\boldsymbol{R}_2$",EndPoint),P--P+0.5*dir(80),Arrow);
 \end{asy}
-\caption{两个物体以完全粗糙的表面相接触}
-\label{两个物体以完全粗糙的表面相接触约束}
+\caption{两个刚体以粗糙表面相切}
+\label{两个刚体以粗糙表面相切约束}
 \end{minipage}
 \hspace{1cm}
 \begin{minipage}[t]{0.45\textwidth}
 \centering
 \begin{asy}
-	size(200);
+	size(175);
 	//两个质点以柔软而不可伸长的绳子相联结约束
 	pair O,P1,P2,tan1,tan2;
 	real r,l1,l2;
 	path cyl;
 	O = (0,0);
-	r = 0.2;
+	r = 0.08;
 	cyl = shift(O)*scale(r)*unitcircle;
-	filldraw(cyl,blue,black);
+	draw(cyl);
 	P1 = relpoint(cyl,0.45);
 	tan1 = reldir(cyl,0.45);
 	P2 = relpoint(cyl,0.22);
@@ -476,82 +765,293 @@
 \end{minipage}
 \end{figure}
 
+\item 两个刚体以粗糙表面相切（不滑动，只能作纯滚动）：如图\ref{两个刚体以粗糙表面相切约束}所示。此时接触点上的约束反力满足$\mbf{R}_2 =- \mbf{R}_1$，相对速度$\mbf{v}_2-\mbf{v}_1= \mbf{0}$，即有$\delta \mbf{r}_2-\delta \mbf{r}_1 = \mbf{0}$，因此
+\begin{equation*}
+	\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{R}_1 \cdot (\delta \mbf{r}_1 - \delta \mbf{r}_2) = 0
+\end{equation*}
+\item 两个质点以柔软而不可伸长的绳子相联结：如图\ref{两个质点以柔软而不可伸长的绳子相联结约束}所示。此时约束反力$\mbf{R}_1$和$\mbf{R}_2$都沿相应质点处的绳子方向，且大小相等记作$T$。将两个质点的虚位移$\delta \mbf{r}_1$和$\delta \mbf{r}_2$按沿绳和正交于绳的方向进行分解，将沿绳方向的虚位移记作$\delta \mbf{r}_1^\parallel = \delta l_1\mbf{e}_1$和$\delta \mbf{r}_2^\parallel = \delta l_2 \mbf{e}_2$。正交于绳方向的虚位移对应的虚功自然为零，考虑沿绳方向虚位移对应的虚功
+\begin{equation*}
+	\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = T\delta l_1 + T\delta l_2
+\end{equation*}
+由于绳不可伸长，所以有$\delta l_1 + \delta l_2 = 0$，故有$\mbf{R}_1 \cdot \delta \mbf{r}_1 + \mbf{R}_2 \cdot \delta \mbf{r}_2 = \mbf{0}$。
+\end{enumerate}
+
+很多机构可以看作是上面提到的几种简单“零件”的组合。但是实际上不存在绝对光滑和绝对粗糙的曲面，也不存在绝对刚体和不可伸长的绳，因此实际问题中约束反力的功不等于零，通常这些功很小，可以在允许的近似意义下认为等于零。
+
 所有约束皆为理想约束的系统称为{\heiti 理想系统}，即理想系统需满足
 \begin{equation*}
 	\sum_{i=1}^n \mbf{R}_i \cdot \delta \mbf{r}_i = 0
 \end{equation*}
-对于非理想体系，可将摩擦力等虚功非零的约束力看作未知的主动力，而认为约束仍然是理想的，缺少的方程则由实验定律来补充。
 
-下面可以看到，虚位移和虚功的引入将使未知的约束力自动消去。
+很多情况下约束不能看作理想的，例如，刚体在粗糙的表面上进行带有滑动的滚动，这时仍然可以将约束看作理想的，而将摩擦力看作未知的主动力。新的未知数的出现要求附加新的由实验给出的经验定律。
+
+以后将主要讨论理想系统。提出的问题一般可以表述为：给定质点系统和约束，已知每个质点的质量$m_i$和作用在它们上的主动力$\mbf{F}_i$，并且给定每个质点的初位置$\mbf{r}_{i0}$和初速度$\mbf{v}_{i0}$，求作为时间函数的位矢$\mbf{r}_i(t)$和约束反力$\mbf{R}_i(t)$。这要求$6n$个未知数。
+
+\section{微分变分原理}\label{chapter2:section-微分变分原理}
+
+\subsection{动力学普遍方程·d'Alambert-Lagrange原理}
+
+将非自由系统的Newton第二定律方程\eqref{chapter2:非自由系统中质点的Newton第二定律方程}与自由系统的Newton第二定律方程$m_i\ddot{\mbf{r}}_i=\mbf{F}_i$相比较，可以发现它们的形式是不同的。这是由于方程\eqref{chapter2:非自由系统中质点的Newton第二定律方程}的右端有未知函数——约束反力$\mbf{R}_i$，这个力对于不同的约束将具有不同的形式、不同的性质，这是十分不便于求解的。
+
+现在将非自由系统的Newton第二定律方程\eqref{chapter2:非自由系统中质点的Newton第二定律方程}重写如下
+\begin{equation}
+	m_i\ddot{\mbf{r}}_i = \mbf{F}_i+\mbf{R}_i\quad (i=1,2,\cdots,n)
+	\label{chapter2:非自由系统中质点的Newton第二定律方程-重写}
+\end{equation}
+现在寻求一种方式将其中的约束反力消去，而自由系统的方程中本来就不含有约束反力，进而达到统一两种系统求解方式的目的。
+
+如果系统所有的约束都是双面的、理想的，即对任意虚位移$\delta\mbf{r}_i$都满足
+\begin{equation}
+	\sum_{i=1}^n\mbf{R}_i \cdot \delta\mbf{r}_i=0
+	\label{chapter2:理想约束假设-重写}
+\end{equation}
+将式\eqref{chapter2:非自由系统中质点的Newton第二定律方程-重写}改写为
+\begin{equation*}
+	\mbf{F}_i - m_i \ddot{\mbf{r}}_i = -\mbf{R}_i \quad (i=1,2,\cdots,n)
+\end{equation*}
+将上式两端点乘虚位移$\delta\mbf{r}_i$之后对$i$求和，可得
+\begin{equation}
+	\sum_{i=1}^n(\mbf{F}_i - m_i \ddot{\mbf{r}}_i) \cdot \delta \mbf{r}_i = 0
+	\label{chapter2:d'Alambert-Lagrange原理}
+\end{equation}
+式\eqref{chapter2:d'Alambert-Lagrange原理}为相应于主动力$\mbf{F}_i$的理想约束允许的系统运动的充分必要条件，称为{\bf 动力学普遍方程}或{\bf d'Alambert-Lagrange微分变分原理}\footnote{或者简称为{\bf d'Alambert原理}。}。相应于主动力的名字，式\eqref{chapter2:d'Alambert-Lagrange原理}左端的$-m_i\ddot{\mbf{r}}_i$项称为{\bf 惯性力}，据此，d'Alambert-Lagrange微分变分原理可以表述为：在给定时刻的所有可能运动中，只有真实运动使主动力和惯性力在任意虚位移上的虚功等于零。
+
+动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}是在理想约束假设\eqref{chapter2:理想约束假设-重写}下得到的。如果全部或者部分约束反力$\mbf{G}_i$不满足式\eqref{chapter2:理想约束假设-重写}，可以在主动力中附加$\mbf{G}_i$，将方程\eqref{chapter2:d'Alambert-Lagrange原理}改写为
+\begin{equation}
+	\sum_{i=1}^n (\mbf{F}_i+\mbf{G}_i-m_i\ddot{\mbf{r}}_i)\cdot \delta \mbf{r}_i = 0\quad (i=1,2,\cdots,n)
+	\label{chapter2:考虑了非理想约束的d'Alambert-Lagrange原理}
+\end{equation}
+一般情况下，力$\mbf{G}_i$（或其中的一部分）是未知的，这需要根据产生$\mbf{G}_i$的约束的物理性质和特征来补充实验定律方程。
+
+动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}实际上所包含的方程数等于自由度数$f$（即$3n$个虚位移分量$\delta x_1,\delta y_1,\delta z_1,\cdots,\delta x_n,\delta y_n,\delta z_n$中独立的个数），每一个方程中都不包含约束反力。
+
+\begin{example}\label{chapter2:example-d'Alambert原理例1}
+两个质量为$m_1$和$m_2$的质点以理想的细绳相连，细绳跨过光滑的杆，两个质点在重力的作用下在竖直平面内运动（如图\ref{chapter2:figure-d'Alambert原理例1}所示），求两个质点的加速度。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//d'Alambert原理例1
+	pair O,C,C1,C2;
+	real x,r,x1,x2,r1,r2;
+	O = (0,0);
+	x = 2.5;
+	x1 = 1.75;
+	x2 = 2.25;
+	r = 0.25;
+	C = (1.25,0);
+	C1 = C+r*dir(180)+x1*dir(-90);
+	C2 = C+r*dir(0)+x2*dir(-90);
+	r1 = 0.035;
+	r2 = 0.045;
+	draw(Label("$x$",EndPoint),O--x*dir(-90),Arrow);
+	draw(circle(C,r),linewidth(0.8bp));
+	draw(C+r*dir(180)--C1);
+	draw(C+r*dir(0)--C2);
+	fill(circle(C1,r1));
+	fill(circle(C2,r2));
+	label("$m_1$",C1+r1*dir(180),W);
+	label("$m_2$",C2+r2*dir(0),E);
+	draw((-0.25,0)--C+(r+0.25,0),dashed);
+	draw(C+(r+0.25)*dir(90)--C-(r+0.25)*dir(90),dashed);
+	label("$O$",O,N);
+\end{asy}
+\caption{例\theexample}
+\label{chapter2:figure-d'Alambert原理例1}
+\end{figure}
+\end{example}
+\begin{solution}
+设$x_1$和$x_2$是$m_1$和$m_2$的坐标，由动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}可得
+\begin{equation*}
+	(m_1g-m_1\ddot{x}_1)\delta x_1 + (m_2g-m_2\ddot{x}_2)\delta x_2 = 0
+\end{equation*}
+根据细绳不可伸长，有几何约束$x_1+x_2+\pi R = L$，其中$L$和$R$分别表示细绳总长和杆的横截面半径，因此有$\delta x_1=-\delta x_2, \ddot{x}_1=-\ddot{x}_2$，可将上式变为
+\begin{equation*}
+	\big[(m_2-m_1)g-(m_1+m_2)\ddot{x}_2\big]\delta x_2=0
+\end{equation*}
+由于$\delta x_2$是任意的，因此有
+\begin{equation*}
+	\ddot{x}_2 = \frac{m_2-m_1}{m_1+m_2}g = -\ddot{x}_1
+\end{equation*}
+\end{solution}
+
+\subsection{Jordan原理}
+
+动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}是将系统给定位置和在任意固定时刻的变分位置相比较，如果考虑从可能位形$\mbf{r}_i^*$出发，具有不同可能速度$\mbf{v}_i^*$的可能运动集合，将它们与在相同时刻相同位形出发的真实运动相比较，就可以得到Jordan变分（见第\ref{chapter2:subsection-实位移与虚位移}节），此时$\delta\mbf{r}_i=\delta \mbf{v}_i\Delta t$，其中$\delta\mbf{v}_i=\mbf{v}_{i1}^*-\mbf{v}_{i2}^*$是被比较运动的可能速度之差\footnote{这个差值不一定是无穷小量。}。将这个虚位移代入动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}并整理可得
+\begin{equation}
+	\sum_{i=1}^n (\mbf{F}_i-m_i\mbf{a}_i)\cdot \delta \mbf{v}_i = 0
+	\label{chapter2:Jordan微分变分原理}
+\end{equation}
+式\eqref{chapter2:Jordan微分变分原理}称为{\bf Jordan微分变分原理}。
+
+\subsection{Gauss原理}
+
+\subsubsection{最小拘束原理·Gauss原理}
+
+考虑在某时刻具有可能位形$\mbf{r}_i^*$和可能速度$\mbf{v}_i^*$的运动同真实运动相比较，它们的加速度可能式不同的\footnote{这个加速度的差值不一定是无穷小量。}，这种等时变分称为Gauss变分（见第\ref{chapter2:subsection-实位移与虚位移}节）。
+
+将两个可能运动的加速度之差表示为$\delta\mbf{a}_i=\mbf{a}_{i1}^*-\mbf{a}_{i2}^*$，则有Gauss变分为
+\begin{equation}
+	\delta\mbf{r}_i = \frac12 \delta\mbf{a}_i(\Delta t)^2
+	\label{chapter2:Gauss变分-重写}
+\end{equation}
+将式\eqref{chapter2:Gauss变分-重写}代入动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}中可得
+\begin{equation}
+	\sum_{i=1}^n (\mbf{F}_i-m_i\mbf{a}_i)\cdot \delta\mbf{a}_i=0
+	\label{chapter2:Gauss原理-1}
+\end{equation}
+注意到其中$m_i$是常数，而$\mbf{F}_i$不依赖于加速度$\mbf{a}_i$，由于等时变分满足与普通微分类似的运算规则，可以将式\eqref{chapter2:Gauss原理-1}改写为
+\begin{equation}
+	\delta Z = 0
+	\label{chapter2:Gauss原理-雏形}
+\end{equation}
+其中
+\begin{equation}
+	Z = \frac12 \sum_{i=1}^nm_i\left(\mbf{a}_i-\frac{\mbf{F}_i}{m_i}\right)^2
+	\label{chapter2:拘束度定义}
+\end{equation}
+称为{\bf 拘束度}。由此，式\eqref{chapter2:Gauss原理-雏形}表明，拘束度$Z$在真实运动的加速度处取驻值。
+
+实际上，拘束度$Z$不仅在真实运动的加速度处取驻值，而且是取最小值。设$\mbf{a}_{i0}$是系统真实运动的加速度，$Z_0$是相应的拘束度，在与其相比较的可能运动中有$\mbf{a}_i=\mbf{a}_{i0}+\delta\mbf{a}_i$，于是有
+\begin{align}
+	Z-Z_0 & = \frac12\sum_{i=1}^nm_i\left(\mbf{a}_{i0}+\delta\mbf{a}_i-\frac{\mbf{F}_i}{m_i}\right)^2 - \frac12\sum_{i=1}^nm_i\left(\mbf{a}_{i0}-\frac{\mbf{F}_i}{m_i}\right)^2 \nonumber \\
+	& = \sum_{i=1}^n (m_i\mbf{a}_{i0}-\mbf{F}_i)\cdot \delta\mbf{a}_i + \frac12 \sum_{i=1}^n m_i(\delta \mbf{a}_{i0})^2
+	\label{chapter2:Gauss原理的最值性}
+\end{align}
+根据方程\eqref{chapter2:Gauss原理-1}，式\eqref{chapter2:Gauss原理的最值性}的第一项等于零，由于不是所有的$\delta\mbf{a}_i(i=1,2,\cdots,n)$都等于零\footnote{只有真实运动才满足这一点。}，因此式\eqref{chapter2:Gauss原理的最值性}第二项严格为正，因此拘束度$Z$在真实运动的加速度处取最小值。
+
+由此就得到了{\bf 最小拘束原理}或{\bf Gauss原理}：在比较的给定时刻运动学可能运动（$\mbf{r}_{i1}^*=\mbf{r}_{i2}^*, \mbf{v}_{i1}^*=\mbf{v}_{i2}^*, \delta\mbf{a}_i\neq 0$）中，真实运动的拘束度最小。
+
+\begin{example}
+利用Gauss原理求例\ref{chapter2:example-d'Alambert原理例1}中两个质点的加速度。
+\end{example}
+\begin{solution}
+设$m_2$的加速度为$a$，则$m_1$的加速度为$-a$，拘束度为
+\begin{equation*}
+	Z = \frac12 m_1(-a-g)^2+\frac12 m_2(a-g)^2
+\end{equation*}
+求其最小值，即
+\begin{equation*}
+	\frac{\mathd Z}{\mathd a} = m_1(a+g)+m_2(a-g) = 0
+\end{equation*}
+所以
+\begin{equation*}
+	a = \frac{m_2-m_1}{m_1+m_2}g
+\end{equation*}
+\end{solution}
+
+\subsubsection{Gauss原理的物理意义}
+
+设在$t$时刻，非自由系统的质点$m_i$所在位置记作$P_i$，其位矢为$\mbf{r}_i$，速度为$\mbf{v}_i$，$\mbf{F}_i$为作用在其上所有主动力的合力。如果记该质点在$t+\mathd t$时刻的位置为$A_i$（如图\ref{chapter2:figure-Gauss原理的物理意义}所示），则这时应该有
+\begin{equation*}
+	\vec{P_iA_i} = \mbf{v}_i\mathd t + \frac12\mbf{a}_i(\mathd t)^2 + \cdots
+\end{equation*}
+如果在$t$时刻，约束被解除（解除约束的过程是瞬间的，且不改变$\mbf{F}_i,m_i,\mbf{v}_i$和$\mbf{r}_i$），则在$t+\mathd t$时刻，质点$m_i$所在的位置将偏离$A_i$点，记作$B_i$，则有
+\begin{equation*}
+	\vec{P_iB_i} = \mbf{v}_i\mathd t + \frac12\frac{\mbf{F}_i}{m_i}(\mathd t)^2 + \cdots
+\end{equation*}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(180);
+	//Gauss原理的物理意义
+	pair O,P,A,B;
+	O = (0,0);
+	P = 1.5*dir(80);
+	B = P + dir(30);
+	A = P + 1.2*dir(0);
+	draw(Label("$\boldsymbol{r}_i$",MidPoint,Relative(W)),O--P,Arrow);
+	draw(P--A,Arrow);
+	draw(P--B,Arrow);
+	draw(B--A,dashed,Arrow);
+	label("$O$",O,E);
+	label("$P_i$",P,NW);
+	label("$A_i$",A,S);
+	label("$B_i$",B,N);
+\end{asy}
+\caption{Gauss原理的物理意义}
+\label{chapter2:figure-Gauss原理的物理意义}
+\end{figure}
+
+质点偏离其自由运动位置的位移$\vec{B_iA_i}$是由约束引起的，约束迫使质点的运动偏离自由系统的运动。显然对于质量相同的质点，偏离长度$|\vec{B_iA_i}|$越大，约束的强制作用也就越强。另一方面，为了使质点具有偏离自由运动位置的加速度，其质量越大，所需约束的强制作用也需要更强。因此，约束对质点的作用应该用量$m_i|\vec{B_iA_i}|^2$来衡量。对于这个系统，略去$(\mathd t)^4$以上的项，可有
+\begin{equation*}
+	m_i|\vec{B_iA_i}|^2 = m_i(\vec{P_iA_i}-\vec{P_iB_i})^2 = \frac14 m_i(\mathd t)^4\left(\mbf{a}_i-\frac{\mbf{F}_i}{m_i}\right)^2
+\end{equation*}
+将其对所有质点求和，并略去$\dfrac12(\mathd t)^4$的系数，于是可得系统的拘束度
+\begin{equation*}
+	Z = \frac12 \sum_{i=1}^nm_i\left(\mbf{a}_i-\frac{\mbf{F}_i}{m_i}\right)^2
+\end{equation*}
+$Z$是用来衡量系统的真实运动偏离其自由运动的量。Gauss原理指出，$Z$在真实运动时取最小值，这就是说，非自由系统的真实运动是所有约束允许的虚拟运动中最接近自由运动的。
+
+如果考虑到式\eqref{chapter2:非自由系统中质点的Newton第二定律方程-重写}，可以将拘束度表示为
+\begin{equation}
+	Z = \frac12 \sum_{i=1}^n \frac{\mbf{R}_i^2}{m_i}
+\end{equation}
+则$Z$对真实运动取最小值的条件变为约束反力的极值性质：真实运动的约束反力最小。
 
 \section{分析静力学的虚功原理}
 
-\subsection{虚功原理}
+\subsection{静力学普遍方程·虚功原理}
 
-如果理想体系处于静平衡状态，其中每个质点所受合力为零，即
-\begin{equation*}
-	\mbf{F}_i + \mbf{R}_i = \mbf{0},\quad i = 1,2,\cdots,n
-\end{equation*}
-由此可有
-\begin{equation*}
-	\sum_{i=1}^n (\mbf{F}_i+\mbf{R}_i) \cdot \delta \mbf{r}_i = 0
-\end{equation*}
-由于体系是理想的，故约束力的总虚功为零，由此可有
+如果理想系统处于静平衡状态，则有$\ddot{\mbf{r}}_i\equiv\mbf{0}$，根据动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}可得
 \begin{equation}
-	\sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i = 0
-	\label{虚功原理}
+	\sum_{i=1}^n \mbf{F}_i\cdot \delta \mbf{r}_i = 0
+	\label{chapter2:静力学普遍方程}
 \end{equation}
-式\eqref{虚功原理}表示的关系称为{\heiti 虚功原理}。即，平衡位形处，对任意虚位移，主动力的总虚功为零。
+式\eqref{chapter2:静力学普遍方程}称为{\bf 静力学普遍方程}或{\bf 虚功原理}。即，系统在平衡位形处在任意虚位移上主动力的功为零。
 
-\subsection{广义虚位移和广义力}
+\subsection{广义坐标下的静力学普遍方程·广义力}\label{chapter2:subsection-广义坐标下的静力学普遍方程·广义力}
 
-约束\footnote{在静平衡条件下，所有的约束都是完整约束。}使得各质点的虚位移之间彼此不相互独立，设体系自由度为$s$，则可以引入$s$个广义坐标表征体系的位形，坐标转换关系表示为
+约束\footnote{在静平衡条件下，所有的约束都是完整约束。}使得各质点的虚位移之间彼此不相互独立，设系统自由度为$s$，则可以引入$s$个广义坐标表征系统的位形，坐标转换关系表示为
 \begin{equation}
 	\mbf{r}_i = \mbf{r}_i(q_1,q_2,\cdots,q_s),\quad i = 1,2,\cdots,n
 \end{equation}
-由此可有
+由此可有虚位移
 \begin{equation}
 	\delta \mbf{r}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \delta q_\alpha
+	\label{chapter2:用广义虚位移表示虚位移-重写}
 \end{equation}
-此处$\delta q_\alpha$称为{\heiti 广义虚位移}。由此可有
+将式\eqref{chapter2:用广义虚位移表示虚位移-重写}代入静力学普遍方程\eqref{chapter2:静力学普遍方程}中，可得
 \begin{equation*}
 	\sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i = \sum_{\alpha=1}^s \left(\sum_{i=1}^n \mbf{F}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right)\delta q_\alpha
 \end{equation*}
 定义
 \begin{equation}
 	Q_\alpha = \sum_{i=1}^n \mbf{F}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}
+	\label{chapter2:广义力的定义式}
 \end{equation}
-称为与广义坐标$q_\alpha$对应的广义主动力，则虚功原理可以用广义坐标表示为
+称为与广义坐标$q_\alpha$对应的{\bf 广义力}，则静力学普遍方程可以用广义坐标表示为
 \begin{equation}
 	\sum_{i=1}^s Q_\alpha \delta q_\alpha = 0
-	\label{虚功原理的广义表示}
+	\label{chapter2:静力学普遍方程的广义坐标表示}
 \end{equation}
 
 \subsection{完整系的平衡条件}
 
-广义坐标使全部完整约束方程自动满足，所有广义坐标可以独立取值与变动，因此完整系的所有广义虚位移独立，因此由式\eqref{虚功原理的广义表示}可得完整系的平衡条件
+广义坐标使全部完整约束方程自动满足，所有广义坐标可以独立取值与变动，因此完整系的所有广义虚位移之间相互独立，因此由式\eqref{chapter2:静力学普遍方程的广义坐标表示}可得完整系的平衡条件
 \begin{equation}
-	Q_\alpha\big|_{\mbf{q}_0} = 0,\quad \alpha =1,2,\cdots,s
+	Q_\alpha\big|_{\mbf{q}_0} = 0 \quad (\alpha =1,2,\cdots,s)
 \end{equation}
-即，完整系平衡位形处，各广义主动力分量为零。
+即，完整系平衡位形处，各广义力分量为零。
 
-如果系统为保守体系，所有主动力均对应有势能
+如果系统为保守系统，所有主动力均对应有势能
 \begin{equation}
-	\mbf{F}_i = -\frac{\pl V}{\pl \mbf{r}_i}(\mbf{r}_i),\quad i=1,2,\cdots,n
+	\mbf{F}_i = -\frac{\pl V}{\pl \mbf{r}_i}(\mbf{r}_i) \quad (i=1,2,\cdots,n)
 \end{equation}
 则有
 \begin{equation*}
-	V = V(\mbf{r}(\mbf{q},t))
+	V = V(\mbf{r}(\mbf{q}))
 \end{equation*}
-此时，广义主动力可以表示为
+此时，广义力可以表示为
 \begin{equation}
 	Q_\alpha = -\sum_{i=1}^n \frac{\pl V}{\pl \mbf{r}_i} \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha} = -\frac{\pl V}{\pl q_\alpha}
 \end{equation}
 此时平衡条件可以表示为
 \begin{equation}
-	\frac{\pl V}{\pl q_\alpha}\bigg|_{\mbf{q}_0} = 0,\quad \alpha = 1,2,\cdots,s
+	\frac{\pl V}{\pl q_\alpha}\bigg|_{\mbf{q}_0} = 0 \quad (\alpha = 1,2,\cdots,s)
 \end{equation}
-即完整保守体系在平衡位形处势能取驻值。可以证明，势能取极小值，平衡为{\heiti 稳定平衡}；势能取极大值，平衡为{\heiti 不稳定平衡}；势能取常数值，平衡为{\heiti 随遇平衡}。
+即完整保守系统在平衡位形处势能取驻值。可以证明，势能取极小值，平衡为{\heiti 稳定平衡}；势能取极大值，平衡为{\heiti 不稳定平衡}；势能取常数值，平衡为{\heiti 随遇平衡}。
 
 \begin{example}
 质量为$m$，固有半径为$a$，弹性系数为$k$的弹性圈置于半顶角$\alpha$的光滑直立圆锥上，求弹性圈的平衡半径与张力。\label{第二章例1}
@@ -585,7 +1085,7 @@
 \begin{equation*}
 	y = -x\cot \alpha
 \end{equation*}
-主动力包括重力和弹性力，均为保守力。广义坐标取为$x$，则体系的势能表示为
+主动力包括重力和弹性力，均为保守力。广义坐标取为$x$，则系统的势能表示为
 \begin{equation*}
 	V(x) = \frac12 k\left[2\pi(x-a)\right]^2 - mgx\cot \alpha
 \end{equation*}
@@ -625,7 +1125,7 @@
 将例\ref{第二章例1}中的弹性圈改为刚性圈，求其在圆锥面上平衡时的张力。
 \end{example}
 \begin{solution}
-此问题有两个约束：约束$y=-x\cot\alpha$，约束力为正压力；约束$x=a$，约束力为张力。虚功原理只能求平衡位形，而不涉及约束力。
+此问题有两个约束：约束$y=-x\cot\alpha$，约束反力为正压力；约束$x=a$，约束反力为张力。虚功原理只能求平衡位形，而不涉及约束反力。
 
 因此，此处解除第二个约束，将张力视为主动力。问题归结为已知平衡位形，求部分未知主动力。根据虚功原理，有
 \begin{equation*}
@@ -649,158 +1149,183 @@ $\delta x$是独立的广义虚位移，因此有
 \end{equation*}
 \end{solution}
 
-\section{d'Alambert原理与Lagrange方程}
+\section{Lagrange方程}
 
-\subsection{d'Alambert原理}
+\subsection{广义坐标形式的动力学普遍方程}
 
-对质点系中的每个质点应用Newton第二定律，可有
-\begin{equation*}
-	\mbf{F}_i + \mbf{R}_i = m_i \ddot{\mbf{r}}_i,\quad i=1,2,\cdots,n
-\end{equation*}
-将上式整理为
-\begin{equation*}
-	\mbf{F}_i + \mbf{R}_i - m_i \ddot{\mbf{r}}_i = \mbf{0},\quad i=1,2,\cdots,n
-\end{equation*}
-将上式中的$-m_i \ddot{\mbf{r}}_i$看作一个主动力，称为{\heiti d'Alambert惯性力}，即主动力、约束力与惯性力构成平衡力系\footnote{这种将动力学问题转化为静力学问题考虑的方法，称为{\heiti 动静法}。}，由此根据虚功原理可以得到
+设包含$n$个质点的理想系统有$k$个完整约束和$k'$个不完整约束，$q_1,q_2,\cdots,q_s(s=3n-k)$是它的广义坐标，则有坐标变换方程
 \begin{equation}
-	\sum_{i=1}^n(\mbf{F}_i - m_i \ddot{\mbf{r}}_i) \cdot \delta \mbf{r}_i = 0
-	\label{d'Alambert原理}
+	\mbf{r}=\mbf{r}(\mbf{q},t)
+	\label{chapter2:坐标变换方程-重写}
 \end{equation}
-式\eqref{d'Alambert原理}表示的关系称为{\heiti d'Alambert原理}。即理想力学体系的实际运动使任意虚位移下的主动力与惯性力的总虚功为零——此为与Newton定律等价的力学基本原理。
-
-\subsection{理想完整系的Lagrange方程}
-
-在理想完整体系中，质点位矢与广义坐标之间的坐标转换关系为
-\begin{equation*}
-	\mbf{r}_i = \mbf{r}_i(\mbf{q},t),\quad i=1,2,\cdots,n
-\end{equation*}
-所以
-\begin{equation*}
-	\delta \mbf{r}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \delta q_\alpha
-\end{equation*}
-质点的速度为
-\begin{equation}
-	\dot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t} = \dot{\mbf{r}}_i(\mbf{q},\dot{\mbf{q}},t)
-	\label{质点的速度}
-\end{equation}
-式中，$\dot{q}_\alpha$称为{\heiti 广义速度}。在式\eqref{质点的速度}两端的微分，可得
+这些函数是二阶连续可微的。由坐标变换方程\eqref{chapter2:坐标变换方程-重写}可得系统内各质点的速度表达式\eqref{chapter2:各质点速度与广义速度的关系}和虚位移表达式\eqref{chapter2:虚位移与广义虚位移之间的关系}如下：
 \begin{align}
-	\mathrm{d} \dot{\mbf{r}}_i & = \sum_{\alpha=1}^s \mathrm{d} \left(\frac{\pl \mbf{r}_i}{\pl q_\alpha}\right) \dot{q}_\alpha + \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \mathrm{d} \dot{q}_\alpha + \mathrm{d} \left(\frac{\pl \mbf{r}_i}{\pl t}\right) \nonumber \\
-	& = \sum_{\alpha=1}^s \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \mbf{r}_i}{\pl q_\alpha} \mathrm{d} q_\alpha + \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \mathrm{d} \dot{q}_\alpha + \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \mbf{r}_i}{\pl t} \mathrm{d} t
-	\label{经典Lagrange关系中间步骤1}
+	& \dot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha}\dot{q}_\alpha+ \frac{\pl \mbf{r}_i}{\pl t} \label{chapter2:用广义坐标表示各个质点的速度} \\
+	& \delta \mbf{r}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \delta q_\alpha \label{chapter2:用广义虚位移表示各个质点的虚位移}
 \end{align}
-此处将$\mbf{q}$和$\dot{\mbf{q}}$作为相互独立的变量来处理。又考虑到$\dot{\mbf{r}}_i = \dot{\mbf{r}}_i(\mbf{q},\dot{\mbf{q}},t)$，其全微分为
+将式\eqref{chapter2:用广义坐标表示各个质点的速度}和\eqref{chapter2:用广义虚位移表示各个质点的虚位移}代入动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}中，可得
 \begin{equation}
-	\mathrm{d} \dot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \dot{\mbf{r}}_i}{\pl q_\alpha} \mathrm{d} q_\alpha + \sum_{\alpha=1}^s \frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha} \mathrm{d} \dot{q}_\alpha + \frac{\pl \dot{\mbf{r}}_i}{\pl t} \mathrm{d} t
-	\label{经典Lagrange关系中间步骤2}
+	\sum_{i=1}^n (\mbf{F}_i-m_i\ddot{\mbf{r}}_i)\cdot \delta \mbf{r}_i = \sum_{\alpha=1}^s \left[\sum_{i=1}^n\left(\mbf{F}_i\cdot \frac{\pl\mbf{r}_i}{\pl q_\alpha} - m_i\ddot{\mbf{r}}_i\cdot \frac{\pl\mbf{r}_i}{\pl q_\alpha} \right)\right] \delta q_\alpha
+	\label{chapter2:广义坐标下的动力学普遍方程-中间过程}
 \end{equation}
-对比式\eqref{经典Lagrange关系中间步骤1}和式\eqref{经典Lagrange关系中间步骤2}的各项可得如下的{\heiti 经典Lagrange关系}：
+式\eqref{chapter2:广义坐标下的动力学普遍方程-中间过程}的第一部分为
 \begin{equation}
-	\frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha} = \frac{\pl \mbf{r}_i}{\pl q_\alpha},\quad \frac{\pl \dot{\mbf{r}}_i}{\pl q_\alpha} = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \mbf{r}_i}{\pl q_\alpha}
-	\label{经典Lagrange关系}
+	\sum_{i=1}^n \mbf{F}_i\cdot \delta \mbf{r}_i = \sum_{\alpha=1}^s \left(\sum_{i=1}^n \mbf{F}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right) \delta q_\alpha = \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha
+	\label{chapter2:广义坐标下的动力学普遍方程-中间过程-第一部分}
 \end{equation}
-根据d'Alambert原理，可有
+此处$Q_\alpha$即为第\ref{chapter2:subsection-广义坐标下的静力学普遍方程·广义力}节中定义的{\bf 广义力}。由于力$\mbf{F}_i$可能是各质点位矢和速度的函数，因此广义力$Q_\alpha$一般是广义坐标$\mbf{q}$和广义速度$\dot{\mbf{q}}$的函数，即
 \begin{equation}
-	\sum_{i=1}^n (\mbf{F}_i - m_i \ddot{\mbf{r}}_i) \cdot \delta \mbf{r}_i = \sum_{\alpha=1}^s \left[\sum_{i=1}^n (\mbf{F}_i - m_i \ddot{\mbf{r}}_i) \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right] \delta q_\alpha
-	\label{Lagrange方程中间结果}
-\end{equation}
-其中主动力满足关系$\mbf{F}_i = \mbf{F}_i(\mbf{r},\dot{\mbf{r}},t) = \mbf{F}_i(\mbf{r}(\mbf{q},t),\dot{\mbf{r}}(\mbf{q},\dot{\mbf{q}},t),t)$，因此式\eqref{Lagrange方程中间结果}的第一项即为广义力
-\begin{equation*}
 	Q_\alpha = \sum_{i=1}^n \mbf{F}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha} = Q_\alpha(\mbf{q},\dot{\mbf{q}},t)
-\end{equation*}
-现在考虑式\eqref{Lagrange方程中间结果}的第二项
-\begin{align*}
-	\sum_{i=1}^n m_i \ddot{\mbf{r}}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha} & = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n m_i\dot{\mbf{r}}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right) - \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \mbf{r}_i}{\pl q_\alpha} \\
-	& = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n m_i\dot{\mbf{r}}_i \cdot \frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha}\right) - \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \frac{\pl \dot{\mbf{r}}_i}{\pl q_\alpha} \\
-	& = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n \frac12 m_i\frac{\pl \dot{\mbf{r}}_i^2}{\pl \dot{q}_\alpha}\right) - \sum_{i=1}^n \frac12 m_i \frac{\pl \dot{\mbf{r}}_i^2}{\pl q_\alpha} \\
-	& = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha}
-\end{align*}
-式中应用了经典Lagrange关系\eqref{经典Lagrange关系}，而
-\begin{equation*}
-	T = \sum_{i=1}^n \frac12 m_i\frac{\pl \dot{\mbf{r}}_i^2}{\pl \dot{q}_\alpha} = T(\mbf{q},\dot{\mbf{q}},t)
-\end{equation*}
-为系统的总动能。由此d'Alambert原理式变为
-\begin{equation*}
-	\sum_{i=1}^n (\mbf{F}_i - m_i \ddot{\mbf{r}}_i) \cdot \delta \mbf{r}_i = \sum_{\alpha=1}^s \left(Q_\alpha+\frac{\pl T}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha}\right) \delta q_\alpha = 0
-\end{equation*}
-由于$\delta q_\alpha\,(\alpha = 1,2,\cdots,s)$相互独立，则有
-\begin{equation}
-	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} = Q_\alpha,\quad \alpha = 1,2,\cdots,s
-	\label{理想完整系的Lagrange方程}
 \end{equation}
-式\eqref{理想完整系的Lagrange方程}即为理想完整系的Lagrange方程，其为$s$个广义坐标的二阶常微分方程组（约束力已经被消去）。
-
-\subsection{理想完整系Lagrange方程的数学结构}
-
-速度可以表示为
+式\eqref{chapter2:广义坐标下的动力学普遍方程-中间过程}中小括号内的第二项为
+\begin{align}
+	\sum_{i=1}^nm_i\ddot{\mbf{r}}_i\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha} & = \frac{\mathd}{\mathd t} \left(\sum_{i=1}^nm_i\dot{\mbf{r}}_i\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right) - \sum_{i=1}^nm_i\dot{\mbf{r}}_i\cdot \frac{\mathd}{\mathd t}\frac{\pl \mbf{r}_i}{\pl q_\alpha} \nonumber \\
+	& = \frac{\mathd}{\mathd t} \left(\sum_{i=1}^nm_i\dot{\mbf{r}}_i\cdot \frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha}\right) - \sum_{i=1}^nm_i\dot{\mbf{r}}_i\cdot \frac{\pl \dot{\mbf{r}}_i}{\pl q_\alpha}
+	\label{chapter2:广义坐标下的动力学普遍方程-中间过程-第二项-初步}
+\end{align}
+此处利用了经典Lagrange关系（见式\eqref{chapter2:经典Lagrange关系}）：
 \begin{equation*}
-	\dot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}
+	\frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha} = \frac{\pl \mbf{r}_i}{\pl q_\alpha}, \quad \frac{\mathd}{\mathd t}\frac{\pl \mbf{r}_i}{\pl q_\alpha} = \frac{\pl \dot{\mbf{r}}_i}{\pl q_\alpha}\quad (\alpha=1,2,\cdots,s)
 \end{equation*}
-由此，动能可以表示为
-\begin{align*}
-	T & = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i = \sum_{i=1}^n \frac12 m_i \left(\sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}\right) \cdot \left(\sum_{\beta=1}^s \frac{\pl \mbf{r}_i}{\pl q_\beta} \dot{q}_\beta + \frac{\pl \mbf{r}_i}{\pl t}\right) \\
-	& = \frac12 \sum_{\alpha,\beta=1}^s \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl q_\beta} \dot{q}_\alpha \dot{q}_\beta + \sum_{\alpha=1}^s \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl t} \dot{q}_\alpha + \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2 \\
+如果利用系统动能表达式
+\begin{equation}
+	T = \frac12 \sum_{i=1}^n m_i\dot{\mbf{r}}_i^2 = T(\mbf{q},\dot{\mbf{q}},t)
+	\label{chapter2:系统动能表达式}
+\end{equation}
+则式\eqref{chapter2:广义坐标下的动力学普遍方程-中间过程-第二项-初步}可以进一步写为
+\begin{equation}
+	\sum_{i=1}^nm_i\ddot{\mbf{r}}_i\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha} = \frac{\mathd}{\mathd t}\frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha}
+	\label{chapter2:广义坐标下的动力学普遍方程-中间过程-第二项}
+\end{equation}
+由此可得式\eqref{chapter2:广义坐标下的动力学普遍方程-中间过程}的第二部分为
+\begin{equation}
+	\sum_{i=1}^n m_i\ddot{\mbf{r}}_i\cdot\delta \mbf{r}_i = -\sum_{\alpha=1}^s\left(\sum_{i=1}^n m_i\ddot{\mbf{r}}_i\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right) \delta q_\alpha = \sum_{\alpha=1}^s\left(\frac{\mathd}{\mathd t}\frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha}\right)\delta q_\alpha
+	\label{chapter2:广义坐标下的动力学普遍方程-中间过程-第二部分}
+\end{equation}
+将式\eqref{chapter2:广义坐标下的动力学普遍方程-中间过程-第一部分}和\eqref{chapter2:广义坐标下的动力学普遍方程-中间过程-第二部分}代入方程\eqref{chapter2:广义坐标下的动力学普遍方程-中间过程}中，并稍作整理，可得{\bf 广义坐标形式的动力学普遍方程}
+\begin{equation}
+	\sum_{\alpha=1}^s \left(\frac{\mathd}{\mathd t}\frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha}-Q_\alpha\right)\delta q_\alpha = 0
+	\label{chapter2:广义坐标形式的动力学普遍方程}
+\end{equation}
+
+\subsection{理想完整系的Lagrange方程}\label{chapter2:subsection-理想完整系的Lagrange方程}
+
+假设理想系统是完整的，那么$\delta q_\alpha(\alpha=1,2,\cdots,s)$是相互独立的，此时广义坐标数等于自由度（当$k'=0$时，$s=f=3n-k$）。利用$\delta q_\alpha$的独立性，广义坐标形式的动力学普遍方程\eqref{chapter2:广义坐标形式的动力学普遍方程}当且仅当每个虚位移$\delta q_\alpha$的系数都等于零，所以方程\eqref{chapter2:广义坐标形式的动力学普遍方程}等价于下面的$s$个方程：
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} = Q_\alpha \quad (\alpha = 1,2,\cdots,s)
+	\label{chapter2:理想完整系的Lagrange方程}
+\end{equation}
+方程\eqref{chapter2:理想完整系的Lagrange方程}称为理想完整系的{\bf 第二类Lagrange方程}\footnote{方程\eqref{chapter2:理想完整系的Lagrange方程}经常简称为{\bf Lagrange方程}。}，这是关于$s$个广义坐标函数$q_\alpha(t)$的$s$个的二阶常微分方程组。
+
+为了得到Lagrange方程，必须将系统的动能$T$表示为广义坐标$\mbf{q}$和广义速度$\dot{\mbf{q}}$的函数，并求出作为广义坐标$\mbf{q}$和广义速度$\dot{\mbf{q}}$函数的广义力$Q_\alpha$，再像方程\eqref{chapter2:理想完整系的Lagrange方程}中那样对$T(\mbf{q},\dot{\mbf{q}},t)$求导。Lagrange方程的形式不依赖于广义坐标的选择，选取其他的广义坐标只会改变函数$T$和$Q$，但方程\eqref{chapter2:理想完整系的Lagrange方程}的形式不会改变，即Lagrange方程具有{\bf 不变性}。
+
+Lagrange方程中不包含理想约束的约束反力，如果想求出约束反力，需要在求解Lagrange方程后，将广义坐标与时间的关系$\mbf{q}(t)$代入坐标变换方程\eqref{chapter2:坐标变换方程-重写}中，得到各个质点位矢与时间的关系
+\begin{equation*}
+	\mbf{r}(t) = \mbf{r}(\mbf{q}(t),t)
+\end{equation*}
+然后利用关系式
+\begin{equation*}
+	\mbf{R}_i = m_i\ddot{\mbf{r}}_i - \mbf{F}_i
+\end{equation*}
+求出作用在第$i$个质点上所有约束反力的合力。
+
+\subsection{系统动能的数学结构·Lagrange方程的确定性}\label{chapter2:subsection-系统动能的数学结构}
+
+利用式\eqref{chapter2:用广义坐标表示各个质点的速度}，动能可以用广义速度$\dot{\mbf{q}}$表示为
+\begin{align}
+	T & = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i = \sum_{i=1}^n \frac12 m_i \left(\sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}\right) \cdot \left(\sum_{\beta=1}^s \frac{\pl \mbf{r}_i}{\pl q_\beta} \dot{q}_\beta + \frac{\pl \mbf{r}_i}{\pl t}\right) \nonumber \\
+	& = \frac12 \sum_{\alpha,\beta=1}^s \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl q_\beta} \dot{q}_\alpha \dot{q}_\beta + \sum_{\alpha=1}^s \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl t} \dot{q}_\alpha + \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2 \nonumber \\
 	& = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta + \sum_{\alpha=1}^s P_\alpha(\mbf{q},t) \dot{q}_\alpha + T_0(\mbf{q},t)
-\end{align*}
-其中
-\begin{equation*}
-	M_{\alpha\beta}(\mbf{q},t) = \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl q_\beta},\quad P_\alpha(\mbf{q},t) = \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl t},\quad T_0(\mbf{q},t) = \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2
-\end{equation*}
-则可将动能$T$按广义速度的次数分为三项，即
+	\label{chapter2:系统动能的数学结构1}
+\end{align}
+这里
 \begin{equation}
-	T = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta + \sum_{\alpha=1}^s P_\alpha(\mbf{q},t) \dot{q}_\alpha + T_0(\mbf{q},t) = T_2 + T_1 + T_0
-	\label{动能的数学结构}
+	M_{\alpha\beta} = \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl q_\beta},\quad P_\alpha = \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl t},\quad T_0 = \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2
+	\label{chapter2:以广义坐标表示的系统动能表达式中的系数}
+\end{equation}
+此处$M_{\alpha\beta}, P_\alpha$和$T_0$都是$\mbf{q}$和$t$的函数，与广义速度$\dot{\mbf{q}}$无关。式\eqref{chapter2:系统动能的数学结构1}表明动能$T$是广义速度的二次多项式，即
+\begin{equation}
+	T = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta} \dot{q}_\alpha \dot{q}_\beta + \sum_{\alpha=1}^s P_\alpha \dot{q}_\alpha + T_0 = T_2 + T_1 + T_0
+	\label{chapter2:系统动能的数学结构2}
 \end{equation}
 其中
+\begin{equation}
+	T_2 = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta} \dot{q}_\alpha \dot{q}_\beta,\quad T_1 = \sum_{\alpha=1}^s P_\alpha \dot{q}_\alpha,\quad T_0 = \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2
+	\label{chapter2:系统动能的数学结构3}
+\end{equation}
+
+对于定常系统，有$\dfrac{\pl \mbf{r}_i}{\pl t}(\mbf{q},t) = 0(i=1,2,\cdots,n)$\footnote{事实上，对于任意的广义坐标选取，这个式子并不成立，但我们总是选取广义坐标使得坐标变换方程不显含时间，这个式子在这个意义下成立。}，此时有$P_\alpha=0(\alpha=1,2,\cdots,s), T_0=0$，所以
+\begin{equation}
+	T = T_2 = \frac12 \sum_{\alpha,\beta=1}^n M_{\alpha\beta}\dot{q}_\alpha\dot{q}_\beta
+	\label{chapter2:定常系统动能的数学结构}
+\end{equation}
+即定常系统的动能是广义速度的二次型，并且式\eqref{chapter2:定常系统动能的数学结构}中的系数$M_{\alpha\beta}$不显含时间。
+
+下面将证明不论在定常还是非定常系统中，二次型$T_2$都是正定的。事实上，根据式\eqref{chapter2:系统动能的数学结构1}中的计算过程可以看出
+\begin{equation}
+	T_2 = \sum_{i=1}^n \frac12 m_i\left(\sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha\right)^2
+	\label{chapter2:定常系统动能T2的非负性}
+\end{equation}
+这说明$T_2\geqslant 0$。二次型正定还需要满足非退化性，即要求当且仅当所有$\dot{q}_\alpha(\alpha=1,2,\cdots,s)$都等于零的时候才有$T_2=0$。假设不然，即在某些不完全为零的$\dot{q}_1^*,\dot{q}_2^*,\cdots,\dot{q}_s^*$下，$T_2$可以等于零，那么式\eqref{chapter2:定常系统动能T2的非负性}中的每个括号内都应该等于零，即
+\begin{equation}
+	\sum_{\alpha=1}^s\frac{\pl \mbf{r}_i}{\pl q_\alpha}\dot{q}_\alpha^* = 0
+	\label{chapter2:定常系统动能T2的非退化性}
+\end{equation}
+% 将其写为分量形式将得到三个等式
+% \begin{equation}
+	% \sum_{\alpha=1}^s\frac{\pl x_i}{\pl q_\alpha}\dot{q}_\alpha^* = 0,\quad \sum_{\alpha=1}^s\frac{\pl y_i}{\pl q_\alpha}\dot{q}_\alpha^* = 0,\quad \sum_{\alpha=1}^s\frac{\pl z_i}{\pl q_\alpha}\dot{q}_\alpha^* = 0
+% \end{equation}
+等式\eqref{chapter2:定常系统动能T2的非退化性}表明坐标变换方程的Jacobi矩阵\eqref{chapter2:坐标变换方程的Jacobi矩阵}的各列线性相关，即这个矩阵的秩小于$s$，这与广义坐标的选取需使得矩阵\eqref{chapter2:坐标变换方程的Jacobi矩阵}满秩相矛盾。于是便证明了二次型$T_2$是正定的。由此也可以顺便得到
+\begin{equation}
+	\det\begin{pmatrix} M_{\alpha\beta} \end{pmatrix} > 0
+	\label{chapter2:定常系统动能T2的正定性推论}
+\end{equation}
+这说明，如果选定的广义坐标$\mbf{q}$对于系统的某个位置使得不等式\eqref{chapter2:定常系统动能T2的正定性推论}不成立，则意味着不适合用这一组广义坐标$\mbf{q}$研究系统在这个位置附近的运动，在这个位置附近的邻域内需要引进其它广义坐标。一个具体的例子请见第\ref{chapter6:subsection-刚体定点转动的Euler角·万向锁}节和第\ref{chapter6:subsection-惯量主轴与主轴系}节中关于万向锁的讨论。
+
+根据式\eqref{chapter2:系统动能的数学结构2}和式\eqref{chapter2:系统动能的数学结构3}可得
 \begin{align*}
-	T_2 & = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta \\
-	T_1 & = \sum_{\alpha=1}^s P_\alpha(\mbf{q},t) \dot{q}_\alpha \\
-	T_0 & = \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2
+	\frac{\pl T}{\pl \dot{q}_\alpha} & = \sum_{\beta=1}^s M_{\alpha\beta} \dot{q}_\beta + P_\alpha \\
+	\frac{\pl T}{\pl q_\alpha} & = \frac12 \sum_{\beta,\gamma=1}^s \frac{\pl M_{\beta\gamma}}{\pl q_\alpha} \dot{q}_\beta \dot{q}_\gamma + \sum_{\beta=1}^s \frac{\pl P_\beta}{\pl q_\alpha} \dot{q}_\beta + \frac{\pl T_0}{\pl q_\alpha}
 \end{align*}
-由此可有
-\begin{equation*}
-	\frac{\pl T}{\pl \dot{q}_\alpha} = \sum_{\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\beta + P_\alpha(\mbf{q},t)
-\end{equation*}
-即有
+所以有
 \begin{align*}
 	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} & = \sum_{\beta=1}^s M_{\alpha\beta} \ddot{q}_\beta + \sum_{\beta,\gamma=1}^s \frac{\pl M_{\alpha\beta}}{\pl q_\gamma} \dot{q}_\beta \dot{q}_\gamma + \sum_{\beta=1}^s \left(\frac{\pl M_{\alpha\beta}}{\pl t} + \frac{\pl P_\alpha}{\pl q_\beta}\right) \dot{q}_\beta + \frac{\pl P_\alpha}{\pl t}
 \end{align*}
-以及
-\begin{align*}
-	\frac{\pl T}{\pl q_\alpha} = \frac12 \sum_{\beta,\gamma=1}^s \frac{\pl M_{\beta\gamma}}{\pl q_\alpha} \dot{q}_\beta \dot{q}_\gamma + \sum_{\beta=1}^s \frac{\pl P_\beta}{\pl q_\alpha} \dot{q}_\beta + \frac{\pl T_0}{\pl q_\alpha}
-\end{align*}
+由此可知，Lagrange方程可以表示为
+\begin{equation}
+	\sum_{\beta=1}^s M_{\alpha\beta}\ddot{q}_\beta = g_\alpha(\mbf{q},\dot{\mbf{q}},t)
+	\label{chapter2:Lagrange方程的最终形式}
+\end{equation}
+根据式\eqref{chapter2:定常系统动能T2的正定性推论}可知，这个关于广义加速度$\ddot{q}_\alpha$的线性方程组\eqref{chapter2:Lagrange方程的最终形式}有唯一解
+\begin{equation}
+	\ddot{q}_\alpha = G_\alpha(\mbf{q},\dot{\mbf{q}},t)\quad (\alpha=1,2,\cdots,s)
+	\label{chapter2:Lagrange方程最终化为广义加速度方程}
+\end{equation}
+由微分方程理论可知，当函数$G_\alpha$满足某些限制条件时，对任意初始条件：当$t=t_0$时，$\mbf{q}(t_0)=\mbf{q}_0, \dot{\mbf{q}}(t_0) = \dot{\mbf{q}}_0$，常微分方程组\eqref{chapter2:Lagrange方程最终化为广义加速度方程}都有唯一解，因此Lagrange方程满足运动确定性条件。
 
 \subsection{有势系的Lagrange函数}
 
-如果外力是有势力\footnote{保守力与有势力是不同的，考虑
-\begin{equation*}
-	\mathrm{d} V = \sum_{i=1}^n \frac{\pl V}{\pl \mbf{r}_i} \cdot \mathrm{d} \mbf{r}_i + \frac{\pl V}{\pl t}\mathrm{d} t
-\end{equation*}
-因此有
+如果外力是有势力\footnote{保守力与有势力是不同的，考虑$\ds \mathrm{d} V = \sum_{i=1}^n \frac{\pl V}{\pl \mbf{r}_i} \cdot \mathrm{d} \mbf{r}_i + \frac{\pl V}{\pl t}\mathrm{d} t$，因此有
 \begin{equation*}
 	\sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i = -\mathrm{d} V + \frac{\pl V}{\pl t}\mathrm{d} t
 \end{equation*}
 所以仅当势函数不显含时间$\dfrac{\pl V}{\pl t}=0$时，有势力才是保守力。}，即
-\begin{equation*}
-	\mbf{F}_i = -\frac{\pl V}{\pl \mbf{r}_i},\quad i = 1,2,\cdots,n
-\end{equation*}
-其中$V(\mbf{r},t)$为势函数。考虑$V = V(\mbf{r}(\mbf{q},t),t)$，可有
-\begin{equation*}
+\begin{equation}
+	\mbf{F}_i = -\frac{\pl V}{\pl \mbf{r}_i}\quad (i = 1,2,\cdots,n)
+\end{equation}
+其中$V(\mbf{r},t)$为势函数。考虑$V = V(\mbf{r}(\mbf{q},t),t)$，可有广义力
+\begin{equation}
 	Q_\alpha = -\sum_{i=1}^n \frac{\pl V}{\pl \mbf{r}_i} \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha} = -\frac{\pl V}{\pl q_\alpha}
-\end{equation*}
-由此，定义
+\end{equation}
+由此，定义{\bf Lagrange函数}
 \begin{equation}
 	L(\mbf{q},\dot{\mbf{q}},t) = T(\mbf{q},\dot{\mbf{q}},t) - V(\mbf{q},t)
 	\label{Lagrange函数}
 \end{equation}
 则有{\heiti 理想完整有势系的Lagrange方程}
 \begin{equation}
-	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha =1,2,\cdots,s
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0 \quad (\alpha =1,2,\cdots,s)
 	\label{理想完整有势系的Lagrange方程}
-\end{equation}
-如果体系中部分主动力为有势力，则可将其势归入Lagrange函数$L$，非势力表示为广义力，则同样可有Lagrange方程
-\begin{equation}
-	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = Q'_\alpha,\quad \alpha =1,2,\cdots,s
 \end{equation}
 
 \begin{example}
@@ -845,7 +1370,7 @@ $\delta x$是独立的广义虚位移，因此有
 \end{equation*}
 Lagrange函数为
 \begin{equation*}
-	L(r,\theta;\dot{r},\dot{\theta};t) = \frac12 m(\dot{r}^2 + r^2 \dot{\theta}^2) + \frac12 M\dot{r}^2 - Mg(r-l)
+	L(r,\theta,\dot{r},\dot{\theta},t) = \frac12 m(\dot{r}^2 + r^2 \dot{\theta}^2) + \frac12 M\dot{r}^2 - Mg(r-l)
 \end{equation*}
 计算
 \begin{align*}
@@ -863,28 +1388,172 @@ Lagrange函数为
 \end{equation*}
 \end{solution}
 
-\section{广义势}
+\subsection{完整有势系统的机械能}
 
-理想完整有势系的外力与速度无关，即
+设系统中只有部分主动力为有势力，除有势力之外还受某些非有势力作用，则可将势归入Lagrange函数$L$，非有势力表示为广义力$Q_\alpha^*$，则根据\eqref{chapter2:理想完整系的Lagrange方程}有
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} = -\frac{\pl V}{\pl q_\alpha} + Q_\alpha^* \quad (\alpha =1,2,\cdots,s)
+	\label{chapter2:部分主动力为有势力的完整系统的Lagrange方程}
+\end{equation}
+
+首先证明下面的定理。
+\begin{theorem}[齐次函数的Euler定理]
+\label{齐次函数的Euler定理}
+如果$n$元函数$f(x_1,x_2,\cdots,x_n)$对$\forall \, \lambda \neq 0$满足
 \begin{equation*}
-	\mbf{F}_i(\mbf{r},t) = -\frac{\pl V}{\pl \mbf{r}_i}(\mbf{r}_i,t),\quad i=1,2,\cdots,n
+	f(\lambda x_1,\lambda x_2,\cdots,\lambda x_n) = \lambda^m f(x_1,x_2,\cdots,x_n)
 \end{equation*}
-此时系统存在相应的Lagrange函数。那么对于速度相关的外力，是否也存在类似的Lagrange函数？
+则称为$m$次{\heiti 齐次函数}。其满足
+\begin{equation}
+	\sum_{i=1}^n x_i \frac{\pl f}{\pl x_i} = mf(x_1,x_2,\cdots,x_n)
+\end{equation}
+\end{theorem}
+\begin{proof}
+将式
+\begin{equation*}
+	f(\lambda x_1,\lambda x_2,\cdots,\lambda x_n) = \lambda^m f(x_1,x_2,\cdots,x_n)
+\end{equation*}
+两端对$\lambda$求偏导数，可得
+\begin{equation*}
+	\sum_{i=1}^n x_i f'_i = m\lambda^{m-1} f(x_1,x_2,\cdots,x_n)
+\end{equation*}
+由此，令$\lambda = 1$，即得证齐次函数的Euler定理
+\begin{equation*}
+	\sum_{i=1}^n x_i \frac{\pl f}{\pl x_i} = mf(x_1,x_2,\cdots,x_n) \qedhere
+\end{equation*}
+\end{proof}
 
-\subsection{广义势}
+动能$T(\mbf{q},\dot{\mbf{q}},t)$对时间的导数为
+\begin{align}
+	\frac{\mathd T}{\mathd t} & = \sum_{\alpha=1}^s \frac{\pl T}{\pl q_\alpha}\dot{q}_\alpha + \sum_{\alpha=1}^s \frac{\pl T}{\pl \dot{q}_\alpha} \ddot{q}_\alpha + \frac{\pl T}{\pl t} \nonumber \\
+	& = \frac{\mathd}{\mathd t}\left(\sum_{\alpha=1}^s \frac{\pl T}{\pl \dot{q}_\alpha}\dot{q}_\alpha\right) - \sum_{\alpha=1}^s\left(\frac{\mathd}{\mathd t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha}\right)\dot{q}_\alpha + \frac{\pl T}{\pl t}
+	\label{chapter2:一般完整系统动能对时间的导数}
+\end{align}
+利用式\eqref{chapter2:系统动能的数学结构2}和齐次函数的Euler定理，可得
+\begin{equation*}
+	\sum_{\alpha=1}^s \frac{\pl T}{\pl \dot{q}_\alpha}\dot{q}_\alpha = 2T_2+T_1
+\end{equation*}
+将上式和Lagrange方程\eqref{chapter2:部分主动力为有势力的完整系统的Lagrange方程}代入式\eqref{chapter2:一般完整系统动能对时间的导数}中，可得
+\begin{align*}
+	\frac{\mathd T}{\mathd t} & = \frac{\mathd}{\mathd t}(2T_2+T_1)+\sum_{\alpha=1}^s \frac{\pl V}{\pl q_\alpha}\dot{q}_\alpha-\sum_{\alpha=1}^sQ_\alpha^*\dot{q}_\alpha+\frac{\pl T}{\pl t} \\
+	& = \frac{\mathd}{\mathd t}(2T_2+T_1)+\frac{\mathd V}{\mathd t} - \frac{\pl V}{\pl t} - \sum_{\alpha=1}^sQ_\alpha^*\dot{q}_\alpha + \frac{\pl T}{\pl t}
+\end{align*}
+考虑到$2T_2+2T_1+2T_0=2T$以及机械能$E=T+V$，稍作整理可得如下机械能对时间导数的表达式
+\begin{equation}
+	\frac{\mathd E}{\mathd t} = N^* + \frac{\mathd}{\mathd t}(T_1+2T_0) + \frac{\pl V}{\pl t} - \frac{\pl T}{\pl t}
+	\label{chapter2:机械能对时间的导数}
+\end{equation}
+其中
+\begin{equation}
+	N^* = \sum_{\alpha=1}^sQ_\alpha^*\dot{q}_\alpha
+	\label{chapter2:非有势力功率}
+\end{equation}
+称为{\bf 非有势力功率}。公式\eqref{chapter2:机械能对时间的导数}给出了完整系统机械能随时间变化的关系。如下几种特殊情况是通常能够满足的：
+\begin{enumerate}
+\item 如果系统是定常的，则$T_1=T_0=0, \dfrac{\pl T}{\pl t} = 0$，此时
+\begin{equation}
+	\frac{\mathd E}{\mathd t} = N^* + \frac{\pl V}{\pl t}
+\end{equation}
+\item 如果系统是定常的且势能不显含时间，此时
+\begin{equation}
+	\frac{\mathd E}{\mathd t} = N^*
+	\label{chapter2:机械能变化公式2}
+\end{equation}
+\item 设系统满足如下条件：\begin{enumerate*}\item 定常；\item 系统中所有主动力有势；\item 势能不显含时间，\end{enumerate*}满足这些条件的系统称为{\bf 保守系统}。对保守系统有
+\begin{equation}
+	\frac{\mathd E}{\mathd t} = 0
+\end{equation}
+即保守系统的机械能守恒，系统有能量积分
+\begin{equation}
+	E = T+V = \text{常数}
+\end{equation}
+\end{enumerate}
+
+\subsection{陀螺力}
+
+如果非有势力的功率等于零，则称之为{\bf 陀螺力}。
+
+设非有势力是广义速度的线性函数\footnote{一般的非有势力可能还与广义坐标有关。}，即
+\begin{equation*}
+	Q_\alpha^* = \sum_{\beta=1}^s \gamma_{\alpha\beta}\dot{q}_\beta\quad (\alpha=1,2,\cdots,s)
+\end{equation*}
+如果系数矩阵$\begin{pmatrix} \gamma_{\alpha\beta} \end{pmatrix}$是反对称的$\gamma_{\alpha\beta}=\gamma_{\beta\alpha}$，那么必然有
+\begin{equation*}
+	N^* = \sum_{\alpha=1}^s Q_\alpha^*\dot{q}_\alpha = \sum_{\alpha,\beta=1}^s \gamma_{\alpha\beta} \dot{q}_\alpha\dot{q}_\beta = 0
+\end{equation*}
+即力$Q_\alpha^*$是陀螺力。根据式\eqref{chapter2:机械能变化公式2}可知，势能不显含时间的定常系统当非有势力都是陀螺力时，机械能也同样守恒，也有能量积分。
+
+然后考虑
+\begin{align*}
+	\sum_{i=1}^n \mbf{F}_i\cdot \mbf{v}_i & = \sum_{i=1}^n \mbf{F}_i\cdot \left(\sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl \mbf{r}_i}{\pl t}\right) = \sum_{\alpha=1}^s \left(\sum_{i=1}^n \mbf{F}_i\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right) \dot{q}_\alpha + \sum_{i=1}^n \mbf{F}_i\cdot \frac{\pl \mbf{r}_i}{\pl t} \\
+	& = \sum_{\alpha=1}^s Q_\alpha^* \dot{q}_\alpha + \sum_{i=1}^n \mbf{F}_i\cdot \frac{\pl \mbf{r}_i}{\pl t}
+\end{align*}
+定常系统有$\dfrac{\pl \mbf{r}_i}{\pl t} = \mbf{0}$，所以
+\begin{equation*}
+	\sum_{i=1}^n \mbf{F}_i\cdot \mbf{v}_i = \sum_{\alpha=1}^s Q_\alpha^* \dot{q}_\alpha = N^*
+\end{equation*}
+因此在定常的情况下，作用在系统上的非有势力$\mbf{F}_i^*$是陀螺力的条件为
+\begin{equation}
+	\sum_{i=1}^n \mbf{F}_i^*\cdot \mbf{v}_i = 0
+	\label{chapter2:定常系统中陀螺力的判定条件}
+\end{equation}
+
+\begin{example}
+在定常系统中，Coriolis惯性力\footnote{关于Coriolis惯性力，请见第\ref{chapter7:subsection-非惯性系的运动方程与惯性力}节。}
+\begin{equation*}
+	\mbf{F}_{ic} = -2m_i\mbf{\omega}_0\times \mbf{v}_i
+\end{equation*}
+是陀螺力。根据式\eqref{chapter2:定常系统中陀螺力的判定条件}，可得
+\begin{equation*}
+	\sum_{i=1}^n \mbf{F}_{ic}\cdot \mbf{v}_i = -2m_i\sum_{i=1}^n (\mbf{\omega}_0\times \mbf{v}_i)\cdot \mbf{v}_i = 0
+\end{equation*}
+于是说明Coriolis惯性力是陀螺力。
+\end{example}
+
+\begin{example}
+作用在旋转陀螺上保证其规则进动的力矩\footnote{关于规则进动陀螺，请见第\ref{chapter6:subsection-陀螺}节。}
+\begin{equation*}
+	\mbf{M} = \mbf{\omega}_p\times\mbf{\omega}_s\left[I_3+(I_3-I_1)\dfrac{\omega_p}{\omega_s}\cos\theta_0\right]
+\end{equation*}
+是陀螺力。根据式\eqref{chapter2:定常系统中陀螺力的判定条件}，可得
+\begin{equation*}
+	\mbf{M}\cdot \mbf{\omega} = \mbf{M}\cdot (\mbf{\omega}_p+\mbf{\omega}_s) = 0
+\end{equation*}
+于是说明这个力矩是陀螺力，陀螺力也是以此得名。
+\end{example}
+
+\begin{example}
+作用在静磁场中运动带电粒子上的Lorenz力\footnote{关于Lorenz力，请见第\ref{chapter2:subsection-电磁场中带电粒子的广义势能}节。}
+\begin{equation*}
+	\mbf{F} = e\mbf{v}\times \mbf{B}
+\end{equation*}
+是陀螺力。根据式\eqref{chapter2:定常系统中陀螺力的判定条件}，可得
+\begin{equation*}
+	\mbf{F} \cdot \mbf{v} = (e\mbf{v}\times \mbf{B})\cdot \mbf{v} = 0
+\end{equation*}
+于是说明Lorenz力是陀螺力。
+\end{example}
+
+% \section{广义势}
+
+% 理想完整有势系的外力与速度无关，即
+% \begin{equation*}
+	% \mbf{F}_i(\mbf{r}_i,t) = -\frac{\pl V}{\pl \mbf{r}_i}(\mbf{r}_i,t)\quad (i=1,2,\cdots,n)
+% \end{equation*}
+% 此时系统存在相应的Lagrange函数。那么对于速度相关的外力，是否也存在类似的Lagrange函数？
+
+\subsection{广义势·广义势系统的Lagrange函数}
 
 如果质点系中的质点所受外力可以用标量函数$U(\mbf{r},\dot{\mbf{r}},t)$表示为\footnote{与$\dfrac{\pl}{\pl \mbf{r}}$的含义类似，此处$\dfrac{\pl}{\pl \dot{\mbf{r}}_i}$定义为\begin{equation*} \frac{\pl}{\pl \dot{\mbf{r}}_i} = \mbf{e}_1 \frac{\pl}{\pl \dot{x}_i} + \mbf{e}_2 \frac{\pl}{\pl \dot{y}_i} + \mbf{e}_3 \frac{\pl}{\pl \dot{z}_i} \end{equation*}}
 \begin{equation}
-	\mbf{F}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i},\quad i = 1,2,\cdots,n
+	\mbf{F}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i}\quad (i = 1,2,\cdots,n)
 	\label{广义势关系}
 \end{equation}
-则标量函数$U(\mbf{r},\dot{\mbf{r}},t)$称为体系的{\heiti 广义势}。
+则标量函数$U(\mbf{r},\dot{\mbf{r}},t)$称为系统的{\heiti 广义势}。
 
-\subsection{广义势体系的Lagrange函数}
-
-在广义坐标变换下，广义势函数满足
+在广义坐标下，广义势函数满足
 \begin{equation*}
-	U = U(\mbf{r}(\mbf{q},t),\dot{\mbf{r}}(\mbf{q},\dot{\mbf{q}},t),t)
+	U = U(\mbf{q},\dot{\mbf{q}},t) = U(\mbf{r}(\mbf{q},t),\dot{\mbf{r}}(\mbf{q},\dot{\mbf{q}},t),t)
 \end{equation*}
 则广义力可以表示为
 \begin{align}
@@ -894,21 +1563,22 @@ Lagrange函数为
 	& = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{q}_\alpha} - \frac{\pl U}{\pl q_\alpha}
 	\label{广义势系统中的广义力}
 \end{align}
-式中利用了经典Lagrange关系\eqref{经典Lagrange关系}。由此可定义广义势系统的Lagrange函数
+式中利用了经典Lagrange关系\eqref{chapter2:经典Lagrange关系}。由此可定义广义势系统的Lagrange函数
 \begin{equation}
 	L(\mbf{q},\dot{\mbf{q}},t) = T(\mbf{q},\dot{\mbf{q}},t) - U(\mbf{q},\dot{\mbf{q}},t)
 \end{equation}
 则系统的Lagrange方程与式\eqref{理想完整有势系的Lagrange方程}相同，即
 \begin{equation}
-	\frac{\mathrm{d}}{\mathrm{d}t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0,\quad \alpha = 1,2,\cdots,s
+	\frac{\mathrm{d}}{\mathrm{d}t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0 \quad (\alpha = 1,2,\cdots,s)
 \end{equation}
-考虑动能$\displaystyle T = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i$满足
+
+另外注意到动能$\displaystyle T = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i^2$满足
 \begin{equation*}
 	-m_i \ddot{\mbf{r}}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl (-T)}{\pl \dot{\mbf{r}}_i} - \frac{\pl (-T)}{\pl \mbf{r}_i}
 \end{equation*}
-即，惯性力的广义势是负动能。由此，Lagrange函数即（除负号）惯性力与主动力广义势能之和，又称为体系的{\heiti 动势}。
+即，惯性力的广义势是负动能。由此，Lagrange函数即（除负号）惯性力与主动力广义势能之和，又称为系统的{\heiti 动势}。
 
-\subsection{电磁场中带电粒子的广义势能}
+\subsection{电磁场中带电粒子的广义势}\label{chapter2:subsection-电磁场中带电粒子的广义势能}
 
 电磁场中的带电粒子受到Lorentz力，即
 \begin{equation}
@@ -947,6 +1617,271 @@ Lagrange函数为
 	\label{电磁场中点电粒子的Lagrange函数}
 \end{equation}
 
+\section{求解系统的约束反力}
+
+\subsection{利用Lagrange乘子法求解全部约束反力}
+
+在完整系统的动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}中，约束反力已经被全部消去，进而可以不必求解约束反力即可直接求解运动。在第\ref{chapter2:subsection-理想完整系的Lagrange方程}节已经提到，在求解出系统的运动之后，可以再根据非自由系统的Newton第二定律方程\eqref{chapter2:非自由系统中质点的Newton第二定律方程}得到
+\begin{equation}
+	\mbf{R}_i = m_i\ddot{\mbf{r}}_i-\mbf{F}_i
+	\label{chapter2:求解全部约束反力-约束反力的定义}
+\end{equation}
+将求解出的运动规律代入，即可求得全部约束反力。
+
+如果希望能够同时求解出系统的运动和全部约束反力，则可以通过Lagrange乘子法来解决。设理想完整系统的约束表示为
+\begin{equation}
+	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) = 0 \quad (j = 1,2,\cdots,k)
+	\label{chapter2:求解全部约束反力-约束}
+\end{equation}
+解除所有约束，则根据动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}可有
+\begin{equation}
+	\sum_{i=1}^n (\mbf{F}_i-m_i\ddot{\mbf{r}}_i)\cdot \delta \mbf{r}_i = 0
+	\label{chapter2:动力学普遍方程-重写}
+\end{equation}
+但式\eqref{chapter2:动力学普遍方程-重写}中的$3n$个虚位移分量之间并不是相互独立的，而是由$k$个约束方程\eqref{chapter2:求解全部约束反力-约束}相联系。对方程\eqref{chapter2:求解全部约束反力-约束}求变分，可得
+\begin{equation}
+	\sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i = 0\quad (j=1,2,\cdots,k)
+	\label{chapter2:求解全部约束反力-约束方程的变分}
+\end{equation}
+引入$k$个不定乘子$\lambda_j(t)$，将其分别与方程\eqref{chapter2:求解全部约束反力-约束方程的变分}相乘，并与动力学普遍方程\eqref{chapter2:动力学普遍方程-重写}相加，可得
+\begin{equation}
+	\sum_{i=1}^n \left(\mbf{F}_i-m_i\ddot{\mbf{r}}_i + \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i}\right) \cdot \delta \mbf{r}_i = 0
+	\label{chapter2:求解全部约束反力-中间过程1}
+\end{equation}
+再根据Lagrange公式\eqref{加速度的Lagrange公式}可得
+\begin{equation}
+	\sum_{i=1}^n \left(\frac{\pl T}{\pl \mbf{r}_i}-\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{\mbf{r}}_i} + \mbf{F}_i+\sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i}\right) \cdot \delta \mbf{r}_i = 0
+	\label{chapter2:求解全部约束反力-中间过程2}
+\end{equation}
+在式\eqref{chapter2:求解全部约束反力-中间过程2}中的$3n$个虚位移分量中，只有$s$个是独立的，而此处引入的$k=3n-s$个不定乘子是可以任意取值的，那么总是可以选择这样的不定乘子$\lambda_j(t)$，使得式\eqref{chapter2:求解全部约束反力-中间过程2}中前$k=3n-s$个虚位移分量的系数为零，那么这样式\eqref{chapter2:求解全部约束反力-中间过程2}就只剩下相互独立的$s$个虚位移分量，它们的系数必须为零。综上可得系统的运动微分方程为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{\mbf{r}}_i} - \frac{\pl T}{\pl \mbf{r}_i} = \mbf{F}_i+\sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i} & (i = 1,2,\cdots,n) \\
+	\displaystyle f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) = 0 & (j=1,2,\cdots,k)
+\end{cases}
+\label{chapter2:理想完整系统的Lagrange乘子法}
+\end{equation}
+根据式\eqref{chapter2:理想完整系统的Lagrange乘子法}的$n+k$个方程可以解出系统的运动$\mbf{r}_i = \mbf{r}_i(t)$（共$3n$个分量），以及$k$个不定乘子$\lambda_j = \lambda_j(t)$。
+
+下面来讨论所引入的$k$个不定乘子的物理意义。注意到Lagrange公式\eqref{加速度的Lagrange公式}
+\begin{equation}
+	m_i \ddot{\mbf{r}}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{\mbf{r}}_i} - \frac{\pl T}{\pl \mbf{r}_i}
+\end{equation}
+将方程\eqref{chapter2:理想完整系统的Lagrange乘子法}的第一部分代入约束反力的定义式\eqref{chapter2:求解全部约束反力-约束反力的定义}中，可得质点$m_i$所受约束反力的合力为
+\begin{equation}
+	\mbf{R}_i = m_i\ddot{\mbf{r}}_i - \mbf{F}_i = \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i}
+	\label{chapter2:第i个质点所受的约束反力的合力}
+\end{equation}
+于是，记
+\begin{equation}
+	\mbf{R}_{ij} = \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i}
+	\label{chapter2:第j个约束对第i个质点的约束反力}
+\end{equation}
+为第$j$个约束施于第$i$个质点的力，其方向决定于$\bnb_i f_j$，大小则与$\lambda_j$成正比。约束反力可以写作
+\begin{equation}
+	\mbf{R}_i = \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i} = -\frac{\pl}{\pl \mbf{r}_i} \left(-\sum_{j=1}^k \lambda_j f_j\right)
+\end{equation}
+所以，标量函数
+\begin{equation}
+	W(\mbf{r},t) = -\sum_{j=1}^k \lambda_j f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t)
+	\label{chapter2:约束力势的定义}
+\end{equation}
+称为{\heiti 约束力势}。这时可以形式上将约束力势视作外力的势能加入Lagrange函数中，即引入新的Lagrange函数
+\begin{equation}
+	\bar{L} = T-W = \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}^2 + \sum_{j=1}^k \lambda_j f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t)
+\end{equation}
+则可以将方程\eqref{chapter2:理想完整系统的Lagrange乘子法}利用新的Lagrange函数在形式上写为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} - \frac{\pl \bar{L}}{\pl \mbf{r}_i} = \mbf{F}_i & (i=1,2,\cdots,n) \\[1.5ex]
+	\displaystyle \frac{\pl \bar{L}}{\pl \lambda_j} = 0 & (j = 1,2,\cdots,k)
+\end{cases}
+\end{equation}
+
+如果系统具有广义势$U=U(\mbf{r},\dot{\mbf{r}},t)$，即有
+\begin{equation}
+	\mbf{F}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i}
+\end{equation}
+此时方程\eqref{chapter2:理想完整系统的Lagrange乘子法}可用Lagrange函数$L=T-U$改写为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{\mbf{r}}_i} - \frac{\pl L}{\pl \mbf{r}_i} = \sum_{j=1}^k \lambda_j \frac{\pl f_j}{\pl \mbf{r}_i} & (i = 1,2,\cdots,n) \\
+	\displaystyle f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) = 0 & (j=1,2,\cdots,k)
+\end{cases}
+\label{chapter2:理想完整有势系统的Lagrange乘子法}
+\end{equation}
+其中不定乘子$\lambda_j$的物理意义与前文相同，且约束反力同样可以用式\eqref{chapter2:第i个质点所受的约束反力的合力}和\eqref{chapter2:第j个约束对第i个质点的约束反力}表示，约束力势仍然具有式\eqref{chapter2:约束力势的定义}的形式。于是在这种情况下可以形式上将约束力势视作外力的势能加入Lagrange函数中，即引入新的Lagrange函数
+\begin{equation}
+	\bar{L} = T-U-W = \sum_{i=1}^n \frac12 m\dot{\mbf{r}}^2 - U(\mbf{r},\dot{\mbf{r}},t) + \sum_{j=1}^k \lambda_j f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t)
+\end{equation}
+则可以将方程\eqref{chapter2:理想完整有势系统的Lagrange乘子法}利用新的Lagrange函数形式上写为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\mbf{r}}_i} - \frac{\pl \bar{L}}{\pl \mbf{r}_i} = 0 & (i=1,2,\cdots,n) \\[1.5ex]
+	\displaystyle \frac{\pl \bar{L}}{\pl \lambda_j} = 0 & (j = 1,2,\cdots,k)
+\end{cases}
+\end{equation}
+
+\subsection{利用Lagrange乘子法求解部分约束反力}
+
+本节利用Lagrange乘子法求解完整系统的前$l$个约束对应的约束反力。将完整系统的约束分为两组
+\begin{equation*}
+\begin{cases}
+	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) = 0 & (j = 1,2,\cdots,l) \\
+	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) = 0 & (j = l+1,l+2,\cdots,k)
+\end{cases}
+\end{equation*}
+为了求解前$l$个约束对应的约束反力，解除前$l$个约束，根据后$k-l$个约束选择广义坐标$q_\alpha\,(\alpha=1,2,\cdots,r = 3n-k+l)$。这些广义坐标将使得后面$k-l$个约束自动满足，余下前$l$个约束方程变为
+\begin{equation}
+	f_j(\mbf{r}(\mbf{q},t),t) = \bar{f}_j(\mbf{q},t) \quad (j=1,2,\cdots,l)
+	\label{chapter2:解除部分约束后余下的约束方程}
+\end{equation}
+
+根据广义坐标形式的动力学普遍方程\eqref{chapter2:广义坐标形式的动力学普遍方程}可有
+\begin{equation}
+	\sum_{\alpha=1}^r \left(\ddt\frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} - Q_\alpha\right)\delta q_\alpha = 0
+	\label{chapter2:广义坐标形式的动力学普遍方程-重写}
+\end{equation}
+但此处式\eqref{chapter2:广义坐标形式的动力学普遍方程-重写}中的$r$个广义虚位移之间并不是相互独立的，而是由$l$个约束方程\eqref{chapter2:解除部分约束后余下的约束方程}相联系。对方程\eqref{chapter2:解除部分约束后余下的约束方程}求变分，可得
+\begin{equation}
+	\delta \bar{f}_j = \sum_{\alpha=1}^r \frac{\pl \bar{f}_j}{\pl q_\alpha} \delta q_\alpha = 0
+	\label{chapter2:余下约束的变分}
+\end{equation}
+引入$l$个不定乘子$\lambda_j(t)$，将其分别与方程\eqref{chapter2:余下约束的变分}相乘，并与广义坐标形式的动力学普遍方程\eqref{chapter2:广义坐标形式的动力学普遍方程-重写}{\it 相减}\footnote{此处相减而不是相加是为了后文得到的约束力势能够与上一节具有相同的形式。}可得
+\begin{equation}
+	\sum_{\alpha=1}^r \left(\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} - Q_\alpha - \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha} \right) \delta q_\alpha = 0
+	\label{chapter2:求解部分约束反力-运动方程}
+\end{equation}
+在式\eqref{chapter2:求解部分约束反力-运动方程}中的$r$个广义虚位移中，只有$r-l=3n-k$个是相互独立的，而此处引入的$l$个不定乘子是可以任意取值的，那么总是可以选择这样的不定乘子$\lambda_j(t)$，使得式\eqref{chapter2:求解部分约束反力-运动方程}中前$l$个广义虚位移的系数为零，那么这样式\eqref{chapter2:求解部分约束反力-运动方程}就只剩下相互独立的$r-l$个广义虚位移，它们的系数必须为零。综上可得系统的运动微分方程为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} = Q_\alpha + \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha} & (\alpha=1,2,\cdots,r) \\
+	\bar{f}_j(\mbf{q},t) = 0 & (j=1,2,\cdots,l)
+\end{cases}
+\label{chapter2:求解理想完整系统的部分约束反力}
+\end{equation}
+同样可以约束反力的定义式得到广义约束反力的表达式为
+\begin{equation}
+	R_\alpha = \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha}
+\end{equation}
+则可以记
+\begin{equation}
+	R_{\alpha j} = \lambda_j \frac{\pl \bar{f}}{\pl q_\alpha}
+\end{equation}
+为第$j$个约束条件对应约束反力的第$\alpha$个广义力分量。改写约束反力为
+\begin{equation}
+	R_\alpha = \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha} = -\frac{\pl}{\pl q_\alpha} \left(-\sum_{j=1}^l \lambda_j \bar{f}_j\right)
+\end{equation}
+故标量函数
+\begin{equation}
+	W(\mbf{q},t) = -\sum_{j=1}^l \lambda_j \bar{f}_j(\mbf{q},t)
+\end{equation}
+称为{\heiti 约束力势}。与上节的讨论类似，这时也可以形式上将约束力势视作外力的势能加入Lagrange函数中，即引入新的Lagrange函数
+\begin{equation}
+	\bar{L} = T-W = T + \sum_{j=1}^l \lambda_j \bar{f}_j (\mbf{q},t)
+\end{equation}
+由此方程\eqref{chapter2:求解理想完整系统的部分约束反力}利用新的Lagrange函数形式上写为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{q}_\alpha} - \frac{\pl \bar{L}}{\pl q_\alpha} = Q_\alpha & (\alpha=1,2,\cdots,r) \\[1.5ex]
+	\dfrac{\pl \bar{L}}{\pl \lambda_j} = 0 & (j=1,2,\cdots,l)
+\end{cases}
+\end{equation}
+
+如果理想完整系统具有广义势$U=U(\mbf{q},\dot{\mbf{q}},t)$，则相应地可以将方程\eqref{chapter2:求解理想完整系统的部分约束反力}利用Lagrange函数改写为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = \sum_{j=1}^l \lambda_j \frac{\pl \bar{f}_j}{\pl q_\alpha} & (\alpha=1,2,\cdots,r) \\
+	\bar{f}_j(\mbf{q},t) = 0 & (j=1,2,\cdots,l)
+\end{cases}
+\label{chapter2:求解理想完整有势系统的部分约束反力}
+\end{equation}
+此时也可以形式上将约束力势当作外力的势能加入Lagrange函数中，即引入新的Lagrange函数
+\begin{equation}
+	\bar{L} = T-U-W = L(\mbf{q},\dot{\mbf{q}},t) + \sum_{j=1}^l \lambda_j \bar{f}_j (\mbf{q},t)
+\end{equation}
+由此方程\eqref{chapter2:求解理想完整有势系统的部分约束反力}可以用新的Lagrange函数形式上写为
+\begin{equation}
+\begin{cases}
+	\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{q}_\alpha} - \frac{\pl \bar{L}}{\pl q_\alpha} = 0 & (\alpha =1,2,\cdots,r) \\[1.5ex]
+	\displaystyle \frac{\pl \bar{L}}{\pl \lambda_j} = 0 & (j = 1,2,\cdots,l)
+\end{cases}
+\end{equation}
+
+\begin{example}
+质量为$m$的质点从半径为$R$的光滑半球面顶端零初速滑下，求脱离球面时的位置。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第三章例7图
+	pair O;
+	real R,r,theta;
+	R = 3;
+	theta = 60;
+	r = 0.15;
+	O = (0,0);
+	draw(arc(O,R,0,180)--cycle);
+	draw(Label("$R$",MidPoint,W),O--R*dir(90),dashed);
+	draw(O--R*dir(theta),dashed);
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,0.6,90,theta),Arrow);
+	fill(shift((R+r)*dir(theta))*scale(r)*unitcircle,black);
+	label("$m$",(R+r)*dir(theta),3*E);
+	draw(Label("$\boldsymbol{N}$",EndPoint),(R+r)*dir(theta)--(R+r)*dir(theta)+dir(theta),Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{第三章例7图}
+\end{figure}
+\end{example}
+
+\begin{solution}
+本例约束为可解约束$r - R \geqslant 0$。未解时约束为$r-R=0$，约束反力为$\mbf{N}$，约束解除的条件为$\mbf{N} = \mbf{0}$。
+
+除去约束，选择广义坐标为$r,\theta$，则Lagrange函数为
+\begin{equation*}
+	\bar{L} = \frac12 m(\dot{r}^2+r^2 \dot{\theta}) - mgr\cos \theta + \lambda(r-R)
+\end{equation*}
+则有系统方程为
+\begin{equation*}
+	\begin{cases}
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{r}} - \frac{\pl \bar{L}}{\pl r} = m(\ddot{r} - r\dot{\theta}^2) + mg\cos \theta - \lambda = 0 \\[1.5ex]
+		\displaystyle \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \bar{L}}{\pl \dot{\theta}} - \frac{\pl \bar{L}}{\pl \theta} = \frac{\mathrm{d}}{\mathrm{d} t} (mr^2\dot{\theta}) - mgr\sin \theta = 0 \\[1.5ex]
+		\displaystyle \frac{\pl \bar{L}}{\pl \lambda} = r-R = 0
+	\end{cases}
+\end{equation*}
+\end{solution}
+由第三式可得$r=R$，再由前两式消去$r$，可得
+\begin{equation*}
+	\begin{cases}
+		mR\dot{\theta}^2 - mg\cos \theta + \lambda = 0 \\
+		mR^2 \ddot{\theta} - mgR\sin \theta = 0
+	\end{cases}
+\end{equation*}
+根据$\ddot{\theta} = \dot{\theta} \dfrac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta}$，上面第二式可以化为
+\begin{equation*}
+	\mathrm{d} \left(\frac12 mR^2 \dot{\theta}^2 + mgR\cos \theta\right) = 0
+\end{equation*}
+根据初始条件$\dot{\theta} \big|_{\theta=0} = 0$可得
+\begin{equation*}
+	\frac12 mR^2 \dot{\theta}^2 + mgR\cos \theta = mgR
+\end{equation*}
+由此可解得
+\begin{equation*}
+	\lambda = mg(3\cos \theta-2)
+\end{equation*}
+约束反力为
+\begin{equation*}
+	\begin{cases}
+		N_r = \lambda \dfrac{\pl}{\pl r}(r-R) = \lambda \\[1.5ex]
+		N_\theta = \lambda \dfrac{\pl}{\pl \theta}(r-R) = 0
+	\end{cases}
+\end{equation*}
+由此脱离条件为
+\begin{equation*}
+	\lambda = mg(3\cos \theta-2) = 0
+\end{equation*}
+即$\theta = \arccos \dfrac23$时，此时高度为$h = R\cos \theta = \dfrac23 R$。
+
 \section{守恒定律}
 
 \subsection{广义动量及其守恒定律}
@@ -963,7 +1898,7 @@ Lagrange函数为
 \end{equation}
 式\eqref{广义动量定理}表示的关系称为{\heiti 广义动量定理}。
 
-如果某体系的Lagrange函数不显含某个广义坐标，即
+如果某系统的Lagrange函数不显含某个广义坐标，即
 \begin{equation*}
 	\frac{\pl L}{\pl q_\alpha} = 0
 \end{equation*}
@@ -1004,78 +1939,36 @@ Lagrange函数为
 
 \subsection{广义能量的数学结构}\label{第二章：广义能量的数学结构}
 
-\begin{theorem}[齐次函数的Euler定理]
-\label{齐次函数的Euler定理}
-如果$n$元函数$f(x_1,x_2,\cdots,x_n)$对$\forall \, \lambda \neq 0$满足
-\begin{equation*}
-	f(\lambda x_1,\lambda x_2,\cdots,\lambda x_n) = \lambda^m f(x_1,x_2,\cdots,x_n)
-\end{equation*}
-则称为$m$次{\heiti 齐次函数}。其满足
+首先考虑普通势系统，由于$V$与广义速度无关，因此根据动能的表达式\eqref{chapter2:系统动能的数学结构2}，可有
 \begin{equation}
-	\sum_{i=1}^n x_i \frac{\pl f}{\pl x_i} = mf(x_1,x_2,\cdots,x_n)
-\end{equation}
-\end{theorem}
-\begin{proof}
-将式
-\begin{equation*}
-	f(\lambda x_1,\lambda x_2,\cdots,\lambda x_n) = \lambda^m f(x_1,x_2,\cdots,x_n)
-\end{equation*}
-两端对$\lambda$求偏导数，可得
-\begin{equation*}
-	\sum_{i=1}^n x_i f'_i = m\lambda^{m-1} f(x_1,x_2,\cdots,x_n)
-\end{equation*}
-由此，令$\lambda = 1$，即得证齐次函数的Euler定理
-\begin{equation*}
-	\sum_{i=1}^n x_i \frac{\pl f}{\pl x_i} = mf(x_1,x_2,\cdots,x_n) \qedhere
-\end{equation*}
-\end{proof}
-
-根据动能的表达式\eqref{动能的数学结构}，可有
-\begin{equation*}
 	L = T-V = T_2 + T_1 + (T_0 - V) = L_2 + L_1 + L_0
-\end{equation*}
+\end{equation}
 由此，根据广义速度$\dot{q}_\alpha$的次数，可将Lagrange函数$L$分为三项，即
 \begin{align*}
-	L_2 & = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta \\
-	L_1 & = \sum_{\alpha=1}^s P_\alpha(\mbf{q},t) \dot{q}_\alpha \\
+	L_2 & = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta} \dot{q}_\alpha \dot{q}_\beta \\
+	L_1 & = \sum_{\alpha=1}^s P_\alpha \dot{q}_\alpha \\
 	L_0 & = \frac12 \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl t}\right)^2 - V
 \end{align*}
-显然，$L_2,L_1$分别为广义速度$\dot{q}_\alpha$的$2$次、$1$次齐次函数，根据Euler定理，它们满足
-\begin{equation*}
-	\sum_{\alpha=1}^s \dot{q}_\alpha \frac{\pl L_2}{\pl \dot{q}_\alpha} = 2L_2,\quad \sum_{\alpha=1}^s \dot{q}_\alpha \frac{\pl L_1}{\pl \dot{q}_\alpha} = L_1
-\end{equation*}
-因此，广义能量为
-\begin{equation*}
+显然，$L_2,L_1$分别为广义速度$\dot{q}_\alpha$的$2$次、$1$次齐次函数，根据Euler定理，可得广义能量为
+\begin{equation}
 	H = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \dot{q}_\alpha - L = 2L_2 + L_1 - (L_2+L_1+L_0) = L_2 - L_0 = T_2 - T_0 + V
-\end{equation*}
+\end{equation}
 
-对于完整稳定约束系统，即
-\begin{equation*}
-	\frac{\pl f_j}{\pl t} = 0,\quad f_j(\mbf{r}) = 0,\quad j = 1,2,\cdots,k
-\end{equation*}
-可根据约束取广义坐标$\mbf{r}_i = \mbf{r}_i(\mbf{q})$，此时即有
-\begin{equation*}
-	\frac{\pl \mbf{r}_i}{\pl t} = \mbf{0},\quad i = 1,2,\cdots,n
-\end{equation*}
-此时$T_1 = T_0 = 0,\, T = T_2$，所以
-\begin{equation*}
+如果系统是定常的，则有$\dfrac{\pl \mbf{r}_i}{\pl t} = \mbf{0}\, (i = 1,2,\cdots,n)$。此时$T_1 = T_0 = 0,\, T = T_2$，所以
+\begin{equation}
 	H = T+V
-\end{equation*}
-稳定约束力实功为零，因为实位移属于虚位移集合。即，对稳定约束体系，广义能量即惯性系内的体系总能量。
+\end{equation}
+即对定常系统，广义能量即惯性系内的系统总能量。
 
-对于完整非稳定约束系统，此时广义坐标取为$\mbf{r}_i = \mbf{r}_i(\mbf{q},t)$，即有
-\begin{equation*}
-	\frac{\pl \mbf{r}_i}{\pl t} \neq \mbf{0},\quad i = 1,2,\cdots,n
-\end{equation*}
-此时有
-\begin{equation*}
+对于非定常系统，此时$\dfrac{\pl \mbf{r}_i}{\pl t} \neq \mbf{0}\quad (i = 1,2,\cdots,n)$，所以
+\begin{equation}
 	H = T_2-T_0+V
-\end{equation*}
+\end{equation}
 记$T' = T_2$，$V'=V-T_0$分别为广义曲线坐标系的等效动能与势能，则有
-\begin{equation*}
+\begin{equation}
 	H = T'+V'
-\end{equation*}
-即，对非稳定约束体系，广义能量即广义坐标系（如非惯性系）内的体系总能量。
+\end{equation}
+即对非定常系统，广义能量即广义坐标系（如非惯性系）内的系统总能量。
 
 \begin{example}
 半径为$R$的光滑圆环以匀角速度$\mathnormal{\Omega}$绕铅直直径旋转。质量为$m$的质点穿在圆环上，求其平衡位置。
@@ -1106,7 +1999,7 @@ Lagrange函数为
 \end{figure}
 \end{example}
 \begin{solution}
-选择$\theta$作为广义坐标，则体系的Lagrange函数为
+选择$\theta$作为广义坐标，则系统的Lagrange函数为
 \begin{equation*}
 	L = \frac12 m(R^2 \mathnormal{\Omega}^2 \sin^2 \theta + R^2 \dot{\theta}^2) + mgR(1-\cos \theta)
 \end{equation*}
@@ -1122,7 +2015,7 @@ Lagrange函数不显含时间，故广义能量守恒，即
 \begin{equation*}
 	V' = -\frac12 mR^2 \mathnormal{\Omega}^2 \sin^2 \theta + mgR(1-\cos \theta)
 \end{equation*}
-体系的势能曲线如图\ref{第二章例5势能曲线}所示。
+系统的势能曲线如图\ref{第二章例5势能曲线}所示。
 \begin{figure}[htb]
 \centering
 \begin{asy}
@@ -1222,17 +2115,6 @@ Lagrange函数不显含时间，故广义能量守恒，即
 \end{equation}
 其中$\dfrac12 m\dot{\mbf{r}}^2$可称为{\heiti 机械动能}，$e\phi$可称为{\heiti 电磁势能}。
 
-\iffalse
-对于均匀电磁场，此时标势和矢势与空间坐标无关\footnote{这里均匀电磁场并非指场变量$\mbf{E}$和$\mbf{B}$而是指标势和矢势在空间上是均匀的。如果场变量在空间上均匀，标势和矢势并不一定与空间坐标无关。此时有\begin{equation*} \mbf{E} = -\bnb \phi - \frac{\pl \mbf{A}}{\pl t} = - \frac{\pl \mbf{A}}{\pl t},\quad \mbf{B} = \bnb \times \mbf{A} = \mbf{0} \end{equation*}即空间中只存在均匀的时变电场，这可由场源的特定分布来实现。}，即
-\begin{equation*}
-	\phi = \phi(t),\quad \mbf{A} = \mbf{A}(t)
-\end{equation*}
-此时$\mbf{r}$为循环坐标，因此有
-\begin{equation*}
-	\dot{\mbf{p}} = \frac{\pl L}{\pl \mbf{r}} = \mbf{0}
-\end{equation*}
-粒子的动量守恒。\fi
-
 对于稳恒电磁场，此时标势和矢势与时间无关，即
 \begin{equation*}
 	\phi = \phi(\mbf{r}),\quad \mbf{A} = \mbf{A}(\mbf{r})
@@ -1260,17 +2142,17 @@ Lagrange函数不显含时间，故广义能量守恒，即
 上式右端即为该粒子受到的Lorentz力。
 \end{example}
 
-\section{时空对称性与守恒量}
+\section{时空对称性与守恒量}\label{chapter2:section-时空对称性与守恒量}
 
 \subsection{时空对称性}
 
-某物理定律或某体系的某物理量在某变换下形式或量值保持不变，则称该变换为{\heiti 对称变换}，此物理定律或物理量具有该变换下的{\heiti 对称性}（或称{\heiti 不变性}），该物理量则称为该体系的{\bf 守恒量}或{\bf 运动积分}。
+某物理定律或某系统的某物理量在某变换下形式或量值保持不变，则称该变换为{\heiti 对称变换}，此物理定律或物理量具有该变换下的{\heiti 对称性}（或称{\heiti 不变性}），该物理量则称为该系统的{\bf 守恒量}或{\bf 运动积分}。
 
-Lagrange函数是决定体系力学性质的特征函数，其变换不变性又称为体系对称性。力学体系在时空变换下的对称性称为{\heiti 时空对称性}，包括
+Lagrange函数是决定系统力学性质的特征函数，其变换不变性又称为系统对称性。力学系统在时空变换下的对称性称为{\heiti 时空对称性}，包括
 \begin{itemize}
-	\item {\heiti 空间平移对称性}：体系作任意整体平移，Lagrange函数不变；
-	\item {\heiti 空间转动对称性}：体系作任意整体转动，Lagrange函数不变；
-	\item {\heiti 时间平移对称性}：体系时间作任意平移，Lagrange函数不变。
+	\item {\heiti 空间平移对称性}：系统作任意整体平移，Lagrange函数不变；
+	\item {\heiti 空间转动对称性}：系统作任意整体转动，Lagrange函数不变；
+	\item {\heiti 时间平移对称性}：系统时间作任意平移，Lagrange函数不变。
 \end{itemize}
 
 \subsection{动量、角动量与能量守恒}
@@ -1289,7 +2171,7 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 \begin{equation*}
 	\delta \mbf{r}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \delta q_\alpha = \delta q_1 \mbf{e},\quad i = 1,2,\cdots,n
 \end{equation*}
-因此，广义坐标$q_1$的变化将导致体系的整体平移。体系的Lagrange函数在平移变换下不变，因此Lagrange函数不显含$q_1$，即
+因此，广义坐标$q_1$的变化将导致系统的整体平移。系统的Lagrange函数在平移变换下不变，因此Lagrange函数不显含$q_1$，即
 \begin{equation*}
 	\frac{\pl L}{\pl q_1} = 0
 \end{equation*}
@@ -1302,7 +2184,7 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 	p_1 & = \frac{\pl L}{\pl \dot{q}_1} = \frac{\pl T}{\pl \dot{q}_1} = \frac{\pl}{\pl \dot{q}_1} \sum_{i=1}^n \frac12 m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i = \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_1} \\
 	& = \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_1} = \mbf{e} \cdot \mbf{p}
 \end{align*}
-由此，体系沿$\mbf{e}$方向平移对称，则体系总动量的$\mbf{e}$分量守恒。
+由此，系统沿$\mbf{e}$方向平移对称，则系统总动量的$\mbf{e}$分量守恒。
 
 空间平移对称性又称{\heiti 空间均匀性}，即绝对位置不可测。
 
@@ -1348,7 +2230,7 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 \begin{equation*}
 	\delta \mbf{r}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \delta q_\alpha = \delta q_1 \mbf{e} \times \mbf{r}_i,\quad i = 1,2,\cdots,n
 \end{equation*}
-因此，广义坐标$q_1$的变化将导致体系的整体转动。体系的Lagrange函数在转动变换下不变，因此Lagrange函数不显含$q_1$，即
+因此，广义坐标$q_1$的变化将导致系统的整体转动。系统的Lagrange函数在转动变换下不变，因此Lagrange函数不显含$q_1$，即
 \begin{equation*}
 	\frac{\pl L}{\pl q_1} = 0
 \end{equation*}
@@ -1361,13 +2243,13 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 	p_1 & = \frac{\pl L}{\pl \dot{q}_1} = \frac{\pl T}{\pl \dot{q}_1} = \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_1} = \sum_{i=1}^n m_i\dot{\mbf{r}}_i \cdot (\mbf{e} \times \mbf{r}_i) \\
 	& = \sum_{i=1}^n \mbf{e} \cdot (\mbf{r}_i \times m_i \dot{\mbf{r}}_i) = \mbf{e} \cdot \mbf{L}
 \end{align*}
-由此，体系绕$\mbf{e}$整体转动对称，则体系总角动量的$\mbf{e}$分量守恒。
+由此，系统绕$\mbf{e}$整体转动对称，则系统总角动量的$\mbf{e}$分量守恒。
 
 空间转动对称性又称{\heiti 空间各项同性}，即绝对方向不可测。
 
 \subsubsection{时间平移对称性与能量守恒}
 
-体系的Lagrange函数在时间平移变换下不变，因此Lagrange函数不显含$t$，即
+系统的Lagrange函数在时间平移变换下不变，因此Lagrange函数不显含$t$，即
 \begin{equation*}
 	\frac{\pl L}{\pl t} = 0
 \end{equation*}
@@ -1375,16 +2257,16 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 \begin{equation*}
 	\dot{H} = -\frac{\pl L}{\pl t} = 0
 \end{equation*}
-由此，体系时间平移对称，则体系总能量守恒。
+由此，系统时间平移对称，则系统总能量守恒。
 
 时间平移对称性又称{\heiti 时间均匀性}，即绝对时间不可测。
 
-守恒定律与时空对称性有关，全部结论适用于整个物理学。循环坐标反映体系的对称性（变换不变性），可用其共轭动量守恒定律（只含广义速度和广义坐标）取代运动方程（含广义加速度）。对称性使体系的求解简化。
+守恒定律与时空对称性有关，全部结论适用于整个物理学。循环坐标反映系统的对称性（变换不变性），可用其共轭动量守恒定律（只含广义速度和广义坐标）取代运动方程（含广义加速度）。对称性使系统的求解简化。
 
-对称性是体系的客观属性，不依赖于主观描述。广义坐标选取适当，可使对称性通过循环坐标直观呈现。根据体系的对称性选择广义坐标，使循环坐标越多越好。
+对称性是系统的客观属性，不依赖于主观描述。广义坐标选取适当，可使对称性通过循环坐标直观呈现。根据系统的对称性选择广义坐标，使循环坐标越多越好。
 
 \begin{example}
-自由质点受势场作用，场源均匀分布在以$z$轴为轴线、螺距为$h$的无限长圆柱螺旋线上。找出体系的守恒量。
+自由质点受势场作用，场源均匀分布在以$z$轴为轴线、螺距为$h$的无限长圆柱螺旋线上。找出系统的守恒量。
 \end{example}
 \begin{solution}
 选取广义坐标$(\rho,\phi,\zeta)$满足
@@ -1395,7 +2277,7 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 	z = \zeta + \dfrac{h\phi}{2\pi}
 \end{cases}
 \end{equation*}
-此处，$\begin{cases} \rho = C_1 \\ \zeta = C_3 \end{cases}$表示的即为圆柱螺旋线族。此体系具有对称性：将质点沿任意螺距为$h$的螺旋线移动，Lagrange函数不变，即$\phi$为循环坐标，因此有
+此处，$\begin{cases} \rho = C_1 \\ \zeta = C_3 \end{cases}$表示的即为圆柱螺旋线族。此系统具有对称性：将质点沿任意螺距为$h$的螺旋线移动，Lagrange函数不变，即$\phi$为循环坐标，因此有
 \begin{equation*}
 	\dot{p}_\phi = \frac{\pl L}{\pl \phi} = 0
 \end{equation*}
@@ -1415,7 +2297,7 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 \begin{equation*}
 	p_\phi = \frac{\pl L}{\pl \dot{\phi}} = \frac{\pl L'}{\pl \dot{\psi}} \frac{\pl \dot{\psi}}{\pl \dot{\phi}} + \frac{\pl L'}{\pl \dot{z}} \frac{\pl \dot{z}}{\pl \dot{\phi}} = p_\psi + \frac{h}{2\pi} p_z = L_z + \frac{h}{2\pi} p_z
 \end{equation*}
-由此可得，此体系的守恒量为
+由此可得，此系统的守恒量为
 \begin{equation*}
 	p_\phi = L_z + \frac{h}{2\pi} p_z
 \end{equation*}
@@ -1442,7 +2324,7 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 	\dot{p}_\alpha = \frac{\pl L}{\pl q_\alpha},\quad \alpha = 1,2,\cdots,s,s+1
 \end{equation*}
 
-由广义坐标与时间张成的$s+1$维抽象空间称为{\heiti 位形时空}。位形时空中的点称为{\heiti 世界点}，代表体系的物理事件。世界点在位形时空运动而描出的轨道称为{\heiti 世界线}，反映体系物理过程的演化史。
+由广义坐标与时间张成的$s+1$维抽象空间称为{\heiti 位形时空}。位形时空中的点称为{\heiti 世界点}，代表系统的物理事件。世界点在位形时空运动而描出的轨道称为{\heiti 世界线}，反映系统物理过程的演化史。
 
 \subsection{推广的Lagrange方程}
 
@@ -1453,9 +2335,9 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 		t = t(\tau)
 	\end{cases}
 \end{equation*}
-得到的对应Lagrange函数的状态函数可以表示为
+得到的对应Lagrange函数的系统状态函数可以表示为
 \begin{equation*}
-	\mathnormal{\Lambda} = \mathnormal{\Lambda}(\mbf{q},t;\mbf{q}',t';\tau)
+	\varLambda = \varLambda(\mbf{q},t,\mbf{q}',t',\tau)
 \end{equation*}
 由此可有关系\footnote{此处，用$t'$来表示$t$对$\tau$的导数，今后不再特别说明。}
 \begin{align*}
@@ -1478,14 +2360,15 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 	\label{推广的Lagrange函数中间步骤}
 \end{align}
 由此，定义
-\begin{equation*}
-	\mathnormal{\Lambda}(\mbf{q},t;\mbf{q}',t';\tau) = L \left(\mbf{q},\frac{\mbf{q}'}{t'},t\right) t'
-\end{equation*}
+\begin{equation}
+	\mathnormal{\Lambda}(\mbf{q},t,\mbf{q}',t',\tau) = L \left(\mbf{q},\frac{\mbf{q}'}{t'},t\right) t'
+\end{equation}
 求其全微分，可有
-\begin{equation*}
+\begin{equation}
 	\mathrm{d} \mathnormal{\Lambda} = \sum_{\alpha=1}^s \frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} \mathrm{d} q_\alpha + \frac{\pl \mathnormal{\Lambda}}{\pl t} \mathrm{d} t + \sum_{\alpha=1}^s \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \mathrm{d} q'_\alpha + \frac{\pl \mathnormal{\Lambda}}{\pl t'} \mathrm{d} t' + \frac{\pl \mathnormal{\Lambda}}{\pl \tau} \mathrm{d} \tau
-\end{equation*}
-将上式与\eqref{推广的Lagrange函数中间步骤}对比，可得
+	\label{chapter2:推广Lagrange函数的全微分}
+\end{equation}
+将式\eqref{chapter2:推广Lagrange函数的全微分}与\eqref{推广的Lagrange函数中间步骤}对比，可得
 \begin{equation}
 	\begin{cases}
 		\displaystyle p_\alpha = \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha},\quad p_t = \frac{\pl \mathnormal{\Lambda}}{\pl t'} \\[1.5ex]
@@ -1501,22 +2384,5 @@ Lagrange函数是决定体系力学性质的特征函数，其变换不变性又
 \end{equation}
 由此，$\mbf{q},t$统一为地位平等的坐标，$\mbf{p},H$统一为地位平等的动量，时间均匀性与空间均匀性得到统一。
 
-这个过程对经典力学过渡为相对论力学具有启发性，有助于建立满足相对性原理（Lorentz变换不变性或对称性）的理论体系。时空作为统一体同时变换，时间不再具有绝对参数地位，需另选Lorentz变换下的不变量作为参数。此时$\mathnormal{\Lambda}$在Lorentz变换下不变即能保证体系满足相对性原理（惯性系变换对称性）。
+这个过程对经典力学过渡为相对论力学具有启发性，有助于建立满足相对性原理（Lorentz变换不变性或对称性）的理论系统。时空作为统一体同时变换，时间不再具有绝对参数地位，需另选Lorentz变换下的不变量作为参数。此时$\mathnormal{\Lambda}$在Lorentz变换下不变即能保证系统满足相对性原理（惯性系变换对称性）。
 
-\iffalse
-这部分并不是完全基于上节内容，用有限的篇幅很难说清楚，故去掉。
-\subsection{狭义相对论的分析力学形式}
-
-狭义相对论下的变换应满足
-\begin{equation*}
-	\sum_{i=1}^3 \tilde{x}_i^2 - (c\tilde{t})^2 = \sum_{i=1}^3 x_i^2 - (ct)^2
-\end{equation*}
-取坐标系使得两参考系之间的相对速度方向为$x_1$轴方向，则有{\heiti Lorentz变换}
-\begin{equation}
-\begin{cases}
-	\displaystyle \tilde{x}_1 = \frac{x_1 - Vt}{\sqrt{1-\dfrac{V^2}{c^2}}} \\[1.5ex]
-	\tilde{x}_2 = x_2 \\[1.5ex]
-	\tilde{x}_3 = x_3 \\[1.5ex]
-	\displaystyle \tilde{t} = \frac{t - \dfrac{V}{c^2}x_1}{\sqrt{1-\dfrac{V^2}{c^2}}}
-\end{cases}
-\end{equation}\fi

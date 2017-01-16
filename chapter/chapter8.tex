@@ -458,7 +458,7 @@
 
 最后由式\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-2}和\eqref{chapter8:定轴转动刚体的撞击方程-分量形式-6}可得
 \begin{equation}
-	x_*=\frac{I{33}}{mx_C}
+	x_*=\frac{I_{33}}{mx_C}
 	\label{chapter8:定轴转动刚体的撞击轴}
 \end{equation}
 式\eqref{chapter8:定轴转动刚体的撞击轴}确定了撞击冲量的作用线，称为{\bf 撞击轴}，它与过转动轴和质心构成的平面的交点称为{\bf 撞击中心}。
@@ -701,7 +701,7 @@
 
 \subsection{两个光滑刚体相撞的一般问题}
 
-两个光滑刚体相撞的一般问题可以表述为：设刚体$B_k(k=1,2)$的本体系$C_kx_ky_kz_k$固连在其质心$C_k$上，其坐标轴沿着刚体的惯性主轴，用$I_{x_k},I_{y_k},I_{z_k}$表示其主惯量，$m_k$表示其质量。设在坐标系$C_kx_ky_kz_k$中，$O_k$的坐标为$(x_k,y_k,z_k)$，法向单位矢量$\mbf{n}_k$的坐标为$(\alpha_k,\beta_k,\gamma_k)$。已知$\mbf{\omega}_k$是刚体$B_k$的角速度，$\mbf{v}_k$是刚体$B_k$质心的速度，求碰撞后它们的值。
+两个光滑刚体相撞的一般问题可以表述为：设刚体$B_k(k=1,2)$的本系统$C_kx_ky_kz_k$固连在其质心$C_k$上，其坐标轴沿着刚体的惯性主轴，用$I_{x_k},I_{y_k},I_{z_k}$表示其主惯量，$m_k$表示其质量。设在坐标系$C_kx_ky_kz_k$中，$O_k$的坐标为$(x_k,y_k,z_k)$，法向单位矢量$\mbf{n}_k$的坐标为$(\alpha_k,\beta_k,\gamma_k)$。已知$\mbf{\omega}_k$是刚体$B_k$的角速度，$\mbf{v}_k$是刚体$B_k$质心的速度，求碰撞后它们的值。
 
 记$\Delta\mbf{\omega}_k=\mbf{\omega}_k^+-\mbf{\omega}_k^-$和$\Delta\mbf{v}_k=\mbf{v}_k^+-\mbf{v}_k^-$在坐标系$C_kx_ky_kz_k$中的分量分别表示为$\Delta\omega_{x_k},\Delta\omega_{y_k},\Delta\omega_{z_k}$和$\Delta v_{x_k},\Delta v_{y_k},\Delta v_{z_k}$。撞击冲量$\mbf{J}_k$相对质心$C_k$的冲量矩$\mbf{K}_k=\vec{C_kO_k}\times\mbf{J}_k$在坐标系$C_kx_ky_kz_k$的分量表示为
 \begin{equation}
@@ -749,6 +749,7 @@
 其中
 \begin{equation}
 	\mu^2 = \sum_{k=1}^2\left(\frac{1}{m_k}+\frac{\xi_k^2}{I_{x_k}}+\frac{\eta_k^2}{I_{y_k}}+\frac{\zeta_k^2}{I_{z_k}}\right)
+	\label{chapter8:刚体碰撞的约化质量}
 \end{equation}
 然后，将式\eqref{chapter8:刚体碰撞相对速度关系式2}改写为
 \begin{equation}
@@ -767,23 +768,13 @@
 \end{equation}
 式\eqref{chapter8:刚体碰撞的一般问题-碰撞冲量的大小}右端的所有量都是已知的，因此式\eqref{chapter8:刚体碰撞的一般问题-碰撞冲量的大小}确定了碰撞冲量的大小，再将其代入式\eqref{chapter8:刚体碰撞后的角速度} 和 \eqref{chapter8:刚体碰撞后的质心速度}中，两个光滑刚体相撞的一般问题就解决了。
 
-% \begin{example}[刚体撞墙]
-% 设刚体$B_2$为固定障碍物，令$\mbf{v}_2^-=\mbf{0},\mbf{\omega}_2^-=\mbf{0}$并且$m_2, I_{x_2}, I_{y_2}, I_{z_2}$都为无穷大，求刚体$B_1$碰撞后的运动状态。
-% \end{example}
-% \begin{solution}
-% 简便起见，略去刚体$B_1$的下标$1$，则有
-% \begin{equation*}
-	% \mu^2 = \frac1m + \frac{(y\gamma-z\beta)^2}{I_x} + \frac{(z\alpha-x\gamma)^2}{I_y} + \frac{(x\beta-y\alpha)^2}{I_z}
-% \end{equation*}
-% \end{solution}
-
 \begin{example}
 半径为$R$的均质轮在竖直平面内沿着水平面无滑动滚动，碰到一个高为$h$的障碍物($h<R$)。设碰撞时没有摩擦，恢复系数为$\chi$。试证明：如果$\ds h>\left(1-\sqrt{\frac{\chi}{1+\chi}}\right)R$，则无论碰撞前轮心速度为多大，轮都无法翻越障碍。
 
 \begin{figure}[ht]
 \centering
 \begin{asy}
-	size(250);
+	size(200);
 	//轮子翻越障碍
 	picture dashpic;
 	pair dashdir = dir(-120);
@@ -868,3 +859,64 @@
 垂直于两个刚体接触点公切面并过接触点的直线称为{\bf 碰撞线}。如果碰撞前质心的速度$\mbf{v}_k^-$平行于碰撞线，这种情况称为{\bf 正碰撞}。对于光滑刚体的碰撞，碰撞前后速度的切向分量不变，因此在正碰撞的情况下，碰撞后的速度$\mbf{v}_k^+$也平行于碰撞线。
 
 如果碰撞前刚体的质心位于碰撞线上，则称为{\bf 对心碰撞}。在对心碰撞的情形下，碰撞冲量对质心的矩$\mbf{K}_k=\vec{C_kO_k}\times \mbf{J}_k$等于零，此时$\xi_k=\eta_k=\zeta_k=0$。根据式\eqref{chapter8:刚体碰撞后的角速度}可知，在对心碰撞的情形下，两个刚体的角速度不变。
+
+将碰撞线的正方向取为刚体$B_2$的内法向$\mbf{n}=\mbf{n}_2$，设$v_k^-$和$v_k^+(k=1,2)$是刚体$B_2$碰撞前后质心的速度在碰撞线上的投影。由于此时有$\xi_k=\eta_k=\zeta_k=0$，所以根据式\eqref{chapter8:刚体碰撞的约化质量}可得
+\begin{equation}
+	\mu^2 = \frac{m_1+m_2}{m_1m_2}
+\end{equation}
+将这个结果代入式\eqref{chapter8:刚体碰撞的一般问题-碰撞冲量的大小}可得碰撞冲量为
+\begin{equation}
+	J = (1+\chi)\frac{m_1m_2}{m_1+m_2}v_{rn} = (1+\chi)\frac{m_1m_2}{m_1+m_2}(v_1^--v_2^-)
+	\label{chapter8:光滑刚体对心碰撞的撞击冲量}
+\end{equation}
+再对每个刚体应用动量定理，可得
+\begin{equation}
+\begin{cases}
+	m_1(v_1^+-v_1^-) = -J \\
+	m_2(v_2^+-v_2^-) = J
+\end{cases}
+\end{equation}
+由此可得刚体碰撞后的质心速度为
+\begin{equation}
+\begin{cases}
+	\ds v_1^+ = \frac{(m_1-\chi m_2)v_1^-+m_2(1+\chi)v_2^-}{m_1+m_2} \\[1.5ex]
+	\ds v_2^+ = \frac{m_1(1+\chi)v_1^-+(m_2-\chi m_1)v_2^-}{m_1+m_2}
+\end{cases}
+\label{chapter2:光滑刚体对心碰撞后的质心速度}
+\end{equation}
+再利用式\eqref{chapter8:光滑刚体碰撞的动能变化式}可得碰撞前后动能的变化为
+\begin{equation}
+	\Delta T = -\frac12 (1-\chi^2)\frac{m_1m_2}{m_1+m_2}(v_1^--v_2^-)^2
+	\label{chapter8:光滑刚体对心碰撞的动能变化式}
+\end{equation}
+
+针对这个结果，考虑两种特殊的理想情况：
+\begin{enumerate}
+\item 完全弹性碰撞（$\chi=1$）：由式\eqref{chapter8:光滑刚体对心碰撞的动能变化式}可知这种情况下没有动能损失（$\Delta T=0$），根据式\eqref{chapter2:光滑刚体对心碰撞后的质心速度}可得撞击后的速度为
+\begin{equation}
+\begin{cases}
+	\ds v_1^+ = \frac{(m_1-m_2)v_1^-+2m_2v_2^-}{m_1+m_2} \\[1.5ex]
+	\ds v_2^+ = \frac{2m_1v_1^-+(m_2-m_1)v_2^-}{m_1+m_2}
+\end{cases}
+\end{equation}
+再根据式\eqref{chapter8:光滑刚体对心碰撞的撞击冲量}可得撞击冲量为
+\begin{equation}
+	J = \frac{2m_1m_2}{m_1+m_2}(v_1^--v_2^-)
+\end{equation}
+
+由此可以看出，如果两个刚体质量相等，则有$v_1^+=v_2^-, v_2^+=v_1^-$，即碰撞前后两个刚体的质心速度互相交换。理想气体分子就是以这样的方式碰撞并传递动量。
+
+\item 完全非弹性碰撞（$\chi=0$）：由式\eqref{chapter2:光滑刚体对心碰撞后的质心速度}可得
+\begin{equation}
+	v_1^+=v_2^+ =\frac{m_1v_1^-+m_2v_2^-}{m_1+m_2}
+\end{equation}
+即碰撞后两个刚体的质心速度相等。这种情况下的动能损失为
+\begin{equation}
+	\Delta T = -\frac{m_1m_2}{2(m_1+m_2)}(v_1^--v_2^-)^2
+\end{equation}
+根据式\eqref{chapter8:光滑刚体对心碰撞的撞击冲量}可得撞击冲量为
+\begin{equation}
+	J = \frac{m_1m_2}{m_1+m_2}(v_1^--v_2^-)
+\end{equation}
+为完全弹性碰撞撞击冲量的一半。
+\end{enumerate}

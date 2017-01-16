@@ -1,0 +1,1206 @@
+\chapter{积分变分原理}
+
+\section{泛函与变分法}
+
+\subsection{泛函}
+
+依赖于函数关系的变量，即函数之函数，称为{\heiti 泛函}。如果泛函只依赖于一个函数关系，称之为一元泛函，记作$J = J[y(x)]$。在物理学中常见的一元泛函一般具有如下形式
+\begin{equation}
+	J[y(x)] = \int_a^b F(x,y,y') \mathrm{d} x
+	\label{chapter9:一元泛函的一个常见形式}
+\end{equation}
+如果泛函依赖于多个函数关系，则称之为多元泛函，记作$J=J[y_1(x),y_2(x),\cdots,y_n(x)]$，在物理学中常见的多元泛函一般具有如下形式
+\begin{equation}
+	J[y_1(x),y_2(x),\cdots,y_n(x)] = \int_a^b F(x,y_1,y_2,\cdots,y_n,y_1',y_2',\cdots,y_n')\mathd x
+	\label{chapter9:多元泛函的一个常见形式}
+\end{equation}
+如果形式上记$\mbf{y}(x)=\begin{pmatrix} y_1(x) \\ y_2(x) \\ \vdots \\ y_n(x)\end{pmatrix}$，则多元泛函可以简记作
+\begin{equation}
+	J[\mbf{y}(x)] = \int_a^b F(x,\mbf{y},\mbf{y}')\mathd x
+\end{equation}
+
+\subsection{泛函极值问题与变分法}\label{chapter9:subsection-泛函极值问题与变分法}
+
+变分问题始于最速降线问题（1696，J. Bernoulli）：给定重力场中两端点，求从一点到另一点用时最短的光滑轨道。即求自变函数$y(x)$，使泛函$\displaystyle J[y(x)] = \int_a^b F(x,y,y') \mathrm{d} x$在边界条件$y(a) = y_A,y(b) = y_B$下取得极值，即对与函数$y(x)$临近、但满足边界条件的任意函数$f(x)$，都有
+\begin{equation}
+	J[f(x)]-J[y(x)]\geqslant(\leqslant) 0
+	\label{chapter9:泛函极值的定义}
+\end{equation}
+此处，与函数$y(x)$临近、但满足边界条件的任意函数$f(x)$可以表示为
+\begin{equation}
+	f(x,\alpha) = y(x)+\alpha\eta(x)
+	\label{chapter9:自变函数邻域内的任意函数}
+\end{equation}
+其中$\alpha$为实数，是函数$f$的参数，表征$f(x)$与$y(x)$的接近程度；$\eta(x)$是任意可微函数，满足
+\begin{equation}
+	\eta(a)=\eta(b)=0
+	\label{chapter9:任意函数的固定边界条件}
+\end{equation}
+因此，泛函在$y(x)$邻域的值可以表示为关于$\alpha$的一个一元函数，即
+\begin{equation}
+	J(\alpha)=J[f(x,\alpha)] = \int_a^b F(x,f,f')\mathd x
+	\label{chapter9:将泛函转化为关于自变函数参数的一元函数}
+\end{equation}
+当$\alpha=0$时，$J[f(x,0)]$即为$J[y(x)]$，因此泛函取极值的条件\eqref{chapter9:泛函极值的定义}即可表示为
+\begin{equation}
+	J(\alpha)-J(0)\geqslant(\leqslant) 0
+\end{equation}
+它的必要条件为
+\begin{equation}
+	\dfrac{\mathd J}{\mathd \alpha}(0) = 0
+	\label{chapter9:泛函极值的必要条件-原始形式}
+\end{equation}
+为此，只需计算式\eqref{chapter9:泛函极值的必要条件-原始形式}左端的导数值：
+\begin{align}
+	\dfrac{\mathd J}{\mathd \alpha}(\alpha) & = \difOp{\alpha}\int_a^b F(x,f,f')\mathd x = \int_a^b\left(\frac{\pl F}{\pl f}\frac{\pl f}{\pl \alpha} + \frac{\pl F}{\pl f'}\frac{\pl f'}{\pl \alpha}\right)\mathd x
+	\label{chapter9:泛函对参数的导数-初步}
+\end{align}
+根据式\eqref{chapter9:自变函数邻域内的任意函数}可得
+\begin{equation}
+	f'(x,\alpha) = y'(x)+\alpha\eta'(x)\mathd\alpha
+	\label{chapter9:自变函数邻域内的任意函数的导数}
+\end{equation}
+根据式\eqref{chapter9:自变函数邻域内的任意函数}和\eqref{chapter9:自变函数邻域内的任意函数的导数}可得
+\begin{equation}
+	\frac{\pl f}{\pl \alpha} = \eta(x),\quad \frac{\pl f'}{\pl \alpha} = \eta'(x)
+	\label{chapter9:自变函数邻域内的任意函数的导数-导出式}
+\end{equation}
+将式\eqref{chapter9:自变函数邻域内的任意函数的导数-导出式}代入式\eqref{chapter9:泛函对参数的导数-初步}中，可得
+\begin{align}
+	\dfrac{\mathd J}{\mathd \alpha}(\alpha) & = \int_a^b \left[\frac{\pl F}{\pl f}\eta(x)+\frac{\pl F}{\pl f'}\eta'(x)\right]\mathd x \nonumber\\
+	& = \int_a^b \left[\frac{\pl F}{\pl f}\eta(x)+\difOp{x}\left(\frac{\pl F}{\pl f'}\eta(x)\right)-\left(\difOp{x}\frac{\pl F}{\pl f'}\right)\eta(x)\right]\mathd x \nonumber \\
+	& = \frac{\pl F}{\pl f'}\eta(x)\bigg|_a^b - \int_a^b \left(\difOp{x}\frac{\pl F}{\pl f'}-\frac{\pl F}{\pl f}\right)\eta(x)\mathd x
+	\label{chapter9:泛函对参数的导数-初步2}
+\end{align}
+注意到$\eta(a)=\eta(b)=0$，并且在式\eqref{chapter9:泛函对参数的导数-初步2}中令$\alpha=0$，则泛函取极值的必要条件\eqref{chapter9:泛函极值的必要条件-原始形式}可以写作
+\begin{equation}
+	\dfrac{\mathd J}{\mathd \alpha}(0)= -\int_a^b \left(\difOp{x}\frac{\pl F}{\pl y'}-\frac{\pl F}{\pl y}\right)\eta(x)\mathd x=0
+	\label{chapter9:泛函对参数的导数-结果}
+\end{equation}
+
+在上面的过程中，将与自变函数临近、但满足边界条件的任意函数$f(x,\alpha)$对参数$\alpha$的微分称为{\bf 自变函数的变分}，记作$\delta y$，即
+\begin{equation*}
+	\delta y(x) = \frac{\pl f}{\pl \alpha}(x,\alpha)\mathd \alpha = \eta(x)\mathd \alpha
+\end{equation*}
+由于$\eta(x)$是任意可微函数，因此$\delta y(x)$也是可微的任意函数，此时边界条件\eqref{chapter9:任意函数的固定边界条件}可以表示为
+\begin{equation}
+	\delta y(a)=\delta y(b)=0
+	\label{chapter9:自变函数变分的固定边界条件}
+\end{equation}
+类比于微分运算，将已知函数$y(x)$求其变分的运算称为{\bf 变分运算}，$\delta$称为变分运算符。式\eqref{chapter9:自变函数邻域内的任意函数的导数}说明：变分运算与求导运算可以交换次序，即
+\begin{equation}
+	\delta \frac{\mathrm{d}y}{\mathrm{d}x}(x) = \frac{\mathrm{d}}{\mathrm{d} x} \delta y(x)
+	\label{chapter9:变分运算与求导运算可以交换次序}
+\end{equation}
+同时，将函数$J(\alpha)$对$\alpha$的微分称为泛函$J[y(x)]$的{\bf 变分}，记作$\delta J$。根据式\eqref{chapter9:泛函对参数的导数-初步2}的结果，可得泛函$J[y(x)]$的变分为
+\begin{equation}
+	\delta J = \frac{\pl F}{\pl y'}\delta y\bigg|_a^b - \int_a^b \left(\difOp{x}\frac{\pl F}{\pl y'}-\frac{\pl F}{\pl y}\right)\delta y\mathd x
+\end{equation}
+
+根据上文中对变分算符的定义，算符$\delta$实际上就是对参数$\alpha$的微分运算，反应在变分算符本身上，它的运算规则与微分运算相同，但不作用在自变量$x$上。因此，今后在使用变分法的时候，不再将泛函$J[y(x)]$利用式\eqref{chapter9:将泛函转化为关于自变函数参数的一元函数}转化为一元函数进行处理，而是直接利用变分运算的运算规则来进行运算。
+
+由此根据式\eqref{chapter9:泛函对参数的导数-结果}和泛函变分的定义，可得{\bf 泛函取极值的必要条件}为：
+\begin{equation}
+	\delta J = 0
+	\label{chapter9:泛函取极值的必要条件}
+\end{equation}
+对于本节讨论的特殊形式泛函\eqref{chapter9:一元泛函的一个常见形式}，则可表示为
+\begin{equation}
+	\delta J = -\int_a^b \left(\difOp{x}\frac{\pl F}{\pl y'}-\frac{\pl F}{\pl y}\right)\delta y\mathd x=0
+	\label{chapter9:泛函取极值的必要条件2}
+\end{equation}
+
+式\eqref{chapter9:泛函取极值的必要条件}仅为泛函取极值的必要条件，所得的自变函数$y(x)$能否使得泛函$J[y(x)]$取得极值，还需确定相应的二阶变分，类似于上面（一阶）变分的定义，二阶变分定义为
+\begin{equation}
+	\delta^2J = \frac{\mathd^2 J}{\mathd \alpha^2}(\alpha)\mathd \alpha^2
+\end{equation}
+如果$\delta^2J<0$，则相应的极值为极大值；如果$\delta^2J>0$，则相应的极值为极小值；如果$\delta^2J=0$，则相应的自变函数是否能使得泛函取极值还需更高阶变分来确定。
+
+\subsection{Euler-Lagrange方程}
+
+这里在给定固定边界条件\eqref{chapter9:自变函数变分的固定边界条件}的情形下，应用变分运算的运算规则重新计算一次泛函\eqref{chapter9:一元泛函的一个常见形式}的变分
+\begin{align*}
+	\delta J & = \delta \int_a^b F(x,y,y')\mathd x = \int_a^b \delta F(x,y,y')\mathd x = \int_a^b \left(\frac{\pl F}{\pl y}\delta y + \frac{\pl F}{\pl y'}\delta y'\right) \mathd x \\
+	& = \int_a^b \left[\frac{\pl F}{\pl y}\delta y + \difOp{x}\left(\frac{\pl F}{\pl y'}\delta y\right) - \difOp{x}\left(\frac{\pl F}{\pl y'}\right)\delta y\right]\mathd x \\
+	& = \frac{\pl F}{\pl y'}\delta y\bigg|_a^b - \int_a^b\left(\difOp{x}\frac{\pl F}{\pl y'} - \frac{\pl F}{\pl y}\right)\delta y\mathd x = - \int_a^b\left(\difOp{x}\frac{\pl F}{\pl y'} - \frac{\pl F}{\pl y}\right)\delta y\mathd x
+\end{align*}
+为了由必要条件\eqref{chapter9:泛函取极值的必要条件2}得到泛函取极值时，自变函数$y(x)$需要满足的方程，需要引入如下定理。
+
+\begin{theorem}[变分学基本定理]\label{chapter9:变分学基本定理}
+如果连续函数$f(x)$在开区间$(a,b)$上对于任意具有紧支集的光滑函数$\eta(x)$都满足
+\begin{equation}
+	\int_a^b f(x)\eta(x)\mathd x = 0
+\end{equation}
+则在$(a,b)$上有$f(x)\equiv 0$。
+\end{theorem}
+\begin{proof}
+利用反证法。设对于$x_0\in (a,b)$有$f(x_0)\neq 0$，由于$f(x)$是连续的，存在一个$x_0$的邻域，在其中$f(x)$的值都非零。根据函数$\eta(x)$的任意性，可取$\eta(x)$在相同的区间内值非零，则定积分$\ds \int_a^b f(x)\eta(x)\mathd x$的值也必然非零，据此可知必然有$f(x)\equiv 0$。
+\end{proof}
+
+根据定理\ref{chapter9:变分学基本定理}，由于$\delta y$是任意函数，可有
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'} - \frac{\pl F}{\pl y} = 0
+	\label{Euler-Lagrange方程}
+\end{equation}
+式\eqref{Euler-Lagrange方程}称为{\heiti Euler-Lagrange方程}\footnote{可以看到，Euler-Lagrange方程与理想完整有势系的Lagrange方程\eqref{chapter2:理想完整系的Lagrange方程}具有完全相同的形式。因此可以想见，理想完整有势系的Lagrange方程也是某种变分原理（即{\heiti Hamilton原理}）的结果。}，它是泛函\eqref{chapter9:一元泛函的一个常见形式}取极值的一个必要条件。
+
+由于
+\begin{align*}
+	\frac{\mathrm{d}}{\mathrm{d} x} \left(\frac{\pl F}{\pl y'} y' - F\right) & = \frac{\mathrm{d}}{\mathrm{d} x} \left(\frac{\pl F}{\pl y'}y'\right) - \left(\frac{\pl F}{\pl y'} y'' + \frac{\pl F}{\pl y} y' + \frac{\pl F}{\pl x}\right) \\
+	& = \left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'} - \frac{\pl F}{\pl y}\right) y' - \frac{\pl F}{\pl x} = -\frac{\pl F}{\pl x}
+\end{align*}
+因此可得，如果函数$F$不显含$x$，则Euler-Lagrange方程有首次积分
+\begin{equation}
+	\frac{\pl F}{\pl y'}y' - F = C\quad \text{（常数）}
+	\label{chapter9:Euler-Lagrange方程的首次积分}
+\end{equation}
+
+\begin{example}[最速降线问题]
+给定重力场中两端点，求从一点到另一点用时最短的光滑轨道。
+\end{example}
+\begin{solution}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//最速降线
+	pair O,P;
+	real x,y,rp;
+	path p;
+	O = (0,0);
+	x = 7.4;
+	y = 2.5;
+	draw(Label("$x$",EndPoint),0.1*x*dir(180)--x*dir(0),Arrow);
+	draw(Label("$y$",EndPoint),0.2*y*dir(90)--y*dir(-90),Arrow);
+	label("$O$",O,SW);
+	pair cycloid(real t){
+		return (t-sin(t),cos(t)-1);
+	}
+	rp = 0.7*2*pi;
+	p = graph(cycloid,0,rp);
+	draw(p,red+linewidth(1bp));
+	label("$A$",O,NW);
+	P = cycloid(rp);
+	label("$B$",P,SE);
+	p = graph(cycloid,rp,2*pi);
+	draw(p);
+	dot(O);
+	dot(P);
+\end{asy}
+\caption{最速降线}
+\label{最速降线：摆线}
+\end{figure}
+
+所求的时间可以表示为
+\begin{equation*}
+	T = \frac{1}{\sqrt{2g}} \int_a^b \sqrt{\frac{1+y'^2}{y}} \mathrm{d} x
+\end{equation*}
+即此时
+\begin{equation*}
+	F(x,y,y') = \sqrt{\frac{1+y'^2}{y}}
+\end{equation*}
+由于$F$不显含$x$，利用Euler-Lagrange方程的首次积分\eqref{chapter9:Euler-Lagrange方程的首次积分}可得
+\begin{equation*}
+	\frac{\pl F}{\pl y'} y' - F = -\frac{1}{\sqrt{y(1+y'^2)}} = -\frac{1}{\sqrt{2C_1}}\quad \text{（常数）}
+\end{equation*}
+所以有
+\begin{equation*}
+	\frac{\mathrm{d} y}{\mathrm{d} x} = \sqrt{\frac{2C_1 - y}{y}}
+\end{equation*}
+做换元$y = C_1(1-\cos \theta)$，可得
+\begin{equation*}
+	\begin{cases}
+		x = C_1(\theta - \sin \theta) + C_2 \\
+		y = C_1(1-\cos \theta)
+	\end{cases}
+\end{equation*}
+这是一条倒置的旋轮线（摆线），如图\ref{最速降线：摆线}所示，其中的常数$C_1,C_2$由边界条件（即$B$点的坐标）决定。
+\end{solution}
+
+\begin{example}[球面短程线（测地线）]
+求球面上连接任意两点之间的最短曲线。
+\end{example}
+\begin{solution}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//球面短程线示意图
+	real hd,hdd;
+	pair O,i,j,k,en;
+	real r,theta0,phi0;
+	O = (0,0);
+	r = 2;
+	label("$O$",O,NW);
+	draw(shift(O)*scale(r)*unitcircle);
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	theta0 = pi/6;
+	phi0 = 1.5;
+	en = sin(theta0)*cos(phi0)*i+sin(theta0)*sin(phi0)*j+cos(theta0)*k;
+	dot(r*en,red);
+	draw(O--r*en,red+dashed);
+	draw(Label("$\boldsymbol{e}_n$",EndPoint,W,black),r*en--r*en+en,red,Arrow);
+	
+	pair cir(real phi){
+		real theta,u,x,y,z;
+		if(phi==phi0){
+			theta = pi/2;
+		}
+		else{
+			u = -1./cos(phi-phi0)/tan(theta0);
+			if(u<0){
+				theta = pi-atan(-u);
+			}
+			else{
+				theta = atan(u);
+			}
+		}
+		x = r*sin(theta)*cos(phi);
+		y = r*sin(theta)*sin(phi);
+		z = r*cos(theta);
+		return x*i+y*j+z*k;
+	}
+	draw(graph(cir,pi/2,3*pi/2),blue+dashed);
+	draw(graph(cir,3*pi/2,2*pi+pi/2),blue);
+	real theta,theta2;
+	theta = -0.1*pi;
+	theta2 = 0.3*pi;
+	draw(graph(cir,theta,theta2),blue+linewidth(1.5bp));
+	draw(Label("$\boldsymbol{r}_A$",MidPoint,Relative(E)),O--cir(theta),dashed,Arrow);
+	label("$A$",cir(theta),SW);
+	dot(cir(theta));
+	draw(Label("$\boldsymbol{r}_B$",MidPoint,Relative(W)),O--cir(theta2),dashed,Arrow);
+	label("$B$",cir(theta2),S);
+	dot(cir(theta2));
+	theta = 0.13*pi;
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(E)),O--cir(theta),dashed,Arrow);
+	dot(cir(theta));
+\end{asy}
+\caption{球面短程线示意图}
+\label{球面短程线示意图}
+\end{figure}
+
+在球面上取球面坐标，则球面上的曲线可以表示为
+\begin{equation*}
+	\begin{cases}
+		r = R \\
+		\theta = \theta(\phi)
+	\end{cases}
+\end{equation*}
+根据球坐标系的距离元素表达式可得球面上曲线的弧长元素为
+\begin{equation*}
+	\mathrm{d} s = R\sqrt{(\mathrm{d} \theta)^2 + \sin^2 \theta (\mathrm{d} \phi)^2} = R \sqrt{\theta'^2 + \sin^2 \theta} \mathrm{d} \phi
+\end{equation*}
+所以，球面上曲线的弧长为
+\begin{equation*}
+	s = R \int_{\phi_A}^{\phi_B} \sqrt{\theta'^2 + \sin^2 \theta} \mathrm{d} \phi
+\end{equation*}
+即此时
+\begin{equation*}
+	F(\phi,\theta,\theta') = \sqrt{\theta'^2 + \sin^2 \theta}
+\end{equation*}
+由于$F$不显含$\phi$，利用Euler-Lagrange方程的首次积分\eqref{chapter9:Euler-Lagrange方程的首次积分}可得
+\begin{equation*}
+	\frac{\pl F}{\pl \theta'} \theta' - F = -\frac{\sin^2 \theta}{\sqrt{\theta'^2 + \sin^2 \theta}} = -\cos \theta_0\quad \text{（常数）}
+\end{equation*}
+由此可得
+\begin{equation*}
+	\frac{\mathrm{d} \theta}{\mathrm{d} \phi} = \sin^2 \theta \sqrt{\tan^2 \theta_0 - \cot^2 \theta}
+\end{equation*}
+解得
+\begin{equation}
+	\phi - \arccos(-\cot \theta_0 \cot\theta) = \phi_0\quad \text{（常数）}
+	\label{chp3:球面大圆的参数方程}
+\end{equation}
+整理可得
+\begin{equation*}
+	\cos \phi \cos \phi_0 + \sin \phi \sin \phi_0 + \cot \theta \cot \theta_0 = 0
+\end{equation*}
+在上式两端乘$R\sin \theta \sin \theta_0$，并考虑到球坐标系的坐标转换关系，可得
+\begin{equation*}
+	x \sin \theta_0 \cos \phi_0 + y\sin \theta_0 \sin \phi_0 + z\cos \theta_0 = 0
+\end{equation*}
+此处，记$\mbf{e}_n = \sin \theta_0 \cos \phi_0 \mbf{e}_1 + \sin \theta_0 \sin \phi_0 \mbf{e}_2 + \cos \theta_0 \mbf{e}_3$，则上式可记作
+\begin{equation*}
+	\mbf{r} \cdot \mbf{e}_n = 0
+\end{equation*}
+边界条件为
+\begin{equation*}
+	\mbf{r}_A \cdot \mbf{e}_n = \mbf{r}_B \cdot \mbf{e}_n = 0
+\end{equation*}
+由此，短程线即为$OAB$平面与球面的交线之间较短的弧，即大圆弧。此处$\mbf{e}_n$即为$OAB$平面的法向量。
+\end{solution}
+
+\subsection{多元泛函极值问题}
+
+考虑多元泛函\eqref{chapter9:多元泛函的一个常见形式}
+\begin{equation*}
+	J[y_1(x),y_2(x),\cdots,y_n(x)] = \int_a^b F(x,y_1,y_2,\cdots,y_n,y'_1,y'_2,\cdots,y'_n) \mathd x
+\end{equation*}
+在固定边界条件
+\begin{equation*}
+	\delta y_i(a) = \delta y_i(b) = 0 \quad (i = 1,2,\cdots,n)
+\end{equation*}
+下，泛函的变分为
+\begin{align}
+	\delta J & = \int_a^b \delta F(x,y_1,y_2,\cdots,y_n,y'_1,y'_2,\cdots,y'_n) \mathrm{d} x \nonumber \\
+	& = \int_a^b \left(\sum_{i=1}^n \frac{\pl F}{\pl y_i} \delta y_i + \sum_{i=1}^n \frac{\pl F}{\pl y'_i} \delta y'_i\right) \mathrm{d} x \nonumber \\
+	& = \int_a^b \left[\frac{\mathrm{d}}{\mathrm{d} x} \left(\sum_{i=1}^n \frac{\pl F}{\pl y'_i} \delta y_i\right) - \sum_{i=1}^n \left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_i} - \frac{\pl F}{\pl y_i}\right) \delta y_i\right] \mathrm{d} x \nonumber \\
+	& = \sum_{i=1}^n \frac{\pl F}{\pl y'_i} \delta y_i \bigg|_a^b - \int_a^b \sum_{i=1}^n \left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_i} - \frac{\pl F}{\pl y_i}\right) \delta y_i \mathrm{d} x \nonumber \\
+	& = -\int_a^b \sum_{i=1}^n \left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_i} - \frac{\pl F}{\pl y_i}\right) \delta y_i \mathrm{d} x = 0
+	\label{chapter9:多元泛函极值问题的必要条件}
+\end{align}
+
+对于多元泛函，也同样有如下定理。
+\begin{theorem}[变分学基本定理（多元泛函）]\label{chapter9:多元泛函的变分学基本定理}
+如果$n$个的连续函数$f_i(x)\,(i=1,2,\cdots,n)$在开区间$(a,b)$上对于$n$相互独立、任意具有紧支集的光滑函数$\eta_i(x)$，都满足
+\begin{equation}
+	\int_a^b \sum_{i=1}^n f_i(x)\eta_i(x) \mathd x = 0
+\end{equation}
+则在$(a,b)$上有$f_i(x)\equiv 0\,(i=1,2,\cdots,n)$。
+\end{theorem}
+
+根据定理\ref{chapter9:多元泛函的变分学基本定理}，由于$\delta y_i\,(i=1,2,\cdots,n)$是$n$的相互独立的任意函数，所以有
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_i} - \frac{\pl F}{\pl y_i} = 0 \quad (i = 1,2,\cdots,n)
+	\label{多元泛函的Euler-Lagrange方程}
+\end{equation}
+当$F$不显含$x$时，式\eqref{多元泛函的Euler-Lagrange方程}同样有首次积分
+\begin{equation}
+	\sum_{i=1}^n \frac{\pl F}{\pl y'_i} y'_i - F = C\quad \text{（常数）}
+\end{equation}
+
+\subsection{约束条件下的变分问题}
+
+设多元泛函\eqref{chapter9:多元泛函的一个常见形式}表示为
+\begin{equation*}
+	J[y_1(x),y_2(x),\cdots,y_n(x)] = \int_a^b F(x,y_1,y_2,\cdots,y_n,y'_1,y'_2,\cdots,y'_n) \mathrm{d} x
+\end{equation*}
+现在想要求得泛函\eqref{chapter9:多元泛函的一个常见形式}在$m$个约束条件（$m<n$）
+\begin{equation}
+	\int_a^b G_j(x,y_1,y_2,\cdots,y_n,y_1',y_2',\cdots,y_n')\mathd x = 0\quad (j=1,2,\cdots,m)
+	\label{chapter9:约束条件下的多元变分-约束方程}
+\end{equation}
+下的极值。
+
+在这种情况下，可以先无视约束条件\eqref{chapter9:约束条件下的多元变分-约束方程}，根据极值的必要条件可得式\eqref{chapter9:多元泛函极值问题的必要条件}的结果，即
+\begin{equation}
+	\int_a^b \sum_{i=1}^n \left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_i} - \frac{\pl F}{\pl y_i}\right) \delta y_i \mathrm{d} x = 0
+	\label{chapter9:约束条件下的多元变分-必要条件}
+\end{equation}
+但式\eqref{chapter9:约束条件下的多元变分-必要条件}中的$\delta y_i\,(i=1,2,\cdots,n)$之间并不相互独立，它们之间由$m$个约束条件\eqref{chapter9:约束条件下的多元变分-约束方程}相联系，因此不能直接应用定理\ref{chapter9:多元泛函的变分学基本定理}得到Euler-Lagrange方程。
+
+此时可以利用Lagrange乘子法，首先将约束条件\eqref{chapter9:约束条件下的多元变分-约束方程}求变分，可得
+\begin{equation}
+	\int_a^b \sum_{i=1}^n \left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl G_j}{\pl y'_i} - \frac{\pl G_j}{\pl y_i}\right) \delta y_i \mathrm{d} x = 0\quad (j=1,2,\cdots,m)
+	\label{chapter9:约束条件下的多元变分-约束条件的变分式}
+\end{equation}
+引入$m$个不定乘子$\lambda_i$，将其分别与式\eqref{chapter9:约束条件下的多元变分-约束条件的变分式}相乘，并加到式\eqref{chapter9:约束条件下的多元变分-必要条件}上，可得
+\begin{equation}
+	\int_a^b \sum_{i=1}^n \left[\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl F}{\pl y'_i} - \frac{\pl F}{\pl y_i} + \sum_{j=1}^m\lambda_j\left(\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl G_j}{\pl y'_i} - \frac{\pl G_j}{\pl y_i}\right)\right] \delta y_i \mathrm{d} x = 0
+\end{equation}
+由此可得取得约束极值需要满足的方程为
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} x} \frac{\pl}{\pl y'_i}\left(F+\sum_{j=1}^m\lambda_jG_j\right) - \frac{\pl}{\pl y_i}\left(F+\sum_{j=1}^m\lambda_jG_j\right) = 0 \quad (i=1,2,\cdots,n)
+	\label{chapter9:约束条件下的Euler-Lagrange方程}
+\end{equation}
+式\eqref{chapter9:约束条件下的Euler-Lagrange方程}的$n$个方程和约束条件\eqref{chapter9:约束条件下的多元变分-约束方程}合起来正好可以决定$n$个函数和$m$个乘子。
+
+\begin{example}
+设平面上的封闭曲线长度为$l$，试求其所围面积最大的曲线方程。
+\end{example}
+\begin{solution}
+设曲线的参数方程为
+\begin{equation*}
+\begin{cases}
+	x = x(t) \\
+	y = y(t)
+\end{cases}
+\end{equation*}
+其中$t$为曲线的参数，它的取值范围为$0\leqslant t\leqslant 2\pi$。由于曲线是封闭的，因此有$x(0)=x(2\pi),y(0)=y(2\pi)$。
+
+约束可以表示为
+\begin{equation*}
+	l = \oint_C \mathd s = \int_0^{2\pi}\sqrt{x'^2+y'^2}\mathd t
+\end{equation*}
+曲线$C$所围成的面积则表示为
+\begin{equation*}
+	S = \frac12 \oint_C(x\mathd y-y\mathd x) = \frac12\int_0^{2\pi}(xy'-yx')\mathd t
+\end{equation*}
+引入不定乘子$\lambda$则函数
+\begin{equation*}
+	L = \frac12(xy'-yx')+\lambda\sqrt{x'^2+y'^2}
+\end{equation*}
+满足Euler-Lagrange方程\eqref{chapter9:约束条件下的Euler-Lagrange方程}，即
+\begin{equation*}
+\begin{cases}
+	\ds x'+\lambda\ddt\left(\frac{y'}{\sqrt{x'^2+y'^2}}\right) = 0 \\[1.5ex]
+	\ds y'-\lambda\ddt\left(\frac{x'}{\sqrt{x'^2+y'^2}}\right) = 0
+\end{cases}
+\end{equation*}
+将上面两式分别积分，可得
+\begin{equation*}
+\begin{cases}
+	\ds x+\frac{\lambda y'}{\sqrt{x'^2+y'^2}} = C_1 \\[1.5ex]
+	\ds y-\frac{\lambda x'}{\sqrt{x'^2+y'^2}} = C_2
+\end{cases}
+\end{equation*}
+其中$C_1,C_2$为积分常数，从中消去$\lambda$可得
+\begin{equation*}
+	(x-C_1)\mathd x+(y-C_2)\mathd y=0
+\end{equation*}
+再积分可得
+\begin{equation*}
+	(x-C_1)^2+(y-C_2)^2=C^3
+\end{equation*}
+其中$C_3$是积分常数。这说明，在封闭曲线长度固定的条件下，所围面积最大的曲线是圆。根据约束，积分常数$C_3$可由约束确定。
+\end{solution}
+
+\section{Hamilton原理}
+
+\subsection{理想完整系统的正路和旁路}
+
+在第\ref{chapter2:section-微分变分原理}节中介绍了微分变分原理，它们给出了在给定时刻从力学系统的所有约束允许的可能运动中区分出真实运动的准则。与微分变分原理不同，积分变分原理不是给出某个时刻真实运动的判据，而是给出某个有限时间段$t_0\leqslant t\leqslant t_1$内真实运动的判据，描述了系统在整个时间段内的运动。
+
+设力学系统受理想双面完整约束，$A_i$和$B_i$分别是系统内的质点$m_i(i=1,2,\cdots,n)$在$t=t_0$和$t=t_1$时刻的可能位置，系统在$t=t_0$的位置称为{\bf 初位置}，在$t=t_1$的位置称为{\bf 末位置}。假设在$t=t_0$时刻可以选择系统内各质点的速度，使它们分别在$t=t_1$时刻占据自己的末位置。系统质点从初位置$A_i$移动到末位置$B_i$所画出的轨迹形成了系统的真实路径，称为{\bf 正路}。
+
+在正路上，系统的质点$m_i$画出一条连接$A_i$和$B_i$的曲线$\gamma_i$。设$\gamma_i'(i=1,2,\cdots,n)$是无限接近于曲线$\gamma_i$的连接$A_i$和$B_i$的曲线，质点$m_i$沿着它运动而不会破坏约束，这些曲线称为系统的{\bf 旁路}。这里假定系统所有质点沿着旁路运动的初始时刻为$t=t_0$，终止时刻为$t=t_1$，即系统沿着旁路运动的起始和终止时刻与沿着正路是相同的。
+
+对于完整系统，在{\bf 位形时空}中考察正路和旁路更加方便，该空间中的坐标是广义坐标$\mbf{q}$和时间$t$。设位形时空中的点$Q_0$相应于系统的初位形，而点$Q_1$则相应于系统的末位形，系统从初位形到末位形的运动相应于连接$Q_0$和$Q_1$的曲线。由于在位形时空中，约束已经自动满足，因此任意无限接近正路的连接$Q_0$和$Q_1$的曲线都可以作为旁路。
+
+已知初位形和初速度求解末位形的问题很容易，但是已知初位形和末位形求出连接它们之间的正路并不简单，前者是力学系统$2n$阶微分方程的初值问题，而后者是$2n$阶微分方程的边值问题。如果假设$Q_0$点的坐标为$\mbf{q}_0$，而$Q_1$点的坐标为$\mbf{q}_1$，则运动微分方程的解应该满足边值条件：
+\begin{equation*}
+	\mbf{q}(t_0) = \mbf{q}_0,\quad \mbf{q}(t_1) = \mbf{q}_1
+\end{equation*}
+边值问题可以有唯一解，也可以没有解，还可以有几个甚至无数组解。
+
+如果$Q_0$和$Q_1$两点足够接近，则边值问题的解可能是唯一的或者有限多个。对于有限多个解的情况，我们总是可以选择其中某一个解的一个足够小的不包含其它正路的邻域来研究其中的旁路。而当$Q_0$和$Q_1$足够远时，边值问题有在相同时间$t_1-t_0$内无限接近正路的解\footnote{即，对于任意一条这样的正路，不存在一个邻域内不包含其它正路。}，这种情况下位形时空内的点$Q_0$和$Q_1$称为{\bf 共轭动力学焦点}。
+
+\begin{example}\label{chapter9:example-谐振子的共轭动力学焦点}
+对于单自由度谐振子，其运动微分方程为$\ddot{q}+q=0$。在通过广义时空中的点$(0,0)$和$(0,\pi)$之间即有相互无限接近的正路，可以表示为
+\begin{equation*}
+	q = C\sin t
+\end{equation*}
+其中$C$是任意常数，因此，对于单自由度谐振子，点$(0,0)$和$(0,\pi)$是共轭动力学焦点。
+\end{example}
+
+前面提到，旁路是与正路无限接近而且同时满足约束的曲线，而且旁路所用时间与正路相同，因此可以用虚位移来构造旁路。设系统的质点$m_i(i=1,2,\cdots,n)$沿着连接初位置$A_i$和末位置$B_i$的正路运动，如果$t$时刻质点的位置为点$P_i$，那么在该时刻给该质点一个从该位置出发的虚位移$\delta\mbf{r}_i$，使得其位置变为点$Q_i'$。如果当$t_0<t<t_1$时，对该质点在正路上的所有位置$P_i$重复这样的过程，经过所有的$Q_i'$，并连接初位置$A_i$和末位置$B_i$作一条曲线，由于虚位移是保证约束成立的无限小位移，因此该曲线就是旁路。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//正路和旁路
+	pair A[]={
+		(0,0),
+		(0.7,1),
+		(1.8,1.5)
+	};
+	guide p;
+	for(pair P:A){
+		p = p..P;
+	}
+	draw(Label("$\gamma_i$",Relative(0.4),Relative(E)),p,linewidth(0.8bp));
+	label("$A_i,t_0$",A[0],S);
+	label("$B_i,t_1$",A[2],E);
+	pair B[]={
+		(0,0),
+		(0.35,1.15),
+		(1.4,1.2),
+		(1.8,1.5)
+	};
+	guide q;
+	for(pair P:B){
+		q = q..P;
+	}
+	draw(Label("$\gamma_i'$",Relative(0.3),Relative(W)),q,dashed);
+	draw(Label("$\delta\boldsymbol{r}_i$",MidPoint,Relative(W)),A[1]--B[1],Arrow);
+	dot("$P_i,t$",A[1],SE);
+	label("$P_i',t$",B[1],NW);
+\end{asy}
+\caption{正路和旁路}
+\label{chapter9:正路和旁路}
+\end{figure}
+
+记质点$m_i$在正路上点$P_i$的位矢为$\mbf{r}_i$，所以其在旁路上相应点的位矢为$\mbf{r}_i+\delta\mbf{r}_i$，其中虚位移满足$\delta\mbf{r}_i(t_0)=\delta\mbf{r}_i(t_1)=\mbf{0}$。类似地，如果在位形时空中正路由下面的方程给出：
+\begin{equation}
+	\mbf{q} = \mbf{q}(t),\quad \mbf{q}(t_0) = \mbf{q}_0,\quad \mbf{q}(t_1) = \mbf{q}_1
+\end{equation}
+则旁路可以利用虚位移表示为
+\begin{equation}
+	\mbf{q} = \mbf{q}(t)+\delta\mbf{q}(t)
+\end{equation}
+其中
+\begin{equation*}
+	\delta\mbf{q}(t_0)=\delta\mbf{q}(t_1)=\mbf{0}
+\end{equation*}
+
+\subsection{Hamilton原理}
+
+在考虑力学变分原理的时候，所考虑自变函数的自变量为时间$t$，因此此时的变分运算即称为{\bf 等时变分}，这与第\ref{chapter2:subsection-实位移与虚位移}节引入虚位移时提到的等时变分是相同的，因此虚位移也满足与式\eqref{chapter9:变分运算与求导运算可以交换次序}相同的关系，即
+\begin{equation}
+	\delta \dif{\mbf{r}_i}{t} = \ddt \delta\mbf{r}_i
+\end{equation}
+
+设作用在系统内质点$m_i$上的主动力的合力记为$\mbf{F}_i$，则对动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}
+\begin{equation}
+	\sum_{i=1}^n \left(\mbf{F}_i-m_i\ddot{\mbf{r}}_i\right)\cdot \delta \mbf{r}_i = 0
+	\label{chapter9:d'Alambert-Lagrange原理-重写}
+\end{equation}
+积分可得
+\begin{align*}
+	\int_{t_0}^{t_1} \left[\sum_{i=1}^n \left(\mbf{F}_i - m_i \frac{\mathrm{d} \dot{\mbf{r}}_i}{\mathrm{d} t}\right) \cdot \delta \mbf{r}_i\right]\mathd t & = \int_{t_0}^{t_1} \left[\sum_{i=1}^n \left(\mbf{F}_i \cdot \delta \mbf{r}_i + m_i \dot{\mbf{r}}_i \cdot \delta \dot{\mbf{r}}_i\right) - \frac{\mathrm{d}}{\mathrm{d} t} \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \delta \mbf{r}_i\right]\mathd t \\
+	& = \int_{t_0}^{t_1} \left(\delta T + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i\right)\mathd t - \sum_{i=1}^n \frac{\pl T}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\bigg|_{t_0}^{t_1} = 0
+\end{align*}
+其中$T$为系统的动能
+\begin{equation}
+	T = \sum_{i=1}^n \frac12 m_i\dot{\mbf{r}}_i^2
+\end{equation}
+由此即有
+\begin{equation}
+	\int_{t_0}^{t_1} \left(\delta T + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i\right) \mathrm{d} t = \sum_{i=1}^n \frac{\pl T}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i \bigg|_{t_0}^{t_1}
+	\label{chapter9:动力学普遍方程的积分形式}
+\end{equation}
+方程\eqref{chapter9:动力学普遍方程的积分形式}称为{\bf 动力学普遍方程的积分形式}。
+
+对于完整系统的旁路，需要满足其初位置和末位置与正路相同，即
+\begin{equation*}
+	\delta \mbf{r}_i(t_0) = \delta \mbf{r}_i(t_1) = 0 \quad (i = 1,2,\cdots,n)
+\end{equation*}
+此时可以将动力学普遍方程的积分形式\eqref{chapter9:动力学普遍方程的积分形式}写成
+\begin{equation}
+	\int_{t_0}^{t_1} \left(\delta T + \sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i\right) \mathrm{d} t = 0
+	\label{chapter9:一般完整系统的Hamilton原理}
+\end{equation}
+式\eqref{chapter9:一般完整系统的Hamilton原理}称为完整系统的{\bf Hamilton原理}，它可以叙述为：如果$\delta \mbf{r}_i(t)$是相应于正路的等时变分且$\delta\mbf{r}_i(t_0)=\delta\mbf{r}_i(t_1)=\mbf{0}$，则积分\eqref{chapter9:一般完整系统的Hamilton原理}等于零。
+
+在完整系统中，有
+\begin{equation}
+	\sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i = \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha
+\end{equation}
+所以完整系统的Hamilton原理\eqref{chapter9:一般完整系统的Hamilton原理}可以用广义坐标表示为
+\begin{equation}
+	\int_{t_0}^{t_1} \left(\delta T + \sum_{\alpha=1}^s Q_\alpha \delta q_\alpha\right) \mathrm{d} t = 0
+	\label{chapter9:广义坐标形式的完整系Hamilton原理}
+\end{equation}
+由此便说明了完整系统在正路上积分\eqref{chapter9:广义坐标形式的完整系Hamilton原理}等于零。下面还需说明，如果在某个运动学可能的路径上，积分\eqref{chapter9:广义坐标形式的完整系Hamilton原理}等于零，则该路径是正路。为此只需证明可以由式\eqref{chapter9:广义坐标形式的完整系Hamilton原理}导出系统的Lagrange方程即可。
+
+由于
+\begin{equation}
+	\delta T = \sum_{\alpha=1}^s \left(\frac{\pl T}{\pl q_\alpha}\delta q_\alpha + \frac{\pl T}{\pl \dot{q}_\alpha}\delta\dot{q}_\alpha \right)
+\end{equation}
+由此可将式\eqref{chapter9:广义坐标形式的完整系Hamilton原理}改写为
+\begin{equation}
+	\int_{t_0}^{t_1} \sum_{\alpha=1}^s \left[\frac{\pl T}{\pl \dot{q}_\alpha}\delta\dot{q}_\alpha+ \left(\frac{\pl T}{\pl q_\alpha} + Q_\alpha\right) \delta q_\alpha\right] \mathd t = 0
+	\label{chapter9:由完整系统的Hamilton方程推导Lagrange方程-中间过程1}
+\end{equation}
+对式\eqref{chapter9:由完整系统的Hamilton方程推导Lagrange方程-中间过程1}中的第一项分部积分，并注意到$\delta q_\alpha(t_0)=\delta_\alpha(t_1)=0(\alpha=1,2,\cdots,s)$，可得
+\begin{equation*}
+	\int_{t_0}^{t_1} \frac{\pl T}{\pl \dot{q}_\alpha}\delta \dot{q}_\alpha\mathd t = \int_{t_0}^{t_1} \left[\ddt \left(\frac{\pl T}{\pl \dot{q}_\alpha}\delta q_\alpha\right) - \ddt \frac{\pl T}{\pl \dot{q}_\alpha} \delta q_\alpha \right] \mathd t = -\int_{t_0}^{t_1} \ddt \frac{\pl T}{\pl \dot{q}_\alpha} \delta q_\alpha \mathd t
+\end{equation*}
+故式\eqref{chapter9:由完整系统的Hamilton方程推导Lagrange方程-中间过程1}可以写成下面的形式
+\begin{equation}
+	\int_{t_0}^{t_1} \sum_{\alpha=1}^s \left(\ddt\frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} - Q_\alpha \right) \delta q_\alpha \mathd t = 0
+\end{equation}
+由于$\delta q_\alpha(\alpha=1,2,\cdots,s)$是相互独立的任意函数，根据变分学基本定理\ref{chapter9:多元泛函的变分学基本定理}可得
+\begin{equation*}
+	\ddt\frac{\pl T}{\pl \dot{q}_\alpha} - \frac{\pl T}{\pl q_\alpha} = Q_\alpha\quad (\alpha=1,2,\cdots,s)
+\end{equation*}
+至此便由Hamilton原理获得了Lagrange方程，由此说明，完整系统的动力学可以以Hamilton原理为基础。
+
+\subsection{有势系统的Hamilton原理}
+
+对具有广义势$U = U(\mbf{r},\dot{\mbf{r}},t)$的系统，则有
+\begin{equation}
+	\mbf{F}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i} \quad (i=1,2,\cdots,n)
+\end{equation}
+所以
+\begin{align}
+	\sum_{i=1}^n \mbf{F}_i \cdot \delta \mbf{r}_i & = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n \frac{\pl U}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\right) - \sum_{i=1}^n \left(\frac{\pl U}{\pl \dot{\mbf{r}}_i} \cdot \delta \dot{\mbf{r}}_i + \frac{\pl U}{\pl \mbf{r}_i} \cdot \delta \mbf{r}_i \right) \nonumber \\
+	& = \frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{i=1}^n \frac{\pl U}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i\right) - \delta U
+	\label{chapter9:有势系动力学普遍方程的积分形式-中间结果}
+\end{align}
+将式\eqref{chapter9:有势系动力学普遍方程的积分形式-中间结果}代入方程\eqref{chapter9:动力学普遍方程的积分形式}中，并注意到Lagrange函数$L=T-U$，由此可有
+\begin{equation}
+	\int_{t_0}^{t_1} \delta L \mathrm{d} t = \sum_{i=1}^n \frac{\pl L}{\pl \dot{\mbf{r}}_i} \cdot \delta \mbf{r}_i \bigg|_{t_0}^{t_1}
+	\label{chapter9:有势系动力学普遍方程的积分形式}
+\end{equation}
+方程\eqref{chapter9:有势系动力学普遍方程的积分形式}称为{\heiti 有势系动力学普遍方程的积分形式}。
+
+由于完整系统的旁路需要满足$\delta\mbf{r}(t_0)=\delta\mbf{r}(t_1)=\mbf{0}$，因此方程\eqref{chapter9:有势系动力学普遍方程的积分形式}可以写成
+\begin{equation}
+	\int_{t_0}^{t_1} \delta L \mathrm{d} t = 0
+	\label{chapter9:完整有势系统的Hamilton原理-初步}
+\end{equation}
+
+由此，定义积分
+\begin{equation}
+	S = \int_{t_0}^{t_1} L \mathrm{d} t
+	\label{chapter9:Hamilton作用量}
+\end{equation}
+称为{\bf Hamilton作用量}。因为$L$是$\mbf{q},\dot{\mbf{q}},t$的函数，所以计算$S$的值需要给出在时间段$t_0\leqslant t\leqslant t_1$内的函数关系$\mbf{q}(t)$，即作用量是依赖系统运动方式的泛函。
+
+因此，根据Hamilton作用量的定义式\eqref{chapter9:Hamilton作用量}可以将式\eqref{chapter9:完整有势系统的Hamilton原理-初步}表示为
+\begin{equation}
+	\delta S = \delta\int_{t_0}^{t_1} L \mathrm{d} t = 0
+	\label{chapter9:Hamilton原理}
+\end{equation}
+式\eqref{chapter9:Hamilton原理}给出了完整有势系统的{\heiti Hamilton原理}：在所有相比较的路径中，完整系统的正路使得Hamilton作用量取驻值（即其一阶变分在正路上等于零）。
+
+根据Hamilton原理也可以推导出完整有势系统的Lagrange方程，方法与上一节几乎完全相同，在此不再重复。
+
+\subsection{Hamilton作用量的极值性质}
+
+首先来考察初位置充分小的邻域，其中不包含共轭动力学焦点，可以认为在给定时间范围$t_0$至$t_1$内，系统从初位置运动到位于所选定邻域内的末位置只能有一条正路。下面将证明，在这种情形下，与旁路相比，Hamilton作用量沿着正路取极小值。
+
+这种方法称为{\bf Joukowski几何法}\footnote{Joukowski，茹科夫斯基，俄国力学家。}。首先，设系统\footnote{此处考虑的为具有普通势的完整系统。}中质点$m_i(i=1,2,\cdots,n)$的初位置为$A_i$，末位置为$B_i$，而$\gamma_i$和$\gamma_i'$是该质点沿着正路和任意一条旁路运动的曲线（如图\ref{chapter9:figure-Hamilton作用量的极值性质}所示），比较沿着正路和旁路的Hamilton作用量之间的大小关系。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//
+	pair NP[] = {
+		(0,0),
+		(-0.5,1),
+		(0,2)
+	};
+	pair OK[] = {
+		(0,0),
+		(0.5,0.9),
+		(0,2)
+	};
+	guide np,ok;
+	for(pair P:NP){
+		np = np..P;
+	}
+	for(pair P:OK){
+		ok = ok..P;
+	}
+	draw(Label("$\gamma_i$",Relative(0.75),Relative(W)),np,linewidth(0.8bp));
+	draw(Label("$\gamma_i'$",Relative(0.25),Relative(E)),ok,dashed);
+	label("$A_i$",NP[0],S);
+	label("$B_i$",OK[2],N);
+	pair Ci,Ei,midC,midE;
+	Ci = relpoint(ok,0.65);
+	Ei = relpoint(ok,0.8);
+	label("$C_i$",Ci,E);
+	label("$E_i$",Ei,NE);
+	path ok1,ok2;
+	midC = (NP[0]+Ci)/2+(-0.1,0.);
+	midE = (NP[0]+Ei)/2+(-0.1,0.);
+	ok1 = NP[0]..midC..Ci;
+	ok2 = NP[0]..midE..Ei;
+	draw(ok1,linewidth(0.8bp));
+	draw(Label("$\delta\sigma_i$",Relative(0.9),Relative(W)),ok2,linewidth(0.8bp));
+	pair Fi = relpoint(ok2,0.75);
+	label("$F_i$",Fi,W);
+	path ok3;
+	pair midF;
+	midF = (Fi+Ci)/2+(0,0.03);
+	ok3 = Fi..midF..Ci;
+	draw(Label("$\delta s_i$",Relative(0.2),Relative(E)),ok3);
+	real r = 0.1;
+	path clp = circle(Fi,r);
+	pair P,Q;
+	P = intersectionpoint(ok2,clp);
+	Q = intersectionpoint(ok3,clp);
+	draw(Label("$\alpha_i$",MidPoint,Relative(E)),arc(Fi,r,degrees(Q-Fi),degrees(P-Fi)));
+	label("$\mathrm{d}l_i$",(Ei+Ci)/2,NE);
+\end{asy}
+\caption{Hamilton作用量的极值性质}
+\label{chapter9:figure-Hamilton作用量的极值性质}
+\end{figure}
+
+取旁路上相应于时刻$t$的$C_i$点，其中$t_0<t<t_1$，并画出质点$m_i$由$A_i$到$C_i$的某个真实运动轨迹$A_iC_i$，在$t-t_0$的时间内，质点$m_i$沿着该轨迹由初位置运动到旁路上的$C_i$点。再取相应于$t+\mathd t$时刻的$E_i$点，并画出质点$m_i$由$A_i$到$E_i$的某个真实运动轨迹$A_iE_i$，在$t+\mathd t-t_0$时间内沿着该轨迹由初位置运动到旁路上的$E_i$点。按照这样的方式，在旁路$\gamma_i'$上的所有点上都画出这样的辅助真实运动轨迹。
+
+设$F_i$是质点$m_i$沿着辅助真实运动轨迹$A_iE_i$在$t$时刻的位置，于是两个辅助真实运动轨迹上的弧$A_iC_i$和$A_iF_i$，以及在旁路$\gamma_i'$上的弧$A_iC_i$都是质点$m_i$在相同的时间$t-t_0$内走过的，所以辅助真实运动轨迹上的弧$F_iE_i$和旁路上的弧$C_iE_i$都是质点$m_i$用相同的时间$\mathd t$内走过的。
+
+下面考虑质点$m_i$分别沿真实运动轨迹$A_iF_i$和$A_iC_i$的作用量，则有
+\begin{equation}
+	S[A_iF_i] = \int_{t_0}^t (T-V)\mathd t,\quad S[A_iC_i] = \int_{t_0}^t (T-V)\mathd t
+\end{equation}
+这里的两个积分分别沿着真实路径$A_iF_i$和$A_iC_i$，其中的$T$和$V$分别在相应的路径上取值，将它们分别表示为
+\begin{align}
+	& T_{A_iF_i} = \sum_{i=1}^n \frac12 m_i\dot{\mbf{r}}_i^2, \quad V_{A_iF_i} = \sum_{i=1}^n V(\mbf{r}_i,t) \\
+	& T_{A_iC_i} = \sum_{i=1}^n \frac12 m_i(\dot{\mbf{r}}_i+\delta\mbf{r}_i)^2, \quad V_{A_iC_i} = \sum_{i=1}^n V(\mbf{r}_i+\delta\mbf{r}_i,t)
+\end{align}
+由此，精确到$|\delta\mbf{r}_i|$和$|\delta\dot{\mbf{r}}_i|$的一阶量，两条路径上的Hamilton作用量之差可以表示为
+\begin{equation*}
+	S[A_iC_i]-S[A_iF_i] = \int_{t_0}^t \sum_{i=1}^n \left(m_i\dot{\mbf{r}}_i\cdot \delta \dot{\mbf{r}}_i - \frac{\pl V}{\pl \mbf{r}_i}\cdot \delta\mbf{r}_i\right) \mathd t
+\end{equation*}
+对上式第一项进行分部积分，并考虑到$\mbf{F}_i = -\frac{\pl V}{\pl \mbf{r}_i}$以及$\delta \mbf{r}_i(t_0) = \mbf{0}$，可得
+\begin{equation*}
+	S[A_iC_i]-S[A_iF_i] = \sum_{i=1}^n m_i\dot{\mbf{r}}(t)\cdot \delta\mbf{r}(t) + \int_{t_0}^t \sum_{i=1}^n \left(\mbf{F}_i-m_i\ddot{\mbf{r}}_i\right)\cdot \delta \mbf{r}_i \mathd t
+\end{equation*}
+将动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}代入，可得
+\begin{equation}
+	S[A_iC_i]-S[A_iF_i] = \sum_{i=1}^n m_i\dot{\mbf{r}}(t)\cdot \delta\mbf{r}(t) = \sum_{i=1}^n m_iv_i\cos\alpha_i\delta s_i
+	\label{chapter9:两条终点不同正路作用量之差}
+\end{equation}
+其中$v_i$是质点$m_i$在$t$时刻的速率，$\alpha_i$是$\dot{\mbf{r}}_i$和$\delta\mbf{r}_i$之间的夹角，$\delta s_i$是弧长$F_iC_i$。
+
+用$\mathd \sigma_i$和$\mathd l_i$表示辅助真实运动轨迹上弧$F_iE_i$和旁路上弧$C_iE_i$的长度\footnote{由于$F_iE_i$和$C_iE_i$不是等时的，所以此处用微分来表示这段无穷小的长度。}，在图\ref{chapter9:figure-Hamilton作用量的极值性质}中的无穷小三角形$C_iF_iE_i$中应用余弦定理，可得
+\begin{equation}
+	\mathd l_i^2 = \mathd \sigma_i^2 + \delta s_i^2 - 2\mathd \sigma_i\delta s_i\cos\alpha_i
+	\label{chapter9:Hamilton作用量的极值性质-无穷小三角形的余弦定理}
+\end{equation}
+将式\eqref{chapter9:Hamilton作用量的极值性质-无穷小三角形的余弦定理}两端乘以$m_i$并对$i$求和，由于现在所讨论的区域内不包含初位置的共轭动力学焦点，因此所有的$\delta s_i$中必然至少有一个非零，由此可得不等式
+\begin{equation}
+	\sum_{i=1}^n m_i\mathd l^2 > \sum_{i=1}^n \mathd \sigma_i^2 - 2\sum_{i=1}^n m_i\mathd\sigma_i\cos\alpha_i\delta s_i
+	\label{chapter9:Hamilton作用量的极值性质-重要不等式1}
+\end{equation}
+如果用$T'$表示系统沿着旁路弧$C_iE_i$运动时的动能，用$T$表示系统沿着辅助真实运动轨迹上弧$F_iE_i$运动时的动能，则有
+\begin{equation}
+	\sum_{i=1}^n m_i\mathd l_i^2 = 2T'\mathd t^2 ,\quad \sum_{i=1}^n m_i\mathd \sigma_i^2 = 2T\mathd t^2 
+	\label{chapter9:Hamilton作用量的极值性质-重要不等式2}
+\end{equation}
+再考虑到$\dif{\sigma_i}{t} = v_i$，故将式\eqref{chapter9:Hamilton作用量的极值性质-重要不等式2}代入不等式\eqref{chapter9:Hamilton作用量的极值性质-重要不等式1}中可得
+\begin{equation}
+	T'\mathd t > T\mathd t - \sum_{i=1}^n m_iv_i\cos\alpha_i\delta s_i
+	\label{chapter9:Hamilton作用量的极值性质-重要不等式3}
+\end{equation}
+将式\eqref{chapter9:Hamilton作用量的极值性质-重要不等式3}两端减去$V\mathd t$，并利用式\eqref{chapter9:两条终点不同正路作用量之差}可得
+\begin{equation}
+	(T'-V)\mathd t > (T-V)\mathd t + S[A_iF_i]-S[A_iC_i]
+	\label{chapter9:Hamilton作用量的极值性质-重要不等式4}
+\end{equation}
+由于
+\begin{equation*}
+	(T-V)\mathd t = \int_t^{t+\mathd t} (T-V)\mathd t = S[F_iE_i]
+\end{equation*}
+以及
+\begin{equation*}
+	S[F_iE_i]+S[A_iF_i]-S[A_iC_i] = S[A_iE_i]-S[A_iC_i]
+\end{equation*}
+故不等式\eqref{chapter9:Hamilton作用量的极值性质-重要不等式3}右端等于当运动时间增加$\mathd t$时，从一个真实运动轨迹到另一个真实运动轨迹的Hamilton作用量的微分$\mathd S$，所以
+\begin{equation}
+	(T'-V)\mathd t > \mathd S
+	\label{chapter9:Hamilton作用量的极值性质-重要不等式-结果}
+\end{equation}
+将这个不等式从$t=t_0$到$t=t_1$积分，并用$S_{\text{正路}}$和$S_{\text{旁路}}$分别表示沿着正路和旁路的Hamilton作用量，可得
+\begin{equation}
+	S_{\text{旁路}} > S_{\text{正路}}
+	\label{chapter9:Hamilton作用量的极值性质-结果}
+\end{equation}
+这就证明了，如果系统的初位置和末位置足够接近\footnote{其中不包含任何共轭动力学焦点即可。}，则对于相同的运动时间，与旁路相比，沿着正路的Hamilton作用量最小。基于这个原因，Hamilton原理在有些文献上也被称为{\bf 最小作用量原理}。
+
+设$P_0$是位形时空中对应系统初位置的点，而$P_1$是位形时空中对应系统末位置的点，前面的讨论已经说明，如果$P_0$和$P_1$足够接近，则Hamilton作用量$S$在正路上取极小值。下面来考虑$P_0$和$P_1$到底需要有多近，才能使得Hamilton作用量$S$在正路上取极小值。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(250);
+	//
+	pair NP[] = {
+		(0,0),
+		(2,1),
+		(3,1.2)
+	};
+	guide np;
+	for(pair P:NP){
+		np = np..P;
+	}
+	draw(Label("$B$",Relative(0.4),Relative(E)),np,linewidth(0.8bp));
+	pair P0,P1,F;
+	P0 = relpoint(np,0);
+	P1 = relpoint(np,0.8);
+	F = relpoint(np,1);
+	label("$P_0$",P0,S);
+	label("$P_1$",P1,S);
+	label("$F$",F,E);
+	pair H;
+	H = relpoint(np,0.5)+(-0.1,0.4);
+	path npH = P0..H..P1;
+	draw(npH);
+	H = relpoint(npH,0.5);
+	label("$H$",H,S);
+	pair C,D,EP,G,K;
+	C = relpoint(npH,0.35);
+	D = relpoint(npH,0.65);
+	EP = H + (-0.15,0.15);
+	path npE = C..EP..D;
+	draw(npE);
+	label("$C$",C,SE);
+	label("$D$",D,S);
+	label("$E$",EP,NW);
+	G = relpoint(npH,0.85);
+	K = (G+F)/2+(0,0.1);
+	path npK = G..K..F;
+	draw(npK);
+	label("$G$",G,N);
+	label("$K$",relpoint(npK,0.5),N);
+\end{asy}
+\caption{共轭动力学焦点与Hamilton作用量的极值}
+\label{chapter9:figure-Hamilton作用量的极值性质2}
+\end{figure}
+
+在正路$P_0P_1$上Hamilton作用量的一阶变分总是等于零，即$\delta S=0$，如果$P_0$和$P_1$足够接近，在正路上二阶变分$\delta^2 S$总是正的\footnote{不考虑$S$的极值性需要更高阶变分确定的极端情况。}。如图\ref{chapter9:figure-Hamilton作用量的极值性质2}所示，现在令$P_1$远离$P_0$，设$t_1^*$是沿着旁路$P_0HP_1$计算的$\delta^2S$第一次为零的时刻$t_1$，此时沿着路径$P_0HP_1$和$P_0BP_1$的Hamilton作用量相等：
+\begin{equation}
+	S[P_0HP_1] = S[P_0BP_1]
+	\label{chapter9:作用量的极值性与共轭动力学焦点1}
+\end{equation}
+下面将说明，$P_0HP_1$实际上是正路，即$P_0$和$P_1$是共轭动力学焦点。假设不是这样，即假设$P_0HP_1$不是正路，那么在它上面取两点$C$和$D$，并以正路$CED$连接。根据前文所证明的，对于足够接近的两点$C$和$D$将有
+\begin{equation}
+	S[CED]<S[CHD]
+	\label{chapter9:作用量的极值性与共轭动力学焦点2}
+\end{equation}
+由式\eqref{chapter9:作用量的极值性与共轭动力学焦点1}和式\eqref{chapter9:作用量的极值性与共轭动力学焦点2}可得
+\begin{equation}
+	S[P_0CEDP_1] < S[P_0CHDP_1] = S[P_0BP_1]
+\end{equation}
+这与假设矛盾，因为假设$P_1$是正路$P_0BP_1$上的点，在所选择的过$P_0$和$P_1$的旁路上，该点使二阶变分$\delta^2 S$第一次等于零，而这里二阶变分已经小于零了。
+
+上述讨论表明，{\it 如果终点$P_1$在$P_0$的共轭动力学焦点之前，则Hamilton作用量在正路$P_0P_1$上取极小值。}
+
+设$P_1$是$P_0$的共轭动力学焦点，而正路的终点$F$在$P_1$点之后（如图\ref{chapter9:figure-Hamilton作用量的极值性质2}），这里沿着正路$P_0BP_1F$的作用量已经不是极小值了。在前面建立的正路$P_0HP_1$上取足够接近$F$的点$G$，使得连接这个点的正路$FKG$上的作用量最小，那么有
+\begin{equation}
+	S[GKF] = S[GP_1]+S[P_1F]
+\end{equation}
+再考虑到式\eqref{chapter9:作用量的极值性与共轭动力学焦点1}可得
+\begin{align*}
+	S[P_0HGKF] & = S[P_0HG]+S[GKF] < S[P_0HG]+S[GP_1]+S[P_1F] \\
+	& = S[P_0HP_1] + S[P_1F] = S[P_0BP_1]+S[P_1F] = S[P_0BP_1F]
+\end{align*}
+即，所构造的旁路上的作用量小于正路$P_0BP_1F$的作用量，所以作用量在这种情况下在正路上不取最小值。但在正路$P_0BP_1F$的一小部分上作用量取最小值，所以在该正路上Hamilton作用量也不能取极大值。因此，如果初位置的共轭动力学焦点在正路的终点之前，则沿着正路的Hamilton作用量既非极小也非极大。
+
+\begin{example}
+在例\ref{chapter9:example-谐振子的共轭动力学焦点}中，$(0,0)$点的共轭动力学焦点是$(0,\pi)$，如果系统的末位置在$\left(-1,\dfrac32\pi\right)$，则可得其正路应为
+\begin{equation*}
+	q(t) = \sin t
+\end{equation*}
+其旁路可取为
+\begin{equation*}
+	q'(t) = q(t)+\alpha \eta(t)
+\end{equation*}
+其中$\eta(t)$为满足$\eta(0)=\eta\left(\dfrac32\pi\right)=0$的任意函数。系统的Hamilton作用量为
+\begin{equation*}
+	S = \frac12 \int_{t_0}^{t_1} \left(\dot{q}^2-q^2\right)\mathd t
+\end{equation*}
+所以系统沿旁路的Hamilton作用量可以表示为
+\begin{align*}
+	S' & = \frac12 \int_0^{\frac32\pi}\left[(\dot{q}+\alpha\dot{eta})^2 - (q+\eta)^2 \right] \mathd t \\
+	& = \frac12 \int_0^{\frac32\pi}\left(\dot{q}^2 - q^2 \right)\mathd t + \alpha \int_0^{\frac32\pi}\left(\dot{q}\dot{\eta}-q\eta\right) \mathd t + \dfrac{\alpha^2}{2} \int_0^{\frac32\pi}\left(\dot{\eta}^2-\eta^2\right)\mathd t \\
+	& = S + \alpha \int_0^{\frac32\pi}\left(\dot{q}\dot{\eta}-q\eta\right) \mathd t + \dfrac{\alpha^2}{2} \int_0^{\frac32\pi}\left(\dot{\eta}^2-\eta^2\right)\mathd t
+\end{align*}
+如果取$\eta(t) = \sin \dfrac23t$，则有
+\begin{align*}
+	\int_0^{\frac32\pi}\left(\dot{q}\dot{\eta}-q\eta\right) \mathd t & = \int_0^{\frac32\pi}\left(\frac23\cos t\cos \frac23t - \sin t\sin \frac23t\right) \mathd t = 0 \\
+	\int_0^{\frac32\pi}\left(\dot{\eta}^2-\eta^2\right)\mathd t & = \int_0^{\frac32\pi}\left(\frac49\cos^2 \frac23t - \sin^2 \frac23t\right) \mathd t = -\frac{5}{12}\pi
+\end{align*}
+所以沿着这条旁路有$S'<S$，正路的作用量不取极小值。
+\end{example}
+
+\subsection{Lagrange方程的规范不定性与完整系统的规范不变性}
+
+完整有势系下的Hamilton作用量可以表示为
+\begin{equation}
+	S[\mbf{q}(t)] = \int_{t_0}^{t_1} L(\mbf{q},\dot{\mbf{q}},t) \mathrm{d} t
+\end{equation}
+根据Hamilton原理以及Euler-Lagrange方程，可得到有势完整系统的Lagrange方程：
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0 \quad (\alpha = 1,2,\cdots,s)
+\end{equation}
+
+Lagrange函数$L$具有规范不定性，即在{\heiti 定域规范变换}
+\begin{equation}
+	\tilde{L} = L + \frac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t)
+\end{equation}
+下，有
+\begin{equation*}
+	\delta \tilde{S} = \delta S + \delta f(\mbf{q},t)\big|_{t_0}^{t_1} = \delta S + \sum_{\alpha=1}^s \frac{\pl f}{\pl q_\alpha} \delta q_\alpha \bigg|_{t_0}^{t_1} = \delta S
+\end{equation*}
+即在定域规范变换下，Hamilton作用量的变分不变，进而系统的Lagrange方程也不变。因此规范变换下，系统的运动规律不变，此即为系统的{\heiti 规范不变性}。
+
+Lagrange函数$L$的不定性来自广义势的规范不定性，即$\tilde{U}(\mbf{q},\dot{\mbf{q}},t) = U(\mbf{q},\dot{\mbf{q}},t) - \dfrac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t)$与$U(\mbf{q},\dot{\mbf{q}},t)$表示的是同一个势场。如果两个势函数$U(\mbf{q},\dot{\mbf{q}},t)$和$\tilde{U}(\mbf{q},\dot{\mbf{q}},t)$对应的广义力相同，即说明势函数的变换不影响运动方程，即它们表示的是同一个势场。由于$f = f(\mbf{q},t)$，所以
+\begin{equation*}
+	\dfrac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t) = \sum_{\alpha=1}^n \frac{\pl f}{\pl q_\alpha} \dot{q}_\alpha + \frac{\pl f}{\pl t} = \dot{f}(\mbf{q},\dot{\mbf{q}},t)
+\end{equation*}
+据此考虑广义力
+\begin{align}
+	\tilde{Q}_\alpha & = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \tilde{U}}{\pl \dot{q}_\alpha} - \frac{\pl \tilde{U}}{\pl q_\alpha} = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{q}_\alpha} - \frac{\pl U}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \dot{f}}{\pl \dot{q}_\alpha} + \frac{\pl \dot{f}}{\pl q_\alpha} \nonumber \\
+	& = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{q}_\alpha} - \frac{\pl U}{\pl q_\alpha} = Q_\alpha \label{chapter3:势的规范不变性}
+\end{align}
+式中利用了推广经典Lagrange关系\eqref{chapter2:推广经典Lagrange关系}，即
+\begin{equation*}
+	\frac{\pl \dot{f}}{\pl \dot{q}_\alpha} = \frac{\pl f}{\pl q_\alpha}, \quad \frac{\mathd}{\mathd t}\left(\frac{\pl f}{\pl q_\alpha}\right) = \frac{\pl \dot{f}}{\pl q_\alpha}\quad (\alpha=1,2,\cdots,s)
+\end{equation*}
+式\eqref{chapter3:势的规范不变性}的结果说明势在规范变换下系统的力场不变，故势$\tilde{U}(\mbf{q},\dot{\mbf{q}},t) = U(\mbf{q},\dot{\mbf{q}},t) - \dfrac{\mathrm{d} f}{\mathrm{d} t}(\mbf{q},t)$与$U(\mbf{q},\dot{\mbf{q}},t)$表示的是同一个势场。
+
+在规范变换下，广义动量为
+\begin{equation*}
+	\tilde{p}_\alpha = \frac{\pl \tilde{L}}{\pl \dot{q}_\alpha} = \frac{\pl L}{\pl \dot{q}_\alpha} + \frac{\pl \dot{f}}{\pl \dot{q}_\alpha} = p_\alpha + \frac{\pl f}{\pl q_\alpha}
+\end{equation*}
+广义能量为
+\begin{align*}
+	\tilde{H} & = \sum_{\alpha=1}^s \frac{\pl \tilde{L}}{\pl \dot{q}_\alpha} \dot{q}_\alpha - \tilde{L} = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \dot{q}_\alpha - L + \sum_{\alpha=1}^s \frac{\pl \dot{f}}{\pl \dot{q}_\alpha} \dot{q}_\alpha - \frac{\mathrm{d} f}{\mathrm{d} t} \\
+	& = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \dot{q}_\alpha - L + \sum_{\alpha=1}^s \frac{\pl f}{\pl q_\alpha} \dot{q}_\alpha - \left(\sum_{\alpha=1}^s \frac{\pl f}{\pl q_\alpha} + \frac{\pl f}{\pl t}\right) = H - \frac{\pl f}{\pl t}
+\end{align*}
+即，与坐标共轭的广义动量，与时间共轭的广义能量均具有不定性，取决于Lagrange函数的规范选择。
+
+\subsection{相空间与Hamilton方程}
+
+在位形空间，根据Hamilton函数的定义，有
+\begin{equation}
+	L = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \dot{q}_\alpha - H = \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t)
+\end{equation}
+于是Hamilton作用量的变分为
+\begin{align}
+	\delta S & = \int_{t_0}^{t_1} \left[\sum_{\alpha=1}^s (\dot{q}_\alpha \delta p_\alpha + p_\alpha \delta \dot{q}_\alpha) - \sum_{\alpha=1}^s \left(\frac{\pl H}{\pl p_\alpha} \delta p_\alpha + \frac{\pl H}{\pl q_\alpha} \delta q_\alpha\right)\right] \mathrm{d} t \nonumber \\
+	& = \int_{t_0}^{t_1} \left[\frac{\mathrm{d}}{\mathrm{d} t} \sum_{\alpha=1}^s p_\alpha \delta q_\alpha + \sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha} \right) \delta q_\alpha \right] \mathrm{d} t \nonumber \\
+	& = \sum_{\alpha=1}^s p_\alpha \delta q_\alpha\bigg|_{t_0}^{t_1} + \int_{t_0}^{t_1} \left[\sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha}\right) \delta q_\alpha\right] \mathrm{d} t
+	\label{chapter9:位形空间内Hamilton函数的变分}
+\end{align}
+由于$S = S[\mbf{q}(t)]$，独立变分只有$\delta q_\alpha$，动量由坐标定义，其变分不独立。考虑
+\begin{equation}
+	H = H(\mbf{q},\mbf{p},t) = \sum_{\beta=1}^s p_\beta \dot{q}_\beta(\mbf{q},\mbf{p},t) - L(\mbf{q},\dot{\mbf{q}}(\mbf{q},\mbf{p},t),t)
+\end{equation}
+所以有
+\begin{equation}
+	\frac{\pl H}{\pl p_\alpha} = \dot{q}_\alpha + \sum_{\beta=1}^s p_\beta \frac{\pl \dot{q}_\beta}{\pl p_\alpha} - \sum_{\beta=1}^s \frac{\pl L}{\pl \dot{q}_\beta} \frac{\pl \dot{q}_\beta}{\pl p_\alpha} = \dot{q}_\alpha + \sum_{\beta=1}^s \left(p_\beta - \frac{\pl L}{\pl \dot{q}_\beta} \right) \frac{\pl \dot{q}_\beta}{\pl p_\alpha}
+\end{equation}
+考虑到动量的定义$p_\beta = \dfrac{\pl L}{\pl \dot{q}_\beta}$，即有
+\begin{equation}
+	\dot{q}_\alpha = \frac{\pl H}{\pl p_\alpha}
+\end{equation}
+由此，根据式\eqref{chapter9:位形空间内Hamilton函数的变分}和Hamilton原理可得
+\begin{equation}
+	\delta S = -\int_{t_0}^{t_1} \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha} \right) \delta q_\alpha \mathrm{d} t = 0
+\end{equation}
+由此可得
+\begin{equation}
+	\dot{p}_\alpha = - \frac{\pl H}{\pl q_\alpha}
+\end{equation}
+即，在位形空间中考察Hamilton方程一半是动量定义，另一半是运动方程。
+
+上节已经指出，与坐标共轭的动量具有规范不定性，据此，可以将动量视为与坐标地位平等、完全独立的正则变量。由此在相空间中即可将Hamilton作用量写作
+\begin{equation}
+	S[\mbf{q}(t),\mbf{p}(t)] = \int_{t_0}^{t_1} \left[\sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha - H(\mbf{q},\mbf{p},t)\right] \mathrm{d} t
+\end{equation}
+此时根据Hamilton原理可得
+\begin{align}
+	\delta S & = \int_{t_0}^{t_1} \left(\sum_{\alpha=1}^s \dot{q}_\alpha \delta p_\alpha + \sum_{\alpha=1}^s p_\alpha \delta \dot{q}_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl q_\alpha} \delta q_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl p_\alpha} \delta p_\alpha \right) \mathrm{d} t \nonumber \\
+	& = \int_{t_0}^{t_1} \left[\frac{\mathrm{d}}{\mathrm{d} t} \left(\sum_{\alpha=1}^s p_\alpha \delta q_\alpha\right) - \sum_{\alpha=1}^s \dot{p}_\alpha \delta q_\alpha + \sum_{\alpha=1}^s \dot{q}_\alpha \delta p_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl q_\alpha} \delta q_\alpha - \sum_{\alpha=1}^s \frac{\pl H}{\pl p_\alpha} \delta p_\alpha \right] \mathrm{d} t \nonumber \\
+	& = \sum_{\alpha=1}^s p_\alpha \delta q_\alpha \bigg|_{t_0}^{t_1} + \int_{t_0}^{t_1} \left[\sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha}\right) \delta q_\alpha \right] \mathrm{d} t \nonumber \\
+	& = \int_{t_0}^{t_1} \left[\sum_{\alpha=1}^s \left(\dot{q}_\alpha - \frac{\pl H}{\pl p_\alpha}\right) \delta p_\alpha - \sum_{\alpha=1}^s \left(\dot{p}_\alpha + \frac{\pl H}{\pl q_\alpha}\right) \delta q_\alpha \right] \mathrm{d} t = 0
+\end{align}
+据此即可直接得到Hamilton正则方程
+\begin{equation}
+	\begin{cases}
+		\dot{q}_\alpha = \dfrac{\pl H}{\pl p_\alpha} \\[1.5ex]
+		\dot{p}_\alpha = -\dfrac{\pl H}{\pl q_\alpha}
+	\end{cases}
+\end{equation}
+将Hamilton原理视为相空间力学变分原理，则Hamilton方程全体均为运动方程。坐标和动量在满足相空间Hamilton原理的前提下可以独立变换，扩大了变换的自由度。
+
+\subsection{位形时空与推广的Lagrange方程}
+
+作参数变换$t = t(\tau)$，则有推广的Lagrange函数为
+\begin{equation*}
+	\mathnormal{\Lambda} (\mbf{q},t,\mbf{q}',t') = L \left(\mbf{q}, \frac{\mbf{q}'}{t'},t\right) t'
+\end{equation*}
+此时Hamilton作用量变换为
+\begin{equation}
+	S[\mbf{q}(\tau)] = \int_{\tau_0}^{\tau_1} L\left(\mbf{q},\frac{\mbf{q}'}{t'},t\right) t' \mathrm{d} \tau = \int_{\tau_0}^{\tau_1} \mathnormal{\Lambda} (\mbf{q},t,\mbf{q}',t') \mathrm{d} \tau
+\end{equation}
+由于此时$\tau$仅作为新的参数，所以边界条件仍然为
+\begin{equation*}
+	\delta \mbf{q}(\tau_0) = \delta \mbf{q}(\tau_1) = 0,\quad \delta t(\tau) = 0
+\end{equation*}
+根据Hamilton原理可得
+\begin{align}
+	\delta S & = \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} \delta q_\alpha + \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q'_\alpha\right) \mathrm{d} \tau \nonumber \\
+	& = \int_{\tau_0}^{\tau_1} \left[\frac{\mathrm{d}}{\mathrm{d} \tau} \sum_{\alpha=1}^s \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha + \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \right] \mathrm{d} \tau \nonumber \\
+	& = \sum_{\alpha=1}^s \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_0}^{\tau_1} + \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau \nonumber \\
+	& = \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^s \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau = 0
+\end{align}
+由此可得以$\tau$为参数的Lagrange方程
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} - \frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} = 0 \quad (\alpha = 1,2,\cdots,s)
+\end{equation}
+以上讨论限于位形空间，仅将原参数$t$通过确定的对应关系变换成新参数$\tau$。
+
+在位形时空中，$\tau$为参数，$t$视为变量，记作$q_{s+1}$。即此时$\delta \tau = 0$，但$\delta t(\tau) \neq 0$，Hamilton作用量为
+\begin{equation}
+	S[\mbf{q}(\tau),t(\tau)] = \int_{\tau_0}^{\tau_1} \mathnormal{\Lambda}(\mbf{q},t,\mbf{q}',t') \mathrm{d} \tau
+\end{equation}
+此时$t$与广义坐标$\mbf{q}$同样为自变函数，它们边界条件为
+\begin{equation*}
+	\delta \mbf{q}(\tau_0) = \delta \mbf{q}(\tau_1) = 0,\quad \delta t(\tau_0) = \delta t(\tau_1) = 0
+\end{equation*}
+根据Hamilton原理可有
+\begin{align}
+	\delta S & = \sum_{\alpha=1}^{s+1} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_0}^{\tau_1} + \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^{s+1} \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau \nonumber \\
+	& = \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^{s+1} \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau = 0
+\end{align}
+由此可以得到位形时空（$s+1$维空间）中的Lagrange方程
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} - \frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} = 0 \quad (\alpha = 1,2,\cdots,s+1)
+\end{equation}
+
+\section{Lagrange原理}
+
+\subsection{一般形式的力学变分原理}
+
+首先考虑在位形时空中，Hamilton原理可以表示为
+\begin{equation*}
+	\delta S = \sum_{\alpha=1}^{s+1} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_0}^{\tau_1} + \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^{s+1} \left(\frac{\pl \mathnormal{\Lambda}}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} \tau} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha}\right) \delta q_\alpha \mathrm{d} \tau
+\end{equation*}
+任何形式的力学变分原理应都能正确的描述系统的运动，因此其必须与系统的Lagrange方程等价。所以，此处不附加任何边界条件，直接将Lagrange方程代入，可得力学变分原理的一种形式如下
+\begin{equation}
+	\delta S = \int_{\tau_0}^{\tau_1} \delta \varLambda \mathrm{d} \tau = \sum_{\alpha=1}^{s+1} \frac{\pl \mathnormal{\Lambda}}{\pl q'_\alpha} \delta q_\alpha\bigg|_{\tau_0}^{\tau_1} = \sum_{\alpha=1}^{s+1} p_\alpha \delta q_\alpha\bigg|_{\tau_0}^{\tau_1}
+\end{equation}
+或者
+\begin{equation}
+	\int_{\tau_0}^{\tau_1} \left(\delta \varLambda - \frac{\mathrm{d}}{\mathrm{d} \tau} \sum_{\alpha=1}^{s+1} p_\alpha \delta q_\alpha \right) \mathrm{d} \tau = 0
+\end{equation}
+如果系统的正路和旁路初位置和末位置相同且到达末位置的时间也相同，即
+\begin{equation*}
+	\delta q_\alpha(\tau_0) = \delta q_\alpha(\tau_1) = 0 \quad (\alpha = 1,2,\cdots,s+1)
+\end{equation*}
+将重新得到位形时空（$s+1$维）的Hamilton原理
+\begin{equation}
+	\int_{\tau_0}^{\tau_1} \delta \varLambda \mathrm{d} \tau = 0
+	\label{位形时空的Hamilton原理}
+\end{equation}
+如果系统的正路和旁路初位置和末位置相同，但它们到达末位置的时间不同，即
+\begin{equation*}
+	\delta q_\alpha(\tau_0) = \delta q_\alpha(\tau_1) = 0 \quad (\alpha = 1,2,\cdots,s),\quad \delta t(\tau) \neq 0
+\end{equation*}
+由此可得位形空间（$s$维）的Hamilton原理
+\begin{equation}
+	\int_{\tau_0}^{\tau_1} \left[\delta \varLambda + \frac{\mathrm{d}}{\mathrm{d} \tau}(H\delta t)\right] \mathrm{d} \tau = 0
+	\label{位形空间的Hamilton原理}
+\end{equation}
+
+\subsection{等能变分与Maupertuis-Lagrange原理}
+
+现在，考虑广义保守系统，此时有
+\begin{equation*}
+	H' = -p'_t = -\frac{\pl \varLambda}{\pl t} = 0
+\end{equation*}
+系统具有广义能量积分\footnote{大部分的力学系统都能满足此条件。}
+\begin{equation}
+	H(\mbf{q},\mbf{p}) = h\quad \text{（常数）}
+\end{equation}
+此时可考虑比较初位置和末位置相同而且具有相同广义能量的正路和旁路，此时对应的变分则称为{\heiti 等能变分}。等能变分$\delta$是对参数$\tau$的函数的变分，而且满足
+\begin{equation*}
+	\delta H = 0,\quad \delta t \neq 0,\quad \delta \tau = 0
+\end{equation*}
+等能条件限制了位形轨道每一点的速度，使得实际运动与虚拟运动不能同时出发与到达。此时有
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d} \tau}(H\delta t) = H' \delta t + H\delta t' = \delta (Ht) - t'\delta H = \delta (Ht')
+	\label{chapter9:等能变分的导出关系1}
+\end{equation}
+将式\eqref{chapter9:等能变分的导出关系1}代入式\eqref{位形空间的Hamilton原理}中，可得
+\begin{equation}
+	\int_{\tau_0}^{\tau_1} \delta (\varLambda + Ht') \mathrm{d} \tau = \delta \int_{\tau_0}^{\tau_1} (\varLambda + Ht') \mathrm{d} \tau = 0
+\end{equation}
+定义
+\begin{equation}
+	W[\mbf{q}(\tau),t(\tau)] = \int_{\tau_0}^{\tau_1} (L+H)t' \mathrm{d} \tau = \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^s p_\alpha q'_\alpha \mathrm{d} \tau 
+\end{equation}
+称为{\heiti Lagrange作用量}\footnote{有些文献上将Lagrange作用量称为{\heiti 简约作用量}。}，相应的式\eqref{位形时空的Hamilton原理}化为
+\begin{equation}
+	\delta W[\mbf{q}(\tau),t(\tau)] = \delta \int_{\tau_0}^{\tau_1} \sum_{\alpha=1}^s p_\alpha q'_\alpha \mathrm{d} \tau = 0
+\end{equation}
+称为{\heiti 位形时空的Lagrange原理}。在Lagrange作用量的表达式中作变量代换$t=t(\tau)$消去参数$\tau$，可有
+\begin{equation}
+	W[\mbf{q}(t)] = \int_{t_0}^{t_1} (L+H) \mathrm{d} t = \int_{t_0}^{t_1} \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha \mathrm{d} t = \int_{\mbf{q}_0}^{\mbf{q}_1} \sum_{\alpha=1}^sp_\alpha\mathd q_\alpha
+	\label{chapter10:Lagrange作用量}
+\end{equation}
+此时可有{\heiti 位形空间的Lagrange原理}
+\begin{equation}
+	\Delta W[\mbf{q}(t)] = \Delta \int_{t_0}^{t_1} (L+H) \mathrm{d} t = \Delta \int_{t_0}^{t_1} \sum_{\alpha=1}^s p_\alpha \dot{q}_\alpha \mathrm{d} t = 0
+	\label{位形空间的Lagrange原理}
+\end{equation}
+此处，$\Delta$为位形空间中的等能变分。由于位形空间与位形时空的参数不同，所以这里的等能变分与普通变分的运算规则不同，故引入记号$\Delta$以示区别。在位形空间中，取任意函数$f(t)$，则等能变分满足如下运算规则
+\begin{subnumcases}{}
+	\Delta f = \delta f(t) + \dot{f} \Delta t \\
+	\frac{\mathrm{d}}{\mathrm{d} t} \Delta f = \delta \dot{f}(t) + \ddot{f} \Delta t + \dot{f} \frac{\mathrm{d}\Delta t}{\mathrm{d} t} = \Delta \dot{f} + \dot{f} \frac{\mathrm{d}\Delta t}{\mathrm{d} t} \\
+	\Delta \int_{t_0}^{t_1} f \mathrm{d} t = \delta \int_{\tau_0}^{\tau_1} f t' \mathrm{d} \tau = \int_{t_0}^{t_1} \left(\Delta f + f\frac{\mathrm{d} \Delta t}{\mathrm{d} t}\right) \mathrm{d} t
+\end{subnumcases}
+Lagrange原理\eqref{位形空间的Lagrange原理}可改写为
+\begin{equation}
+	\Delta W = \Delta \int_{\mbf{q}_0}^{\mbf{q}_1} \sum_{\alpha=1}^s p_\alpha \mathrm{d} q_\alpha = 0
+	\label{Lagrange原理的Maupertuis形式}
+\end{equation}
+式\eqref{Lagrange原理的Maupertuis形式}称为{\bf Maupertuis-Lagrange原理}或{\heiti Lagrange原理的Maupertuis形式}\footnote{Maupertuis，莫培督，法国数学家、物理学家。}。
+
+\begin{example}[由位形空间的Lagrange原理导出Lagrange方程]
+由位形空间的Lagrange原理，即
+\begin{equation*}
+	\Delta W = \Delta \int_{t_0}^{t_1} (L+H) \mathrm{d} t = \int_{t_0}^{t_1} \left[\Delta(L+H) + (L+H) \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\right] \mathrm{d} t = 0
+\end{equation*}
+现在来考察上面积分中的各项，首先根据等能变分的定义，有$\Delta H = 0$。考虑到系统的能量守恒，即有
+\begin{equation*}
+	\dot{H} = -\frac{\pl L}{\pl t} = 0
+\end{equation*}
+由此可有
+\begin{align*}
+	\Delta L + (L+H) \frac{\mathrm{d} \Delta t}{\mathrm{d} t} & = \sum_{\alpha=1}^s \frac{\pl L}{\pl q_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta \dot{q}_\alpha + \frac{\pl L}{\pl t} \Delta t + \sum_{\alpha=1}^s p_\alpha q_\alpha \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\\
+	& = \sum_{\alpha=1}^s \frac{\pl L}{\pl q_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \left(\frac{\mathrm{d} \Delta q_\alpha}{\mathrm{d} t} - \dot{q}_\alpha \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\right) + \sum_{\alpha=1}^s p_\alpha q_\alpha \frac{\mathrm{d} \Delta t}{\mathrm{d} t}\\
+	& = \frac{\mathrm{d}}{\mathrm{d} t} \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha
+\end{align*}
+综上，可得
+\begin{align*}
+	\Delta W & = \int_{t_0}^{t_1} \left[\frac{\mathrm{d}}{\mathrm{d} t} \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta q_\alpha + \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha\right] \mathrm{d} t \\
+	& = \sum_{\alpha=1}^s \frac{\pl L}{\pl \dot{q}_\alpha} \Delta q_\alpha\bigg|_{t_0}^{t_1} + \int_{t_0}^{t_1} \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha \mathrm{d} t
+\end{align*}
+对始末位形可有
+\begin{equation*}
+	\Delta \mbf{q}(t_1) = \Delta \mbf{q}(t_2) = 0
+\end{equation*}
+因此，有
+\begin{equation*}
+	\Delta W = \int_{t_0}^{t_1} \sum_{\alpha=1}^s \left(\frac{\pl L}{\pl q_\alpha} - \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha}\right) \Delta q_\alpha \mathrm{d} t = 0
+\end{equation*}
+根据$\Delta q_\alpha$的独立性，即可得到Lagrange方程
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0 \quad (\alpha = 1,2,\cdots,s)
+\end{equation*}
+\end{example}
+
+\subsection{Jacobi-Lagrange原理}
+
+如果系统是定常的，根据第\ref{第二章：广义能量的数学结构}节的讨论，此时有
+\begin{align*}
+	L & = T-U = T_2 - U_1 - U_0 \\
+	H & = L_2 - L_0 = T_2 + U_1 + U_0
+\end{align*}
+其中
+\begin{equation*}
+	T = T_2 = \frac12 \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta,\quad M_{\alpha\beta}(\mbf{q},t) = \sum_{i=1}^n m_i \frac{\pl \mbf{r}_i}{\pl q_\alpha} \cdot \frac{\pl \mbf{r}_i}{\pl q_\beta}
+\end{equation*}
+此时Lagrange原理为
+\begin{equation}
+	\Delta W = \Delta \int_{t_0}^{t_1} (L+H) \mathrm{d} t = \int_{t_0}^{t_1} 2T\mathd t = \Delta \int_{t_0}^{t_1} \sum_{\alpha,\beta=1}^s M_{\alpha\beta}(\mbf{q},t) \dot{q}_\alpha \dot{q}_\beta \mathrm{d} t = 0
+	\label{chapter9:Jacobi-Lagrange原理的初步形式}
+\end{equation}
+定义位形空间线元
+\begin{equation}
+	\mathrm{d} s^2 = \frac{1}{M} \sum_{i=1}^n m_i \mathrm{d} \mbf{r}_i \cdot \mathrm{d} \mbf{r}_i = \frac{1}{M} \sum_{\alpha,\beta=1}^s M_{\alpha\beta} \mathrm{d} q_\alpha \mathrm{d} q_\beta
+	\label{chapter9:位形空间度规}
+\end{equation}
+其中$\displaystyle M = \sum_{i=1}^n m_i$，此时动能可以表示为
+\begin{equation}
+	T = \frac12 M \left(\frac{\mathrm{d} s}{\mathrm{d} t}\right)^2 
+\end{equation}
+此处，$\dfrac{\mathrm{d} s}{\mathrm{d} t}$即为系统位形代表点在位形空间中沿位形轨道运动的速度，方向即为轨道的切线方向。再考虑到系统的具有广义能量积分
+\begin{equation}
+	H(\mbf{q},\dot{\mbf{q}}) = E\quad \text{（常数）}
+\end{equation}
+由此可有
+\begin{equation*}
+	2T\mathrm{d} t = \sqrt{2MT}\mathrm{d} s = \sqrt{2M\big[E-V(\mbf{r})\big]} \mathrm{d}s
+\end{equation*}
+此时，Lagrange原理形式为
+\begin{equation}
+	\Delta W = \Delta \int_{\mbf{r}_0}^{\mbf{r}_1} \sqrt{2M\big[E-V(\mbf{r})\big]} \mathrm{d}s = 0
+	\label{Lagrange原理的Jacobi形式}
+\end{equation}
+式\eqref{Lagrange原理的Jacobi形式}称为{\bf Jacobi-Lagrange原理}或{\heiti Lagrange原理的Jacobi形式}。此原理不涉及时间，它从所有满足广义能量守恒的旁路中选出Lagrange作用量取极值的正路。
+
+在几何上，可以将以式\eqref{chapter9:Jacobi-Lagrange原理的初步形式}理解为，在具有式\eqref{chapter9:位形空间度规}形式度规的位形空间中，其测地线即为系统在位形空间中的正路。

@@ -673,7 +673,7 @@
 
 \subsection{质点系}
 
-质点系即指两个以上相互作用的质点组成的体系。在质点系中，{\heiti 外力}指质点系外物体对质点系内任一质点的作用力，记作$\mbf{F}_i$。{\heiti 内力}指质点系内任意一对质点之间的相互作用力，质点$j$对质点$i$的作用力记作$\mbf{f}_{ij}$。
+质点系即指两个以上相互作用的质点组成的系统。在质点系中，{\heiti 外力}指质点系外物体对质点系内任一质点的作用力，记作$\mbf{F}_i$。{\heiti 内力}指质点系内任意一对质点之间的相互作用力，质点$j$对质点$i$的作用力记作$\mbf{f}_{ij}$。
 
 \subsection{动量及其守恒定律}
 
@@ -723,7 +723,7 @@
 \end{equation*}
 即总动量在该方向上的分量$\mbf{e} \cdot \mbf{p} = \text{常数}$。
 
-动量守恒定律在纯质点力学体系中由Newton第三定律保证。
+动量守恒定律在纯质点力学系统中由Newton第三定律保证。
 
 \subsection{角动量及其守恒定律}
 
@@ -778,7 +778,7 @@
 \end{equation*}
 即总角动量在该方向上的分量$\mbf{e} \cdot \mbf{L} = \text{常数}$。
 
-角动量守恒定律在纯质点力学体系中由Newton第三定律保证。
+角动量守恒定律在纯质点力学系统中由Newton第三定律保证。
 
 \subsection{能量及其守恒定律}
 
@@ -1645,200 +1645,4 @@
 即为$v_0$和$h$应满足的关系。
 \end{solution}
 
-\section{变质量体系}
-
-质量随时间渐变的体系，例如
-\begin{itemize}
-	\item {\heiti 增质量}：主体吸附物质，如形成中的雨滴；
-	\item {\heiti 减质量}：主体排放物质，如发射中的火箭。
-\end{itemize}
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(300);
-	//变质量体系1
-	picture pic1;
-	pair O,F,v,u,m;
-	real rO,rm,lF,lv,lu;
-	O = (0,0);
-	rO = 2;
-	fill(pic1,yscale(2/3)*scale(rO)*unitcircle,yellow);
-	label(pic1,"$m$",O);
-	v = (1,0.7);
-	lv = 1.2;
-	draw(pic1,Label("$\boldsymbol{v}$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
-	F = (-1.3,-0.8);
-	lF = 1.2;
-	draw(pic1,Label("$\boldsymbol{F}$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
-	rm = 0.7;
-	m = (3,0.4);
-	fill(pic1,shift(m)*yscale(2/3)*scale(rm)*unitcircle,green);
-	label(pic1,"$\Delta m$",m);
-	u = (-0.1,0.2)+m;
-	lu = 0.9;
-	draw(pic1,Label("$\boldsymbol{u}$",MidPoint,Relative(E)),u--u+lu*dir(135),Arrow);
-	label(pic1,"$t$",(0,-1.5),S);
-	add(pic1);
-
-	//变质量体系2
-	picture pic2;
-	pair O,F,v,u,m;
-	real rO,rm,lF,lv,lu;
-	O = (0,0);
-	rO = 2;
-	fill(pic2,yscale(2/3)*scale(rO)*unitcircle,yellow);
-	label(pic2,"$m'=m+\Delta m$",O);
-	v = (1,0.7);
-	lv = 1.2;
-	draw(pic2,Label("$\boldsymbol{v}'$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
-	F = (-1.3,-0.8);
-	lF = 1.2;
-	draw(pic2,Label("$\boldsymbol{F}'$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
-	label(pic2,"$t'=t+\Delta t$",(0,-1.5),S);
-	add(shift((6.5,0))*pic2);
-	//draw(O--(9,0),invisible);
-\end{asy}
-\caption{变质量体系}
-\label{变质量体系}
-\end{figure}
-
-首先计算小物体$\Delta m$粘附前后的动量差，即
-\begin{equation*}
-	\Delta \mbf{p} = m'\mbf{v}' - m\mbf{v} - \Delta m \mbf{u} = \Delta(m\mbf{v}) - \Delta m \mbf{u}
-\end{equation*}
-根据动量定理，有
-\begin{equation}
-	\frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \lim_{\Delta t \to 0} \frac{\Delta \mbf{p}}{\Delta t} = \frac{\mathrm{d} (m\mbf{v})}{\mathrm{d} t} - \frac{\mathrm{d} m}{\mathrm{d} t} \mbf{u} = m \frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mathrm{d} m}{\mathrm{d} t}(\mbf{v}-\mbf{u}) = \mbf{F}
-	\label{变质量体系的运动微分方程}
-\end{equation}
-式\eqref{变质量体系的运动微分方程}即为{\heiti 变质量体系的运动微分方程}。
-
-对于火箭，式\eqref{变质量体系的运动微分方程}中$\mbf{v}$为火箭的速度，$\mbf{u}$为排出废气的速度。在火箭理论中，有意义的不是废气的绝对速度$\mbf{u}$，而是废气相对于火箭的相对速度$\mbf{v}_r$。$\mbf{v}_r$的方向和火箭前进的方向相反，如果令$\mbf{e}_t$为火箭前进方向（轨道切线）的单位矢量，则$\mbf{v}_r$可以表示为
-\begin{equation*}
-	\mbf{v}_r = \mbf{u} - \mbf{v} = -v_r \mbf{e}_t
-\end{equation*}
-于是火箭的运动方程可以写作
-\begin{equation*}
-	m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + v_r \frac{\mathrm{d} m}{\mathrm{d} t} \mbf{e}_t = \mbf{F}
-\end{equation*}
-或者
-\begin{equation}
-	m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} = \mbf{F} + \mbf{F}_R
-	\label{密歇尔斯基方程}
-\end{equation}
-式中
-\begin{equation*}
-	\mbf{F}_R = -\frac{\mathrm{d} m}{\mathrm{d} t} v_r \mbf{e}_t = \mu v_r \mbf{e}_t
-\end{equation*}
-其中$\displaystyle \mu = \left|\frac{\mathrm{d} m}{\mathrm{d} t}\right|$是单位时间内消耗的燃料。式\eqref{密歇尔斯基方程}是火箭运动的基本方程式，称为{\heiti Meshcherskii（密歇尔斯基）方程}。
-
-\begin{example}[重力场中的火箭]
-在假设火箭竖直运动，以及外力只有恒定重力$\mbf{F} = -mg\mbf{e}_3$的情况下求解密歇尔斯基方程。
-\end{example}
-\begin{solution}
-相对火箭的喷气速度
-\begin{equation*}
-	\mbf{u}-\mbf{v} = -v_r \mbf{e}_3
-\end{equation*}
-此时密歇尔斯基方程即为
-\begin{equation*}
-	m\frac{\mathrm{d} v}{\mathrm{d} t} + v_r\frac{\mathrm{d} m}{\mathrm{d} m}{\mathrm{d} t} = -mg
-\end{equation*}
-化简为
-\begin{equation*}
-	\mathrm{d} v = -v_r \frac{\mathrm{d} m}{m} - g\mathrm{d} t
-\end{equation*}
-直接积分，即可得末速度
-\begin{equation*}
-	v_f = v_i + v_r \ln \frac{M_i}{M_f} - gt_f = v_i + v_r \ln \left(1+\frac{|\Delta M|}{M_f}\right) - gt_f
-\end{equation*}
-提高火箭末速度的方法：
-\begin{itemize}
-	\item 提高喷气速度；
-	\item 用级连法提高燃料所占质量比；
-	\item 提高燃烧速度，减少加速时间。
-\end{itemize}
-\end{solution}
-
-\begin{example}
-一轻绳跨过定滑轮的两端，一端挂着质量为$m$的重物，另一端和线密度为$\rho$的软链相连。开始时软链全部静止在地上，重物亦静止，后来重物下降，并将软链向上提起。问软链最后可提起多高？
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(300);
-	//第一章例10图
-	pair O;
-	real r,l1,l2,hand,a,T;
-	O = (0,0);
-	r = 1;
-	l1 = 4;
-	l2 = 6;
-	T = 3;
-	hand = 2;
-	a = 0.6;
-	draw(scale(r)*unitcircle);
-	draw(O--(0,hand),linewidth(3bp));
-	draw((-r,0)--(-r,-l1));
-	draw((-r,0)--(-r-2*a,0));
-	draw((-r,-l1)--(-r-2*a,-l1));
-	draw(Label("$X$",MidPoint,W),(-r-1.5*a,0)--(-r-1.5*a,-l1),Arrows);
-	fill(box((-r-a,-l1-a),(-r+a,-l1+a)),red);
-	dot((-r,-l1));
-	draw(Label("$T$",EndPoint,E),(-r,-l1)--(-r,-l1)+dir(90),Arrow);
-	draw(Label("$Mg$",EndPoint,E),(-r,-l1)--(-r,-l1)+dir(-90),Arrow);
-	draw((r,0)--(r,-l2+0.1));
-	draw((r,-T)--(r,-l2+0.1)..(r+0.1,-l2)--(r+3*a,-l2),blue+linewidth(3bp));
-	dot((r,-(T+l2)/2));
-	draw(Label("$\rho gx$",EndPoint,W),(r,-(T+l2)/2)--(r,-(T+l2)/2)+dir(-90),Arrow);
-	draw(Label("$T$",EndPoint,E),(r,-T)--(r,-T)+dir(90),Arrow);
-	draw((r,-T)--(r+2*a,-T));
-	draw((r,-l2)--(r+2*a,-l2));
-	draw(Label("$x$",MidPoint,E),(r+1.5*a,-T)--(r+1.5*a,-l2),Arrows);
-	//draw(O--(1.5,0),invisible);
-\end{asy}
-\caption{例\theexample}
-\label{第一章例10图}
-\end{figure}
-\end{example}
-\begin{solution}
-地面上的软链在被提起时的速度为$u =0$，根据变质量体系的运动微分方程\eqref{变质量体系的运动微分方程}即有
-\begin{equation*}
-	\rho x \ddot{x} + \rho \dot{x} \dot{x} = T - \rho gx
-\end{equation*}
-对左端物体有
-\begin{equation*}
-	M\ddot{X} = Mg - T
-\end{equation*}
-约束为
-\begin{equation*}
-	\dot{X} = \dot{x}
-\end{equation*}
-消去无关变量即有
-\begin{equation*}
-	\rho x \ddot{x} + \rho \dot{x} \dot{x} + M\ddot{x} = Mg - \rho g x
-\end{equation*}
-可化为
-\begin{equation*}
-	\frac{\mathrm{d}}{\mathrm{d} t} [(M+\rho x) \dot{x}] = (M-\rho x) g
-\end{equation*}
-即
-\begin{equation*}
-	\dot{x} \frac{\mathrm{d}}{\mathrm{d} x} [(M+\rho x) \dot{x}] = (M-\rho x) g
-\end{equation*}
-因此
-\begin{equation*}
-	\frac12 \frac{\mathrm{d}}{\mathrm{d} x} [(M+\rho x) \dot{x}]^2 = (M-\rho x)(M+\rho x) g
-\end{equation*}
-积分，并考虑到$\dot{x}\big|_{x=0} = 0$，即得
-\begin{equation*}
-	\frac12 \left[(M+\rho x)\dot{x}\right]^2 = \left(M^2 - \frac13 \rho^2 x^2\right) gx
-\end{equation*}
-当软链升到最高时，有$\dot{x}\big|_{t=t_{max}} = 0$，即有
-\begin{equation*}
-	\left(M^2 - \frac13 \rho^2 x^2_{max}\right) gx_{max} = 0
-\end{equation*}
-由此得最大高度
-\begin{equation*}
-	x_{max} = \frac{\sqrt{3}M}{\rho}
-\end{equation*}
-\end{solution}
+\input{chapter/chapter1_mass.tex}
