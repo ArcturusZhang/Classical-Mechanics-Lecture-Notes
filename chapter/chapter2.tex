@@ -159,15 +159,15 @@
 
 约束也将限制系统中质点的加速度，将式\eqref{chapter2:完整约束对质点系中质点速度的限制}和\eqref{chapter2:非完整约束对质点系中质点速度的限制}分别对时间求导，可得
 \begin{equation}
-	\sum_{i=1}^n \frac{\pl f_j}{\pl\mbf{r}_i}\cdot \mbf{a}_i + \sum_{i,l=1}^n \frac{\pl^2 f_j}{\pl \mbf{r}_i\pl \mbf{r}_l} \cdot \mbf{v}_l\cdot\mbf{v}_i + 2\sum_{i=1}^n \frac{\pl^2 f_j}{\pl \mbf{r}_i\pl t} \cdot \mbf{v}_i + \frac{\pl^2 f_j}{\pl t^2} = 0 \quad (j=1,2,\cdots,k) \label{chapter2:完整约束对质点系中质点加速度的限制}
+	\sum_{i=1}^n \frac{\pl f_j}{\pl\mbf{r}_i}\cdot \mbf{a}_i + \sum_{i,l=1}^n \left(\frac{\pl^2 f_j}{\pl \mbf{r}_i\pl \mbf{r}_l} \cdot \mbf{v}_l\right) \cdot\mbf{v}_i + 2\sum_{i=1}^n \frac{\pl^2 f_j}{\pl \mbf{r}_i\pl t} \cdot \mbf{v}_i + \frac{\pl^2 f_j}{\pl t^2} = 0 \quad (j=1,2,\cdots,k) \label{chapter2:完整约束对质点系中质点加速度的限制}
 \end{equation}
 和
 \begin{equation}
-	\sum_{i=1}^n \mbf{A}_{ji}\cdot \mbf{a}_i + \sum_{i,l=1}^n \frac{\pl \mbf{A}_{ji}}{\pl \mbf{r}_l} \cdot \mbf{v}_l \cdot \mbf{v}_i + \sum_{i=1}^n \frac{\pl A_{j0}}{\pl \mbf{r}_i} \cdot \mbf{v}_i + \frac{\pl A_{j0}}{\pl t} = 0 \quad (j=1,2,\cdots,k') \label{chapter2:非完整约束对质点系中质点加速度的限制}
+	\sum_{i=1}^n \mbf{A}_{ji}\cdot \mbf{a}_i + \sum_{i,l=1}^n \left(\frac{\pl \mbf{A}_{ji}}{\pl \mbf{r}_l} \cdot \mbf{v}_l\right) \cdot \mbf{v}_i + \sum_{i=1}^n \frac{\pl A_{j0}}{\pl \mbf{r}_i} \cdot \mbf{v}_i + \frac{\pl A_{j0}}{\pl t} = 0 \quad (j=1,2,\cdots,k') \label{chapter2:非完整约束对质点系中质点加速度的限制}
 \end{equation}
 当系统处于给定时刻的可能位形并且具有可能速度时，满足线性方程组\eqref{chapter2:完整约束对质点系中质点加速度的限制}、\eqref{chapter2:非完整约束对质点系中质点加速度的限制}的矢量$\mbf{a}_i=\mbf{a}_i^*$集合称为该时刻的{\bf 可能加速度}。
 
-由于可能速度和可能加速度分别需要满足线性方程组\eqref{chapter2:完整约束对质点系中质点速度的限制}、\eqref{chapter2:非完整约束对质点系中质点速度的限制}和方程组\eqref{chapter2:完整约束对质点系中质点加速度的限制}、\eqref{chapter2:非完整约束对质点系中质点加速度的限制}，每个方程组中都有$k+k'$个方程，因此整数$3n-k-k'$应该是一个正数，否则约束的限制过强，将使得系统不可能运动或者只能按照约束给定的规律运动。这个整数，记作$f=3n-k-k'$，称为系统的{\bf 自由度}。
+由于可能速度和可能加速度分别需要满足线性方程组\eqref{chapter2:完整约束对质点系中质点速度的限制}、\eqref{chapter2:非完整约束对质点系中质点速度的限制}和方程组\eqref{chapter2:完整约束对质点系中质点加速度的限制}、\eqref{chapter2:非完整约束对质点系中质点加速度的限制}，每个方程组中都有$k+k'$个方程，因此整数$3n-k-k'$应该是一个正数，否则约束的限制过强，将使得系统不可能运动或者只能按照约束给定的规律运动。这个正数，记作$f=3n-k-k'$，称为系统的{\bf 自由度}。
 
 由此可以看出，确定系统可能速度和可能加速度的方程数（$k+k'$个）小于它们的分量数（$3n$个），因此在给定时刻系统将存在无穷多组满足约束的可能速度$\mbf{v}_i^*$和可能加速度$\mbf{a}_i^*$。
 
@@ -192,14 +192,14 @@
 	\sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i}\cdot \mathd \mbf{r}_i + \frac{\pl f_j}{\pl t}\mathd t = 0 \quad (j=1,2,\cdots,k') \label{chapter2:实位移方程1} \\
 	\sum_{i=1}^n \mbf{A}_{ji}\cdot \mathd \mbf{r}_i + A_{j0}\mathd t = 0 \quad (j=1,2,\cdots,k') \label{chapter2:实位移方程2}
 \end{subnumcases}
-式中各系数都是在时刻$t=t^*$以及可能位形$\mbf{r}_i=\mbf{r}_i^*$处取值的。需要注意的是，实位移满足的方程组\eqref{chapter2:实位移方程1}、\eqref{chapter2:实位移方程2}与可能位移的一阶近似方程组\eqref{chapter2:可能位移方程1}、\eqref{chapter2:可能位移方程2}形式上完全一致，但它们的物理意义是完全不同的。实位移是系统真实发生的位移，其不仅与约束有关，还与系统的受力状态等外部条件相关，而可能位移仅是在约束允许下可能产生的位移。实位移必然在可能位移集合中。
+式中各系数都是在时刻$t=t^*$以及可能位形$\mbf{r}_i=\mbf{r}_i^*$处取值的。需要注意的是，实位移满足的方程组\eqref{chapter2:实位移方程1}、\eqref{chapter2:实位移方程2}与可能位移的一阶近似方程组\eqref{chapter2:可能位移方程1}、\eqref{chapter2:可能位移方程2}形式上完全一致，但它们的物理意义是完全不同的。实位移是系统真实发生的位移，其不仅与约束有关，还与系统的受力状态等外部条件相关，而可能位移仅是在约束允许下可能产生的位移。所有实位移构成的集合必然包含于可能位移构成的集合中。
 
 由于当自由度$f>0$时，实位移分量数$3n$多于确定实位移方程组\eqref{chapter2:实位移方程1}、\eqref{chapter2:实位移方程2}的方程数，因此无法仅通过约束唯一确定系统的实位移。
 
 与实位移相对应，{\bf 虚位移}在分析力学中有着十分重要的地位。设在$t=t^*$时刻，系统处于可能位形$\mbf{r}_i^*$上，虚位移是指满足下面线性齐次方程组的$\delta \mbf{r}_i$集合：
 \begin{subnumcases}{}
 	\sum_{i=1}^n \frac{\pl f_j}{\pl \mbf{r}_i}\cdot \delta \mbf{r}_i = 0\quad (j=1,2,\cdots,k) \label{chapter2:虚位移方程1} \\
-	\sum_{i=1}^n A_{ji}\cdot \delta \mbf{r}_i = 0 \quad (j=1,2,\cdots,k') \label{chapter2:虚位移方程2}
+	\sum_{i=1}^n \mbf{A}_{ji}\cdot \delta \mbf{r}_i = 0 \quad (j=1,2,\cdots,k') \label{chapter2:虚位移方程2}
 \end{subnumcases}
 式中各系数都是在时刻$t=t^*$以及可能位形$\mbf{r}_i=\mbf{r}_i^*$处取值的。显然所有虚位移分量共有$3n$个，大于方程组\eqref{chapter2:虚位移方程1}、\eqref{chapter2:虚位移方程2}的方程数，因此虚位移有无数多个。对比方程组\eqref{chapter2:虚位移方程1}、\eqref{chapter2:虚位移方程2}和\eqref{chapter2:实位移方程1}、\eqref{chapter2:实位移方程2}可知，对于定常系统，实位移是虚位移的一个。
 
@@ -493,11 +493,11 @@
 
 在一个系统中，设$m_i$是其中第$i$个质点的质量，$\mbf{r}_i$为其位矢，如果系统是自由的，则第$i$个质点的加速度由Newton第二定律确定，即$m_i\ddot{\mbf{r}}_i=\mbf{F}_i$，其中$\mbf{F}_i$为作用在第$i$个质点上的合力。
 
-如果系统不是自由的，则系统中每个质点的加速度都将受到约束的限制，此时，一般来说，加速度$\ddot{\mbf{r}}_i=\dfrac{\mbf{F}_i}{m_i}$将不能满足可能加速度的方程\eqref{chapter2:完整约束对质点系中质点加速度的限制}和\eqref{chapter2:非完整约束对质点系中质点加速度的限制}，即非自由系统中第$i$个质点的加速度$\mbf{a}_i$不同于自由系统情况下的加速度$\ddot{\mbf{r}}_i$，因此约束导致出现了附加的加速度$\mbf{a}_i-\ddot{\mbf{r}}_i$。Newton第二定律表明，质点的任何加速度都是由其上作用的某些力而产生的，这个产生附加加速度的力是由于约束的存在才出现的，称为{\bf 约束反力}。为了不混淆约束反力和作用在非自由系统上的其他里，我们称其他力为{\bf 主动力}。前面所述的$\mbf{F}_i$实际上是质点$i$所有主动力的合力。
+如果系统不是自由的，则系统中每个质点的加速度都将受到约束的限制，此时，一般来说，加速度$\ddot{\mbf{r}}_i=\dfrac{\mbf{F}_i}{m_i}$将不能满足可能加速度的方程\eqref{chapter2:完整约束对质点系中质点加速度的限制}和\eqref{chapter2:非完整约束对质点系中质点加速度的限制}，即非自由系统中第$i$个质点的加速度$\mbf{a}_i$不同于自由系统情况下的加速度$\ddot{\mbf{r}}_i$，因此约束导致出现了附加的加速度$\mbf{a}_i-\ddot{\mbf{r}}_i$。Newton第二定律表明，质点的任何加速度都是由其上作用的某些力而产生的，这个产生附加加速度的力是由于约束的存在才出现的，称为{\bf 约束反力}。为了不混淆约束反力和作用在非自由系统上的其他力，将其他力称为{\bf 主动力}。前面所述的$\mbf{F}_i$实际上是质点$i$所有主动力的合力。
 
 主动力也可以称为{\bf 给定力}，如果约束瞬间消失，这些力仍然保持作用在系统上。而约束反力有时也称为{\bf 被动力}，它们不是事先已知的，不仅依赖于实现约束的物理机制，而且依赖于主动力和系统的运动。
 
-如果用$\mbf{R}_i$表示作用在质点$i$上的约束反力的合力，则可得到运动方程
+如果用$\mbf{R}_i$表示作用在质点$m_i$上的约束反力的合力，则可得到系统的运动方程
 \begin{equation}
 	m_i\mbf{a}_i = \mbf{F}_i+\mbf{R}_i \quad (i=1,2,\cdots,n)
 	\label{chapter2:非自由系统中质点的Newton第二定律方程}
@@ -875,7 +875,7 @@
 \end{equation*}
 \end{solution}
 
-\subsection{Jordan原理}
+\subsection{Jordan原理}\label{chapter2:subsection-Jordan原理}
 
 动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}是将系统给定位置和在任意固定时刻的变分位置相比较，如果考虑从可能位形$\mbf{r}_i^*$出发，具有不同可能速度$\mbf{v}_i^*$的可能运动集合，将它们与在相同时刻相同位形出发的真实运动相比较，就可以得到Jordan变分（见第\ref{chapter2:subsection-实位移与虚位移}节），此时$\delta\mbf{r}_i=\delta \mbf{v}_i\Delta t$，其中$\delta\mbf{v}_i=\mbf{v}_{i1}^*-\mbf{v}_{i2}^*$是被比较运动的可能速度之差\footnote{这个差值不一定是无穷小量。}。将这个虚位移代入动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}并整理可得
 \begin{equation}
@@ -886,7 +886,7 @@
 
 \subsection{Gauss原理}
 
-\subsubsection{最小拘束原理·Gauss原理}
+\subsubsection{最小拘束原理·Gauss原理}\label{chapter2:subsubsection-最小拘束原理·Gauss原理}
 
 考虑在某时刻具有可能位形$\mbf{r}_i^*$和可能速度$\mbf{v}_i^*$的运动同真实运动相比较，它们的加速度可能式不同的\footnote{这个加速度的差值不一定是无穷小量。}，这种等时变分称为Gauss变分（见第\ref{chapter2:subsection-实位移与虚位移}节）。
 
@@ -1937,11 +1937,12 @@ Lagrange函数为
 \end{equation}
 即，系统的广义能量守恒。
 
-\subsection{广义能量的数学结构}\label{第二章：广义能量的数学结构}
+\subsection{Lagrange函数和广义能量的数学结构}\label{第二章：广义能量的数学结构}
 
 首先考虑普通势系统，由于$V$与广义速度无关，因此根据动能的表达式\eqref{chapter2:系统动能的数学结构2}，可有
 \begin{equation}
 	L = T-V = T_2 + T_1 + (T_0 - V) = L_2 + L_1 + L_0
+	\label{chapter2:Lagrange函数的数学结构}
 \end{equation}
 由此，根据广义速度$\dot{q}_\alpha$的次数，可将Lagrange函数$L$分为三项，即
 \begin{align*}
@@ -2141,6 +2142,36 @@ Lagrange函数不显含时间，故广义能量守恒，即
 \end{equation*}
 上式右端即为该粒子受到的Lorentz力。
 \end{example}
+
+\subsection{自然系统与非自然系统}
+
+对于具有普通势或者广义势的系统，系统的Lagrange函数可以表示为式\eqref{chapter2:Lagrange函数的数学结构}的形式，即
+\begin{equation}
+	L = L_2+L_1+L_0
+	\label{chapter2:Lagrange函数的数学结构-重写}
+\end{equation}
+其中$L_2$是广义速度的二次齐次式，$L_1$是广义速度的一次齐次式，$L_0$与广义速度无关。如果一个系统的Lagrange函数具有式\eqref{chapter2:Lagrange函数的数学结构-重写}的结构，而且满足
+\begin{equation}
+	\det\begin{pmatrix} \dfrac{\pl^2 L}{\pl q_\alpha\pl q_\beta} \end{pmatrix} \neq 0
+	\label{chapter2:自然系统Lagrange函数需要满足的条件}
+\end{equation}
+这样的系统称为{\bf 自然系统}。对于根据系统的动能和势能构造出的Lagrange函数必定满足式\eqref{chapter2:自然系统Lagrange函数需要满足的条件}的条件，因为在这种情况下，实际上有
+\begin{equation*}
+	\dfrac{\pl^2 L}{\pl q_\alpha\pl q_\beta} = M_{\alpha\beta}
+\end{equation*}
+其中$M_{\alpha\beta}$的定义为式\eqref{chapter2:以广义坐标表示的系统动能表达式中的系数}，它必定满足$\det\begin{pmatrix} M_{\alpha\beta}\end{pmatrix} \neq 0$（见第\ref{chapter2:subsection-系统动能的数学结构}节）。
+
+可以将Lagrange理论推广到不同于式\eqref{chapter2:Lagrange函数的数学结构-重写}结构的Lagrange函数上，只要这种不同结构的Lagrange函数所生成的Lagrange方程是所研究系统的动力学方程即可。这种不同形式的Lagrange函数也需要满足式\eqref{chapter2:自然系统Lagrange函数需要满足的条件}，这是Lagrange方程可解的条件。这种系统称为{\bf 非自然系统}，这里的“非自然”并没有不现实的意思。
+
+利用非自然系统的Lagrange函数可以将Lagrange理论推广到经典力学以外的物理学系统上。例如，当质点的运动速度接近光速时，Newton定律已经不再适用，但可以定义一个非自然的Lagrange函数，使得生成的Lagrange方程恰好是狭义相对论中的动力学方程，即可定义Lagrange函数为
+\begin{equation}
+	L = -mc^2\sqrt{1-\frac{v^2}{c^2}} - V
+\end{equation}
+式中$m$为质点的静止质量，$c$为光速。根据Lagrange方程\eqref{理想完整有势系的Lagrange方程}可得系统的动力学方程为
+\begin{equation}
+	\ddt\Bigg(\frac{m\mbf{v}}{\sqrt{1-\dfrac{v^2}{c^2}}}\Bigg) = \mbf{F}
+\end{equation}
+这正是狭义相对论中质点运动的方程。
 
 \section{时空对称性与守恒量}\label{chapter2:section-时空对称性与守恒量}
 

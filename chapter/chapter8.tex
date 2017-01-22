@@ -2,7 +2,7 @@
 
 \section{撞击的基本概念}
 
-设力学系统由$N$个质点$m_i(i=1,2,\cdots,N)$构成，如果从某时刻$t=t_0$开始的短时间$\tau$内，系统质点的速度发生了{\bf 突变}\footnote{前面各章中，无论是质点还是刚体，其速度都是连续变化的。}，而其位置却没有显著变化，这种情况下我们称{\bf 系统受到撞击}。被抛向墙壁并反弹回来的弹性球就是一个系统受到撞击的例子。
+设力学系统由$n$个质点$m_i(i=1,2,\cdots,n)$构成，如果从某时刻$t=t_0$开始的短时间$\tau$内，系统质点的速度发生了{\bf 突变}\footnote{前面各章中，无论是质点还是刚体，其速度都是连续变化的。}，而其位置却没有显著变化，这种情况下我们称{\bf 系统受到撞击}。被抛向墙壁并反弹回来的弹性球就是一个系统受到撞击的例子。
 
 在撞击过程中，系统内部产生很大的相互作用力，而这些力的作用时间$\tau$非常小，以至于系统来不及发生显著的位移，这样的内部相互作用力称为{\bf 撞击力}。而系统在撞击力作用下的运动称为{\bf 撞击运动}。
 
@@ -20,28 +20,28 @@
 \end{equation}
 式\eqref{chapter8:撞击运动基本方程}称为{\bf 撞击运动基本方程}。当撞击作用在有约束的系统上时，通常会产生碰撞约束反力，在这种情况下，式\eqref{chapter8:撞击运动基本方程}的右端还应包含约束反力的撞击冲量。根据撞击冲量的定义式\eqref{chapter8:撞击冲量的定义}，可以将Newton第三定律推广到撞击冲量上，即相互碰撞的两个质点之间的撞击冲量大小相等、方向相反、作用在同一条直线上。
 
-而在研究质点系$m_i(i=1,2,\cdots,N)$的撞击运动时，经常将撞击冲量分为外冲量和内冲凉，即分别为系统外力和内力的冲量。据此将撞击基本方程\eqref{chapter8:撞击运动基本方程}写作
+而在研究质点系$m_i(i=1,2,\cdots,n)$的撞击运动时，经常将撞击冲量分为外冲量和内冲量，即分别为系统外力和内力的冲量。据此将撞击基本方程\eqref{chapter8:撞击运动基本方程}写作
 \begin{equation}
-	m_i\Delta \mbf{v}_i = \mbf{J}_i^{(e)}+\mbf{J}_i^{(i)}\quad (i=1,2,\cdots,N)
+	m_i\Delta \mbf{v}_i = \mbf{J}_i^{(e)}+\mbf{J}_i^{(i)}\quad (i=1,2,\cdots,n)
 	\label{chapter8:撞击运动基本方程2}
 \end{equation}
 其中$\Delta \mbf{v}_i = \mbf{v}_i^+-\mbf{v}_i^-$为撞击前后速度的改变量，$\mbf{J}_i^{(e)}$是作用在质点$m_i$上的外撞击冲量之和，$\mbf{J}_i^{(i)}$则为作用在该质点上所有内撞击冲量之和。
 
 将系统所有撞击冲量之和
 \begin{equation}
-	\mbf{S} = \sum_{i=1}^N \mbf{J}_i
+	\mbf{S} = \sum_{i=1}^n \mbf{J}_i
 \end{equation}
 称为撞击冲量的{\bf 主矢量}。
 
 设$\mbf{r}_i$为$O$点到质点$m_i$的矢径，则撞击冲量对$O$点的冲量矩之和
 \begin{equation}
-	\mbf{K}_O = \sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i
+	\mbf{K}_O = \sum_{i=1}^n\mbf{r}_i\times \mbf{J}_i
 \end{equation}
 称为撞击冲量对$O$点的{\bf 主矩}。
 
 由于相互碰撞的两个质点之间的撞击冲量大小相等、方向相反，所以可有
 \begin{equation}
-	\mbf{S} = \mbf{S}^{(e)} = \sum_{i=1}^N\mbf{J}_i^{(e)},\quad \mbf{K}_O = \mbf{K}_O^{(e)} = \sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i^{(e)}
+	\mbf{S} = \mbf{S}^{(e)} = \sum_{i=1}^n\mbf{J}_i^{(e)},\quad \mbf{K}_O = \mbf{K}_O^{(e)} = \sum_{i=1}^n\mbf{r}_i\times \mbf{J}_i^{(e)}
 \end{equation}
 即系统撞击冲量的主矢量和主矩分别等于外撞击冲量的主矢量和主矩。
 
@@ -49,7 +49,7 @@
 
 将方程\eqref{chapter8:撞击运动基本方程2}对所有质点求和，可得
 \begin{equation*}
-	\Delta \left(\sum_{i=1}^Nm_i\mbf{v}_i\right) = \sum_{i=1}^N\mbf{J}_i^{(e)}+\sum_{i=1}^N\mbf{J}_i^{(i)}
+	\Delta \left(\sum_{i=1}^Nm_i\mbf{v}_i\right) = \sum_{i=1}^n\mbf{J}_i^{(e)}+\sum_{i=1}^n\mbf{J}_i^{(i)}
 \end{equation*}
 或者
 \begin{equation}
@@ -66,7 +66,7 @@
 
 设点$A$是空间中的某一点\footnote{这一点可以是固定点也可以是运动的点。}，$\mbf{r}_i$是$A$点到质点$m_i$的矢径，将方程\eqref{chapter8:撞击运动基本方程2}两端左叉乘$\mbf{r}_i$之后对所有质点求和，可得
 \begin{equation*}
-	\Delta \left(\sum_{i=1}^N\mbf{r}_i\times m_i\mbf{v}_i\right) = \sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i^{(e)}+\sum_{i=1}^N\mbf{r}_i\times \mbf{J}_i^{(i)}
+	\Delta \left(\sum_{i=1}^n\mbf{r}_i\times m_i\mbf{v}_i\right) = \sum_{i=1}^n\mbf{r}_i\times \mbf{J}_i^{(e)}+\sum_{i=1}^n\mbf{r}_i\times \mbf{J}_i^{(i)}
 \end{equation*}
 或者
 \begin{equation}
@@ -89,11 +89,11 @@
 \end{equation*}
 可得
 \begin{equation*}
-	\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2+\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+)^2-\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^-)^2 = \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot\mbf{v}_i^+ + \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot\mbf{v}_i^+
+	\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2+\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+)^2-\frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^-)^2 = \sum_{i=1}^n\mbf{J}_i^{(e)}\cdot\mbf{v}_i^+ + \sum_{i=1}^n\mbf{J}_i^{(i)}\cdot\mbf{v}_i^+
 \end{equation*}
 即有
 \begin{equation}
-	T^--T^+ = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2 - \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot\mbf{v}_i^+ - \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot\mbf{v}_i^+
+	T^--T^+ = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2 - \sum_{i=1}^n\mbf{J}_i^{(e)}\cdot\mbf{v}_i^+ - \sum_{i=1}^n\mbf{J}_i^{(i)}\cdot\mbf{v}_i^+
 	\label{chapter8:撞击运动的动能定理-中间步骤1}
 \end{equation}
 类似地，在式\eqref{chapter8:撞击运动基本方程2}两端点乘$\mbf{v}_i^-$，并将其中的$\mbf{v}_i^-$改写为
@@ -102,12 +102,12 @@
 \end{equation*}
 再将其对所有质点求和，可得
 \begin{equation}
-	T^+-T^- = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2 + \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot\mbf{v}_i^- + \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot\mbf{v}_i^-
+	T^+-T^- = \frac12 \sum_{i=1}^Nm_i(\mbf{v}_i^+-\mbf{v}_i^-)^2 + \sum_{i=1}^n\mbf{J}_i^{(e)}\cdot\mbf{v}_i^- + \sum_{i=1}^n\mbf{J}_i^{(i)}\cdot\mbf{v}_i^-
 	\label{chapter8:撞击运动的动能定理-中间步骤2}
 \end{equation}
 用式\eqref{chapter8:撞击运动的动能定理-中间步骤2}减去式\eqref{chapter8:撞击运动的动能定理-中间步骤1}再除以$2$，即可得到{\bf 撞击运动的动能定理}
 \begin{equation}
-	T^+-T^- = \sum_{i=1}^N\mbf{J}_i^{(e)}\cdot \frac{\mbf{v}_i^++\mbf{v}_i^-}{2} + \sum_{i=1}^N\mbf{J}_i^{(i)}\cdot \frac{\mbf{v}_i^++\mbf{v}_i^-}{2}
+	T^+-T^- = \sum_{i=1}^n\mbf{J}_i^{(e)}\cdot \frac{\mbf{v}_i^++\mbf{v}_i^-}{2} + \sum_{i=1}^n\mbf{J}_i^{(i)}\cdot \frac{\mbf{v}_i^++\mbf{v}_i^-}{2}
 	\label{chapter8:撞击运动的动能定理}
 \end{equation}
 
@@ -920,3 +920,572 @@
 \end{equation}
 为完全弹性碰撞撞击冲量的一半。
 \end{enumerate}
+
+\section{撞击运动的微分变分原理}
+
+\subsection{撞击运动的动力学普遍方程}
+
+考虑一个由$n$个质点组成的系统，并假设系统具有完整约束
+\begin{equation}
+	f_j(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t) = 0\quad (j=1,2,\cdots,k)
+	\label{chapter8:完整约束-重写}
+\end{equation}
+和线性非完整约束
+\begin{equation}
+	\sum_{i=1}^n \mbf{A}_{ji}\cdot \mbf{v}_i + A_{j0} = 0\quad (j=1,2,\cdots,k')
+	\label{chapter8:线性非完整约束-重写}
+\end{equation}
+其中矢量函数$\mbf{A}_{ji}$和标量函数$A_{j0}$都是$\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t$的函数。由于撞击冲量$\mbf{J}_i$的作用，或者突加新的约束，或者解除部分或全部约束，或者上述情况中若干种同时出现时，系统都将产生撞击运动。
+
+对完整约束\eqref{chapter8:完整约束-重写}求时间的导数并与非完整约束合并可得约束对系统速度的限制为
+\begin{equation}
+	\sum_{i=1}^n \mbf{B}_{ji}\cdot\mbf{v}_i + B_{j0} = 0\quad (j=1,2,\cdots,l)
+	\label{chapter8:所有约束对速度的限制}
+\end{equation}
+其中矢量函数$\mbf{B}_{ji}$和标量函数$B_{j0}$都是$\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n,t$的函数，$l$表示完整约束和非完整约束的总数。如果撞击运动由给定撞击冲量产生且撞击时系统结构不发生变化，则$l=k+k'$。如果撞击时系统结构发生改变（即约束数改变），则$l$不等于$k+k'$。
+
+如果约束是定常的，那么式\eqref{chapter8:所有约束对速度的限制}中$B_{j0}\equiv 0$，而且函数$\mbf{B}_{ji}$不显含时间。现在考虑式\eqref{chapter8:所有约束对速度的限制}中$B_{j0}\equiv 0$，但函数$\mbf{B}_{ji}$可以显含时间的情况。在这种情况下，约束同时允许可能速度为$\mbf{v}_i^*$和$-\mbf{v}_i^*$的可能运动，因此这种约束称为{\bf 可逆约束}。
+
+由式\eqref{chapter8:所有约束对速度的限制}可得系统虚位移满足：
+\begin{equation}
+	\sum_{i=1}^n \mbf{B}_{ji} \cdot \delta \mbf{r}_i = 0\quad (j=1,2,\cdots,l)
+	\label{chapter8:撞击运动中的虚位移}
+\end{equation}
+由于撞击时间极短，可以认为矢量函数$\mbf{B}_{ji}$在撞击过程中为常量。由此可以认为虚位移$\delta\mbf{r}_i$在从$t=t_0$到$t=t_0+\tau$的撞击时间内不依赖于时间。
+
+设$\mbf{R}_i$是作用在质点$m_i$上的约束反力的合力，由于撞击过程中，与撞击力相比其余力皆可忽略，故在撞击过程中任何约束都可以认为是理想的，即有
+\begin{equation}
+	\sum_{i=1}^n \mbf{R}_i\cdot \delta \mbf{r}_i = 0
+	\label{chapter8:理想约束条件-重写}
+\end{equation}
+用$\mbf{J}_{iR}$表示作用在质点$m_i$上的撞击约束冲量，即
+\begin{equation}
+	\mbf{J}_{iR} = \int_{t_0}^{t_0+\tau}\mbf{R}_i\mathd t
+\end{equation}
+那么根据式\eqref{chapter8:理想约束条件-重写}并考虑到$\delta\mbf{r}_i$与时间无关，可得
+\begin{equation}
+	\sum_{i=1}^n \mbf{J}_{iR} \cdot \delta\mbf{r}_i = 0
+	\label{chapter8:理想约束条件-约束冲量}
+\end{equation}
+
+设$\mbf{J}_i$是作用在质点$m_i$上的主动撞击冲量，那么撞击运动基本方程\eqref{chapter8:撞击运动基本方程}可以写作
+\begin{equation}
+	m_i\Delta \mbf{v}_i = \mbf{J}_i + \mbf{J}_{iR}\quad (i=1,2,\cdots,n)
+\end{equation}
+将上式两端点乘$\delta\mbf{r}_i$并对$i$求和，利用式\eqref{chapter8:理想约束条件-约束冲量}可得
+\begin{equation}
+	\sum_{i=1}^n (\mbf{J}_i - m_i\Delta\mbf{v}_i) \cdot \delta\mbf{r}_i = 0
+	\label{chapter8:撞击运动的动力学普遍方程}
+\end{equation}
+式\eqref{chapter8:撞击运动的动力学普遍方程}即为{\bf 撞击运动的动力学普遍方程}。与此前的动力学普遍方程不同的是，撞击运动的动力学普遍方程是代数方程组，而不是微分方程组。
+
+对于虚位移$\delta \mbf{r}_i$，在撞击时系统结构不变的情况下，虚位移$\delta\mbf{r}_i$与普通机械运动中的虚位移具有相同的含义。如果在撞击时，系统结构发生了变化，则撞击前后的虚位移是不同的。设$\delta\mbf{r}_i^-$是撞击前的虚位移，而$\delta\mbf{r}_i^+$是撞击后的虚位移，如果系统在撞击后增加了新的约束，那么显然撞击前的虚位移集合包含了撞击后的虚位移集合。那么为了使得式\eqref{chapter8:撞击运动的动力学普遍方程}的虚位移适用于从$t=t_0$到$t=t_0+\tau$的整个撞击过程，必须令$\delta\mbf{r}_i=\delta\mbf{r}_i^+$。如果系统在撞击后解除了一部分或全部约束，此时撞击前的虚位移集合则包含于撞击后的虚位移集合，在式\eqref{chapter8:撞击运动的动力学普遍方程}中应取$\delta\mbf{r}_i=\delta\mbf{r}_i^-$。
+
+\begin{example}\label{chapter8:example-撞击运动的动力学普遍方程例1}
+如图\ref{chapter8:figure-撞击运动的动力学普遍方程例1}所示，四根铰接在一起的无质量杆组成平行四边形$OABC$，铰链$O$固定不动，铰链$A$和$C$处各连接了一个质量为$m$的质点。沿着对角线$BO$作用一个撞击冲量$\mbf{J}$。记撞击发生时$AO$与对角线夹角为$\alpha$，求撞击后铰链$A$和$C$的速度。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//撞击运动的动力学普遍方程例1
+	real x,y,alpha,l;
+	x = 5;
+	l = 2;
+	alpha = 25;
+	y = 2;
+	pair O,A,B,C;
+	O = (0,0);
+	A = l*dir(alpha);
+	C = l*dir(-alpha);
+	B = (2*l*Cos(alpha),0);
+	draw(Label("$x$",EndPoint),(0,0)--(x,0),Arrow);
+	draw(Label("$y$",EndPoint),(0,0)--(0,y),Arrow);
+	draw(O--A--B--C--cycle);
+	real a,h;
+	a = 0.3;
+	h = 0.1;
+	draw(O--a*dir(150)--a*dir(-150)--cycle);
+	picture dashpic;
+	pair dashl = dir(-135);
+	path p = (0,a)--(0,-a);
+	for(real r=0;r<=1;r=r+0.08){
+		pair P = relpoint(p,r);
+		draw(dashpic,P--P+dashl);
+	}
+	draw(dashpic,p,linewidth(0.8bp));
+	clip(dashpic,box((-h,-0.8*a),(h,0.8*a)));
+	add(shift(-a*Cos(30),0)*dashpic);
+	real I = 0.75;
+	path pI = B+(I,0)--B;
+	draw(Label("$\boldsymbol{J}$",MidPoint,N),pI,linewidth(0.8bp));
+	add(arrow(pI,invisible,FillDraw(black),EndPoint));
+	dot("$A$",A,N);
+	dot("$C$",C,S);
+	dot("$O$",O,S,UnFill);
+	dot("$B$",B,S,UnFill);
+	real r = 0.4;
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,r,0,alpha));
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:figure-撞击运动的动力学普遍方程例1}
+\end{figure}
+\end{example}
+\begin{solution}
+在这种情况下，动力学普遍方程\eqref{chapter8:撞击运动的动力学普遍方程}写为
+\begin{equation*}
+	\mbf{J}\cdot \delta\mbf{r}_B - m\Delta\mbf{v}_A\cdot \delta\mbf{r}_A - m\Delta\mbf{v}_C\cdot \delta\mbf{r}_C = 0
+\end{equation*}
+在如图\ref{chapter8:figure-撞击运动的动力学普遍方程例1}所示的坐标系中，可以将各点的坐标表示为
+\begin{equation*}
+	\mbf{r}_A = (l\cos\alpha,l\sin\alpha),\quad \mbf{r}_B = (2l\cos\alpha,0),\quad \mbf{r}_C = (l\cos\alpha,-l\sin\alpha)
+\end{equation*}
+所以有
+\begin{equation*}
+	\delta\mbf{r}_A = (-l\sin\alpha\delta\alpha,l\cos\alpha\delta\alpha),\quad \delta\mbf{r}_B = (-2l\sin\alpha\delta\alpha,0),\quad \delta\mbf{r}_C = (-l\sin\alpha\delta\alpha,-l\cos\alpha\delta\alpha)
+\end{equation*}
+由于系统在撞击前速度为零，并考虑到
+\begin{equation*}
+	\mbf{v}_A = (-l\dot{\alpha}\sin\alpha,l\dot{\alpha}\cos\alpha),\quad \mbf{v}_C = (-l\dot{\alpha}\sin\alpha,-l\dot{\alpha}\cos\alpha)
+\end{equation*}
+将这些关系代入动力学普遍方程中，可得
+\begin{equation*}
+	\dot{\alpha} = \frac{J\sin\alpha}{ml}
+\end{equation*}
+由此可得铰链$A$和$C$的速度分量
+\begin{equation*}
+	v_{Ax} = v_{Cx} = -\frac{J\sin^2\alpha}{m},\quad v_{Ay} = -v_{Cy} = \frac{J\sin2\alpha}{m}
+\end{equation*}
+\end{solution}
+
+\subsection{Jordan原理}
+
+由于系统在撞击运动过程中，各质点的坐标不改变，只有速度发生改变，因此可以利用Jordan原理（见第\ref{chapter2:subsection-Jordan原理}节）将撞击运动的动力学普遍方程\eqref{chapter8:撞击运动的动力学普遍方程}改写为更易于应用的形式。
+
+根据Jordan原理\eqref{chapter2:Jordan微分变分原理}可得
+\begin{equation}
+	\sum_{i=1}^n (\mbf{J}_i-m_i\Delta\mbf{v}_i) \cdot \delta\mbf{v}_i = 0
+	\label{chapter8:撞击运动的Jordan原理}
+\end{equation}
+其中$\Delta\mbf{v}_i = \mbf{v}_i^+-\mbf{v}_i^-$，速度变分$\delta\mbf{v}_i$根据式\eqref{chapter8:撞击运动中的虚位移}可得其满足
+\begin{equation}
+	\sum_{i=1}^n \mbf{B}_{ji}\cdot \delta\mbf{v}_i = 0\quad (j=1,2,\cdots,l)
+	\label{chapter8:速度变分满足的关系式}
+\end{equation}
+式\eqref{chapter8:撞击运动的Jordan原理}即为{\bf 撞击运动的Jordan原理}。
+
+如果系统的约束是可逆约束，即在式\eqref{chapter8:所有约束对速度的限制}中有$B_{j0}\equiv 0$，那么可能速度满足
+\begin{equation}
+	\sum_{i=1}^n \mbf{B}_{ji}\cdot \mbf{v}_i = 0\quad (j=1,2,\cdots,l)
+	\label{chapter8:可能速度满足的关系式}
+\end{equation}
+此时可能速度满足的关系式\eqref{chapter8:可能速度满足的关系式}与速度变分满足的关系式\eqref{chapter8:速度变分满足的关系式}完全相同，所以在式\eqref{chapter8:撞击运动的Jordan原理}中可以用可能速度$\mbf{v}_i$替代速度变分$\delta\mbf{v}_i$，此时Jordan原理相应地写成
+\begin{equation}
+	\sum_{i=1}^n (\mbf{J}_i-m_i\Delta\mbf{v}_i) \cdot \mbf{v}_i = 0
+	\label{chapter8:可逆约束下撞击运动的Jordan原理}
+\end{equation}
+其中$\Delta\mbf{v}_i = \mbf{v}_i^+-\mbf{v}_i^-$。
+
+如果撞击时系统出现新的可逆理想约束，那么在式\eqref{chapter8:可逆约束下撞击运动的Jordan原理}中$\mbf{v}_i$是增加约束后质点$m_i$的可能速度。
+
+如果撞击时系统有可逆理想约束被解除，那么在式\eqref{chapter8:可逆约束下撞击运动的Jordan原理}中$\mbf{v}_i$是解除约束前质点$m_i$的可能速度。
+
+\begin{example}
+利用Jordan原理求解例\ref{chapter8:example-撞击运动的动力学普遍方程例1}中杆的角速度。
+\end{example}
+\begin{solution}
+由于撞击前速度$\mbf{v}_i^-=\mbf{0}$，因此$\Delta\mbf{v}_i=\mbf{v}_i^+$，根据式\eqref{chapter8:可逆约束下撞击运动的Jordan原理}可得
+\begin{equation*}
+	-mv_A^2 + Jv_B - mv_C^2 = 0
+\end{equation*}
+设撞击后杆的角速度为$\omega$，则由此可得系统中各点的速度为
+\begin{equation*}
+	v_A = \omega l,\quad v_B = 2\omega l\sin\alpha, \quad v_C = \omega l
+\end{equation*}
+由此可得
+\begin{equation*}
+	\omega = \frac{J\sin\alpha}{ml}
+\end{equation*}
+\end{solution}
+
+\subsection{Gauss原理}
+
+与第\ref{chapter2:subsubsection-最小拘束原理·Gauss原理}节中的处理类似，设$\mbf{v}_i^-$和$\mbf{v}_i^+$是撞击前和撞击后系统内质点$m_i$的速度，$\mbf{v}_i$是撞击结束时质点$m_i$的可能速度，定义函数
+\begin{equation}
+	G(\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n) = \frac12 \sum_{i=1}^n m_i\left(\mbf{v}_i-\mbf{v}_i^- - \frac{\mbf{J}_i}{m_i}\right)^2
+	\label{chapter8:撞击拘束度的定义式}
+\end{equation}
+称为{\bf 撞击拘束度}，则撞击后系统内各质点的速度$\mbf{v}_i^+$使得函数$G(\mbf{v}_1,\mbf{v}_2,\cdots,\mbf{v}_n)$取最小值。
+
+为了说明这一点，记$\mbf{v}_i = \mbf{v}_i^++\delta\mbf{v}_i$，并考虑
+\begin{equation}
+	G(\mbf{v}_1,\cdots,\mbf{v}_n)-G(\mbf{v}_1^+,\cdots,\mbf{v}_n^+) = -\sum_{i=1}^n (\mbf{J}_i-m_i\Delta\mbf{v}_i)\cdot \delta\mbf{v}_i + \frac12\sum_{i=1}^n m_i\delta\mbf{v}_i^2
+\end{equation}
+上式第一项根据Jordan原理可知恒为零，而第二项对于非真实运动必然至少有一个$\delta\mbf{v}_i$非零，因此有$G(\mbf{v}_1,\cdots,\mbf{v}_n)>G(\mbf{v}_1^+,\cdots,\mbf{v}_n^+)$，即真实的撞击后速度使得函数$G$取最小值。由于系统的可能速度需要满足式\eqref{chapter8:所有约束对速度的限制}，因此撞击运动的Gauss原理是一个约束极值问题。
+
+将式\eqref{chapter8:撞击拘束度的定义式}展开，并去掉与速度$\mbf{v}_i$无关的常数项可以将撞击拘束度改为如下的等价形式
+\begin{equation}
+	G'(\mbf{v}_1,\cdots,\mbf{v}_n) = \frac12 \sum_{i=1}^n m_i\mbf{v}_i^2 - \sum_{i=1}^n (\mbf{J}_i+m_i\mbf{v}_i^-)\cdot \mbf{v}_i
+	\label{chapter8:撞击拘束度的等价形式}
+\end{equation}
+真实的撞击后速度$\mbf{v}_i^+$使得函数$G'$取最小值。
+
+\begin{example}
+如图\ref{chapter8:figure-撞击运动的动力学普遍方程例3}所示，质量为$m$，长为$l$的均匀细杆$AB$和$BC$用铰链$B$相连接。处于静止状态时，两杆共线，求在$C$点受到垂直于杆的撞击冲量$\mbf{J}$作用后两杆的运动状态。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//撞击运动的动力学普遍方程例3
+	real l,I,v,r,alpha;
+	l = 2;
+	I = 1.25;
+	v = 0.8;
+	pair A,B,C;
+	A = (0,0);
+	B = (l,0);
+	C = (2*l,0);
+	draw(A--B--C);
+	label("$A$",A,N);
+	dot("$B$",B,N,UnFill);
+	label("$C$",C,N);
+	draw(Label("$\boldsymbol{v}_1$",EndPoint),(A+B)/2--(A+B)/2+(0,v),Arrow);
+	draw(Label("$\boldsymbol{v}_2$",EndPoint),(C+B)/2--(C+B)/2+(0,v),Arrow);
+	draw(Label("$\boldsymbol{J}$",MidPoint,E),C+(0,-I)--C,Arrow);
+	r = 0.6;
+	alpha = 40;
+	draw(Label("$\omega_1$",MidPoint,Relative(E)),arc((A+B)/2,r,-90-alpha,-90+alpha),Arrow);
+	draw(Label("$\omega_2$",MidPoint,Relative(E)),arc((C+B)/2,r,-90-alpha,-90+alpha),Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:figure-撞击运动的动力学普遍方程例3}
+\end{figure}
+\end{example}
+\begin{solution}
+考虑到系统在撞击前是静止的，故根据式\eqref{chapter8:撞击拘束度的等价形式}可得
+\begin{align*}
+	G' = \frac12 \sum_{i=1}^n m_i\mbf{v}_i^2 - \sum_{i=1}^n \mbf{J}_i \cdot \mbf{v}_i = T - Jv_C
+\end{align*}
+其中$T$为两杆的动能，$v_C$是$C$点的速度。设两杆的质心速度分别为$v_1$和$v_2$，角速度分别为$\omega_1$和$\omega_2$，则有
+\begin{equation*}
+	T = \frac12 mv_1^2 + \frac12 \frac{1}{12}ml^2 \omega_1^2 + \frac12 mv_2^2 + \frac12 \frac{1}{12} ml^2 \omega_2^2 = \frac12 m(v_1^2+v_2^2) + \frac{1}{24} ml^2 (\omega_1^2 + \omega_2^2)
+\end{equation*}
+以及
+\begin{equation*}
+	v_C = v_2 + \omega_2\frac{l}{2}
+\end{equation*}
+但速度$v_1,v_2$和角速度$\omega_1,\omega_2$之间只有三个是相互独立的，因为两杆上的$B$点速度应该相同，即
+\begin{equation*}
+	v_1+\omega_1\frac{l}{2} = v_2-\omega_2\frac{l}{2}
+\end{equation*}
+考虑到上面各式，可将撞击拘束度函数写为
+\begin{equation*}
+	G'(v_2,\omega_1,\omega_2) = \frac12 m\left[\left(v_2-\frac12(\omega_1+\omega_2)l\right) + v_2^2\right] + \frac{1}{24}ml^2(\omega_1^2+\omega_2^2) - J\left(v_2+\frac12\omega_2l\right)
+\end{equation*}
+这个函数的驻点方程为
+\begin{equation*}
+\begin{cases}
+	\ds \pldif{G'}{v_2} = m\left[2v_2 - \frac12(\omega_1+\omega_2)l\right] - J = 0 \\[1.5ex]
+	\ds \pldif{G'}{\omega_1} = -\frac12 ml\left[v_2-\frac12(\omega_1+\omega_2)l\right] + \frac{1}{12}ml^2 \omega_1 = 0 \\[1.5ex]
+	\ds \pldif{G'}{\omega_2} = -\frac12 ml\left[v_2-\frac12(\omega_1+\omega_2)l\right] + \frac{1}{12}ml^2 \omega_2 - \frac12 Jl = 0
+\end{cases}
+\end{equation*}
+由此解得
+\begin{equation*}
+	v_2 = \frac{5J}{4m},\quad \omega_1 = -\frac{3J}{2ml},\quad \omega_2 = \frac{9J}{2ml}
+\end{equation*}
+再由此可得
+\begin{equation*}
+	v_1 = -\frac{J}{4m}
+\end{equation*}
+其中$v_1$和$\omega_1$的负号表示其方向与图\ref{chapter8:figure-撞击运动的动力学普遍方程例3}所标注方向相反。
+\end{solution}
+
+\begin{example}
+质量为$m$的质点在光滑曲面$f(x,y,z)=0$上静止，在质点上作用撞击冲量$\mbf{J} = (J_x,J_y,J_z)$，求撞击之后质点的速度。
+\end{example}
+\begin{solution}
+记质点撞击之后的速度为$\mbf{v} = (v_x,v_y,v_z)$，则撞击拘束度为
+\begin{equation*}
+	G = \frac12 m\left[\left(v_x-\frac{J_x}{m}\right)^2 + \left(v_y-\frac{J_y}{m}\right)^2 + \left(v_z-\frac{J_z}{m}\right)^2 \right]
+\end{equation*}
+对速度分量的约束为
+\begin{equation*}
+	\pldif{f}{x}v_x + \pldif{f}{y}v_y + \pldif{f}{z}v_z = 0
+\end{equation*}
+这是约束极值问题，构造Lagrange函数
+\begin{align*}
+	F & = G-\lambda\left(\pldif{f}{x}v_x + \pldif{f}{y}v_y + \pldif{f}{z}v_z\right) \\
+	& = \frac12 m\left[\left(v_x-\frac{J_x}{m}\right)^2 + \left(v_y-\frac{J_y}{m}\right)^2 + \left(v_z-\frac{J_z}{m}\right)^2 \right] - \lambda\left(\pldif{f}{x}v_x + \pldif{f}{y}v_y + \pldif{f}{z}v_z\right)
+\end{align*}
+极值条件给出
+\begin{equation*}
+\begin{cases}
+	\ds \pldif{F}{v_x} = m\left(v_x-\frac{J_x}{m}\right)- \lambda\pldif{f}{x} = 0 \\[1.5ex]
+	\ds \pldif{F}{v_y} = m\left(v_x-\frac{J_y}{m}\right)- \lambda\pldif{f}{y} = 0 \\[1.5ex]
+	\ds \pldif{F}{v_z} = m\left(v_z-\frac{J_z}{m}\right)- \lambda\pldif{f}{z} = 0
+\end{cases}
+\end{equation*}
+据此可得撞击后速度满足的方程为
+\begin{equation*}
+\begin{cases}
+	mv_x = J_x+\lambda\pldif{f}{x} \\[1.5ex]
+	mv_y = J_y+\lambda\pldif{f}{y} \\[1.5ex]
+	mv_z = J_z+\lambda\pldif{f}{z}
+\end{cases}
+\end{equation*}
+这组方程和约束方程
+\begin{equation*}
+	\pldif{f}{x}v_x + \pldif{f}{y}v_y + \pldif{f}{z}v_z = 0
+\end{equation*}
+共同决定了撞击后的速度$v_x,v_y,v_z$和约束乘子$\lambda$。
+\end{solution}
+
+\begin{example}
+长为$l$的均质细杆水平向下降落时，碰到点障碍物，碰撞点距离杆两端分别为$\dfrac34l$和$\dfrac14l$（如图\ref{chapter8:figure-撞击运动的动力学普遍方程例5}所示）。假设碰撞是完全非弹性的，求碰撞后杆的运动状态。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//撞击运动的动力学普遍方程例5
+	real x,y,la,lb,d,a;
+	x = 2;
+	la = 3;
+	lb = 1;
+	y = 2;
+	d = 0.025;
+	draw(Label("$x$",EndPoint),(0,0)--(x,0),Arrow);
+	draw(Label("$y$",EndPoint),(0,0)--(0,y),Arrow);
+	fill(box((-la,-d),(lb,d)),black);
+	a = 0.3;
+	draw((0,0)--a*dir(-60)--a*dir(-120)--cycle);
+	path p = (-a,0)--(a,0);
+	picture dashpic;
+	pair dashl;
+	real h;
+	h = 0.1;
+	dashl = dir(-135);
+	for(real r=0;r<=1;r=r+0.075){
+		pair P = relpoint(p,r);
+		draw(dashpic,P--P+dashl);
+	}
+	draw(dashpic,p,linewidth(0.8bp));
+	clip(dashpic,box((-0.8*a,-h),(0.8*a,h)));
+	add(shift(0,-a*Cos(30))*dashpic);
+	real r,alpha;
+	r = 3.5;
+	alpha = 10;
+	draw(Label("$\omega$",MidPoint,W),arc((0,0),r,180-alpha,180+alpha),Arrow);
+	label("$O$",(0,0),NW);
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:figure-撞击运动的动力学普遍方程例5}
+\end{figure}
+\end{example}
+\begin{solution}
+完全非弹性碰撞之后，杆绕点$O$作定点转动，其运动状态由撞击后的角速度$\omega$唯一确定。记在碰撞前杆的质心速度为$\mbf{v}$，则根据式\eqref{chapter8:撞击拘束度的等价形式}可得
+\begin{equation*}
+	G' = \frac12 \sum_{i=1}^n m_i\mbf{v}_i^2 - \sum_{i=1}^n m_i\mbf{v}_i^-\cdot \mbf{v}_i = T - mv_Cv
+\end{equation*}
+其中$T$为杆的动能，$v_C = \omega\dfrac l4$为质心速度。考虑到
+\begin{align*}
+	T & = \frac12 I_O\omega^2 = \frac12 \left[\frac{1}{12}ml^2 + m\left(\frac l4\right)^2\right]\omega^2 = \frac{7}{96}ml^2\omega^2
+\end{align*}
+所以
+\begin{equation*}
+	G' = \frac{7}{96}ml^2\omega^2-\frac14 mlv\omega
+\end{equation*}
+根据$\pldif{G'}{\omega}=0$可得
+\begin{equation*}
+	\omega = \frac{12v}{7l}
+\end{equation*}
+\end{solution}
+
+\subsection{撞击运动的Lagrange方程}
+
+设由$n$个质点组成的理想完整系统有$s$个自由度，$q_1,q_2,\cdots,q_s$为其广义坐标，在某时刻$t_0$系统受到撞击冲量$\mbf{J}_i(i=1,2,\cdots,n)$，撞击作用时间为$\tau$。系统的撞击问题可以用广义坐标表述为：已知系统撞击前的广义速度$\dot{q}_\alpha^-$，求撞击后系统的广义速度$\dot{q}_\alpha^+$。
+
+首先将撞击运动的动力学普遍方程\eqref{chapter8:撞击运动的动力学普遍方程}改写为广义坐标形式。首先考虑其第一项，即
+\begin{equation}
+	\sum_{i=1}^n \mbf{J}_i \cdot \delta\mbf{r}_i = \sum_{i=1}^n \mbf{J}_i \cdot \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \delta q_\alpha = \sum_{\alpha=1}^s \left(\sum_{i=1}^n\mbf{J}_i\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right) \delta q_\alpha
+	\label{chapter8:撞击运动的Lagrange方程-第一部分}
+\end{equation}
+定义
+\begin{equation}
+	\mathscr{J}_\alpha = \sum_{i=1}^n \mbf{J}_i\cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}
+	\label{chapter8:广义冲量的定义式}
+\end{equation}
+称为相应于广义坐标$q_\alpha$的{\bf 广义冲量}。
+
+根据撞击冲量的定义式\eqref{chapter8:撞击冲量的定义}可得
+\begin{equation*}
+	\mathscr{J}_\alpha = \sum_{i=1}^n \left(\int_{t_0}^{t_0+\tau} \mbf{F}_i\mathd t\right) \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}
+\end{equation*}
+由于$\dfrac{\pl \mbf{r}_i}{\pl q_\alpha}$只与坐标有关，在撞击过程中变化极小，因此可以将其放入积分号内，并利用广义力的定义式\eqref{chapter2:广义力的定义式}可得
+\begin{equation}
+	\mathscr{J}_\alpha = \int_{t_0}^{t_0+\tau} \left(\sum_{i=1}^n \mbf{F}_i \cdot \frac{\pl \mbf{r}_i}{\pl q_\alpha}\right)\mathd t = \int_{t_0}^{t_0+\tau} Q_\alpha\mathd t
+\end{equation}
+
+然后考虑撞击运动的动力学普遍方程\eqref{chapter8:撞击运动的动力学普遍方程}的第二项，即
+\begin{align*}
+	\sum_{i=1}^n m_i\Delta\mbf{v}_i \cdot\delta\mbf{r}_i & = \sum_{i=1}^n m_i(\mbf{v}_i^+-\mbf{v}_i^-) \cdot \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \delta q_\alpha = \sum_{\alpha=1}^n \sum_{i=1}^n m_i (\mbf{v}_i^+ -\mbf{v}_i^-) \cdot \frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha} \delta q_\alpha
+\end{align*}
+此处利用了经典Lagrange关系\eqref{chapter2:经典Lagrange关系}。由于
+\begin{equation}
+	\sum_{i=1}^n m_i\mbf{v}_i^+ \cdot \frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha} = \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^+,\quad \sum_{i=1}^n m_i\mbf{v}_i^- \cdot \frac{\pl \dot{\mbf{r}}_i}{\pl \dot{q}_\alpha} = \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^-
+\end{equation}
+其中的上标$-$和$+$表示撞击前和撞击后的值。所以有
+\begin{equation}
+	\sum_{i=1}^n m_i\Delta\mbf{v}_i \cdot\delta\mbf{r}_i = \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^+ - \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^-
+	\label{chapter8:撞击运动的Lagrange方程-第二部分}
+\end{equation}
+利用式\eqref{chapter8:撞击运动的Lagrange方程-第一部分}和\eqref{chapter8:撞击运动的Lagrange方程-第二部分}可将撞击运动的动力学普遍方程\eqref{chapter8:撞击运动的动力学普遍方程}改写为广义坐标的形式：
+\begin{equation}
+	\sum_{\alpha=1}^s \left[\mathscr{J}_\alpha - \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^+ + \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^-\right]\delta q_\alpha = 0
+\end{equation}
+对于理想完整系统，$\delta q_\alpha(\alpha=1,2,\cdots,s)$之间是互相独立的，因此有
+\begin{equation}
+	\left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^+ - \left(\frac{\pl T}{\pl \dot{q}_\alpha}\right)^- = \mathscr{J}_\alpha \quad (\alpha=1,2,\cdots,s)
+	\label{chapter8:撞击运动的Lagrange方程}
+\end{equation}
+方程\eqref{chapter8:撞击运动的Lagrange方程}即为撞击运动的Lagrange方程，其未知数为$q_1^+,q_2^+,\cdots,q_s^+$。与理想完整系统的Lagrange方程不同之处在于，方程\eqref{chapter8:撞击运动的Lagrange方程}是代数方程组而非微分方程组。
+
+\begin{example}
+两个质量为$m$长为$l$的均质细杆组成的双物理摆处于静止状态，在距离连接两杆的铰链下方$a$处作用水平撞击冲量$\mbf{J}$，求撞击后两杆的角速度。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//撞击运动的动力学普遍方程例6
+	picture dashpic;
+	pair dashl;
+	real h,w;
+	path p;
+	dashl = dir(45);
+	h = 0.075;
+	w = 0.5;
+	p = (-w,0)--(w,0);
+	draw(dashpic,p,linewidth(0.8bp));
+	for(real r=0;r<=1;r=r+0.05){
+		pair P = relpoint(p,r);
+		draw(dashpic,P--P+dashl);
+	}
+	clip(dashpic,box((-0.8*w,-h),(0.8*w,h)));
+	real d;
+	d = 0.15;
+	draw((0,0)--d*dir(60)--d*dir(120)--cycle);
+	add(shift(0,d*Cos(30))*dashpic);
+	real l,a,J;
+	l = 1.5;
+	a = 0.45;
+	J = 0.8;
+	draw((0,0)--(0,-l),linewidth(0.8bp));
+	draw((0,-l)--(0,-2*l),linewidth(0.8bp));
+	dot((0,0),UnFill);
+	dot((0,-l),UnFill);
+	draw(Label("$\boldsymbol{J}$",EndPoint),(0,-a-l)--(J,-a-l),Arrow);
+	real gap,L;
+	gap = 0.05;
+	L = 0.1;
+	draw((gap,-l)--(gap+L,-l));
+	draw(Label("$a$",MidPoint,E),(gap+L/2,-l)--(gap+L/2,-l-a),Arrows);
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:figure-撞击运动的动力学普遍方程例6}
+\end{figure}
+\end{example}
+\begin{solution}
+取两杆偏离竖直方向的角度$\theta$和$\phi$为广义坐标，在此广义坐标下，两杆的质心坐标分别为
+\begin{equation*}
+	\mbf{r}_{C1} = \begin{pmatrix} \dfrac l2\sin\theta \\[1.5ex] \dfrac l2\cos\theta \end{pmatrix},\quad \mbf{r}_{C2} = \begin{pmatrix} l\sin\theta + \dfrac l2\sin\phi \\[1.5ex] l\cos\theta + \dfrac l2\cos\phi \end{pmatrix}
+\end{equation*}
+因此，动能可以表示为
+\begin{align*}
+	T & = \frac12 m\left[\dfrac{l^2\dot{\theta}^2}{4}\cos^2\theta+ \dfrac{l^2\dot{\theta}^2}{4}\sin^2\theta + \left(l\dot{\theta}\cos\theta + \dfrac{l\dot{\phi}}{2}\cos\phi\right)^2 + \left(l\dot{\theta}\sin\theta + \dfrac{l\dot{\phi}}{2}\sin\phi\right)^2\right] \\
+	& \quad {} + \frac12 \frac{1}{12}ml^2\left(\dot{\theta}^2 + \dot{\phi}^2\right) \\
+	& = \frac12 ml^2 \left(\frac43\dot{\theta}^2 + \dot{\theta}\dot{\phi}\cos(\phi-\theta)+ \frac13\dot{\phi}^2\right)
+\end{align*}
+撞击冲量的作用点位矢可以表示为$\mbf{r}' = \begin{pmatrix} l\sin\theta+a\sin\phi \\ l\cos\theta+a\cos\phi \end{pmatrix}$，所以广义冲量可以根据式\eqref{chapter8:广义冲量的定义式}计算为
+\begin{align*}
+	\mathscr{J}_\theta = \mbf{J} \cdot \frac{\pl \mbf{r}'}{\pl \theta} = Jl\cos\theta \\
+	\mathscr{J}_\phi = \mbf{J} \cdot \frac{\pl \mbf{r}'}{\pl \phi} = Ja\cos\phi
+\end{align*}
+考虑到撞击发生时$\theta=\phi=0$，以及撞击前的速度为$\dot{\theta}^-=\dot{\phi}^-=0$，根据撞击运动的Lagrange方程\eqref{chapter8:撞击运动的Lagrange方程}可得方程组
+\begin{equation*}
+\begin{cases}
+	\ds \frac12 ml^2 \left(\frac83\dot{\theta}^++\dot{\phi}^+\right) = Jl \\[1.5ex]
+	\ds \frac12 ml^2 \left(\dot{\theta}^++\frac12\dot{\phi}^+\right) = Ja
+\end{cases}
+\end{equation*}
+由此解得
+\begin{equation*}
+	\dot{\theta}^+ = \frac{6J(2l-3a)}{7ml^2},\quad \dot{\phi}^+ = \frac{6J(8a-3l)}{7ml^2}
+\end{equation*}
+\end{solution}
+
+\begin{example}
+质量为$m$长为$l$的均质细杆$AB$在平面$xOy$平面内运动（如图\ref{chapter8:figure-撞击运动的动力学普遍方程例7}所示），在某时刻端点$A$与$Ox$轴发生碰撞，碰撞时杆与$Ox$轴夹角为$\alpha$，其质心速度分量分别为$\dot{x}^-,\dot{y}^-$，而角速度为$\dot{\phi}^-$。假设$Ox$轴是绝对光滑的，碰撞是完全非弹性的，求碰撞后杆的运动状态。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//撞击运动的动力学普遍方程例7
+	real x,y,l,alpha,r;
+	x = 3;
+	y = 2;
+	l = 2;
+	alpha = 30;
+	pair A,B;
+	A = (1,0.8);
+	B = A+l*dir(alpha);
+	draw(Label("$x$",EndPoint),(0,0)--(x,0),Arrow);
+	draw(Label("$y$",EndPoint),(0,0)--(0,y),Arrow);
+	label("$O$",(0,0),SW);
+	draw(A--B,linewidth(0.8bp));
+	draw(A--A+(l*Cos(alpha),0),dashed);
+	dot("$C$",(A+B)/2,NW);
+	label("$A$",A,W);
+	label("$B$",B,E);
+	r = 0.3;
+	draw(Label("$\phi$",MidPoint,Relative(E)),arc(A,r,0,alpha));
+\end{asy}
+\caption{例\theexample}
+\label{chapter8:figure-撞击运动的动力学普遍方程例7}
+\end{figure}
+\end{example}
+\begin{solution}
+取杆的质心坐标$x,y$和杆与$Ox$的夹角$\phi$为广义坐标，则杆的动能为
+\begin{equation*}
+	T = \frac12m(\dot{x}^2+\dot{y}^2) + \frac{1}{24}ml^2\dot{\phi}^2
+\end{equation*}
+由于$Ox$轴是绝对光滑的，因此$A$点所受的约束撞击冲量与$Ox$轴垂直，将其大小设为$J$。$A$点位矢用广义坐标可以表示为$\mbf{r}_A = \begin{pmatrix} x-\dfrac l2\cos\phi \\[1.5ex] y-\dfrac l2\sin\phi \end{pmatrix}$，因此杆所受的广义约束撞击冲量分量分别为
+\begin{align*}
+	\mathscr{J}_x & = \mbf{J}\cdot \frac{\pl \mbf{r}_A}{\pl x} = 0 \\
+	\mathscr{J}_y & = \mbf{J}\cdot \frac{\pl \mbf{r}_A}{\pl y} = J \\
+	\mathscr{J}_\phi & = \mbf{J}\cdot \frac{\pl \mbf{r}_A}{\pl \phi} = -\frac12 Jl\cos\phi
+\end{align*}
+考虑到撞击发生时有$\phi=\alpha$，根据撞击运动的Lagrange方程\eqref{chapter8:撞击运动的Lagrange方程}可得方程组
+\begin{equation*}
+\begin{cases}
+	\ds m(\dot{x}^+-\dot{x}^-) = 0 \\
+	\ds m(\dot{y}^+-\dot{y}^-) = J \\
+	\ds \frac{1}{12}ml^2(\dot{\phi}^+-\dot{\phi}^-) = -\frac12 Jl\cos\alpha
+\end{cases}
+\end{equation*}
+这是关于四个未知数$\dot{x}^+,\dot{y}^+,\dot{\phi}^+$和$J$的方程组，再考虑到碰撞为完全非弹性碰撞，因此碰撞后$A$点速度的$y$分量应为零，即有
+\begin{equation*}
+	\dot{y}^+ - \frac12 l\dot{\phi}^+\cos\alpha = 0
+\end{equation*}
+结合上面各式，可以解得约束撞击冲量的大小
+\begin{equation*}
+	J = \frac{m(l\dot{\phi}^-\cos\alpha-2\dot{y}^-)}{2(1+3\cos^2\alpha)}
+\end{equation*}
+以及撞击后杆的运动状态
+\begin{equation*}
+	\dot{x}^+ = \dot{x}^-,\quad \dot{y}^+ = \frac{(l\dot{\phi}^-+6\dot{y}^-\cos\alpha)\cos\alpha}{2(1+3\cos^2\alpha)},\quad \dot{\phi}^+ = \frac{l\dot{\phi}^-+6\dot{y}^-\cos\alpha}{l(1+3\cos^2\alpha)}
+\end{equation*}
+\end{solution}
