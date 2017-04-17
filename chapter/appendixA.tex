@@ -69,12 +69,18 @@
 	\label{chp6:第二类完全椭圆积分-级数表示}
 \end{align}
 
-根据第一类和第二类椭圆积分的定义式\eqref{第一类椭圆积分-定义}和\eqref{第二类椭圆积分-定义}可得
+根据第一类和第二类椭圆积分的定义式\eqref{第一类椭圆积分-定义}和\eqref{第二类椭圆积分-定义}可得第一类和第二类椭圆积分对$k$的导数：
 \begin{align}
-	\dfrac{\pl F}{\pl k}(k,x) & = \frac{1}{k'^2}\left(\frac{E(k,x)-k'^2F(k,x)}{k}-\frac{kx\sqrt{1-x^2}}{1-k^2x^2}\right) \\
-	\dfrac{\pl E}{\pl k}(k,x) & = \frac{E(k,x)-F(k,x)}{k}
+	\dfrac{\pl F}{\pl k}(k,x) & = \frac{1}{k'^2}\left(\frac{E(k,x)-k'^2F(k,x)}{k}-\frac{kx\sqrt{1-x^2}}{1-k^2x^2}\right) \label{Appendix-A:第一类不完全椭圆积分的导数} \\
+	\dfrac{\pl E}{\pl k}(k,x) & = \frac{E(k,x)-F(k,x)}{k} \label{Appendix-A:第二类不完全椭圆积分的导数} 
 \end{align}
 其中$k'^2=1-k^2$，$k'$称为{\bf 补模}。
+
+如果在等式\eqref{Appendix-A:第一类不完全椭圆积分的导数}和\eqref{Appendix-A:第二类不完全椭圆积分的导数}中令$x=1$可得两类完全椭圆积分对$k$的导数：
+\begin{align}
+	\dfrac{\pl K}{\pl k}(k) & = \frac{E(k)-k'^2K(k)}{kk'^2} \label{Appendix-A:第一类完全椭圆积分的导数} \\
+	\dfrac{\pl E}{\pl k}(k) & = \frac{E(k)-K(k)}{k} \label{Appendix-A:第二类完全椭圆积分的导数}
+\end{align}
 
 定义函数
 \begin{align}

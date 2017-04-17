@@ -1,8 +1,8 @@
-\chapter{多自由度微振动与阻尼}
-
-系统在稳定平衡位形附近的小幅振动即称为{\heiti 微振动}。
+\chapter{微振动与阻尼运动}
 
 \section{微振动近似与求解}
+
+系统在稳定平衡位形附近的小幅振动即称为{\heiti 微振动}。
 
 \begin{example}[单摆]\label{chapter5:example-单摆}
 对于单摆，自由度$s=1$。取摆角$\theta$为广义坐标，系统的动能为
@@ -224,9 +224,9 @@
 \subsection{微振动近似}
 
 考虑保守系统，其广义坐标取为$q_\alpha\,(\alpha=1,2,\cdots,s)$，不失一般性，规定其稳定平衡位形处有$q_{\alpha 0} = 0,V_0 = 0$，由此平衡条件可以表示为
-\begin{equation*}
-	\left(\frac{\pl V}{\pl q_\alpha}\right)_0 = 0,\quad \alpha = 1,2,\cdots,s
-\end{equation*}
+\begin{equation}
+	\left(\frac{\pl V}{\pl q_\alpha}\right)_0 = 0 \quad (\alpha = 1,2,\cdots,s)
+\end{equation}
 在平衡位形附近，可对势能$V$作Taylor展开，即
 \begin{align*}
 	V & = V_0 + \sum_{\alpha=1}^s \left(\dfrac{\pl V}{\pl q_\alpha}\right)_0 q_\alpha + \frac12 \sum_{\alpha,\beta=1}^s \left(\frac{\pl^2 V}{\pl q_\alpha \pl q_\beta}\right)_0 q_\alpha q_\beta + o(|\mbf{q}|^2) \\
@@ -242,16 +242,16 @@
 \end{equation}
 考虑到$\mbf{q}_0$为稳定平衡位形，因此$V$在$\mbf{q}_0$处取极小值，即矩阵$\mbf{K}$是正定的\footnote{如非严格极小值，可以允许$\mbf{K}$为半正定。}。广义坐标变换可以表示为
 \begin{equation*}
-	\mbf{r}_i = \mbf{r}_i(\mbf{q}),\quad i=1,2,\cdots,n
+	\mbf{r}_i = \mbf{r}_i(\mbf{q}) \quad (i=1,2,\cdots,n)
 \end{equation*}
 由此可将速度展开至一阶，即
 \begin{equation*}
 	\dot{\mbf{r}}_i = \sum_{\alpha=1}^s \frac{\pl \mbf{r}_i}{\pl q_\alpha} \dot{q}_\alpha = \sum_{\alpha=1}^s \left(\frac{\pl \mbf{r}_i}{\pl q_\alpha}\right)_0 \dot{q}_\alpha + \cdots
 \end{equation*}
 由此，动能可表示为
-\begin{equation*}
+\begin{equation}
 	T = \frac12 \sum_{i=1}^n m_i \dot{\mbf{r}}_i \cdot \dot{\mbf{r}}_i = \frac12 \sum_{\alpha,\beta=1}^s \left[\sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl q_\alpha}\right)_0 \cdot \left(\frac{\pl \mbf{r}_i}{\pl q_\beta}\right)_0 \right] \dot{q}_\alpha \dot{q}_\beta + \cdots
-\end{equation*}
+\end{equation}
 令$\displaystyle m_{\alpha\beta} = m_{\beta\alpha} = \sum_{i=1}^n m_i \left(\frac{\pl \mbf{r}_i}{\pl q_\alpha}\right)_0 \cdot \left(\frac{\pl \mbf{r}_i}{\pl q_\beta}\right)_0$，则可得惯性矩阵
 \begin{equation*}
 	\mbf{M} = \begin{pmatrix} m_{11} & \cdots & m_{1s} \\ \vdots & & \vdots \\ m_{s1} & \cdots & m_{ss} \end{pmatrix}
@@ -261,9 +261,9 @@
 	T = \frac12 \sum_{\alpha,\beta=1}^s m_{\alpha\beta} \dot{q}_\alpha \dot{q}_\beta = \frac12 \dot{\mbf{q}}^{\mathrm{T}} \mbf{M} \dot{\mbf{q}}
 \end{equation}
 动能必然是非负的，而且只有$\dot{\mbf{q}}=\mbf{0}$时为零，故矩阵$\mbf{M}$正定。因此系统的Lagrange函数为
-\begin{equation*}
+\begin{equation}
 	L = \frac12 \dot{\mbf{q}}^{\mathrm{T}} \mbf{M} \dot{\mbf{q}} - \frac12 \mbf{q}^{\mathrm{T}} \mbf{K} \mbf{q}
-\end{equation*}
+\end{equation}
 由此可得
 \begin{align*}
 	\frac{\pl L}{\pl \dot{q}_\alpha} & = \frac12 \sum_{\beta,\gamma=1}^s (m_{\beta\gamma}\delta_{\alpha\beta} \dot{q}_\gamma + m_{\beta\gamma}\dot{q}_\beta \delta_{\alpha\gamma}) = \frac12 \left(\sum_{\gamma=1}^s m_{\alpha\gamma} \dot{q}_\gamma + \sum_{\beta=1}^s m_{\beta\alpha} \dot{q}_\beta\right) \\
@@ -271,9 +271,9 @@
 	\frac{\pl L}{\pl q_\alpha} & = -\sum_{\beta=1}^s k_{\alpha\beta} q_\beta
 \end{align*}
 由此得到系统的运动方程为
-\begin{equation*}
-	\sum_{\beta=1}^s (m_{\alpha\beta} \ddot{q}_\beta + k_{\alpha\beta} q_\beta) = 0,\quad \alpha=1,2,\cdots,s
-\end{equation*}
+\begin{equation}
+	\sum_{\beta=1}^s (m_{\alpha\beta} \ddot{q}_\beta + k_{\alpha\beta} q_\beta) = 0 \quad (\alpha=1,2,\cdots,s)
+\end{equation}
 用矩阵可以表示为
 \begin{equation}
 	\mbf{M} \ddot{\mbf{q}} + \mbf{K} \mbf{q} = \mbf{0}
@@ -283,10 +283,10 @@
 
 \subsection{运动求解}
 
-作试解
-\begin{equation*}
+作试解\footnote{试解也可以取为$\mbf{q}=\mbf{a}\mathe^{\lambda t}$，此处$\mbf{a}$和$\lambda$都可以取复数值，通过Euler恒等式整理后，可以得到与下文完全相同的结果。}
+\begin{equation}
 	\mbf{q} = \mbf{a} \cos (\omega t+\phi)
-\end{equation*}
+\end{equation}
 则系统的运动方程\eqref{多自由度微振动系统的运动方程}可化为
 \begin{equation}
 	(\mbf{K} - \omega^2 \mbf{M})\mbf{a} = \mbf{0}
@@ -299,7 +299,7 @@
 \end{equation}
 式\eqref{久期方程或频率方程}称为系统的{\heiti 久期方程}或{\heiti 频率方程}，它是$\omega^2$的$s$次方程。因为矩阵$\mbf{K}$至少是半正定的，矩阵$\mbf{M}$是正定的，所以方程\eqref{久期方程或频率方程}必然有$s$个非负的解，即有
 \begin{equation*}
-	\omega^2 = \omega_\mu^2,\quad \mu = 1,2,\cdots,s
+	\omega^2 = \omega_\mu^2 \quad (\mu = 1,2,\cdots,s)
 \end{equation*}
 然后即可通过线性方程组
 \begin{equation*}

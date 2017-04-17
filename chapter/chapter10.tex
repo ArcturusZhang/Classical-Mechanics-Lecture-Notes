@@ -709,7 +709,7 @@
 \end{equation*}
 \end{solution}
 
-\section{Hamilton-Jacobi方程}
+\section{Hamilton-Jacobi方程}\label{chapter10:section-Hamilton-Jacobi方程}
 
 第\ref{chapter10:subsection-无穷小正则变换}节已经提到，可以找到这样的正则变换，它将所有正则变量都变成常数，在这种情况下的正则方程就变为
 \begin{equation}
@@ -718,7 +718,7 @@
 		\dot{P}_\alpha = 0,
 	\end{cases}\,\, (\alpha = 1,2,\cdots,s)
 \end{equation}
-最简单的情况就是变换后的Hamilton函数$K(\mbf{Q},\mbf{Q},t)$恒等于零，于是所有正则变量都是循环变量，即有
+最简单的情况就是变换后的Hamilton函数$K(\mbf{Q},\mbf{P},t)$恒等于零，于是所有正则变量都是循环变量，即有
 \begin{equation}
 	\begin{cases}
 		Q_\alpha = C_\alpha = \text{常数}, \\
@@ -752,9 +752,10 @@
 \subsection{Hamilton-Jacobi方程}
 
 考虑第二类母函数$F_2 = S(\mbf{q},\mbf{P},t)$，则由变换关系式\eqref{chapter10:第二类母函数下的正则变换-变换式}可有
-\begin{equation*}
+\begin{equation}
 	p_\alpha = \frac{\pl S}{\pl q_\alpha}
-\end{equation*}
+	\label{chapter10:Hamilton-Jacobi方程-动量与Hamilton主函数之间的关系}
+\end{equation}
 并根据变换需满足的条件，令
 \begin{equation}
 	P_\alpha = D_\alpha\quad \text{（常数）}
@@ -1264,18 +1265,18 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 其中$E,p_\phi,\beta$为任意积分常数。
 \end{example}
 
-\subsection{利用Hamilton-Jacobi方程求解Kepler问题}
+\subsection{利用Hamilton-Jacobi方程求解Kepler问题}\label{chapter10:subsection-利用Hamilton-Jacobi方程求解Kepler问题}
 
-本节利用Hamilton-Jacobi方程求解Kepler问题，即求解质量为$m$的质点在Kepler势$V = -\dfrac{\alpha}{r}(\alpha>0)$中的运动。
+本节利用Hamilton-Jacobi方程求解Kepler问题，即求解质量为$\mu$的质点在Kepler势$V = -\dfrac{\alpha}{r}(\alpha>0)$中的运动。
 
-在球坐标系中，此系统的Hamilton函数为
+在天体力学中，习惯上以太阳为原点\footnote{严格来讲应该以日地系统的质心为原点。}，以地球的赤道平面为$xOy$平面，以北极方向为$z$轴建立球坐标系来研究地球或其它行星的运动，这样选取的球坐标系称为{\bf 天球坐标系}，角度$\theta$称为{\bf 赤经}，角度$\dfrac\pi2-\phi$称为{\bf 赤纬}。本节的讨论虽然研究的不限于地球的轨道，但仍然沿用这些名词。在球坐标系中，此系统的Hamilton函数为
 \begin{equation}
-	H = \frac{p_r^2}{2m}+\frac{p_\theta^2}{2mr^2}+\frac{p_\phi^2}{2mr^2\sin^2\theta} - \frac{\alpha}{r}
+	H = \frac{p_r^2}{2\mu}+\frac{p_\theta^2}{2\mu r^2}+\frac{p_\phi^2}{2\mu r^2\sin^2\theta} - \frac{\alpha}{r}
 	\label{Hamilton-Jacobi方程解Kepler问题1}
 \end{equation}
 系统的Hamilton函数不显含时间，故根据不含时Hamilton-Jacobi方程\eqref{不含时Hamilton-Jacobi方程}可有
 \begin{equation}
-	\frac{1}{2m}\left[\left(\frac{\pl W}{\pl r}\right)^2 + \frac{1}{r^2}\left(\frac{\pl W}{\pl \theta}\right)^2 + \frac{1}{r^2\sin^2\theta}\left(\frac{\pl W}{\pl \phi}\right)^2\right] - \frac{\alpha}{r} = E
+	\frac{1}{2\mu}\left[\left(\frac{\pl W}{\pl r}\right)^2 + \frac{1}{r^2}\left(\frac{\pl W}{\pl \theta}\right)^2 + \frac{1}{r^2\sin^2\theta}\left(\frac{\pl W}{\pl \phi}\right)^2\right] - \frac{\alpha}{r} = E
 	\label{Hamilton-Jacobi方程解Kepler问题2}
 \end{equation}
 注意到$\phi$是循环坐标，因此可令
@@ -1286,23 +1287,23 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 由此得到两个方程
 \begin{subnumcases}{}
 	\left(\frac{\mathrm{d}S_2}{\mathrm{d}\theta}\right)^2 + \frac{p_\phi^2}{\sin^2\theta} = \beta^2 \label{Hamilton-Jacobi方程解Kepler问题4.1} \\
-	\frac{1}{2m}\left[\left(\frac{\mathrm{d}S_1}{\mathrm{d}r}\right)^2+\frac{\beta^2}{r^2}\right] - \frac{\alpha}{r} = E \label{Hamilton-Jacobi方程解Kepler问题4.2}
+	\frac{1}{2\mu}\left[\left(\frac{\mathrm{d}S_1}{\mathrm{d}r}\right)^2+\frac{\beta^2}{r^2}\right] - \frac{\alpha}{r} = E \label{Hamilton-Jacobi方程解Kepler问题4.2}
 \end{subnumcases}
 由此即有
 \begin{align}
-	S = -Et+p_\phi\phi \pm \int \sqrt{2mE+\frac{2m\alpha}{r}-\frac{\beta^2}{r^2}}\mathrm{d}r \pm \int \sqrt{\beta^2-\frac{p_\phi^2}{\sin^2\theta}}\mathrm{d}\theta
+	S = -Et+p_\phi\phi \pm \int \sqrt{2\mu E+\frac{2\mu\alpha}{r}-\frac{\beta^2}{r^2}}\mathrm{d}r \pm \int \sqrt{\beta^2-\frac{p_\phi^2}{\sin^2\theta}}\mathrm{d}\theta
 	\label{Hamilton-Jacobi方程解Kepler问题5}
 \end{align}
 其中$E,p_\phi,\beta$为任意积分常数。为了使结果更具有几何意义，现在用坐标$r$和$\theta$的初始值$r_0$和$\theta_0$来取代积分常数$E$和$p_\phi$，令
 \begin{equation}
 \begin{cases}
 	p_\phi^2 = \beta^2 \sin^2\theta_0 \\
-	E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}
+	E = \dfrac{\beta^2}{2\mu r_0^2}-\dfrac{\alpha}{r_0}
 \end{cases}\label{Hamilton-Jacobi方程解Kepler问题6}
 \end{equation}
 此时可有
 \begin{align}
-	S & = -\left(\frac{\beta^2}{2mr_0^2}-\frac{\alpha}{r_0}\right)t \pm \beta\sin \theta_0 \phi \pm \sqrt{2m}\int \sqrt{\frac{\beta^2}{2m}\left(\frac{1}{r_0^2}-\frac{1}{r^2}\right)-\alpha\left(\frac{1}{r_0}-\frac{1}{r}\right)}\mathrm{d}r \nonumber \\
+	S & = -\left(\frac{\beta^2}{2\mu r_0^2}-\frac{\alpha}{r_0}\right)t \pm \beta\sin \theta_0 \phi \pm \sqrt{2\mu}\int \sqrt{\frac{\beta^2}{2\mu}\left(\frac{1}{r_0^2}-\frac{1}{r^2}\right)-\alpha\left(\frac{1}{r_0}-\frac{1}{r}\right)}\mathrm{d}r \nonumber \\
 	& \quad {} \pm \beta \int \sqrt{1-\frac{\sin^2\theta_0}{\sin^2\theta}}\mathrm{d}\theta
 	\label{Hamilton-Jacobi方程解Kepler问题7}
 \end{align}
@@ -1314,32 +1315,32 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \end{subnumcases}
 首先假设在\eqref{Hamilton-Jacobi方程解Kepler问题7}中都取正号，则式\eqref{Hamilton-Jacobi方程解Kepler问题8.1}化为
 \begin{equation*}
-	-\left(-\frac{\beta^2}{mr_0^3}+\frac{\alpha}{r_0^2}\right)t + \sqrt{\frac{m}{2}} \int \frac{-\dfrac{\beta^2}{mr_0^3}+\dfrac{\alpha}{r_0^2}}{\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right) - \alpha\left(\dfrac{1}{r_0}-\dfrac1r\right)}} \mathrm{d}r = -p_{r_0}
+	-\left(-\frac{\beta^2}{\mu r_0^3}+\frac{\alpha}{r_0^2}\right)t + \sqrt{\frac{\mu}{2}} \int \frac{-\dfrac{\beta^2}{\mu r_0^3}+\dfrac{\alpha}{r_0^2}}{\sqrt{\dfrac{\beta^2}{2\mu}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right) - \alpha\left(\dfrac{1}{r_0}-\dfrac1r\right)}} \mathrm{d}r = -p_{r_0}
 \end{equation*}
 整理可得\footnote{积分下限的不同取值只会式\eqref{Hamilton-Jacobi方程解Kepler问题9}右端多一个与该固定取值相关的常数，此常数总可以通过选择时间起点来去除。此处将积分下限取为$r_0$，下文会说明，$r=r_0$是$\dot{r}$变号的位置。}
 \begin{equation}
-	\sqrt{\frac{m}{2}} \int_{r_0}^r \frac{\mathrm{d}r}{\sqrt{\left(\dfrac{1}{r_0}-\dfrac1r\right)\left[\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0}+\dfrac1r\right)-\alpha\right]}} = t-t_0
+	\sqrt{\frac{\mu}{2}} \int_{r_0}^r \frac{\mathrm{d}r}{\sqrt{\left(\dfrac{1}{r_0}-\dfrac1r\right)\left[\dfrac{\beta^2}{2\mu}\left(\dfrac{1}{r_0}+\dfrac1r\right)-\alpha\right]}} = t-t_0
 	\label{Hamilton-Jacobi方程解Kepler问题9}
 \end{equation}
-其中$t_0 = \dfrac{p_{r_0}}{-\dfrac{\beta^2}{mr_0^3}+\dfrac{\alpha}{r_0^2}}$。将式\eqref{Hamilton-Jacobi方程解Kepler问题9}改写为
+其中$t_0 = \dfrac{p_{r_0}}{-\dfrac{\beta^2}{\mu r_0^3}+\dfrac{\alpha}{r_0^2}}$。将式\eqref{Hamilton-Jacobi方程解Kepler问题9}改写为
 \begin{equation*}
-	\sqrt{\frac{mr_0}{2}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)\left[\left(\dfrac{\beta^2}{2mr_0}-\alpha\right)r+\dfrac{\beta^2}{2m}\right]}} = t-t_0
+	\sqrt{\frac{\mu r_0}{2}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)\left[\left(\dfrac{\beta^2}{2\mu r_0}-\alpha\right)r+\dfrac{\beta^2}{2\mu}\right]}} = t-t_0
 \end{equation*}
-根据$\dfrac{\beta^2}{2mr_0}-\alpha$的符号，可以分为以下三种情形：
+根据$\dfrac{\beta^2}{2\mu r_0}-\alpha$的符号，可以分为以下三种情形：
 \begin{enumerate}
-\item $\dfrac{\beta^2}{2mr_0}<\alpha$，此时$E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}<0$，令
+\item $\dfrac{\beta^2}{2\mu r_0}<\alpha$，此时$E = \dfrac{\beta^2}{2\mu r_0^2}-\dfrac{\alpha}{r_0}<0$，令
 \begin{equation}
-	r_1 = \dfrac{\dfrac{\beta^2}{2m}}{\alpha-\dfrac{\beta^2}{2mr_0}} > 0
+	r_1 = \dfrac{\dfrac{\beta^2}{2\mu}}{\alpha-\dfrac{\beta^2}{2\mu r_0}} > 0
 	\label{Hamilton-Jacobi方程解Kepler问题10}
 \end{equation}
 则式\eqref{Hamilton-Jacobi方程解Kepler问题9}可以改写为
 \begin{equation}
-	\frac{mr_0}{\sqrt{2mr_0\alpha-\beta^2}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)(r_1-r)}} = t-t_0
+	\frac{\mu r_0}{\sqrt{2\mu r_0\alpha-\beta^2}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)(r_1-r)}} = t-t_0
 	\label{Hamilton-Jacobi方程解Kepler问题11}
 \end{equation}
 对式\eqref{Hamilton-Jacobi方程解Kepler问题11}两端同时求对$t$的导数，可得
 \begin{equation}
-	\dot{r} = \frac{\sqrt{2mr_0\alpha-\beta^2}}{mr_0r} \sqrt{(r-r_0)(r_1-r)}
+	\dot{r} = \frac{\sqrt{2\mu r_0\alpha-\beta^2}}{\mu r_0r} \sqrt{(r-r_0)(r_1-r)}
 	\label{Hamilton-Jacobi方程解Kepler问题12}
 \end{equation}
 根据式\eqref{Hamilton-Jacobi方程解Kepler问题12}可得
@@ -1352,43 +1353,43 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \begin{equation}
 \begin{cases}
 	r = \dfrac{r_0+r_1}{2}-\dfrac{r_1-r_0}{2}\cos \xi \\
-	t = \dfrac{mr_0(r_0+r_1)}{2\sqrt{2mr_0\alpha-\beta^2}} \left(\xi - \dfrac{r_1-r_0}{r_1+r_0}\sin \xi\right) + t_0
+	t = \dfrac{\mu r_0(r_0+r_1)}{2\sqrt{2\mu r_0\alpha-\beta^2}} \left(\xi - \dfrac{r_1-r_0}{r_1+r_0}\sin \xi\right) + t_0
 \end{cases}
 \label{Hamilton-Jacobi方程解Kepler问题13}
 \end{equation}
 
-\item $\dfrac{\beta^2}{2mr_0}=\alpha$，此时$E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}=0$，则式\eqref{Hamilton-Jacobi方程解Kepler问题9}可以改写为
+\item $\dfrac{\beta^2}{2\mu r_0}=\alpha$，此时$E = \dfrac{\beta^2}{2\mu r_0^2}-\dfrac{\alpha}{r_0}=0$，则式\eqref{Hamilton-Jacobi方程解Kepler问题9}可以改写为
 \begin{equation}
-	\frac{m\sqrt{r_0}}{\beta} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{r-r_0}} = t-t_0
+	\frac{\mu\sqrt{r_0}}{\beta} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{r-r_0}} = t-t_0
 	\label{Hamilton-Jacobi方程解Kepler问题14}
 \end{equation}
 对式\eqref{Hamilton-Jacobi方程解Kepler问题14}两端同时求对$t$的导数，可得
 \begin{equation}
-	\dot{r} = \frac{\beta}{mr}\sqrt{\frac{r-r_0}{r_0}}
+	\dot{r} = \frac{\beta}{\mu r}\sqrt{\frac{r-r_0}{r_0}}
 	\label{Hamilton-Jacobi方程解Kepler问题15}
 \end{equation}
 即仅当$r=r_0$时，才有$\dot{r} = 0$。由式\eqref{Hamilton-Jacobi方程解Kepler问题15}中的根式非负可得此运动的径向范围为$r\geqslant r_0$，是无界运动。
 
 求出式\eqref{Hamilton-Jacobi方程解Kepler问题14}中的积分，可得矢径长度与时间的关系
 \begin{equation}
-	t = \frac{2m}{3\beta}\sqrt{r_0(r-r_0)}(r+2r_0) + t_0
+	t = \frac{2\mu}{3\beta}\sqrt{r_0(r-r_0)}(r+2r_0) + t_0
 	\label{Hamilton-Jacobi方程解Kepler问题16}
 \end{equation}
 由此可见，当$t\to +\infty$时，$r\to +\infty$。
 
-\item $\dfrac{\beta^2}{2mr_0}>\alpha$，此时$E = \dfrac{\beta^2}{2mr_0^2}-\dfrac{\alpha}{r_0}>0$，令
+\item $\dfrac{\beta^2}{2\mu r_0}>\alpha$，此时$E = \dfrac{\beta^2}{2\mu r_0^2}-\dfrac{\alpha}{r_0}>0$，令
 \begin{equation}
-	r_1 = \dfrac{\dfrac{\beta^2}{2m}}{\dfrac{\beta^2}{2mr_0}-\alpha} > 0
+	r_1 = \dfrac{\dfrac{\beta^2}{2\mu}}{\dfrac{\beta^2}{2\mu r_0}-\alpha} > 0
 	\label{Hamilton-Jacobi方程解Kepler问题17}
 \end{equation}
 则式\eqref{Hamilton-Jacobi方程解Kepler问题9}可以改写为
 \begin{equation}
-	\frac{mr_0}{\sqrt{\beta^2-2mr_0\alpha}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)(r+r_1)}} = t-t_0
+	\frac{\mu r_0}{\sqrt{\beta^2-2\mu r_0\alpha}} \int_{r_0}^r \frac{r\mathrm{d}r}{\sqrt{(r-r_0)(r+r_1)}} = t-t_0
 	\label{Hamilton-Jacobi方程解Kepler问题18}
 \end{equation}
 对式\eqref{Hamilton-Jacobi方程解Kepler问题18}两端同时求对$t$的导数，可得
 \begin{equation}
-	\dot{r} = \frac{\sqrt{\beta^2-2mr_0\alpha}}{mr_0r} \sqrt{(r-r_0)(r+r_1)}
+	\dot{r} = \frac{\sqrt{\beta^2-2\mu r_0\alpha}}{\mu r_0r} \sqrt{(r-r_0)(r+r_1)}
 	\label{Hamilton-Jacobi方程解Kepler问题19}
 \end{equation}
 在$r>0$的范围内，仅当$r=r_0$时，才有$\dot{r}=0$。由式\eqref{Hamilton-Jacobi方程解Kepler问题19}中的根式非负可得此运动的径向范围为$r\geqslant r_0$，是无界运动。
@@ -1397,13 +1398,13 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \begin{equation}
 \begin{cases}
 	\displaystyle r = -\dfrac{r_1-r_0}{2}+\dfrac{r_0+r_1}{2}\cosh\xi \\
-	\displaystyle t = \frac{mr_0(r_1-r_0)}{2\sqrt{\beta^2-2mr_0\alpha}} \left(\frac{r_1+r_0}{r_1-r_0}\sinh \xi-\xi\right) + t_0
+	\displaystyle t = \frac{\mu r_0(r_1-r_0)}{2\sqrt{\beta^2-2\mu r_0\alpha}} \left(\frac{r_1+r_0}{r_1-r_0}\sinh \xi-\xi\right) + t_0
 \end{cases}
 \label{Hamilton-Jacobi方程解Kepler问题20}
 \end{equation}
 \end{enumerate}
 
-前述三种情形分别对应了三种完全不同的轨道形状，而当$t=t_0$时，$r=r_0$为行星运动过程中距太阳最近的点，该点即称为{\bf 近日点}。
+前述三种情形分别对应了三种完全不同的轨道形状，而当$t=t_0$时，$r=r_0$为行星运动过程中距力心最近的点，该点即称为{\bf 近心点}\footnote{对于行星绕太阳的运动，该点即称为{\bf 近日点}。}。
 
 现在来考虑方程\eqref{Hamilton-Jacobi方程解Kepler问题8.2}。假设在方程\eqref{Hamilton-Jacobi方程解Kepler问题8.2}中都取正号，则式\eqref{Hamilton-Jacobi方程解Kepler问题8.2}化为
 \begin{equation*}
@@ -1483,6 +1484,7 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	n = intersectionpoint(graph(planetplane,tmp,pi+tmp),graph(xyplane,tmp,pi+tmp));
 	m = intersectionpoint(graph(planetplane,pi+tmp,2*pi+tmp),graph(xyplane,pi+tmp,2*pi+tmp));
 	draw(Label("$\boldsymbol{n}$",MidPoint,Relative(E)),O--n,Arrow);
+	draw(-n--O,dashed);
 	label("$N$",n,S);
 	label("$M$",m,N);
 	phi = 1;
@@ -1493,10 +1495,15 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	draw(O--q,dashed);
 	label("$Q$",q,SE);
 	draw(Label("$\varOmega$",MidPoint,Relative(E)),graph(xyplane,0,phi0),blue+linewidth(0.8bp));
-	draw(Label("$\phi-\varOmega$",MidPoint,Relative(E)),graph(xyplane,phi0,phi),green+linewidth(0.8bp));
+	draw(Label("$\phi-\varOmega$",MidPoint,Relative(E)),graph(xyplane,phi0,phi),0.5green+0.5darkgreen+linewidth(0.8bp));
 	draw(Label("$\varTheta$",Relative(0.65),Relative(E)),graph(planetplane,phi0,phi),purple+linewidth(0.8bp));
 	b = sin(phi0)*cos(theta0)*i-cos(phi0)*cos(theta0)*j+sin(theta0)*k;
-	draw(Label("$\boldsymbol{b}$",EndPoint,W),O--b,Arrow);
+	draw(Label("$\boldsymbol{b}$",EndPoint,dir(-90-30)),O--b,Arrow);
+	tmp = -0.6;
+	phi0 = phi0-pi/2;
+	draw(graph(pqplane,tmp,pi+tmp),yellow);
+	draw(graph(pqplane,pi+tmp,2*pi+tmp),dashed+yellow);
+	draw(Label("$i$",Relative(0.5),Relative(W)),graph(pqplane,pi/2,theta0),0.4yellow+0.6red+linewidth(0.8bp));
 	tmp = -1.2;
 	phi0 = phi;
 	draw(graph(pqplane,tmp,pi+tmp),orange);
@@ -1509,8 +1516,9 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	draw(Label("$y$",EndPoint),r*j--1.5*r*j,Arrow);
 	draw(Label("$z$",EndPoint),r*k--1.5*r*k,Arrow);
 	label("$O$",O,2*W);
+	draw(scale(r)*unitcircle,linewidth(0.8bp));
 \end{asy}
-\caption{行星的轨道示意图}
+\caption{行星的轨道在天球上的投影}
 \label{行星的轨道示意图}
 \end{figure}
 
@@ -1519,7 +1527,7 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	\frac{\cot\theta}{\cot\left(\theta_0'-\dfrac{\pi}{2}\right)} = \sin\left(\phi-\phi_0'+\frac{\pi}{2}\right)
 	\label{Hamilton-Jacobi方程解Kepler问题24}
 \end{equation}
-对比，可知式\eqref{Hamilton-Jacobi方程解Kepler问题23}所表示的球面曲线为大圆，即行星的轨迹是平面的。如图\ref{行星的轨道示意图}所示，作一个单位球面，利用其上的点表示行星在空间中的角度坐标$(\theta,\phi)$。考虑到当$\phi=\varOmega$时，$\theta=\dfrac{\pi}{2}$，即$\varOmega$表示轨道平面与$xOy$坐标平面的交叉线与$Ox$轴所成的角度。记大圆上任意一点$P$，其球面坐标为$(\theta,\phi)$，则单位向量$\overrightarrow{OP}=:\mbf{q}$可以表示为
+对比，可知式\eqref{Hamilton-Jacobi方程解Kepler问题23}所表示的球面曲线为大圆，即行星的轨迹是平面的。如图\ref{行星的轨道示意图}所示，作一个单位球面（称为{\bf 天球}），利用其上的点表示行星在空间中的角度坐标$(\theta,\phi)$。考虑到当$\phi=\varOmega$时，$\theta=\dfrac{\pi}{2}$，即$\varOmega$表示轨道平面与$xOy$坐标平面的交叉线与$Ox$轴所成的角度，称为{\bf 升交点赤经}。记大圆上任意一点$P$，其球面坐标为$(\theta,\phi)$，则单位向量$\overrightarrow{OP}=:\mbf{q}$可以表示为
 \begin{equation}
 	\mbf{q} = \sin\theta\cos\phi\mbf{e}_1+\sin\theta\sin\phi\mbf{e}_2+\cos\theta\mbf{e}_3
 	\label{Hamilton-Jacobi方程解Kepler问题24-q}
@@ -1551,27 +1559,27 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	\mbf{b} = \cos\theta_0\sin\varOmega\mbf{e}_1-\cos\theta_0\cos\varOmega\mbf{e}_2+\sin\theta_0\mbf{e}_3
 	\label{Hamilton-Jacobi方程解Kepler问题28}
 \end{equation}
-即向量$\mbf{b}$为常向量，亦即说明行星的运转轨道是平面曲线，而该平面与$xOy$坐标平面之间的夹角为$\dfrac{\pi}{2}-\theta_0$。
+即向量$\mbf{b}$为常向量，亦即说明行星的运转轨道是平面曲线，而该平面与$xOy$坐标平面之间的夹角为$\dfrac{\pi}{2}-\theta_0$，这个角度称为{\bf 轨道倾角}，也常以$i$表示。
 
 最后考虑方程\eqref{Hamilton-Jacobi方程解Kepler问题8.3}。假设在方程\eqref{Hamilton-Jacobi方程解Kepler问题8.3}中都取正号，则式\eqref{Hamilton-Jacobi方程解Kepler问题8.3}化为
 \begin{align*}
-	-\frac{\beta}{mr_0^2}t + \phi\sin\theta_0 & {}+\sqrt{2m}\int_{r_0}^r \frac{\dfrac{\beta}{m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)}{2\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}}\mathrm{d}r \\
+	-\frac{\beta}{\mu r_0^2}t + \phi\sin\theta_0 & {}+\sqrt{2\mu}\int_{r_0}^r \frac{\dfrac{\beta}{\mu}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)}{2\sqrt{\dfrac{\beta^2}{2\mu}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}}\mathrm{d}r \\
 	& {} + \int_{\theta_0}^\theta \sqrt{1-\frac{\sin^2\theta_0}{\sin^2\theta}}\mathrm{d}\theta = -\gamma
 \end{align*}
 整理可得\footnote{基于与前面相同的原因，此处将积分下限取为$r_0$和$\theta_0$。}
 \begin{align}
-	\frac{\beta}{\sqrt{2m}}\int_{r_0}^r \frac{\dfrac{1}{r_0^2}-\dfrac{1}{r^2}}{\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}} \mathrm{d}r & {}+ \int_{\theta_0}^\theta \sqrt{1-\sin^2\theta_0\csc^2\theta} \mathrm{d}\theta \nonumber \\
-	& = -\gamma + \frac{\beta}{mr_0^2}t - \phi\sin\theta_0
+	\frac{\beta}{\sqrt{2\mu}}\int_{r_0}^r \frac{\dfrac{1}{r_0^2}-\dfrac{1}{r^2}}{\sqrt{\dfrac{\beta^2}{2\mu}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}} \mathrm{d}r & {}+ \int_{\theta_0}^\theta \sqrt{1-\sin^2\theta_0\csc^2\theta} \mathrm{d}\theta \nonumber \\
+	& = -\gamma + \frac{\beta}{\mu r_0^2}t - \phi\sin\theta_0
 	\label{Hamilton-Jacobi方程解Kepler问题29}
 \end{align}
 在式\eqref{Hamilton-Jacobi方程解Kepler问题9}两端同时取微分，可得
 \begin{equation}
-	\frac{\mathrm{d}r}{\sqrt{\dfrac{\beta^2}{2m}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}} = \sqrt{\frac{2}{m}}\mathrm{d}t
+	\frac{\mathrm{d}r}{\sqrt{\dfrac{\beta^2}{2\mu}\left(\dfrac{1}{r_0^2}-\dfrac{1}{r^2}\right)-\alpha\left(\dfrac{1}{r_0}-\dfrac{1}{r}\right)}} = \sqrt{\frac{2}{\mu}}\mathrm{d}t
 	\label{Hamilton-Jacobi方程解Kepler问题30}
 \end{equation}
 将式\eqref{Hamilton-Jacobi方程解Kepler问题30}代入式\eqref{Hamilton-Jacobi方程解Kepler问题29}中，可得
 \begin{equation}
-	-\frac{\beta}{m}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)} + \int_{\theta_0}^\theta \sqrt{1-\sin^2\theta_0\csc^2\theta} \mathrm{d}\theta = -\gamma + \frac{\beta}{mr_0^2}t_0-\phi\sin\theta_0
+	-\frac{\beta}{\mu}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)} + \int_{\theta_0}^\theta \sqrt{1-\sin^2\theta_0\csc^2\theta} \mathrm{d}\theta = -\gamma + \frac{\beta}{\mu r_0^2}t_0-\phi\sin\theta_0
 	\label{Hamilton-Jacobi方程解Kepler问题31}
 \end{equation}
 考虑式\eqref{Hamilton-Jacobi方程解Kepler问题23}，即
@@ -1581,7 +1589,7 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \end{equation}
 当$\theta=\theta_0$时，有$\phi=\dfrac{\pi}{2}+\varOmega=:\phi_0$，因此将式\eqref{Hamilton-Jacobi方程解Kepler问题31}代入式\eqref{Hamilton-Jacobi方程解Kepler问题31}中可得
 \begin{equation}
-	-\frac{\beta}{m}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)} + \int_{\phi_0}^\phi \frac{\csc\theta_0}{1+\cot^2\theta_0\cos^2(\phi-\phi_0)}\mathrm{d}\phi = -\gamma+\frac{\beta}{mr_0^2}t_0-\phi_0\sin\theta_0
+	-\frac{\beta}{\mu}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)} + \int_{\phi_0}^\phi \frac{\csc\theta_0}{1+\cot^2\theta_0\cos^2(\phi-\phi_0)}\mathrm{d}\phi = -\gamma+\frac{\beta}{\mu r_0^2}t_0-\phi_0\sin\theta_0
 	\label{Hamilton-Jacobi方程解Kepler问题33}
 \end{equation}
 计算式\eqref{Hamilton-Jacobi方程解Kepler问题33}中的积分如下
@@ -1593,12 +1601,17 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	& = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big]+\arctan(+\infty) \\
 	& = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big] + \frac{\pi}{2}
 \end{align*}
-记$\displaystyle \varTheta = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big]$，则式\eqref{Hamilton-Jacobi方程解Kepler问题33}化为
+记
 \begin{equation}
-	\varTheta = \frac{\beta}{m}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)}+\varTheta_0
+	\varTheta = -\arctan\big[\csc\theta_0\cot(\phi-\phi_0)\big]
+	\label{Hamilton-Jacobi方程解Kepler问题34-1}
+\end{equation}
+称为{\bf 真近点角}，则式\eqref{Hamilton-Jacobi方程解Kepler问题33}化为
+\begin{equation}
+	\varTheta = \frac{\beta}{\mu}\int_{t_0}^t \frac{\mathrm{d}t}{r^2(t)}+\varTheta_0
 	\label{Hamilton-Jacobi方程解Kepler问题34}
 \end{equation}
-其中$\varTheta_0=-\dfrac{\pi}{2}-\gamma+\dfrac{\beta}{mr_0^2}t_0-\phi_0\sin\theta_0$，而$(r_0,\theta_0,\phi_0)$即为近日点的球坐标。此处$\varTheta$的几何意义即为图\ref{行星的轨道示意图}中的$\angle NOP$，这是因为根据式\eqref{Hamilton-Jacobi方程解Kepler问题24-q}、式\eqref{Hamilton-Jacobi方程解Kepler问题24-n}和式\eqref{Hamilton-Jacobi方程解Kepler问题23}可得
+其中$\varTheta_0=-\dfrac{\pi}{2}-\gamma+\dfrac{\beta}{\mu r_0^2}t_0-\phi_0\sin\theta_0$，而$(r_0,\theta_0,\phi_0)$即为近心点的球坐标。此处$\varTheta$的几何意义即为图\ref{行星的轨道示意图}中的$\angle NOP$，这是因为根据式\eqref{Hamilton-Jacobi方程解Kepler问题24-q}、式\eqref{Hamilton-Jacobi方程解Kepler问题24-n}和式\eqref{Hamilton-Jacobi方程解Kepler问题23}可得
 \begin{align*}
 	\cos \angle NOP & = \mbf{n}\cdot \mbf{q} = \sin\theta\cos\phi\cos\varOmega+ \sin\theta\sin\phi\sin\varOmega \\
 	& = \sin\theta\cos(\phi-\varOmega) = \frac{\cos(\phi-\varOmega)}{\sqrt{1+\cot^2\theta_0\sin^2(\phi-\varOmega)}}
@@ -1607,44 +1620,44 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \begin{equation*}
 	\tan\angle NOP = \csc\theta_0\tan(\phi-\varOmega) = -\csc\theta_0\cot(\phi-\phi_0)
 \end{equation*}
-时间$t_0$代表行星经过近日点$(r_0,\theta_0,\phi_0)$的日期，因此式\eqref{Hamilton-Jacobi方程解Kepler问题34}中的常数$\varTheta_0$代表近日点与升交点$N$之间在单位球面上的角度差，也常以$\tilde{\omega}$表示，又叫做{\bf 自升交点的近日点黄经}。
+时间$t_0$代表行星经过近心点$(r_0,\theta_0,\phi_0)$的时刻，因此式\eqref{Hamilton-Jacobi方程解Kepler问题34}中的常数$\varTheta_0$代表近心点与升交点$N$之间在轨道平面上的角度差，称为{\bf 近心点幅角}，也常以$\tilde{\omega}$表示。%，又叫做{\bf 自升交点的近日点黄经}。
 
 下面来考虑行星运行轨道的具体形状。将式\eqref{Hamilton-Jacobi方程解Kepler问题34}两端求对$t$的导数可得
 \begin{equation}
-	\frac{\mathrm{d}\varTheta}{\mathrm{d}t} = \frac{\beta}{mr^2}
+	\frac{\mathrm{d}\varTheta}{\mathrm{d}t} = \frac{\beta}{\mu r^2}
 	\label{Hamilton-Jacobi方程解Kepler问题35}
 \end{equation}
 同理将式\eqref{Hamilton-Jacobi方程解Kepler问题9}两端求对$t$的导数可得
 \begin{equation}
-	\frac{\mathrm{d}r}{\mathrm{d}t} = \sqrt{\frac{2}{m}\left(\frac{\beta^2}{2mr_0^2}-\frac{\alpha}{r_0}+ \frac{\alpha}{r}- \frac{\beta^2}{2mr^2}\right)} = \sqrt{\frac{2}{m}\left(E+\frac{\alpha}{r}-\frac{\beta^2}{2mr^2}\right)}
+	\frac{\mathrm{d}r}{\mathrm{d}t} = \sqrt{\frac{2}{\mu}\left(\frac{\beta^2}{2\mu r_0^2}-\frac{\alpha}{r_0}+ \frac{\alpha}{r}- \frac{\beta^2}{2\mu r^2}\right)} = \sqrt{\frac{2}{\mu}\left(E+\frac{\alpha}{r}-\frac{\beta^2}{2\mu r^2}\right)}
 	\label{Hamilton-Jacobi方程解Kepler问题36}
 \end{equation}
 由式\eqref{Hamilton-Jacobi方程解Kepler问题35}和\eqref{Hamilton-Jacobi方程解Kepler问题36}可得
 \begin{equation}
-	\frac{\mathrm{d}r}{\mathrm{d}\varTheta} = r^2\sqrt{\frac{2mE}{\beta^2}+ \frac{2m\alpha}{\beta^2} \frac1r - \frac{1}{r^2}}
+	\frac{\mathrm{d}r}{\mathrm{d}\varTheta} = r^2\sqrt{\frac{2\mu E}{\beta^2}+ \frac{2\mu\alpha}{\beta^2} \frac1r - \frac{1}{r^2}}
 	\label{Hamilton-Jacobi方程解Kepler问题37}
 \end{equation}
 如果令$u = \dfrac1r$可将式\eqref{Hamilton-Jacobi方程解Kepler问题37}化为
 \begin{equation*}
-	-\frac{\mathrm{d}u}{\sqrt{\dfrac{m^2\alpha^2}{\beta^4}\left(1+\dfrac{2\beta^2E}{m\alpha^2}\right) - \left(u - \dfrac{m\alpha}{\beta^2}\right)^2}} = \mathrm{d}\varTheta
+	-\frac{\mathrm{d}u}{\sqrt{\dfrac{\mu^2\alpha^2}{\beta^4}\left(1+\dfrac{2\beta^2E}{\mu\alpha^2}\right) - \left(u - \dfrac{\mu\alpha}{\beta^2}\right)^2}} = \mathrm{d}\varTheta
 \end{equation*}
 由此可得
 \begin{equation*}
-	r = \frac{\dfrac{\beta^2}{m\alpha}}{1+\sqrt{1+\dfrac{2\beta^2E}{m\alpha^2}}\cos(\varTheta-\varTheta_0)}
+	r = \frac{\dfrac{\beta^2}{\mu\alpha}}{1+\sqrt{1+\dfrac{2\beta^2E}{\mu\alpha^2}}\cos(\varTheta-\varTheta_0)}
 \end{equation*}
 记
 \begin{equation}
-	p = \dfrac{\beta^2}{m\alpha},\quad e = \sqrt{1+\dfrac{2\beta^2E}{m\alpha^2}}
+	p = \dfrac{\beta^2}{\mu\alpha},\quad e = \sqrt{1+\dfrac{2\beta^2E}{\mu\alpha^2}}
 	\label{Hamilton-Jacobi方程解Kepler问题38}
 \end{equation}
-即有
+其中$p$称为{\bf 轨道参数}，$e$为{\bf 离心率}。由此即有
 \begin{equation}
 	r = \frac{p}{1+e\cos(\varTheta-\varTheta_0)}
 	\label{Hamilton-Jacobi方程解Kepler问题39}
 \end{equation}
 由此可得当$E<0$时，$e<1$，轨道为椭圆；当$E=0$时，$e=1$，轨道为抛物线；当$E>0$时，$e>1$，轨道为双曲线。他们分别对应式\eqref{Hamilton-Jacobi方程解Kepler问题13}、式\eqref{Hamilton-Jacobi方程解Kepler问题16}和式\eqref{Hamilton-Jacobi方程解Kepler问题20}的三种情况。
 
-至此，行星在空间中的绕日运动已经完全解决了。这个问题的六个积分常数分别为$r_0,~\theta_0,~\beta,~t_0,~\varOmega,~\varTheta_0$，而后面三个是常数$p_{r_0},~p_{\theta_0}$和$\gamma$的函数。
+至此，行星在空间中的绕日运动已经完全解决了。这个问题的六个积分常数分别为$r_0,~\theta_0,~\beta,~t_0,~\varOmega,~\varTheta_0$，而后面三个是常数$p_{r_0},~p_{\theta_0}$和$\gamma$的函数。而在天体力学中，常将这六个积分常数用其它一些更具有几何意义的常数来代替，它们分别是轨道参数$p$，离心率$e$，过近心点时刻$t_0$，升交点赤经$\varOmega$，轨道倾角$i$，近心点幅角$\tilde{\omega}$。
 
 \begin{example}
 用Hamilton-Jacobi方程解平面谐振子问题。
@@ -1717,35 +1730,535 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \end{equation}
 \end{solution}
 
+\section{作用-角变量}
+
+\subsection{单自由度系统的作用-角变量}
+
+在物理学中，具有周期性的运动往往有特殊的重要性。对于单自由度系统，相空间是二维平面，周期运动只能有两种类型：
+\begin{enumerate}
+\item 正则坐标$q(t)$和$p(t)$都是时间的周期函数，且周期相同。在这种情况下，相轨道是闭合曲线，这是单自由度振动\footnote{在多自由度的一般情形下，这类周期运动称为{\bf 天平动}。}。
+\item 函数$q(t)$不是周期函数，但是$q$的值每增加$q_0$时，系统的状态便重现一次。在这种情况下，相轨道不是闭合曲线，但$p$是$q$的周期函数。这类周期运动称为{\bf 转动}。
+\end{enumerate}
+
+设$H=H(q,p)$是单自由度系统的Hamilton函数，其Hamilton特征函数为$W=W(q,E)$，其中$E$为广义能量积分$H(q,p)=E$的积分常数。此时，应有
+\begin{equation}
+	p = \frac{\pl W}{\pl q}
+	\label{chapter10:正则变量和特征函数的关系}
+\end{equation}
+根据第\ref{chapter10:section-Hamilton-Jacobi方程}节的相关讨论，将Hamilton主函数$S$作为正则变换的母函数，得到的新正则变量都是循环变量，都是积分常数。但这里不用$E$作为变换之后的“动量”，而是引入如下定义的新变量作为正则变换后的新动量：
+\begin{equation}
+	J = \frac{1}{2\pi}\oint p\mathd q
+	\label{chapter10:作用量变量的定义}
+\end{equation}
+其中积分沿着$q$的一个变化周期内所对应的相轨道进行。由\eqref{chapter10:作用量变量的定义}可知，$J$在振动情形下等于封闭相轨道内的面积除以$2\pi$，而在转动情形下等于相曲线与$q$轴上长度为$q_0$的线段之间的面积除以$2\pi$。
+
+将式\eqref{chapter10:正则变量和特征函数的关系}代入式\eqref{chapter10:作用量变量的定义}中可得
+\begin{equation}
+	J = \frac{1}{2\pi}\oint \frac{\pl W}{\pl q}(q,E)\mathd q
+	\label{chapter10:作用量变量的定义-变形}
+\end{equation}
+由此可知$J$仅是积分常数$E$的函数。当$\dif{J}{E} \neq 0$时可以由$J=J(E)$反解得到$E=E(J)$，由此可得新的Hamilton函数$H = E(J)$，而这个正则变换$q,p \mapsto \omega, J$的正则变换母函数就是Hamilton特征函数$W=W(q,E(J))$。其中与变量$J$共轭的正则坐标可根据下式
+\begin{equation}
+	\omega = \frac{\pl W}{\pl J}
+	\label{chapter10:角变量的定义}
+\end{equation}
+确定。
+
+由于变量$J$具有与作用量相同的量纲（式\eqref{chapter10:作用量变量的定义}），因此变量$J$称为{\bf 作用量变量}，而变量$\omega$是无量纲的（式\eqref{chapter10:角变量的定义}），但其在各种系统中的物理意义往往与某种角度相关，因此变量$\omega$称为{\bf 角变量}。
+
+在作用-角变量下，Hamilton函数为$K=E(J)$，正则方程为
+\begin{equation}
+\begin{cases}
+	\dif{J}{t} = -\dfrac{\pl K}{\pl \omega} = 0 \\[1.5ex]
+	\dif{\omega}{t} = \dfrac{\pl K}{\pl J} = \dif{E}{J}
+\end{cases}
+\end{equation}
+据此可以解得
+\begin{equation}
+	J = J_0,\quad \omega = \left(\dif{E}{J}\right) t + \omega_0
+\end{equation}
+其中$J_0$和$\omega_0$是积分常数。如果用$\Delta\omega$表示$q$改变一个周期内的增量，考虑到式\eqref{chapter10:角变量的定义}可得
+\begin{equation}
+	\Delta \omega = \oint \frac{\pl \omega}{\pl q}\mathd q = \oint \frac{\pl^2 W}{\pl q\pl J}\mathd q = \frac{\pl}{\pl J} \oint \frac{\pl W}{\pl q} \mathd q
+\end{equation}
+再利用式\eqref{chapter10:作用量变量的定义-变形}可得
+\begin{equation}
+	\Delta \omega = \frac{\pl}{\pl J} (2\pi J) = 2\pi
+\end{equation}
+在一个周期内，角变量$\omega$改变$2\pi$。相应地，这个正则变换的母函数$W=W(q,E(J))=W(q,J)$是坐标$q$的多值函数，每经过一个$q$的周期，这个函数不回到原来的值，而是有一个增量
+\begin{equation}
+	\Delta W = \oint \frac{\pl W}{\pl q}\mathd q = \oint p\mathd q = 2\pi J
+\end{equation}
+
+\begin{example}
+求谐振子的频率，Hamilton函数为
+\begin{equation*}
+	H = \frac{1}{2m}p^2 + \frac12 kx^2
+\end{equation*}
+\end{example}
+\begin{solution}
+在相空间中，相轨道
+\begin{equation*}
+	\frac{1}{2m}p^2 + \frac12 kx^2 = E
+\end{equation*}
+为椭圆，因此可有
+\begin{equation*}
+	J = \frac{1}{2\pi} \oint p\mathd x = 2\times\frac{\sqrt{mk}}{2\pi} \int_{-\sqrt{\frac{2E}{k}}}^{\sqrt{\frac{2E}{k}}} \sqrt{\frac{2E}{k}-x^2}\mathd x = E\sqrt{\frac{m}{k}}
+\end{equation*}
+所以$E = \sqrt{\dfrac{k}{m}}J$，即有
+\begin{equation*}
+	\omega = \sqrt{\dfrac{k}{m}} t + \omega_0
+\end{equation*}
+由此即可得到谐振子的角频率应为$\sqrt{\dfrac{k}{m}}$。
+
+这个正则变换可根据式\eqref{chapter10:正则变量和特征函数的关系}和式\eqref{chapter10:角变量的定义}确定，所以有
+\begin{equation*}
+	W = \int p\mathd x = \sqrt{km} \int \sqrt{\frac{2E}{k}-x^2}\mathd x = \sqrt{km} \int \sqrt{\frac{2J}{\sqrt{km}}-x^2}\mathd x
+\end{equation*}
+由此可得
+\begin{equation*}
+	\omega = \frac{\pl W}{\pl J} = \int \frac{\mathd x}{\sqrt{\dfrac{2J}{\sqrt{km}}-x^2}} = \arcsin \frac{x}{\sqrt{\dfrac{2J}{\sqrt{km}}}}
+\end{equation*}
+即
+\begin{equation*}
+	x = \sqrt{\dfrac{2J}{\sqrt{km}}}\sin \omega = \sqrt{\frac{2E}{k}} \sin \omega
+\end{equation*}
+由此可知，此时角变量$\omega$的物理意义即为谐振子的角度。
+\end{solution}
+
+\subsection{单摆运动问题的作用-角变量}
+
+摆的运动问题在第\ref{chapter3:subsection-数学摆和物理摆·单自由度保守系统的运动}节中进行过详细讨论，如果用$q$表示摆角，作为其广义坐标，则摆的运动微分方程为
+\begin{equation}
+	\ddot{q} + \omega_0^2 \sin q = 0
+\end{equation}
+其Hamilton函数为
+\begin{equation}
+	H = \frac12 p^2 - \omega_0^2 \cos q
+\end{equation}
+
+为了引入作用-角变量，需要分别考虑振动和转动两种情况。
+
+在振动情况下，系统的相轨道如图\ref{chapter3:figure-势函数与对应的相轨道}中的封闭线所示。将能量积分常数记作$E_0$，即
+\begin{equation}
+	\frac12 p^2 - \omega_0^2 \cos q = E_0
+	\label{chapter10:摆运动的能量积分}
+\end{equation}
+做变量代换$E_0 = -\omega_0^2\cos \beta$，则作用量变量为
+\begin{align*}
+	J & = \frac{1}{2\pi} \oint p\mathd q = \frac{4}{2\pi} \int_0^\beta \sqrt{\omega_0^2(\cos q - \cos \beta)} \mathd q = \frac{8\omega_0}{\pi} \int_0^\beta \sqrt{k_1^2-\sin^2\frac q2}\mathd q
+\end{align*}
+记$k_1=\sin\dfrac{\beta}{2}$并做变量代换
+\begin{equation}
+	\sin\dfrac q2 = k_1\sin u
+	\label{chapter10:单摆作用-角变量求解的变量代换}
+\end{equation}
+可得
+\begin{align}
+	J & = \frac{8\omega_0}{\pi} \int_0^{\frac{\pi}{2}} \frac{k_1^2\cos^2u}{\sqrt{1-k_1^2\sin^2u}} \mathd u \nonumber \\
+	& = \frac{8\omega_0}{\pi} \left[\int_0^{\frac{\pi}{2}} \sqrt{1-k^2\sin^2u}\mathd u - (1-k_1^2) \int_0^{\frac{\pi}{2}} \frac{\mathd u}{\sqrt{1-k_1^2\sin^2u}}\right] \nonumber \\
+	& = \frac{8\omega_0}{\pi} \left[E(k_1) - (1-k_1^2)K(k_1)\right] \label{chapter10:单摆振动情形下的作用量变量}
+\end{align}
+其中$K$和$E$分别是第一类和第二类完全椭圆积分。式\eqref{chapter10:单摆振动情形下的作用量变量}确定了作为$k_1$函数的$J$，将其两边对$k_1$求导，并利用附录中的恒等式\eqref{Appendix-A:第一类完全椭圆积分的导数}和\eqref{Appendix-A:第二类完全椭圆积分的导数}可得
+\begin{equation}
+	\frac{\pl J}{\pl k_1} = \frac{8\omega_0}{\pi}k_1K(k_1) \neq 0
+\end{equation}
+所以$k_1$可以表示为$J$的函数，而且有
+\begin{equation}
+	\frac{\pl k_1}{\pl J} = \frac{\pi}{8\omega_0k_1K(k_1)}
+\end{equation}
+新的Hamilton函数$\mathcal{H}$只依赖于$J$，可以表示为
+\begin{equation}
+	\mathcal{H} = -\omega_0^2\cos \beta = 2\omega_0^2k_1^2 - \omega_0^2
+\end{equation}
+其中$k_1=k_1(J)$是式\eqref{chapter10:单摆振动情形下的作用量变量}定义的$J=J(k_1)$的反函数。据此可得角变量$\omega$满足的方程为
+\begin{equation}
+	\dif{\omega}{t} = \frac{\pl \mathcal{H}}{\pl J} = \frac{\pl \mathcal{H}}{\pl k_1} \frac{\pl k_1}{\pl J} = \frac{\pi\omega_0}{2K(k_1)}
+\end{equation}
+由此可得此运动的振动周期为
+\begin{equation}
+	T = \frac{2\pi}{\dot{\omega}} = \frac{4K(k_1)}{\omega_0}
+\end{equation}
+这与第\ref{chapter3:subsubsection-摆运动方程的积分}节中所得的结果相同。
+
+为了得到角变量的具体形式，首先求得Hamilton特征函数
+\begin{align}
+	W = \int p\mathd q = 2\omega_0 \int \sqrt{k_1^2-\sin^2\frac q2}\mathd q
+\end{align}
+利用变量代换\eqref{chapter10:单摆作用-角变量求解的变量代换}，可得
+\begin{equation}
+	W = 4\omega_0\left[E(k_1,\sin u)-(1-k_1^2)F(k_1,\sin u)\right]
+\end{equation}
+其中$F$和$E$分别为第一类和第二类不完全椭圆积分，$u$是由式\eqref{chapter10:单摆作用-角变量求解的变量代换}确定的函数$u=u(k_1,q)$，$k_1=k_1(J)$是由式\eqref{chapter10:单摆振动情形下的作用量变量}确定的函数$J=J(k_1)$的反函数。根据角变量的定义式\eqref{chapter10:角变量的定义}可得
+\begin{equation}
+	\omega = \frac{\pl W}{\pl J} = \frac{\pl W}{\pl k_1} \frac{\pl k_1}{\pl J}
+\end{equation}
+对函数$W=W(k_1,u)$求$k_1$的偏导数，可得
+\begin{equation}
+	\frac{\pl W}{\pl k_1} = 4\omega_0\left[\frac{\pl E}{\pl k_1} + \frac{\pl E}{\pl u}\frac{\pl u}{\pl k_1} + 2k_1F - (1-k_1^2)\left(\frac{\pl F}{\pl k_1} + \frac{\pl F}{\pl u}\frac{\pl u}{\pl k_1}\right)\right]
+\end{equation}
+根据式\eqref{chapter10:单摆作用-角变量求解的变量代换}可得
+\begin{equation}
+	\frac{\pl u}{\pl k_1} = -\frac{\sin u}{k_1\cos u}
+\end{equation}
+再根据第一类和第二类不完全椭圆积分的定义式\eqref{第一类椭圆积分-定义}和\eqref{第二类椭圆积分-定义}可得
+\begin{align}
+	\frac{\pl F}{\pl u} = \frac{1}{\sqrt{1-k_1^2\sin^2u}},\quad \frac{\pl E}{\pl u} = \sqrt{1-k_1^2\sin^2u}
+\end{align}
+最后利用附录中的恒等式\eqref{Appendix-A:第一类不完全椭圆积分的导数}和\eqref{Appendix-A:第二类不完全椭圆积分的导数}可得
+\begin{equation}
+	\frac{\pl W}{\pl k_1} = 4\omega_0k_1F(k_1,\sin u)
+\end{equation}
+所以角变量为
+\begin{equation}
+	\omega = \frac{\pi}{2K(k_1)}F(k_1,\sin u) = \frac{\pi}{2K(k_1)}F\left(k_1,\frac{1}{k_1}\sin \frac q2\right)
+	\label{chapter10:单摆振动情况的角变量}
+\end{equation}
+最后，根据式\eqref{chapter10:单摆振动情况的角变量}和式\eqref{chapter10:摆运动的能量积分}可得
+\begin{equation}
+\begin{cases}
+	\ds q = 2\arcsin\left[k_1\sn \left(\frac{2K(k_1)\omega}{\pi}\right)\right] \\[1.5ex]
+	\ds p = 2\omega_0k_1\cn \left(\frac{2K(k_1)\omega}{\pi}\right)
+\end{cases}
+\end{equation}
+其中$k_1=k_1(J)$是由式\eqref{chapter10:单摆振动情形下的作用量变量}确定的函数$J=J(k_1)$的反函数。
+
+在转动情况下，系统的相轨道如图\ref{chapter3:figure-势函数与对应的相轨道}中最上面一条线或最下面一条线。此时能量积分常数满足$E_0>\omega_0^2$，而且将Hamilton函数中的$p$换成$-p$，Hamilton函数的形式不变，因此此处只考虑$p>0$的转动情况。设$t=0$时有$q=0, p=p_0>0$，即有
+\begin{equation}
+	\frac12 p^2-\omega_0^2\cos q = E_0 = \frac12p_0^2 - \omega_0^2 = \frac{2\omega_0^2}{k_2^2} - \omega_0^2
+	\label{chapter10:单摆转动情形下能量积分的具体形式}
+\end{equation}
+其中
+\begin{equation}
+	k_2^2 = \frac{4\omega_0^2}{p_0^2} = \frac{2\omega_0^2}{\omega_0^2+E_0}
+\end{equation}
+此时作用量变量为
+\begin{align}
+	J = \frac{1}{2\pi} \oint p\mathd q = \frac{1}{2\pi} \oint \sqrt{2(E_0+\omega_0^2\cos q)}\mathd q = \frac{1}{2\pi} \int_{-\pi}^\pi \frac{2\omega_0}{k_2}\sqrt{1-k_2^2\sin^2\frac{q}{2}} \mathd q
+\end{align}
+做变量代换$q=2u$，并注意到被积函数的周期性可得
+\begin{align}
+	J &= \frac{4\omega_0}{\pi k_2} \int_0^{\frac{\pi}{2}}\sqrt{1-k_2^2\sin^2u}\mathd u = \frac{4\omega_0}{\pi k_2} E(k_2)
+	\label{chapter10:单摆转动情形下的作用量变量}
+\end{align}
+式\eqref{chapter10:单摆转动情形下的作用量变量}确定了作为$k_2$函数的$J$，将其两边对$k_2$求导，并利用附录中的恒等式\eqref{Appendix-A:第二类完全椭圆积分的导数}可得
+\begin{equation}
+	\frac{\pl J}{\pl k_2} = -\frac{4\omega_0}{\pi k_2^2} K(k_2) \neq 0
+\end{equation}
+所以$k_2$可以表示为$J$的函数，而且有
+\begin{equation}
+	\frac{\pl k_2}{\pl J} = -\frac{\pi k_2^2}{4\omega_0K(k_2)}
+\end{equation}
+新的Hamilton函数$\mathcal{H}$只依赖于$J$，可以表示为
+\begin{equation}
+	\mathcal{H} = E_0 = \frac{2\omega_0^2}{k_2^2}-\omega_0^2
+\end{equation}
+其中$k_2=k_2(J)$是式\eqref{chapter10:单摆转动情形下的作用量变量}定义的$J=J(k_2)$的反函数。据此可得角变量$\omega$满足的方程为
+\begin{equation}
+	\dif{\omega}{t} = \frac{\pl \mathcal{H}}{\pl J} = \frac{\pl \mathcal{H}}{\pl k_2} \frac{\pl k_2}{\pl J} = \frac{\pi \omega_0^2}{k_2K(k_2)}
+\end{equation}
+由于这个运动并不是周期运动，这说明在时间$T=\dfrac{2\pi}{\dot{\omega}}=\dfrac{2k_2K(k_2)}{\omega_0^2}$内，$q$的增量为$2\pi$。
+
+为了得到角变量的具体形式，首先求得Hamilton特征函数
+\begin{equation}
+	W = \int p\mathd q = \frac{2\omega_0}{k_2} \int \sqrt{1-k_2^2\sin^2\frac q2}\mathd q = \frac{4\omega_0}{k_2} E\left(k_2, \sin\frac q2\right)
+\end{equation}
+其中$k_2=k_2(J)$是由式\eqref{chapter10:单摆转动情形下的作用量变量}定义的$J=J(k_2)$的反函数。根据角变量的定义式\eqref{chapter10:角变量的定义}可得
+\begin{equation}
+	\omega = \frac{\pl W}{\pl J} = \frac{\pl W}{\pl k_2} \frac{\pl k_2}{\pl J}
+\end{equation}
+对函数$W=W(k_2,q)$求$k_2$的偏导数，可得
+\begin{equation}
+	\frac{\pl W}{\pl k_2} = -\frac{4\omega_0}{k_2^2}E\left(k_2, \sin\frac q2\right) + \frac{4\omega_0}{k_2}\frac{\pl E}{\pl k_2}\left(k_2, \sin\frac q2\right)
+\end{equation}
+利用附录中的恒等式\eqref{Appendix-A:第二类不完全椭圆积分的导数}可得
+\begin{equation}
+	\frac{\pl W}{\pl k_2} = -\frac{4\omega_0}{k_2^2}F\left(k_2, \sin\frac q2\right)
+\end{equation}
+所以角变量为
+\begin{equation}
+	\omega = \frac{\pi}{K(k_2)}F\left(k_2,\sin\frac q2\right)
+	\label{chapter10:单摆转动情形下的角变量}
+\end{equation}
+最后，根据式\eqref{chapter10:单摆转动情形下的角变量}和式\eqref{chapter10:单摆转动情形下能量积分的具体形式}可得
+\begin{equation}
+\begin{cases}
+	\ds q = 2\am\left(\frac{K(k_2)\omega}{\pi}\right) \\[1.5ex]
+	\ds p = \frac{2\omega_0}{k_2}\dn\left(\frac{K(k_2)\omega}{\pi}\right)
+\end{cases}
+\end{equation}
+其中$k_2=k_2(J)$是由式\eqref{chapter10:单摆转动情形下的作用量变量}定义的$J=J(k_2)$的反函数。
+
+\subsection{多自由度系统的作用-角变量}
+
+如果一个系统的Hamilton-Jacobi方程可以完全分离变量，则其Hamilton特征函数具有下面的形式：
+\begin{equation}
+	W = \sum_{i=1}^s W_i(q_i,E,D_2,\cdots,D_s)
+	\label{chapter10:多自由度系统的Hamilton特征函数}
+\end{equation}
+与单自由度系统的情形类似，此时有
+\begin{equation}
+	p_i = \frac{\pl W}{\pl q_i} = \frac{\pl W_i}{\pl q_i} = p_i(q_i,E,D_2,\cdots,D_s)\quad (i=1,2,\cdots,s)
+	\label{chapter10:多自由度系统相轨迹在某一相平面内的投影}
+\end{equation}
+这些方程给出了$2n$维相空间中的相轨迹在平面$q_i,p_i$上的投影。类似于单自由度系统的情形，如果每个平面内的运动都是周期的，即在平面$q_i,p_i$内的相轨迹投影\eqref{chapter10:多自由度系统相轨迹在某一相平面内的投影}是闭合曲线，或者变量$q_i$是以$q_{i0}$为周期的，那么可以对此系统引入作用-角变量来考察其运动。
+
+由于系统是完全分离变量的，所以对于固定的$E,D_2,\cdots,D_s$，在平面$q_i,p_i$内的运动都是独立的，按照单自由度系统的做法，考虑
+\begin{equation}
+	J_i = \frac{1}{2\pi} \oint p_i\mathd q_i = \frac{1}{2\pi} \oint \frac{\pl W_i}{\pl q_i}\mathd q_i\quad (i=1,2,\cdots,s)
+	\label{chapter10:多自由度系统的作用量变量}
+\end{equation}
+其中积分沿着运动的一个整周期。式\eqref{chapter10:多自由度系统的作用量变量}确定了$s$个函数$J_i=J_i(E,D_2,\cdots,D_s)$，由于$q_i,p_i$的独立性，这些函数$J_i$之间是相互独立的。用$J_1,J_2,\cdots,J_s$代替原来的$E,D_2,\cdots,D_s$作为新的广义动量，那么有
+\begin{equation*}
+	E = f_1(J_1,J_2,\cdots,J_s),\quad D_2 = f_2(J_1,J_2,\cdots,J_s),\quad \cdots,D_s = f_s(J_1,J_2,\cdots,J_s)
+\end{equation*}
+将其代入式\eqref{chapter10:多自由度系统的Hamilton特征函数}中可得
+\begin{equation}
+	W = W(q_1,q_2,\cdots,q_s,J_1,J_2,\cdots,J_s)
+\end{equation}
+由关系式
+\begin{equation}
+	p_i = \frac{\pl W}{\pl q_i},\quad \omega_i = \frac{\pl W}{\pl J_i}\quad (i=1,2,\cdots,s)
+\end{equation}
+给出的正则变换将原变量$q_i,p_i$变为作用-角变量$J_i,\omega_i$，新的Hamilton函数为
+\begin{equation}
+	\mathcal{H} = f_1(J_1,J_2,\cdots,J_s)
+\end{equation}
+角坐标$\omega_i$是循环坐标。在新坐标下的正则方程为
+\begin{equation}
+\begin{cases}
+	\ds \dif{J_i}{t} = -\dfrac{\pl \mathcal{H}}{\pl \omega_i} = 0 \\[1.5ex]
+	\ds \dif{\omega_i}{t} = \dfrac{\pl \mathcal{H}}{\pl J_i}(J_1,J_2,\cdots,J_s)
+\end{cases}\quad (i=1,2,\cdots,s)
+\end{equation}
+其中$\dfrac{\pl \mathcal{H}}{\pl J_i}$即为在相平面$q_i,p_i$中周期运动的角频率，这也说明利用这种方法可以通过研究函数$H$和$W$的性质直接得到所有周期运动的频率，完全不需要研究系统的运动。记第$i$个角变量$\omega_i$在第$j$个广义坐标$q_j$变化一个完整周期后得到的改变量为$\Delta\omega_{ij}$，则有
+\begin{align*}
+	\Delta\omega_{ij} = \oint \frac{\pl \omega_i}{\pl q_j}\mathd q_j = \oint \frac{\pl^2 W}{\pl J_i\pl q_j} \mathd q_j = \frac{\pl}{\pl J_i} \oint \frac{\pl W}{\pl q_j}\mathd q_j = \frac{\pl}{\pl J_i} (2\pi J_j) = 2\pi\delta_{ij}
+\end{align*}
+
+特别地，如果$q_i$是循环坐标，则相应的$p_i$是常数，在$q_i,p_i$内的相轨道是直线，那么在$q_i,p_i$平面内的运动可以认为是任意$q_{i0}$为周期的，不妨取$q_{i0}=2\pi$，那么
+\begin{equation*}
+	J_i = \frac{1}{2\pi}\oint p_i\mathd q_j = \frac{1}{2\pi} \int_0^{2\pi}p_i\mathd q_i = p_i
+\end{equation*}
+
+\subsection{Kepler问题中的作用-角变量}
+
+Kepler问题中，轨道可以是椭圆、双曲线或抛物线。当轨道是双曲线或抛物线时，运动没有任何形式的周期性，故此处只考虑轨道是椭圆的情形。在椭圆轨道的情形下，运动范围为$r_1\leqslant r \leqslant r_2$，其中$r_1=\dfrac{p}{1+e}, r_2=\dfrac{p}{1-e}$，此处$p$为轨道的半通径\footnote{半通径是指，圆锥曲线过某一焦点作其长轴（或实轴、对称轴）的垂线，该垂线与圆锥曲线交点到该焦点的距离。在椭圆的情形下，它与半长轴的关系为$p=a(1-e^2)$。}，$e$为轨道离心率。由此可得
+\begin{equation}
+	r_1+r_2 = \frac{2p}{1-e^2},\quad r_1r_2 = \frac{p^2}{1-e^2}
+	\label{chapter10:Kepler问题中的作用-角变量：几何参数之间的关系}
+\end{equation}
+
+这个系统的Hamilton函数如式\eqref{Hamilton-Jacobi方程解Kepler问题1}所示，即
+\begin{equation}
+	H = \frac{p_r^2}{2\mu}+\frac{p_\theta^2}{2\mu r^2}+\frac{p_\phi^2}{2\mu r^2\sin^2\theta} - \frac{\alpha}{r}
+	\label{chapter10:Kepler问题中的作用-角变量：Hamilton函数}
+\end{equation}
+其不含时Hamilton-Jacobi方程为
+\begin{equation}
+	\frac{1}{2\mu}\left[\left(\frac{\pl W}{\pl r}\right)^2 + \frac{1}{r^2}\left(\frac{\pl W}{\pl \theta}\right)^2 + \frac{1}{r^2\sin^2\theta}\left(\frac{\pl W}{\pl \phi}\right)^2\right] - \frac{\alpha}{r} = E
+\end{equation}
+这个方程的全积分已经在第\ref{chapter10:subsection-利用Hamilton-Jacobi方程求解Kepler问题}节求出，根据式\eqref{Hamilton-Jacobi方程解Kepler问题5}可得其Hamilton特征函数为\footnote{此处为简明起见，省去了积分号前的负号。}
+\begin{equation}
+	W = p_\phi\phi + \int \sqrt{2\mu E+\frac{2\mu\alpha}{r}-\frac{\beta^2}{r^2}} \mathd r + \int \sqrt{\beta^2-\frac{p_\phi^2}{\sin^2\theta}}\mathd \theta
+\end{equation}
+其中的常数$\alpha,\beta$与轨道参数的关系由式\eqref{Hamilton-Jacobi方程解Kepler问题38}给出，即
+\begin{equation}
+	p = \frac{\beta^2}{\mu\alpha},\quad e = \sqrt{1+\frac{2\beta^2E}{\mu\alpha^2}}
+	\label{chapter10:Kepler问题中的作用-角变量：几何参数与积分常数之间的关系}
+\end{equation}
+
+下面引入作用量变量$J_r, J_\theta, J_\phi$。因为$\phi$是循环坐标，所以根据上一节末尾的叙述，可以将作用量变量$J_\phi$取为
+\begin{equation}
+	J_\phi = p_\phi
+\end{equation}
+而$J_r$和$J_\theta$则由
+\begin{align}
+	J_r & = \frac{1}{2\pi} \oint p_r\mathd r = \frac{1}{2\pi} \oint \frac{\pl W}{\pl r} \mathd r = \frac{1}{2\pi} \oint \sqrt{2\mu E+\frac{2\mu\alpha}{r}-\frac{\beta^2}{r^2}} \mathd r \label{chapter10:Kepler问题中的作用-角变量：作用量变量定义1} \\
+	J_\theta & = \frac{1}{2\pi} \oint p_\theta\mathd \theta = \frac{1}{2\pi} \oint \sqrt{\beta^2-\frac{p_\phi^2}{\sin^2\theta}} \mathd \theta \label{chapter10:Kepler问题中的作用-角变量：作用量变量定义2}
+\end{align}
+来确定。
+
+为了计算作用量变量$J_\theta$，在球坐标系下，动能可以表示为
+\begin{equation}
+	T = \frac12\mu\left(\dot{r}^2 + r^2\dot{\theta}^2 + r^2\sin^2\theta\dot{\phi}^2\right) = \frac12 \left(p_r\dot{r} + p_\theta\dot{\theta} + p_\phi\dot{\phi}\right)
+	\label{chapter10:Kepler问题中的作用-角变量：球坐标中的动能}
+\end{equation}
+如果在轨道平面内引入极坐标$r, \varTheta$（$\varTheta$的具体数值由式\eqref{Hamilton-Jacobi方程解Kepler问题34-1}确定），则有
+\begin{equation}
+	T = \frac12\mu\left(\dot{r}^2 + r^2\dot{\varTheta}^2\right) = \frac12\left(p_r\dot{r} + \mu r^2\dot{\varTheta}^2\right)
+	\label{chapter10:Kepler问题中的作用-角变量：极坐标中的动能}
+\end{equation}
+对比式\eqref{chapter10:Kepler问题中的作用-角变量：球坐标中的动能}和式\eqref{chapter10:Kepler问题中的作用-角变量：极坐标中的动能}可得
+\begin{equation}
+	p_\theta\mathd \theta = \mu r^2\dot{\varTheta}\mathd \varTheta - p_\phi\mathd \phi
+\end{equation}
+将式\eqref{Hamilton-Jacobi方程解Kepler问题35}代入，可得
+\begin{equation}
+	p_\theta\mathd \theta = \beta\mathd \varTheta - p_\phi\mathd \phi
+\end{equation}
+质点运动一个周期的过程，角$\theta$完成一次振动，而角$\varTheta$和$\phi$将改变$2\pi$，所以根据式\eqref{chapter10:Kepler问题中的作用-角变量：作用量变量定义2}可得
+\begin{equation}
+	J_\theta = \beta - J_\phi
+	\label{chapter10:Kepler问题中的作用-角变量：作用量变量J_theta}
+\end{equation}
+
+下面计算作用量变量$J_r$，在运动的一个周期内，$r$将从$r_1$增加至$r_2$，随后减小至$r_1$，所以可将式\eqref{chapter10:Kepler问题中的作用-角变量：作用量变量定义1}化为
+\begin{equation}
+	J_r = 2\times\frac{1}{2\pi} \int_{r_1}^{r_2} \sqrt{2\mu E+\frac{2\mu\alpha}{r}-\frac{\beta^2}{r^2}} \mathd r = \frac{1}{\pi} \int_{r_1}^{r_2} \sqrt{2\mu E+\frac{2\mu\alpha}{r}-\frac{\beta^2}{r^2}} \mathd r
+	\label{chapter10:Kepler问题中的作用-角变量：作用量变量I_r的推导1}
+\end{equation}
+考虑到椭圆轨道的情形下，$E<0$，以及式\eqref{chapter10:Kepler问题中的作用-角变量：几何参数之间的关系}，可以将式\eqref{chapter10:Kepler问题中的作用-角变量：作用量变量I_r的推导1}改写为
+\begin{equation}
+	J_r = \frac{\sqrt{-2\mu E}}{\pi} \int_{r_1}^{r_2} \frac{\sqrt{(r-r_1)(r_2-r)}}{r}\mathd r
+\end{equation}
+做变量代换$r=\dfrac{r_1+r_2x^2}{1+x^2}$，则有
+\begin{equation}
+	J_r = \frac{2\sqrt{-2\mu E}(r_2-r_1)^2}{\pi} \int_0^{+\infty} \frac{x^2}{(r_1+r_2x^2)(1+x^2)^2}\mathd x
+	\label{chapter10:Kepler问题中的作用-角变量：中间过程1}
+\end{equation}
+将式\eqref{chapter10:Kepler问题中的作用-角变量：中间过程1}中的被积函数表示为
+\begin{align*}
+	\frac{x^2}{(r_1+r_2x^2)(1+x^2)^2} = \frac{1}{r_2-r_1}\left[-\frac{r_1r_2}{r_2-r_1} \frac{1}{r_1+r_2x^2} + \frac{r_1}{r_2-r_1} \frac{1}{1+x^2} + \frac{1}{(1+x^2)^2}\right]
+\end{align*}
+由于
+\begin{equation*}
+	\int_0^{+\infty} \frac{\mathd x}{r_1+r_2x^2} = \frac{\pi}{2\sqrt{r_1r_2}},\quad \int_0^{+\infty} \frac{\mathd x}{1+x^2} = \frac\pi2,\quad \int_0^{+\infty} \frac{\mathd x}{(1+x^2)^2} = \frac\pi4
+\end{equation*}
+将这些关系式代入式\eqref{chapter10:Kepler问题中的作用-角变量：中间过程1}中可得
+\begin{equation}
+	J_r = \frac{\sqrt{-2\mu E}}{2}(r_1+r_2-2\sqrt{r_1r_2})
+	\label{chapter10:Kepler问题中的作用-角变量：中间过程2}
+\end{equation}
+将式\eqref{chapter10:Kepler问题中的作用-角变量：几何参数之间的关系}和式\eqref{chapter10:Kepler问题中的作用-角变量：几何参数与积分常数之间的关系}代入，并注意到式\eqref{chapter10:Kepler问题中的作用-角变量：作用量变量J_theta}，可以将式\eqref{chapter10:Kepler问题中的作用-角变量：中间过程2}写成
+\begin{equation}
+	J_r = \alpha\sqrt{-\frac{\mu}{2E}} - (J_\theta+J_\phi)
+	\label{chapter10:Kepler问题中的作用-角变量：作用量变量J_r}
+\end{equation}
+从式\eqref{chapter10:Kepler问题中的作用-角变量：作用量变量J_r}中可得
+\begin{equation}
+	E = -\frac{\mu\alpha^2}{2(J_r+J_\theta+J_\phi)^2}
+\end{equation}
+进而可得变换后的Hamilton函数为
+\begin{equation}
+	\mathcal{H} = -\frac{\mu\alpha^2}{2(J_r+J_\theta+J_\phi)^2}
+\end{equation}
+与作用量变量$J_r, J_\theta, J_\phi$的共轭的角变量记为$\omega_r, \omega_\theta, \omega_\phi$，因为有
+\begin{equation*}
+	\frac{\pl \mathcal{H}}{\pl J_r} = \frac{\pl \mathcal{H}}{\pl J_\theta} = \frac{\pl \mathcal{H}}{\pl J_\phi}
+\end{equation*}
+所以三个角变量的频率相等，这也与椭圆轨道的周期性和封闭性相对应。
+
+\subsection{Delaunay元素}
+
+下面引入比上节给出的作用-角变量$J_r, J_\theta, J_\phi, \omega_r, \omega_\theta, \omega_\phi$具有更明确几何意义和物理意义的新变量$J_i, \omega_i(i=1,2,3)$。为此，先做变换
+\begin{align}
+	& \omega_1 = \omega_\phi-\omega_\theta,\quad \omega_2 = \omega_\theta-\omega_r,\quad \omega_3 = \omega_r \label{chapter10:德洛内元素的定义-角变量} \\
+	& J_1 = J_\phi,\quad J_2 = J_\theta+J_\phi,\quad J_3 = J_r+J_\theta+J_\phi \label{chapter10:德洛内元素的定义-作用量变量}
+\end{align}
+容易验证式\eqref{chapter10:德洛内元素的定义-角变量}和式\eqref{chapter10:德洛内元素的定义-作用量变量}表示的变换是正则变换。
+
+利用这组新变量，新的Hamilton函数可以表示为
+\begin{equation}
+	\mathcal{H} = -\frac{\mu\alpha^2}{2J_3^2}
+\end{equation}
+
+下面解释新变量$J_i,\omega_i$的物理意义。由式\eqref{chapter10:Kepler问题中的作用-角变量：作用量变量J_r}可得
+\begin{equation}
+	J_3 = \alpha\sqrt{-\frac{\mu}{2E}}
+\end{equation}
+由于半长轴满足
+\begin{equation}
+	a = \frac12(r_1+r_2) = \frac{p}{1-e^2} = -\frac{\alpha}{2E}
+	\label{chapter10:德洛内元素-半长轴}
+\end{equation}
+所以
+\begin{equation}
+	J_3 = \sqrt{\mu\alpha a}
+\end{equation}
+进而有
+\begin{equation}
+	\dif{\omega_3}{t} = \frac{\pl \mathcal{H}}{\pl J_3} = \frac{\mu\alpha^2}{J_3^3} = \sqrt{\frac{\alpha}{\mu a^3}}
+	\label{chapter10:德洛内元素的物理意义1}
+\end{equation}
+根据角变量的物理意义可知，式\eqref{chapter10:德洛内元素的物理意义1}中的$\dif{\omega_3}{t}$实际上应该等于$\dfrac{2\pi}{T}$，其中$T$为椭圆轨道的周期，这个结果与第\ref{chapter4:subsection-Kepler行星运动定律}节的Kepler第三定律式\eqref{chapter4:Kepler第三定律1}的结果是相同的。矢径转动的平均角速度$n=\dfrac{2\pi}{T}$在天体力学中称为{\bf 平运动}，由此可知
+\begin{equation*}
+	\dif{\omega_3}{t} = n
+\end{equation*}
+于是可令
+\begin{equation}
+	\omega_3 = n(t-t_0)
+\end{equation}
+其中$t_0$为过近心点时刻，这个角度在天体力学中称为{\bf 平近点角}。
+
+下面来看共轭正则变量$J_2, \omega_2$。根据式\eqref{chapter10:Kepler问题中的作用-角变量：作用量变量J_theta}可得$J_2=\beta$。而对比式\eqref{chapter10:Kepler问题中的作用-角变量：几何参数与积分常数之间的关系}和第\ref{chapter4:subsection-轨道方程}节的式\eqref{chapter4:Kepler问题的轨道参数}可知，作用量变量$J_2$实际上是质点$\mu$对力心的角动量大小。利用式\eqref{chapter10:德洛内元素-半长轴}和式\eqref{chapter10:Kepler问题中的作用-角变量：几何参数与积分常数之间的关系}可得
+\begin{equation}
+	J_2 = \sqrt{\mu\alpha a(1-e^2)}
+\end{equation}
+因为$\dif{\omega_2}{t} = \dfrac{\pl \mathcal{H}}{\pl J_2} = 0$，所以$\omega_2$是在轨道平面内的某个常值角度，可令
+\begin{equation}
+	\omega_2 = \tilde{\omega}
+\end{equation}
+其中$\tilde{\omega}$是近心点幅角（见第\ref{chapter10:subsection-利用Hamilton-Jacobi方程求解Kepler问题}节）。
+
+最后来看变量$J_1, \omega_1$，根据式\eqref{chapter10:德洛内元素的定义-作用量变量}可知$J_1=J_\phi=p_\phi$，即$J_1$是质点$\mu$对力心角动量在$z$轴上的投影，所以
+\begin{equation}
+	J_1 = \beta\cos i = J_2\cos i = \sqrt{\mu\alpha a(1-e^2)}\cos i
+\end{equation}
+其中$i$是轨道倾角。再考虑到$\dif{\omega_1}{t} = \dfrac{\pl \mathcal{H}}{\pl J_1} = 0$可得，$\omega_1$是平面$Oxy$内的某个常值角度，可令
+\begin{equation}
+	\omega_1 = \varOmega
+\end{equation}
+其中$\varOmega$为升交点赤经。
+
+这样引入的共轭正则变量$J_1,J_2,J_3,\omega_1,\omega_2,\omega_3$称为Delaunay正则变量或简称Delaunay元素\footnote{Charles-Eugène Delaunay，德洛内，法国天文学家、数学家。}，常用记号$H,G,L,h,g,l$来表示（不要将这些符号与其它符号相同的物理量混淆！），现列举如下：
+\begin{equation}
+\begin{cases}
+	H = \sqrt{\mu\alpha a(1-e^2)}\cos i,\quad h=\varOmega \\
+	G = \sqrt{\mu\alpha a(1-e^2)},\quad g=\tilde{\omega} \\
+	L = \sqrt{\mu\alpha a},\quad l = n(t-t_0)
+\end{cases}
+\end{equation}
+
 \section{从“几何力学”到“波动力学”}
 
 \subsection{作用波与作用波面}
 
-考虑单粒子的Hamilton函数
+简明起见，首先考虑一个质点的Hamilton函数
 \begin{equation*}
 	H(\mbf{r},\mbf{p}) = \frac{\mbf{p}^2}{2m} + V(\mbf{r})
 \end{equation*}
-则有
+此时，质点的Hamilton主函数为
 \begin{equation*}
+	S(\mbf{r},\mbf{D},t) = W(\mbf{r},\mbf{D}) - Et
+\end{equation*}
+其中$W$为该质点的Hamilton特征函数。
+
+在这里，方程“$W=\text{常数}$”给出了空间中的一族静止曲面，而方程“$S=\text{常数}$”给出的则是在空间中一族随时间变化的曲面。在某一时刻$t$，曲面族“$S=\text{常数}$”的某一成员“$S=S_0$”将与曲面族“$W=\text{常数}$”中的某一成员“$W=S_0+Et$”重合，而在下一时刻，“$S=S_0$”将重合于“$W=\text{常数}$”中的另一成员。这样，曲面“$S=S_0$”可以看作是在空间中传播的某种“波面”。
+
+根据变换公式\eqref{chapter10:Hamilton-Jacobi方程-动量与Hamilton主函数之间的关系}可知
+\begin{equation}
 	\mbf{p} = \frac{\pl S}{\pl \mbf{r}} = \bnb S
-\end{equation*}
-考虑不含时Hamilton-Jacobi方程，则有
-\begin{equation*}
-	S(\mbf{r},t) = W(\mbf{r}) - Et
-\end{equation*}
-则不含时Hamilton-Jacobi方程可以写作
-\begin{equation*}
-	\frac{1}{2m} (\bnb W)^2 + V = E
-\end{equation*}
-此处
-\begin{equation*}
-	\left|\bnb W\right| = p = \sqrt{2m(E-V(\mbf{r}))}
-\end{equation*}
-由此可称
-\begin{equation*}
-	S(\mbf{r},t) = W(\mbf{r}) - Et = S_0
-\end{equation*}
-为{\heiti 运动曲面}。即在空间传播的等$S$面可视为{\heiti 作用波}波面，其正交曲线族为粒子在不同初始条件（能量相同，初始动量不同）下的轨道。波面法向亦即轨道切向为粒子动量方向。初始条件决定运动表现为粒子在作用波波面引导下前进。
+	\label{chapter10:作用波与作用波面-式1}
+\end{equation}
+即该质点的动量总是沿着波面的法线方向，与波面相正交的曲线族就是波线族。既然波线的方向与质点的动量方向相同，由此可知，每一根波线实际上都是质点在不同初始条件下的可能轨道。据此，可以将等$S$面形成的这种波称为{\bf 作用波}，其波面即称为{\bf 作用波面}。
+
+% 对$S=W(\mbf{r},\mbf{D})-Et=S_0$两端求微分可得
+% \begin{equation}
+	% \mathd S = \bnb W \cdot \mathd \mbf{r}-E\mathd t = 0
+% \end{equation}
+% 考虑到$\bnb W \parallel \mathd \mbf{r}$，据此可以得到作用波的相速度
+% \begin{equation}
+	% u = \dif{r}{t} = \frac{E}{|\bnb W|}
+% \end{equation}
+% 由式\eqref{chapter10:作用波与作用波面-式1}可得
+% \begin{equation*}
+	% \mbf{p} = \bnb S = \bnb W
+% \end{equation*}
+% 所以有
+% \begin{equation}
+	% u = \frac{E}{p}
+% \end{equation}
 
 \begin{figure}[htb]
 \centering
@@ -1780,16 +2293,16 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	}
 	dot(pic,rotate(56)*para1(sigma,tau));
 	draw(pic,Label("$\boldsymbol{p}$",EndPoint,Relative(W)),rotate(56)*(para1(sigma,tau)--para1(sigma,tau)+0.5*para1dir(sigma,tau)),Arrow);
-	label(pic,"$W(\boldsymbol{r})=S_0+Et$",rotate(56)*para1(sigmas[1],taus[2]),6*N);
+	//label(pic,"$W(\boldsymbol{r})=S_0+Et$",rotate(56)*para1(sigmas[1],taus[2]),6*N);
 	add(pic);
 \end{asy}
-\caption{作用波波面示意图}
+\caption{作用波面示意图}
 \label{作用波波面示意图}
 \end{figure}
 
 \subsection{波动光学与几何光学的关系}
 
-光的“微粒说”与“波动说”的理论统一由Hamilton完成。考虑介质电磁波方程
+光是一种电磁波，介质中电磁波满足的波动方程为
 \begin{equation}
 	\nabla^2 \varPhi - \frac{1}{u^2} \frac{\pl^2 \varPhi}{\pl t^2} = 0
 	\label{介质电磁波方程}
@@ -1800,7 +2313,7 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \begin{equation*}
 	\varPhi(\mbf{r},t) = \phi(\mbf{r}) \mathrm{e}^{-\mathrm{i} \omega t}
 \end{equation*}
-将其代入\eqref{介质电磁波方程}中可得振幅$\phi(\mbf{r})$应满足的方程为
+将其代入式\eqref{介质电磁波方程}中可得振幅$\phi(\mbf{r})$应满足的方程为
 \begin{equation}
 	\nabla^2 \phi + k^2 \phi = 0
 	\label{单色波振幅方程}
@@ -1811,7 +2324,7 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 \begin{equation*}
 	\phi(\mbf{r}) = A\mathrm{e}^{\mathrm{i}\mbf{k}\cdot \mbf{r}} = A \mathrm{e}^{\mathrm{i} k_0 L(\mbf{r})}
 \end{equation*}
-式中，函数$L(\mbf{r}) = \dfrac{\mbf{k}}{k} \cdot n\mbf{r}$称为{\heiti 光程函数}。即单色波在均匀介质中的波函数为
+式中，函数$L(\mbf{r}) = \dfrac{\mbf{k}}{k} \cdot n\mbf{r}$称为{\heiti 光程函数}，简称{\bf 程函}。即单色波在均匀介质中的波函数为
 \begin{equation*}
 	\varPhi(\mbf{r},t) = A \mathrm{e}^{\mathrm{i}(k_0 L(\mbf{r})-\omega t)}
 \end{equation*}
@@ -1856,12 +2369,12 @@ $u$和$v$为常数的曲面是两族以$z$轴为对称轴的旋转抛物面，�
 	\frac{1}{k_0^2} \nabla^2 A + \frac{\mathrm{i}}{k_0} (A\nabla^2 L + 2\bnb A \cdot \bnb L) - \left[(\bnb L)^2 - n^2\right] A = 0
 	\label{非均匀介质中的单色波方程}
 \end{equation}
-在短波长极限（几何光学极限）下，即$\lambda_0 \to 0$时，此时$k_0 \to +\infty$，在此近似下式\eqref{非均匀介质中的单色波方程}的前两项均为小量，忽略之可得{\heiti 程函方程}
+在短波长极限（几何光学极限）下，即$\lambda_0 \to 0$时，此时$k_0 \to +\infty$，在此近似下式\eqref{非均匀介质中的单色波方程}的前两项均为小量，忽略之可得
 \begin{equation}
 	(\bnb L)^2 = n^2
 	\label{程函方程}
 \end{equation}
-在此情形下，单色波的相位为
+方程\eqref{程函方程}是几何光学的基本方程，称为{\heiti 程函方程}。在此情形下，单色波的相位为
 \begin{equation*}
 	\psi(\mbf{r},t) = k_0 L(\mbf{r}) - \omega t
 \end{equation*}
@@ -1894,7 +2407,7 @@ de Broglie提出物质波假说，即质点所对应的“物质波”角频率�
 	\mbf{p} = \hbar \mbf{k}
 \end{cases}
 \end{equation}
-假设“单色”物质波振幅同样满足方程\eqref{单色波振幅方程}
+假设“单色”物质波振幅同样满足方程\eqref{单色波振幅方程}，即
 \begin{equation*}
 	\nabla^2 \phi + k^2 \phi = 0
 \end{equation*}
@@ -1904,7 +2417,7 @@ de Broglie提出物质波假说，即质点所对应的“物质波”角频率�
 \end{equation*}
 可得物质波振幅应满足的方程为
 \begin{equation}
-	\left[-\frac{\hbar^2}{2m} \nabla^2 + V(\mbf{r})\right] \phi = E\phi
+	-\frac{\hbar^2}{2m} \nabla^2\phi + V(\mbf{r})\phi = E\phi
 	\label{定态Schrodinger方程}
 \end{equation}
 方程\eqref{定态Schrodinger方程}即为{\heiti 定态Schr\"{o}dinger方程}。
@@ -1919,7 +2432,7 @@ de Broglie提出物质波假说，即质点所对应的“物质波”角频率�
 \end{equation}
 将定态Schr\"{o}dinger方程代入上式，即有{\heiti 含时Schr\"{o}dinger方程}
 \begin{equation}
-	\mathrm{i}\hbar \frac{\pl \varPhi}{\pl t} = \left[-\frac{\hbar^2}{2m} \nabla^2 + V(\mbf{r})\right] \varPhi
+	\mathrm{i}\hbar \frac{\pl \varPhi}{\pl t} = -\frac{\hbar^2}{2m} \nabla^2\varPhi + V(\mbf{r})\varPhi
 	\label{含时Schrodinger方程}
 \end{equation}
 类比$\bnb \dfrac{S}{\hbar} = \dfrac{\mbf{p}}{\hbar} = \mbf{k}$与波动光学的$\bnb \psi = \mbf{k}$，可知波函数的相位即为$\dfrac{S}{\hbar}$，因此波函数又可表示为

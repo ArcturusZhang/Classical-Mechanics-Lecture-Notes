@@ -66,11 +66,11 @@
 	\begin{equation*}
 		\mu \ddot{\mbf{r}} = -\frac{\pl V}{\pl \mbf{r}}
 	\end{equation*}
-	即$\mu$在势场$V$中的运动。
+	即质点$\mu$在势场$V$中的运动。
 \end{enumerate}
-系统的动能$T=T_C+T'$，其中$\displaystyle T_C = \frac12 M\dot{\mbf{R}}^2$为整体动能，$\displaystyle T' = \frac12 \mu\dot{\mbf{r}}^2$为两体内动能。系统的角动量$\mbf{l} = \mbf{l}_C+\mbf{l}'$，其中$\mbf{l}_C = \mbf{R} \times M\dot{\mbf{R}}$为轨道角动量，
+系统的动能$T=T_C+T'$，其中$\displaystyle T_C = \frac12 M\dot{\mbf{R}}^2$为整体动能，$\displaystyle T' = \frac12 \mu\dot{\mbf{r}}^2$为两体内动能。系统的角动量$\mbf{L} = \mbf{L}_C+\mbf{L}'$，其中$\mbf{L}_C = \mbf{R} \times M\dot{\mbf{R}}$为轨道角动量，
 \begin{equation*}
-	\mbf{l}' = \mbf{r}'_1 \times m_1 \dot{\mbf{r}}'_1 + \mbf{r}'_2 \times m_2 \dot{\mbf{r}}'_2 = \mbf{r} \times \mu \dot{\mbf{r}}
+	\mbf{L}' = \mbf{r}'_1 \times m_1 \dot{\mbf{r}}'_1 + \mbf{r}'_2 \times m_2 \dot{\mbf{r}}'_2 = \mu \mbf{r} \times \dot{\mbf{r}}
 \end{equation*}
 为内秉角动量。
 
@@ -88,9 +88,9 @@
 \end{equation}
 故$\mu$的运动能量守恒。再考虑内力矩
 \begin{equation}
-	\dot{\mbf{l}}{}' = \mbf{M}' = \mbf{r} \times \left(-V'(r) \frac{\mbf{r}}{r}\right) = \mbf{0}
+	\dif{\mbf{L}'}{t} = \mbf{M}' = \mbf{r} \times \left(-V'(r) \frac{\mbf{r}}{r}\right) = \mbf{0}
 \end{equation}
-故$\mu$的运动内秉角动量守恒，而且有$\mbf{r} \perp \mbf{l}'$，即$\mu$在垂直于内秉角动量的固定平面内运动。因此相对运动可用平面极坐标系来描述，即取$r,\theta$为广义坐标，则此时的Lagrange函数为
+故$\mu$的运动内秉角动量守恒，而且有$\mbf{r} \perp \mbf{L}'$，即$\mu$在垂直于内秉角动量的固定平面内运动。因此相对运动可用平面极坐标系来描述，即取$r,\theta$为广义坐标，则此时的Lagrange函数\footnote{在本章中，Lagrange函数和角动量得符号都是$L$，但角动量是矢量，所以并不会造成混淆。}为
 \begin{equation}
 	L' = \frac12 \mu \left(\dot{r}^2 + r^2 \dot{\theta}^2\right) - V(r)
 \end{equation}
@@ -250,11 +250,11 @@ Lagrange函数$L'$不显含时间，故
 
 圆轨道存在，即径向运动处于静止状态，即可以表示为
 \begin{equation*}
-	\frac{\mathrm{d} U}{\mathrm{d} r} \bigg|_{r_m} = 0
+	\frac{\mathrm{d} U}{\mathrm{d} r} \bigg|_{r=r_m} = 0
 \end{equation*}
 稳定要求在圆轨道上等效势能取极小值，即
 \begin{equation*}
-	\frac{\mathrm{d}^2 U}{\mathrm{d} r^2} \bigg|_{r_m} > 0
+	\frac{\mathrm{d}^2 U}{\mathrm{d} r^2} \bigg|_{r=r_m} > 0
 \end{equation*}
 
 \begin{example}
@@ -612,7 +612,7 @@ Lagrange函数$L'$不显含时间，故
 
 当$\alpha<0$时（即引力情形）称为{\bf Kepler问题}。
 
-\subsection{轨道方程}
+\subsection{轨道方程}\label{chapter4:subsection-轨道方程}
 
 对于Kepler问题，Binet方程\eqref{Binet方程}为
 \begin{equation}
@@ -632,10 +632,11 @@ Lagrange函数$L'$不显含时间，故
 	r = \frac{r_m}{1+Ar_m \cos \theta}
 \end{equation*}
 记
-\begin{equation*}
+\begin{equation}
 	p = |r_m| = \frac{l^2}{\mu |\alpha|},\quad e = Ap
-\end{equation*}
-其中$p$为{\heiti 半通径}，$e$为{\heiti 离心率}，由此可得Kepler问题的轨道方程为
+	\label{chapter4:Kepler问题的轨道参数}
+\end{equation}
+其中$p$为{\heiti 轨道参数}，$e$为{\heiti 离心率}，由此可得Kepler问题的轨道方程为
 \begin{equation}
 	r = \frac{p}{1+e\cos \theta}
 	\label{Kepler问题的轨道方程}
@@ -649,14 +650,14 @@ Lagrange函数$L'$不显含时间，故
 \begin{equation*}
 	r_{\mathrm{min}} = \frac{p}{1+e}
 \end{equation*}
-此点一般称为{\heiti 近日点}。在近日点有$\dot{r}\big|_{r=r_{\mathrm{min}}} = 0$，因此$r_{\mathrm{min}}$满足
+此点一般称为{\heiti 近日点}或{\bf 近心点}。在近日点有$\dot{r}\big|_{r=r_{\mathrm{min}}} = 0$，因此$r_{\mathrm{min}}$满足
 \begin{equation*}
 	\frac{l^2}{2\mu r_{\mathrm{min}}^2} + \frac{\alpha}{r_{\mathrm{min}}} = E
 \end{equation*}
 由此可得离心率与系统总能量的关系
-\begin{equation*}
+\begin{equation}
 	e = \sqrt{1+\frac{2El^2}{\mu\alpha^2}} = \sqrt{1-\frac{E}{U_{\mathrm{min}}}}
-\end{equation*}
+\end{equation}
 % 对于斥力的情形，根据轨道方程可得质点与原点的最短距离为\footnote{斥力情形下，轨道为双曲线的右支，此时矢径取负值}
 % \begin{equation*}
 	% r_{\mathrm{min}} = -\frac{p}{1+e}
@@ -721,7 +722,7 @@ Lagrange函数$L'$不显含时间，故
 	label("$E=0$",(-0.7*xmax,ymax),N);
 	label("$E>0$",(-0.25*xmax,ymax),N,blue);
 	//label("$\alpha<0$",(-0.25*xmax,-ymax),S,blue);
-	label("$E>0$",(0.7*xmax,ymax),N,purple);
+	//label("$E>0$",(0.7*xmax,ymax),N,purple);
 	//label("$\alpha>0$",(0.7*xmax,-ymax),S,purple);
 	label("$E=U_{\mathrm{min}}$",relpoint(scale(p)*unitcircle,0.06),E,red);
 \end{asy}
@@ -746,7 +747,7 @@ Lagrange函数$L'$不显含时间，故
 \begin{equation*}
 	r_{\max} = \frac{p}{1-e}
 \end{equation*}
-此点一般称为{\bf 远日点}。因此可有椭圆的半长轴为
+此点一般称为{\bf 远日点}或{\bf 远心点}。因此可有椭圆的半长轴为
 \begin{equation*}
 	a = \frac12 \left(\frac{p}{1-e}+\frac{p}{1+e}\right) = \frac{\alpha}{2E} > 0
 \end{equation*}
@@ -792,7 +793,7 @@ Lagrange函数$L'$不显含时间，故
 	//圆心角的几何意义
 	real x,a,b,c,theta,r;
 	a = 2;
-	b = 1.6;
+	b = 1.2;
 	x = 2.5;
 	c = sqrt(a^2-b^2);
 	draw((-x,0)--(x,0));
@@ -800,20 +801,22 @@ Lagrange函数$L'$不显含时间，故
 	draw(xscale(a)*yscale(b)*unitcircle,linewidth(0.8bp));
 	draw(scale(a)*unitcircle);
 	dot((c,0));
-	theta = 30;
+	theta = 60;
 	draw((0,0)--a*dir(theta));
 	pair P;
 	P = intersectionpoint(xscale(a)*yscale(b)*unitcircle,a*dir(theta)--(a*dir(theta).x,0));
 	draw((c,0)--P);
 	draw(a*dir(theta)--(a*dir(theta).x,0));
-	label("$p$",(P+(a*dir(theta).x,0))/2,E);
+	label("$p$",(P+(a*dir(theta).x,0))/2,W);
 	r = 0.3;
 	draw(Label("$\xi$",MidPoint,Relative(E)),arc((0,0),r,0,theta));
 	r = 0.15;
 	draw(Label("$\theta$",MidPoint,Relative(E)),arc((c,0),r,0,degrees(P-(c,0))));
 	label("$a$",(a,0),SE);
 	label("$b$",(0,b),SW);
+	label("$a$",(0,a),NW);
 	label("$ae$",(c,0),S);
+	dot("$P$",P,NE);
 \end{asy}
 \caption{圆心角的几何意义}
 \label{圆心角的几何意义}
@@ -895,12 +898,11 @@ Lagrange函数$L'$不显含时间，故
 
 在Kepler势场$V(r) = \dfrac{\alpha}{r}$中存在其特有的运动积分，称为{\bf Laplace-Runge-Lenz矢量}
 \begin{equation}
-	\mbf{A} = \mbf{v} \times \mbf{l} + \frac{\alpha \mbf{r}}{r}
+	\mbf{A} = \mbf{v} \times \mbf{L} + \frac{\alpha \mbf{r}}{r}
 \end{equation}
 直接求其时间导数可得
 \begin{align*}
-	\frac{\mathrm{d}\mbf{A}}{\mathrm{d}t} & = \dot{\mbf{v}} \times \mbf{l} + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3} \\
-	& = \dot{\mbf{v}} \times (\mu \mbf{r} \times \mbf{v}) + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3} \\
+	\frac{\mathrm{d}\mbf{A}}{\mathrm{d}t} & = \dot{\mbf{v}} \times \mbf{L} + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3} = \dot{\mbf{v}} \times (\mu \mbf{r} \times \mbf{v}) + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3} \\
 	& = \mu\mbf{r}(\mbf{v}\cdot\dot{\mbf{v}}) - \mu\mbf{v}(\mbf{r}\cdot \dot{\mbf{v}}) + \frac{\alpha \mbf{v}}{r} - \frac{\alpha \mbf{r}(\mbf{v}\cdot \mbf{r})}{r^3}
 \end{align*}
 将运动方程$\mu \dot{\mbf{v}} = \dfrac{\alpha\mbf{r}}{r^3}$代入，即可得
@@ -909,11 +911,11 @@ Lagrange函数$L'$不显含时间，故
 \end{equation*}
 由此便验证了Laplace-Runge-Lenz矢量$\mbf{A}$是运动积分。再考虑
 \begin{align*}
-	A^2 & = \mbf{A} \cdot \mbf{A} = \left(\mbf{v} \times \mbf{l} + \alpha \mbf{e}_r\right) \cdot \left(\mbf{v} \times \mbf{l} + \alpha \mbf{e}_r\right) = v^2 l^2 + 2\alpha \mbf{e}_r \cdot (\mbf{v} \times \mbf{l}) + \alpha^2 \\
-	& = v^2 l^2 + \frac{2\alpha}{mr} \mbf{l} \cdot (\mbf{r} \times \mbf{p}) + \alpha^2 = v^2 l^2 + \frac{2\alpha}{mr} l^2 + \alpha^2 = \frac{2}{m}\left(\frac12 mv^2 + \frac{\alpha}{r}\right) l^2 + \alpha^2 \\
-	& = \frac{2EL^2}{m} + \alpha^2 = \alpha^2 e^2
+	A^2 & = \mbf{A} \cdot \mbf{A} = \left(\mbf{v} \times \mbf{L} + \alpha \mbf{e}_r\right) \cdot \left(\mbf{v} \times \mbf{L} + \alpha \mbf{e}_r\right) = v^2 l^2 + 2\alpha \mbf{e}_r \cdot (\mbf{v} \times \mbf{L}) + \alpha^2 \\
+	& = v^2 l^2 + \frac{2\alpha}{\mu r} \mbf{L} \cdot (\mbf{r} \times \mbf{p}) + \alpha^2 = v^2 l^2 + \frac{2\alpha}{\mu r} l^2 + \alpha^2 = \frac{2}{\mu}\left(\frac12\mu v^2 + \frac{\alpha}{r}\right) l^2 + \alpha^2 \\
+	& = \frac{2El^2}{\mu} + \alpha^2 = \alpha^2 e^2
 \end{align*}
-即Laplace-Runge-Lenz矢量的大小与离心率成正比
+即Laplace-Runge-Lenz矢量的大小与离心率成正比。在椭圆轨道的特殊情形下，Laplace-Runge-Lenz矢量如图\ref{Laplace-Runge-Lenz矢量}所示。
 
 \begin{figure}[htb]
 \centering
@@ -958,12 +960,12 @@ Lagrange函数$L'$不显含时间，故
 \label{Laplace-Runge-Lenz矢量}
 \end{figure}
 
-\subsection{Kepler行星运动定律}
+\subsection{Kepler行星运动定律}\label{chapter4:subsection-Kepler行星运动定律}
 
 \begin{itemize}
 	\item {\heiti Kepler第一定律}：行星以太阳为焦点，沿椭圆轨道运动。椭圆轨道的半长轴半短轴分别为
 	\begin{align}
-		a & = \frac12 \left(\frac{p}{1+e}+\frac{p}{1-e}\right) = \frac{\alpha}{2E} \\
+		a & = \frac12 \left(\frac{p}{1+e}+\frac{p}{1-e}\right) = \frac{|\alpha|}{2|E|} \\
 		b & = \frac{p}{\sqrt{1-e^2}} = \frac{l}{\sqrt{2\mu|E|}}
 	\end{align}
 	由此可得，能量取决于长轴，与形状无关；长轴相同，短轴长的轨道角动量大。
@@ -977,12 +979,18 @@ Lagrange函数$L'$不显含时间，故
 	\end{equation}
 	\item {\heiti Kepler第三定律}：行星公转周期的平方正比于椭圆半长轴的立方。根据第二定律中求出的面积速度，可以求出行星公转的周期
 	\begin{equation}
-		T = \frac{\pi ab}{l/2\mu} = \pi |\alpha| \sqrt{\frac{\mu}{2|E|^3}} = \pi \sqrt{\frac{4\mu a^3}{|\alpha|}}
+		T = \frac{\pi ab}{\dfrac{l}{2\mu}} = \pi |\alpha| \sqrt{\frac{\mu}{2|E|^3}} = \pi \sqrt{\frac{4\mu a^3}{|\alpha|}}
 	\end{equation}
 	由此即
 	\begin{equation}
 		\frac{T^2}{a^3} = \frac{4\pi^2 \mu}{|\alpha|}
+		\label{chapter4:Kepler第三定律1}
 	\end{equation}
+	此处$\mu=\dfrac{Mm}{M+m}$，根据万有引力定律，$\alpha=-GMm$，其中$G$为万有引力常数。所以有
+	\begin{equation}
+		\frac{T^2}{a^3} = \frac{4\pi^2}{G(M+m)} \approx \frac{4\pi^2}{GM} \quad (M\gg m)
+	\end{equation}
+	Kepler第三定律指出，比值$\dfrac{T^2}{a^3}$是一个仅与中心天体性质相关的常数，这实际上仅在中心天体的质量远大于行星的质量$M\gg m$时能够成立。
 \end{itemize}
 
 \section{粒子弹性散射}
@@ -1104,42 +1112,61 @@ Lagrange函数$L'$不显含时间，故
 \begin{asy}
 	size(350);
 	//弹性散射的几何参数
-	real p,e,theta0,b,l;
-	picture tmp;
-	real fr(real theta){
-		return p/(e*cos(theta)-1);
+	real a,e,theta,theta2,lm;
+	pair F;
+	picture pic;
+	pair hyperbolic(real xi){
+		return (a*cosh(xi), a*sqrt(e*e-1)*sinh(xi));
 	}
-	pair xy(real theta){
-		return (fr(theta)*cos(theta),fr(theta)*sin(theta));
-	}
-	p = 1;
+	a = 1;
 	e = 2;
-	theta0 = acos(1/e);
-	b = p/(e*sqrt(e*e-1));
-	l = 10;
-	draw(tmp,rotate(180-theta0/pi*180)*graph(xy,-0.32*pi,0.32*pi),red+linewidth(1bp));
-	draw(tmp,rotate(180-theta0/pi*180)*((p/(e*e-1),0)--(p/(e*e-1),0)+l*dir(theta0/pi*180)),dashed);
-	draw(tmp,rotate(180-theta0/pi*180)*((p/(e*e-1),0)--(p/(e*e-1),0)+l*dir(-theta0/pi*180)),dashed);
-	draw(tmp,rotate(180-theta0/pi*180)*((0,0)--p/(e-1)*dir(0)),dashed);
-	draw(tmp,rotate(180-theta0/pi*180)*(l*dir(theta0/pi*180)--(0,0)--l*dir(-theta0/pi*180)),dashed);
-	dot(tmp,(0,0));
-	label("$\phi$",rotate(180-theta0/pi*180)*(p/(e*e-1),0),dir(180-theta0/2/pi*180));
-	label("$\phi$",rotate(180-theta0/pi*180)*(p/(e*e-1),0),dir(180-theta0*3/2/pi*180));
-	path clp;
-	clp = (0,0)--l*dir(theta0/pi*180)--l*dir(theta0/pi*180)+2*b*dir(theta0/pi*180-90)--l*dir(0)--l*dir(-theta0/pi*180)+2*b*dir(-theta0/pi*180+90)--l*dir(-theta0/pi*180)--cycle;
-	clp = rotate(180-theta0/pi*180)*shift((-0.1,0))*clp;
-	clip(tmp,clp);
-	draw(tmp,(0,0)--(0.5*l,0),dashed);
-	label(tmp,"$\theta$",(0,0),2*dir((180-2*theta0/pi*180)/2));
-	draw(tmp,Label("$r_{\mathrm{min}}$",BeginPoint,Relative(W)),rotate(180-theta0/pi*180)*(p/(e-1)*dir(0)+dir(0)--p/(e-1)*dir(0)),Arrow);
-	draw(tmp,rotate(180-theta0/pi*180)*(-dir(0)--(0,0)),Arrow);
-	draw(tmp,0.9*l*dir(180)-dir(90)--(0.9*l*dir(180)),Arrow);
-	draw(tmp,Label("$b$",BeginPoint,Relative(W)),0.9*l*dir(180)+b*dir(90)+dir(90)--(0.9*l*dir(180)+b*dir(90)),Arrow);
-	draw(tmp,Label("$\boldsymbol{v}_i$",MidPoint,Relative(E)),shift((0,b))*(l*dir(180)+dir(180)--l*dir(180)),Arrow);
-	draw(tmp,Label("$\boldsymbol{v}_f$",MidPoint,Relative(E)),shift(b*dir(90+180-2*theta0/pi*180))*(l*dir(180-2*theta0/pi*180)--l*dir(180-2*theta0/pi*180)+dir(180-2*theta0/pi*180)),Arrow);
-	label(tmp,"$O$",(0,0),SW);
-	add(tmp);
-	//draw((0,0)--(0.5*l+1.2,0),invisible);
+	theta = 180-acos(1/e)/pi*180;
+	theta2 = 180-2*acos(1/e)/pi*180;
+	lm = 10;
+	path p,a1,a2,b1,b2,tmp,clp;
+	p = rotate(theta)*graph(hyperbolic,-4,4);
+	F = rotate(theta)*(-a*e,0);
+	a1 = (0,0)--(-lm,0);
+	a2 = (0,0)--lm*dir(theta2);
+	b1 = F--(relpoint(a1,1).x,F.y);
+	tmp = F--F+100*dir(theta2);
+	b2 = relpoint(a2,1)--(100,relpoint(a2,1).y);
+	b2 = F--intersectionpoint(b2,tmp);
+	clp = a1--(relpoint(a1,1).x,relpoint(a2,1).y)--reverse(a2)--cycle;
+	draw(pic,p,red+linewidth(0.8bp));
+	clip(pic,clp);
+	add(pic);
+	dot("$O$",F,SW);
+	draw(a1,dashed);
+	draw(a2,dashed);
+	draw(b1,dashed);
+	draw(b2,dashed);
+	real v,gap;
+	pair v1s,v1,v2s,v2;
+	v = 1;
+	gap = 0.4;
+	v1s = (-lm-gap-v,0);
+	v1 = v*dir(0);
+	v2s = relpoint(a2,1)+gap*dir(theta2);
+	v2 = v*dir(theta2);
+	draw(Label("$\boldsymbol{v}_i$",MidPoint,Relative(E)),v1s--v1s+v1,Arrow);
+	draw(Label("$\boldsymbol{v}_f$",MidPoint,Relative(E)),v2s--v2s+v2,Arrow);
+	real b;
+	b = length(relpoint(a1,1)-relpoint(b1,1));
+	draw(Label("$b$",MidPoint,E),relpoint(a1,0.9)--relpoint(a1,0.9)+b*dir(-90),Arrows);
+	pair Q;
+	real f;
+	Q = intersectionpoint(F--100*dir(theta),p);
+	f = 1;
+	draw(Label("$r_{\min}$",MidPoint,Relative(E)),Q+f*dir(theta)--Q,Arrow);
+	draw(F-f*dir(theta)--F,Arrow);
+	draw(F--Q,dashed);
+	draw(F--(relpoint(b2,1).x,F.y),dashed);
+	real r;
+	r = 0.6;
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(F,r,0,theta2));
+	label("$\phi$",r*dir(180-45+theta2/4));
+	label("$\phi$",r*dir(theta2+45-theta2/4));
 \end{asy}
 \caption{弹性散射的几何参数}
 \label{弹性散射的几何参数}

@@ -1,23 +1,23 @@
 \chapter{Hamilton动力学}
 
-理想完整有势系统的Lagrange函数可以表示为
-\begin{equation*}
-	L = T(\mbf{q},\dot{\mbf{q}},t) - U(\mbf{q},\dot{\mbf{q}},t)
-\end{equation*}
-则系统的Lagrange方程为
-\begin{equation*}
-	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0\quad (\alpha = 1,2,\cdots,s)
-\end{equation*}
-利用系统的对称性可以简化求解上述常微分方程组。
+% 理想完整有势系统的Lagrange函数可以表示为
+% \begin{equation*}
+	% L = T(\mbf{q},\dot{\mbf{q}},t) - U(\mbf{q},\dot{\mbf{q}},t)
+% \end{equation*}
+% 则系统的Lagrange方程为
+% \begin{equation*}
+	% \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0\quad (\alpha = 1,2,\cdots,s)
+% \end{equation*}
+% 利用系统的对称性可以简化求解上述常微分方程组。
 
-Lagrange力学有如下不足：
-\begin{enumerate}
-\item 运动学：速度$\dot{\mbf{q}} = \dfrac{\mathrm{d} \mbf{q}}{\mathrm{d} t}$作为坐目标衍生变量出现；
-\item 动力学：坐标、速度的初值$\mbf{q}(t_0),\dot{\mbf{q}}(t_0)$不独立，不能体现坐标、速度在因果律上的独立性；
-\item 在位形空间描述运动，方程为二阶常微分方程组，同一点可能代表系统的不同状态（速度不同的状态），导致运动轨道的不同。
-\end{enumerate}
+% Lagrange力学有如下不足：
+% \begin{enumerate}
+% \item 运动学：速度$\dot{\mbf{q}} = \dfrac{\mathrm{d} \mbf{q}}{\mathrm{d} t}$作为坐目标衍生变量出现；
+% \item 动力学：坐标、速度的初值$\mbf{q}(t_0),\dot{\mbf{q}}(t_0)$不独立，不能体现坐标、速度在因果律上的独立性；
+% \item 在位形空间描述运动，方程为二阶常微分方程组，同一点可能代表系统的不同状态（速度不同的状态），导致运动轨道的不同。
+% \end{enumerate}
 
-1835年，Hamilton发表了两篇论文，将Lagrange方程化为更对称的一阶方程组，创立了Hamilton动力学，为量子力学、统计物理、量子场论奠定理论基础。
+% 1835年，Hamilton发表了两篇论文，将Lagrange方程化为更对称的一阶方程组，创立了Hamilton动力学，为量子力学、统计物理、量子场论奠定理论基础。
 
 \section{正则方程}
 
@@ -114,6 +114,109 @@ Legendre变换有逆变换，其逆变换也是Legendre变换。即再对函数$
 	\label{chapter3:Hamilton函数定义}
 \end{equation}
 其中变量$\dot{q}_\alpha(\alpha=1,2,\cdots,s)$需要借方程\eqref{chapter3:广义动量的定义式}用$\mbf{q},\mbf{p},t$表示出来。这个函数$H$称为{\bf Hamilton函数}。
+
+\begin{example}[Legendre变换的几何意义]
+以单个变量的情形来考虑Legendre变换的几何意义。设变量为$x$，相应地有函数$X(x)$，要求这个函数是严格的凸（或凹）函数，这样即满足了式\eqref{chapter3:Legendre变换-前提条件}\footnote{这是由于函数具有连续的二阶导数，所以在一个点的邻域内满足式\eqref{chapter3:Legendre变换-前提条件}则必然有在该邻域内二阶导数都为正或负。}，由此定义新变量$y$为
+\begin{equation*}
+	y = \dif{X}{x}
+\end{equation*}
+便得到函数$X(x)$的Legendre变换：
+\begin{equation*}
+	Y = Y(y) = xy - X(x)
+\end{equation*}
+其中$x=x(y)$。从图形上来看，$y$对应于曲线$X(x)$在$x$点处切线的斜率，而$Y(y)$则为切线在纵轴上截距的负值（如图\ref{chapter3:figure-Legendre变换的几何意义}所示）。
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	size(200);
+	real a,b,h;
+	real f(real x){
+		return a*(x-b)^2+h;
+	}
+	real df(real x){
+		return 2*a*(x-b);
+	}
+	a = 0.3;
+	b = 1;
+	h = 0.5;
+	real x1,x2,y1,y2;
+	x1 = -1;
+	x2 = 3.5;
+	y1 = -1;
+	y2 = 2;
+	draw(Label("$x$",EndPoint),(x1,0)--(x2,0),Arrow);
+	draw((0,y1)--(0,y2),Arrow);
+	draw(graph(f,-0.5,3),linewidth(0.8bp));
+	real x0,y0,k;
+	real l(real x){
+		return y0+k*(x-x0);
+	}
+	x0 = 2.3;
+	y0 = f(x0);
+	k = df(x0);
+	draw(graph(l,0,3),linewidth(0.8bp));
+	real l1,l2;
+	l1 = 0.3;
+	l2 = 0.2;
+	draw(Label("$Y(y)$",MidPoint,W),(-l2,0)--(-l2,l(0)),Arrows);
+	draw((-l1,l(0))--(0,l(0)));
+	draw((0,l(0))--(x0,l(0))--(x0,y0),dashed);
+	label("$x$",(x0,0),SW);
+	l2 = 0.1;
+	draw(Label(scale(.85)*rotate(-90)*"$X(x)$",MidPoint,E),(x0+l2,y0)--(x0+l2,0),Arrows);
+	l2 = 0.5;
+	draw(Label(scale(.85)*rotate(-90)*"$xy$",Relative(0.3),E),(x0+l2,y0)--(x0+l2,l(0)),Arrows);
+	l1 = 0.6;
+	draw((x0,y0)--(x0+l1,y0));
+	draw((x0,l(0))--(x0+l1,l(0)));
+\end{asy}
+\caption{Legendre变换的几何意义}
+\label{chapter3:figure-Legendre变换的几何意义}\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	size(200);
+	real a,b,h,x0;
+	real f(real x){
+		return a*(x-b)^2+h;
+	}
+	real df(real x){
+		return 2*a*(x-b);
+	}
+	real tanl(real x){
+		return f(x0)+df(x0)*(x-x0);
+	}
+	a = 0.3;
+	b = 1;
+	h = 0.5;
+	real x1,x2,y1,y2;
+	x1 = -1.2;
+	x2 = 3.2;
+	y1 = -1;
+	y2 = 2;
+	draw(Label("$x$",EndPoint),(x1,0)--(x2,0),Arrow);
+	draw((0,y1)--(0,y2),Arrow);
+	picture pic;
+	for(x0=-1;x0<=3;x0=x0+0.1){
+		draw(pic,graph(tanl,-1,3),linewidth(0.8bp));
+	}
+	path clp;
+	clp = box((x1,y1),(x2,y2));
+	clip(pic,clp);
+	add(pic);
+	draw(graph(f,-1,3),linewidth(0.8bp)+red);
+\end{asy}
+\caption{曲线作为切线的包络线}
+\label{chapter3:figure-曲线作为切线的包络线}
+\end{minipage}
+\end{figure}
+
+在变换前，用坐标$(x,X(x))$来描述曲线，曲线是一系列这样的坐标点的集合。变换后用切线的斜率$y$和截距$Y(y)$来描述曲线，曲线是各种斜率的切线的包络线（如图\ref{chapter3:figure-曲线作为切线的包络线}所示）。这两种表述是等价的，包含了相同的信息。
+\end{example}
 
 \subsection{Hamilton正则方程}
 
@@ -402,7 +505,7 @@ Whittaker方程\eqref{chapter3:惠特克方程}具有与Hamilton方程相同的�
 	P = 2\sqrt{(E-V)G}
 \end{equation}
 
-\subsection{数学摆和物理摆·单自由度保守系统的运动}
+\subsection{数学摆和物理摆·单自由度保守系统的运动}\label{chapter3:subsection-数学摆和物理摆·单自由度保守系统的运动}
 
 \subsubsection{相平面与摆运动的定性图像}
 

@@ -1,27 +1,16 @@
 \chapter{刚体}
 
-任意两点之间距离在运动过程中保持不变的系统即可称为{\heiti 刚体}。刚体是一个理想模型，在研究问题的过程中，形变可忽略的系统都可以视为刚体。
-
 \section{刚体运动学}
 
-\subsection{刚体的自由度}
+\subsection{刚体的自由度与运动}\label{节：刚体的运动}
 
-首先将刚体看作多质点系，其中的质点满足约束
+{\bf 绝对刚体}是指任意两质点之间的距离在运动过程中保持不变的质点系，简称为{\bf 刚体}。刚体是一个理想模型，在研究问题的过程中，形变可忽略的系统都可以视为刚体。
+
+根据刚体的定义，其中的质点满足约束
 \begin{equation*}
-	|\mbf{r}_i-\mbf{r}_j| = C_{ij}\,\text{（常数）},\quad i,j=1,2,\cdots,n\,(i\neq j)
+	|\mbf{r}_i-\mbf{r}_j| = C_{ij}\,\text{（常数）} \quad (i,j=1,2,\cdots,n\,, \text{且}i\neq j)
 \end{equation*}
-因此，其中的任意不共线的三个质点的位置确定，其余各质点的位置也相应地确定。此三个质点之间有三个完整约束，即$n=3,k=3$，因此自由度$s=3n-k=6$。每增加一个质点，增加三个独立约束，因此自由度不变。
-
-由此可得，仅有内部刚性约束而无外部附加约束的刚体的自由度$s=6$。
-
-\subsection{刚体的运动}
-\label{节：刚体的运动}
-为了描述刚体的运动，需要引入三个坐标系：
-\begin{itemize}
-	\item {\heiti 空间系}：即实验室坐标系，为惯性系。
-	\item {\heiti 本系统}：以刚体上任选的一点（称为{\heiti 基点}）$O$为原点，并固定在刚体上的坐标系。刚体上各点相对本系统静止。
-	\item {\heiti 平动系}：以基点$O$为原点，相对空间系平动的坐标系。
-\end{itemize}
+因此，其中的任意不共线的三个质点的位置确定，其余各质点的位置也相应地确定。此三个质点之间有三个完整约束，即$n=3,k=3$，因此自由度$s=3n-k=6$。每增加一个质点，增加三个独立约束，因此自由度不变。由此可得，仅有内部刚性约束而无外部附加约束的刚体（称为{\bf 自由刚体}）的自由度$s=6$。
 
 \begin{figure}[htb]
 \centering
@@ -61,20 +50,26 @@
 	draw(Label("$\boldsymbol{r}_O$",Relative(0.3),Relative(E),black),O--OO,red,Arrow);
 	draw(Label("$\boldsymbol{r}'$",Relative(0.3),Relative(W),black),OO--OO+r,red,Arrow);
 	draw(Label("$\boldsymbol{r}$",Relative(0.5),Relative(W),black),O--OO+r,red,Arrow);
-	//draw(O--(1.8,1.55),invisible);
 \end{asy}
 \caption{刚体的运动}
 \label{刚体的运动}
 \end{figure}
 
+为了描述刚体的运动，需要引入三个坐标系：
+\begin{itemize}
+	\item {\heiti 空间系}：即实验室坐标系，为惯性系。
+	\item {\heiti 本体系}：以刚体上任选的一点（称为{\heiti 基点}）$O$为原点，并固定在刚体上的坐标系。%刚体上各点相对本体系静止。
+	\item {\heiti 平动系}：以基点$O$为原点，相对空间系平动的坐标系。
+\end{itemize}
 则刚体在这三个坐标系中的运动为（见图\ref{刚体的运动}）：
 \begin{itemize}
-	\item {\heiti 本系统}：刚体静止。
+	\item {\heiti 本体系}：刚体静止。
 	\item {\heiti 平动系}：刚体做定点运动（基点固定）。
-	\item {\heiti 空间系}：刚体随基点平动的同时，绕基点做定点运动。
+	\item {\heiti 空间系}：在基点运动的同时，刚体绕基点做定点运动。
 \end{itemize}
+即在这样的三个坐标系作用下，刚体的一般运动被分解为基点的运动和刚体绕基点的定点运动。而基点的运动就是质点的运动，前面几章已经做过详细说明，本章主要处理刚体的定点运动。
 
-如果基点在空间系内不动，则平动系与空间系合一，刚体无平动，只有定点运动。即刚体平动自由度$s_t = 3$，定点运动自由度$s_r=3$。
+%如果基点在空间系内不动，则平动系与空间系重合，刚体无平动，只有定点运动。即刚体平动自由度$s_t = 3$，定点运动自由度$s_r=3$。
 
 \subsection{定点运动的矩阵表示}
 
@@ -116,15 +111,22 @@
 \label{坐标系的定点旋转}
 \end{figure}
 
-设有矢量$\mbf{R}$，则其在坐标系$OX_1X_2X_3$和$Ox_1x_2x_3$中可以分别表示为
-\begin{equation*}
+现在仅考虑刚体的定点运动，此时基点在空间系中是静止的，不妨将平动系取为与空间系重合。设有刚体上的某点位矢用$\mbf{R}$来表示，则其在平动系$OX_1X_2X_3$和本体系$Ox_1x_2x_3$中可以分别表示为
+\begin{equation}
 	\mbf{R} = \sum_{i=1}^3 X_i \mbf{E}_i = \sum_{i=1}^3 x_j \mbf{e}_j
-\end{equation*}
-同理可有
-\begin{equation*}
+	\label{chapter6:定点运动的矩阵表示1}
+\end{equation}
+其中$\mbf{E}_i$和$\mbf{e}_i$分别为平动系$OX_1X_2X_3$和本体系$Ox_1x_2x_3$中的一组单位正交基，$X_i$和$x_i$分别称为矢量$\mbf{R}$在平动系$OX_1X_2X_3$和本体系$Ox_1x_2x_3$中的坐标。根据基矢量的单位正交性，可得
+\begin{equation}
+	X_i = \mbf{E}_i\cdot \mbf{R},\quad x_j = \mbf{e}_i \cdot \mbf{R}
+	\label{chapter6:定点运动的矩阵表示2}
+\end{equation}
+对于基矢量，式\eqref{chapter6:定点运动的矩阵表示1}也同样成立，即有
+\begin{equation}
 	\mbf{E}_i = \sum_{j=1}^3 (\mbf{E}_i\cdot \mbf{e}_j) \mbf{e}_j = \sum_{j=1}^3 u_{ij} \mbf{e}_j
-\end{equation*}
-此处$u_{ij} = \mbf{E}_j\cdot \mbf{e}_j$。因此有
+	\label{chapter6:定点运动的矩阵表示3}
+\end{equation}
+其中$u_{ij} = \mbf{E}_i\cdot \mbf{e}_j$。因此，根据式\eqref{chapter6:定点运动的矩阵表示2}和式\eqref{chapter6:定点运动的矩阵表示3}可得
 \begin{equation}
 	X_i = \mbf{E}_i \cdot \mbf{R} = \sum_{j=1}^3 u_{ij} (\mbf{e}_j \cdot \mbf{R}) = \sum_{j=1}^3 u_{ij} x_j
 	\label{坐标转换关系}
@@ -137,7 +139,7 @@
 \begin{equation*}
 	\mbf{X} = \begin{pmatrix} X_1 \\ X_2 \\ X_3 \end{pmatrix},\quad \mbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix},\quad \mbf{U} = \begin{pmatrix} u_{11} & u_{12} & u_{13} \\ u_{21} & u_{22} & u_{23} \\ u_{31} & u_{32} & u_{33} \end{pmatrix}
 \end{equation*}
-坐标系的定点运动需要满足矢量的长度不变，即
+刚体中任意两质点之间的距离保持不变，所以这一点与基点$O$之间的距离在两个坐标系中应该相等，即有
 \begin{equation*}
 	\mbf{R}^{\mathrm{T}} \mbf{R} = \mbf{X}^{\mathrm{T}} \mbf{X} = \mbf{x}^{\mathrm{T}} \mbf{x}
 \end{equation*}
@@ -146,75 +148,24 @@
 	\mbf{X}^{\mathrm{T}} \mbf{X} = \mbf{x}^{\mathrm{T}} \mbf{U}^{\mathrm{T}} \mbf{U} \mbf{x} = \mbf{x}^{\mathrm{T}} \mbf{x}
 \end{equation*}
 即
-\begin{equation*}
+\begin{equation}
 	\mbf{U}^{\mathrm{T}} \mbf{U} = \mbf{I}
-\end{equation*}
+\end{equation}
 因此，系数矩阵$\mbf{U}$是正交矩阵，其独立矩阵元有3个。
 
-对于刚体的定点运动，本系统内刚体的各点坐标不变，将某参考点的坐标记作$\mbf{x}$。设在$t_1,t_2$时刻，刚体上该参考点在平动系的坐标分别为$\mbf{X}_1,\mbf{X}_2$，则有
+设刚体在定点运动过程中，初始时刻时本体系与平动系重合，将刚体上某参考点的坐标记作$\mbf{x}$，而在$t_1,t_2$时刻，刚体上该参考点在平动系的坐标分别为$\mbf{X}_1,\mbf{X}_2$，根据前文的讨论有
 \begin{equation*}
 	\mbf{X}_1 = \mbf{U}_1 \mbf{x},\quad \mbf{X}_2 = \mbf{U}_2 \mbf{x}
 \end{equation*}
-此处，$\mbf{U}_1,\mbf{U}_2$都是正交矩阵，所以有
+此处$\mbf{U}_1,\mbf{U}_2$都是正交矩阵，所以有
 \begin{equation*}
 	\mbf{X}_2 = \mbf{U}_2 \mbf{U}_1^{-1} \mbf{X}_1 = (\mbf{U}_2 \mbf{U}_1^{\mathrm{T}}) \mbf{X}_1 = \mbf{U} \mbf{X}_1
 \end{equation*}
-其中矩阵$\mbf{U}$满足
+其中矩阵$\mbf{U}=\mbf{U}_2 \mbf{U}_1^{\mathrm{T}}$满足
 \begin{equation*}
 	\mbf{U}^{\mathrm{T}} \mbf{U} = \mbf{U}_1 \mbf{U}_2^{\mathrm{T}} \mbf{U}_2 \mbf{U}_1^{\mathrm{T}} = \mbf{I}
 \end{equation*}
 因此，矩阵$\mbf{U}$也是正交矩阵。由此可得，刚体的定点运动可用正交矩阵表示。
-
-\iffalse
-\begin{example}[有限角位移的非对易性]
-
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(200);
-	//刚体的定轴转动
-	pair O,n,R,RR;
-	real theta,l,r,r1,r2;
-	path cir;
-	picture tmp;
-	O = (0,0);
-	theta = 70;
-	n = dir(theta);
-	l = 2;
-	r = 0.8;
-	r1 = -0.2;
-	r2 = -0.05;
-	draw(Label("$\boldsymbol{n}$",EndPoint),O--O+l*n,Arrow);
-	cir = scale(r)*unitcircle;
-	draw(tmp,cir);
-	R = relpoint(cir,r1);
-	RR = relpoint(cir,r2);
-	draw(tmp,R--O--RR);
-	draw(tmp,R--RR,red,Arrow);
-	draw(tmp,Label(rotate(90-theta)*"$\phi$",EndPoint,Relative(E)),arc(O,0.2,degrees(R),degrees(RR)),Arrow);
-	add(shift(2/3*l*n)*rotate(theta-90)*yscale(1/3)*tmp);
-	R = shift(2/3*l*n)*rotate(theta-90)*yscale(1/3)*R;
-	RR = shift(2/3*l*n)*rotate(theta-90)*yscale(1/3)*RR;
-	//draw(R--2/3*l*n--RR);
-	//draw(R--RR,red,Arrow);
-	draw(Label("$\boldsymbol{R}$",MidPoint,Relative(E)),O--R,Arrow);
-	draw(Label("$\boldsymbol{R}'$",MidPoint,Relative(E)),O--RR,Arrow);
-	//draw(O--(1.3,0),invisible);
-\end{asy}
-\caption{刚体的定轴转动}
-\label{刚体的定轴转动}
-\end{figure}
-
-考虑刚体绕指向为$\mbf{n}$的转动轴旋转$\theta$，即{\heiti 定轴转动}，如图\ref{刚体的定轴转动}所示。定轴转动是定点运动的特例，因此可用矩阵表示为
-\begin{equation*}
-	\mbf{X}' = \mbf{U}\mbf{X}
-\end{equation*}
-如果进行两次定轴转动（转轴指向可以不同），那么可有
-\begin{equation*}
-	\mbf{X}'' = \mbf{U}' \mbf{X}' = \mbf{U}' \mbf{U} \mbf{X}
-\end{equation*}
-由于矩阵的乘积具有不可交换性，因此有限角位移一般不具有对易性，因而不能用矢量表示。
-\end{example}\fi
 
 \begin{example}[有限定点运动的非对易性]
 
@@ -222,11 +173,11 @@
 \begin{equation*}
 	\mbf{X}' = \mbf{U}\mbf{X}
 \end{equation*}
-如果再进行一次定轴运动，那么可有
+如果再进行一次定点运动，那么
 \begin{equation*}
 	\mbf{X}'' = \mbf{U}' \mbf{X}' = \mbf{U}' \mbf{U} \mbf{X}
 \end{equation*}
-由于矩阵的乘积具有不可交换性，因此有限定点运动一般不具有对易性，从而有限定点转动不能用矢量表示。
+由于矩阵的乘积一般是不可交换的，因此有限定点运动一般不具有对易性。从而有限定点转动不能用矢量表示。
 \end{example}
 
 \subsection{无限小定点运动的矢量表示}
@@ -267,15 +218,17 @@
 \end{equation*}
 上式说明，此定点运动下，所有位于过定点方向为$\mbf{n}$的直线上的点都是固定的，即$\mbf{n}$为转轴。因此无限小定点运动是绕瞬时轴的无限小转动，定点运动即为{\heiti 定点转动}。
 
-\subsection{刚体运动的矢量-矩阵描述}
-
+%\subsection{刚体运动的矢量-矩阵描述}
+\subsection{刚体上各点的速度与加速度}
+\label{节：刚体上各点的速度与加速度}
 \label{节：刚体运动的矢量-矩阵描述}
-\ref{节：刚体的运动}节已指出，刚体的运动可由平动系相对于空间坐标系的平动与本系统相对于平动系的定点转动，即刚体中任意一点的位矢为
+
+\ref{节：刚体的运动}节已指出，刚体的运动可分解为平动系相对于空间坐标系的平动与本体系相对于平动系的定点转动，即刚体中任意一点的位矢为
 \begin{equation}
 	\mbf{r} = \mbf{r}_O + \mbf{r}'
 	\label{刚体中任意一点的位矢的矢量表示}
 \end{equation}
-设矢量$\mbf{r}'$在平动系中的坐标为$\mbf{X}$，在本系统中的坐标为$\mbf{x}$\footnote{需要注意到，平动系中的坐标$\mbf{X}$是与时间有关的，而本系统中的坐标$\mbf{x}$则与时间无关。}，则它们之间通过旋转矩阵可以表示为
+设矢量$\mbf{r}'$在平动系中的坐标为$\mbf{X}$，在本体系中的坐标为$\mbf{x}$\footnote{需要注意到，平动系中的坐标$\mbf{X}$是与时间有关的，而本体系中的坐标$\mbf{x}$则与时间无关。}，则它们之间通过旋转矩阵可以表示为
 \begin{equation*}
 	\mbf{X} = \mbf{U} \mbf{x}
 \end{equation*}
@@ -284,14 +237,15 @@
 	\mbf{U}^{\mathrm{T}} \mbf{U} = \mbf{I}
 	\label{正交矩阵的条件}
 \end{equation}
-记平动系的基为$\mbf{E}_1,\mbf{E}_2,\mbf{E}_3$，本系统的基为$\mbf{e}_1,\mbf{e}_2,\mbf{e}_3$\footnote{需要注意到，平动系中的基$\mbf{E}_1,\mbf{E}_2,\mbf{E}_3$是与时间无关的，而本系统中的基$\mbf{e}_1,\mbf{e}_2,\mbf{e}_3$则与时间有关。}，则有
+记平动系的基为$\mbf{E}_1,\mbf{E}_2,\mbf{E}_3$，本体系的基为$\mbf{e}_1,\mbf{e}_2,\mbf{e}_3$\footnote{需要注意到，平动系中的基$\mbf{E}_1,\mbf{E}_2,\mbf{E}_3$是与时间无关的，因为其大小和方向都不随时间改变。而本体系中的基$\mbf{e}_1,\mbf{e}_2,\mbf{e}_3$则与时间有关，因为本体系与刚体固连在一起，在刚体做定点转动的过程中，它们的方向将随时间改变。}，则有
 \begin{align*}
 	\mbf{r}' & = \begin{pmatrix} \mbf{E}_1 & \mbf{E}_2 & \mbf{E}_3 \end{pmatrix} \begin{pmatrix} X_1 \\ X_2 \\ X_3 \end{pmatrix} = \mbf{E} \mbf{X} = \begin{pmatrix} \mbf{e}_1 & \mbf{e}_2 & \mbf{e}_3 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \mbf{e} \mbf{x}
 \end{align*}
 由此可以得到
-\begin{equation*}
+\begin{equation}
 	\mbf{e} = \mbf{E} \mbf{U}
-\end{equation*}
+	\label{chapter6:刚体上各点的速度与加速度1}
+\end{equation}
 综上，式\eqref{刚体中任意一点的位矢的矢量表示}可以用矩阵表示为\footnote{在用矩阵表示矢量表达式时，如不同时乘以该坐标系基构成的矩阵，则容易造成谬误。}
 \begin{align}
 	\mbf{r} & = \mbf{r}_O + \mbf{E} \mbf{X} = \mbf{r}_O + \mbf{E} \mbf{U} \mbf{x}
@@ -362,13 +316,11 @@
 \end{equation*}
 即，{\heiti 刚体定点转动矩阵与基点的选取无关}。
 
-\subsection{刚体上各点的速度与加速度}
-\label{节：刚体上各点的速度与加速度}
-将式\eqref{刚体中任意一点的位矢}两端对时间$t$求导数，得
-\begin{equation*}
+将式\eqref{刚体中任意一点的位矢}两端对时间求导，再根据式\eqref{chapter6:刚体上各点的速度与加速度1}可得
+\begin{equation}
 	\mbf{v} = \mbf{v}_O + \mbf{E} \dot{\mbf{U}} \mbf{x} = \mbf{v}_O + \mbf{e} \mbf{U}^{\mathrm{T}} \dot{\mbf{U}} \mbf{x}
-\end{equation*}
-将式\eqref{正交矩阵的条件}两端对时间$t$求导数，得
+\end{equation}
+将式\eqref{正交矩阵的条件}两端对时间求导，得
 \begin{equation*}
 	\dot{\mbf{U}}^{\mathrm{T}} \mbf{U} + \mbf{U}^{\mathrm{T}} \dot{\mbf{U}} = \left(\mbf{U}^{\mathrm{T}} \dot{\mbf{U}}\right)^{\mathrm{T}} + \mbf{U}^{\mathrm{T}} \dot{\mbf{U}} = \mbf{0}
 \end{equation*}
@@ -376,7 +328,7 @@
 \begin{equation*}
 	\mbf{U}^{\mathrm{T}} \dot{\mbf{U}} = \begin{pmatrix} 0 & -\omega_3 & \omega_2 \\ \omega_3 & 0 & -\omega_1 \\ -\omega_2 & \omega_1 & 0 \end{pmatrix}
 \end{equation*}
-由此，记矢量$\mbf{\omega} = \omega_1 \mbf{e}_1 + \omega_2 \mbf{e}_2 + \omega_3 \mbf{e}_3$称为刚体的{\heiti 角速度}，则有
+由此，记矢量$\mbf{\omega} = \omega_1 \mbf{e}_1 + \omega_2 \mbf{e}_2 + \omega_3 \mbf{e}_3$称为刚体的{\heiti 角速度}\footnote{注意矢量叉积在计算时，两个向量的分量必须取为在同一坐标系下的分量。}，则有
 \begin{equation*}
 	\mbf{e} \mbf{U}^{\mathrm{T}} \dot{\mbf{U}} \mbf{x} = \begin{pmatrix} \mbf{e}_1 & \mbf{e}_2 & \mbf{e}_3 \end{pmatrix} \begin{pmatrix} \omega_2 x_3 - \omega_3 x_2 \\ \omega_3 x_1 - \omega_1 x_3 \\ \omega_1 x_2 - \omega_2 x_1 \end{pmatrix} = \mbf{\omega} \times \mbf{r}'
 \end{equation*}
@@ -385,24 +337,35 @@
 	\mbf{v} = \mbf{v}_O + \mbf{\omega} \times \mbf{r}' = \mbf{v}_O + \mbf{\omega} \times (\mbf{r}-\mbf{r}_O)
 	\label{刚体上任意一点的速度}
 \end{equation}
-另取基点$O'$，则当以$O$为基点时，$O'$的速度为
-\begin{equation*}
-	\mbf{v}_{O'} = \mbf{v}_O + \mbf{\omega} \times (\mbf{r}_{O'} - \mbf{r}_O)
-\end{equation*}
-于是，以$O'$为基点表示刚体上各点的速度可有
-\begin{align*}
-	\mbf{v} = \mbf{v}_O + \mbf{\omega} \times (\mbf{r}-\mbf{r}_O) = \mbf{v}_{O'} + \mbf{\omega} \times (\mbf{r}-\mbf{r}_{O'})
-\end{align*}
-上式说明{\heiti 刚体的角速度与基点的选取无关}。
-
-下面考虑刚体上各点的加速度。首先定义{\heiti 角加速度}为
+如果另取基点$O'$，则当以$O$为基点时，$O'$的速度为
 \begin{equation}
-	\mbf{\alpha} = \frac{\mathrm{d} \mbf{\omega}}{\mathrm{d} t} = \dot{\mbf{\omega}}
+	\mbf{v}_{O'} = \mbf{v}_O + \mbf{\omega} \times (\mbf{r}_{O'} - \mbf{r}_O)
+	\label{chapter6:刚体上各点的速度与加速度2}
 \end{equation}
-将式\eqref{刚体上任意一点的速度}两端对时间$t$求导数，得
+将式\eqref{chapter6:刚体上各点的速度与加速度2}代入式\eqref{刚体上任意一点的速度}中可得
+\begin{align}
+	\mbf{v} = \mbf{v}_O + \mbf{\omega} \times (\mbf{r}-\mbf{r}_O) = \mbf{v}_{O'} + \mbf{\omega} \times (\mbf{r}-\mbf{r}_{O'})
+	\label{chapter6:刚体上各点的速度与加速度3}
+\end{align}
+如果以$O'$为基点表示刚体上各点的速度则有
+\begin{equation}
+	\mbf{v} = \mbf{v}_{O'} + \mbf{\omega}' \times (\mbf{r}-\mbf{r}_{O'})
+	\label{chapter6:刚体上各点的速度与加速度4}
+\end{equation}
+其中$\mbf{\omega}'$为以$O'$为基点的角速度。对比式\eqref{chapter6:刚体上各点的速度与加速度3}和式\eqref{chapter6:刚体上各点的速度与加速度4}可知
+\begin{equation}
+	\mbf{\omega}=\mbf{\omega'}
+\end{equation}
+这说明{\heiti 刚体的角速度与基点的选取无关}。
+
+下面考虑刚体上各点的加速度。将式\eqref{刚体上任意一点的速度}两端对时间求导，并注意到$\dot{\mbf{v}}_O = \mbf{a}_O, \dot{\mbf{r}} = \mbf{v}, \dot{\mbf{r}}_O = \mbf{v}_O$，可得
 \begin{equation*}
 	\mbf{a} = \mbf{a}_O + \dot{\mbf{\omega}} \times (\mbf{r}-\mbf{r}_O) + \mbf{\omega} \times (\mbf{v}-\mbf{v}_O)
 \end{equation*}
+定义{\heiti 角加速度}为
+\begin{equation}
+	\mbf{\alpha} = \frac{\mathrm{d} \mbf{\omega}}{\mathrm{d} t} = \dot{\mbf{\omega}}
+\end{equation}
 由此即有刚体上任意一点的加速度
 \begin{equation}
 	\mbf{a} = \mbf{a}_O + \mbf{\alpha} \times (\mbf{r}-\mbf{r}_O) + \mbf{\omega} \times \left[\mbf{\omega} \times (\mbf{r}-\mbf{r}_O)\right]
@@ -410,6 +373,8 @@
 \end{equation}
 
 \subsection{定轴转动}
+
+设刚体上有两个不动点$O$和$O_1$，则过$O$和$O_1$的直线即为转轴。方便起见，将平动系的$OZ$轴和本体系的$Oz$都取为沿着转轴的方向。
 
 \begin{figure}[htb]
 \centering
@@ -499,7 +464,7 @@
 \end{minipage}
 \end{figure}
 
-设刚体上有两个不动点$O$和$O_1$，则过$O$和$O_1$的直线即为转轴，平动系的$OZ$轴和本系统的$Oz$都沿着转轴。刚体在平动系中的位形由$OX$轴和$Ox$轴之间的夹角$\phi$确定，刚体上不在转动轴上的点沿着以转轴为圆心的圆周运动，设此时刚体上任意一点的矢径在本体系中的坐标为$\mbf{x}$，在平动系的坐标为$\mbf{X}$，则有
+刚体在平动系中的位形由$OX$轴和$Ox$轴之间的夹角$\phi$确定，刚体上不在转动轴上的点沿着以转轴为圆心的圆周运动，设此时刚体上任意一点的矢径在本体系中的坐标为$\mbf{x}$，在平动系的坐标为$\mbf{X}$，则有
 \begin{equation*}
 	\mbf{X} = \mbf{U} \mbf{x}
 \end{equation*}
@@ -517,13 +482,13 @@
 	\mbf{\omega} = \begin{pmatrix} 0 \\ 0 \\ \dot{\phi} \end{pmatrix} = \dot{\phi} \mbf{e}_3,\quad \mbf{\alpha} = \dot{\mbf{\omega}} = \begin{pmatrix} 0 \\ 0 \\ \ddot{\phi} \end{pmatrix} = \ddot{\phi} \mbf{e}_3
 \end{equation*}
 即角速度和角加速度都沿着转轴方向。由此根据式\eqref{刚体上任意一点的速度}可得刚体上任意一点的速度
-\begin{equation*}
+\begin{equation}
 	\mbf{v} = \mbf{\omega} \times \mbf{r}
-\end{equation*}
+\end{equation}
 根据式\eqref{刚体上任意一点的加速度}可得刚体上任意一点的加速度
-\begin{equation*}
+\begin{equation}
 	\mbf{a} = \mbf{\alpha} \times \mbf{r} + \mbf{\omega} \times (\mbf{\omega} \times \mbf{r})
-\end{equation*}
+\end{equation}
 此处的加速度$\mbf{a}$可以分解为向心加速度$\mbf{a}_n = \mbf{\omega} \times (\mbf{\omega} \times \mbf{r})$和切向加速度$\mbf{a}_\tau = \mbf{\alpha} \times \mbf{r}$。
 
 \begin{figure}[htb]
@@ -589,7 +554,7 @@
 
 \subsection{刚体定点转动的Euler角·万向锁}\label{chapter6:subsection-刚体定点转动的Euler角·万向锁}
 
-刚体定点转动的自由度$s_r = 3$，可用$3$个广义坐标确定本系统相对平动系的取向。
+由于自由刚体的总自由度$s=6$，而质点的自由运动自由度$s_t=3$，所以刚体定点转动的自由度$s_r = 3$，可用$3$个广义坐标确定本体系相对平动系的取向。
 
 \begin{figure}[htb]
 \centering
@@ -719,7 +684,7 @@
 
 三个Euler角是相互独立的，可以任意取值。如果给定三个角的值，则唯一地确定了刚体定点转动位形，通常假设$0 \leqslant \phi < 2\pi, \,0 \leqslant \theta \leqslant \pi,\, 0 \leqslant \psi < 2\pi$。刚体的连续转动表现为Euler角随时间连续变化。
 
-从平动系$OXYZ$到本系统$Oxyz$的转换可以通过下面的三个按顺序的转动实现：
+从平动系$OXYZ$到本体系$Oxyz$的转换可以通过下面的三个按顺序的转动实现：
 \begin{enumerate}
 	\item 绕$OZ$轴旋转$\phi$角，称为{\heiti 进动}；
 	\item 绕$ON$旋转$\theta$角，称为{\heiti 章动}；
@@ -741,7 +706,7 @@
 	\end{pmatrix}
 	\label{chapter6:定点转动的变换矩阵}
 \end{align}
-直接求$\mbf{U}^{\mathrm{T}} \dot{\mbf{U}}$的运算十分复杂，考虑到$\mbf{U}_1,\mbf{U}_2,\mbf{U}_3$都是正交矩阵，因此有
+直接求$\mbf{U}^{\mathrm{T}} \dot{\mbf{U}}$的运算十分复杂，但考虑到$\mbf{U}_1,\mbf{U}_2,\mbf{U}_3$都是正交矩阵，因此有
 \begin{equation*}
 	\mbf{U}_1^{\mathrm{T}} \dot{\mbf{U}}_1 = \begin{pmatrix} 0 & -\dot{\phi} & 0 \\ \dot{\phi} & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix},\quad \mbf{U}_2^{\mathrm{T}} \dot{\mbf{U}}_2 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -\dot{\theta} \\ 0 & \dot{\theta} & 0 \end{pmatrix},\quad \mbf{U}_3^{\mathrm{T}} \dot{\mbf{U}}_3 = \begin{pmatrix} 0 & -\dot{\psi} & 0 \\ \dot{\psi} & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
 \end{equation*}
@@ -764,7 +729,7 @@
 	\end{cases}
 	\label{Euler运动学方程}
 \end{equation}
-式\eqref{Euler运动学方程}称为{\heiti Euler运动学方程}，它给出了刚体在平动系中的角速度在本系统内的分量与广义坐标（即Euler角）、广义速度（即Euler角的导数）之间的关系。
+式\eqref{Euler运动学方程}称为{\heiti Euler运动学方程}，它给出了刚体的角速度在本体系内的分量与广义坐标（即Euler角）、广义速度（即Euler角的导数）之间的关系。
 
 这里需要注意的一点是，由图\ref{刚体定点转动的Euler角}可以看出，当$\theta=0\text{或}\pi$时，节线$ON$的位置将无法确定，进而也无法单独确定Euler角$\phi$和$\psi$，而只能得到它们的和或差。在式\eqref{chapter6:定点转动的变换矩阵}中令$\theta=0\text{或}\pi$时，将得到
 \begin{equation*}
@@ -884,12 +849,12 @@
 \begin{equation*}
 	\mbf{\omega} = \omega_1 (\sin \psi \mbf{e}_x + \cos \psi \mbf{e}_y) - \omega_2 \mbf{e}_z = \omega_1 (\sin \psi \mbf{e}_x + \cos \psi \mbf{e}_y) + \frac{R}{a} \omega_1 \mbf{e}_z
 \end{equation*}
-再考虑到$\mbf{r}_P = a\mbf{e}_x+R\mbf{e}_z$，此处的$\mbf{e}_x,\mbf{e}_y,\mbf{e}_z$为本系统中的基\footnote{此处$y$轴的方向需通过右手规则来确定以保证本系统为右手系。}。综上，即有
+再考虑到$\mbf{r}_P = a\mbf{e}_x+R\mbf{e}_z$，此处的$\mbf{e}_x,\mbf{e}_y,\mbf{e}_z$为本体系中的基\footnote{此处$y$轴的方向需通过右手规则来确定以保证本体系为右手系。}。综上，即有
 \begin{equation*}
 	\mbf{v}_P = \mbf{\omega} \times \mbf{r}_P = \omega_1 R \cos \psi \mbf{e}_x - \omega_1 R(1+\sin \psi) \mbf{e}_y + \omega_1 a \cos \psi \mbf{e}_z
 \end{equation*}
 
-\noindent {\heiti 方法二}：也可以用确定Euler角的方法通过Euler运动学方程直接得到角速度。进动角$\phi$即为$O'Q$与平动系（此时与空间系重合）$X$轴之间的夹角，章动角$\theta = \dfrac{\pi}{2}$恒定不变，自转角$\psi$即为圆盘上水平线到本系统$Ox$轴的角。据此，根据Euler运动学方程\eqref{Euler运动学方程}可得圆盘的角速度$\mbf{\omega}$在本系统中的坐标为
+\noindent {\heiti 方法二}：也可以用确定Euler角的方法通过Euler运动学方程直接得到角速度。进动角$\phi$即为$O'Q$与平动系（此时与空间系重合）$X$轴之间的夹角，章动角$\theta = \dfrac{\pi}{2}$恒定不变，自转角$\psi$即为圆盘上水平线到本体系$Ox$轴的角。据此，根据Euler运动学方程\eqref{Euler运动学方程}可得圆盘的角速度$\mbf{\omega}$在本体系中的坐标为
 \begin{equation*}
 	\begin{cases}
 		\omega_1 = \dot{\phi} \sin \psi \\
@@ -1073,7 +1038,7 @@
 \end{equation}
 动能的正定性表明惯量矩阵$\mbf{I}$是正定矩阵。再考虑到惯量矩阵的定义，可知惯量矩阵$\mbf{I}$是对称正定矩阵。
 
-在本系统中，刚体静止，因此在本系统中惯量元素为常量。
+在本体系中，刚体静止，因此在本体系中惯量元素为常量。
 
 \subsection{平行轴定理}
 
@@ -1157,7 +1122,7 @@
 \end{equation*}
 即，在不同的坐标系中，惯量矩阵是不同的。而能够使得惯量矩阵$\mbf{I}$为对角矩阵的坐标系称为{\heiti 主轴系}，其坐标轴称为{\heiti 惯量主轴}，对相应主轴的转动惯量称为{\heiti 主惯量}。
 
-今后，我们约定本系统一律取为主轴系。在主轴系中，惯量矩阵为
+今后，我们约定本体系一律取为主轴系。在主轴系中，惯量矩阵为
 \begin{equation*}
 	\mbf{I} = \begin{pmatrix} I_1 & & \\ & I_2 & \\ & & I_3 \end{pmatrix}
 \end{equation*}
@@ -1613,18 +1578,18 @@
 
 \subsection{Euler动力学方程}
 
-根据上节的讨论，如果取质心参考系，刚体的运动可以分解为刚体质心相对空间系的运动和刚体绕质心的定点转动。虽然Chasles定理\ref{Chasles定理}说明刚体的一般运动可以分解为任意基点的平动和绕该基点的定点转动，但在取质心以外的点为基点时，刚体的平动系将不再是惯性系\footnote{实际上，质心系也不一定是惯性系，但质心系的角动量定理与惯性系具有相同的形式。}，因此在本系统中需要计及惯性力（参见第\ref{chapter7:非惯性系章}章）。
+根据上节的讨论，如果取质心参考系，刚体的运动可以分解为刚体质心相对空间系的运动和刚体绕质心的定点转动。虽然Chasles定理\ref{Chasles定理}说明刚体的一般运动可以分解为任意基点的平动和绕该基点的定点转动，但在取质心以外的点为基点时，刚体的平动系将不再是惯性系\footnote{实际上，质心系也不一定是惯性系，但质心系的角动量定理与惯性系具有相同的形式。}，因此在本体系中需要计及惯性力（参见第\ref{chapter7:非惯性系章}章）。
 
 但很多情况下，刚体是绕其上某一相对空间系静止的点作定点转动的。在刚体定点转动的情形下，需要考虑刚体对任意基点的定点运动方程。此时有角动量定理
 \begin{equation}
 	\frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \mbf{M}
 	\label{Euler动力学方程——角动量定理}
 \end{equation}
-的分量形式。式中$\mbf{L}$为刚体在平动系（可以不是质心系）中的角动量，$\mbf{M}$为刚体对基点的外力矩。在本系统中，刚体的惯量矩阵是常数矩阵，因此下面考虑求得方程\eqref{Euler动力学方程——角动量定理}在本系统中的分量形式。本系统的基矩阵$\mbf{e}$与平动系的基矩阵$\mbf{E}$之间满足
+的分量形式。式中$\mbf{L}$为刚体在平动系（可以不是质心系）中的角动量，$\mbf{M}$为刚体对基点的外力矩。在本体系中，刚体的惯量矩阵是常数矩阵，因此下面考虑求得方程\eqref{Euler动力学方程——角动量定理}在本体系中的分量形式。本体系的基矩阵$\mbf{e}$与平动系的基矩阵$\mbf{E}$之间满足
 \begin{equation*}
 	\mbf{e} = \mbf{E} \mbf{U}
 \end{equation*}
-在本系统中可有
+在本体系中可有
 \begin{equation*}
 	\mbf{L} = \sum_{i=1}^3 L_i \mbf{e}_i = \begin{pmatrix} \mbf{e}_1 & \mbf{e}_2 & \mbf{e}_3 \end{pmatrix} \begin{pmatrix} L_1 \\ L_2 \\ L_3 \end{pmatrix} = \mbf{e} \bar{\mbf{L}}
 \end{equation*}
@@ -1655,7 +1620,7 @@
 \end{equation}
 其中$\ds \dfrac{\mathd \mbf{A}}{\mathd t} = \dfrac{\mathd}{\mathd t}\sum_{i=1}^3A_i\mbf{e}_i$称为{\bf 绝对变化率}，$\ds \frac{\tilde{\mathrm{d}} \mbf{A}}{\mathrm{d} t} = \sum_{i=1}^3 \dot{A}_i \mbf{e}_i$称为{\bf 相对变化率}，$\mbf{\omega} \times \mbf{A}$称为{\bf 转动牵连变化率}。
 
-如果本系统取为主轴系，则有
+如果本体系取为主轴系，则有
 \begin{equation*}
 	L_i = I_i \omega_i,\quad i = 1,2,3
 \end{equation*}
@@ -1752,19 +1717,19 @@
 \label{chapter6:刚体的定轴转动与约束反力}
 \end{figure}
 
-以点$O$为平动系$OXYZ$的原点，$OZ$轴沿着$OO_1$方向，本系统$Oxyz$的$Oz$轴也沿着$OO_1$方向。定轴转动的刚体有一个自由度，取坐标轴$OX$和$Ox$的夹角$\psi$（自转角）为广义坐标。
+以点$O$为平动系$OXYZ$的原点，$OZ$轴沿着$OO_1$方向，本体系$Oxyz$的$Oz$轴也沿着$OO_1$方向。定轴转动的刚体有一个自由度，取坐标轴$OX$和$Ox$的夹角$\psi$（自转角）为广义坐标。
 
 以$O$点为基点，利用矢量形式的Euler动力学方程\eqref{Euler动力学方程——角动量定理的矢量形式}可得
 \begin{equation}
 	\frac{\tilde{\mathrm{d}} \mbf{L}_O}{\mathrm{d} t} + \mbf{\omega} \times \mbf{L}_O = \mbf{M}_O+\vec{OO_1}\times \mbf{F}_1
 	\label{chapter6:定轴转动刚体的角动量方程}
 \end{equation}
-再根据质心系的动量定理，并将其投影至本系统中\footnote{实际上此处可以看作是在非惯性系（即本系统）中应用Newton第二定律，更多具体的内容参见第\ref{chapter7:非惯性系章}章。}，过程类似于前面得到式\eqref{Euler动力学方程——角动量定理的矢量形式}的过程，可得
+再根据质心系的动量定理，并将其投影至本体系中\footnote{实际上此处可以看作是在非惯性系（即本体系）中应用Newton第二定律，更多具体的内容参见第\ref{chapter7:非惯性系章}章。}，过程类似于前面得到式\eqref{Euler动力学方程——角动量定理的矢量形式}的过程，可得
 \begin{equation}
 	m\frac{\tilde{\mathrm{d}} \mbf{v}_C}{\mathrm{d} t} + m\mbf{\omega} \times \mbf{v}_C = \mbf{F}+\mbf{R}+\mbf{R}_1
 	\label{chapter6:定轴转动刚体的动量方程}
 \end{equation}
-其中$m$是刚体的质量，$\mbf{\omega}$是刚体的角速度，$\mbf{v}_C$是刚体质心的速度。设在本系统中这些矢量的分量分别如下
+其中$m$是刚体的质量，$\mbf{\omega}$是刚体的角速度，$\mbf{v}_C$是刚体质心的速度。设在本体系中这些矢量的分量分别如下
 \begin{align*}
 	\mbf{F}=\begin{pmatrix} F_x \\ F_y \\ F_z \end{pmatrix},\quad \mbf{M}_O=\begin{pmatrix} M_x \\ M_y \\ M_z \end{pmatrix},\quad \mbf{R}=\begin{pmatrix} R_x \\ R_y \\ R_z \end{pmatrix},\quad \mbf{R}_1=\begin{pmatrix} R_{1x} \\ R_{1y} \\ R_{1z} \end{pmatrix},\quad \mbf{L}_O=\begin{pmatrix} L_x \\ L_y \\ L_z \end{pmatrix}
 \end{align*}
@@ -1834,7 +1799,7 @@
 \begin{equation*}
 	I_1 = I_2 = \frac14 mR^2,\quad I_3 = \frac12 mR^2
 \end{equation*}
-在本系统中，角速度为
+在本体系中，角速度为
 \begin{equation*}
 	\omega_1 = \omega \sin \alpha,\quad \omega_2 = 0,\quad \omega_3 = \omega \cos \alpha
 \end{equation*}

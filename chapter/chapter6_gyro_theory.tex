@@ -832,7 +832,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \end{equation*}
 因此，Euler情形下，刚体绕其主惯量取中间值的轴的永久转动是不稳定的。
 
-\subsection{Poinsot几何图像}
+\subsection[Poinsot几何图像]{Poinsot\footnote{Loius Poinsot，潘索，法国数学家、力学家。}几何图像}
 
 \begin{figure}[htb]
 \centering
@@ -1123,6 +1123,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \begin{equation}
 	I_3\omega_3=L_z\quad \text{（常数）}
 \end{equation}
+这种情形将在第\ref{chapter6:section-刚体定点运动的Lagrange情形}节中进行详细讨论。
 
 \item Kovalevskaya情形：在Kovalevskaya情形下，刚体对固定点$O$是动力学对称的，且其主惯量满足关系式$I_1=I_2=2I_3$，而重心位于其惯性椭球的赤道面上，即$z_C=0$。对于动力学对称刚体，通过$O$点且与对称轴垂直的任何方向都是其惯性主轴，因此简便起见，不妨设重心在$Ox$轴上，即$y_C=0$。在这种情况下Euler动力学方程\eqref{chapter6:重刚体定点运动的微分方程}可以写为
 \begin{equation}
@@ -1207,7 +1208,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 	\mbf{L}=I_3\mbf{\omega}_s
 \end{equation*}
 
-\section{刚体定点运动的Lagrange情形}
+\section{刚体定点运动的Lagrange情形}\label{chapter6:section-刚体定点运动的Lagrange情形}
 
 根据第\ref{chapter6:subsection-重刚体定点运动方程及其守恒量}节的相关论述，在Lagrange情形下，刚体应满足如下条件：
 \begin{enumerate}
@@ -1882,3 +1883,67 @@ Lagrange情形下运动的周期性，将取决于$\theta_2-\theta_1, \Delta\phi
 	t = -\sqrt{\frac{I_1}{2}} \int_\alpha^0 \frac{\mathrm{d} \theta}{\sqrt{E-U(\theta)}} = \int_0^\alpha \frac{\mathrm{d} \theta}{\omega\sqrt{1 - \cos^2 \dfrac{\alpha}{2} \sec^2 \dfrac{\theta}{2} + \dfrac{g}{r\omega^2}(\cos \alpha-\cos \theta)}}
 \end{equation*}
 \end{solution}
+
+\section{重刚体沿水平面的运动}
+
+\subsection{摩擦}
+
+设刚性曲面$S$沿着固定曲面$S_1$运动（如图\ref{chapter6:figure-曲面之间的接触}所示），这里假设曲面$S$和$S_1$都是凸的，相切于$O$点。假设在每个时刻经过$O$点只能有唯一的$S$和$S_1$的公共切平面\footnote{如果曲面$S$和$S_1$都是光滑曲面，并且又具有唯一接触点，则过该点必然只存在一个公共切平面。}，而一般来说，在$S$运动时，点$O$既沿着$S$运动又沿着$S_1$运动。故显然点$O$的速度$\mbf{v}_O$应该位于过$O$点的公共切平面内。如果$\mbf{v}_O=\mbf{0}$则称运动是无滑动的，如果$\mbf{v}_O\neq \mbf{0}$则称运动是有滑动的，而$\mbf{v}_O$称为{\bf 滑动速度}。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	path curve(pair P1,pair P2,pair modify){
+		return P1..(P1+P2)/2+modify..P2;
+	}
+	pair O,A,B,C;
+	O = (0,0);
+	A = (2.5,-1);
+	B = (5.5,1);
+	C = (3,2);
+	draw(curve(O,A,(0,0.15)));
+	draw(curve(A,B,(0,0.25)));
+	draw(curve(B,C,(0,0.15)));
+	draw(curve(C,O,(0,0.25)));
+	pair D,F,G,H,L;
+	D = (2,1.2);
+	F = (3.5,1.15);
+	G = (4.75,3);
+	H = (2.7,3.8);
+	L = (0.5,2);
+	path clp,p1;
+	clp = curve(F,G,(0,-0.3))--curve(G,H,(0,-0.05))--curve(H,L,(0,-0.55))--curve(L,F,(0,-0.7))--cycle;
+	p1 = curve(L,D,(0,-0.2))--curve(D,F,(0,-0.15));
+	clp = shift(0,-0.4)*clp;
+	p1 = shift(0,-0.4)*p1;
+	//curve(D,F,(0,-0.1))--
+	unfill(clp);
+	draw(clp,linewidth(0.8bp));
+	draw(p1,linewidth(0.8bp));
+	label("$S_1$",B-(0.35,0));
+	label("$S$",G+(0,-0.4)+0.25*dir(-160));
+	O = (2.7,1.2);
+	A = O+1.5*dir(95);
+	C = O+1*dir(170);
+	B = A+C-O;
+	label("$O$",O,S);
+	draw(Label("$\boldsymbol{\omega}_{\bot}$",EndPoint,E),O--A,Arrow);
+	draw(Label("$\boldsymbol{\omega}$",EndPoint),O--B,Arrow);
+	draw(Label("$\boldsymbol{\omega}_{\parallel}$",EndPoint),O--C,Arrow);
+	draw(A--B--C,dashed);
+\end{asy}
+\caption{曲面之间的接触}
+\label{chapter6:figure-曲面之间的接触}
+\end{figure}
+
+取$O$点为基点，那么在每个时刻曲面$S$的运动都可以看作是速度为$\mbf{v}_O$的平动和角速度为$\mbf{\omega}$的定点转动。将角速度$\mbf{\omega}$分解为垂直于公共切平面的$\mbf{\omega}_{\bot}$和位于公共切平面内的$\mbf{\omega}_{\parallel}$，其中$\mbf{\omega}_{\bot}$称为曲面$S$的转动角速度，$\mbf{\omega}_{\parallel}$称为曲面$S$的滚动角速度。
+
+如果$\mbf{v}_O=\mbf{0}$，则称曲面$S$在曲面$S_1$上滚动。如果$\mbf{v}_O=\mbf{0}$的同时有$\mbf{\omega}_{\bot}=\mbf{0}$但$\mbf{\omega}_{\parallel}\neq \mbf{0}$，则称曲面$S$在曲面$S_1$上纯滚动，而如果$\mbf{v}_O=\mbf{0}$的同时有$\mbf{\omega}_{\bot}\neq\mbf{0}, \mbf{\omega}_{\parallel}=\mbf{0}$则称曲面$S$在曲面$S_1$上转动。如果$\mbf{v}_O\neq\mbf{0}$而$\mbf{\omega}_{\bot}=\mbf{\omega}_{\parallel}=\mbf{0}$，则称曲面$S$在曲面$S_1$上滑动。一般来说，当$\mbf{v}_O\neq\mbf{0}, \mbf{\omega}_{\bot} \neq \mbf{0}, \mbf{\omega}_{\parallel} \neq \mbf{0}$时，曲面$S$在曲面$S_1$上既滑动又转动和滚动。
+
+曲面$S_1$对曲面$S$的作用力也可以分解为垂直于公共切平面的$\mbf{N}$和位于公共切平面内的$\mbf{F}$。垂直于公共切平面的约束力$\mbf{N}$称为{\bf 法向约束反力}，对于实际运动来说$N\geqslant 0$。位于公共切平面内的力$\mbf{F}$称为{\bf 摩擦力}，一般情况下可以用{\bf Coulomb摩擦定律}来描述，摩擦力的大小不超过其最大可能值$kN$，其中$k$是摩擦系数。如果$\mbf{v}_O=\mbf{0}$，则$F<kN$，这时$\mbf{F}$称为{\bf 静摩擦力}；如果$\mbf{v}_O\neq\mbf{0}$，则$F=kN$，这时$\mbf{F}$称为{\bf 滑动摩擦力}\footnote{需要注意的是，摩擦是十分复杂的现象，Coulomb摩擦定律只是近似的实验定律。}。对于实际的接触面，摩擦力总是存在的，如果$k$充分小，那么可以忽略摩擦力，认为曲面是绝对光滑的。
+
+实际上，刚体的相互接触不是一个点，而是一个很小的面，那么曲面$S_1$对曲面$S$的作用力不能简化为一个力（即法向约束反力和摩擦力的合力），而只能简化为一个力和一个力矩。这个力与前文所述的相同，可以分解为法向约束反力和摩擦力。而力矩也可以分解为垂直于公共切平面的转动摩擦力矩和位于公共切平面内的滚动摩擦力矩。通常情况下，这两个摩擦力矩与摩擦力相比对曲面$S$的运动影响是很小的。
+
+\subsection{存在摩擦时均匀球在平面上的运动}
+
