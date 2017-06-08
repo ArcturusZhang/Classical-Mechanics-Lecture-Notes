@@ -566,7 +566,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \end{equation*}
 将其分离变量并积分，可得
 \begin{equation}
-	\tau = \int_0^s \frac{\mathrm{d}\xi}{\sqrt{(1-\xi^2)(1-k^2\xi^2)}} = K(s,k)
+	\tau = \int_0^s \frac{\mathrm{d}\xi}{\sqrt{(1-\xi^2)(1-k^2\xi^2)}} = K(k,s)
 	\label{非对称Euler陀螺的运动方程的解1}
 \end{equation}
 此处选择$\omega_2=0$的时刻为时间起点。式\eqref{非对称Euler陀螺的运动方程的解1}中右端的函数为{\bf 第一类不完全椭圆积分}\footnote{关于椭圆积分和Jacobi椭圆函数的相关知识，请见附录\ref{椭圆积分与Jacobi椭圆函数}。}。求其反函数可得Jacobi椭圆函数
@@ -586,15 +586,16 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \end{cases}
 \label{非对称Euler陀螺的运动方程的解2}
 \end{equation}
-函数$\sn \tau$是周期的，对变量$\tau$的周期为$4K$，其中$K$可用第一类完全椭圆积分表示为
+函数$\sn \tau$是周期的，对变量$\tau$的周期为$4K(k)$，其中$K(k)$为第一类完全椭圆积分
 \begin{equation*}
-	K = \int_0^1 \frac{\mathrm{d}s}{\sqrt{(1-s^2)(1-k^2s^2)}} = \int_0^{\frac{\pi}{2}} \frac{\mathrm{d}\phi}{\sqrt{1-k^2\sin^2\phi}}
+	K(k) = \int_0^1 \frac{\mathrm{d}s}{\sqrt{(1-s^2)(1-k^2s^2)}} = \int_0^{\frac{\pi}{2}} \frac{\mathrm{d}\phi}{\sqrt{1-k^2\sin^2\phi}}
 \end{equation*}
 因而，解\eqref{非对称Euler陀螺的运动方程的解2}对时间$t$的周期为
 \begin{equation}
-	T_0 = 4K\sqrt{\frac{I_1I_2I_3}{(I_3-I_2)(L^2-2I_1T)}}
+	T_0 = 4K(k)\sqrt{\frac{I_1I_2I_3}{(I_3-I_2)(L^2-2I_1T)}}
+	\label{chapter6:非对称Euler陀螺的运动方程解的周期}
 \end{equation}
-即经过时间$T_0$后，矢量$\mbf{\omega}$在本体系中回到原位置，然而在空间系中，刚体自身的取向则不见得会回到原位。
+即经过时间$T_0$后，矢量$\mbf{\omega}$在本体系中回到原位置，然而在空间系中，刚体自身的取向还需进一步讨论。
 
 特别地，当$L^2=2I_3T$时，有
 \begin{equation*}
@@ -614,7 +615,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \begin{equation*}
 	\frac{\mathrm{d}s}{\mathrm{d}\tau} = \sqrt{(1-s^2)(1-k^2s^2)}
 \end{equation*}
-将其积分可得
+这个方程的解为
 \begin{equation*}
 	s = \sn \tau
 \end{equation*}
@@ -632,7 +633,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \begin{equation*}
 	\sn \tau \to \sin \tau,\quad \cn\tau \to \cos \tau,\quad \dn \tau \to 1
 \end{equation*}
-于是，解\eqref{非对称Euler陀螺的运动方程的解2}就变回到式\eqref{对称Euler陀螺的解-1}和式\eqref{对称Euler陀螺的解-2}的结果。
+于是，解\eqref{非对称Euler陀螺的运动方程的解3}就退化到对称情形的解，即式\eqref{对称Euler陀螺的解-1}和式\eqref{对称Euler陀螺的解-2}的结果。
 
 类似于上一种情况，当$L^2=2I_1T$时，有
 \begin{equation*}
@@ -654,7 +655,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 \begin{equation*}
 	\frac{\mathrm{d}s}{\mathrm{d}\tau} = 1-s^2
 \end{equation*}
-将其积分可得
+这个方程的解为
 \begin{equation}
 	s = \tanh \tau
 \end{equation}
@@ -715,7 +716,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 	\displaystyle \tan \psi = \sqrt{\frac{I_1(I_3-I_2)}{I_2(I_3-I_1)}}\frac{\cn \tau}{\sn \tau}
 \end{cases}
 \end{equation}
-由此获得角$\theta$和$\psi$随时间的关系，它们都是周期为$T_0$的函数。为了获得角$\phi$随时间的关系，根据Euler运动学方程\eqref{Euler运动学方程}可有
+由此获得角$\theta$和$\psi$随时间的关系，它们都是周期为$T_0$的函数，其中$T_0$由式\eqref{chapter6:非对称Euler陀螺的运动方程解的周期}确定。为了获得角$\phi$随时间的关系，根据Euler运动学方程\eqref{Euler运动学方程}可有
 \begin{equation*}
 \begin{cases}
 	\omega_1 = \dot{\phi}\sin \theta\sin \psi+\dot{\theta}\cos \psi \\
@@ -1320,9 +1321,9 @@ Lagrange情形下刚体的运动方程和运动积分已经在第\ref{chapter6:s
 \end{equation}
 求解出\eqref{chapter6:章动角的控制方程}的解之后可得函数$u=u(t)$，进而可得$\theta=\theta(t)$，再将$u=u(t)$的结果代入式\eqref{chapter6:进动角的方程}和\eqref{chapter6:自转角的方程}，那么三个Euler角关于时间的关系都得到了，刚体定点运动的Lagrange情形就解决了。
 
-首先注意到方程\eqref{chapter6:章动角的控制方程}右端应该是非负的，以及$u=\cos\theta$，所以方程\eqref{chapter6:章动角的控制方程}具有物理意义的解应该要求函数$G(u)$在$[-1,1]$区间上有非负的区域。很容易发现
+首先注意到方程\eqref{chapter6:章动角的控制方程}左端应该是非负的，以及$u=\cos\theta$，所以方程\eqref{chapter6:章动角的控制方程}具有物理意义的解应该要求函数$G(u)$在$[-1,1]$区间上有非负的区域。注意到$a>0$，很容易发现
 \begin{align*}
-	G(\pm 1) = -(\beta \mp b\varOmega)^2 < 0,\quad G(-\infty) < 0
+	G(\pm 1) = -(\beta \mp b\varOmega)^2 < 0,\quad G(-\infty) < 0,\quad G(+\infty) > 0
 \end{align*}
 因此，函数$G(u)$有三个根，它的图像如图\ref{chapter6:figure-G(u)的图像}所示。如果将它们从小到大分别记作$u_1,u_2,u_3$，则它们分布在如下区域内：
 \begin{equation}
@@ -1548,7 +1549,7 @@ $G(u)$的一个根是$\dfrac{\beta}{b\varOmega}$，另外两个根由方程
 \end{equation}
 取$u=u_1$的时刻为初始时刻，则积分方程\eqref{chapter6:针对章动角的微分方程-变换后}可得
 \begin{equation}
-	\frac{\sqrt{a(u_3-u_1)}}{2}t = \int_0^v \frac{\mathd w}{\sqrt{1-k^2\sin^2w}} = F(\sin v,k)
+	\frac{\sqrt{a(u_3-u_1)}}{2}t = \int_0^v \frac{\mathd w}{\sqrt{1-k^2\sin^2w}} = F(k,\sin v)
 \end{equation}
 由此可得
 \begin{equation}
