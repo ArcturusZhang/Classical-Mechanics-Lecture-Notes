@@ -406,7 +406,7 @@ Euler情形下，动力学对称刚体的角速度位于主轴系的一个半顶
 由此即有$\beta\leqslant \arctan\dfrac{\sqrt{2}}{4}$。
 \end{solution}
 
-\subsection{Euler情形下一般刚体的运动}
+\subsection{Euler情形下一般刚体的运动*}
 
 \subsubsection{Euler情形下一般刚体的守恒量}
 
@@ -1944,7 +1944,159 @@ Lagrange情形下运动的周期性，将取决于$\theta_2-\theta_1, \Delta\phi
 
 曲面$S_1$对曲面$S$的作用力也可以分解为垂直于公共切平面的$\mbf{N}$和位于公共切平面内的$\mbf{F}$。垂直于公共切平面的约束力$\mbf{N}$称为{\bf 法向约束反力}，对于实际运动来说$N\geqslant 0$。位于公共切平面内的力$\mbf{F}$称为{\bf 摩擦力}，一般情况下可以用{\bf Coulomb摩擦定律}来描述，摩擦力的大小不超过其最大可能值$kN$，其中$k$是摩擦系数。如果$\mbf{v}_O=\mbf{0}$，则$F<kN$，这时$\mbf{F}$称为{\bf 静摩擦力}；如果$\mbf{v}_O\neq\mbf{0}$，则$F=kN$，这时$\mbf{F}$称为{\bf 滑动摩擦力}\footnote{需要注意的是，摩擦是十分复杂的现象，Coulomb摩擦定律只是近似的实验定律。}。对于实际的接触面，摩擦力总是存在的，如果$k$充分小，那么可以忽略摩擦力，认为曲面是绝对光滑的。
 
-实际上，刚体的相互接触不是一个点，而是一个很小的面，那么曲面$S_1$对曲面$S$的作用力不能简化为一个力（即法向约束反力和摩擦力的合力），而只能简化为一个力和一个力矩。这个力与前文所述的相同，可以分解为法向约束反力和摩擦力。而力矩也可以分解为垂直于公共切平面的转动摩擦力矩和位于公共切平面内的滚动摩擦力矩。通常情况下，这两个摩擦力矩与摩擦力相比对曲面$S$的运动影响是很小的。
+实际上，刚体的相互接触不是一个点，而是一个很小的面，那么曲面$S_1$对曲面$S$的作用力不能简化为一个力（即法向约束反力和摩擦力的合力），而只能简化为一个力和一个力矩。这个力与前文所述的相同，可以分解为法向约束反力和摩擦力。而力矩也可以分解为垂直于公共切平面的{\bf 转动摩擦力矩}和位于公共切平面内的{\bf 滚动摩擦力矩}。通常情况下，这两个摩擦力矩与摩擦力相比对曲面$S$的运动影响是很小的，因此在通常的问题中经常忽略转动摩擦力矩和滚动摩擦力矩而只考虑滑动摩擦力。
 
 \subsection{存在摩擦时均匀球在平面上的运动}
 
+设质量为$m$，半径为$a$的均质球在固定的粗糙水平面上运动。空间系$OXYZ$以固定水平面上任意一点为原点，$OZ$轴取竖直方向；平动系$Cxyz$以球的质心为原点，各坐标轴与空间系坐标轴平行。
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(250);
+	picture pic;
+	pair O,i,j,k,C;
+	real x,y,z,a;
+	O = (0,0);
+	i = dir(-135);
+	j = dir(0);
+	k = dir(90);
+	x = 1;
+	y = 2.5;
+	z = 1.75;
+	draw(Label("$X$",EndPoint),O--x*i,Arrow);
+	draw(Label("$Y$",EndPoint),O--y*j,Arrow);
+	draw(pic,Label("$Y$",EndPoint),O--y*j,dashed,Arrow);
+	draw(Label("$Z$",EndPoint),O--z*k,Arrow);
+	label("$O$",O,W);
+	a = 0.7;
+	C = (1,0.35);
+	x = 1.55;
+	y = y-C.x;
+	z = z-C.y;
+	path p = shift(C)*scale(a)*unitcircle;
+	draw(Label("$x$",EndPoint),C--C+x*i,Arrow);
+	draw(Label("$y$",EndPoint),C--C+y*j,Arrow);
+	draw(Label("$z$",EndPoint),C--C+z*k,Arrow);
+	draw(pic,Label("$z$",EndPoint),C--C+x*i,dashed,Arrow);
+	draw(pic,Label("$y$",EndPoint),C--C+y*j,dashed,Arrow);
+	draw(pic,Label("$z$",EndPoint),C--C+z*k,dashed,Arrow);
+	unfill(p);
+	clip(pic,p);
+	add(pic);
+	draw(p,linewidth(0.8bp));
+	dot("$C$",C,W);
+	pair mg,D,FN,F;
+	mg = 0.3*dir(-90);
+	D = intersectionpoint(p,C--C+100*dir(-90));
+	FN = 0.3*dir(90);
+	F = 0.8*dir(-20);
+	draw(Label("$m\boldsymbol{g}$",EndPoint,E),C--C+mg,Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint,dir(-20)),D--D+FN,Arrow);
+	draw(Label("$\boldsymbol{F}$",EndPoint,E),D--D+F,Arrow);
+	label("$D$",D,SSW);
+\end{asy}
+\caption{固定粗糙水平面上运动球体的受力}
+\label{chapter6:figure-固定粗糙水平面上运动球体的受力}
+\end{figure}
+
+球所受平面的约束反力$\mbf{R}$可以分解为两个力：$\mbf{R}=\mbf{N}+\mbf{F}$，其中$\mbf{N}$是平面的法向约束反力，而$\mbf{F}$是摩擦力。将球的质心速度记作$\mbf{v}_C$，角速度记作$\mbf{\omega}$，则球与平面接触点$D$的速度为
+\begin{equation}
+	\mbf{v}_D = \mbf{v}_C+\mbf{\omega}\times \vec{CD}
+	\label{chapter6:球在平面上的运动-接触点的速度}
+\end{equation}
+当$\mbf{v}_D\neq \mbf{0}$时，摩擦力为滑动摩擦力，可以表示为
+\begin{equation}
+	\mbf{F} = -kN\mbf{u}
+	\label{chapter6:球在平面上的运动-滑动摩擦力}
+\end{equation}
+其中$k$为摩擦系数，$\mbf{u}$为单位向量，方向沿着速度$\mbf{v}_D$的方向，即$\mbf{u}=\dfrac{\mbf{v}_D}{v_D}$。
+
+根据质心运动定理可得
+\begin{equation}
+	m\dif{\mbf{v}_C}{t} = m\mbf{g}+\mbf{R}
+	\label{chapter6:球在平面上的运动-质心运动方程}
+\end{equation}
+而球对质心的角动量为
+\begin{equation}
+	\mbf{L}_C = \frac25 ma^2\mbf{\omega}
+\end{equation}
+根据角动量定理可得
+\begin{equation}
+	\frac25ma^2\dif{\mbf{\omega}}{t} = \vec{CD}\times \mbf{R}
+	\label{chapter6:球在平面上的运动-角动量定理}
+\end{equation}
+
+设$X_C, Y_C, Z_C$是球质心在空间系中的坐标，$F_X, F_Y$是摩擦力在空间系内的分量，则质心运动方程\eqref{chapter6:球在平面上的运动-质心运动方程}的分量形式为
+\begin{subnumcases}{}
+	\frac{\mathd^2X_C}{\mathd t^2} = \frac1m F_X \label{chapter6:球在平面上的运动-质心运动方程-1}\\
+	\frac{\mathd^2Y_C}{\mathd t^2} = \frac1m F_Y \label{chapter6:球在平面上的运动-质心运动方程-2}\\
+	\frac{\mathd^2Z_C}{\mathd t^2} = -g+\frac1m N \label{chapter6:球在平面上的运动-质心运动方程-3}
+\end{subnumcases}
+由于$Z_C=a$保持不变，所以根据方程\eqref{chapter6:球在平面上的运动-质心运动方程-3}可得$N=mg$。即平面的法向约束反力为常量，且不依赖于球在平面上是否滑动（$\mbf{v}_D$是否为$\mbf{0}$）。
+
+设$\omega_x, \omega_y, \omega_z$是角速度$\mbf{\omega}$在平动系中的分量，则角动量定理方程\eqref{chapter6:球在平面上的运动-角动量定理}的分量形式为
+\begin{subnumcases}{}
+	\dif{\omega_x}{t} = \frac{5}{2ma}F_Y \label{chapter6:球在平面上的运动-角动量定理-1}\\
+	\dif{\omega_y}{t} = -\frac{5}{2ma}F_X \label{chapter6:球在平面上的运动-角动量定理-2}\\
+	\dif{\omega_z}{t} = 0 \label{chapter6:球在平面上的运动-角动量定理-3}
+\end{subnumcases}
+方程\eqref{chapter6:球在平面上的运动-角动量定理-3}表明在球的运动过程中，球的角速度在竖直方向的分量为常数，且不依赖于球在平面上是否滑动（$\mbf{v}_D$是否为$\mbf{0}$）。
+
+首先考虑初始时刻有滑动，即$\mbf{v}_D\neq \mbf{0}$的情况。由于$N=mg$，由式\eqref{chapter6:球在平面上的运动-滑动摩擦力}可知滑动摩擦力的大小为常数，即$F=kmg$。下面我们将证明滑动摩擦力的方向也保持不变。将方程\eqref{chapter6:球在平面上的运动-接触点的速度}两端对时间求导，并利用方程\eqref{chapter6:球在平面上的运动-质心运动方程}和\eqref{chapter6:球在平面上的运动-角动量定理}，并注意到$\mbf{R}=\mbf{N}+\mbf{F}=-m\mbf{g}+\mbf{F}$，可得
+\begin{equation}
+	\dif{\mbf{v}_D}{t} = \frac{7}{2m}\mbf{F}
+	\label{chapter6:球在平面上的运动-关于v_D的方程-向量形式}
+\end{equation}
+由于$\mbf{v}_D=v_D\mbf{u}$，所以有
+\begin{equation}
+	\dif{v_D}{t}\mbf{u} + v_D\dif{\mbf{u}}{t} = -\frac72kg\mbf{u}
+	\label{chapter6:球在平面上的运动-关于u的方程}
+\end{equation}
+在方程\eqref{chapter6:球在平面上的运动-关于u的方程}两端点乘$\mbf{u}$，并注意到$\mbf{u}$是单位向量，$\mbf{u}\cdot\dif{\mbf{u}}{t} = \dfrac12\dif{\mbf{u}^2}{t}=0$，所以可有
+\begin{equation}
+	\dif{v_D}{t} = -\frac72kg
+	\label{chapter6:球在平面上的运动-关于v_D的方程}
+\end{equation}
+再将方程\eqref{chapter6:球在平面上的运动-关于v_D的方程}代入方程\eqref{chapter6:球在平面上的运动-关于u的方程}中可得
+\begin{equation}
+	\dif{\mbf{u}}{t} = \mbf{0}
+\end{equation}
+由此即说明向量$\mbf{u}$是常向量，进而得到滑动摩擦力是常向量
+\begin{equation}
+	\mbf{F} = -kmg\mbf{u}
+\end{equation}
+根据方程\eqref{chapter6:球在平面上的运动-关于v_D的方程}可以得到$D$点速度随时间的变化规律
+\begin{equation}
+	v_D = v_D(0)-\frac72kg
+\end{equation}
+如果用$\alpha$表示$D$点速度与空间系$OX$轴的夹角，则将质心运动方程\eqref{chapter6:球在平面上的运动-质心运动方程-1}和\eqref{chapter6:球在平面上的运动-质心运动方程-2}积分可得质心速度
+\begin{equation}
+\begin{cases}
+	\ds \dot{X}_C(t) = -(kg\cos\alpha) t + \dot{X}_C(0) \\
+	\ds \dot{Y}_C(t) = -(kg\sin\alpha) t + \dot{Y}_C(0)
+\end{cases}
+\end{equation}
+和质心坐标
+\begin{equation}
+\begin{cases}
+	\ds X_C(t) = -\frac12 (kg\cos\alpha) t^2 + \dot{X}_C(0)t + X_C(0) \\
+	\ds Y_C(t) = -\frac12 (kg\sin\alpha) t^2 + \dot{Y}_C(0)t + Y_C(0)
+\end{cases}
+\label{chapter6:球在平面上的运动-质心运动}
+\end{equation}
+将角动量方程\eqref{chapter6:球在平面上的运动-角动量定理-1}和\eqref{chapter6:球在平面上的运动-角动量定理-2}积分可得
+\begin{equation}
+\begin{cases}
+	\ds \omega_x(t) = \omega_x(0) - \frac{5kg\sin\alpha}{2a}t \\
+	\ds \omega_y(t) = \omega_y(0) + \frac{5kg\cos\alpha}{2a}t
+\end{cases}
+\end{equation}
+
+由质心运动规律\eqref{chapter6:球在平面上的运动-质心运动}可知，如果初始时刻质心速度和接触点速度\footnote{接触点速度是由质心速度和角速度共同决定的，见式\eqref{chapter6:球在平面上的运动-接触点的速度}。}不平行，则在滑动阶段球的质心沿着抛物线运动。这样的滑动运动一直持续到接触点速度降为$0$为止，即在时刻
+\begin{equation}
+	t = t_* = \frac{2v_D(0)}{7kg}
+\end{equation}
+时，$v_D=0$，球停止滑动开始滚动（同时也在转动）。因为$v_D=0$，根据式\eqref{chapter6:球在平面上的运动-关于v_D的方程-向量形式}可知，在滚动阶段摩擦力为零。据此，根据方程\eqref{chapter6:球在平面上的运动-质心运动方程-1}和\eqref{chapter6:球在平面上的运动-质心运动方程-2}可知滚动时质心沿直线运动。再根据方程\eqref{chapter6:球在平面上的运动-角动量定理-1}和\eqref{chapter6:球在平面上的运动-角动量定理-2}，球在滚动时角速度$\mbf{\omega}$的大小和方向都不变，接触点$D$在平面上沿直线运动，而在球面上沿着垂直于角速度$\mbf{\omega}$的固定圆运动。
+
+特别需要指出的一点是，质心运动的方向为方程\eqref{chapter6:球在平面上的运动-质心运动}所确定的抛物线的切线方向，如果该切线与球心的初始速度可以成钝角，则球可以向后返回。

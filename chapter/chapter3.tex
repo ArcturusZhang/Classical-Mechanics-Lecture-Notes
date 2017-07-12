@@ -1,42 +1,6 @@
 \chapter{Hamilton动力学}
 
-% 理想完整有势系统的Lagrange函数可以表示为
-% \begin{equation*}
-	% L = T(\mbf{q},\dot{\mbf{q}},t) - U(\mbf{q},\dot{\mbf{q}},t)
-% \end{equation*}
-% 则系统的Lagrange方程为
-% \begin{equation*}
-	% \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl L}{\pl \dot{q}_\alpha} - \frac{\pl L}{\pl q_\alpha} = 0\quad (\alpha = 1,2,\cdots,s)
-% \end{equation*}
-% 利用系统的对称性可以简化求解上述常微分方程组。
-
-% Lagrange力学有如下不足：
-% \begin{enumerate}
-% \item 运动学：速度$\dot{\mbf{q}} = \dfrac{\mathrm{d} \mbf{q}}{\mathrm{d} t}$作为坐目标衍生变量出现；
-% \item 动力学：坐标、速度的初值$\mbf{q}(t_0),\dot{\mbf{q}}(t_0)$不独立，不能体现坐标、速度在因果律上的独立性；
-% \item 在位形空间描述运动，方程为二阶常微分方程组，同一点可能代表系统的不同状态（速度不同的状态），导致运动轨道的不同。
-% \end{enumerate}
-
-% 1835年，Hamilton发表了两篇论文，将Lagrange方程化为更对称的一阶方程组，创立了Hamilton动力学，为量子力学、统计物理、量子场论奠定理论基础。
-
 \section{正则方程}
-
-% 广义动量和广义动量定理可以表示为
-% \begin{equation*}
-	% \begin{cases}
-		% \displaystyle p_\alpha = \frac{\pl L}{\pl \dot{q}_\alpha} \\[1.5ex]
-		% \displaystyle \dot{p}_\alpha = \frac{\pl L}{\pl q_\alpha}
-	% \end{cases}
-% \end{equation*}
-% 由此定义的广义动量具有
-% \begin{equation*}
-	% p_\alpha = p_\alpha(\mbf{q},\dot{\mbf{p}},t)
-% \end{equation*}
-% 的形式，则有
-% \begin{equation*}
-	% \dot{\mbf{q}} = \dot{\mbf{q}}(\mbf{q},\mbf{p},t)
-% \end{equation*}
-% 由此，可作力学状态参量变换$\mbf{q},\dot{\mbf{q}} \to \mbf{q},\mbf{p}$，找到新的特征函数，通过对$\mbf{p},\mbf{q}$的偏导数生成力学方程。
 
 \subsection{Legendre变换·Hamilton函数}
 
@@ -794,9 +758,9 @@ Whittaker方程\eqref{chapter3:惠特克方程}具有与Hamilton方程相同的�
 \end{equation}
 \end{enumerate}
 
-\section{Routh方程}
+\section{Routh方程*}
 
-\subsection{Routh函数}
+\subsection{Routh函数*}
 
 在对理想完整系统的Lagrange函数做Legendre变换的过程中，也可以只将Lagrange变量的一部分转化为Hamilton变量，这种Lagrange和Hamilton的组合变量称为{\bf Routh变量}，记作
 \begin{equation*}
@@ -820,7 +784,7 @@ Whittaker方程\eqref{chapter3:惠特克方程}具有与Hamilton方程相同的�
 \end{equation}
 其中右端的$\dot{q}_\alpha(\alpha=l+1,\cdots,s)$\footnote{包括Lagrange函数$L$中的$\dot{q}_\alpha$。}需要从方程\eqref{chapter3:Routh方程中广义动量的定义}中解出，用Routh坐标$q_i,q_\alpha,\dot{q}_i,p_\alpha,t$表示。
 
-\subsection{Routh方程}
+\subsection{Routh方程*}
 
 Routh函数$R=R(q_1,\cdots,q_l,q_{l+1},\cdots,q_s,\dot{q}_1,\cdots,\dot{q}_l,p_{l+1},\cdots,p_s,t)$的全微分为
 \begin{equation}
@@ -874,7 +838,7 @@ Routh函数$R=R(q_1,\cdots,q_l,q_{l+1},\cdots,q_s,\dot{q}_1,\cdots,\dot{q}_l,p_{
 	\label{chapter3:用Routh函数表示的广义能量积分}
 \end{equation}
 
-\subsection{利用Routh方程对带有循环坐标的系统降阶}
+\subsection{利用Routh方程对带有循环坐标的系统降阶*}
 
 设$q_\alpha(\alpha=l+1,\cdots,s)$是理想完整系统的循环坐标，那么这个系统有$s-l$个首次积分
 \begin{equation}
@@ -1163,9 +1127,9 @@ Routh函数$R=R(q_1,\cdots,q_l,q_{l+1},\cdots,q_s,\dot{q}_1,\cdots,\dot{q}_l,p_{
 \end{enumerate}
 \end{example}
 
-\section{非完整系统的运动方程}
+\section{非完整系统的运动方程*}
 
-\subsection{Lagrange乘子法求解线性非完整系统}
+\subsection{Lagrange乘子法求解线性非完整系统*}
 
 设非完整系统有$k$个完整约束和$k'$个线性不可积运动约束，由式\eqref{chapter2:完整约束的一般形式}和\eqref{chapter2:非完整约束的一般形式}给出：
 \begin{subnumcases}{}
@@ -1372,7 +1336,7 @@ Routh函数$R=R(q_1,\cdots,q_l,q_{l+1},\cdots,q_s,\dot{q}_1,\cdots,\dot{q}_l,p_{
 
 % \subsection{卡普雷金方程}
 
-\subsection{Appell方程}
+\subsection{Appell方程*}
 
 Appell\footnote{Paul Appell，阿佩尔，法国数学家。}提出了不包含约束乘子的运动方程，既适用于完整系统，也适用于有线性不可积运动约束的非完整系统。
 
