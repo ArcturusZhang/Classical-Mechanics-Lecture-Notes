@@ -552,7 +552,7 @@
 	\label{Rodrigues公式}
 \end{equation}
 
-\subsection{刚体定点转动的Euler角·万向锁}\label{chapter6:subsection-刚体定点转动的Euler角·万向锁}
+\subsection{刚体定点转动的Euler角·万向节死锁}\label{chapter6:subsection-刚体定点转动的Euler角·万向节死锁}
 
 由于自由刚体的总自由度$s=6$，而质点的自由运动自由度$s_t=3$，所以刚体定点转动的自由度$s_r = 3$，可用$3$个广义坐标确定本体系相对平动系的取向。
 
@@ -731,28 +731,6 @@
 \end{equation}
 式\eqref{Euler运动学方程}称为{\heiti Euler运动学方程}，它给出了刚体的角速度在本体系内的分量与广义坐标（即Euler角）、广义速度（即Euler角的导数）之间的关系。
 
-这里需要注意的一点是，由图\ref{刚体定点转动的Euler角}可以看出，当$\theta=0\text{或}\pi$时，节线$ON$的位置将无法确定，进而也无法单独确定Euler角$\phi$和$\psi$，而只能得到它们的和或差。在式\eqref{chapter6:定点转动的变换矩阵}中令$\theta=0\text{或}\pi$时，将得到
-\begin{equation*}
-	\mbf{U} = \begin{pmatrix}
-		\cos(\phi\pm \psi) & -\sin(\phi\pm \psi) & 0 \\
-		\sin(\phi\pm \psi) & \cos(\phi\pm \psi) & 0 \\
-		0 & 0 & 1
-	\end{pmatrix}
-\end{equation*}
-这也说明此时无法分别确定$\phi$和$\psi$。如果我们将Euler运动学方程\eqref{Euler运动学方程}写为矩阵形式
-\begin{equation*}
-	\begin{pmatrix}
-		\omega_1 \\ \omega_2 \\ \omega_3
-	\end{pmatrix} = \begin{pmatrix}
-		\sin\theta\cos\psi & -\sin\psi & 0 \\
-		\sin\theta\sin\psi & \cos\psi & 0 \\
-		\cos\theta & 0 & 1
-	\end{pmatrix} \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\ \dot{\psi} \end{pmatrix}
-\end{equation*}
-其右端系数矩阵的行列式为$\sin\theta$，当$\theta=0$或$\pi$时，这个行列式为零，这也意味着，当$\theta=0$或$\pi$时，无法通过刚体当时的角速度确定三个广义速度$\dot{\theta},\dot{\phi}$和$\dot{\psi}$。
-
-这个现象称为{\bf 万向锁}（Gimbal Lock），当刚体的$Oz$轴接近$OZ$轴时，广义坐标$\theta,\phi,\psi$所描述的刚体的运动缺少了一个自由度。因此此时需要选择其它的角度来确定刚体的取向，或者改变角度$\theta$的定义，例如将其改变为从$OX$轴或$OY$轴到$Oz$轴的角度。但这样做之后，在刚体运动到相应的$\theta$角起始轴附近时，仍然会出现万向锁现象。万向锁现象说明，刚体的在某些区域的连续运动不能用Euler角的连续变化来表示。
-
 \begin{example}
 半径为$a$的圆盘垂直于地面作纯滚动，圆盘中心$C$以速率$v_C = \omega_1 R$沿着半径为$R$的圆周运动，求圆盘边缘上任意一点$P$的速度。
 \end{example}
@@ -888,6 +866,28 @@
 \end{equation*}
 \end{solution}
 
+这里需要注意的一点是，由图\ref{刚体定点转动的Euler角}可以看出，当$\theta=0\text{或}\pi$时，节线$ON$的位置将无法确定，进而也无法单独确定Euler角$\phi$和$\psi$，而只能得到它们的和或差。在式\eqref{chapter6:定点转动的变换矩阵}中令$\theta=0\text{或}\pi$时，将得到
+\begin{equation*}
+	\mbf{U} = \begin{pmatrix}
+		\cos(\phi\pm \psi) & -\sin(\phi\pm \psi) & 0 \\
+		\sin(\phi\pm \psi) & \cos(\phi\pm \psi) & 0 \\
+		0 & 0 & 1
+	\end{pmatrix}
+\end{equation*}
+这也说明此时无法分别确定$\phi$和$\psi$。如果我们将Euler运动学方程\eqref{Euler运动学方程}写为矩阵形式
+\begin{equation*}
+	\begin{pmatrix}
+		\omega_1 \\ \omega_2 \\ \omega_3
+	\end{pmatrix} = \begin{pmatrix}
+		\sin\theta\cos\psi & -\sin\psi & 0 \\
+		\sin\theta\sin\psi & \cos\psi & 0 \\
+		\cos\theta & 0 & 1
+	\end{pmatrix} \begin{pmatrix} \dot{\theta} \\ \dot{\phi} \\ \dot{\psi} \end{pmatrix}
+\end{equation*}
+其右端系数矩阵的行列式为$\sin\theta$，当$\theta=0$或$\pi$时，这个行列式为零，这也意味着，当$\theta=0$或$\pi$时，无法通过刚体当时的角速度确定三个广义速度$\dot{\theta},\dot{\phi}$和$\dot{\psi}$。
+
+这个现象称为{\bf 万向节死锁}（Gimbal Lock），当刚体的$Oz$轴接近$OZ$轴时，广义坐标$\theta,\phi,\psi$所描述的刚体的运动缺少了一个自由度。因此此时需要选择其它的角度来确定刚体的取向，或者改变角度$\theta$的定义，例如将其改变为从$OX$轴或$OY$轴到$Oz$轴的角度。但这样做之后，在刚体运动到相应的$\theta$角起始轴附近时，仍然会出现万向节死锁现象。万向节死锁现象说明，刚体的在某些区域的连续运动不能用Euler角的连续变化来表示。
+
 \subsection{四元数与三维空间旋转*}
 
 \subsubsection{四元数的定义和运算性质}
@@ -991,7 +991,7 @@
 \end{align}
 对照定轴转动的Rodrigues公式\eqref{Rodrigues公式}，可知由单位四元数\eqref{chapter6:四元数表示三维空间旋转时的单位四元数选取}定义的四元数变换\eqref{chapter6:用四元数表示的三维旋转变换}即表示对位矢为$\mbf{r}$的点绕转轴$\mbf{n}$，按右手螺旋方向旋转$\theta$所得的点。
 
-用四元数表示三维空间中的旋转可以有效避免万向锁的问题，又比矩阵法节约储存和运算量，因此这种方法被广泛应用于计算机图形学上。
+用四元数表示三维空间中的旋转可以有效避免万向节死锁的问题，又比矩阵法节约储存和运算量，因此这种方法被广泛应用于计算机图形学上。
 
 \section{惯量矩阵}
 
@@ -1133,7 +1133,7 @@
 \end{align}
 惯量矩阵的正定性保证主惯量都是正值，即$I_i>0(i=1,2,3)$\footnote{这是对于通常的三维物体，在足够的近似下，可以认为二维物体（如忽略厚度的平板）的其中一个主惯量为零，一维物体（如忽略粗细的细绳）的其中两个主惯量为零。}。
 
-在第\ref{chapter6:subsection-刚体定点转动的Euler角·万向锁}节提到了万向锁，这里要说明的是，万向锁即为在第\ref{chapter2:subsection-系统动能的数学结构}节中提到的选取的广义坐标使得系统的动能在广义坐标的某些区域内，其动能不满足非退化性的一个例子。如果将Euler运动学方程\eqref{Euler运动学方程}代入刚体动能\eqref{chapter6:主轴系中的动能表达式}中并令$\theta=0\text{或}\pi$，可得
+在第\ref{chapter6:subsection-刚体定点转动的Euler角·万向节死锁}节提到了万向节死锁，这里要说明的是，万向节死锁即为在第\ref{chapter2:subsection-系统动能的数学结构}节中提到的选取的广义坐标使得系统的动能在广义坐标的某些区域内，其动能不满足非退化性的一个例子。如果将Euler运动学方程\eqref{Euler运动学方程}代入刚体动能\eqref{chapter6:主轴系中的动能表达式}中并令$\theta=0\text{或}\pi$，可得
 \begin{equation}
 	T = \frac12 (I_1\cos^2\psi+I_2\sin^2\psi)\dot{\theta}^2 + \frac12 I_3(\dot{\phi}\pm \dot{\psi})^2
 \end{equation}
@@ -1145,7 +1145,7 @@
 		0 & \pm 1 & 1 
 	\end{vmatrix} = 0
 \end{equation*}
-这违反了第\ref{chapter2:subsection-系统动能的数学结构}节中的不等式\eqref{chapter2:定常系统动能T2的正定性推论}，因此在$\theta$接近$0$或$\pi$时，通常定义的Euler角已不适合用于描述刚体的运动，这个事实已经在第\ref{chapter6:subsection-刚体定点转动的Euler角·万向锁}节中指出了。
+这违反了第\ref{chapter2:subsection-系统动能的数学结构}节中的不等式\eqref{chapter2:定常系统动能T2的正定性推论}，因此在$\theta$接近$0$或$\pi$时，通常定义的Euler角已不适合用于描述刚体的运动，这个事实已经在第\ref{chapter6:subsection-刚体定点转动的Euler角·万向节死锁}节中指出了。
 
 \subsection{主轴系的求法}
 
