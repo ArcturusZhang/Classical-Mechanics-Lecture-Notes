@@ -8,7 +8,7 @@
 
 ## 编译说明
 
-编译需要安装asymptote宏包。
+需要安装任意LaTeX发行版（推荐使用[TeX Live](http://mirror.lzu.edu.cn/CTAN/systems/texlive/Images/)）和[Asymptote](https://sourceforge.net/projects/asymptote/)，并在LaTeX发行版中安装asymptote宏包（TeX Live中应该默认已经包含了asymptote宏包，因此不需要额外操作）。
 
 编译时需要顺序执行以下命令：
 
@@ -17,4 +17,4 @@
     xelatex CM_chs.tex
     xelatex CM_chs.tex
 
-其中asy命令由于文稿中图片很多，可能需要花费很多时间（在我的笔记本电脑上需要耗时一个小时）。但如果只有个别图片修改可以选择性编译修改过的图片以节约时间。
+其中的asy命令由于文稿中图片很多，可能需要花费很多时间（视电脑性能不同可能需要20分钟至1小时），如果图片没有修改，可以跳过asy命令直接编译文档以节约时间。
