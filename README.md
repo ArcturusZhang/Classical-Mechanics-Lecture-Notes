@@ -10,6 +10,8 @@
 
 需要安装任意LaTeX发行版（推荐使用[TeX Live](http://mirror.lzu.edu.cn/CTAN/systems/texlive/Images/)）和[Asymptote](https://sourceforge.net/projects/asymptote/)，并在LaTeX发行版中安装asymptote宏包（TeX Live中应该默认已经包含了asymptote宏包，因此不需要额外操作）。
 
+可能还需要安装[Ghostscript](https://www.ghostscript.com/download/gsdnld.html)才能使Asymptote能够正常生成PDF文件。
+
 编译时需要顺序执行以下命令：
 
     xelatex CM_chs.tex
