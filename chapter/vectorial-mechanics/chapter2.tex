@@ -1,0 +1,1045 @@
+\chapter{质点动力学}
+
+\section{Newton运动定律}
+
+\begin{itemize}
+	\item {\heiti Newton第一定律}：不受外力作用的质点始终保持静止或匀速直线运动状态。
+	
+	建立了{\heiti 力}和{\heiti 惯性}的概念，指出静止与匀速直线运动等价。物理经验的极限外推：物体越孤立，越接近惯性运动。
+	
+	第一定律的实质：定义惯性系（第一定律成立的参考系），断言其存在。等价于孤立系的动量守恒定律。
+	\item {\heiti Newton第二定律}：$\mbf{F} = m\mbf{a}$。
+	通过加速度规定惯性和力的度量。Newton第二定律是运动定律，而非单纯定义。Newton第二定律只适用于惯性系，非惯性系必须引入虚拟的惯性力。
+	
+	\item {\heiti Newton第三定律}：作用力与反作用力共线，大小相等，方向相反，即$\mbf{F}_{ij} = -\mbf{F}_{ji}$。
+	
+	适用条件：物体运动速度远低于相互作用传播速度。
+\end{itemize}
+
+\section{伽利略变换}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//伽利略变换
+	pair O,x,y,z,v,r;
+	O = (0,0);
+	x = 0.8*dir(-135);
+	y = dir(0);
+	z = dir(90);
+	v = (2/3,1/3);
+	r = (0.9,1.2);
+	draw(Label("$x$",EndPoint),O--x,Arrow);
+	draw(Label("$y$",EndPoint),O--y,Arrow);
+	draw(Label("$z$",EndPoint),O--z,Arrow);
+	label("$O$",O,W);
+	draw(Label("$x'$",EndPoint),v--v+x,Arrow);
+	draw(Label("$y'$",EndPoint),v--v+y,Arrow);
+	draw(Label("$z'$",EndPoint),v--v+z,Arrow);
+	label("$O'$",v,SE);
+	draw(Label(rotate(degrees(v))*"$\boldsymbol{v}_0 t$",Relative(0.7),Relative(W)),O--v,red,Arrow);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),O--r,Arrow);
+	draw(Label("$\boldsymbol{r}'$",MidPoint,Relative(E)),v--r,Arrow);
+\end{asy}
+\caption{伽利略变换}
+\label{伽利略变换}
+\end{figure}
+
+伽利略变换可以表示为
+\begin{equation}
+	\begin{cases}
+		\mbf{r}' = \mbf{r} - \mbf{v}_0t \\
+		t' = t
+	\end{cases}
+\end{equation}
+在此变换下，可有
+\begin{equation}
+	\mbf{v}' = \mbf{v} - \mbf{v}_0,\quad \mbf{a}' = \mbf{a}
+\end{equation}
+力决定于质点间的相对位矢，故有$\mbf{F} = \mbf{F}'$。相对速度是伽利略变换下的不变量。
+
+如果$Oxyz$参考系为惯性参考系，即满足$\mbf{F} = m\mbf{a}$，则$O'x'y'z'$也满足$\mbf{F}' = m\mbf{a}'$，因此也是惯性参考系。
+
+上述说明中的隐含假定：长度、时间和质量是伽利略变换下的不变量。
+
+{\heiti 伽利略相对性原理} \quad 力学定理在所有惯性系中形式相同。一切惯性系等价，无法通过力学实验区分哪个惯性系更基本。
+
+相对性原理推广到一切物理现象将导致狭义相对论的诞生。
+
+\section{运动定理与守恒定律}
+
+\subsection{质点系}
+
+质点系即指两个以上相互作用的质点组成的系统。在质点系中，{\heiti 外力}指质点系外物体对质点系内任一质点的作用力，记作$\mbf{F}_i$。{\heiti 内力}指质点系内任意一对质点之间的相互作用力，质点$j$对质点$i$的作用力记作$\mbf{f}_{ij}$。
+
+\subsection{动量及其守恒定律}
+
+质点的{\heiti 动量}定义为
+\begin{equation}
+	\mbf{p} = m\mbf{v}
+\end{equation}
+根据Newton第二定律，有
+\begin{equation}
+	\mbf{F} = m\mbf{a} = m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} = \frac{\mathrm{d} \mbf{p}}{\mathrm{d} t}
+	\label{动量定理1}
+\end{equation}
+或者
+\begin{equation}
+	\mathrm{d} \mbf{p} = \mbf{F} \mathrm{d} t
+	\label{动量定理2}
+\end{equation}
+式\eqref{动量定理1}或\eqref{动量定理2}表示的关系称为{\heiti 动量定理}。
+
+质点系的动量定义为各个质点动量之和，即
+\begin{equation}
+	\mbf{p} = \sum_{i=1}^n \mbf{p}_i
+\end{equation}
+则有
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \sum_{i=1}^n \frac{\mathrm{d} \mbf{p}_i}{\mathrm{d} t} = \sum_{i=1}^n \left(\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}\right)
+\end{equation*}
+式中
+\begin{equation*}
+	\sum_{j=1(j\neq i)}^n \mbf{f}_{ij} = \sum_{i=1(i \neq j)}^n \mbf{f}_{ji} = \frac12 \sum_{i,j=1(i \neq j)}^n (\mbf{f}_{ij} + \mbf{f}_{ji}) = \mbf{0}
+\end{equation*}
+因此可有{\heiti 质点系的动量定理}
+\begin{equation}
+	\frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \sum_{i=1}^n \mbf{F}_i = \mbf{F}^{(e)}
+\end{equation}
+即，质点系总动量的时间变化率等于合外力。
+
+如果质点系所受合外力为零，则质点系的总动量保持不变。此即为{\heiti 动量守恒定律}。即如有$\mbf{F}^{(e)} = \mbf{0}$，根据质点系的动量定理，有
+\begin{equation*}
+	\mbf{F}^{(e)} = \dfrac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \mbf{0}
+\end{equation*}
+即总动量$\mbf{p} = \text{常矢量}$。
+
+如果质点系在某方向上合外力为零，则质点系的总动量在该方向上的分量保持不变。即如果有常单位矢量$\mbf{e}$，满足$\mbf{e} \cdot \mbf{F}^{(e)} = 0$，则有
+\begin{equation*}
+	\mbf{e} \cdot \mbf{F}^{(e)} = \mbf{e} \cdot \frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \frac{\mathrm{d} (\mbf{e} \cdot \mbf{p})}{\mathrm{d} t} = 0
+\end{equation*}
+即总动量在该方向上的分量$\mbf{e} \cdot \mbf{p} = \text{常数}$。
+
+动量守恒定律在纯质点力学系统中由Newton第三定律保证。
+
+\subsection{角动量及其守恒定律}
+
+质点的{\heiti 角动量}\footnote{此处为对原点的角动量。}定义为
+\begin{equation}
+	\mbf{L} = \mbf{r} \times \mbf{p}
+\end{equation}
+{\heiti 力矩}\footnote{此处为对原点的力矩。}定义为
+\begin{equation}
+	\mbf{M} = \mbf{r} \times \mbf{F}
+\end{equation}
+则有
+\begin{equation}
+	\frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \frac{\mathrm{d}}{\mathrm{d} t}(\mbf{r} \times \mbf{p}) = \mbf{v} \times \mbf{p} + \mbf{r} \times \frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \mbf{r} \times \mbf{F} = \mbf{M}
+	\label{角动量定理1}
+\end{equation}
+或者
+\begin{equation}
+	\mathrm{d} \mbf{L} = \mbf{M} \mathrm{d} t
+	\label{角动量定理2}
+\end{equation}
+式\eqref{角动量定理1}和式\eqref{角动量定理2}表示的关系称为{\heiti 角动量定理}。
+
+质点系的角动量定义为各个质点角动量之和，即
+\begin{equation}
+	\mbf{L} = \sum_{i=1}^n \mbf{L}_i
+\end{equation}
+则有
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \sum_{i=1}^n \frac{\mathrm{d} \mbf{L}_i}{\mathrm{d} t} = \sum_{i=1}^n \mbf{r}_i \times \left(\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}\right)
+\end{equation*}
+式中
+\begin{align*}
+	\sum_{i,j=1(i \neq j)}^n \mbf{r}_i \times \mbf{f}_{ij} & = \sum_{i,j=1(i\neq j)}^n \mbf{r}_j \times \mbf{f}_{ji} = \frac12 \sum_{i,j=1(i\neq j)}^n (\mbf{r}_i \times \mbf{f}_{ij} + \mbf{r}_j \times \mbf{f}_{ji}) \\
+	& = \frac12 \sum_{i,j=1(i \neq j)}^n (\mbf{r}_i -\mbf{r}_j) \times \mbf{f}_{ij} = \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{r}_{ij} \times \mbf{f}_{ij} = \mbf{0}
+\end{align*}
+此处利用了$\mbf{f}_{ij} \parallel \mbf{r}_{ij}$。由此即有{\heiti 质点系的角动量定理}
+\begin{equation}
+	\frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \sum_{i=1}^n \mbf{r}_i \times \mbf{F}_i = \mbf{M}^{(e)}
+\end{equation}
+即，质点系的总角动量时间变化率等于合外力矩。
+
+如果质点系所受合外力矩为零，则质点系的总角动量保持不变。此即为{\heiti 角动量守恒定律}。即如有$\mbf{M}^{(e)} = \mbf{0}$，根据质点系的角动量定理，有
+\begin{equation*}
+	\mbf{M}^{(e)} = \dfrac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \mbf{0}
+\end{equation*}
+即总角动量$\mbf{L} = \text{常矢量}$。
+
+如果质点系在某方向上合外力矩为零，则质点系的总角动量在该方向上的分量保持不变。即如果有常单位矢量$\mbf{e}$，满足$\mbf{e} \cdot \mbf{M}^{(e)} = 0$，则有
+\begin{equation*}
+	\mbf{e} \cdot \mbf{M}^{(e)} = \mbf{e} \cdot \frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \frac{\mathrm{d} (\mbf{e} \cdot \mbf{L})}{\mathrm{d} t} = 0
+\end{equation*}
+即总角动量在该方向上的分量$\mbf{e} \cdot \mbf{L} = \text{常数}$。
+
+角动量守恒定律在纯质点力学系统中由Newton第三定律保证。
+
+\subsection{能量及其守恒定律}
+
+质点的{\heiti 动能}定义为
+\begin{equation}
+	T = \frac12 mv^2
+\end{equation}
+则有
+\begin{equation}
+	\frac{\mathrm{d} T}{\mathrm{d} t} = m\dot{\mbf{v}} \cdot \mbf{v} = \mbf{F} \cdot \mbf{v}
+	\label{动能定理1}
+\end{equation}
+或者
+\begin{equation}
+	\mathrm{d}T = \mbf{F} \cdot \mbf{v}\mathrm{d} t = \mbf{F} \cdot \mathrm{d} \mbf{r}
+	\label{动能定理2}
+\end{equation}
+式\eqref{动能定理1}和式\eqref{动能定理2}表示的关系称为{\heiti 动能定理}。
+
+质点系的动能定义为各个质点动能之和，即
+\begin{equation}
+	T = \sum_{i=1}^n T_i
+\end{equation}
+则有
+\begin{align*}
+	\mathrm{d} T & = \sum_{i=1}^n \mathrm{d} T_i = \sum_{i=1}^n \left(\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}\right) \cdot \mathrm{d} \mbf{r}_i
+\end{align*}
+式中
+\begin{align*}
+	\sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i & = \frac12 \sum_{i,j=1(i\neq j)}^n (\mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i +\mbf{f}_{ji} \cdot \mathrm{d} \mbf{r}_j) = \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot (\mathrm{d}\mbf{r}_i - \mathrm{d} \mbf{r}_j) \\
+	& = \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij}
+\end{align*}
+由此有{\heiti 质点系的动能定理}
+\begin{equation}
+	\mathrm{d} T = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij}
+\end{equation}
+即，质点系总动能增加量等于外力与内力的总功，内力共决定于质点间的相对运动。
+
+如果力$\mbf{F}$可以写作某标量函数的梯度，即
+\begin{equation}
+	\mbf{F} = -\bnb V(\mbf{r})
+\end{equation}
+则该力称为{\heiti 保守力}。根据保守力的定义，可有
+\begin{equation}
+	\mbf{F} \cdot \mathrm{d} \mbf{r} = -\mathrm{d}V
+\end{equation}
+所以
+\begin{equation*}
+	\int_{\mbf{r}_0}^{\mbf{r}} \mbf{F} \cdot \mathrm{d} \mbf{r} = V(\mbf{r}_0) - V(\mbf{r})
+\end{equation*}
+即，保守力做功与路径无关。由此也可得
+\begin{equation}
+	\oint_C \mbf{F} \cdot \mathrm{d} \mbf{r} = 0
+\end{equation}
+即，对任意闭合路径$C$，保守力做功为零。
+
+对于质点系，如果外力是保守力，即满足
+\begin{equation}
+	\mbf{F}_i = -\bnb_i V_i(\mbf{r}_i)
+\end{equation}
+其中
+\begin{equation}
+	\bnb_i = \mbf{e}_1 \frac{\pl}{\pl x_i} + \mbf{e}_2 \frac{\pl}{\pl y_i} + \mbf{e}_3 \frac{\pl}{\pl z_i}
+\end{equation}
+所以有
+\begin{equation}
+	\mbf{F}_i \cdot \mathrm{d} \mbf{r}_i = -\mathrm{d} V_i
+\end{equation}
+定义{\heiti 质点系外势能}为
+\begin{equation}
+	V^{(e)} = \sum_{i=1}^n V_i
+\end{equation}
+将有
+\begin{equation}
+	\sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i = -\sum_{i=1}^n \mathrm{d} V_i = -\mathrm{d} V^{(e)}
+\end{equation}
+即，保守外力总功等于外势能减少。
+
+如果质点系的内力是保守力，即有
+\begin{align*}
+	\mbf{f}_{ij} = -\bnb_i V_{ij}(\mbf{r}_{ij}) \\
+	\mbf{f}_{ji} = -\bnb_j V_{ij}(\mbf{r}_{ij})
+\end{align*}
+为一对保守内力，其中
+\begin{align*}
+	& \mbf{r}_{ij} = \mbf{r}_i - \mbf{r}_j \\
+	& \bnb_i = \bnb_{ij} = -\bnb_j
+\end{align*}
+由此内力可以表示为
+\begin{equation*}
+	\mbf{f}_{ij} = -\bnb_{ij} V_{ij}(\mbf{r}_{ij})
+\end{equation*}
+即有
+\begin{equation}
+	\mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i + \mbf{f}_{ji} \cdot \mathrm{d} \mbf{r}_j = -\mathrm{d} V_{ij}
+\end{equation}
+定义{\heiti 质点系内势能}为
+\begin{equation}
+	V^{(i)} = \frac12 \sum_{i,j=1(i \neq j)}^n V_{ij}
+\end{equation}
+则有
+\begin{equation}
+	\sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i = \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} = -\frac12 \sum_{i,j=1(i\neq j)}^n \mathrm{d} V_{ij} = -\mathrm{d} V^{(i)}
+\end{equation}
+即，保守内力总功等于内势能减少。
+
+质点系的总势能定义为
+\begin{equation}
+	V(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n) = V^{(e)} + V^{(i)}
+\end{equation}
+则有
+\begin{align*}
+	-\bnb_i V^{(e)} & = -\sum_{j=1}^n \bnb_i V_j = \sum_{j=1}^n \delta_{ij} \mbf{F}_i = \mbf{F}_i \\
+	-\bnb_i V^{(i)} & = -\frac12 \sum_{j,k=1(j \neq k)}^n \bnb_i V_{jk} = \frac12 \sum_{j,k=1(j\neq k)}^n (\delta_{ij} \mbf{f}_{ik} + \delta_{ik} \mbf{f}_{ij}) \\
+	& = \frac12 \sum_{k=1(k\neq i)}^n \mbf{f}_{ik} + \frac12 \sum_{j(j\neq i)} \mbf{f}_{ij} = \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}
+\end{align*}
+所以有
+\begin{equation}
+	\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij} = -\bnb_i V
+\end{equation}
+当所有力都为保守力（或者非保守力不做功）时，将有
+\begin{equation}
+	\mathrm{d} T = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} = -\mathrm{d} V^{(e)} - \mathrm{d} V^{(i)} = -\mathrm{d} V
+\end{equation}
+定义{\heiti 总能量}\footnote{此处仅指机械能。}为
+\begin{equation}
+	E = T+V
+\end{equation}
+则在所有力都为保守力（或者非保守力不做功）时，将有
+\begin{equation}
+	\mathrm{d} E = 0
+	\label{质点系能量守恒定律}
+\end{equation}
+式\eqref{质点系能量守恒定律}即为能量守恒定律。
+
+\subsection{质心参考系}
+
+质点系的{\heiti 质心}定义为
+\begin{equation}
+	\mbf{r}_C = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{r}_i}{M} = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{r}_i}{\displaystyle \sum_{i=1}^n m_i}
+\end{equation}
+质心的速度为
+\begin{equation}
+	\mbf{v}_C = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{v}_i}{M}
+\end{equation}
+加速度为
+\begin{equation}
+	\mbf{a}_C = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{a}_i}{M}
+\end{equation}
+
+显然质点系的总动量可以用质心速度表示为
+\begin{equation*}
+	\mbf{p} = M\mbf{v}_C
+\end{equation*}
+由此可有
+\begin{equation}
+	\frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = M\mbf{a}_C = \mbf{F}^{(e)}
+	\label{质心运动定理}
+\end{equation}
+式\eqref{质心运动定理}表示的关系即为{\heiti 质心运动定理}。即，质点系的整体运动可视为全部质量集中于质心的单质点运动。
+
+质心运动定理是引进质点概念的动力学基础。
+
+\subsection{质心参考系的运动定理}
+
+以质心为原点，并随之平动的参考系称为{\heiti 质心参考系}或{\heiti 质心系}。一般为非惯性系。
+
+在质心系中，各质点的位矢和速度为
+\begin{align}
+	\mbf{r}'_i & = \mbf{r}_i - \mbf{r}_C \\
+	\mbf{v}'_i & = \mbf{v}_i - \mbf{v}_C
+\end{align}
+即为各质点相对质心的运动（质点系的内部运动）。
+
+\subsubsection{质心系动量定理}
+
+在质心系中，总动量为
+\begin{equation}
+	\mbf{p}' = \sum_{i=1}^n m_i \mbf{v}'_i = \sum_{i=1}^n m_i(\mbf{v}_i - \mbf{v}_C) = \mbf{p} - M\mbf{v}_C = \mbf{0}
+\end{equation}
+即，在质心系中质点系的总动量为零。
+
+\subsubsection{质心系角动量定理}
+在质心系中，质点系的总角动量
+\begin{equation}
+	\mbf{L}' = \sum_{i=1}^n \mbf{r}'_i \times \mbf{p}'_i = \sum_{i=1}^n \mbf{r}'_i \times m_i \mbf{v}'_i
+\end{equation}
+即为质点系的{\heiti 内秉角动量}或{\heiti 自旋角动量}。质心的角动量
+\begin{equation}
+	\mbf{L}_C = \mbf{r}_C \times M\mbf{v}_C
+\end{equation}
+称为质点系的{\heiti 轨道角动量}。在实验室参考系中的总角动量为
+\begin{align*}
+	\mbf{L} & = \sum_{i=1}^n (\mbf{r}_C + \mbf{r}'_i) \times m_i(\mbf{v}_C + \mbf{v}'_i) \\
+	& = \mbf{r}_C \times M\mbf{v}_C + \mbf{r}_C\times \mbf{p}' + \sum_{i=1}^n m_i \mbf{r}'_i \times \mbf{v}_C + \sum_{i=1}^n \mbf{r}'_i \times m_i \mbf{v}'_i \\
+	& = \mbf{r}_C \times M\mbf{v}_C + \sum_{i=1}^n \mbf{r}'_i \times m_i \mbf{v}'_i
+\end{align*}
+所以有
+\begin{equation}
+	\mbf{L} = \mbf{L}_C+\mbf{L}'
+\end{equation}
+即，质点系的总角动量等于轨道角动量与内秉角动量之和。对于力矩，可有
+\begin{equation}
+	\mbf{M}^{(e)} = \sum_{i=1}^n \mbf{r}_i \times \mbf{F}_i = \sum_{i=1}^n (\mbf{r}_C+\mbf{r}'_i) \times \mbf{F}_i = \mbf{r}_C \times \mbf{F}^{(e)} + \mbf{M}'^{(e)}
+\end{equation}
+式中，$\displaystyle \mbf{M}'^{(e)} = \sum_{i=1}^n \mbf{r}'_i \times \mbf{F}_i$表示外力对质心的力矩。考虑到轨道角动量$\mbf{L}_C = \mbf{r}_C \times M\mbf{v}_C$，则有
+\begin{equation}
+	\frac{\mathrm{d} \mbf{L}_C}{\mathrm{d} t} = \mbf{v}_C \times M\mbf{v}_C + \mbf{r}_C \times M \mbf{a}_C = \mbf{r}_C \times \mbf{F}^{(e)}
+	\label{质心角动量定理}
+\end{equation}
+即，质点系的轨道角动量时间变化率等于外力集中于质心产生的合力矩。根据角动量定理$\dfrac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \mbf{M}^{(e)}$，以及$\mbf{L} = \mbf{L}_C + \mbf{L}'$，可有
+\begin{equation}
+	\frac{\mathrm{d} \mbf{L}'}{\mathrm{d} t} = \mbf{M}'^{(e)}
+	\label{质心系角动量定理}
+\end{equation}
+即，质点系的内秉角动量时间变化率等于相对于质心的合外力矩。式\eqref{质心角动量定理}和式\eqref{质心系角动量定理}表示的关系即为{\heiti 质心系角动量定理}。
+
+\subsubsection{质心系动能定理}
+
+定义{\heiti 质点系整体运动动能}为
+\begin{equation}
+	T_C = \frac12 M v_C^2
+\end{equation}
+以及{\heiti 质点系内动能}为
+\begin{equation}
+	T' = \sum_{i=1}^n \frac12 m_i v'_i{}^2
+\end{equation}
+则有
+\begin{align}
+	T & = \frac12 \sum_{i=1}^n m_i(\mbf{v}_C + \mbf{v}'_i) \cdot (\mbf{v}_C + \mbf{v}'_i) = \frac12 M v_C^2 + \mbf{v}_C \cdot \mbf{p}' + \frac12\sum_{i=1}^n m_i v'_i{}^2 \nonumber \\
+	& = T_C + T' \label{Konig定理}
+\end{align}
+式\eqref{Konig定理}表示的关系称为{\heiti K\"onig（柯尼希）定理}。即，质点系总动能等于整体运动动能与内动能之和。
+
+根据整体运动动能的定义，有
+\begin{equation}
+	\frac{\mathrm{d} T_C}{\mathrm{d} t} = M\mbf{v}_C \cdot \mbf{a}_C = \mbf{F}^{(e)} \cdot \mbf{v}_C
+\end{equation}
+或者
+\begin{equation}
+	\mathrm{d}T_C = \mbf{F}^{(e)} \cdot \mathrm{d} \mbf{r}_C
+	\label{质心动能定理}
+\end{equation}
+即，质点系整体运动动能增量等于外力集中于质心做的总功。又考虑到相对位矢是伽利略变换的不变量，即有
+\begin{equation*}
+	\mbf{r}_{ij} = \mbf{r}_i - \mbf{r}_j = \mbf{r}'_i - \mbf{r}'_j = \mbf{r}'_{ij}
+\end{equation*}
+可得
+\begin{align*}
+	\mathrm{d} T & = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} \\
+	& = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_C + \sum_i \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij} \\
+	& = \mbf{F}^{(e)} \cdot \mathrm{d} \mbf{r}_C + \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i + \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij}
+\end{align*}
+所以有
+\begin{equation}
+	\mathrm{d} T' = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i + \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij}
+	\label{质心系动能定理}
+\end{equation}
+式\eqref{质心动能定理}和式\eqref{质心系动能定理}表示的关系称为{\heiti 质心系动能定理}。即，质点系内动能增量等于外力与内力在质心系内做的总功。
+
+如果内力均为保守力，则有
+\begin{equation*}
+	\frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} = \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij} = -\mathrm{d} V^{(i)}
+	\label{质点系内势能}
+\end{equation*}
+式中$V^{(i)}$称为{\heiti 质点系内势能}。定义{\heiti 质点系内能}为
+\begin{equation}
+	E' = T'+V^{(i)}
+\end{equation}
+由式\eqref{质点系内势能}和式\eqref{质心系动能定理}可得
+\begin{equation}
+	\mathrm{d} E' = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i
+\end{equation}
+即，质点系内能增量等于外力在质心系内做的总功。
+
+\begin{example}
+光滑水平面上有一质量为$m$的质点，用一轻绳系着，绳子完全绕在半径为$R$的圆柱上，使质点贴在圆柱体的边缘上。$t=0$时给质点以一径向速度$\mbf{v}_0$，据此求任意时刻绳上的张力大小$T(t)$。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例4图
+	real R,r,theta,dtheta;
+	pair O,C,Cp,P,Pp,v0,vt,vtp;
+	O = (0,0);
+	R = 2.5;
+	theta = 110;
+	dtheta = 15;
+	dot(O);
+	label("$\theta$",O,NE);
+	draw(scale(R)*unitcircle,linewidth(0.8bp));
+	draw(Label("$R$",MidPoint,W),O--R*dir(90));
+	r = 0.3*R;
+	draw(arc(O,r,90-theta-dtheta-25,90-theta-dtheta),Arrow);
+	draw(Label("$\mathrm{d} \theta$",MidPoint,Relative(W)),arc(O,r,90-theta+25,90-theta),Arrow);
+	
+	pair jkx(real phi){
+		return R*dir(90-phi)+R*phi*pi/180*dir(180-phi);
+	}
+	pair djkx(real phi){
+		real phir;
+		phir = phi*pi/180;
+		return (sin(phir),cos(phir));
+	}
+	draw(graph(jkx,0,150),red+linewidth(0.8bp));
+	draw(Label("$\boldsymbol{v}_0$",EndPoint),jkx(0)--jkx(0)+djkx(0),Arrow);
+	dot(jkx(0));
+	draw(Label("$\boldsymbol{v}$",EndPoint,Relative(W)),jkx(theta)--jkx(theta)+djkx(theta),Arrow);
+	dot(jkx(theta));
+	draw(jkx(theta+dtheta)--jkx(theta+dtheta)+djkx(theta+dtheta),Arrow);
+	dot(jkx(theta+dtheta));
+	draw(O--R*dir(90-theta));
+	draw(Label("$R\theta$",MidPoint,Relative(W)),R*dir(90-theta)--jkx(theta));
+	draw(jkx(theta)--jkx(theta)-dir(180-theta),blue,Arrow);
+	draw(O--R*dir(90-theta-dtheta)--jkx(theta+dtheta),dashed);
+	label("$\mathrm{d} s$",jkx(theta+dtheta/2),S);
+	draw(O--(2.95*R,1.6*R),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例4图}
+\end{figure}
+\end{example}
+\begin{solution}
+由题意，小球的轨道为圆的渐开线。即任意时刻绳子与圆相切，绳子的不可伸长性要求质点速度正交于绳子。轨道的参数方程可以表示为
+\begin{equation*}
+	\mbf{r}(\theta) = R \begin{pmatrix} \cos\left(\dfrac{\pi}{2}-\theta\right) \\[1.5ex] \sin \left(\dfrac{\pi}{2}-\theta\right) \end{pmatrix} + R\theta \begin{pmatrix} \cos(\pi-\theta) \\ \sin(\pi-\theta) \end{pmatrix} = \begin{pmatrix} R\sin \theta-R\theta\cos \theta \\ R\cos \theta+R\theta \sin \theta \end{pmatrix}
+\end{equation*}
+在切线方向上有
+\begin{equation*}
+	m\dot{v} = F_\tau = 0
+\end{equation*}
+即有
+\begin{equation*}
+	v = v_0
+\end{equation*}
+在法线方向上有
+\begin{equation*}
+	m \frac{v^2}{\rho} = T
+\end{equation*}
+式中$\rho$为该点的曲率半径。根据轨道的方程可得
+\begin{equation*}
+	\rho = \left|\frac{\left[(x'(\theta))^2+(y'(\theta))^2\right]^{\frac32}}{x'(\theta)y''(\theta)-x''(\theta)y'(\theta)}\right| = R\theta
+\end{equation*}
+再考虑到
+\begin{equation*}
+	\frac{\mathrm{d} \theta}{\mathrm{d} t} = \frac{\mathrm{d} \theta}{\mathrm{d} s} \frac{\mathrm{d} s}{\mathrm{d} t} = \frac{v}{\rho} = \frac{v}{R\theta}
+\end{equation*}
+可得
+\begin{equation*}
+	\theta(t) = \sqrt{\frac{2v_0t}{R}}
+\end{equation*}
+因此有
+\begin{equation*}
+	T = m\frac{v^2}{\rho} = m\frac{v^2}{R\theta} = mv_0 \sqrt{\frac{v_0}{2Rt}}
+\end{equation*}
+\end{solution}
+
+\begin{example}[计入空气阻力的斜抛运动]
+设空气阻力$\mbf{f} = -k\mbf{v}$，重力加速度为$\mbf{g} = -g\mbf{e}_2$，初始速度$\mbf{v}_0 = v_0(\cos \alpha \mbf{e}_1 + \sin \alpha \mbf{e}_2)$，初始位矢$\mbf{r}_0 = \mbf{0}$，求物体的轨迹。
+\end{example}
+
+\begin{solution}
+根据Newton第二定律，可有矢量形式的微分方程
+\begin{equation*}
+	m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} = m\mbf{g} - k\mbf{v}
+\end{equation*}
+整理可得
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{g}
+\end{equation*}
+此处$\tau = \dfrac{m}{k}$。首先解齐次方程
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{0}
+\end{equation*}
+将其写成分量形式即为
+\begin{equation*}
+	\begin{cases}
+		\dfrac{\mathrm{d} v_x}{\mathrm{d} t} = -\dfrac{v_x}{\tau} \\[1.5ex]
+		\dfrac{\mathrm{d} v_y}{\mathrm{d} t} = -\dfrac{v_y}{\tau}
+	\end{cases}
+\end{equation*}
+其解为
+\begin{equation*}
+	\begin{cases}
+		v_x = C_1 \mathrm{e}^{-\frac{t}{\tau}} \\
+		v_y = C_2 \mathrm{e}^{-\frac{t}{\tau}}
+	\end{cases}
+\end{equation*}
+或者写作矢量形式为
+\begin{equation*}
+	\mbf{v} = \mbf{C} \mathrm{e}^{-\frac{t}{\tau}}
+\end{equation*}
+利用常数变易法，令$\mbf{v}(t) = \mbf{C}(t) \mathrm{e}^{-\frac{t}{\tau}}$，代入原方程，可得
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{C}}{\mathrm{d} t} = \mbf{g}\mathrm{e}^{\frac{t}{\tau}}
+\end{equation*}
+即有$\mbf{C}(t) = \mbf{g}\tau \mathrm{e}^{\frac{t}{\tau}} + \mbf{C}_1$，因此
+\begin{equation*}
+	\mbf{v}(t) = \mbf{C}_1 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g} \tau
+\end{equation*}
+利用$\mbf{v}(0) = \mbf{v}_0$，可得
+\begin{equation*}
+	\mbf{v}(t) = \mbf{v}_0 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
+\end{equation*}
+再对时间积分一次，可得轨迹
+\begin{equation*}
+	\mbf{r}(t) = -\mbf{v}_0 \tau \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau(t + \tau \mathrm{e}^{-\frac{t}{\tau}}) + \mbf{C}_2
+\end{equation*}
+利用$\mbf{r}(0) = \mbf{0}$，可得
+\begin{equation*}
+	\mbf{r}(t) = \mbf{v}_0 \tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) +\mbf{g}\tau \left[t - \tau\left(1 - \mathrm{e}^{-\frac{t}{\tau}}\right)\right]
+\end{equation*}
+即
+\begin{equation*}
+	\begin{cases}
+		x(t) = v_0 \tau \cos \alpha \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) \\ 
+		y(t) = -g\tau t + \tau(v_0\sin \alpha+g\tau) \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
+	\end{cases}
+\end{equation*}
+消去时间可以得到轨道方程
+\begin{equation*}
+	y = \left(\tau \alpha + \frac{g\tau}{v_0\cos\alpha}\right) x g\tau^2 \ln \left(1-\frac{x}{v_0\tau \cos \alpha}\right)
+\end{equation*}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(350);
+	//不同阻尼系数下的轨道曲线图
+	real x,y;
+	picture g,tmp;
+	real kappa;
+	real tra(real x){
+		return 2*(1+1/kappa)*x+2/kappa/kappa*log(1-kappa*x);
+	}
+	real tra0(real x){
+		return 2*x-x**2;
+	}
+	for(y=-2.5;y<1.5;y=y+0.5){
+		draw(g,(0,y)--(3,y),0.6white);
+	}
+	for(x=0.25;x<3;x=x+0.25){
+		draw(g,(x,-3)--(x,1.5),0.6white);
+	}
+	kappa = 0.1;
+	draw(tmp,graph(tra,0,0.9/kappa),blue+linewidth(1bp));
+	kappa = 0.5;
+	draw(tmp,graph(tra,0,0.9/kappa),green+linewidth(1bp));
+	kappa = 1.0;
+	draw(tmp,graph(tra,0,0.9678),orange+linewidth(1bp));
+	kappa = 2.0;
+	draw(tmp,graph(tra,0,0.499938),red+linewidth(1bp));
+	draw(tmp,graph(tra0,0,3),linewidth(1bp));
+	clip(tmp,box((0,-3),(3,1.5)));
+	add(g,tmp);
+	erase(tmp);
+	draw(g,box((0,-3),(3,1.5)),linewidth(1bp));
+	label(g,"$\dfrac{x}{x_m}$",(3,-3),2.5*E);
+	label(g,"$\dfrac{y}{y_m}$",(0,1.5),W);
+	label(g,"$1$",(0,1),W);
+	label(g,"$0$",(0,0),W);
+	label(g,"$-1$",(0,-1),W);
+	label(g,"$-2$",(0,-2),W);
+	label(g,"$-3$",(0,-3),W);
+	label(g,"$0.0$",(0,-3),S);
+	label(g,"$0.5$",(0.5,-3),S);
+	label(g,"$1.0$",(1,-3),S);
+	label(g,"$1.5$",(1.5,-3),S);
+	label(g,"$2.0$",(2,-3),S);
+	label(g,"$2.5$",(2.5,-3),S);
+	label(g,"$3.0$",(3,-3),S);
+	pair A,B;
+	A = (2.35,-0.3);
+	B = (2.85,1.3);
+	real delta;
+	delta = (B.y-A.y)/10;
+	fill(g,shift((0.025,-0.05))*box(A,B),black);
+	unfill(g,box(A,B));
+	draw(g,box(A,B));
+	label(g,"$\kappa = 0.0$",((A.x+B.x)/2,A.y)+(0,9*delta));
+	label(g,"$\kappa = 0.1$",((A.x+B.x)/2,A.y)+(0,7*delta),blue);
+	label(g,"$\kappa = 0.5$",((A.x+B.x)/2,A.y)+(0,5*delta),green);
+	label(g,"$\kappa = 1.0$",((A.x+B.x)/2,A.y)+(0,3*delta),orange);
+	label(g,"$\kappa = 2.0$",((A.x+B.x)/2,A.y)+(0,1*delta),red);
+	add(xscale(2)*g);
+\end{asy}
+\caption{不同阻尼系数下的轨道曲线图}
+\label{不同阻尼系数下的轨道曲线图}
+\end{figure}
+
+考虑无阻尼极限$k=0$，即$\tau = \dfrac{m}{k} \to +\infty$的情况。根据当$u \to 0$时，有
+\begin{equation*}
+	\ln (1+u) = u - \frac12 u^2 + o(u^2)
+\end{equation*}
+当$\tau \to +\infty$时，轨道变为
+\begin{equation*}
+	y = x\tan \alpha -\frac{gx^2}{2v_0^2\cos^2 \alpha}
+\end{equation*}
+由此，令
+\begin{equation*}
+	\kappa = \frac{kv_0 \sin \alpha}{mg} = \frac{v_0 \sin \alpha}{g\tau},\quad x_m = \frac{v_0^2 \sin 2\alpha}{2g},\quad y_m = \frac{v_0^2 \sin^2 \alpha}{2g}
+\end{equation*}
+则在无阻尼的情形，即$\kappa=0$时，轨道可以表示为
+\begin{equation*}
+	\frac{y}{y_m} = 2\frac{x}{x_m} - \left(\frac{x}{x_m}\right)^2
+\end{equation*}
+当$\kappa \neq 0$时，轨道方程为
+\begin{equation*}
+	\frac{y}{y_m} = 2\left(1+\frac{1}{\kappa}\right) \frac{x}{x_m} + \frac{2}{\kappa^2} \ln \left(1-\kappa \frac{x}{x_m}\right)
+\end{equation*}
+上式这种形式称为{\heiti 无量纲形式}。不同阻尼系数$\kappa$下的轨道曲线如图\ref{不同阻尼系数下的轨道曲线图}所示。由图可见阻力越大，越早的接近竖直运动。
+\end{solution}
+
+\begin{example}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例6图
+	pair O,P;
+	real r,theta;
+	O = (0,0);
+	r = 2;
+	theta = 40;
+	draw(scale(r)*unitcircle);
+	draw(Label("$R$",MidPoint,N),O--r*dir(0),dashed);
+	P = r*dir(-theta);
+	draw(O--P,dashed);
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,0.3*r,0,-theta),Arrow);
+	dot(P);
+	draw(Label("$\boldsymbol{G}$",EndPoint),P--P+dir(-90),Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint,SW),P--P+dir(180-theta),Arrow);
+	draw(Label("$\boldsymbol{f}$",EndPoint,N),P--P+dir(90-theta),Arrow);
+	dot((0,r+0.01),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例6图}
+\end{figure}
+
+设有竖直圆环轨道上串有钢珠，将钢珠置于$\theta = 0$处释放，已知$v\big|_{\theta=0} = v\big|_{\theta=\frac{\pi}{2}} = 0$，求轨道与钢珠之间的摩擦系数$\mu$。
+\end{example}
+\begin{solution}
+速度和加速度为
+\begin{equation*}
+	v = R\dot{\theta},\quad a_\tau = R\ddot{\theta},\quad a_n = R\dot{\theta}^2
+\end{equation*}
+根据Newton第二定律以及摩擦力的关系，可有方程组
+\begin{equation*}
+	\begin{cases}
+		mR\ddot{\theta} = mg\cos \theta - f \\
+		mR\dot{\theta}^2 = N-mg\sin \theta \\
+		f = \mu N
+	\end{cases}
+\end{equation*}
+从中消去$N$，可得
+\begin{equation*}
+	R(\ddot{\theta} + \mu\dot{\theta}^2) = g(\cos \theta - \mu\sin \theta)
+\end{equation*}
+再考虑到
+\begin{equation*}
+	\ddot{\theta} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} t} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} \frac{\mathrm{d} \theta}{\mathrm{d} t} = \dot{\theta} \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} = \frac12 \frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta}
+\end{equation*}
+可有
+\begin{equation*}
+	\frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta} + 2\mu\dot{\theta}^2 = \frac{2g}{R}(\cos \theta - \mu\sin \theta)
+\end{equation*}
+可用常数变易法解此微分方程，得
+\begin{equation*}
+	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu \cos \theta\right] + C\mathrm{e}^{-2\mu\theta}
+\end{equation*}
+再考虑到$\dot{\theta}\big|_{\theta=0} = 0$，可得
+\begin{equation*}
+	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu (\cos \theta-\mathrm{e}^{-2\mu\theta})\right]
+\end{equation*}
+最后利用$\dot{\theta}\big|_{\theta=\frac{\pi}{2}} = 0$，可得$\mu$满足的方程为
+\begin{equation*}
+	1-2\mu^2-3\mu\mathrm{e}^{-\mu\pi} = 0
+\end{equation*}
+整理为
+\begin{equation*}
+	\mu = \sqrt{\frac{1-3\mu\mathrm{e}^{-\mu\pi}}{2}} =: f(\mu)
+\end{equation*}
+即$\mu$为函数$f(\mu)$的不动点。求此不动点可用压缩映射定理证明中的迭代法，即$\mu^{(n+1)} = f(\mu^{(n)})$来求解。具体如下
+\begin{align*}
+	& \mu^{(0)} = 0.000 \\
+	& \mu^{(1)} = f(\mu^{(0)}) = 0.707\cdots \\
+	& \mu^{(2)} = f(\mu^{(1)}) = 0.620\cdots \\
+	& \mu^{(3)} = f(\mu^{(2)}) = 0.606\cdots \\
+	& \quad \quad \vdots \\
+	& \mu \doteq 0.603
+\end{align*}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例6求解示意
+	pair O;
+	real x,y,xm,ym;
+	O = (0,0);
+	xm = 0.8;
+	ym = 0.8;
+	//画坐标系
+	draw(Label("$\mu$",EndPoint),O--(xm,0));
+	draw(Label("$f(\mu)$",EndPoint),O--(0,ym));
+	label("$0.0$",O,S);
+	label("$0.0$",O,W);
+	for(x = 0.1;x < xm-0.1;x = x+0.1){
+		draw((x,0)--(x,0.01));
+	}
+	label("$0.5$",(0.5,0),S);
+	for(y = 0.1;y < ym-0.1;y = y+0.1){
+		draw((0,y)--(0.01,y));
+	}
+	label("$0.5$",(0,0.5),W);
+	
+	real lin(real mu){
+		return mu;
+	}
+	real fmu(real mu){
+		return sqrt((1-3*mu*exp(-mu*pi))/2);
+	}
+	draw(graph(lin,0,xm),linewidth(0.8bp));
+	draw(Label("$f(\mu)$",EndPoint),graph(fmu,0,xm),red+linewidth(0.8bp));
+	draw(O--(0,fmu(0))--(fmu(0),fmu(0))--(fmu(0),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(fmu(0))))--(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),blue+linewidth(0.8bp));
+	label("$0.707\cdots$",(fmu(0),fmu(0)),E);
+	label("$0.620\cdots$",(fmu(fmu(0)),fmu(fmu(0))),NW);
+	label("$0.606\cdots$",(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),W);
+	real m;
+	m = 0;
+	for(int i=1;i<10;++i){
+		m = fmu(m);
+	}
+	dot((m,m));
+	label("$0.603\cdots$",(m,m),SE);
+	//draw((0,0)--(xm+0.2,0),invisible);
+\end{asy}
+\caption{求解示意}
+\label{求解示意}
+\end{figure}
+\end{solution}
+
+\begin{example}
+在铅直平面内有一光滑的半圆形管道（如图\ref{第一章例7图}所示），半径为$R$，管道内有一长为$\pi R$，质量线密度为$\rho$的均匀链条。假定链条由于轻微扰动而从管口向外滑出，试用角动量定理求出链条位于任意角度$\theta$时的速度$v$。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例7图
+	pair O;
+	real R,r,rr,theta,alpha,dalpha;
+	O = (0,0);
+	R = 1;
+	r = 1.05;
+	rr = 0.3;
+	theta = 30;
+	alpha = 40;
+	dalpha = 15;
+	draw(arc(O,R,0,180)--cycle);
+	draw(arc(O,r,0,180)--cycle);
+	draw(Label("$R$",MidPoint),O--r*dir(180-theta));
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,rr*R,180-theta,180),Arrow);
+	draw(O--r*dir(alpha));
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,rr*R,0,alpha),Arrow);
+	draw(O--r*dir(alpha+dalpha));
+	rr = 0.6;
+	draw(Label("$\mathrm{d} \alpha$",MidPoint,Relative(E)),arc(O,rr*R,alpha,alpha+dalpha),Arrow);
+	draw(arc(O,(r+R)/2,180-theta-1,0)--(r+R)/2*dir(0)+(0,-(R+r)/2*theta*pi/180),red+linewidth(4bp));
+	draw(Label("$\boldsymbol{G}_1$",EndPoint),(r+R)/2*dir(0)+(0,-(R+r)/2*theta*pi/180/2)--(r+R)/2*dir(0)+(0,-(R+r)/2*theta*pi/180/2-0.5),Arrow);
+	pair P;
+	P = (R+r)/2*dir(alpha+dalpha/2);
+	draw(Label("$\mathrm{d} \boldsymbol{G}$",EndPoint),P--P+(0,-0.5),Arrow);
+	draw(Label("$\boldsymbol{v}$",EndPoint),P--P+0.5*dir(alpha+dalpha/2-90),Arrow);
+	draw(Label("$\mathrm{d} \boldsymbol{N}$",EndPoint),P--P+0.5*P,Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例7图}
+\end{figure}
+\end{example}
+\begin{solution}
+由于链条不可伸长，因此其个点速度相等，即
+\begin{equation*}
+	v = R\dot{\theta}
+\end{equation*}
+由此可得链条的角动量
+\begin{equation*}
+	\mbf{L} = \int_C \mbf{r} \times \mbf{v} \mathrm{d} l = \rho \pi R (R\dot{\theta} \mbf{e}) = \rho \pi R^3 \dot{\theta} \mbf{e}
+\end{equation*}
+式中$\mbf{e}$为垂直纸面向里的单位矢量。
+
+由于$\mbf{r} \times \mathrm{d} \mbf{N} = \mbf{0}$，故只需计算重力力矩。对于直线段，可有
+\begin{equation*}
+	\mbf{M}_1 = \mbf{r} \times \mbf{G}_1 = (\rho R\theta) Rg\mbf{e} = \rho gR^2 \theta \mbf{e}
+\end{equation*}
+对于圆弧段，可有
+\begin{equation*}
+	\mbf{M}_2 = \int_C \mbf{r} \times \rho\mbf{g} \mathrm{d} l = \int_0^{\pi-\theta} Rg\cos \alpha \rho R \mathrm{d} \alpha \mbf{e} = \rho gR^2 \sin \theta \mbf{e}
+\end{equation*}
+由此可得总力矩为
+\begin{equation*}
+	\mbf{M} = \mbf{M}_1 + \mbf{M}_2 = \rho gR^2 (\theta+\sin \theta)\mbf{e}
+\end{equation*}
+根据角动量定理$\dfrac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \mbf{M}$，可得
+\begin{equation*}
+	\rho \pi R^3 \ddot{\theta} = \rho gR^2 (\theta+\sin \theta)
+\end{equation*}
+根据
+\begin{equation*}
+	\ddot{\theta} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} t} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} \frac{\mathrm{d} \theta}{\mathrm{d} t} = \dot{\theta} \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} = \frac12 \frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta}
+\end{equation*}
+可得
+\begin{equation*}
+	\frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta} = \frac{2g}{\pi R}(\theta +\sin \theta)
+\end{equation*}
+积分即可得到
+\begin{equation*}
+	\dot{\theta} = \sqrt{\frac{2g}{\pi R} \left(\frac12 \theta^2 - \cos \theta + 1\right)} = 2\sqrt{\frac{g}{\pi R}\left[\left(\frac{\theta}{2}\right)^2+ \sin^2 \frac{\theta}{2}\right]}
+\end{equation*}
+所以速度为
+\begin{equation*}
+	v = R\dot{\theta} = 2\sqrt{\frac{Rg}{\pi}\left[\left(\frac{\theta}{2}\right)^2+ \sin^2 \frac{\theta}{2}\right]}
+\end{equation*}
+
+本体也可使用机械能守恒来求解。此系统中，非保守力（弹力）不做功，因此系统机械能守恒。在初始状态下，链条的动能
+\begin{equation*}
+	T = 0
+\end{equation*}
+以半圆柱的底面为零势能面，可求得初始状态下链条的重力势能为
+\begin{equation*}
+	V = \int_C \rho gh \mathrm{d} l = \int_0^\pi \rho g R\sin \alpha R\mathrm{d} \alpha = 2\rho gR^2
+\end{equation*}
+在图\ref{第一章例7图}所示的状态下，由于链条上各处速度大小相等，故链条的动能为
+\begin{equation*}
+	T = \frac12 mv^2 = \frac12 \rho \pi R v^2
+\end{equation*}
+直线段的重力势能为
+\begin{equation*}
+	V_1 = \rho R\theta g \cdot \left(-\frac12 R\theta\right) = -\frac12 \rho gR^2 \theta^2 
+\end{equation*}
+曲线段的重力势能为
+\begin{equation*}
+	V_2 = \int_C \rho gh \mathrm{d} l = \int_0^{\pi-\theta} \rho g R\sin \alpha R\mathrm{d} \alpha = \rho gR^2 (\cos \theta + 1)
+\end{equation*}
+根据机械能守恒可得
+\begin{equation*}
+	2\rho gR^2 = \frac12 \rho \pi R v^2 -\frac12 \rho gR^2 \theta^2 + \rho gR^2 (\cos \theta + 1)
+\end{equation*}
+由此同样可以解得链条处于任意角度处的速度为
+\begin{equation*}
+	v = 2\sqrt{\frac{Rg}{\pi}\left[\left(\frac{\theta}{2}\right)^2+ \sin^2 \frac{\theta}{2}\right]}
+\end{equation*}
+\end{solution}
+
+\begin{example}
+质量为$m$的质点沿一半球形光滑碗的内侧以初速度$v_0$沿水平方向运动，碗的内半径为$r$，初位置离碗边缘的高度为$h$。求质点上升到碗口而又不至于飞出碗外时$v_0$和$h$应满足的关系式。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例8图
+	real hd,hdd;
+	pair O,x,y,z;
+	hd = 131+25/60;
+	hdd = 7+10/60;
+	O = (0,0);
+	x = (-sqrt(2)/4,-sqrt(14)/12);
+	y = (sqrt(14)/4,-sqrt(2)/12);
+	z = (0,2*sqrt(2)/3);
+	draw(Label("$x$",EndPoint,W),(-1.5*x)--(1.5*x),Arrow);
+	draw(Label("$y$",EndPoint),(-1.2*y)--(1.2*y),Arrow);
+	draw(Label("$z$",EndPoint),(-1.2*z)--(0.5*z),Arrow);
+	real r,vec;
+	r = 1;
+	pair cirxy(real theta){
+		real xx,yy;
+		xx = r*cos(theta);
+		yy = r*sin(theta);
+		return xx*x+yy*y;
+	}
+	pair ciryz(real theta){
+		real yy,zz;
+		yy = r*cos(theta);
+		zz = r*sin(theta);
+		return yy*y+zz*z;
+	}
+	pair cirxz(real theta){
+		real xx,zz;
+		xx = r*cos(theta);
+		zz = r*sin(theta);
+		return xx*x+zz*z;
+	}
+	real phi,phi2;
+	pair Pcir(real theta){
+		real xx,yy,zz;
+		xx = r*cos(theta)*cos(phi);
+		yy = r*cos(theta)*sin(phi);
+		zz = r*sin(theta);
+		return xx*x+yy*y+zz*z;
+	}
+	pair Bcir(real theta){
+		real xx,yy,zz;
+		xx = r*cos(phi2)*cos(theta);
+		yy = r*cos(phi2)*sin(theta);
+		zz = r*sin(phi2);
+		return xx*x+yy*y+zz*z;
+	}
+	//画曲线
+	draw(arc(O,r,180,360));
+	draw(graph(cirxy,0,2*pi));
+	draw(graph(ciryz,pi,1.72*pi),dashed);
+	draw(graph(ciryz,1.72*pi,2*pi));
+	draw(graph(cirxz,pi,1.62*pi),dashed);
+	draw(graph(cirxz,1.62*pi,2*pi));
+	phi = pi/4;
+	draw(graph(Pcir,pi,1.62*pi),dashed);
+	draw(graph(Pcir,1.62*pi,2*pi));
+	draw(Pcir(pi)--Pcir(2*pi));
+	phi2 = 2*pi-pi/4;
+	pair P;
+	P = Pcir(phi2);
+	draw(graph(Bcir,-0.3*pi,0.5*pi));
+	draw(graph(Bcir,0.5*pi,2*pi-0.3*pi),dashed);
+	vec = 0.5;
+	draw(Label("$\boldsymbol{G}$",EndPoint),P--(P-vec*z),red,Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint),P--(P-vec*Pcir(phi2)),red,Arrow);
+	draw(Label("$\boldsymbol{v}_\phi$",EndPoint,E,black),P--(P-vec*sin(phi)*x+vec*cos(phi)*y),orange,Arrow);
+	draw(Label("$\boldsymbol{v}_\theta$",EndPoint,S,black),P--(P+vec*sin(phi2)*cos(phi)*x+vec*sin(phi2)*cos(phi)*y-vec*cos(phi2)*z),orange,Arrow);
+	dot(P);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例8图}
+\end{figure}
+\end{example}
+
+\begin{solution}
+建立球坐标系，考虑到$v_r = \dot{r} = 0$，则
+\begin{equation*}
+	\mbf{v} = v_\theta \mbf{e}_\theta + v_\phi \mbf{e}_\phi
+\end{equation*}
+弹力沿径向，故$\mbf{N} \cdot \mbf{v} = 0$，即系统中只有重力做功，机械能守恒。
+
+而$\mbf{r} \times \mbf{N} = \mbf{0}$，$\mbf{e}_3 \cdot \left[\mbf{r} \times (-mg\mbf{e}_3)\right] = 0$，故$z$方向力矩为零，即$z$方向角动量守恒。计算$z$方向的角动量
+\begin{equation*}
+	L_z = \mbf{e}_3 \cdot \left[r\mbf{e}_r \times m(v_\theta\mbf{e}_\theta + v_\phi \mbf{e}_\phi)\right] = mr\mbf{e}_3 \cdot (v_\theta\mbf{e}_\phi - v_\phi\mbf{e}_\theta) = mr\sin \theta v_\phi
+\end{equation*}
+考虑到$\mbf{v}\big|_{z=-h} = v_0 \mbf{e}_\phi$，可以列出守恒方程
+\begin{equation*}
+	\begin{cases}
+		\dfrac12 m(v_\theta^2 + v_\phi^2) + mgz = \dfrac12 mv_0^2 - mgh \\[1.5ex]
+		mv_\phi \sqrt{r^2-z^2} = mv_0\sqrt{r^2-h^2}
+	\end{cases}
+\end{equation*}
+将末状态取为$z=0$时，此时$v_\theta\big|_{z=0} = 0$，可有
+\begin{equation*}
+	\begin{cases}
+		\dfrac12 mv_\phi^2\big|_{z=0} = \dfrac12 mv_0^2 - mgh \\
+		mrv_\phi\big|_{z=0} = mv_0 \sqrt{r^2-h^2}
+	\end{cases}
+\end{equation*}
+由此，可解出
+\begin{equation*}
+	v_0 = r\sqrt{\frac{2g}{h}}
+\end{equation*}
+即为$v_0$和$h$应满足的关系。
+\end{solution}
+
+\input{chapter/vectorial-mechanics/chapter1_mass.tex}
