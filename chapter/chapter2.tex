@@ -1280,7 +1280,7 @@ Lagrange方程中不包含理想约束的约束反力，如果想求出约束反
 	\det\begin{pmatrix} M_{\alpha\beta} \end{pmatrix} > 0
 	\label{chapter2:定常系统动能T2的正定性推论}
 \end{equation}
-这说明，如果选定的广义坐标$\mbf{q}$对于系统的某个位置使得不等式\eqref{chapter2:定常系统动能T2的正定性推论}不成立，则意味着不适合用这一组广义坐标$\mbf{q}$研究系统在这个位置附近的运动，在这个位置附近的邻域内需要引进其它广义坐标。一个具体的例子请见第\ref{chapter6:subsection-刚体定点转动的Euler角·万向锁}节和第\ref{chapter6:subsection-惯量主轴与主轴系}节中关于万向锁的讨论。
+这说明，如果选定的广义坐标$\mbf{q}$对于系统的某个位置使得不等式\eqref{chapter2:定常系统动能T2的正定性推论}不成立，则意味着不适合用这一组广义坐标$\mbf{q}$研究系统在这个位置附近的运动，在这个位置附近的邻域内需要引进其它广义坐标。一个具体的例子请见第\ref{chapter6:subsection-刚体定点转动的Euler角·万向节死锁}节和第\ref{chapter6:subsection-惯量主轴与主轴系}节中关于万向节死锁的讨论。
 
 根据式\eqref{chapter2:系统动能的数学结构2}和式\eqref{chapter2:系统动能的数学结构3}可得
 \begin{align*}
@@ -1415,7 +1415,7 @@ Lagrange函数为
 \end{equation*}
 两端对$\lambda$求偏导数，可得
 \begin{equation*}
-	\sum_{i=1}^n x_i f'_i = m\lambda^{m-1} f(x_1,x_2,\cdots,x_n)
+	\sum_{i=1}^n x_i \frac{\pl f}{\pl x_i} = m\lambda^{m-1} f(x_1,x_2,\cdots,x_n)
 \end{equation*}
 由此，令$\lambda = 1$，即得证齐次函数的Euler定理
 \begin{equation*}

@@ -96,17 +96,8 @@
   {\thmname{#1}\thmnumber{~#2}\thmnote{~(#3)}}%                   Thm head spec
 
 \theoremstyle{theoremwithoutdot}
-\newtheorem{defi}{定义}[section]
-\newtheorem{theorem}{定理}[section]
-\newtheorem{lemma}[theorem]{引理}
-\newtheorem{prop}[theorem]{命题}
-\newtheorem{coro}{推论}[theorem]
-\newtheorem{remark}{注}
 \newtheorem{example}{例}[chapter]
 \newtheorem{question}{题}[section]
-\newtheorem{property}[theorem]{性质}
-%\renewcommand{\thequestion}{\arabic{chapter}.\arabic{section}.\arabic{question}}
-%\theoremstyle{solutionstyle}
 \newtheorem*{solution}{解}
 %去掉证明后面的点
 \makeatletter
@@ -134,6 +125,36 @@
 \long\def\@makefntext#1{{%
   \let\@makefnmark\my@makefnmark
   \my@save@makefntext{#1}}}
+
+% Blocked theorem environment
+\usepackage[framemethod=TikZ]{mdframed}
+\newcommand{\getthecounter}[1]{\csname the#1\endcsname}
+\newcommand{\newblocktheorem}[3][section]{%
+\newcounter{#2}[#1]\setcounter{#2}{0}%
+\expandafter\renewcommand\csname the#2\endcsname{\csname the#1\endcsname.\arabic{#2}}%
+\newenvironment{#2}[1][]{%
+\refstepcounter{#2}%
+\ifstrempty{##1}%
+{\mdfsetup{% with title
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut\heiti #3~\csname the#2\endcsname};}}
+}%
+{\mdfsetup{% without title
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut\heiti #3~\csname the#2\endcsname~(##1)};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax\kaishu%
+}{\end{mdframed}}
+}
+\newblocktheorem[section]{theorem}{定理}
 
 \allowdisplaybreaks[3]
 
@@ -228,7 +249,6 @@
 \arrayrulewidth=0.4pt
 \vspace{-0.5cm}
 }
-
 
 \newcommand{\myappendix}[1]{
 \begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}

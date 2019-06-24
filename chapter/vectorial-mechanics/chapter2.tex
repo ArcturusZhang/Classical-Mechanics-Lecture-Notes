@@ -2,6 +2,25 @@
 
 \section{Newton运动定律}
 
+\subsection{Newton第一定律}
+
+\begin{theorem}[测试1]
+	\label{测试1}
+	测试测试1
+\end{theorem}
+
+\begin{theorem}[测试2]
+	
+	测试测试2根据\ref{测试1}
+\end{theorem}
+
+\begin{theorem}[测试3]
+	\label{测试3}
+	测试测试3
+\end{theorem}
+
+定理\ref{测试3}
+
 \begin{itemize}
 	\item {\heiti Newton第一定律}：不受外力作用的质点始终保持静止或匀速直线运动状态。
 	
@@ -16,13 +35,13 @@
 	适用条件：物体运动速度远低于相互作用传播速度。
 \end{itemize}
 
-\section{伽利略变换}
+\section{Galileo变换}
 
 \begin{figure}[htb]
 \centering
 \begin{asy}
 	size(300);
-	//伽利略变换
+	//Galileo变换
 	pair O,x,y,z,v,r;
 	O = (0,0);
 	x = 0.8*dir(-135);
@@ -42,11 +61,11 @@
 	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),O--r,Arrow);
 	draw(Label("$\boldsymbol{r}'$",MidPoint,Relative(E)),v--r,Arrow);
 \end{asy}
-\caption{伽利略变换}
-\label{伽利略变换}
+\caption{Galileo变换}
+\label{Galileo变换}
 \end{figure}
 
-伽利略变换可以表示为
+Galileo变换可以表示为
 \begin{equation}
 	\begin{cases}
 		\mbf{r}' = \mbf{r} - \mbf{v}_0t \\
@@ -57,13 +76,13 @@
 \begin{equation}
 	\mbf{v}' = \mbf{v} - \mbf{v}_0,\quad \mbf{a}' = \mbf{a}
 \end{equation}
-力决定于质点间的相对位矢，故有$\mbf{F} = \mbf{F}'$。相对速度是伽利略变换下的不变量。
+力决定于质点间的相对位矢，故有$\mbf{F} = \mbf{F}'$。相对速度是Galileo变换下的不变量。
 
 如果$Oxyz$参考系为惯性参考系，即满足$\mbf{F} = m\mbf{a}$，则$O'x'y'z'$也满足$\mbf{F}' = m\mbf{a}'$，因此也是惯性参考系。
 
-上述说明中的隐含假定：长度、时间和质量是伽利略变换下的不变量。
+上述说明中的隐含假定：长度、时间和质量是Galileo变换下的不变量。
 
-{\heiti 伽利略相对性原理} \quad 力学定理在所有惯性系中形式相同。一切惯性系等价，无法通过力学实验区分哪个惯性系更基本。
+{\heiti Galileo相对性原理} \quad 力学定理在所有惯性系中形式相同。一切惯性系等价，无法通过力学实验区分哪个惯性系更基本。
 
 相对性原理推广到一切物理现象将导致狭义相对论的诞生。
 
@@ -420,7 +439,7 @@
 	\mathrm{d}T_C = \mbf{F}^{(e)} \cdot \mathrm{d} \mbf{r}_C
 	\label{质心动能定理}
 \end{equation}
-即，质点系整体运动动能增量等于外力集中于质心做的总功。又考虑到相对位矢是伽利略变换的不变量，即有
+即，质点系整体运动动能增量等于外力集中于质心做的总功。又考虑到相对位矢是Galileo变换的不变量，即有
 \begin{equation*}
 	\mbf{r}_{ij} = \mbf{r}_i - \mbf{r}_j = \mbf{r}'_i - \mbf{r}'_j = \mbf{r}'_{ij}
 \end{equation*}
