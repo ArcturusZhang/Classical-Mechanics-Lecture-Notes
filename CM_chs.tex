@@ -129,9 +129,13 @@
 % Blocked theorem environment
 \usepackage[framemethod=TikZ]{mdframed}
 \newcommand{\getthecounter}[1]{\csname the#1\endcsname}
-\newcommand{\newblocktheorem}[3][section]{%
-\newcounter{#2}[#1]\setcounter{#2}{0}%
+\newcommand{\newblocktheorem}[3][]{%
+\ifstrempty{#1}%
+{\newcounter{#2}\setcounter{#2}{0}%
+}%
+{\newcounter{#2}[#1]\setcounter{#2}{0}%
 \expandafter\renewcommand\csname the#2\endcsname{\csname the#1\endcsname.\arabic{#2}}%
+}
 \newenvironment{#2}[1][]{%
 \refstepcounter{#2}%
 \ifstrempty{##1}%
@@ -155,6 +159,7 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 }{\end{mdframed}}
 }
 \newblocktheorem[section]{theorem}{定理}
+\newblocktheorem{law}{定律}
 
 \allowdisplaybreaks[3]
 
