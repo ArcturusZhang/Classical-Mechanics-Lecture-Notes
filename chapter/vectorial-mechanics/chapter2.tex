@@ -52,6 +52,368 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 \end{equation}
 这被称为{\bf 力的合成定律}，它与力的独立作用公理是等价的，这个用来代替$n$个独立力作用的力$\boldsymbol{F}$被称为这些独立力的{\bf 合力}。
 
+\begin{example}
+光滑水平面上有一质量为$m$的质点，用一轻绳系着，绳子完全绕在半径为$R$的圆柱上，使质点贴在圆柱体的边缘上。$t=0$时给质点以一径向速度$\mbf{v}_0$，如图\ref{第一章例4图}所示，据此求任意时刻绳上的张力大小$T(t)$。
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例4图
+	real R,r,theta,dtheta;
+	pair O,C,Cp,P,Pp,v0,vt,vtp;
+	O = (0,0);
+	R = 2.5;
+	theta = 110;
+	dtheta = 15;
+	dot(O);
+	label("$\theta$",O,NE);
+	draw(scale(R)*unitcircle,linewidth(0.8bp));
+	draw(Label("$R$",MidPoint,W),O--R*dir(90));
+	r = 0.3*R;
+	draw(arc(O,r,90-theta-dtheta-25,90-theta-dtheta),Arrow);
+	draw(Label("$\mathrm{d} \theta$",MidPoint,Relative(W)),arc(O,r,90-theta+25,90-theta),Arrow);
+	pair jkx(real phi){
+		return R*dir(90-phi)+R*phi*pi/180*dir(180-phi);
+	}
+	pair djkx(real phi){
+		real phir;
+		phir = phi*pi/180;
+		return (sin(phir),cos(phir));
+	}
+	draw(graph(jkx,0,150),red+linewidth(0.8bp));
+	draw(Label("$\boldsymbol{v}_0$",EndPoint),jkx(0)--jkx(0)+djkx(0),Arrow);
+	dot(jkx(0));
+	draw(Label("$\boldsymbol{v}$",EndPoint,Relative(W)),jkx(theta)--jkx(theta)+djkx(theta),Arrow);
+	dot(jkx(theta));
+	draw(jkx(theta+dtheta)--jkx(theta+dtheta)+djkx(theta+dtheta),Arrow);
+	dot(jkx(theta+dtheta));
+	draw(O--R*dir(90-theta));
+	draw(Label("$R\theta$",MidPoint,Relative(W)),R*dir(90-theta)--jkx(theta));
+	draw(jkx(theta)--jkx(theta)-dir(180-theta),blue,Arrow);
+	draw(O--R*dir(90-theta-dtheta)--jkx(theta+dtheta),dashed);
+	label("$\mathrm{d} s$",jkx(theta+dtheta/2),S);
+	draw(O--(2.95*R,1.6*R),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例4图}
+\end{figure}
+\end{example}
+\begin{solution}
+由题意，小球的轨道为圆的渐开线。即任意时刻绳子与圆相切，绳子的不可伸长性要求质点速度正交于绳子。轨道的参数方程可以表示为
+\begin{equation*}
+	\mbf{r}(\theta) = R \begin{pmatrix} \cos\left(\dfrac{\pi}{2}-\theta\right) \\[1.5ex] \sin \left(\dfrac{\pi}{2}-\theta\right) \end{pmatrix} + R\theta \begin{pmatrix} \cos(\pi-\theta) \\ \sin(\pi-\theta) \end{pmatrix} = \begin{pmatrix} R\sin \theta-R\theta\cos \theta \\ R\cos \theta+R\theta \sin \theta \end{pmatrix}
+\end{equation*}
+在切线方向上有
+\begin{equation*}
+	m\dot{v} = F_\tau = 0
+\end{equation*}
+即有
+\begin{equation*}
+	v = v_0
+\end{equation*}
+在法线方向上有
+\begin{equation*}
+	m \frac{v^2}{\rho} = T
+\end{equation*}
+式中$\rho$为该点的曲率半径。根据轨道的方程可得
+\begin{equation*}
+	\rho = \left|\frac{\left[(x'(\theta))^2+(y'(\theta))^2\right]^{\frac32}}{x'(\theta)y''(\theta)-x''(\theta)y'(\theta)}\right| = R\theta
+\end{equation*}
+再考虑到
+\begin{equation*}
+	\frac{\mathrm{d} \theta}{\mathrm{d} t} = \frac{\mathrm{d} \theta}{\mathrm{d} s} \frac{\mathrm{d} s}{\mathrm{d} t} = \frac{v}{\rho} = \frac{v}{R\theta}
+\end{equation*}
+可得
+\begin{equation*}
+	\theta(t) = \sqrt{\frac{2v_0t}{R}}
+\end{equation*}
+因此有
+\begin{equation*}
+	T = m\frac{v^2}{\rho} = m\frac{v^2}{R\theta} = mv_0 \sqrt{\frac{v_0}{2Rt}}
+\end{equation*}
+\end{solution}
+
+\begin{example}[计入空气阻力的斜抛运动]
+设空气阻力$\mbf{f} = -k\mbf{v}$，重力加速度为$\mbf{g} = -g\mbf{e}_2$，初始速度$\mbf{v}_0 = v_0(\cos \alpha \mbf{e}_1 + \sin \alpha \mbf{e}_2)$，初始位矢$\mbf{r}_0 = \mbf{0}$，求物体的轨迹。
+\end{example}
+
+\begin{solution}
+根据Newton第二定律，可有矢量形式的微分方程
+\begin{equation*}
+	m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} = m\mbf{g} - k\mbf{v}
+\end{equation*}
+整理可得
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{g}
+\end{equation*}
+此处$\tau = \dfrac{m}{k}$。首先解齐次方程
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{0}
+\end{equation*}
+将其写成分量形式即为
+\begin{equation*}
+	\begin{cases}
+		\dfrac{\mathrm{d} v_x}{\mathrm{d} t} = -\dfrac{v_x}{\tau} \\[1.5ex]
+		\dfrac{\mathrm{d} v_y}{\mathrm{d} t} = -\dfrac{v_y}{\tau}
+	\end{cases}
+\end{equation*}
+其解为
+\begin{equation*}
+	\begin{cases}
+		v_x = C_1 \mathrm{e}^{-\frac{t}{\tau}} \\
+		v_y = C_2 \mathrm{e}^{-\frac{t}{\tau}}
+	\end{cases}
+\end{equation*}
+或者写作矢量形式为
+\begin{equation*}
+	\mbf{v} = \mbf{C} \mathrm{e}^{-\frac{t}{\tau}}
+\end{equation*}
+利用常数变易法，令$\mbf{v}(t) = \mbf{C}(t) \mathrm{e}^{-\frac{t}{\tau}}$，代入原方程，可得
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{C}}{\mathrm{d} t} = \mbf{g}\mathrm{e}^{\frac{t}{\tau}}
+\end{equation*}
+即有$\mbf{C}(t) = \mbf{g}\tau \mathrm{e}^{\frac{t}{\tau}} + \mbf{C}_1$，因此
+\begin{equation*}
+	\mbf{v}(t) = \mbf{C}_1 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g} \tau
+\end{equation*}
+利用$\mbf{v}(0) = \mbf{v}_0$，可得
+\begin{equation*}
+	\mbf{v}(t) = \mbf{v}_0 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
+\end{equation*}
+再对时间积分一次，可得轨迹
+\begin{equation*}
+	\mbf{r}(t) = -\mbf{v}_0 \tau \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau(t + \tau \mathrm{e}^{-\frac{t}{\tau}}) + \mbf{C}_2
+\end{equation*}
+利用$\mbf{r}(0) = \mbf{0}$，可得
+\begin{equation*}
+	\mbf{r}(t) = \mbf{v}_0 \tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) +\mbf{g}\tau \left[t - \tau\left(1 - \mathrm{e}^{-\frac{t}{\tau}}\right)\right]
+\end{equation*}
+即
+\begin{equation*}
+	\begin{cases}
+		x(t) = v_0 \tau \cos \alpha \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) \\ 
+		y(t) = -g\tau t + \tau(v_0\sin \alpha+g\tau) \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
+	\end{cases}
+\end{equation*}
+消去时间可以得到轨道方程
+\begin{equation*}
+	y = \left(\tau \alpha + \frac{g\tau}{v_0\cos\alpha}\right) x g\tau^2 \ln \left(1-\frac{x}{v_0\tau \cos \alpha}\right)
+\end{equation*}
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(350);
+	//不同阻尼系数下的轨道曲线图
+	real x,y;
+	picture g,tmp;
+	real kappa;
+	real tra(real x){
+		return 2*(1+1/kappa)*x+2/kappa/kappa*log(1-kappa*x);
+	}
+	real tra0(real x){
+		return 2*x-x**2;
+	}
+	for(y=-2.5;y<1.5;y=y+0.5){
+		draw(g,(0,y)--(3,y),0.6white);
+	}
+	for(x=0.25;x<3;x=x+0.25){
+		draw(g,(x,-3)--(x,1.5),0.6white);
+	}
+	kappa = 0.1;
+	draw(tmp,graph(tra,0,0.9/kappa),blue+linewidth(1bp));
+	kappa = 0.5;
+	draw(tmp,graph(tra,0,0.9/kappa),green+linewidth(1bp));
+	kappa = 1.0;
+	draw(tmp,graph(tra,0,0.9678),orange+linewidth(1bp));
+	kappa = 2.0;
+	draw(tmp,graph(tra,0,0.499938),red+linewidth(1bp));
+	draw(tmp,graph(tra0,0,3),linewidth(1bp));
+	clip(tmp,box((0,-3),(3,1.5)));
+	add(g,tmp);
+	erase(tmp);
+	draw(g,box((0,-3),(3,1.5)),linewidth(1bp));
+	label(g,"$\dfrac{x}{x_m}$",(3,-3),2.5*E);
+	label(g,"$\dfrac{y}{y_m}$",(0,1.5),W);
+	label(g,"$1$",(0,1),W);
+	label(g,"$0$",(0,0),W);
+	label(g,"$-1$",(0,-1),W);
+	label(g,"$-2$",(0,-2),W);
+	label(g,"$-3$",(0,-3),W);
+	label(g,"$0.0$",(0,-3),S);
+	label(g,"$0.5$",(0.5,-3),S);
+	label(g,"$1.0$",(1,-3),S);
+	label(g,"$1.5$",(1.5,-3),S);
+	label(g,"$2.0$",(2,-3),S);
+	label(g,"$2.5$",(2.5,-3),S);
+	label(g,"$3.0$",(3,-3),S);
+	pair A,B;
+	A = (2.35,-0.3);
+	B = (2.85,1.3);
+	real delta;
+	delta = (B.y-A.y)/10;
+	fill(g,shift((0.025,-0.05))*box(A,B),black);
+	unfill(g,box(A,B));
+	draw(g,box(A,B));
+	label(g,"$\kappa = 0.0$",((A.x+B.x)/2,A.y)+(0,9*delta));
+	label(g,"$\kappa = 0.1$",((A.x+B.x)/2,A.y)+(0,7*delta),blue);
+	label(g,"$\kappa = 0.5$",((A.x+B.x)/2,A.y)+(0,5*delta),green);
+	label(g,"$\kappa = 1.0$",((A.x+B.x)/2,A.y)+(0,3*delta),orange);
+	label(g,"$\kappa = 2.0$",((A.x+B.x)/2,A.y)+(0,1*delta),red);
+	add(xscale(2)*g);
+\end{asy}
+\caption{不同阻尼系数下的轨道曲线图}
+\label{不同阻尼系数下的轨道曲线图}
+\end{figure}
+
+考虑无阻尼极限$k=0$，即$\tau = \dfrac{m}{k} \to +\infty$的情况。根据当$u \to 0$时，有
+\begin{equation*}
+	\ln (1+u) = u - \frac12 u^2 + o(u^2)
+\end{equation*}
+当$\tau \to +\infty$时，轨道变为
+\begin{equation*}
+	y = x\tan \alpha -\frac{gx^2}{2v_0^2\cos^2 \alpha}
+\end{equation*}
+由此，令
+\begin{equation*}
+	\kappa = \frac{kv_0 \sin \alpha}{mg} = \frac{v_0 \sin \alpha}{g\tau},\quad x_m = \frac{v_0^2 \sin 2\alpha}{2g},\quad y_m = \frac{v_0^2 \sin^2 \alpha}{2g}
+\end{equation*}
+则在无阻尼的情形，即$\kappa=0$时，轨道可以表示为
+\begin{equation*}
+	\frac{y}{y_m} = 2\frac{x}{x_m} - \left(\frac{x}{x_m}\right)^2
+\end{equation*}
+当$\kappa \neq 0$时，轨道方程为
+\begin{equation*}
+	\frac{y}{y_m} = 2\left(1+\frac{1}{\kappa}\right) \frac{x}{x_m} + \frac{2}{\kappa^2} \ln \left(1-\kappa \frac{x}{x_m}\right)
+\end{equation*}
+上式这种形式称为{\heiti 无量纲形式}。不同阻尼系数$\kappa$下的轨道曲线如图\ref{不同阻尼系数下的轨道曲线图}所示。由图可见阻力越大，越早的接近竖直运动。
+\end{solution}
+
+\begin{example}
+如图\ref{第一章例6图}所示，设有竖直圆环轨道上串有钢珠，将钢珠置于$\theta = 0$处释放，已知$v\big|_{\theta=0} = v\big|_{\theta=\frac{\pi}{2}} = 0$，求轨道与钢珠之间的摩擦系数$\mu$。
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例6图
+	pair O,P;
+	real r,theta;
+	O = (0,0);
+	r = 2;
+	theta = 40;
+	draw(scale(r)*unitcircle);
+	draw(Label("$R$",MidPoint,N),O--r*dir(0),dashed);
+	P = r*dir(-theta);
+	draw(O--P,dashed);
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,0.3*r,0,-theta),Arrow);
+	dot(P);
+	draw(Label("$\boldsymbol{G}$",EndPoint),P--P+dir(-90),Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint,SW),P--P+dir(180-theta),Arrow);
+	draw(Label("$\boldsymbol{f}$",EndPoint,N),P--P+dir(90-theta),Arrow);
+	dot((0,r+0.01),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例6图}
+\end{figure}
+\end{example}
+\begin{solution}
+速度和加速度为
+\begin{equation*}
+	v = R\dot{\theta},\quad a_\tau = R\ddot{\theta},\quad a_n = R\dot{\theta}^2
+\end{equation*}
+根据Newton第二定律以及摩擦力的关系，可有方程组
+\begin{equation*}
+	\begin{cases}
+		mR\ddot{\theta} = mg\cos \theta - f \\
+		mR\dot{\theta}^2 = N-mg\sin \theta \\
+		f = \mu N
+	\end{cases}
+\end{equation*}
+从中消去$N$，可得
+\begin{equation*}
+	R(\ddot{\theta} + \mu\dot{\theta}^2) = g(\cos \theta - \mu\sin \theta)
+\end{equation*}
+再考虑到
+\begin{equation*}
+	\ddot{\theta} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} t} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} \frac{\mathrm{d} \theta}{\mathrm{d} t} = \dot{\theta} \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} = \frac12 \frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta}
+\end{equation*}
+可有
+\begin{equation*}
+	\frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta} + 2\mu\dot{\theta}^2 = \frac{2g}{R}(\cos \theta - \mu\sin \theta)
+\end{equation*}
+可用常数变易法解此微分方程，得
+\begin{equation*}
+	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu \cos \theta\right] + C\mathrm{e}^{-2\mu\theta}
+\end{equation*}
+再考虑到$\dot{\theta}\big|_{\theta=0} = 0$，可得
+\begin{equation*}
+	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu (\cos \theta-\mathrm{e}^{-2\mu\theta})\right]
+\end{equation*}
+最后利用$\dot{\theta}\big|_{\theta=\frac{\pi}{2}} = 0$，可得$\mu$满足的方程为
+\begin{equation*}
+	1-2\mu^2-3\mu\mathrm{e}^{-\mu\pi} = 0
+\end{equation*}
+整理为
+\begin{equation*}
+	\mu = \sqrt{\frac{1-3\mu\mathrm{e}^{-\mu\pi}}{2}} =: f(\mu)
+\end{equation*}
+即$\mu$为函数$f(\mu)$的不动点。可以使用迭代法求解此不动点，即$\mu^{(n+1)} = f(\mu^{(n)})$。具体如下
+\begin{align*}
+	\mu^{(0)} & = 0.000 \\
+	\mu^{(1)} & = f(\mu^{(0)}) = 0.707\cdots \\
+	\mu^{(2)} & = f(\mu^{(1)}) = 0.620\cdots \\
+	\mu^{(3)} & = f(\mu^{(2)}) = 0.606\cdots \\
+	& \quad \quad \vdots \\
+	\mu & \approx 0.603
+\end{align*}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例6求解示意
+	pair O;
+	real x,y,xm,ym;
+	O = (0,0);
+	xm = 0.8;
+	ym = 0.8;
+	//画坐标系
+	draw(Label("$\mu$",EndPoint),O--(xm,0));
+	draw(Label("$f(\mu)$",EndPoint),O--(0,ym));
+	label("$0.0$",O,S);
+	label("$0.0$",O,W);
+	for(x = 0.1;x < xm-0.1;x = x+0.1){
+		draw((x,0)--(x,0.01));
+	}
+	label("$0.5$",(0.5,0),S);
+	for(y = 0.1;y < ym-0.1;y = y+0.1){
+		draw((0,y)--(0.01,y));
+	}
+	label("$0.5$",(0,0.5),W);
+	real lin(real mu){
+		return mu;
+	}
+	real fmu(real mu){
+		return sqrt((1-3*mu*exp(-mu*pi))/2);
+	}
+	draw(graph(lin,0,xm),linewidth(0.8bp));
+	draw(Label("$f(\mu)$",EndPoint),graph(fmu,0,xm),red+linewidth(0.8bp));
+	draw(O--(0,fmu(0))--(fmu(0),fmu(0))--(fmu(0),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(fmu(0))))--(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),blue+linewidth(0.8bp));
+	label("$0.707\cdots$",(fmu(0),fmu(0)),E);
+	label("$0.620\cdots$",(fmu(fmu(0)),fmu(fmu(0))),NW);
+	label("$0.606\cdots$",(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),W);
+	real m;
+	m = 0;
+	for(int i=1;i<10;++i){
+		m = fmu(m);
+	}
+	dot((m,m));
+	label("$0.603\cdots$",(m,m),SE);
+\end{asy}
+\caption{求解示意}
+\label{求解示意}
+\end{figure}
+\end{solution}
+
 \section{Galileo变换}
 
 从一个惯性参考系变换至另一个惯性参考系的变换称为{\bf Galileo变换}（如图\ref{chapter2:Galileo变换}所示），它可以表示为
@@ -483,372 +845,6 @@ todo
 	\mathrm{d} E' = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i
 \end{equation}
 即，质点系内能增量等于外力在质心系内做的总功。
-
-\begin{example}
-光滑水平面上有一质量为$m$的质点，用一轻绳系着，绳子完全绕在半径为$R$的圆柱上，使质点贴在圆柱体的边缘上。$t=0$时给质点以一径向速度$\mbf{v}_0$，据此求任意时刻绳上的张力大小$T(t)$。
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(300);
-	//第一章例4图
-	real R,r,theta,dtheta;
-	pair O,C,Cp,P,Pp,v0,vt,vtp;
-	O = (0,0);
-	R = 2.5;
-	theta = 110;
-	dtheta = 15;
-	dot(O);
-	label("$\theta$",O,NE);
-	draw(scale(R)*unitcircle,linewidth(0.8bp));
-	draw(Label("$R$",MidPoint,W),O--R*dir(90));
-	r = 0.3*R;
-	draw(arc(O,r,90-theta-dtheta-25,90-theta-dtheta),Arrow);
-	draw(Label("$\mathrm{d} \theta$",MidPoint,Relative(W)),arc(O,r,90-theta+25,90-theta),Arrow);
-	
-	pair jkx(real phi){
-		return R*dir(90-phi)+R*phi*pi/180*dir(180-phi);
-	}
-	pair djkx(real phi){
-		real phir;
-		phir = phi*pi/180;
-		return (sin(phir),cos(phir));
-	}
-	draw(graph(jkx,0,150),red+linewidth(0.8bp));
-	draw(Label("$\boldsymbol{v}_0$",EndPoint),jkx(0)--jkx(0)+djkx(0),Arrow);
-	dot(jkx(0));
-	draw(Label("$\boldsymbol{v}$",EndPoint,Relative(W)),jkx(theta)--jkx(theta)+djkx(theta),Arrow);
-	dot(jkx(theta));
-	draw(jkx(theta+dtheta)--jkx(theta+dtheta)+djkx(theta+dtheta),Arrow);
-	dot(jkx(theta+dtheta));
-	draw(O--R*dir(90-theta));
-	draw(Label("$R\theta$",MidPoint,Relative(W)),R*dir(90-theta)--jkx(theta));
-	draw(jkx(theta)--jkx(theta)-dir(180-theta),blue,Arrow);
-	draw(O--R*dir(90-theta-dtheta)--jkx(theta+dtheta),dashed);
-	label("$\mathrm{d} s$",jkx(theta+dtheta/2),S);
-	draw(O--(2.95*R,1.6*R),invisible);
-\end{asy}
-\caption{例\theexample}
-\label{第一章例4图}
-\end{figure}
-\end{example}
-\begin{solution}
-由题意，小球的轨道为圆的渐开线。即任意时刻绳子与圆相切，绳子的不可伸长性要求质点速度正交于绳子。轨道的参数方程可以表示为
-\begin{equation*}
-	\mbf{r}(\theta) = R \begin{pmatrix} \cos\left(\dfrac{\pi}{2}-\theta\right) \\[1.5ex] \sin \left(\dfrac{\pi}{2}-\theta\right) \end{pmatrix} + R\theta \begin{pmatrix} \cos(\pi-\theta) \\ \sin(\pi-\theta) \end{pmatrix} = \begin{pmatrix} R\sin \theta-R\theta\cos \theta \\ R\cos \theta+R\theta \sin \theta \end{pmatrix}
-\end{equation*}
-在切线方向上有
-\begin{equation*}
-	m\dot{v} = F_\tau = 0
-\end{equation*}
-即有
-\begin{equation*}
-	v = v_0
-\end{equation*}
-在法线方向上有
-\begin{equation*}
-	m \frac{v^2}{\rho} = T
-\end{equation*}
-式中$\rho$为该点的曲率半径。根据轨道的方程可得
-\begin{equation*}
-	\rho = \left|\frac{\left[(x'(\theta))^2+(y'(\theta))^2\right]^{\frac32}}{x'(\theta)y''(\theta)-x''(\theta)y'(\theta)}\right| = R\theta
-\end{equation*}
-再考虑到
-\begin{equation*}
-	\frac{\mathrm{d} \theta}{\mathrm{d} t} = \frac{\mathrm{d} \theta}{\mathrm{d} s} \frac{\mathrm{d} s}{\mathrm{d} t} = \frac{v}{\rho} = \frac{v}{R\theta}
-\end{equation*}
-可得
-\begin{equation*}
-	\theta(t) = \sqrt{\frac{2v_0t}{R}}
-\end{equation*}
-因此有
-\begin{equation*}
-	T = m\frac{v^2}{\rho} = m\frac{v^2}{R\theta} = mv_0 \sqrt{\frac{v_0}{2Rt}}
-\end{equation*}
-\end{solution}
-
-\begin{example}[计入空气阻力的斜抛运动]
-设空气阻力$\mbf{f} = -k\mbf{v}$，重力加速度为$\mbf{g} = -g\mbf{e}_2$，初始速度$\mbf{v}_0 = v_0(\cos \alpha \mbf{e}_1 + \sin \alpha \mbf{e}_2)$，初始位矢$\mbf{r}_0 = \mbf{0}$，求物体的轨迹。
-\end{example}
-
-\begin{solution}
-根据Newton第二定律，可有矢量形式的微分方程
-\begin{equation*}
-	m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} = m\mbf{g} - k\mbf{v}
-\end{equation*}
-整理可得
-\begin{equation*}
-	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{g}
-\end{equation*}
-此处$\tau = \dfrac{m}{k}$。首先解齐次方程
-\begin{equation*}
-	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{0}
-\end{equation*}
-将其写成分量形式即为
-\begin{equation*}
-	\begin{cases}
-		\dfrac{\mathrm{d} v_x}{\mathrm{d} t} = -\dfrac{v_x}{\tau} \\[1.5ex]
-		\dfrac{\mathrm{d} v_y}{\mathrm{d} t} = -\dfrac{v_y}{\tau}
-	\end{cases}
-\end{equation*}
-其解为
-\begin{equation*}
-	\begin{cases}
-		v_x = C_1 \mathrm{e}^{-\frac{t}{\tau}} \\
-		v_y = C_2 \mathrm{e}^{-\frac{t}{\tau}}
-	\end{cases}
-\end{equation*}
-或者写作矢量形式为
-\begin{equation*}
-	\mbf{v} = \mbf{C} \mathrm{e}^{-\frac{t}{\tau}}
-\end{equation*}
-利用常数变易法，令$\mbf{v}(t) = \mbf{C}(t) \mathrm{e}^{-\frac{t}{\tau}}$，代入原方程，可得
-\begin{equation*}
-	\frac{\mathrm{d} \mbf{C}}{\mathrm{d} t} = \mbf{g}\mathrm{e}^{\frac{t}{\tau}}
-\end{equation*}
-即有$\mbf{C}(t) = \mbf{g}\tau \mathrm{e}^{\frac{t}{\tau}} + \mbf{C}_1$，因此
-\begin{equation*}
-	\mbf{v}(t) = \mbf{C}_1 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g} \tau
-\end{equation*}
-利用$\mbf{v}(0) = \mbf{v}_0$，可得
-\begin{equation*}
-	\mbf{v}(t) = \mbf{v}_0 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
-\end{equation*}
-再对时间积分一次，可得轨迹
-\begin{equation*}
-	\mbf{r}(t) = -\mbf{v}_0 \tau \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau(t + \tau \mathrm{e}^{-\frac{t}{\tau}}) + \mbf{C}_2
-\end{equation*}
-利用$\mbf{r}(0) = \mbf{0}$，可得
-\begin{equation*}
-	\mbf{r}(t) = \mbf{v}_0 \tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) +\mbf{g}\tau \left[t - \tau\left(1 - \mathrm{e}^{-\frac{t}{\tau}}\right)\right]
-\end{equation*}
-即
-\begin{equation*}
-	\begin{cases}
-		x(t) = v_0 \tau \cos \alpha \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) \\ 
-		y(t) = -g\tau t + \tau(v_0\sin \alpha+g\tau) \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
-	\end{cases}
-\end{equation*}
-消去时间可以得到轨道方程
-\begin{equation*}
-	y = \left(\tau \alpha + \frac{g\tau}{v_0\cos\alpha}\right) x g\tau^2 \ln \left(1-\frac{x}{v_0\tau \cos \alpha}\right)
-\end{equation*}
-
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(350);
-	//不同阻尼系数下的轨道曲线图
-	real x,y;
-	picture g,tmp;
-	real kappa;
-	real tra(real x){
-		return 2*(1+1/kappa)*x+2/kappa/kappa*log(1-kappa*x);
-	}
-	real tra0(real x){
-		return 2*x-x**2;
-	}
-	for(y=-2.5;y<1.5;y=y+0.5){
-		draw(g,(0,y)--(3,y),0.6white);
-	}
-	for(x=0.25;x<3;x=x+0.25){
-		draw(g,(x,-3)--(x,1.5),0.6white);
-	}
-	kappa = 0.1;
-	draw(tmp,graph(tra,0,0.9/kappa),blue+linewidth(1bp));
-	kappa = 0.5;
-	draw(tmp,graph(tra,0,0.9/kappa),green+linewidth(1bp));
-	kappa = 1.0;
-	draw(tmp,graph(tra,0,0.9678),orange+linewidth(1bp));
-	kappa = 2.0;
-	draw(tmp,graph(tra,0,0.499938),red+linewidth(1bp));
-	draw(tmp,graph(tra0,0,3),linewidth(1bp));
-	clip(tmp,box((0,-3),(3,1.5)));
-	add(g,tmp);
-	erase(tmp);
-	draw(g,box((0,-3),(3,1.5)),linewidth(1bp));
-	label(g,"$\dfrac{x}{x_m}$",(3,-3),2.5*E);
-	label(g,"$\dfrac{y}{y_m}$",(0,1.5),W);
-	label(g,"$1$",(0,1),W);
-	label(g,"$0$",(0,0),W);
-	label(g,"$-1$",(0,-1),W);
-	label(g,"$-2$",(0,-2),W);
-	label(g,"$-3$",(0,-3),W);
-	label(g,"$0.0$",(0,-3),S);
-	label(g,"$0.5$",(0.5,-3),S);
-	label(g,"$1.0$",(1,-3),S);
-	label(g,"$1.5$",(1.5,-3),S);
-	label(g,"$2.0$",(2,-3),S);
-	label(g,"$2.5$",(2.5,-3),S);
-	label(g,"$3.0$",(3,-3),S);
-	pair A,B;
-	A = (2.35,-0.3);
-	B = (2.85,1.3);
-	real delta;
-	delta = (B.y-A.y)/10;
-	fill(g,shift((0.025,-0.05))*box(A,B),black);
-	unfill(g,box(A,B));
-	draw(g,box(A,B));
-	label(g,"$\kappa = 0.0$",((A.x+B.x)/2,A.y)+(0,9*delta));
-	label(g,"$\kappa = 0.1$",((A.x+B.x)/2,A.y)+(0,7*delta),blue);
-	label(g,"$\kappa = 0.5$",((A.x+B.x)/2,A.y)+(0,5*delta),green);
-	label(g,"$\kappa = 1.0$",((A.x+B.x)/2,A.y)+(0,3*delta),orange);
-	label(g,"$\kappa = 2.0$",((A.x+B.x)/2,A.y)+(0,1*delta),red);
-	add(xscale(2)*g);
-\end{asy}
-\caption{不同阻尼系数下的轨道曲线图}
-\label{不同阻尼系数下的轨道曲线图}
-\end{figure}
-
-考虑无阻尼极限$k=0$，即$\tau = \dfrac{m}{k} \to +\infty$的情况。根据当$u \to 0$时，有
-\begin{equation*}
-	\ln (1+u) = u - \frac12 u^2 + o(u^2)
-\end{equation*}
-当$\tau \to +\infty$时，轨道变为
-\begin{equation*}
-	y = x\tan \alpha -\frac{gx^2}{2v_0^2\cos^2 \alpha}
-\end{equation*}
-由此，令
-\begin{equation*}
-	\kappa = \frac{kv_0 \sin \alpha}{mg} = \frac{v_0 \sin \alpha}{g\tau},\quad x_m = \frac{v_0^2 \sin 2\alpha}{2g},\quad y_m = \frac{v_0^2 \sin^2 \alpha}{2g}
-\end{equation*}
-则在无阻尼的情形，即$\kappa=0$时，轨道可以表示为
-\begin{equation*}
-	\frac{y}{y_m} = 2\frac{x}{x_m} - \left(\frac{x}{x_m}\right)^2
-\end{equation*}
-当$\kappa \neq 0$时，轨道方程为
-\begin{equation*}
-	\frac{y}{y_m} = 2\left(1+\frac{1}{\kappa}\right) \frac{x}{x_m} + \frac{2}{\kappa^2} \ln \left(1-\kappa \frac{x}{x_m}\right)
-\end{equation*}
-上式这种形式称为{\heiti 无量纲形式}。不同阻尼系数$\kappa$下的轨道曲线如图\ref{不同阻尼系数下的轨道曲线图}所示。由图可见阻力越大，越早的接近竖直运动。
-\end{solution}
-
-\begin{example}
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(200);
-	//第一章例6图
-	pair O,P;
-	real r,theta;
-	O = (0,0);
-	r = 2;
-	theta = 40;
-	draw(scale(r)*unitcircle);
-	draw(Label("$R$",MidPoint,N),O--r*dir(0),dashed);
-	P = r*dir(-theta);
-	draw(O--P,dashed);
-	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,0.3*r,0,-theta),Arrow);
-	dot(P);
-	draw(Label("$\boldsymbol{G}$",EndPoint),P--P+dir(-90),Arrow);
-	draw(Label("$\boldsymbol{N}$",EndPoint,SW),P--P+dir(180-theta),Arrow);
-	draw(Label("$\boldsymbol{f}$",EndPoint,N),P--P+dir(90-theta),Arrow);
-	dot((0,r+0.01),invisible);
-\end{asy}
-\caption{例\theexample}
-\label{第一章例6图}
-\end{figure}
-
-设有竖直圆环轨道上串有钢珠，将钢珠置于$\theta = 0$处释放，已知$v\big|_{\theta=0} = v\big|_{\theta=\frac{\pi}{2}} = 0$，求轨道与钢珠之间的摩擦系数$\mu$。
-\end{example}
-\begin{solution}
-速度和加速度为
-\begin{equation*}
-	v = R\dot{\theta},\quad a_\tau = R\ddot{\theta},\quad a_n = R\dot{\theta}^2
-\end{equation*}
-根据Newton第二定律以及摩擦力的关系，可有方程组
-\begin{equation*}
-	\begin{cases}
-		mR\ddot{\theta} = mg\cos \theta - f \\
-		mR\dot{\theta}^2 = N-mg\sin \theta \\
-		f = \mu N
-	\end{cases}
-\end{equation*}
-从中消去$N$，可得
-\begin{equation*}
-	R(\ddot{\theta} + \mu\dot{\theta}^2) = g(\cos \theta - \mu\sin \theta)
-\end{equation*}
-再考虑到
-\begin{equation*}
-	\ddot{\theta} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} t} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} \frac{\mathrm{d} \theta}{\mathrm{d} t} = \dot{\theta} \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} = \frac12 \frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta}
-\end{equation*}
-可有
-\begin{equation*}
-	\frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta} + 2\mu\dot{\theta}^2 = \frac{2g}{R}(\cos \theta - \mu\sin \theta)
-\end{equation*}
-可用常数变易法解此微分方程，得
-\begin{equation*}
-	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu \cos \theta\right] + C\mathrm{e}^{-2\mu\theta}
-\end{equation*}
-再考虑到$\dot{\theta}\big|_{\theta=0} = 0$，可得
-\begin{equation*}
-	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu (\cos \theta-\mathrm{e}^{-2\mu\theta})\right]
-\end{equation*}
-最后利用$\dot{\theta}\big|_{\theta=\frac{\pi}{2}} = 0$，可得$\mu$满足的方程为
-\begin{equation*}
-	1-2\mu^2-3\mu\mathrm{e}^{-\mu\pi} = 0
-\end{equation*}
-整理为
-\begin{equation*}
-	\mu = \sqrt{\frac{1-3\mu\mathrm{e}^{-\mu\pi}}{2}} =: f(\mu)
-\end{equation*}
-即$\mu$为函数$f(\mu)$的不动点。求此不动点可用压缩映射定理证明中的迭代法，即$\mu^{(n+1)} = f(\mu^{(n)})$来求解。具体如下
-\begin{align*}
-	& \mu^{(0)} = 0.000 \\
-	& \mu^{(1)} = f(\mu^{(0)}) = 0.707\cdots \\
-	& \mu^{(2)} = f(\mu^{(1)}) = 0.620\cdots \\
-	& \mu^{(3)} = f(\mu^{(2)}) = 0.606\cdots \\
-	& \quad \quad \vdots \\
-	& \mu \doteq 0.603
-\end{align*}
-\begin{figure}[htb]
-\centering
-\begin{asy}
-	size(300);
-	//第一章例6求解示意
-	pair O;
-	real x,y,xm,ym;
-	O = (0,0);
-	xm = 0.8;
-	ym = 0.8;
-	//画坐标系
-	draw(Label("$\mu$",EndPoint),O--(xm,0));
-	draw(Label("$f(\mu)$",EndPoint),O--(0,ym));
-	label("$0.0$",O,S);
-	label("$0.0$",O,W);
-	for(x = 0.1;x < xm-0.1;x = x+0.1){
-		draw((x,0)--(x,0.01));
-	}
-	label("$0.5$",(0.5,0),S);
-	for(y = 0.1;y < ym-0.1;y = y+0.1){
-		draw((0,y)--(0.01,y));
-	}
-	label("$0.5$",(0,0.5),W);
-	
-	real lin(real mu){
-		return mu;
-	}
-	real fmu(real mu){
-		return sqrt((1-3*mu*exp(-mu*pi))/2);
-	}
-	draw(graph(lin,0,xm),linewidth(0.8bp));
-	draw(Label("$f(\mu)$",EndPoint),graph(fmu,0,xm),red+linewidth(0.8bp));
-	draw(O--(0,fmu(0))--(fmu(0),fmu(0))--(fmu(0),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(fmu(0))))--(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),blue+linewidth(0.8bp));
-	label("$0.707\cdots$",(fmu(0),fmu(0)),E);
-	label("$0.620\cdots$",(fmu(fmu(0)),fmu(fmu(0))),NW);
-	label("$0.606\cdots$",(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),W);
-	real m;
-	m = 0;
-	for(int i=1;i<10;++i){
-		m = fmu(m);
-	}
-	dot((m,m));
-	label("$0.603\cdots$",(m,m),SE);
-	//draw((0,0)--(xm+0.2,0),invisible);
-\end{asy}
-\caption{求解示意}
-\label{求解示意}
-\end{figure}
-\end{solution}
 
 \begin{example}
 在铅直平面内有一光滑的半圆形管道（如图\ref{第一章例7图}所示），半径为$R$，管道内有一长为$\pi R$，质量线密度为$\rho$的均匀链条。假定链条由于轻微扰动而从管口向外滑出，试用角动量定理求出链条位于任意角度$\theta$时的速度$v$。
