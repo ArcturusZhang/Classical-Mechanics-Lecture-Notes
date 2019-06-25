@@ -1,0 +1,1367 @@
+\chapter{质点和质点系动力学}
+
+\section{Newton动力学定律}
+
+动力学研究力学系统的运动以及产生或改变运动状态的原因。经典力学中认为质点是具有力学性质的几何点，其运动规律将由本节中介绍的动力学定律（或称公理）来决定。
+
+经典力学的基础是Newton动力学定律（公理），这些公理是一些数学假设，其正确性由人类几个世纪的观察和实验得以验证。在上一章中曾提到，经典力学的时空观是绝对空间和绝对时间的组合，而相对于绝对空间作匀速直线运动的参考系称为{\bf 惯性参考系}。经典力学认为所有的惯性参考系对于所有的力学关系都是等价的，即力学定律和方程不依赖于具体的惯性参考系的选择，这被称为{\bf Galileo相对性原理}。
+
+% \subsection{Newton第一定律}
+
+\begin{law}[Newton第一定律]
+	如果质点上没有力的作用，它将保持静止或匀速直线运动。
+\end{law}
+
+Newton第一定律也被称为{\bf 惯性公理}。在惯性公理中，这种没有力作用的质点称为孤立质点。惯性公理事实上假定了惯性参考系的存在，并断言存在这样的惯性参考系使得孤立质点相对于其呈静止或匀速直线运动。
+
+% \subsection{Newton第二定律}
+
+\begin{law}[Newton第二定律]
+	当质点受力作用时，其加速度与力成正比，用公式可以表达为
+	\begin{equation}
+		\boldsymbol{F} = m\boldsymbol{a}
+		\label{chapter2:牛顿第二定律}
+	\end{equation}
+\end{law}
+
+Newton第二定律也被称为{\bf 动力学基本公理}。式\eqref{chapter2:牛顿第二定律}中的比例系数即为质点惯性的度量，而这种惯性度量值则正比于质点的质量，即其所含物质的多少。我们总是可以取恰当的单位制，使得这种正比关系的比例系数为$1$。
+
+在经典力学中，质点的质量是具有可加性的恒正标量，并且不依赖于质点的运动状态。
+
+% \subsection{Newton第三定律}
+
+\begin{law}[Newton第三定律]
+	如果一个质点受到另外一个质点的作用力，则第二个质点也会受到第一个质点的作用力，并且这两个力大小相等，方向沿两质点之间的连线相反。
+\end{law}
+
+Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定律描述了一组质点之间作用力的关系，这使得我们可以进一步讨论质点系的力学性质。在Newton第三定律中描述的一对力，其相等关系和方向关系是瞬时成立的，其改变不需要传播时间，因而属于一种{\bf 超距作用}。
+
+% \subsection{力的独立作用定律}
+
+\begin{law}[力的独立作用定律]
+	如果质点的位置、速度和其他相关物理状态不改变，两个质点之间的相互作用不可能改变其他质点对它们的相互作用。换言之，当质点$m_i(i=1,2,\cdots,n)$作用在某质点上的力为$\boldsymbol{F}_i(i=1,2,\cdots,n)$时，则它们单独作用时产生的加速度$\boldsymbol{a}_i(i=1,2,\cdots,n)$之间可以相加。
+\end{law}
+
+如果质点的质量是$m$，则根据Newton第二定律\eqref{chapter2:牛顿第二定律}可得$\boldsymbol{a}_i = \dfrac{\boldsymbol{F}_i}{m}$，因此根据力的独立作用定律可得该质点的加速度为
+\begin{equation}
+	\boldsymbol{a} = \boldsymbol{a}_1 + \boldsymbol{a}_2 + \cdots + \boldsymbol{a}_n = \frac{1}{m}\left(\boldsymbol{F}_1 + \boldsymbol{F}_2 + \cdots + \boldsymbol{F}_n\right)
+\end{equation}
+由此可见，质点获得的加速度$\boldsymbol{a}$就如同作用于其上的是一个等于这$n$个独立力之和的力$\boldsymbol{F}$一样：
+\begin{equation}
+	\boldsymbol{F} = \boldsymbol{F}_1 + \boldsymbol{F}_2 + \cdots + \boldsymbol{F}_n
+\end{equation}
+这被称为{\bf 力的合成定律}，它与力的独立作用定律是等价的，这个用来代替$n$个独立力作用的力$\boldsymbol{F}$被称为这些独立力的{\bf 合力}。
+
+\begin{example}
+光滑水平面上有一质量为$m$的质点，用一轻绳系着，绳子完全绕在半径为$R$的圆柱上，使质点贴在圆柱体的边缘上。$t=0$时给质点以一径向速度$\mbf{v}_0$，如图\ref{第一章例4图}所示，据此求任意时刻绳上的张力大小$T(t)$。
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例4图
+	real R,r,theta,dtheta;
+	pair O,C,Cp,P,Pp,v0,vt,vtp;
+	O = (0,0);
+	R = 2.5;
+	theta = 110;
+	dtheta = 15;
+	dot(O);
+	label("$\theta$",O,NE);
+	draw(scale(R)*unitcircle,linewidth(0.8bp));
+	draw(Label("$R$",MidPoint,W),O--R*dir(90));
+	r = 0.3*R;
+	draw(arc(O,r,90-theta-dtheta-25,90-theta-dtheta),Arrow);
+	draw(Label("$\mathrm{d} \theta$",MidPoint,Relative(W)),arc(O,r,90-theta+25,90-theta),Arrow);
+	pair jkx(real phi){
+		return R*dir(90-phi)+R*phi*pi/180*dir(180-phi);
+	}
+	pair djkx(real phi){
+		real phir;
+		phir = phi*pi/180;
+		return (sin(phir),cos(phir));
+	}
+	draw(graph(jkx,0,150),red+linewidth(0.8bp));
+	draw(Label("$\boldsymbol{v}_0$",EndPoint),jkx(0)--jkx(0)+djkx(0),Arrow);
+	dot(jkx(0));
+	draw(Label("$\boldsymbol{v}$",EndPoint,Relative(W)),jkx(theta)--jkx(theta)+djkx(theta),Arrow);
+	dot(jkx(theta));
+	draw(jkx(theta+dtheta)--jkx(theta+dtheta)+djkx(theta+dtheta),Arrow);
+	dot(jkx(theta+dtheta));
+	draw(O--R*dir(90-theta));
+	draw(Label("$R\theta$",MidPoint,Relative(W)),R*dir(90-theta)--jkx(theta));
+	draw(jkx(theta)--jkx(theta)-dir(180-theta),blue,Arrow);
+	draw(O--R*dir(90-theta-dtheta)--jkx(theta+dtheta),dashed);
+	label("$\mathrm{d} s$",jkx(theta+dtheta/2),S);
+	draw(O--(2.95*R,1.6*R),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例4图}
+\end{figure}
+\end{example}
+\begin{solution}
+由题意，小球的轨道为圆的渐开线。即任意时刻绳子与圆相切，绳子的不可伸长性要求质点速度正交于绳子。轨道的参数方程可以表示为
+\begin{equation*}
+	\mbf{r}(\theta) = R \begin{pmatrix} \cos\left(\dfrac{\pi}{2}-\theta\right) \\[1.5ex] \sin \left(\dfrac{\pi}{2}-\theta\right) \end{pmatrix} + R\theta \begin{pmatrix} \cos(\pi-\theta) \\ \sin(\pi-\theta) \end{pmatrix} = \begin{pmatrix} R\sin \theta-R\theta\cos \theta \\ R\cos \theta+R\theta \sin \theta \end{pmatrix}
+\end{equation*}
+在切线方向上有
+\begin{equation*}
+	m\dot{v} = F_\tau = 0
+\end{equation*}
+即有
+\begin{equation*}
+	v = v_0
+\end{equation*}
+在法线方向上有
+\begin{equation*}
+	m \frac{v^2}{\rho} = T
+\end{equation*}
+式中$\rho$为该点的曲率半径。根据轨道的方程可得
+\begin{equation*}
+	\rho = \left|\frac{\left[(x'(\theta))^2+(y'(\theta))^2\right]^{\frac32}}{x'(\theta)y''(\theta)-x''(\theta)y'(\theta)}\right| = R\theta
+\end{equation*}
+再考虑到
+\begin{equation*}
+	\frac{\mathrm{d} \theta}{\mathrm{d} t} = \frac{\mathrm{d} \theta}{\mathrm{d} s} \frac{\mathrm{d} s}{\mathrm{d} t} = \frac{v}{\rho} = \frac{v}{R\theta}
+\end{equation*}
+可得
+\begin{equation*}
+	\theta(t) = \sqrt{\frac{2v_0t}{R}}
+\end{equation*}
+因此有
+\begin{equation*}
+	T = m\frac{v^2}{\rho} = m\frac{v^2}{R\theta} = mv_0 \sqrt{\frac{v_0}{2Rt}}
+\end{equation*}
+\end{solution}
+
+\begin{example}[计入空气阻力的斜抛运动]
+设空气阻力$\mbf{f} = -k\mbf{v}$，重力加速度为$\mbf{g} = -g\mbf{e}_2$，初始速度$\mbf{v}_0 = v_0(\cos \alpha \mbf{e}_1 + \sin \alpha \mbf{e}_2)$，初始位矢$\mbf{r}_0 = \mbf{0}$，求物体的轨迹。
+\end{example}
+
+\begin{solution}
+根据Newton第二定律，可有矢量形式的微分方程
+\begin{equation*}
+	m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} = m\mbf{g} - k\mbf{v}
+\end{equation*}
+整理可得
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{g}
+\end{equation*}
+此处$\tau = \dfrac{m}{k}$。首先解齐次方程
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} + \frac{\mbf{v}}{\tau} = \mbf{0}
+\end{equation*}
+将其写成分量形式即为
+\begin{equation*}
+	\begin{cases}
+		\dfrac{\mathrm{d} v_x}{\mathrm{d} t} = -\dfrac{v_x}{\tau} \\[1.5ex]
+		\dfrac{\mathrm{d} v_y}{\mathrm{d} t} = -\dfrac{v_y}{\tau}
+	\end{cases}
+\end{equation*}
+其解为
+\begin{equation*}
+	\begin{cases}
+		v_x = C_1 \mathrm{e}^{-\frac{t}{\tau}} \\
+		v_y = C_2 \mathrm{e}^{-\frac{t}{\tau}}
+	\end{cases}
+\end{equation*}
+或者写作矢量形式为
+\begin{equation*}
+	\mbf{v} = \mbf{C} \mathrm{e}^{-\frac{t}{\tau}}
+\end{equation*}
+利用常数变易法，令$\mbf{v}(t) = \mbf{C}(t) \mathrm{e}^{-\frac{t}{\tau}}$，代入原方程，可得
+\begin{equation*}
+	\frac{\mathrm{d} \mbf{C}}{\mathrm{d} t} = \mbf{g}\mathrm{e}^{\frac{t}{\tau}}
+\end{equation*}
+即有$\mbf{C}(t) = \mbf{g}\tau \mathrm{e}^{\frac{t}{\tau}} + \mbf{C}_1$，因此
+\begin{equation*}
+	\mbf{v}(t) = \mbf{C}_1 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g} \tau
+\end{equation*}
+利用$\mbf{v}(0) = \mbf{v}_0$，可得
+\begin{equation*}
+	\mbf{v}(t) = \mbf{v}_0 \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
+\end{equation*}
+再对时间积分一次，可得轨迹
+\begin{equation*}
+	\mbf{r}(t) = -\mbf{v}_0 \tau \mathrm{e}^{-\frac{t}{\tau}} + \mbf{g}\tau(t + \tau \mathrm{e}^{-\frac{t}{\tau}}) + \mbf{C}_2
+\end{equation*}
+利用$\mbf{r}(0) = \mbf{0}$，可得
+\begin{equation*}
+	\mbf{r}(t) = \mbf{v}_0 \tau \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) +\mbf{g}\tau \left[t - \tau\left(1 - \mathrm{e}^{-\frac{t}{\tau}}\right)\right]
+\end{equation*}
+即
+\begin{equation*}
+	\begin{cases}
+		x(t) = v_0 \tau \cos \alpha \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right) \\ 
+		y(t) = -g\tau t + \tau(v_0\sin \alpha+g\tau) \left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)
+	\end{cases}
+\end{equation*}
+消去时间可以得到轨道方程
+\begin{equation*}
+	y = \left(\tau \alpha + \frac{g\tau}{v_0\cos\alpha}\right) x g\tau^2 \ln \left(1-\frac{x}{v_0\tau \cos \alpha}\right)
+\end{equation*}
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(350);
+	//不同阻尼系数下的轨道曲线图
+	real x,y;
+	picture g,tmp;
+	real kappa;
+	real tra(real x){
+		return 2*(1+1/kappa)*x+2/kappa/kappa*log(1-kappa*x);
+	}
+	real tra0(real x){
+		return 2*x-x**2;
+	}
+	for(y=-2.5;y<1.5;y=y+0.5){
+		draw(g,(0,y)--(3,y),0.6white);
+	}
+	for(x=0.25;x<3;x=x+0.25){
+		draw(g,(x,-3)--(x,1.5),0.6white);
+	}
+	kappa = 0.1;
+	draw(tmp,graph(tra,0,0.9/kappa),blue+linewidth(1bp));
+	kappa = 0.5;
+	draw(tmp,graph(tra,0,0.9/kappa),green+linewidth(1bp));
+	kappa = 1.0;
+	draw(tmp,graph(tra,0,0.9678),orange+linewidth(1bp));
+	kappa = 2.0;
+	draw(tmp,graph(tra,0,0.499938),red+linewidth(1bp));
+	draw(tmp,graph(tra0,0,3),linewidth(1bp));
+	clip(tmp,box((0,-3),(3,1.5)));
+	add(g,tmp);
+	erase(tmp);
+	draw(g,box((0,-3),(3,1.5)),linewidth(1bp));
+	label(g,"$\dfrac{x}{x_m}$",(3,-3),2.5*E);
+	label(g,"$\dfrac{y}{y_m}$",(0,1.5),W);
+	label(g,"$1$",(0,1),W);
+	label(g,"$0$",(0,0),W);
+	label(g,"$-1$",(0,-1),W);
+	label(g,"$-2$",(0,-2),W);
+	label(g,"$-3$",(0,-3),W);
+	label(g,"$0.0$",(0,-3),S);
+	label(g,"$0.5$",(0.5,-3),S);
+	label(g,"$1.0$",(1,-3),S);
+	label(g,"$1.5$",(1.5,-3),S);
+	label(g,"$2.0$",(2,-3),S);
+	label(g,"$2.5$",(2.5,-3),S);
+	label(g,"$3.0$",(3,-3),S);
+	pair A,B;
+	A = (2.35,-0.3);
+	B = (2.85,1.3);
+	real delta;
+	delta = (B.y-A.y)/10;
+	fill(g,shift((0.025,-0.05))*box(A,B),black);
+	unfill(g,box(A,B));
+	draw(g,box(A,B));
+	label(g,"$\kappa = 0.0$",((A.x+B.x)/2,A.y)+(0,9*delta));
+	label(g,"$\kappa = 0.1$",((A.x+B.x)/2,A.y)+(0,7*delta),blue);
+	label(g,"$\kappa = 0.5$",((A.x+B.x)/2,A.y)+(0,5*delta),green);
+	label(g,"$\kappa = 1.0$",((A.x+B.x)/2,A.y)+(0,3*delta),orange);
+	label(g,"$\kappa = 2.0$",((A.x+B.x)/2,A.y)+(0,1*delta),red);
+	add(xscale(2)*g);
+\end{asy}
+\caption{不同阻尼系数下的轨道曲线图}
+\label{不同阻尼系数下的轨道曲线图}
+\end{figure}
+
+考虑无阻尼极限$k=0$，即$\tau = \dfrac{m}{k} \to +\infty$的情况。根据当$u \to 0$时，有
+\begin{equation*}
+	\ln (1+u) = u - \frac12 u^2 + o(u^2)
+\end{equation*}
+当$\tau \to +\infty$时，轨道变为
+\begin{equation*}
+	y = x\tan \alpha -\frac{gx^2}{2v_0^2\cos^2 \alpha}
+\end{equation*}
+由此，令
+\begin{equation*}
+	\kappa = \frac{kv_0 \sin \alpha}{mg} = \frac{v_0 \sin \alpha}{g\tau},\quad x_m = \frac{v_0^2 \sin 2\alpha}{2g},\quad y_m = \frac{v_0^2 \sin^2 \alpha}{2g}
+\end{equation*}
+则在无阻尼的情形，即$\kappa=0$时，轨道可以表示为
+\begin{equation*}
+	\frac{y}{y_m} = 2\frac{x}{x_m} - \left(\frac{x}{x_m}\right)^2
+\end{equation*}
+当$\kappa \neq 0$时，轨道方程为
+\begin{equation*}
+	\frac{y}{y_m} = 2\left(1+\frac{1}{\kappa}\right) \frac{x}{x_m} + \frac{2}{\kappa^2} \ln \left(1-\kappa \frac{x}{x_m}\right)
+\end{equation*}
+上式这种形式称为{\heiti 无量纲形式}。不同阻尼系数$\kappa$下的轨道曲线如图\ref{不同阻尼系数下的轨道曲线图}所示。由图可见阻力越大，越早的接近竖直运动。
+\end{solution}
+
+\begin{example}
+如图\ref{第一章例6图}所示，设有竖直圆环轨道上串有钢珠，将钢珠置于$\theta = 0$处释放，已知$v\big|_{\theta=0} = v\big|_{\theta=\frac{\pi}{2}} = 0$，求轨道与钢珠之间的摩擦系数$\mu$。
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例6图
+	pair O,P;
+	real r,theta;
+	O = (0,0);
+	r = 2;
+	theta = 40;
+	draw(scale(r)*unitcircle);
+	draw(Label("$R$",MidPoint,N),O--r*dir(0),dashed);
+	P = r*dir(-theta);
+	draw(O--P,dashed);
+	draw(Label("$\theta$",MidPoint,Relative(W)),arc(O,0.3*r,0,-theta),Arrow);
+	dot(P);
+	draw(Label("$\boldsymbol{G}$",EndPoint),P--P+dir(-90),Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint,SW),P--P+dir(180-theta),Arrow);
+	draw(Label("$\boldsymbol{f}$",EndPoint,N),P--P+dir(90-theta),Arrow);
+	dot((0,r+0.01),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例6图}
+\end{figure}
+\end{example}
+\begin{solution}
+速度和加速度为
+\begin{equation*}
+	v = R\dot{\theta},\quad a_\tau = R\ddot{\theta},\quad a_n = R\dot{\theta}^2
+\end{equation*}
+根据Newton第二定律以及摩擦力的关系，可有方程组
+\begin{equation*}
+	\begin{cases}
+		mR\ddot{\theta} = mg\cos \theta - f \\
+		mR\dot{\theta}^2 = N-mg\sin \theta \\
+		f = \mu N
+	\end{cases}
+\end{equation*}
+从中消去$N$，可得
+\begin{equation*}
+	R(\ddot{\theta} + \mu\dot{\theta}^2) = g(\cos \theta - \mu\sin \theta)
+\end{equation*}
+再考虑到
+\begin{equation*}
+	\ddot{\theta} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} t} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} \frac{\mathrm{d} \theta}{\mathrm{d} t} = \dot{\theta} \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} = \frac12 \frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta}
+\end{equation*}
+可有
+\begin{equation*}
+	\frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta} + 2\mu\dot{\theta}^2 = \frac{2g}{R}(\cos \theta - \mu\sin \theta)
+\end{equation*}
+可用常数变易法解此微分方程，得
+\begin{equation*}
+	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu \cos \theta\right] + C\mathrm{e}^{-2\mu\theta}
+\end{equation*}
+再考虑到$\dot{\theta}\big|_{\theta=0} = 0$，可得
+\begin{equation*}
+	\dot{\theta}^2 = \frac{2g}{(1+4\mu^2)R} \left[(1-2\mu^2)\sin \theta + 3\mu (\cos \theta-\mathrm{e}^{-2\mu\theta})\right]
+\end{equation*}
+最后利用$\dot{\theta}\big|_{\theta=\frac{\pi}{2}} = 0$，可得$\mu$满足的方程为
+\begin{equation*}
+	1-2\mu^2-3\mu\mathrm{e}^{-\mu\pi} = 0
+\end{equation*}
+整理为
+\begin{equation*}
+	\mu = \sqrt{\frac{1-3\mu\mathrm{e}^{-\mu\pi}}{2}} =: f(\mu)
+\end{equation*}
+即$\mu$为函数$f(\mu)$的不动点。可以使用迭代法求解此不动点，即$\mu^{(n+1)} = f(\mu^{(n)})$。具体如下
+\begin{align*}
+	\mu^{(0)} & = 0.000 \\
+	\mu^{(1)} & = f(\mu^{(0)}) = 0.707\cdots \\
+	\mu^{(2)} & = f(\mu^{(1)}) = 0.620\cdots \\
+	\mu^{(3)} & = f(\mu^{(2)}) = 0.606\cdots \\
+	& \quad \quad \vdots \\
+	\mu & \approx 0.603
+\end{align*}
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例6求解示意
+	pair O;
+	real x,y,xm,ym;
+	O = (0,0);
+	xm = 0.8;
+	ym = 0.8;
+	//画坐标系
+	draw(Label("$\mu$",EndPoint),O--(xm,0));
+	draw(Label("$f(\mu)$",EndPoint),O--(0,ym));
+	label("$0.0$",O,S);
+	label("$0.0$",O,W);
+	for(x = 0.1;x < xm-0.1;x = x+0.1){
+		draw((x,0)--(x,0.01));
+	}
+	label("$0.5$",(0.5,0),S);
+	for(y = 0.1;y < ym-0.1;y = y+0.1){
+		draw((0,y)--(0.01,y));
+	}
+	label("$0.5$",(0,0.5),W);
+	real lin(real mu){
+		return mu;
+	}
+	real fmu(real mu){
+		return sqrt((1-3*mu*exp(-mu*pi))/2);
+	}
+	draw(graph(lin,0,xm),linewidth(0.8bp));
+	draw(Label("$f(\mu)$",EndPoint),graph(fmu,0,xm),red+linewidth(0.8bp));
+	draw(O--(0,fmu(0))--(fmu(0),fmu(0))--(fmu(0),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(0)))--(fmu(fmu(0)),fmu(fmu(fmu(0))))--(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),blue+linewidth(0.8bp));
+	label("$0.707\cdots$",(fmu(0),fmu(0)),E);
+	label("$0.620\cdots$",(fmu(fmu(0)),fmu(fmu(0))),NW);
+	label("$0.606\cdots$",(fmu(fmu(fmu(0))),fmu(fmu(fmu(0)))),W);
+	real m;
+	m = 0;
+	for(int i=1;i<10;++i){
+		m = fmu(m);
+	}
+	dot((m,m));
+	label("$0.603\cdots$",(m,m),SE);
+\end{asy}
+\caption{求解示意}
+\label{求解示意}
+\end{figure}
+\end{solution}
+
+\section{Galileo变换}
+
+从一个惯性参考系变换至另一个惯性参考系的变换称为{\bf Galileo变换}（如图\ref{chapter2:Galileo变换}所示），它可以表示为
+\begin{equation}
+	\begin{cases}
+		\mbf{r}' = \mbf{r} - \mbf{v}_0t \\
+		t' = t
+	\end{cases}
+\end{equation}
+在此变换下，可有
+\begin{equation}
+	\mbf{v}' = \mbf{v} - \mbf{v}_0,\quad \mbf{a}' = \mbf{a}
+\end{equation}
+由此可以看出相对速度和加速度是Galileo变换下的不变量。经典力学中假设质点的质量是与其运动状态无关的常标量，因此可以根据Newton第二定律得出{\bf 力也是Gelileo变换下的不变量}。
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(200);
+	//Galileo变换
+	pair O,x,y,z,v,r;
+	O = (0,0);
+	x = 0.8*dir(-135);
+	y = dir(0);
+	z = dir(90);
+	v = (2/3,1/3);
+	r = (0.9,1.2);
+	draw(Label("$x$",EndPoint),O--x,Arrow);
+	draw(Label("$y$",EndPoint),O--y,Arrow);
+	draw(Label("$z$",EndPoint),O--z,Arrow);
+	label("$O$",O,W);
+	draw(Label("$x'$",EndPoint),v--v+x,Arrow);
+	draw(Label("$y'$",EndPoint),v--v+y,Arrow);
+	draw(Label("$z'$",EndPoint),v--v+z,Arrow);
+	label("$O'$",v,SE);
+	draw(Label(rotate(degrees(v))*"$\boldsymbol{v}_0 t$",Relative(0.7),Relative(W)),O--v,red,Arrow);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),O--r,Arrow);
+	draw(Label("$\boldsymbol{r}'$",MidPoint,Relative(E)),v--r,Arrow);
+\end{asy}
+\caption{Galileo变换}
+\label{chapter2:Galileo变换}
+\end{figure}
+
+\section{力系的主矢与主矩}
+
+作用在一个质点系上的所有力的集合称为{\bf 力系}，力系中的力可以分为内力和外力。内力是指质点系内部各质点之间的作用力，而外力则是系统外的质点对质点系中质点的作用力。
+
+我们用角标$i$来指示质点系中的质点$P_i$，将每个质点的质量记作$m_i$，它所受的合力记作$\boldsymbol{F}_i$。矢量和
+\begin{equation}
+	\boldsymbol{R} = \sum_{i=1}^n\boldsymbol{F}_i
+	\label{chapter2:主矢的定义式}
+\end{equation}
+称为该力系的{\bf 主矢}。需要注意的是，这里的主矢与合力概念不同。合力是指同一个质点上所受的各个力的矢量和，其依据是力的独立作用定律，而主矢则是不同质点上所受合力的矢量和。
+
+如果能够将质点上所受的合力分为内力和外力，即
+\begin{equation}
+	\boldsymbol{F}_i = \boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}, \quad i = 1,2,\cdots,n
+	\label{chapter2:质点系内的内力和外力分解}
+\end{equation}
+其中$\boldsymbol{F}_i^{(\mathrm{e})}$表示质点$i$所受所有外力的合力，$\boldsymbol{F}_i^{(\mathrm{i})}$表示质点$i$所受所有内力的合力。
+
+根据Newton第三定律，质点系内两个质点之间的相互作用力大小相等，方向沿着它们连线且方向相反。将式\eqref{chapter2:质点系内的内力和外力分解}带入力系主矢的定义式\eqref{chapter2:主矢的定义式}中，可以发现内力将两两相互抵消，从而得到
+\begin{equation}
+	\boldsymbol{R} = \sum_{i=1}^n\boldsymbol{F}_i^{(\mathrm{e})}
+\end{equation}
+即力系的主矢$\boldsymbol{R}$等于所有外力的主矢$\boldsymbol{R}^{(\mathrm{e})}$。
+
+力$\boldsymbol{F}$对空间中某一点$A$的力矩定义为
+\begin{equation}
+	\boldsymbol{M}_A = \vec{AP} \times \boldsymbol{F} = (\boldsymbol{r}_P - \boldsymbol{r}_A) \times \boldsymbol{F}
+\end{equation}
+其中$P$是力$\boldsymbol{F}$的作用点，$\boldsymbol{r}_P$和$\boldsymbol{r}_A$分别为$P$点和$A$点的位矢，点$A$称为力矩的{\bf 矩心}。与力系的主矢类似，可以定义
+\begin{equation}
+	\boldsymbol{M} = \sum_{i=0}^n \boldsymbol{M}_i = \sum_{i=0}^n (\boldsymbol{r}_i - \boldsymbol{r}_A)\times \boldsymbol{F}_i
+\end{equation}
+称为力系对$A$点的{\bf 主矩}。
+
+与主矢类似的是，内力的力矩也在加和的过程中相互抵消，如图\ref{chapter2:内力力矩之和}所示，因此有
+\begin{equation}
+	\boldsymbol{M} = \sum_{i=1}^n\boldsymbol{M}_i^{(\mathrm{e})}
+\end{equation}
+即力系的主矩$\boldsymbol{M}$等于所有外力的主矩$\boldsymbol{M}^{(\mathrm{e})}$。
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(200);
+	pair O, A, B, F;
+	O = (0,0);
+	A = 1.5*dir(135);
+	B = 1.0*dir(60);
+	F = dir(A - B);
+	label("$O$", A, S);
+	draw(Label("$\boldsymbol{r}_1$", MidPoint, Relative(W)), O--A, Arrow);
+	draw(Label("$\boldsymbol{r}_2$", MidPoint, Relative(E)), O--B, Arrow);
+	draw(A--B, dashed);
+	draw(Label("$\boldsymbol{F}$", EndPoint, Relative(W)), A--A-0.5*F, Arrow);
+	draw(Label("$\boldsymbol{F}'=-\boldsymbol{F}$", EndPoint, Relative(E)), B--B+0.5*F, Arrow);
+	pair n = rotate(90)*F;
+	pair P = intersectionpoint(A--B, O-100*n--O+100*n);
+	draw(O--P, dashed);
+\end{asy}
+\caption{内力力矩之和}
+\label{chapter2:内力力矩之和}
+\end{figure}
+
+值得一提的是，同一力系的主矩在选择不同参考点时的值是不同的。我们选取两个不同的点$A$和$B$，则相对点$B$的主矩可以计算为
+\begin{align*}
+	\boldsymbol{M}_B & = \sum_{i=1}^n (\boldsymbol{r}_{i} - \boldsymbol{r}_B) \times \boldsymbol{F}_i = \sum_{i=1}^n (\boldsymbol{r}_{i} - \boldsymbol{r}_A + \vec{BA}) \times \boldsymbol{F}_i \\
+	& = \sum_{i=1}^n (\boldsymbol{r}_{i} - \boldsymbol{r}_A) \times \boldsymbol{F}_i + \vec{BA} \times \sum_{i=1}^n\boldsymbol{F}_i = \boldsymbol{M}_A + \vec{BA} \times \boldsymbol{R}
+\end{align*}
+即
+\begin{equation}
+	\boldsymbol{M}_B = \boldsymbol{M}_A + \vec{BA} \times \boldsymbol{R}
+	\label{chapter2:不同参考点力矩之间的关系}
+\end{equation}
+
+\section{功与势}
+
+设$\boldsymbol{F}_i$是作用在质点系中质点$P_i$上所有力的合力（包括内力和外力），$\mathrm{d}\boldsymbol{r}_i$是在当前时刻质点$P_i$沿着其运动轨迹运动的位移微元，也就是
+\begin{equation}
+	\mathd \boldsymbol{r}_i = \boldsymbol{v}_i\mathd t
+\end{equation}
+则
+\begin{equation}
+	\mathd'A_i = \boldsymbol{F}_i\cdot \mathd\boldsymbol{r}_i
+	\label{chapter2:质点上力的元功}
+\end{equation}
+称为力$\boldsymbol{F}_i$在位移$\mathd\boldsymbol{r}_i$上的{\bf 元功}。将式\eqref{chapter2:质点上力的元功}对质点系中所有质点求和便得到力系的元功
+\begin{equation}
+	\mathd'A = \sum_{i=1}^n \boldsymbol{F}_i\cdot \mathd \boldsymbol{r}_i
+	\label{chapter2:力系的元功}
+\end{equation}
+其中符号$\mathd'$表示强调式\eqref{chapter2:质点上力的元功}和式\eqref{chapter2:力系的元功}左端不一定是全微分\footnote{后文中可能省略这个撇号。}。
+
+在元功的表达式\eqref{chapter2:力系的元功}中既包含外力的功也包含内力的功，可以将其拆分为
+\begin{equation}
+	\mathd'A = \mathd'A^{(\mathrm{e})} + \mathd'A^{(\mathrm{i})}
+\end{equation}
+此处$\mathd'A^{(\mathrm{e})}$表示外力的元功，$\mathd'A^{(\mathrm{i})}$表示内力的元功。
+
+将质点的元功\eqref{chapter2:质点上力的元功}在其轨迹上的一段路径上积分，即可得到其全功。
+
+假设质点在空间中运动时，在质点上作用的力依赖于质点的位置（可能还依赖于时间），但不依赖于质点的速度，在这种情况下，我们说在空间中确定了一个{\bf 力场}。力场可能依赖于质点本身的某些性质，例如引力场、静电场等。如果存在仅依赖于质点坐标（可能还依赖于时间）的标量函数$V(\boldsymbol{r},t)$，使得
+\begin{equation}
+	\boldsymbol{F}_i = -\frac{\pl V(\boldsymbol{r}_i,t)}{\pl \boldsymbol{r}_i} = -\bnb V(\boldsymbol{r}_i, t)
+\end{equation}
+则称力场{\bf 有势}，而函数$V(\boldsymbol{r},t)$则称为{\bf 势函数}或{\bf 势能}，此处算符$\dfrac{\pl}{\pl \boldsymbol{r}} = \bnb$，其在直角坐标系下的表达式为
+\begin{equation}
+	\dfrac{\pl}{\pl \boldsymbol{r}} = \bnb = \boldsymbol{i}\frac{\pl}{\pl x} + \boldsymbol{j}\frac{\pl}{\pl y} + \boldsymbol{k}\frac{\pl}{\pl z}
+\end{equation}
+
+当质点上的作用力有势时
+\begin{equation}
+	\mathd'A = -\frac{\pl V}{\pl \boldsymbol{r}_i} \cdot \mathd\boldsymbol{r}_i = -\mathd V(\boldsymbol{r}_i,t)
+	\label{chapter2:外力有势时的元功是全微分}
+\end{equation}
+即有势力的元功是全微分。因此有势力的全功不依赖于路径，如果路径是闭合的，则有势力的全功为零。
+
+% \section{质点系的静力学} todo
+
+\section{动力学基本定理与定律}
+
+\subsection{力学系统的基本动力学量}
+
+我们考虑质点系$P_i(i=1,2,\cdots,n)$，记质点$P_i$的质量为$m_i$，位矢为$\boldsymbol{r}_i$，速度为$\boldsymbol{v}_i$，加速度为$\boldsymbol{a}_i$。
+
+质点系的{\bf 质心}是指空间中的几何点$C$，其位矢为
+\begin{equation}
+	\boldsymbol{r}_C = \frac{1}{M}\sum_{i=1}^nm_i\boldsymbol{r}_i
+\end{equation}
+其中$M$为质点系的总质量，即
+\begin{equation}
+	M = \sum_{i=1}^nm_i
+\end{equation}
+而质心的速度则为
+\begin{equation}
+	\boldsymbol{v}_C = \frac{\mathd\boldsymbol{r}}{\mathd t} = \frac{1}{M}\sum_{i=1}^nm_i\frac{\mathd\boldsymbol{r}_i}{\mathd t} = \frac{1}{M}\sum_{i=1}^nm_i\boldsymbol{v}_i
+	\label{chapter2:质心的速度}
+\end{equation}
+
+质点的{\bf 动量}定义为
+\begin{equation}
+	\mbf{p} = m\mbf{v}
+\end{equation}
+质点系的动量定义为各个质点动量之和，即
+\begin{equation}
+	\mbf{p} = \sum_{i=1}^n \mbf{p}_i = \sum_{i=1}^nm_i\boldsymbol{v}_i
+\end{equation}
+质点系的动量也可以看作是各个质点动量的主矢。根据质心速度式\eqref{chapter2:质心的速度}可得质心的动量为
+\begin{equation}
+	\boldsymbol{p}_C = M\boldsymbol{v}_C = \boldsymbol{p}
+	\label{chapter2:质心动量表达式}
+\end{equation}
+即质点系质心动量等于质点系的总动量。
+
+质点$P$相对空间中某点$A$的{\bf 角动量}\footnote{基于其定义的形式，角动量有时也被称为{\bf 动量矩}。}定义为
+\begin{equation}
+	\boldsymbol{L} = \vec{AP} \times \boldsymbol{p}
+\end{equation}
+质点系的角动量定义为各个质点角动量之和，即
+\begin{equation}
+	\boldsymbol{L} = \sum_{i=1}^n \boldsymbol{L}_i = \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_A) \times\boldsymbol{p}_i
+	\label{chapter2:系统角动量的定义式}
+\end{equation}
+质点系的角动量也可以看作是各个质点动量对$A$点的主矩。当选择不同的参考点时，角动量作为质点系动量的主矩也具有与力系主矩式\eqref{chapter2:不同参考点力矩之间的关系}类似的关系
+\begin{equation}
+	\boldsymbol{L}_B = \boldsymbol{L}_A + \vec{BA} \times \boldsymbol{p}
+\end{equation}
+通常情况下，如果不指明参考点，我们认为参考点是当前参考系的原点。
+
+下面我们考虑系统相对于质心的运动，即考察质点系在{\bf 质心参考系}中的力学性质。质心参考系是指原点位于质心处，以质心速度$\boldsymbol{v}_C$进行平动的参考系。通常来讲，这个参考系并不是惯性系，但是后面会看到这个参考系的特殊性是使得力学定律在这个非惯性系中仍然呈现与惯性系相同的形式。
+
+在本节中，我们将质心系中的物理量用带撇号的符号来表示。对于作平动运动的参考系，质点系中各个质点相对质心系的速度与其绝对速度有如下关系
+\begin{equation}
+	\boldsymbol{v}_i = \boldsymbol{v}_i' + \boldsymbol{v}_C
+	\label{chapter2:相对质心系的速度}
+\end{equation}
+因此质心系中的动量为
+\begin{equation}
+	\boldsymbol{p}' = \sum_{i=1}^nm_i\boldsymbol{v}_i' = \sum_{i=1}^n m_i\boldsymbol{v}_i - \left(\sum_{i=1}^n m_i\right)\boldsymbol{v}_C = \boldsymbol{0}
+	\label{chapter2:质心系中的系统动量}
+\end{equation}
+即质点系在质心系中的动量为零。而质点系在质心系中相对质心的角动量则为
+\begin{equation}
+	\boldsymbol{L}' = \sum_{i=1}^n\boldsymbol{r}_i' \times \boldsymbol{p}' = \sum_{i=1}^n\boldsymbol{r}_i' \times m_i\boldsymbol{v}_i'
+\end{equation}
+将关系式\eqref{chapter2:相对质心系的速度}和$\boldsymbol{r}_i = \boldsymbol{r}_i' + \boldsymbol{r}_C$带入则可得
+\begin{align}
+	\boldsymbol{L}' & = \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_C) \times m_i (\boldsymbol{v}_i - \boldsymbol{v}_C) \nonumber\\
+	& = \sum_{i=1}^n \left(\boldsymbol{r}_i\times m_i\boldsymbol{v}_i - \boldsymbol{r}_i\times m_i\boldsymbol{v}_C - \boldsymbol{r}_C \times m_i\boldsymbol{v}_i + \boldsymbol{r}_C\times m_i\boldsymbol{v}_C\right) \nonumber\\
+	& = \sum_{i=1}^n\boldsymbol{r}_i\times m_i\boldsymbol{v}_i - \left(\sum_{i=1}^nm_i\boldsymbol{r}_i\right) \times \boldsymbol{v}_C - \boldsymbol{r}_C \times \sum_{i=1}^n m_i\boldsymbol{v}_i + \boldsymbol{r}_C\times \left(\sum_{i=1}^nm_i\right)\boldsymbol{v}_C \label{chapter2:质心系中角动量推导1}
+\end{align}
+由于
+\begin{equation*}
+	\sum_{i=1}^nm_i\boldsymbol{r}_i = M\boldsymbol{r}_C, \quad \sum_{i=1}^n m_i\boldsymbol{v}_i = M\boldsymbol{v}_C
+\end{equation*}
+因此式\eqref{chapter2:质心系中角动量推导1}中的后三项都等于$\boldsymbol{r}_C\times M\boldsymbol{v}_C$，即有质心系中角动量为
+\begin{equation}
+	\boldsymbol{L}' = \boldsymbol{L} - \boldsymbol{r}_C\times M\boldsymbol{v}_C
+\end{equation}
+或者
+\begin{equation}
+	\boldsymbol{L} = \boldsymbol{L}' + \boldsymbol{L}_C
+	\label{chapter2:质心系角动量与绝对角动量的关系}
+\end{equation}
+其中
+\begin{equation}
+	\boldsymbol{L}_C = \boldsymbol{r}_C\times M\boldsymbol{v}_C
+\end{equation}
+为质点系质心的角动量，也被称为{\bf 轨道角动量}，而$\boldsymbol{L}'$则可以称为质点系的{\bf 内禀角动量}或者{\bf 自旋角动量}。
+
+质点的{\bf 动能}定义为
+\begin{equation}
+	T = \frac12 m\boldsymbol{v}^2
+\end{equation}
+质点系的动能定义为各个质点动能之和，即
+\begin{equation}
+	T = \sum_{i=1}^n T_i = \sum_{i=1}^n \frac12 m_i\boldsymbol{v}_i^2
+	\label{chapter2:质点系的动能}
+\end{equation}
+在计算动能时常常用到下面的定理：
+
+\begin{theorem}[K\"onig（柯尼希）定理]
+	\label{chapter2:Konig定理}
+	系统的动能等于位与系统质心处且具有系统质量的质点的动能，再加上系统相对质心运动的动能，即
+	\begin{equation}
+		T = T_C + T'
+	\end{equation}
+	其中
+	\begin{equation}
+		T_C = \frac12 M\boldsymbol{v}_C^2, \quad T' = \sum_{i=1}^n \frac12 m_i\boldsymbol{v}_i'^2
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+根据式\eqref{chapter2:相对质心系的速度}可得
+\begin{align*}
+	T & = \sum_{i=1}^n \frac12 m_i\left(\boldsymbol{v}_i'+\boldsymbol{v}_C\right)^2 = \sum_{i=1}^n \left(\frac12 m_i\boldsymbol{v}_i'^2 + m_i \boldsymbol{v}_i'\cdot \boldsymbol{v}_C + \frac12 m_i\boldsymbol{v}_C^2\right) \\
+	& = \sum_{i=1}^n \frac12 m_i\boldsymbol{v}_i'^2 + \left(\sum_{i=1}^nm_i\boldsymbol{v}_i'\right) \cdot \boldsymbol{v}_C + \frac12 \left(\sum_{i=1}^nm_i\right)\boldsymbol{v}_C^2
+\end{align*}
+其中$\displaystyle\sum_{i=1}^nm_i\boldsymbol{v}_i'$即为质点系在质心系中的动量，根据式\eqref{chapter2:质心系中的系统动量}可知其值为零，定理得证。
+\end{proof}
+
+\subsection{系统动力学基本定理}
+
+我们研究质点系在某个惯性系中的运动，仍采用与上一节相同的符号，则根据Newton第二定律，系统的运动微分方程可以表示为
+\begin{equation}
+	m_i\boldsymbol{a}_i = \boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}, \quad i = 1,2,\cdots,n
+	\label{chapter2:系统的运动微分方程——牛顿第二定律}
+\end{equation}
+为了研究系统的运动，我们必须在给定初始条件下求解微分方程组\eqref{chapter2:系统的运动微分方程——牛顿第二定律}得到每一个$\boldsymbol{r}_i$随时间的关系式。在大多数情形下，这是不可能做到的。
+
+为了简化方程组\eqref{chapter2:系统的运动微分方程——牛顿第二定律}的求解，我们可以通过研究系统的基本动力学量：动量、角动量和动能，由此得到的一些关系称为{\bf 系统基本动力学基本定理}。如果在某些情形下，这些动力学量保持常数，则可称之为{\bf 守恒定律}\footnote{这里所说的守恒定律更应该被称为“守恒定理”，但实际上在经典力学以外的物理学中，这些守恒关系经常被认为是某种对称性的直接推论而被公理化，从而被称为守恒定律。}。
+
+首先我们将方程组\eqref{chapter2:系统的运动微分方程——牛顿第二定律}对$i$求和可得
+\begin{equation}
+	\sum_{i=1}^nm_i\boldsymbol{a}_i = \sum_{i=1}^n \boldsymbol{F}_i^{(\mathrm{e})} + \sum_{i=1}^n \boldsymbol{F}_i^{(\mathrm{i})}
+\end{equation}
+上式右端等于外力的主矢$\boldsymbol{R}^{(\mathrm{e})}$，而左端则为
+\begin{equation}
+	\sum_{i=1}^nm_i\boldsymbol{a}_i = \sum_{i=1}^n m_i\frac{\mathd\boldsymbol{v}_i}{\mathd t} = \frac{\mathd}{\mathd t}\sum_{i=1}^n m_i\boldsymbol{v}_i = \dif{\boldsymbol{p}}{t}
+\end{equation}
+由此即可得到质点系的{\bf 动量定理}：
+
+\begin{theorem}[动量定理]
+	\label{chapter2:质点系的动量定理}
+	系统动量随时间的变化率等于系统外力的主矢，即
+	\begin{equation}
+		\frac{\mathd\boldsymbol{p}}{\mathd t} = \boldsymbol{R}^{(\mathrm{e})}
+		\label{chapter2:质点系的动量定理}
+	\end{equation}
+\end{theorem}
+
+这个定理可以写成积分形式，将方程\eqref{chapter2:质点系的动量定理}两端从$t_1$到$t_2$积分，可得
+\begin{equation}
+	\Delta \boldsymbol{p} = \boldsymbol{p}_2 - \boldsymbol{p}_1 = \int_{t_1}^{t_2}\boldsymbol{R}^{(\mathrm{e})}\mathd t
+	\label{chapter2:动量定理的积分形式}
+\end{equation}
+式\eqref{chapter2:动量定理的积分形式}右端的积分称为时间$t_1$到$t_2$范围内外力的{\bf 外力的冲量}，这说明动量在有限时间内的增量等于该时间内外力的冲量。
+
+根据式\eqref{chapter2:质心动量表达式}，还可以将动量定理表述为下面的定理：
+
+\begin{theorem}[质心运动定理]
+	\label{chapter2:质心运动定理}
+	系统质心的运动就好像系统全部质量集中于质心的一个质点，在等于系统外力主矢的力作用下的运动。即
+	\begin{equation}
+		M\dif{\boldsymbol{v}_C}{t} = \boldsymbol{R}^{(\mathrm{e})}
+	\end{equation}
+\end{theorem}
+
+如果系统是封闭的，则$\boldsymbol{R}^{(\mathrm{e})} = \boldsymbol{0}$，由式\eqref{chapter2:质点系的动量定理}可得{\bf 动量守恒定律}，即：
+
+\begin{theorem}[动量守恒定律]
+	封闭系统在运动中其动量保持为常量。这个结论对于非封闭但外力主矢恒为零的系统也同样适用。
+\end{theorem}
+
+如果外力主矢仅在某一个固定方向$\boldsymbol{e}$上的投影恒为零，那么系统动量在该方向上的投影守恒。即如果系统满足$\boldsymbol{R}^{(\mathrm{e})}\cdot \boldsymbol{e} \equiv 0$，则有$\boldsymbol{p}\cdot \boldsymbol{e} \equiv 0$。
+
+系统对空间中$A$点的角动量由式\eqref{chapter2:系统角动量的定义式}确定，其中参考点$A$可以不与任何质点的位置重合，可以是静止不动的，也可以是作任意运动的，将$A$点的速度记作$\boldsymbol{v}_A$。将式\eqref{chapter2:系统角动量的定义式}两端对时间求导，可得
+\begin{align*}
+	\dif{\boldsymbol{L}}{t} & = \sum_{i=1}^n \left(\dif{\boldsymbol{r}_i}{t} - \dif{\boldsymbol{r}_A}{t}\right)\times \boldsymbol{p}_i + \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_A) \times \dif{\boldsymbol{p}_i}{t} \\
+	& = \sum_{i=1}^n (\boldsymbol{v}_i - \boldsymbol{v}_A) \times \boldsymbol{p}_i + \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_A) \times \boldsymbol{F}_i
+\end{align*}
+由于$\boldsymbol{v}_i \times \boldsymbol{p}_i = \boldsymbol{v}_i \times m_i\boldsymbol{v}_i = \boldsymbol{0}$，所以有
+\begin{equation}
+	\dif{\boldsymbol{L}}{t} = M\boldsymbol{v}_C \times \boldsymbol{v}_A + \boldsymbol{M}_A^{(\mathrm{e})}
+\end{equation}
+式中$\boldsymbol{M}_A^{(\mathrm{e})}$即为质点系所有外力的主矩，这就是角动量定理。
+
+\begin{theorem}[角动量定理]
+	对于以任意速度$\boldsymbol{v}_A$运动的矩心$A$的角动量满足
+	\begin{equation}
+		\dif{\boldsymbol{L}}{t} = M\boldsymbol{v}_C \times \boldsymbol{v}_A + \boldsymbol{M}_A^{(\mathrm{e})}
+		\label{chapter2:质点系对任意矩心的角动量定理}
+	\end{equation}
+	如果矩心$A$是固定的，或者取为质心$C$，系统对固定矩心或质心的角动量对时间的导数等于系统外力对该矩心的主矩，即
+	\begin{equation}
+		\dif{\boldsymbol{L}}{t} = \boldsymbol{M}_A^{(\mathrm{e})}
+		\label{chapter2:质点系的角动量定理}
+	\end{equation}
+\end{theorem}
+
+这个定理同样可以写成积分形式，将式\eqref{chapter2:质点系的角动量定理}两端从$t_1$到$t_2$积分可得
+\begin{equation}
+	\Delta\boldsymbol{L} = \boldsymbol{L}_2 - \boldsymbol{L}_1 = \int_{t_1}^{t_2}\boldsymbol{M}^{(\mathrm{e})}\mathd t
+	\label{chapter2:质点系角动量定理的积分形式}
+\end{equation}
+式\eqref{chapter2:质点系角动量定理的积分形式}右端的积分称为时间$t_1$到$t_2$范围内外力的{\bf 冲量矩}。这说明系统对固定矩心或质心的角动量在有限时间内的增量等于这段时间内外力对该矩心的冲量矩。
+
+如果系统是封闭的，则$\boldsymbol{M}^{(\mathrm{e})} = \boldsymbol{0}$，由式\eqref{chapter2:质点系的角动量定理}可得角动量守恒定律，即：
+
+\begin{theorem}[角动量守恒定律]
+	封闭系统在运动中，系统对任意固定矩心和质心的角动量保持为常量。这对于非封闭但外力对某固定矩心或质心的主矩恒为零的系统也同样适用。
+\end{theorem}
+
+对于质心参考系，其中的角动量满足式\eqref{chapter2:质心系角动量与绝对角动量的关系}，根据角动量定理\eqref{chapter2:质点系的角动量定理}可得
+\begin{align*}
+	\dif{\boldsymbol{L}'}{t} = \dif{\boldsymbol{L}}{t} - \frac{\mathd}{\mathd t}(\boldsymbol{r}_C \times M\boldsymbol{v}_C) = \boldsymbol{M}^{(\mathrm{e})} - \boldsymbol{r}_C \times M\boldsymbol{a}_C
+\end{align*}
+再根据质心运动定理\ref{chapter2:质心运动定理}可得
+\begin{equation}
+	\dif{\boldsymbol{L}'}{t} = \boldsymbol{M}^{(\mathrm{e})} - \boldsymbol{r}_C \times \boldsymbol{R}^{(\mathrm{e})}
+\end{equation}
+根据不同矩心下力矩之间的关系式\eqref{chapter2:不同参考点力矩之间的关系}可得
+\begin{equation}
+	\boldsymbol{M}^{(e)} = \boldsymbol{M}_C^{(\mathrm{e})} + \boldsymbol{r}_C \times\boldsymbol{R}^{(e)}
+\end{equation}
+其中$\boldsymbol{M}_C^{(\mathrm{e})}$表示矩心为质心的外力主矩，于是可得{\bf 质心系的角动量定理}：
+
+\begin{theorem}[质心系的角动量定理]
+	系统的内禀角动量对时间的导数，等于以质心为矩心的外力主矩，即
+	\begin{equation}
+		\frac{\mathd \boldsymbol{L}'}{\mathd t} = \boldsymbol{M}_C^{(e)}
+	\end{equation}
+\end{theorem}
+在大多数情况下，质心系并不是一个惯性参考系，但是其特殊性保证了在质心系中的角动量定理与惯性系的角动量定理具有相同的形式。
+
+设$u$为某个固定轴或过系统质心但方向固定的轴，其方向矢量记作$\boldsymbol{e}$，在方程\eqref{chapter2:质点系对任意矩心的角动量定理}两端点乘$\boldsymbol{e}$可得
+\begin{equation}
+	\frac{\mathd}{\mathd t}(\boldsymbol{L}\cdot \boldsymbol{e}) = M (\boldsymbol{v}_C\times \boldsymbol{v}_A) \cdot \boldsymbol{e} + \boldsymbol{M}_A^{(\mathrm{e})}\cdot \boldsymbol{e}
+\end{equation}
+对于固定轴有$\boldsymbol{v}_A=\boldsymbol{0}$，而对于过系统质心但方向固定的轴有$\boldsymbol{v}_A=\boldsymbol{v}_C$，不论哪种情况都有$(\boldsymbol{v}_C\times \boldsymbol{v}_A) \cdot \boldsymbol{e} = 0$。因此，在这两种情况下有
+\begin{equation}
+	\frac{\mathd}{\mathd t}(\boldsymbol{L}\cdot \boldsymbol{e}) = \boldsymbol{M}_A^{(\mathrm{e})}\cdot \boldsymbol{e}
+\end{equation}
+即，此时只要有外力的主矩在轴$u$上的投影恒为零，即有系统角动量在轴$u$上的投影守恒。
+
+系统的动能由式\eqref{chapter2:质点系的动能}确定，下面我们研究系统动能的演化。在式\eqref{chapter2:质点系的动能}两端求微分可得
+\begin{align}
+	\mathd T & = \sum_{i=1}^n m_i\boldsymbol{v}_i \cdot \boldsymbol{a}_i\mathd t = \sum_{i=1}^n m_i\boldsymbol{a}_i \cdot \mathd \boldsymbol{r}_i
+\end{align}
+将系统的运动微分方程\eqref{chapter2:系统的运动微分方程——牛顿第二定律}带入，可得
+\begin{equation}
+	\mathd T = \sum_{i=1}^n (\boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}) \cdot \mathd \boldsymbol{r}_i = \mathd' A^{(\mathrm{e})} + \mathd' A^{(\mathrm{i})}
+\end{equation}
+这就是系统的动能定理：
+
+\begin{theorem}[动能定理]
+	系统动能的微分等于质点系内所有内力和外力的元功之和，即
+	\begin{equation}
+		\mathd T = \mathd' A^{(\mathrm{e})} + \mathd' A^{(i)}
+		\label{chapter2:系统的动能定理}
+	\end{equation}
+\end{theorem}
+
+这个定理可以协程积分形式，将式\eqref{chapter2:系统的动能定理}两端从$t_1$到$t_2$积分可得
+\begin{equation}
+	\Delta T = T_2 - T_1 = \int_{t_1}^{t_2}\mathd' A^{(\mathrm{e})} + \int_{t_1}^{t_2}\mathd' A^{(i)}
+\end{equation}
+这说明系统的动能在有限时间内的增量等于系统所有内力和外力做功之和。
+
+设系统内所有内力和外力都有势，并且势能$V$不显含时间，根据式\eqref{chapter2:外力有势时的元功是全微分}可知此时的元功是全微分，即
+\begin{equation}
+	\mathd' A^{(\mathrm{e})} + \mathd' A^{(i)} = -\mathd V
+\end{equation}
+由此可得
+\begin{equation}
+	\mathd T+ \mathd V = 0
+	\label{chapter2:机械能守恒推导1}
+\end{equation}
+动能和势能之和称为{\bf 机械能}\footnote{如果此处的系统是纯力学系统，不包含力学作用以外的其他作用（如静电力等），这里的机械能就是常规意义下的机械能。但如果此处系统不是纯力学系统，那么此处的机械能即表示动能和势能之和，不必要与传统意义上的机械能定义相同。}，即$E=T+V$，由式\eqref{chapter2:机械能守恒推导1}可得
+\begin{equation}
+	E = T + V = \text{常数}
+\end{equation}
+这便是{\bf 机械能守恒定律}。
+\begin{theorem}[机械能守恒定律]
+	如果系统内所有力都有势且势能不显含时间，则系统在运动过程中其机械能保持常数。事实上，前面所述条件可以放宽，只需要系统在其真实位移上做功非零的力有势即可。
+\end{theorem}
+
+在质心参考系中，根据K\"onig定理\ref{chapter2:Konig定理}可得
+\begin{equation}
+	\mathd T = \mathd T_C + \mathd T' = M\boldsymbol{v}_C \cdot \boldsymbol{a}_C\mathd t
+\end{equation}
+根据质心运动定理\ref{chapter2:质心运动定理}可得
+\begin{equation}
+	M\boldsymbol{a}_C = \boldsymbol{R}^{(\mathrm{e})}
+\end{equation}
+因此有
+\begin{equation}
+	\mathd T = \mathd T' + \boldsymbol{R}^{(\mathrm{e})} \cdot \mathd \boldsymbol{r}_C
+	\label{chapter2:质心动能定理推导1}
+\end{equation}
+另一方面，由于
+\begin{align}
+	\mathd T & = \sum_{i=1}^n (\boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}) \cdot \mathd \boldsymbol{r}_i = \sum_{i=1}^n (\boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}) \cdot \mathd (\boldsymbol{r}_i' + \boldsymbol{r}_C) \nonumber \\ 
+	& = \boldsymbol{R}^{(\mathrm{e})} \cdot \boldsymbol{r}_C + \mathd' A'^{(\mathrm{e})} + \mathd' A'^{(\mathrm{i})}
+	\label{chapter2:质心动能定理推导2}
+\end{align}
+结合式\eqref{chapter2:质心动能定理推导1}和式\eqref{chapter2:质心动能定理推导2}可得下面的质心系动能定理：
+\begin{theorem}[质心系的动能定理]
+	系统在质心系中的动能微分等于质点系内所有内力和外力在质心系内的元功之和，即
+	\begin{equation}
+		\mathrm{d}T' = \mathd' A'^{(\mathrm{e})} + \mathd' A'^{(\mathrm{i})}
+	\end{equation}
+\end{theorem}
+质心系的动能定理与惯性系内的动能定理具有相同的形式，这是由质心系的特殊地位造成的。
+
+\begin{example}
+在铅直平面内有一光滑的半圆形管道（如图\ref{第一章例7图}所示），半径为$R$，管道内有一长为$\pi R$，质量线密度为$\rho$的均匀链条。假定链条由于轻微扰动而从管口向外滑出，试用角动量定理求出链条位于任意角度$\theta$时的速度$v$。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例7图
+	pair O;
+	real R,r,rr,theta,alpha,dalpha;
+	O = (0,0);
+	R = 1;
+	r = 1.05;
+	rr = 0.3;
+	theta = 30;
+	alpha = 40;
+	dalpha = 15;
+	draw(arc(O,R,0,180)--cycle);
+	draw(arc(O,r,0,180)--cycle);
+	draw(Label("$R$",MidPoint),O--r*dir(180-theta));
+	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,rr*R,180-theta,180),Arrow);
+	draw(O--r*dir(alpha));
+	draw(Label("$\alpha$",MidPoint,Relative(E)),arc(O,rr*R,0,alpha),Arrow);
+	draw(O--r*dir(alpha+dalpha));
+	rr = 0.6;
+	draw(Label("$\mathrm{d} \alpha$",MidPoint,Relative(E)),arc(O,rr*R,alpha,alpha+dalpha),Arrow);
+	draw(arc(O,(r+R)/2,180-theta-1,0)--(r+R)/2*dir(0)+(0,-(R+r)/2*theta*pi/180),red+linewidth(4bp));
+	draw(Label("$\boldsymbol{G}_1$",EndPoint),(r+R)/2*dir(0)+(0,-(R+r)/2*theta*pi/180/2)--(r+R)/2*dir(0)+(0,-(R+r)/2*theta*pi/180/2-0.5),Arrow);
+	pair P;
+	P = (R+r)/2*dir(alpha+dalpha/2);
+	draw(Label("$\mathrm{d} \boldsymbol{G}$",EndPoint),P--P+(0,-0.5),Arrow);
+	draw(Label("$\boldsymbol{v}$",EndPoint),P--P+0.5*dir(alpha+dalpha/2-90),Arrow);
+	draw(Label("$\mathrm{d} \boldsymbol{N}$",EndPoint),P--P+0.5*P,Arrow);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例7图}
+\end{figure}
+\end{example}
+\begin{solution}
+由于链条不可伸长，因此其个点速度相等，即
+\begin{equation*}
+	v = R\dot{\theta}
+\end{equation*}
+由此可得链条的角动量
+\begin{equation*}
+	\mbf{L} = \int_C \mbf{r} \times \mbf{v} \mathrm{d} l = \rho \pi R (R\dot{\theta} \mbf{e}) = \rho \pi R^3 \dot{\theta} \mbf{e}
+\end{equation*}
+式中$\mbf{e}$为垂直纸面向里的单位矢量。
+
+由于$\mbf{r} \times \mathrm{d} \mbf{N} = \mbf{0}$，故只需计算重力力矩。对于直线段，可有
+\begin{equation*}
+	\mbf{M}_1 = \mbf{r} \times \mbf{G}_1 = (\rho R\theta) Rg\mbf{e} = \rho gR^2 \theta \mbf{e}
+\end{equation*}
+对于圆弧段，可有
+\begin{equation*}
+	\mbf{M}_2 = \int_C \mbf{r} \times \rho\mbf{g} \mathrm{d} l = \int_0^{\pi-\theta} Rg\cos \alpha \rho R \mathrm{d} \alpha \mbf{e} = \rho gR^2 \sin \theta \mbf{e}
+\end{equation*}
+由此可得总力矩为
+\begin{equation*}
+	\mbf{M} = \mbf{M}_1 + \mbf{M}_2 = \rho gR^2 (\theta+\sin \theta)\mbf{e}
+\end{equation*}
+根据角动量定理$\dfrac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \mbf{M}$，可得
+\begin{equation*}
+	\rho \pi R^3 \ddot{\theta} = \rho gR^2 (\theta+\sin \theta)
+\end{equation*}
+根据
+\begin{equation*}
+	\ddot{\theta} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} t} = \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} \frac{\mathrm{d} \theta}{\mathrm{d} t} = \dot{\theta} \frac{\mathrm{d} \dot{\theta}}{\mathrm{d} \theta} = \frac12 \frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta}
+\end{equation*}
+可得
+\begin{equation*}
+	\frac{\mathrm{d} \dot{\theta}^2}{\mathrm{d} \theta} = \frac{2g}{\pi R}(\theta +\sin \theta)
+\end{equation*}
+积分即可得到
+\begin{equation*}
+	\dot{\theta} = \sqrt{\frac{2g}{\pi R} \left(\frac12 \theta^2 - \cos \theta + 1\right)} = 2\sqrt{\frac{g}{\pi R}\left[\left(\frac{\theta}{2}\right)^2+ \sin^2 \frac{\theta}{2}\right]}
+\end{equation*}
+所以速度为
+\begin{equation*}
+	v = R\dot{\theta} = 2\sqrt{\frac{Rg}{\pi}\left[\left(\frac{\theta}{2}\right)^2+ \sin^2 \frac{\theta}{2}\right]}
+\end{equation*}
+
+本体也可使用机械能守恒来求解。此系统中，非保守力（弹力）不做功，因此系统机械能守恒。在初始状态下，链条的动能
+\begin{equation*}
+	T = 0
+\end{equation*}
+以半圆柱的底面为零势能面，可求得初始状态下链条的重力势能为
+\begin{equation*}
+	V = \int_C \rho gh \mathrm{d} l = \int_0^\pi \rho g R\sin \alpha R\mathrm{d} \alpha = 2\rho gR^2
+\end{equation*}
+在图\ref{第一章例7图}所示的状态下，由于链条上各处速度大小相等，故链条的动能为
+\begin{equation*}
+	T = \frac12 mv^2 = \frac12 \rho \pi R v^2
+\end{equation*}
+直线段的重力势能为
+\begin{equation*}
+	V_1 = \rho R\theta g \cdot \left(-\frac12 R\theta\right) = -\frac12 \rho gR^2 \theta^2 
+\end{equation*}
+曲线段的重力势能为
+\begin{equation*}
+	V_2 = \int_C \rho gh \mathrm{d} l = \int_0^{\pi-\theta} \rho g R\sin \alpha R\mathrm{d} \alpha = \rho gR^2 (\cos \theta + 1)
+\end{equation*}
+根据机械能守恒可得
+\begin{equation*}
+	2\rho gR^2 = \frac12 \rho \pi R v^2 -\frac12 \rho gR^2 \theta^2 + \rho gR^2 (\cos \theta + 1)
+\end{equation*}
+由此同样可以解得链条处于任意角度处的速度为
+\begin{equation*}
+	v = 2\sqrt{\frac{Rg}{\pi}\left[\left(\frac{\theta}{2}\right)^2+ \sin^2 \frac{\theta}{2}\right]}
+\end{equation*}
+\end{solution}
+
+\begin{example}
+质量为$m$的质点沿一半球形光滑碗的内侧以初速度$v_0$沿水平方向运动，碗的内半径为$r$，初位置离碗边缘的高度为$h$。求质点上升到碗口而又不至于飞出碗外时$v_0$和$h$应满足的关系式。
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例8图
+	real hd,hdd;
+	pair O,x,y,z;
+	hd = 131+25/60;
+	hdd = 7+10/60;
+	O = (0,0);
+	x = (-sqrt(2)/4,-sqrt(14)/12);
+	y = (sqrt(14)/4,-sqrt(2)/12);
+	z = (0,2*sqrt(2)/3);
+	draw(Label("$x$",EndPoint,W),(-1.5*x)--(1.5*x),Arrow);
+	draw(Label("$y$",EndPoint),(-1.2*y)--(1.2*y),Arrow);
+	draw(Label("$z$",EndPoint),(-1.2*z)--(0.5*z),Arrow);
+	real r,vec;
+	r = 1;
+	pair cirxy(real theta){
+		real xx,yy;
+		xx = r*cos(theta);
+		yy = r*sin(theta);
+		return xx*x+yy*y;
+	}
+	pair ciryz(real theta){
+		real yy,zz;
+		yy = r*cos(theta);
+		zz = r*sin(theta);
+		return yy*y+zz*z;
+	}
+	pair cirxz(real theta){
+		real xx,zz;
+		xx = r*cos(theta);
+		zz = r*sin(theta);
+		return xx*x+zz*z;
+	}
+	real phi,phi2;
+	pair Pcir(real theta){
+		real xx,yy,zz;
+		xx = r*cos(theta)*cos(phi);
+		yy = r*cos(theta)*sin(phi);
+		zz = r*sin(theta);
+		return xx*x+yy*y+zz*z;
+	}
+	pair Bcir(real theta){
+		real xx,yy,zz;
+		xx = r*cos(phi2)*cos(theta);
+		yy = r*cos(phi2)*sin(theta);
+		zz = r*sin(phi2);
+		return xx*x+yy*y+zz*z;
+	}
+	//画曲线
+	draw(arc(O,r,180,360));
+	draw(graph(cirxy,0,2*pi));
+	draw(graph(ciryz,pi,1.72*pi),dashed);
+	draw(graph(ciryz,1.72*pi,2*pi));
+	draw(graph(cirxz,pi,1.62*pi),dashed);
+	draw(graph(cirxz,1.62*pi,2*pi));
+	phi = pi/4;
+	draw(graph(Pcir,pi,1.62*pi),dashed);
+	draw(graph(Pcir,1.62*pi,2*pi));
+	draw(Pcir(pi)--Pcir(2*pi));
+	phi2 = 2*pi-pi/4;
+	pair P;
+	P = Pcir(phi2);
+	draw(graph(Bcir,-0.3*pi,0.5*pi));
+	draw(graph(Bcir,0.5*pi,2*pi-0.3*pi),dashed);
+	vec = 0.5;
+	draw(Label("$\boldsymbol{G}$",EndPoint),P--(P-vec*z),red,Arrow);
+	draw(Label("$\boldsymbol{N}$",EndPoint),P--(P-vec*Pcir(phi2)),red,Arrow);
+	draw(Label("$\boldsymbol{v}_\phi$",EndPoint,E,black),P--(P-vec*sin(phi)*x+vec*cos(phi)*y),orange,Arrow);
+	draw(Label("$\boldsymbol{v}_\theta$",EndPoint,S,black),P--(P+vec*sin(phi2)*cos(phi)*x+vec*sin(phi2)*cos(phi)*y-vec*cos(phi2)*z),orange,Arrow);
+	dot(P);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例8图}
+\end{figure}
+\end{example}
+
+\begin{solution}
+建立球坐标系，考虑到$v_r = \dot{r} = 0$，则
+\begin{equation*}
+	\mbf{v} = v_\theta \mbf{e}_\theta + v_\phi \mbf{e}_\phi
+\end{equation*}
+弹力沿径向，故$\mbf{N} \cdot \mbf{v} = 0$，即系统中只有重力做功，机械能守恒。
+
+而$\mbf{r} \times \mbf{N} = \mbf{0}$，$\mbf{e}_3 \cdot \left[\mbf{r} \times (-mg\mbf{e}_3)\right] = 0$，故$z$方向力矩为零，即$z$方向角动量守恒。计算$z$方向的角动量
+\begin{equation*}
+	L_z = \mbf{e}_3 \cdot \left[r\mbf{e}_r \times m(v_\theta\mbf{e}_\theta + v_\phi \mbf{e}_\phi)\right] = mr\mbf{e}_3 \cdot (v_\theta\mbf{e}_\phi - v_\phi\mbf{e}_\theta) = mr\sin \theta v_\phi
+\end{equation*}
+考虑到$\mbf{v}\big|_{z=-h} = v_0 \mbf{e}_\phi$，可以列出守恒方程
+\begin{equation*}
+	\begin{cases}
+		\dfrac12 m(v_\theta^2 + v_\phi^2) + mgz = \dfrac12 mv_0^2 - mgh \\[1.5ex]
+		mv_\phi \sqrt{r^2-z^2} = mv_0\sqrt{r^2-h^2}
+	\end{cases}
+\end{equation*}
+将末状态取为$z=0$时，此时$v_\theta\big|_{z=0} = 0$，可有
+\begin{equation*}
+	\begin{cases}
+		\dfrac12 mv_\phi^2\big|_{z=0} = \dfrac12 mv_0^2 - mgh \\
+		mrv_\phi\big|_{z=0} = mv_0 \sqrt{r^2-h^2}
+	\end{cases}
+\end{equation*}
+由此，可解出
+\begin{equation*}
+	v_0 = r\sqrt{\frac{2g}{h}}
+\end{equation*}
+即为$v_0$和$h$应满足的关系。
+\end{solution}
+
+\section{变质量系统}
+
+\subsection{变质量系统的概念}
+
+如果系统的质量或者组成系统的质点其中之一，或者两者同时随时间变化，这个系统就称为{\bf 变质量系统}。
+
+在自然现象中，变质量系统很常见。例如浮冰由于融化而减少质量，又由于结冰或者落雪而增加质量。在工程技术中，最常提到的变质量系统就是火箭了。
+
+对于变质量系统的研究，总是做这样的假设：系统分离或并入的质量是小量，而且每次并入或分离质量的时间间隔是小量。在这样的假设下，离开系统和进入系统的质量都是时间的连续可微的函数。
+
+如果将系统的质量记作$M(t)$，将$t=0$时的质量记作$M_0$，则它随时间的变化规律为
+\begin{equation}
+	M(t) = M_0 - M_1(t) + M_2(t)
+	\label{chapter1:变质量系统的质量关系}
+\end{equation}
+其中$M_1(t)$表示累计离开系统的质量，而$M_2(t)$表示累计进入系统的质量，$M_1,M_2$都是随时间的非递减的非负连续可微函数。
+
+\subsection{变质量系统的动量定理和角动量定理}
+
+设某个质点系相对惯性参考系$Oxyz$运动，研究相对$Oxyz$运动和变形的封闭曲面$S$。系统内的各个质点按照各自的运动可以进入或者离开曲面$S$围成的空间区域，那么曲面$S$围成的质点即组成一个变质量系统，将其动量用$\mbf{p}$表示。
+
+设在时刻$t=t'$，系统的动量为$\mbf{p}$。而在$t=t''=t'+\Delta t$的时刻，系统的动量记作$\mbf{p}+\Delta \mbf{p}$。显然有
+\begin{equation}
+	\Delta \mbf{p} = \Delta \mbf{p}^*-\Delta \mbf{p}_1+\Delta \mbf{p}_2
+	\label{chapter1:变质量系统的动量定理-初步}
+\end{equation}
+其中，$\Delta\mbf{p}_1$为在$\Delta t$时间内离开变质量系统的所有质点带走的动量，$\Delta\mbf{p}_2$为在这段时间内进入系统的所有质点带来的动量，而$\Delta\mbf{p}^*$则表示在这段时间内一直在系统内的所有质点本身的动量改变。
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(300);
+	% //变质量系统1
+	% picture pic1;
+	% pair O,F,v,u,m;
+	% real rO,rm,lF,lv,lu;
+	% O = (0,0);
+	% rO = 2;
+	% fill(pic1,yscale(2/3)*scale(rO)*unitcircle,yellow);
+	% label(pic1,"$m$",O);
+	% v = (1,0.7);
+	% lv = 1.2;
+	% draw(pic1,Label("$\boldsymbol{v}$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
+	% F = (-1.3,-0.8);
+	% lF = 1.2;
+	% draw(pic1,Label("$\boldsymbol{F}$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
+	% rm = 0.7;
+	% m = (3,0.4);
+	% fill(pic1,shift(m)*yscale(2/3)*scale(rm)*unitcircle,green);
+	% label(pic1,"$\Delta m$",m);
+	% u = (-0.1,0.2)+m;
+	% lu = 0.9;
+	% draw(pic1,Label("$\boldsymbol{u}$",MidPoint,Relative(E)),u--u+lu*dir(135),Arrow);
+	% label(pic1,"$t$",(0,-1.5),S);
+	% add(pic1);
+	% //变质量系统2
+	% picture pic2;
+	% pair O,F,v,u,m;
+	% real rO,rm,lF,lv,lu;
+	% O = (0,0);
+	% rO = 2;
+	% fill(pic2,yscale(2/3)*scale(rO)*unitcircle,yellow);
+	% label(pic2,"$m'=m+\Delta m$",O);
+	% v = (1,0.7);
+	% lv = 1.2;
+	% draw(pic2,Label("$\boldsymbol{v}'$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
+	% F = (-1.3,-0.8);
+	% lF = 1.2;
+	% draw(pic2,Label("$\boldsymbol{F}'$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
+	% label(pic2,"$t'=t+\Delta t$",(0,-1.5),S);
+	% add(shift((6.5,0))*pic2);
+	% //draw(O--(9,0),invisible);
+% \end{asy}
+% \caption{变质量系统}
+% \label{变质量系统}
+% \end{figure}
+
+设$\mbf{F}^{(e)}$是$t'$时刻作用在系统上的合外力，那么根据动量定理可得
+\begin{equation}
+	\dif{\mbf{p}^*}{t} = \mbf{F}^{(e)}
+\end{equation}
+在式\eqref{chapter1:变质量系统的动量定理-初步}两端除以$\Delta t$并取$\Delta t\to 0$的极限可得
+\begin{equation}
+	\dif{\mbf{p}}{t} = \mbf{F}^{(e)}+\mbf{F}^{(\text{ex})}
+\end{equation}
+其中$\mbf{F}^{(\text{ex})} = \mbf{F}_1+\mbf{F}_2$，而
+\begin{equation}
+	\mbf{F}_1 = -\lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_1}{\Delta t},\quad \mbf{F}_2 = \lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_2}{\Delta t}
+\end{equation}
+矢量$\mbf{F}_1$和$\mbf{F}_2$具有力的量纲，称为{\bf 反推力}。反推力$\mbf{F}_1$是由质点分离引起的，反推力$\mbf{F}_2$是由质点并入引起的。
+
+设惯性参考系$Oxyz$中的固定参考点为$A$，则类似前面的讨论可得变质量系统的角动量定理
+\begin{equation}
+	\dif{\mbf{L}_A}{t} = \mbf{M}_A^{(e)} + \mbf{M}_A^{(\text{ex})}
+\end{equation}
+其中$\mbf{L}_A$为系统对$A$点的角动量，$\mbf{M}_A^{(e)}$为系统受到的对$A$点的合外力矩，而$\mbf{M}_A^{(\text{ex})} = \mbf{M}_{A1} + \mbf{M}_{A2}$是变质量系统的附加力矩，其中
+\begin{equation}
+	\mbf{M}_{A1} = -\lim_{\Delta t\to 0} \frac{\Delta \mbf{L}_{A1}}{\Delta t},\quad \mbf{M}_{A2} =  \lim_{\Delta t\to 0} \frac{\Delta \mbf{L}_{A2}}{\Delta t}
+\end{equation}
+这里的$\Delta \mbf{L}_{A1}$为在$\Delta t$时间内离开变质量系统的所有质点的角动量，$\Delta \mbf{L}_{A2}$为在这段时间内进入系统的所有质点的角动量。
+
+\subsection{变质量质点的运动微分方程}
+
+作为变质量系统的一种特殊情况，现在来考虑变质量质点的运动微分方程。其质量变化同样满足式\eqref{chapter1:变质量系统的质量关系}，即
+\begin{equation}
+	M(t) = M_0 - M_1(t) + M_2(t)
+	\label{chapter1:变质量系统的质量关系-重写}
+\end{equation}
+如果记$\mbf{u}_1$为$t'$时刻离开变质量质点的微粒的速度，$\mbf{u}_2$为$t'$时刻并入质点的微粒的速度，那么精确到$\Delta t$和$\Delta M$的一阶小量，可有
+\begin{equation}
+	\Delta \mbf{p}_1 = \Delta M_1\mbf{u}_1,\quad \Delta \mbf{p}_2 = \Delta M_2\mbf{u}_2
+\end{equation}	
+由此可得
+\begin{equation}
+	\mbf{F}_1 = -\lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_1}{\Delta t} = -\dif{M_1}{t}\mbf{u}_1,\quad \mbf{F}_2 = \lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_2}{\Delta t} = \dif{M_2}{t}\mbf{u}_2
+\end{equation}
+设$\mbf{v}$为变质量质点的速度，则其动量为
+\begin{equation}
+	\mbf{p} = M\mbf{v}
+\end{equation}
+则有
+\begin{equation}
+	\dif{M}{t}\mbf{v}+M\dif{\mbf{v}}{t} = \mbf{F}^{(e)} - \dif{M_1}{t}\mbf{u}_1 + \dif{M_2}{t}\mbf{u}_2
+	\label{chapter1:广义密歇尔斯基方程-初步}
+\end{equation}
+将式\eqref{chapter1:变质量系统的质量关系-重写}代入方程\eqref{chapter1:广义密歇尔斯基方程-初步}中可得
+\begin{equation}
+	M\dif{\mbf{v}}{t} = \mbf{F}^{(e)} - \dif{M_1}{t}(\mbf{u}_1-\mbf{v}) + \dif{M_2}{t}(\mbf{u}_2-\mbf{v})
+	\label{chapter1:广义密歇尔斯基方程}
+\end{equation}
+方程\eqref{chapter1:广义密歇尔斯基方程}即为变质量质点的运动微分方程，称为{\bf 广义Meshcherskii方程}\footnote{Meshcherskii，密歇尔斯基，前苏联力学家。}。在方程\eqref{chapter1:广义密歇尔斯基方程}中，$\mbf{u}_1-\mbf{v}=\mbf{u}_{1r}$是分离微粒相对质点的速度，而$\mbf{u}_2-\mbf{v}=\mbf{u}_{2r}$是并入微粒相对质点的速度。
+
+如果只有分离微粒而没有并入微粒，此时$M_2(t)\equiv 0$，此时方程\eqref{chapter1:广义密歇尔斯基方程}变为
+\begin{equation}
+	M\dif{\mbf{v}}{t} = \mbf{F}^{(e)} + \dif{M}{t}\mbf{u}_{1r}
+	\label{chapter1:密歇尔斯基方程}
+\end{equation}
+方程\eqref{chapter1:密歇尔斯基方程}称为{\bf Meshcherskii方程}。由Meshcherskii方程\eqref{chapter1:密歇尔斯基方程}可以看出，微粒分离等效于在质点上作用附加的反推力$\mbf{F}_1 = \dif{M}{t}\mbf{u}_{1r}$。
+
+\begin{example}[重力场中的火箭]
+在假设火箭竖直运动且喷气速度恒定，其所受外力只有恒定重力$\mbf{F}^{(e)} = -Mg\mbf{e}_3$的情况下求解火箭的运动。
+\end{example}
+\begin{solution}
+相对火箭的喷气速度
+\begin{equation*}
+	\mbf{u}-\mbf{v} = -u_r\mbf{e}_3
+\end{equation*}
+此时火箭的运动方程即为Meshcherskii方程\eqref{chapter1:密歇尔斯基方程}
+\begin{equation*}
+	M\frac{\mathrm{d} v}{\mathrm{d} t} = -Mg - \dif{M}{t}u_r
+\end{equation*}
+化简为
+\begin{equation*}
+	\mathrm{d} v = -g\mathd t - u_r \frac{\mathd M}{M}
+\end{equation*}
+直接积分，即可得末速度
+\begin{equation*}
+	v_f = v_i + v_r \ln \frac{M_i}{M_f} - gt_f = v_i + v_r \ln \left(1+\frac{|\Delta M|}{M_f}\right) - gt_f
+\end{equation*}
+提高火箭末速度的方法：
+\begin{itemize}
+	\item 提高喷气速度；
+	\item 用级连法提高燃料所占质量比；
+	\item 提高燃烧速度，减少加速时间。
+\end{itemize}
+\end{solution}
+
+\begin{example}
+一轻绳跨过定滑轮的两端，一端挂着质量为$m$的重物，另一端和线密度为$\rho$的软链相连。开始时软链全部静止在地上，重物亦静止，后来重物下降，并将软链向上提起。问软链最后可提起多高？
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例10图
+	pair O;
+	real r,l1,l2,hand,a,T;
+	O = (0,0);
+	r = 1;
+	l1 = 4;
+	l2 = 6;
+	T = 3;
+	hand = 2;
+	a = 0.6;
+	draw(scale(r)*unitcircle);
+	draw(O--(0,hand),linewidth(3bp));
+	draw((-r,0)--(-r,-l1));
+	draw((-r,0)--(-r-2*a,0));
+	draw((-r,-l1)--(-r-2*a,-l1));
+	draw(Label("$X$",MidPoint,W),(-r-1.5*a,0)--(-r-1.5*a,-l1),Arrows);
+	fill(box((-r-a,-l1-a),(-r+a,-l1+a)),red);
+	dot((-r,-l1));
+	draw(Label("$T$",EndPoint,E),(-r,-l1)--(-r,-l1)+dir(90),Arrow);
+	draw(Label("$Mg$",EndPoint,E),(-r,-l1)--(-r,-l1)+dir(-90),Arrow);
+	draw((r,0)--(r,-l2+0.1));
+	draw((r,-T)--(r,-l2+0.1)..(r+0.1,-l2)--(r+3*a,-l2),blue+linewidth(3bp));
+	dot((r,-(T+l2)/2));
+	draw(Label("$\rho gx$",EndPoint,W),(r,-(T+l2)/2)--(r,-(T+l2)/2)+dir(-90),Arrow);
+	draw(Label("$T$",EndPoint,E),(r,-T)--(r,-T)+dir(90),Arrow);
+	draw((r,-T)--(r+2*a,-T));
+	draw((r,-l2)--(r+2*a,-l2));
+	draw(Label("$x$",MidPoint,E),(r+1.5*a,-T)--(r+1.5*a,-l2),Arrows);
+	//draw(O--(1.5,0),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例10图}
+\end{figure}
+\end{example}
+\begin{solution}
+地面上的软链在被提起时的速度为$u =0$，根据变质量系统的运动微分方程\eqref{chapter1:密歇尔斯基方程}即有
+\begin{equation*}
+	\rho x \ddot{x} + \rho \dot{x} \dot{x} = T - \rho gx
+\end{equation*}
+对左端物体有
+\begin{equation*}
+	M\ddot{X} = Mg - T
+\end{equation*}
+约束为
+\begin{equation*}
+	\dot{X} = \dot{x}
+\end{equation*}
+消去无关变量即有
+\begin{equation*}
+	\rho x \ddot{x} + \rho \dot{x} \dot{x} + M\ddot{x} = Mg - \rho g x
+\end{equation*}
+可化为
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} t} [(M+\rho x) \dot{x}] = (M-\rho x) g
+\end{equation*}
+即
+\begin{equation*}
+	\dot{x} \frac{\mathrm{d}}{\mathrm{d} x} [(M+\rho x) \dot{x}] = (M-\rho x) g
+\end{equation*}
+因此
+\begin{equation*}
+	\frac12 \frac{\mathrm{d}}{\mathrm{d} x} [(M+\rho x) \dot{x}]^2 = (M-\rho x)(M+\rho x) g
+\end{equation*}
+积分，并考虑到$\dot{x}\big|_{x=0} = 0$，即得
+\begin{equation*}
+	\frac12 \left[(M+\rho x)\dot{x}\right]^2 = \left(M^2 - \frac13 \rho^2 x^2\right) gx
+\end{equation*}
+当软链升到最高时，有$\dot{x}\big|_{t=t_{max}} = 0$，即有
+\begin{equation*}
+	\left(M^2 - \frac13 \rho^2 x^2_{max}\right) gx_{max} = 0
+\end{equation*}
+由此得最大高度
+\begin{equation*}
+	x_{max} = \frac{\sqrt{3}M}{\rho}
+\end{equation*}
+\end{solution}

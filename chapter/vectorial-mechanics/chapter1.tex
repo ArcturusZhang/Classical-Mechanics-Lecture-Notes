@@ -1,0 +1,620 @@
+\chapter{质点运动学}
+
+\section{经典力学的基本概念}
+
+\subsection{经典力学的时空观}
+
+经典力学使用绝对空间和绝对时间来描述机械运动，它们之间是相互独立的。在经典力学中，绝对空间是指三维均匀的各向同性Euclid空间。而绝对时间则是大小连续变化、方向由过去指向未来的。在绝对时空的假设下，在空间中的任何位置，时间都是均匀且单值的。
+
+空间中不同物体的机械运动之间具有相对性，在经典力学中，我们通常选择一个固定不动的坐标系，将其作为基准来研究空间中物体机械运动。这个坐标系称为{\bf 参考系}，其他物体相对于其的运动通常可以称为{\bf 绝对运动}。
+
+在运动学中，参考系的选取是任意的，但在动力学中则不然，这一点在动力学章节中会更进一步讨论。
+
+\subsection{质点和质点系}
+
+{\bf 质点模型}是经典力学乃至物理学中应用最为广泛的理想模型。在质点模型中，将尺寸足够小的一部分物质当成没有尺寸的几何点来处理。这种几何点可以携带多种属性，诸如质量、电荷、磁矩等。当物体的尺寸和形状对问题不起显著作用时，通常可以将其看作质点从而将问题简化。
+
+而{\bf 质点系}则指多个质点以某种或某些方式组成的集合，有时也将其称为质点系统或者简称系统。
+
+\section{质点运动学的描述方式}
+
+研究某质点的运动，记其在参考系中相对原点的位置矢量（简称{\bf 位矢}）为$\boldsymbol{r}$，随着质点的运动，其位矢是时间$t$的函数$\boldsymbol{r} = \boldsymbol{r}(t)$。将时间$t$看作参数，则矢量函数$\boldsymbol{r} = \boldsymbol{r}(t)$描述了空间中的一条曲线，称为质点的{\bf 轨迹}，如图\ref{chapter1:轨迹}所示。位矢$\boldsymbol{r}$对时间的导数
+\begin{equation}
+	\boldsymbol{v} = \dif{\boldsymbol{r}}{t}(t) = \dot{\boldsymbol{r}}(t)
+	\label{chapter1:质点速度的定义}
+\end{equation}
+称为质点的{\bf 速度}，其方向即为曲线在该点的切向方向。速度$\boldsymbol{v}$对时间的导数
+\begin{equation}
+	\boldsymbol{a} = \dif{\boldsymbol{v}}{t}(t) = \frac{\mathd^2 \boldsymbol{r}}{\mathd t^2}(t) = \ddot{\boldsymbol{r}}(t)
+	\label{chapter1:质点加速度的定义}
+\end{equation}
+称为质点的{\bf 加速度}\footnote{在本书中，对时间的导数有时会使用点符号来表示，二阶导数则用双点表示。}。
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(180);
+	//动点的轨迹
+	pair O,A[],Os,P,tP;
+	O = (0,0);
+	A[1] = (-2.5,1.5);
+	A[2] = (-2,2);
+	A[3] = (-1,2.5);
+	A[4] = (1,2.5);
+	A[5] = (2,1);
+	A[6] = (1,1);
+	A[7] = (1,2);
+	A[8] = (3,3);
+	path tra;
+	tra = A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..A[8];
+	draw(tra,Arrow(Relative(0.8)));
+	P = relpoint(tra,0.15);
+	tP = 0.8*reldir(tra,0.15);
+	dot(O);
+	label("$O$",O,S);
+	dot(P);
+	label("$P$",P,N);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),O--P,Arrow);
+	draw(Label("$\boldsymbol{v}$",EndPoint),P--P+tP,red,Arrow);
+\end{asy}
+\caption{动点的轨迹}
+\label{chapter1:轨迹}
+\end{figure}
+
+式\eqref{chapter1:质点速度的定义}和\eqref{chapter1:质点加速度的定义}都是矢量式，其在不同的坐标系下可有不同的分量形式，下面取几种典型坐标系为例，推导不同坐标系下的分量形式。
+
+\subsection{直角坐标系描述}
+
+设参考系中取为直角坐标系$Oxyz$（如图\ref{直角坐标系}所示），其坐标轴$Ox, Oy, Oz$上的基矢量分别记作$\boldsymbol{i}, \boldsymbol{j}, \boldsymbol{k}$，则位矢$\boldsymbol{r}(t)$可以使用三个标量函数$x(t), y(t), z(t)$来表示，即
+\begin{equation}
+	\boldsymbol{r}(t) = x(t)\boldsymbol{i} + y(t)\boldsymbol{j} + z(t)\boldsymbol{k}
+\end{equation}
+
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(200);
+	//直角坐标系
+	pair O,x,y,z,r;
+	O = (0,0);
+	x = 0.8*dir(-135);
+	y = (1,0);
+	z = (0,1);
+	draw(Label("$x$",EndPoint),O--x,Arrow);
+	draw(Label("$y$",EndPoint),O--y,Arrow);
+	draw(Label("$z$",EndPoint),O--z,Arrow);
+	label("$O$",O,SE);
+	draw(Label("$\boldsymbol{i}$",EndPoint,NW),O--0.5*x,red,Arrow);
+	draw(Label("$\boldsymbol{j}$",EndPoint,NE),O--0.5*y,red,Arrow);
+	draw(Label("$\boldsymbol{k}$",EndPoint,W),O--0.5*z,red,Arrow);
+	real xx,yy,zz;
+	xx = 0.3;
+	yy = 0.6;
+	zz = 0.8;
+	r = xx*x+yy*y+zz*z;
+	draw(Label("$\boldsymbol{r}$",EndPoint),O--r,Arrow);
+	draw(xx*x--xx*x+yy*y--yy*y,dashed);
+	draw(O--xx*x+yy*y--xx*x+yy*y+zz*z--zz*z,dashed);
+\end{asy}
+\caption{直角坐标系}
+\label{直角坐标系}
+\end{figure}
+
+由于直角坐标系的基矢量是常矢量，在直角坐标系中，质点的速度和加速度分别可以表示为
+\begin{equation}
+\begin{split}
+	\boldsymbol{v}(t) & = \dot{x}(t)\boldsymbol{i} + \dot{y}(t)\boldsymbol{j} + \dot{z}(t)\boldsymbol{k} \\
+	\boldsymbol{a}(t) & = \ddot{x}(t)\boldsymbol{i} + \ddot{y}(t)\boldsymbol{j} + \ddot{z}(t)\boldsymbol{k}
+\end{split}
+\end{equation}
+其中$\dot{x}(t),\dot{y}(t),\dot{z}(t)$即为速度$\boldsymbol{v}(t)$在坐标轴$Ox,Oy,Oz$上的投影，而$\ddot{x}(t),\ddot{y}(t),\ddot{z}(t)$即为加速度$\boldsymbol{a}(t)$在坐标轴$Ox,Oy,Oz$上的投影。
+
+\subsection{自然坐标系描述}
+
+我们在质点的轨迹$\boldsymbol{r}=\boldsymbol{r}(t)$上取一个参考点$O_s$，并确定一个方向作为轨迹的正方向\footnote{通常取为参数$t$增加的方向，即与质点在轨迹上的运动方向一致。}，则轨迹上任意一点$P$与$O_s$之间的弧长可以表示为
+\begin{equation}
+	s(t) = \int_{t_0}^t \left|\frac{\mathd\boldsymbol{r}}{\mathd t}(\tau)\right|\mathd \tau = \int_{t_0}^t |\boldsymbol{v}(\tau)|\mathd\tau
+	\label{chapter1:弧长坐标的定义式}
+\end{equation}
+其中$t_0$为轨迹上参考点$O_s$所对应的时间$t$。由此便在轨迹上确定了以$O_s$为原点的{\bf 弧坐标}，如图\ref{chapter1:曲线的弧坐标}所示。在弧坐标下，质点轨迹的方程被转化为$\boldsymbol{r}=\boldsymbol{r}(s)$，即有\footnote{需要注意的是，此处轨迹的弧坐标表达式$\boldsymbol{r}=\boldsymbol{r}(s)$和轨迹的时间表达式$\boldsymbol{r}=\boldsymbol{r}(t)$中，虽然表示函数的都同样使用了符号$\boldsymbol{r}$，但它们是不同的函数，严格的记法应该是$\boldsymbol{r} = \boldsymbol{r}(t) = \hat{\boldsymbol{r}}(s(t))$，但在大部分不引起混淆的情形下，本书中都使用相同的函数名而仅用自变量的含义不同来区分不同自变量下的相同物理量。\label{chapter1:关于函数名的脚注}}
+\begin{equation}
+	\boldsymbol{r} = \boldsymbol{r}(t) = \boldsymbol{r}(s(t))
+\end{equation}
+
+\begin{figure}[!htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	size(180);
+	//动点的轨迹
+	pair O,A[],Os,P,P1,tP,tP1;
+	O = (0,0);
+	A[1] = (-2.5,1.5);
+	A[2] = (-2,2);
+	A[3] = (-1,2.5);
+	A[4] = (1,2.5);
+	A[5] = (2,1);
+	A[6] = (1,1);
+	A[7] = (1,2);
+	A[8] = (3,3);
+	path tra;
+	tra = A[1]..A[2]..A[3]..A[4]..A[5]..A[6]..A[7]..A[8];
+	draw(tra,Arrow(Relative(0.8)));
+	Os = relpoint(tra,0.25);
+	P = relpoint(tra,0.35);
+	tP = 0.8*reldir(tra,0.40);
+	P1 = relpoint(tra,0.05);
+	tP1 = 0.8*reldir(tra,0.05);
+	dot(O);
+	label("$O$",O,S);
+	dot(Os);
+	label("$O_s$",Os,NW);
+	dot(P);
+	label("$P$",P,N);
+	dot(P1);
+	label("$P_1$",P1,N);
+	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W)),O--P,Arrow);
+	draw(Label("$\boldsymbol{r}_1$",MidPoint,Relative(E)),O--P1,Arrow);
+	label("$s>0$",relpoint(tra,0.3),S);
+	label("$s<0$",relpoint(tra,0.15),S);
+	draw(Label("$\boldsymbol{\tau}$",EndPoint),P--P+tP,red,Arrow);
+	draw(Label("$\boldsymbol{\tau}_1$",EndPoint,Relative(W)),P1--P1+tP1,red,Arrow);
+\end{asy}
+\caption{曲线的弧坐标}
+\label{chapter1:曲线的弧坐标}
+\end{minipage}
+\hspace{1cm}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\begin{asy}
+	size(180);
+	//切线法线副法线
+	real hd,hdd;
+	pair O,x,y,z;
+	hd = 131+25/60;
+	hdd = 7+10/60;
+	O = (0,0);
+	x = 0.8*dir(90+hd);
+	y = dir(-hdd);
+	z = dir(90);
+	draw(Label("切线",EndPoint),O--x,linewidth(0.8bp));
+	draw(Label("主法线",EndPoint),O--y,linewidth(0.8bp));
+	draw(Label("副法线",EndPoint),O--z,linewidth(0.8bp));
+	draw(x--x+y--y--y+z--z--z+x--cycle);
+	draw(Label("$\boldsymbol{\tau}$",EndPoint,NW),O--0.4*x,red,Arrow);
+	draw(Label("$\boldsymbol{n}$",EndPoint,N),O--0.4*y,red,Arrow);
+	draw(Label("$\boldsymbol{b}$",EndPoint,E),O--0.4*z,red,Arrow);
+	pair para(real xx){
+		real yy;
+		yy = xx**2;
+		return xx*x+yy*y;
+	}
+	draw(graph(para,-1,1));
+	label(scale(0.9)*"$\begin{array}{c} \mbox{从} \\[-0.5ex] \mbox{切} \\[-0.5ex] \mbox{平} \\[-0.5ex] \mbox{面} \end{array}$",0.5*x+0.5*z);
+	label("法平面",0.5*y+0.5*z);
+	label(scale(0.9)*"密切平面",0.4*x+0.6*y);
+\end{asy}
+\caption{切线、主法线和副法线}
+\label{切线、主法线和副法线}
+\end{minipage}
+\end{figure}
+
+在弧坐标下，曲线的切矢量为
+\begin{equation}
+	\boldsymbol{\tau} = \frac{\mathd \boldsymbol{r}}{\mathd s}(s)
+\end{equation}
+根据式\eqref{chapter1:弧长坐标的定义式}可得
+\begin{equation}
+	\frac{\mathd s}{\mathd t} = \left|\frac{\mathd \boldsymbol{r}}{\mathd t}(t)\right|
+\end{equation}
+于是
+\begin{equation}
+	|\boldsymbol{\tau}| = \left|\frac{\mathd\boldsymbol{r}}{\mathd s}\right| = \left|\frac{\mathd\boldsymbol{r}}{\mathd t}\frac{\mathd t}{\mathd s}\right| = \left|\frac{\mathd\boldsymbol{r}}{\mathd t}\right| / \left|\frac{\mathd s}{\mathd t}\right| = 1
+\end{equation}
+因此，$\mbf{\tau}(s)$为单位切矢量。考虑到
+\begin{equation*}
+	\frac{\mathrm{d} (\mbf{\tau} \cdot \mbf{\tau})}{\mathrm{d} s} = 2 \frac{\mathrm{d} \mbf{\tau}}{\mathrm{d} s} \cdot \mbf{\tau} = 0
+\end{equation*}
+即有$\dfrac{\mathrm{d} \mbf{\tau}}{\mathrm{d} s} \perp \mbf{\tau}$。定义$\mbf{n} = \dfrac{\mbf{\tau}'(s)}{|\mbf{\tau}'(s)|} = \dfrac{\mbf{r}''(s)}{|\mbf{r}''(s)|}$为主法向单位矢量\footnote{此处的$\boldsymbol{r}'(s) = \dfrac{\mathd\boldsymbol{r}}{\mathd s}(s)$。}，其中$\kappa(s) = |\mbf{\tau}'(s)| = |\mbf{r}''(s)|$为曲率，其倒数$\rho = \dfrac{1}{\kappa(s)}$称为曲率半径，主法向单位矢量也可记作
+\begin{equation}
+	\mbf{n} = \rho\frac{\mathrm{d} \mbf{\tau}}{\mathrm{d} s}
+\end{equation}
+定义$\mbf{b} = \mbf{\tau} \times \mbf{n}$为副法向单位矢量。曲线上的任意一点处都可以定义切矢量、主法矢量和副法矢量，它们构成曲线上一组单位正交标架。其中，切矢量和主法矢量确定的平面称为这条曲线的密切平面，切矢量和副法矢量确定的平面则称为从切平面，而主法矢量和副法矢量确定的平面则称为法平面。
+
+在这一组标架下，可得质点速度为
+\begin{equation}
+	\boldsymbol{v} = \frac{\mathd\boldsymbol{r}}{\mathd t} = \frac{\mathd\boldsymbol{r}}{\mathd s} \frac{\mathd s}{\mathd t} = \dot{s}(t) \boldsymbol{\tau}
+\end{equation}
+由此可以看出，质点的速度是沿着轨迹切向的。有了速度，就可以计算加速度
+\begin{align}
+	\mbf{a} & = \frac{\mathrm{d} \mbf{v}}{\mathrm{d} t}(t) = \dot{v} \mbf{\tau} + v \dot{\mbf{\tau}} = \dot{v} \mbf{\tau} + v\dot{s} \frac{\mathrm{d} \mbf{\tau}}{\mathrm{d} s} = \dot{v} \mbf{\tau} + \frac{v^2}{\rho} \mbf{n}
+	\label{chapter1:自然坐标系下的加速度}
+\end{align}
+此处简便起见记$\dot{s}=v$，其中切向加速度
+\begin{equation}
+	a_\tau = \dot{v} = \ddot{s}
+\end{equation}
+法向加速度
+\begin{equation}
+	a_n = \frac{v^2}{\rho}
+\end{equation}
+由式\eqref{chapter1:自然坐标系下的加速度}可以看出，加速度总是位于密切平面内。
+
+\begin{example}
+已知$y = \dfrac{x^2}{2p}$，切向加速度与法向加速度之比为$\dfrac{a_\tau}{a_n} = \alpha$，经过$A$点的速度为$v_A = u$，求动点经过$B$点的速度$v_B$。
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(200);
+	//第一章例3图
+	pair O,x,y,A,B;
+	O = (0,0);
+	x = (1.5,0);
+	y = (0,2.5);
+	draw(Label("$x$",EndPoint),(-x)--x,Arrow);
+	draw(Label("$y$",EndPoint),(-0.2*y)--y,Arrow);
+	
+	real para(real xx){
+		return 2*xx**2;
+	}
+	draw(graph(para,-1,1));
+	A = (-0.5,para(-0.5));
+	B = (0.5,para(0.5));
+	dot(A);
+	label("$A\left(-p,\dfrac{p}{2}\right)$",A,W);
+	dot(B);
+	label("$B\left(p,\dfrac{p}{2}\right)$",B,E);
+	draw(A--B,dashed);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例3图}
+\end{figure}
+\end{example}
+
+\begin{solution}
+切向加速度
+\begin{equation*}
+	a_\tau = \frac{\mathrm{d} v}{\mathrm{d} t} = \frac{\mathrm{d} v}{\mathrm{d} s} \frac{\mathrm{d} s}{\mathrm{d} t} = v\frac{\mathrm{d} v}{\mathrm{d} s}
+\end{equation*}
+法向加速度
+\begin{equation*}
+	a_n = \frac{v^2}{\rho}
+\end{equation*}
+故有
+\begin{equation*}
+	\frac{a_\tau}{a_n} = \frac{\rho}{v} \frac{\mathrm{d} v}{\mathrm{d} s} = \frac{\rho}{v} \frac{\mathrm{d} v}{\mathrm{d} x} \frac{\mathrm{d} x}{\mathrm{d} s} = \alpha
+\end{equation*}
+其中
+\begin{align*}
+	& \rho = \frac{(1+y'^2)^{\frac32}}{y''} \\
+	& \frac{\mathrm{d} s}{\mathrm{d} x} = \sqrt{1+y'^2}
+\end{align*}
+故有微分方程
+\begin{equation*}
+	\frac{\mathrm{d} v}{v} = \frac{\alpha y'' \mathrm{d}x}{1+y'^2} = \frac{\alpha p}{p^2+x^2} \mathrm{d}x
+\end{equation*}
+对其进行积分，即有
+\begin{equation*}
+	\int_u^{v_B} \frac{\mathrm{d} v}{v} = \int_{-p}^p \frac{\alpha p}{p^2+x^2} \mathrm{d} x
+\end{equation*}
+可得
+\begin{equation*}
+	\ln v \bigg|_u^{v_B} = \alpha \arctan \frac{x}{p} \bigg|_{-p}^p
+\end{equation*}
+所以
+\begin{equation*}
+	v_B = u \mathrm{e}^{\frac{\alpha\pi}{2}}
+\end{equation*}
+\end{solution}
+
+\subsection{一般正交曲线坐标系}
+
+一般来说，为了确定质点相对参考系的位置，不仅可以使用直角坐标系来描述，还可以使用曲线坐标系。直角坐标系和曲线坐标系之间的关系由等式
+\begin{equation}
+	\boldsymbol{r} = \boldsymbol{r}(q_1,q_2,q_3) = x\boldsymbol{i} + y\boldsymbol{j} + z\boldsymbol{k}
+\end{equation}
+来确定，其中$x,y,z$是$q_1,q_2,q_3$的二阶连续可微函数：
+\begin{equation}
+\begin{cases}
+	x = x(q_1,q_2,q_3) \\
+	y = y(q_1,q_2,q_3) \\
+	z = z(q_1,q_2,q_3)
+\end{cases}
+\end{equation}
+此曲线坐标系的单位基矢量可以表示为
+\begin{equation}
+	\mbf{e}_\alpha = \dfrac{1}{h_\alpha} \dfrac{\pl \mbf{r}}{\pl q_\alpha}
+\end{equation}
+其中度规系数表示为
+\begin{equation}
+	h_\alpha = \left|\dfrac{\pl \mbf{r}}{\pl q_\alpha}\right|
+\end{equation}
+
+如果曲线坐标系在每一点其三个基向量$\boldsymbol{e}_1, \boldsymbol{e}_2, \boldsymbol{e}_3$都是相互正交的，即
+\begin{equation}
+	\mbf{e}_\alpha \cdot \mbf{e}_\beta = \delta_{\alpha\beta}, \quad \alpha,\beta = 1,2,3
+\end{equation}
+则曲线坐标系成为正交曲线坐标系。我们只考虑正交的曲线坐标系。下面介绍两种最常用的三维正交曲线坐标系，柱坐标系和球坐标系。
+
+柱坐标$(\rho,\phi,z)$与直角坐标$(x,y,z)$之间的转换关系为
+\begin{equation}
+	\begin{cases}
+		x = \rho \cos \phi \\
+		y = \rho \sin \phi \\
+		z = z
+	\end{cases}
+\end{equation}
+在此转换关系下，位矢可以表示为
+\begin{equation}
+	\mbf{r} = \mbf{r}(\rho,\phi,z) = x\mbf{i} + y\mbf{j} + z\mbf{k}
+\end{equation}
+形如$\rho = C_1$、$\phi = C_2$或$z = C_3$的曲面称为{\heiti 坐标面}，而坐标面两两相交形成{\heiti 坐标线}，在坐标线上只有一个坐标可变。取坐标线切线方向为坐标轴，正方向为相应坐标增大的方向，如图\ref{chapter1:柱坐标系}所示。柱坐标系的基矢量可以表示为
+\begin{equation}
+	\mbf{e}_\rho = \frac{1}{h_\rho} \frac{\pl \mbf{r}}{\pl \rho},\quad \mbf{e}_\phi = \frac{1}{h_\phi} \frac{\pl \mbf{r}}{\pl \phi},\quad \mbf{e}_z = \frac{1}{h_z} \frac{\pl \mbf{r}}{\pl z}
+\end{equation}
+其中度规系数为
+\begin{equation}
+	\begin{cases}
+		h_\rho = \left|\dfrac{\pl \mbf{r}}{\pl \rho}\right| = 1 \\
+		h_\phi = \left|\dfrac{\pl \mbf{r}}{\pl \phi}\right| = \rho \\
+		h_z = \left|\dfrac{\pl \mbf{r}}{\pl z}\right| = 1
+	\end{cases}
+\end{equation}
+柱坐标系的基矢量可以具体计算如下：
+\begin{equation}
+	\begin{cases}
+		\mbf{e}_\rho = \cos \phi \mbf{i} + \sin \phi \mbf{j} \\
+		\mbf{e}_\phi = -\sin \phi \mbf{i} + \cos \phi \mbf{j} \\
+		\mbf{e}_z = \mbf{k}
+	\end{cases}
+\end{equation}
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(250);
+	//柱坐标系
+	pair O,i,j,k;
+	real x,y,z,r,a,h,H,pz;
+	path cir,clp;
+	picture tmp;
+	O = (0,0);
+	x = 2;
+	y = 1.5;
+	z = 3.3;
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	draw(Label("$x$",EndPoint),O--x*i,Arrow);
+	draw(Label("$y$",EndPoint),O--y*j,Arrow);
+	draw(Label("$z$",EndPoint),O--z*k,Arrow);
+	r = 1;
+	h = 2.5;
+	pair hcir(real t){
+		return r*cos(t)*i+r*sin(t)*j+H*k;
+	}
+	clp = r*i--r*j--h*k--cycle;
+	unfill(clp);
+	draw(tmp,Label("$x$",EndPoint),O--x*i,dashed,Arrow);
+	draw(tmp,Label("$y$",EndPoint),O--y*j,dashed,Arrow);
+	draw(tmp,Label("$z$",EndPoint),O--z*k,dashed,Arrow);
+	label(tmp,"$O$",O,W);
+	clip(tmp,clp);
+	add(tmp);
+	erase(tmp);
+	H = 0;
+	draw(graph(hcir,-1.2,pi-1.2),linewidth(1bp));
+	draw(graph(hcir,pi-1.2,2*pi-1.2),dashed);
+	H = h;
+	draw(graph(hcir,0,2*pi),linewidth(1bp));
+	pz = 0.65*h;
+	H = pz;
+	draw(graph(hcir,-1.2,pi-1.2),orange);
+	draw(graph(hcir,pi-1.2,2*pi-1.2),dashed+orange);
+	draw(r*dir(180)--r*dir(180)+h*k,linewidth(1bp));
+	draw(r*dir(0)--r*dir(0)+h*k,linewidth(1bp));
+	pair P,er,et,ez;
+	real theta;
+	pair clycoor(real r,real theta,real z){
+		return r*cos(theta)*i+r*sin(theta)*j+z*k;
+	}
+	theta = pi/3;
+	P = clycoor(r,theta,pz);
+	draw(O--P-pz*k,dashed+orange);
+	draw(Label("$z$",MidPoint,Relative(W),black),P-pz*k--P,orange);
+	draw(Label("$\rho$",MidPoint,Relative(W)),pz*k--P,dashed);
+	er = clycoor(r,theta,0);
+	et = clycoor(r,theta+pi/2,0);
+	ez = clycoor(0,theta,1);
+	draw(Label("$\boldsymbol{e}_\rho$",EndPoint),P--P+er,red,Arrow);
+	draw(Label("$\boldsymbol{e}_\phi$",EndPoint),P--P+et,red,Arrow);
+	draw(Label("$\boldsymbol{e}_z$",EndPoint),P--P+ez,red,Arrow);
+	dot(P);
+	r = 0.3;
+	H = 0;
+	draw(Label("$\phi$",MidPoint,Relative(E)),graph(hcir,0,theta),Arrow);
+\end{asy}
+\caption{柱坐标系}
+\label{chapter1:柱坐标系}
+\end{figure}
+
+球坐标$(r,\theta,\phi)$与直角坐标$(x,y,z)$之间的转换关系为
+\begin{equation}
+	\begin{cases}
+		x = r\sin \theta \cos \phi \\
+		y = r\sin \theta \sin \phi \\
+		z = r\cos \theta
+	\end{cases}
+\end{equation}
+在此转换关系下，位矢可以表示为
+\begin{equation}
+	\mbf{r} = \mbf{r}(r,\theta,\phi) = x\mbf{i} + y\mbf{j} + z\mbf{k} 
+\end{equation}
+球坐标的坐标面为$r = C_1$、$\theta = C_2$和$\phi = C_3$，如图\ref{chapter1:球坐标系}所示。因此球坐标系的基矢量可以表示为
+\begin{equation}
+	\mbf{e}_r = \frac{1}{h_r} \frac{\pl \mbf{r}}{\pl r},\quad \mbf{e}_\theta = \frac{1}{h_\theta} \frac{\pl \mbf{r}}{\pl \theta},\quad \mbf{e}_\phi = \frac{1}{h_\phi} \frac{\pl \mbf{r}}{\pl \phi}
+\end{equation}
+其中度规系数为
+\begin{equation}
+	\begin{cases}
+		h_r = \left|\dfrac{\pl \mbf{r}}{\pl r}\right| = 1 \\
+		h_\theta = \left|\dfrac{\pl \mbf{r}}{\pl \theta}\right| = r \\
+		h_\phi = \left|\dfrac{\pl \mbf{r}}{\pl \phi}\right| = r\sin \theta
+	\end{cases}
+\end{equation}
+球坐标系的基矢量可以具体计算如下：
+\begin{equation}
+	\begin{cases}
+		\mbf{e}_r = \sin \theta(\cos \phi \mbf{i} + \sin \phi \mbf{j}) + \cos \theta \mbf{k} \\
+		\mbf{e}_\theta = \cos \theta(\cos \phi \mbf{i} + \sin \phi \mbf{j}) - \sin \theta \mbf{k} \\
+		\mbf{e}_\phi = -\sin \phi \mbf{i} + \cos \phi \mbf{j}
+	\end{cases}
+\end{equation}
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(250);
+	//球坐标系
+	pair O,i,j,k;
+	real x,y,z,r;
+	path clp;
+	picture tmp;
+	O = (0,0);
+	x = 2.5;
+	y = 1.5;
+	z = 1.5;
+	r = 1;
+	i = (-sqrt(2)/4,-sqrt(14)/12);
+	j = (sqrt(14)/4,-sqrt(2)/12);
+	k = (0,2*sqrt(2)/3);
+	draw(Label("$x$",EndPoint),O--x*i,Arrow);
+	draw(Label("$y$",EndPoint),O--y*j,Arrow);
+	draw(Label("$z$",EndPoint),O--z*k,Arrow);
+	clp = r*i--r*j--r*k--cycle;
+	unfill(clp);
+	draw(tmp,Label("$x$",EndPoint),O--x*i,dashed,Arrow);
+	draw(tmp,Label("$y$",EndPoint),O--y*j,dashed,Arrow);
+	draw(tmp,Label("$z$",EndPoint),O--z*k,dashed,Arrow);
+	label(tmp,"$O$",O,NW);
+	clip(tmp,clp);
+	add(tmp);
+	erase(tmp);
+	real phi,theta;
+	pair vcir(real t){
+		return r*sin(t)*cos(phi)*i+r*sin(t)*sin(phi)*j+r*cos(t)*k;
+	}
+	pair hcir(real t){
+		return r*sin(theta)*cos(t)*i+r*sin(theta)*sin(t)*j+r*cos(theta)*k;
+	}
+	pair sphcoor(real R,real theta,real phi){
+		return R*sin(theta)*cos(phi)*i+R*sin(theta)*sin(phi)*j+R*cos(theta)*k;
+	}
+	phi = 0;
+	draw(graph(vcir,-0.4,pi-0.4));
+	draw(graph(vcir,pi-0.4,2*pi-0.4),dashed);
+	phi = pi/2;
+	draw(graph(vcir,-0.9,pi-1));
+	draw(graph(vcir,pi-1,2*pi-0.9),dashed);
+	theta = pi/2;
+	draw(graph(hcir,-1,pi-1.2));
+	draw(graph(hcir,pi-1.2,2*pi-1),dashed);
+	theta = pi/4;
+	draw(graph(hcir,-1.3,pi-1.1),orange);
+	draw(graph(hcir,pi-1.1,2*pi-1.3),dashed+orange);
+	phi = pi/3;
+	draw(graph(vcir,-0.5,pi-0.6),orange);
+	draw(graph(vcir,pi-0.6,2*pi-0.5),dashed+orange);
+	draw(scale(r)*unitcircle,linewidth(1bp));
+	pair P,Q,er,et,ep;
+	P = sphcoor(r,theta,phi);
+	Q = sphcoor(r,pi/2,phi);
+	er = 0.6*sphcoor(r,theta,phi);
+	et = 0.6*sphcoor(r,theta+pi/2,phi);
+	ep = 0.6*sphcoor(r,pi/2,phi+pi/2);
+	draw(Label("$r$",MidPoint,Relative(E)),O--P,dashed);
+	draw(O--Q,dashed);
+	draw(Label("$\boldsymbol{e}_r$",EndPoint,black),P--P+er,red,Arrow);
+	draw(Label("$\boldsymbol{e}_\theta$",EndPoint,Relative(W),black),P--P+et,red,Arrow);
+	draw(Label("$\boldsymbol{e}_\phi$",EndPoint,black),P--P+ep,red,Arrow);
+	dot(P);
+	r = 0.3;
+	draw(Label("$\theta$",MidPoint,Relative(W)),graph(vcir,0,theta),Arrow);
+	theta = pi/2;
+	draw(Label("$\phi$",MidPoint,Relative(E)),graph(hcir,0,phi),Arrow);
+\end{asy}
+\caption{球坐标系}
+\label{chapter1:球坐标系}
+\end{figure}
+
+\subsection{速度与加速度在正交曲线坐标系中的表示}
+
+速度定义为$\mbf{v} = \dot{\mbf{r}}(t) = \dfrac{\mathrm{d} \mbf{r}}{\mathrm{d} t}(t)$，因此在曲线坐标系中有
+\begin{equation}
+	\mbf{v}(t) = \frac{\mathrm{d} \mbf{r}}{\mathrm{d} t}(t) = \sum_{\alpha=1}^3 \frac{\pl \mbf{r}}{\pl q_\alpha} \dot{q}_\alpha = \sum_{\alpha=1}^3 h_\alpha \dot{q}_\alpha \mbf{e}_\alpha
+\end{equation}
+记$\displaystyle \mbf{v} = \sum_{\alpha=1}^3 h_\alpha \dot{q}_\alpha \mbf{e}_\alpha =: \mbf{v}(\mbf{q},\dot{\mbf{q}})$\footnote{注意，这里的函数$\boldsymbol{v}(\boldsymbol{q},\dot{\boldsymbol{q}})$与前面的$\boldsymbol{v}(t)$是不同的函数，只是它们用来表示相同的物理量从而使用了相同的符号。}，以及
+\begin{equation}
+	T = \frac12 v^2 = \frac12 \sum_{\alpha=1}^3 (h_\alpha \dot{q}_\alpha)^2 =: T (\mbf{q},\dot{\mbf{q}})
+\end{equation}
+加速度$\mbf{a} = \dot{\mbf{v}}(t) = \ddot{\mbf{r}}(t)$，在此曲线坐标系下可以分解为
+\begin{equation*}
+	\mbf{a} = \sum_{\alpha=1}^3 a_\alpha \mbf{e}_\alpha
+\end{equation*}
+加速度的分量为
+\begin{equation}
+	a_\alpha = \frac{1}{h_\alpha} \left[\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{q}_\alpha} \left(\frac{v^2}{2}\right) - \frac{\pl}{\pl q_\alpha} \left(\frac{v^2}{2}\right)\right]
+	\label{加速度的Lagrange公式}
+\end{equation}
+式\eqref{加速度的Lagrange公式}称为{\heiti Lagrange公式}。为了证明式\eqref{加速度的Lagrange公式}，首先考虑
+\begin{equation}
+	\mbf{v}(\mbf{q},\dot{\mbf{q}}) = \sum_{\alpha=1}^3 h_\alpha \dot{q}_\alpha \mbf{e}_\alpha = \sum_{\alpha=1}^3 \frac{\pl \mbf{r}}{\pl q_\alpha} \dot{q}_\alpha
+\end{equation}
+因此有
+\begin{align}
+	\frac{\pl \mbf{v}}{\pl \dot{q}_\alpha} & = \sum_{\beta=1}^3 \frac{\pl \mbf{r}}{\pl q_\beta} \frac{\pl \dot{q}_\beta}{\pl \dot{q}_\alpha} = \frac{\pl \mbf{r}}{\pl q_\alpha} \label{Lagrange公式中间步骤1} \\
+	\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \mbf{r}}{\pl q_\alpha} & = \sum_{\beta=1}^3 \frac{\pl}{\pl q_\beta} \left(\frac{\pl \mbf{r}}{\pl q_\alpha}\right) \dot{q}_\beta = \sum_{\beta=1}^3 \frac{\pl}{\pl q_\alpha} \left(\frac{\pl \mbf{r}}{\pl q_\beta}\right) \dot{q}_\beta = \frac{\pl}{\pl q_\alpha} \sum_{\beta=1}^3 \frac{\pl \mbf{r}}{\pl q_\beta} \dot{q}_\beta = \frac{\pl \mbf{v}}{\pl q_\alpha}
+	\label{Lagrange公式中间步骤2}
+\end{align}
+根据式\eqref{Lagrange公式中间步骤1}和\eqref{Lagrange公式中间步骤2}，即有
+\begin{align*}
+	h_\alpha a_\alpha & = \ddot{\mbf{r}} \cdot \frac{\pl \mbf{r}}{\pl q_\alpha} = \frac{\mathrm{d}}{\mathrm{d} t} \left(\dot{\mbf{r}} \cdot \frac{\pl \mbf{r}}{\pl q_\alpha}\right) - \dot{\mbf{r}} \cdot \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl \mbf{r}}{\pl q_\alpha} = \frac{\mathrm{d}}{\mathrm{d} t} \left(\dot{\mbf{r}} \cdot \frac{\pl \mbf{v}}{\pl \dot{q}_\alpha}\right) - \dot{\mbf{r}} \cdot \frac{\pl \mbf{v}}{\pl q_\alpha} \\
+	& = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{q}_\alpha} \left(\frac12 \mbf{v} \cdot \mbf{v}\right) - \frac{\pl}{\pl q_\alpha} \left(\frac12 \mbf{v} \cdot \mbf{v}\right) = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{q}_\alpha} \left(\frac{v^2}{2}\right) - \frac{\pl}{\pl q_\alpha} \left(\frac{v^2}{2}\right)
+\end{align*}
+
+\begin{example}[球坐标系中的速度、加速度表示]
+在球坐标中，$h_r = 1,h_\theta = r,h_\phi =r\sin \theta$，因此
+\begin{equation}
+	\mbf{v} = \sum_{\alpha=1}^3 h_\alpha \dot{q}_\alpha \mbf{e}_\alpha = \dot{r} \mbf{e}_r + r\dot{\theta} \mbf{e}_\theta + r\dot{\phi}\sin \theta \mbf{e}_\phi
+	\label{第一章：球坐标系中的速度}
+\end{equation}
+所以
+\begin{equation*}
+	v^2 = \mbf{v} \cdot \mbf{v} = \dot{r}^2 + r^2 \dot{\theta}^2 + r^2 \dot{\phi}^2 \sin^2 \theta
+\end{equation*}
+故加速度的各个分量为
+\begin{subnumcases}{\label{第一章：球坐标系中的加速度}}
+	a_r = \frac{1}{h_r} \left[\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{r}}\left(\frac{v^2}{2}\right) - \frac{\pl}{\pl r}\left(\frac{v^2}{2}\right)\right] = \ddot{r}-r\dot{\theta}^2-r\dot{\phi}^2 \sin^2 \theta \\
+	a_\theta = \frac{1}{h_\theta} \left[\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{\theta}}\left(\frac{v^2}{2}\right) - \frac{\pl}{\pl \theta}\left(\frac{v^2}{2}\right)\right] = r\ddot{\theta}+2\dot{r}\dot{\theta}-r\dot{\phi}^2 \sin \theta \cos \theta \\
+	a_\phi = \frac{1}{h_\phi} \left[\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{\phi}}\left(\frac{v^2}{2}\right) - \frac{\pl}{\pl \phi}\left(\frac{v^2}{2}\right)\right] = r\ddot{\phi} \sin \theta + 2\dot{r}\dot{\phi}\sin \theta + 2r\dot{\theta}\dot{\phi}\cos \theta
+\end{subnumcases}
+\end{example}
+
+\begin{example}[柱坐标系中的速度、加速度表示]
+柱坐标中，$h_\rho = 1,h_\phi = r,h_z = 1$，因此
+\begin{equation}
+	\mbf{v} = \sum_{\alpha=1}^3 h_\alpha \dot{q}_\alpha \mbf{e}_\alpha = \dot{\rho} \mbf{e}_\rho + \rho\dot{\phi} \mbf{e}_\phi + \dot{z} \mbf{e}_z
+	\label{第一章：柱坐标系中的速度}
+\end{equation}
+所以
+\begin{equation*}
+	v^2 = \mbf{v} \cdot \mbf{v} = \dot{\rho}^2 + \rho^2 \dot{\phi}^2 + \dot{z}^2
+\end{equation*}
+故加速度的各个分量为
+\begin{subnumcases}{\label{第一章：柱坐标系中的加速度}}
+	a_\rho = \frac{1}{h_\rho} \left[\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{\rho}}\left(\frac{v^2}{2}\right) - \frac{\pl}{\pl \rho}\left(\frac{v^2}{2}\right)\right] = \ddot{\rho}-\rho\dot{\phi}^2 \\
+	a_\phi = \frac{1}{h_\phi} \left[\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{\phi}}\left(\frac{v^2}{2}\right) - \frac{\pl}{\pl \phi}\left(\frac{v^2}{2}\right)\right] = \rho\ddot{\phi}+2\dot{\rho}\dot{\phi} \\
+	a_z = \frac{1}{h_z} \left[\frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl}{\pl \dot{z}}\left(\frac{v^2}{2}\right) - \frac{\pl}{\pl z}\left(\frac{v^2}{2}\right)\right] = \ddot{z}
+\end{subnumcases}
+\end{example}

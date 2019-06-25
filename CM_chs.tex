@@ -1,6 +1,8 @@
-\documentclass[hyperref,UTF8,a4paper,openany]{ctexbook}
+\documentclass[UTF8,a4paper,openany]{ctexbook}
 \usepackage{zhnumber}
-\usepackage{graphicx, subfigure}
+% \usepackage[draft]{graphicx}
+\usepackage{graphicx}
+\usepackage{subfigure}
 
 \usepackage{latexsym, amsmath, amssymb, amsfonts, mathrsfs, amsthm}
 \usepackage{siunitx}
@@ -94,17 +96,8 @@
   {\thmname{#1}\thmnumber{~#2}\thmnote{~(#3)}}%                   Thm head spec
 
 \theoremstyle{theoremwithoutdot}
-\newtheorem{defi}{定义}[section]
-\newtheorem{theorem}{定理}[section]
-\newtheorem{lemma}[theorem]{引理}
-\newtheorem{prop}[theorem]{命题}
-\newtheorem{coro}{推论}[theorem]
-\newtheorem{remark}{注}
 \newtheorem{example}{例}[chapter]
 \newtheorem{question}{题}[section]
-\newtheorem{property}[theorem]{性质}
-%\renewcommand{\thequestion}{\arabic{chapter}.\arabic{section}.\arabic{question}}
-%\theoremstyle{solutionstyle}
 \newtheorem*{solution}{解}
 %去掉证明后面的点
 \makeatletter
@@ -133,10 +126,45 @@
   \let\@makefnmark\my@makefnmark
   \my@save@makefntext{#1}}}
 
+% Blocked theorem environment
+\usepackage[framemethod=TikZ]{mdframed}
+\newcommand{\getthecounter}[1]{\csname the#1\endcsname}
+\newcommand{\newblocktheorem}[3][]{%
+\ifstrempty{#1}%
+{\newcounter{#2}\setcounter{#2}{0}%
+}%
+{\newcounter{#2}[#1]\setcounter{#2}{0}%
+\expandafter\renewcommand\csname the#2\endcsname{\csname the#1\endcsname.\arabic{#2}}%
+}
+\newenvironment{#2}[1][]{%
+\refstepcounter{#2}%
+\ifstrempty{##1}%
+{\mdfsetup{% with title
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut\heiti #3~\csname the#2\endcsname};}}
+}%
+{\mdfsetup{% without title
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut\heiti #3~\csname the#2\endcsname~(##1)};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax\kaishu%
+}{\end{mdframed}}
+}
+\newblocktheorem[section]{theorem}{定理}
+\newblocktheorem{law}{定律}
+
 \allowdisplaybreaks[3]
 
 \title{《经典力学》讲义}
-\author{整理：张大鹏\thanks{基于徐晓华2010年的《经典力学》讲义整理，有修改和删节。所有插图均为重新绘制。}\\ Email:\url{13110290004@fudan.edu.cn}}
+\author{整理：张大鹏\thanks{基于徐晓华2010年的《经典力学》讲义整理，有修改和删节。所有插图均为重新绘制。}\\ Email:\url{ufo54153@gmail.com}}
 %\date{}
 
 \makeatletter
@@ -160,24 +188,36 @@
 \usepackage{tgpagella}
 \usepackage[T1]{fontenc}
  
+\definecolor{partcolor}{RGB}{255,0,128}
 \definecolor{titlecolor}{RGB}{129,129,188}
 \definecolor{contentcolor}{RGB}{129,188,129}
 \definecolor{backcolor}{RGB}{129,188,129}
-\newcommand{\hwyk}{\heiti}
+
+\newcommand{\mypart}[1]{
+\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+	\arrayrulewidth=0.4pt
+	\cellcolor{black} & \cellcolor{partcolor} \textcolor{white}
+	{\newline\heiti\Huge 第\thepart 部分} \\
+	\hline
+	\cellcolor{black} & \multicolumn{1}{r}{\cellcolor{partcolor} \textcolor{white}
+	{\huge #1}}
+\end{tabular}
+\arrayrulewidth=0.4pt
+}
  
 \newcommand{\mytitle}[1]{
-\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}
 \cellcolor{black} &\cellcolor{titlecolor} \textcolor{white}
-{\newline\hwyk\LARGE 第\zhnumber{\thechapter}章 \  \ #1}
+{\newline\heiti\LARGE 第\zhnumber{\thechapter}章 \  \ #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
 }
  
 \newcommand{\mycont}[1]{
 \vspace{-0.5cm}
-\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}
 \cellcolor{black} &\cellcolor{contentcolor} \textcolor{white}
-{\newline\hwyk\LARGE #1}
+{\newline\heiti\LARGE #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
 \vspace{-1.5cm}
@@ -185,9 +225,9 @@
  
 \newcommand{\mysection}[1]{
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{titlecolor}
-\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}
 \hline
-\cellcolor{titlecolor} &  \textcolor{black}{\hwyk\LARGE \thesection ~ #1}
+\cellcolor{titlecolor} &  \textcolor{black}{\heiti\LARGE \thesection ~ #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
 \vspace{-0.7cm}
@@ -195,9 +235,9 @@
 
 \newcommand{\mysubsection}[1]{
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{titlecolor}
-\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}
 \hline
-\cellcolor{titlecolor} &  \textcolor{black}{\hwyk\Large \thesubsection ~ #1} \\
+\cellcolor{titlecolor} &  \textcolor{black}{\heiti\Large \thesubsection ~ #1} \\
 \hline
 \end{tabular}
 \arrayrulewidth=0.4pt
@@ -206,20 +246,19 @@
 
 \newcommand{\mysubsubsection}[1]{
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{titlecolor}
-\begin{tabular}{p{0.01\textwidth}p{0.95\textwidth}p{0.01\textwidth}}
+\begin{tabular}{p{0.01\textwidth}p{0.975\textwidth}p{0.01\textwidth}}
 \hline
-\cellcolor{titlecolor} &  \textcolor{black}{\hwyk\large \thesubsubsection ~ #1} & \cellcolor{titlecolor} \\
+\cellcolor{titlecolor} &  \textcolor{black}{\heiti\large \thesubsubsection ~ #1} & \cellcolor{titlecolor} \\
 \hline
 \end{tabular}
 \arrayrulewidth=0.4pt
 \vspace{-0.5cm}
 }
 
-
 \newcommand{\myappendix}[1]{
-\begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
+\begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}
 \cellcolor{black} &\cellcolor{backcolor} \textcolor{white}
-{\newline\hwyk\LARGE 附录\thechapter \  \ #1}%\Alph{\thechapter}
+{\newline\heiti\LARGE 附录\thechapter \  \ #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
 }
@@ -229,7 +268,7 @@
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{backcolor}
 \begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
 \hline
-\cellcolor{backcolor} &  \textcolor{black}{\hwyk\LARGE \thesection ~ #1}
+\cellcolor{backcolor} &  \textcolor{black}{\heiti\LARGE \thesection ~ #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
 \vspace{-0.7cm}
@@ -239,7 +278,7 @@
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{backcolor}
 \begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
 \hline
-\cellcolor{backcolor} &  \textcolor{black}{\hwyk\Large \thesubsection ~ #1} \\
+\cellcolor{backcolor} &  \textcolor{black}{\heiti\Large \thesubsection ~ #1} \\
 \hline
 \end{tabular}
 \arrayrulewidth=0.4pt
@@ -250,7 +289,7 @@
 \setlength\arrayrulewidth{1pt}\arrayrulecolor{backcolor}
 \begin{tabular}{p{0.01\textwidth}p{0.95\textwidth}p{0.01\textwidth}}
 \hline
-\cellcolor{backcolor} &  \textcolor{black}{\hwyk\large \thesubsubsection ~ #1} & \cellcolor{backcolor} \\
+\cellcolor{backcolor} &  \textcolor{black}{\heiti\large \thesubsubsection ~ #1} & \cellcolor{backcolor} \\
 \hline
 \end{tabular}
 \arrayrulewidth=0.4pt
@@ -260,7 +299,7 @@
 \newcommand{\mybackmatter}[1]{
 \begin{tabular}{p{0.01\textwidth}p{0.99\textwidth}}
 \cellcolor{black} &\cellcolor{backcolor} \textcolor{white}
-{\newline\hwyk\LARGE #1}
+{\newline\heiti\LARGE #1}
 \end{tabular}
 \arrayrulewidth=0.4pt
 }
@@ -291,33 +330,39 @@
 \fancyhead[CE]{\leftmark}
 \renewcommand{\headrulewidth}{0.4pt}
 
-\titleformat{\chapter}[hang]{\hwyk\LARGE}
+\titleformat{\chapter}[hang]{\heiti\LARGE}
 {}{0mm}{\hspace{-0.4cm}\mycont}
 
 \tableofcontents
-
 \cleardoublepage
 
 \mainmatter
+
+\titleformat{\part}[hang]{\heiti\Huge}
+{}{0mm}{\hspace{-0.4cm}\mypart}
  
-\titleformat{\chapter}[hang]{\hwyk\LARGE}
+\titleformat{\chapter}[hang]{\heiti\LARGE}
 {}{0mm}{\hspace{-0.4cm}\mytitle}
  
-\titleformat{\section}[hang]{\hwyk\LARGE}
+\titleformat{\section}[hang]{\heiti\LARGE}
 {}{0mm}{\hspace{-0.5cm}\mysection}
 
-\titleformat{\subsection}[hang]{\hwyk\large}
+\titleformat{\subsection}[hang]{\heiti\large}
 {}{0mm}{\hspace{-0.5cm}\mysubsection}
 
-\titleformat{\subsubsection}[hang]{\hwyk\large}
+\titleformat{\subsubsection}[hang]{\heiti\large}
 {}{0mm}{\hspace{-0.5cm}\mysubsubsection}
  
 \titlespacing{\chapter}
 {0pc}{1.5ex plus .1ex minus .2ex}{.2pc}
 
-% \input{chapter/chapter0}%第零章——引言
+\part[矢量力学]{矢量力学\ (Vectorial Mechanics)}
 
-\input{chapter/chapter1}%第一章——牛顿力学
+\input{chapter/vectorial-mechanics/chapter1.tex}%第一章——牛顿力学
+
+\input{chapter/vectorial-mechanics/chapter2.tex}
+
+\part[分析力学]{分析力学\ (Anlaytical Mechanics)}
 
 \input{chapter/chapter2}%第二章——拉格朗日力学
 
@@ -339,16 +384,16 @@
 
 \appendix
 
-\titleformat{\chapter}[hang]{\hwyk\LARGE}
+\titleformat{\chapter}[hang]{\heiti\LARGE}
 {}{0mm}{\hspace{-0.4cm}\myappendix}
  
-\titleformat{\section}[hang]{\hwyk\LARGE}
+\titleformat{\section}[hang]{\heiti\LARGE}
 {}{0mm}{\hspace{-0.5cm}\appendixsection}
 
-\titleformat{\subsection}[hang]{\hwyk\large}
+\titleformat{\subsection}[hang]{\heiti\large}
 {}{0mm}{\hspace{-0.5cm}\appendixsubsection}
 
-\titleformat{\subsubsection}[hang]{\hwyk\large}
+\titleformat{\subsubsection}[hang]{\heiti\large}
 {}{0mm}{\hspace{-0.5cm}\appendixsubsubsection}
 
 \renewcommand{\chaptermark}[1]{\markboth{附录\ \ #1}{}}
@@ -363,7 +408,7 @@
 
 \backmatter
  
-\titleformat{\chapter}[hang]{\hwyk\LARGE}
+\titleformat{\chapter}[hang]{\heiti\LARGE}
 {}{0mm}{\hspace{-0.4cm}\mybackmatter}
 
 \addcontentsline{toc}{chapter}{\listfigurename}{%
