@@ -42,7 +42,7 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 	如果质点的位置、速度和其他相关物理状态不改变，两个质点之间的相互作用不可能改变其他质点对它们的相互作用。换言之，当质点$m_i(i=1,2,\cdots,n)$作用在某质点上的力为$\boldsymbol{F}_i(i=1,2,\cdots,n)$时，则它们单独作用时产生的加速度$\boldsymbol{a}_i(i=1,2,\cdots,n)$之间可以相加。
 \end{law}
 
-如果质点的质量是$m$，则根据Newton第二定律\eqref{chapter2:牛顿第二定律}可得$\boldsymbol{a}_i = \dfrac{\boldsymbol{F}_i}{m}$，因此根据力的独立作用公理可得该质点的加速度为
+如果质点的质量是$m$，则根据Newton第二定律\eqref{chapter2:牛顿第二定律}可得$\boldsymbol{a}_i = \dfrac{\boldsymbol{F}_i}{m}$，因此根据力的独立作用定律可得该质点的加速度为
 \begin{equation}
 	\boldsymbol{a} = \boldsymbol{a}_1 + \boldsymbol{a}_2 + \cdots + \boldsymbol{a}_n = \frac{1}{m}\left(\boldsymbol{F}_1 + \boldsymbol{F}_2 + \cdots + \boldsymbol{F}_n\right)
 \end{equation}
@@ -50,7 +50,7 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 \begin{equation}
 	\boldsymbol{F} = \boldsymbol{F}_1 + \boldsymbol{F}_2 + \cdots + \boldsymbol{F}_n
 \end{equation}
-这被称为{\bf 力的合成定律}，它与力的独立作用公理是等价的，这个用来代替$n$个独立力作用的力$\boldsymbol{F}$被称为这些独立力的{\bf 合力}。
+这被称为{\bf 力的合成定律}，它与力的独立作用定律是等价的，这个用来代替$n$个独立力作用的力$\boldsymbol{F}$被称为这些独立力的{\bf 合力}。
 
 \begin{example}
 光滑水平面上有一质量为$m$的质点，用一轻绳系着，绳子完全绕在半径为$R$的圆柱上，使质点贴在圆柱体的边缘上。$t=0$时给质点以一径向速度$\mbf{v}_0$，如图\ref{第一章例4图}所示，据此求任意时刻绳上的张力大小$T(t)$。
@@ -457,120 +457,372 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 \label{chapter2:Galileo变换}
 \end{figure}
 
-\section{力系的主向量与主矩}
+\section{力系的主矢与主矩}
 
-todo
+作用在一个质点系上的所有力的集合称为{\bf 力系}，力系中的力可以分为内力和外力。内力是指质点系内部各质点之间的作用力，而外力则是系统外的质点对质点系中质点的作用力。
 
-\section{运动定理与守恒定律}
+我们用角标$i$来指示质点系中的质点$P_i$，将每个质点的质量记作$m_i$，它所受的合力记作$\boldsymbol{F}_i$。矢量和
+\begin{equation}
+	\boldsymbol{R} = \sum_{i=1}^n\boldsymbol{F}_i
+	\label{chapter2:主矢的定义式}
+\end{equation}
+称为该力系的{\bf 主矢}。需要注意的是，这里的主矢与合力概念不同。合力是指同一个质点上所受的各个力的矢量和，其依据是力的独立作用定律，而主矢则是不同质点上所受合力的矢量和。
 
-\subsection{质点系}
+如果能够将质点上所受的合力分为内力和外力，即
+\begin{equation}
+	\boldsymbol{F}_i = \boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}, \quad i = 1,2,\cdots,n
+	\label{chapter2:质点系内的内力和外力分解}
+\end{equation}
+其中$\boldsymbol{F}_i^{(\mathrm{e})}$表示质点$i$所受所有外力的合力，$\boldsymbol{F}_i^{(\mathrm{i})}$表示质点$i$所受所有内力的合力。
 
-质点系即指两个以上相互作用的质点组成的系统。在质点系中，{\heiti 外力}指质点系外物体对质点系内任一质点的作用力，记作$\mbf{F}_i$。{\heiti 内力}指质点系内任意一对质点之间的相互作用力，质点$j$对质点$i$的作用力记作$\mbf{f}_{ij}$。
+根据Newton第三定律，质点系内两个质点之间的相互作用力大小相等，方向沿着它们连线且方向相反。将式\eqref{chapter2:质点系内的内力和外力分解}带入力系主矢的定义式\eqref{chapter2:主矢的定义式}中，可以发现内力将两两相互抵消，从而得到
+\begin{equation}
+	\boldsymbol{R} = \sum_{i=1}^n\boldsymbol{F}_i^{(\mathrm{e})}
+\end{equation}
+即力系的主矢$\boldsymbol{R}$等于所有外力的主矢$\boldsymbol{R}^{(\mathrm{e})}$。
 
-\subsection{动量及其守恒定律}
+力$\boldsymbol{F}$对空间中某一点$A$的力矩定义为
+\begin{equation}
+	\boldsymbol{M}_A = \vec{AP} \times \boldsymbol{F} = (\boldsymbol{r}_P - \boldsymbol{r}_A) \times \boldsymbol{F}
+\end{equation}
+其中$P$是力$\boldsymbol{F}$的作用点，$\boldsymbol{r}_P$和$\boldsymbol{r}_A$分别为$P$点和$A$点的位矢，点$A$称为力矩的{\bf 矩心}。与力系的主矢类似，可以定义
+\begin{equation}
+	\boldsymbol{M} = \sum_{i=0}^n \boldsymbol{M}_i = \sum_{i=0}^n (\boldsymbol{r}_i - \boldsymbol{r}_A)\times \boldsymbol{F}_i
+\end{equation}
+称为力系对$A$点的{\bf 主矩}。
 
-质点的{\heiti 动量}定义为
+与主矢类似的是，内力的力矩也在加和的过程中相互抵消，如图\ref{chapter2:内力力矩之和}所示，因此有
+\begin{equation}
+	\boldsymbol{M} = \sum_{i=1}^n\boldsymbol{M}_i^{(\mathrm{e})}
+\end{equation}
+即力系的主矩$\boldsymbol{M}$等于所有外力的主矩$\boldsymbol{M}^{(\mathrm{e})}$。
+
+\begin{figure}[!htb]
+\centering
+\begin{asy}
+	size(200);
+	pair O, A, B, F;
+	O = (0,0);
+	A = 1.5*dir(135);
+	B = 1.0*dir(60);
+	F = dir(A - B);
+	label("$O$", A, S);
+	draw(Label("$\boldsymbol{r}_1$", MidPoint, Relative(W)), O--A, Arrow);
+	draw(Label("$\boldsymbol{r}_2$", MidPoint, Relative(E)), O--B, Arrow);
+	draw(A--B, dashed);
+	draw(Label("$\boldsymbol{F}$", EndPoint, Relative(W)), A--A-0.5*F, Arrow);
+	draw(Label("$\boldsymbol{F}'=-\boldsymbol{F}$", EndPoint, Relative(E)), B--B+0.5*F, Arrow);
+	pair n = rotate(90)*F;
+	pair P = intersectionpoint(A--B, O-100*n--O+100*n);
+	draw(O--P, dashed);
+\end{asy}
+\caption{内力力矩之和}
+\label{chapter2:内力力矩之和}
+\end{figure}
+
+值得一提的是，同一力系的主矩在选择不同参考点时的值是不同的。我们选取两个不同的点$A$和$B$，则相对点$B$的主矩可以计算为
+\begin{align*}
+	\boldsymbol{M}_B & = \sum_{i=1}^n (\boldsymbol{r}_{i} - \boldsymbol{r}_B) \times \boldsymbol{F}_i = \sum_{i=1}^n (\boldsymbol{r}_{i} - \boldsymbol{r}_A + \vec{BA}) \times \boldsymbol{F}_i \\
+	& = \sum_{i=1}^n (\boldsymbol{r}_{i} - \boldsymbol{r}_A) \times \boldsymbol{F}_i + \vec{BA} \times \sum_{i=1}^n\boldsymbol{F}_i = \boldsymbol{M}_A + \vec{BA} \times \boldsymbol{R}
+\end{align*}
+即
+\begin{equation}
+	\boldsymbol{M}_B = \boldsymbol{M}_A + \vec{BA} \times \boldsymbol{R}
+	\label{chapter2:不同参考点力矩之间的关系}
+\end{equation}
+
+\section{功与势}
+
+设$\boldsymbol{F}_i$是作用在质点系中质点$P_i$上所有力的合力（包括内力和外力），$\mathrm{d}\boldsymbol{r}_i$是在当前时刻质点$P_i$沿着其运动轨迹运动的位移微元，也就是
+\begin{equation}
+	\mathd \boldsymbol{r}_i = \boldsymbol{v}_i\mathd t
+\end{equation}
+则
+\begin{equation}
+	\mathd'A_i = \boldsymbol{F}_i\cdot \mathd\boldsymbol{r}_i
+	\label{chapter2:质点上力的元功}
+\end{equation}
+称为力$\boldsymbol{F}_i$在位移$\mathd\boldsymbol{r}_i$上的{\bf 元功}。将式\eqref{chapter2:质点上力的元功}对质点系中所有质点求和便得到力系的元功
+\begin{equation}
+	\mathd'A = \sum_{i=1}^n \boldsymbol{F}_i\cdot \mathd \boldsymbol{r}_i
+	\label{chapter2:力系的元功}
+\end{equation}
+其中符号$\mathd'$表示强调式\eqref{chapter2:质点上力的元功}和式\eqref{chapter2:力系的元功}左端不一定是全微分\footnote{后文中可能省略这个撇号。}。
+
+在元功的表达式\eqref{chapter2:力系的元功}中既包含外力的功也包含内力的功，可以将其拆分为
+\begin{equation}
+	\mathd'A = \mathd'A^{(\mathrm{e})} + \mathd'A^{(\mathrm{i})}
+\end{equation}
+此处$\mathd'A^{(\mathrm{e})}$表示外力的元功，$\mathd'A^{(\mathrm{i})}$表示内力的元功。
+
+将质点的元功\eqref{chapter2:质点上力的元功}在其轨迹上的一段路径上积分，即可得到其全功。
+
+假设质点在空间中运动时，在质点上作用的力依赖于质点的位置（可能还依赖于时间），但不依赖于质点的速度，在这种情况下，我们说在空间中确定了一个{\bf 力场}。力场可能依赖于质点本身的某些性质，例如引力场、静电场等。如果存在仅依赖于质点坐标（可能还依赖于时间）的标量函数$V(\boldsymbol{r},t)$，使得
+\begin{equation}
+	\boldsymbol{F}_i = -\frac{\pl V(\boldsymbol{r}_i,t)}{\pl \boldsymbol{r}_i} = -\bnb V(\boldsymbol{r}_i, t)
+\end{equation}
+则称力场{\bf 有势}，而函数$V(\boldsymbol{r},t)$则称为{\bf 势函数}或{\bf 势能}，此处算符$\dfrac{\pl}{\pl \boldsymbol{r}} = \bnb$，其在直角坐标系下的表达式为
+\begin{equation}
+	\dfrac{\pl}{\pl \boldsymbol{r}} = \bnb = \boldsymbol{i}\frac{\pl}{\pl x} + \boldsymbol{j}\frac{\pl}{\pl y} + \boldsymbol{k}\frac{\pl}{\pl z}
+\end{equation}
+
+当质点上的作用力有势时
+\begin{equation}
+	\mathd'A = -\frac{\pl V}{\pl \boldsymbol{r}_i} \cdot \mathd\boldsymbol{r}_i = -\mathd V(\boldsymbol{r}_i,t)
+\end{equation}
+即有势力的元功是全微分。因此有势力的全功不依赖于路径，如果路径是闭合的，则有势力的全功为零。
+
+% \section{质点系的静力学} todo
+
+\section{动力学基本定理与定律}
+
+\subsection{力学系统的基本动力学量}
+
+我们考虑质点系$P_i(i=1,2,\cdots,n)$，记质点$P_i$的质量为$m_i$，位矢为$\boldsymbol{r}_i$，速度为$\boldsymbol{v}_i$，加速度为$\boldsymbol{a}_i$。
+
+质点系的{\bf 质心}是指空间中的几何点$C$，其位矢为
+\begin{equation}
+	\boldsymbol{r}_C = \frac{1}{M}\sum_{i=1}^nm_i\boldsymbol{r}_i
+\end{equation}
+其中$M$为质点系的总质量，即
+\begin{equation}
+	M = \sum_{i=1}^nm_i
+\end{equation}
+而质心的速度则为
+\begin{equation}
+	\boldsymbol{v}_C = \frac{\mathd\boldsymbol{r}}{\mathd t} = \frac{1}{M}\sum_{i=1}^nm_i\frac{\mathd\boldsymbol{r}_i}{\mathd t} = \frac{1}{M}\sum_{i=1}^nm_i\boldsymbol{v}_i
+	\label{chapter2:质心的速度}
+\end{equation}
+
+质点的{\bf 动量}定义为
 \begin{equation}
 	\mbf{p} = m\mbf{v}
 \end{equation}
-根据Newton第二定律，有
-\begin{equation}
-	\mbf{F} = m\mbf{a} = m\frac{\mathrm{d} \mbf{v}}{\mathrm{d} t} = \frac{\mathrm{d} \mbf{p}}{\mathrm{d} t}
-	\label{动量定理1}
-\end{equation}
-或者
-\begin{equation}
-	\mathrm{d} \mbf{p} = \mbf{F} \mathrm{d} t
-	\label{动量定理2}
-\end{equation}
-式\eqref{动量定理1}或\eqref{动量定理2}表示的关系称为{\heiti 动量定理}。
-
 质点系的动量定义为各个质点动量之和，即
 \begin{equation}
-	\mbf{p} = \sum_{i=1}^n \mbf{p}_i
+	\mbf{p} = \sum_{i=1}^n \mbf{p}_i = \sum_{i=1}^nm_i\boldsymbol{v}_i
 \end{equation}
-则有
-\begin{equation*}
-	\frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \sum_{i=1}^n \frac{\mathrm{d} \mbf{p}_i}{\mathrm{d} t} = \sum_{i=1}^n \left(\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}\right)
-\end{equation*}
-式中
-\begin{equation*}
-	\sum_{j=1(j\neq i)}^n \mbf{f}_{ij} = \sum_{i=1(i \neq j)}^n \mbf{f}_{ji} = \frac12 \sum_{i,j=1(i \neq j)}^n (\mbf{f}_{ij} + \mbf{f}_{ji}) = \mbf{0}
-\end{equation*}
-因此可有{\heiti 质点系的动量定理}
+质点系的动量也可以看作是各个质点动量的主矢。根据质心速度式\eqref{chapter2:质心的速度}可得质心的动量为
 \begin{equation}
-	\frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \sum_{i=1}^n \mbf{F}_i = \mbf{F}^{(e)}
+	\boldsymbol{p}_C = M\boldsymbol{v}_C = \boldsymbol{p}
+	\label{chapter2:质心动量表达式}
 \end{equation}
-即，质点系总动量的时间变化率等于合外力。
+即质点系质心动量等于质点系的总动量。
 
-如果质点系所受合外力为零，则质点系的总动量保持不变。此即为{\heiti 动量守恒定律}。即如有$\mbf{F}^{(e)} = \mbf{0}$，根据质点系的动量定理，有
-\begin{equation*}
-	\mbf{F}^{(e)} = \dfrac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \mbf{0}
-\end{equation*}
-即总动量$\mbf{p} = \text{常矢量}$。
-
-如果质点系在某方向上合外力为零，则质点系的总动量在该方向上的分量保持不变。即如果有常单位矢量$\mbf{e}$，满足$\mbf{e} \cdot \mbf{F}^{(e)} = 0$，则有
-\begin{equation*}
-	\mbf{e} \cdot \mbf{F}^{(e)} = \mbf{e} \cdot \frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \frac{\mathrm{d} (\mbf{e} \cdot \mbf{p})}{\mathrm{d} t} = 0
-\end{equation*}
-即总动量在该方向上的分量$\mbf{e} \cdot \mbf{p} = \text{常数}$。
-
-动量守恒定律在纯质点力学系统中由Newton第三定律保证。
-
-\subsection{角动量及其守恒定律}
-
-质点的{\heiti 角动量}\footnote{此处为对原点的角动量。}定义为
+质点$P$相对空间中某点$A$的{\bf 角动量}\footnote{基于其定义的形式，角动量有时也被称为{\bf 动量矩}。}定义为
 \begin{equation}
-	\mbf{L} = \mbf{r} \times \mbf{p}
+	\boldsymbol{L} = \vec{AP} \times \boldsymbol{p}
 \end{equation}
-{\heiti 力矩}\footnote{此处为对原点的力矩。}定义为
+质点系的角动量定义为各个质点角动量之和，即
 \begin{equation}
-	\mbf{M} = \mbf{r} \times \mbf{F}
+	\boldsymbol{L} = \sum_{i=1}^n \boldsymbol{L}_i = \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_A) \times\boldsymbol{p}_i
+	\label{chapter2:系统角动量的定义式}
 \end{equation}
-则有
+质点系的角动量也可以看作是各个质点动量对$A$点的主矩。当选择不同的参考点时，角动量作为质点系动量的主矩也具有与力系主矩式\eqref{chapter2:不同参考点力矩之间的关系}类似的关系
 \begin{equation}
-	\frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \frac{\mathrm{d}}{\mathrm{d} t}(\mbf{r} \times \mbf{p}) = \mbf{v} \times \mbf{p} + \mbf{r} \times \frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = \mbf{r} \times \mbf{F} = \mbf{M}
-	\label{角动量定理1}
+	\boldsymbol{L}_B = \boldsymbol{L}_A + \vec{BA} \times \boldsymbol{p}
+\end{equation}
+通常情况下，如果不指明参考点，我们认为参考点是当前参考系的原点。
+
+下面我们考虑系统相对于质心的运动，即考察质点系在{\bf 质心参考系}中的力学性质。质心参考系是指原点位于质心处，以质心速度$\boldsymbol{v}_C$进行平动的参考系。通常来讲，这个参考系并不是惯性系，但是后面会看到这个参考系的特殊性是使得力学定律在这个非惯性系中仍然呈现与惯性系相同的形式。
+
+在本节中，我们将质心系中的物理量用带撇号的符号来表示。对于作平动运动的参考系，质点系中各个质点相对质心系的速度与其绝对速度有如下关系
+\begin{equation}
+	\boldsymbol{v}_i = \boldsymbol{v}_i' + \boldsymbol{v}_C
+	\label{chapter2:相对质心系的速度}
+\end{equation}
+因此质心系中的动量为
+\begin{equation}
+	\boldsymbol{p}' = \sum_{i=1}^nm_i\boldsymbol{v}_i' = \sum_{i=1}^n m_i\boldsymbol{v}_i - \left(\sum_{i=1}^n m_i\right)\boldsymbol{v}_C = \boldsymbol{0}
+	\label{chapter2:质心系中的系统动量}
+\end{equation}
+即质点系在质心系中的动量为零。而质点系在质心系中相对质心的角动量则为
+\begin{equation}
+	\boldsymbol{L}' = \sum_{i=1}^n\boldsymbol{r}_i' \times \boldsymbol{p}' = \sum_{i=1}^n\boldsymbol{r}_i' \times m_i\boldsymbol{v}_i'
+\end{equation}
+将关系式\eqref{chapter2:相对质心系的速度}和$\boldsymbol{r}_i = \boldsymbol{r}_i' + \boldsymbol{r}_C$带入则可得
+\begin{align}
+	\boldsymbol{L}' & = \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_C) \times m_i (\boldsymbol{v}_i - \boldsymbol{v}_C) \nonumber\\
+	& = \sum_{i=1}^n \left(\boldsymbol{r}_i\times m_i\boldsymbol{v}_i - \boldsymbol{r}_i\times m_i\boldsymbol{v}_C - \boldsymbol{r}_C \times m_i\boldsymbol{v}_i + \boldsymbol{r}_C\times m_i\boldsymbol{v}_C\right) \nonumber\\
+	& = \sum_{i=1}^n\boldsymbol{r}_i\times m_i\boldsymbol{v}_i - \left(\sum_{i=1}^nm_i\boldsymbol{r}_i\right) \times \boldsymbol{v}_C - \boldsymbol{r}_C \times \sum_{i=1}^n m_i\boldsymbol{v}_i + \boldsymbol{r}_C\times \left(\sum_{i=1}^nm_i\right)\boldsymbol{v}_C \label{chapter2:质心系中角动量推导1}
+\end{align}
+由于
+\begin{equation*}
+	\sum_{i=1}^nm_i\boldsymbol{r}_i = M\boldsymbol{r}_C, \quad \sum_{i=1}^n m_i\boldsymbol{v}_i = M\boldsymbol{v}_C
+\end{equation*}
+因此式\eqref{chapter2:质心系中角动量推导1}中的后三项都等于$\boldsymbol{r}_C\times M\boldsymbol{v}_C$，即有质心系中角动量为
+\begin{equation}
+	\boldsymbol{L}' = \boldsymbol{L} - \boldsymbol{r}_C\times M\boldsymbol{v}_C
 \end{equation}
 或者
 \begin{equation}
-	\mathrm{d} \mbf{L} = \mbf{M} \mathrm{d} t
-	\label{角动量定理2}
+	\boldsymbol{L} = \boldsymbol{L}' + \boldsymbol{L}_C
+	\label{chapter2:质心系角动量与绝对角动量的关系}
 \end{equation}
-式\eqref{角动量定理1}和式\eqref{角动量定理2}表示的关系称为{\heiti 角动量定理}。
-
-质点系的角动量定义为各个质点角动量之和，即
+其中
 \begin{equation}
-	\mbf{L} = \sum_{i=1}^n \mbf{L}_i
+	\boldsymbol{L}_C = \boldsymbol{r}_C\times M\boldsymbol{v}_C
 \end{equation}
-则有
-\begin{equation*}
-	\frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \sum_{i=1}^n \frac{\mathrm{d} \mbf{L}_i}{\mathrm{d} t} = \sum_{i=1}^n \mbf{r}_i \times \left(\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}\right)
-\end{equation*}
-式中
+为质点系质心的角动量，也被称为{\bf 轨道角动量}，而$\boldsymbol{L}'$则可以称为质点系的{\bf 内禀角动量}或者{\bf 自旋角动量}。
+
+质点的{\bf 动能}定义为
+\begin{equation}
+	T = \frac12 m\boldsymbol{v}^2
+\end{equation}
+质点系的动能定义为各个质点动能之和，即
+\begin{equation}
+	T = \sum_{i=1}^n T_i = \sum_{i=1}^n \frac12 m_i\boldsymbol{v}_i^2
+	\label{chapter2:质点系的动能}
+\end{equation}
+在计算动能时常常用到下面的定理：
+
+\begin{theorem}[K\"onig（柯尼希）定理]
+	\label{chapter2:Konig定理}
+	系统的动能等于位与系统质心处且具有系统质量的质点的动能，再加上系统相对质心运动的动能，即
+	\begin{equation}
+		T = T_C + T'
+	\end{equation}
+	其中
+	\begin{equation}
+		T_C = \frac12 M\boldsymbol{v}_C^2, \quad T' = \sum_{i=1}^n \frac12 m_i\boldsymbol{v}_i'^2
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+根据式\eqref{chapter2:相对质心系的速度}可得
 \begin{align*}
-	\sum_{i,j=1(i \neq j)}^n \mbf{r}_i \times \mbf{f}_{ij} & = \sum_{i,j=1(i\neq j)}^n \mbf{r}_j \times \mbf{f}_{ji} = \frac12 \sum_{i,j=1(i\neq j)}^n (\mbf{r}_i \times \mbf{f}_{ij} + \mbf{r}_j \times \mbf{f}_{ji}) \\
-	& = \frac12 \sum_{i,j=1(i \neq j)}^n (\mbf{r}_i -\mbf{r}_j) \times \mbf{f}_{ij} = \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{r}_{ij} \times \mbf{f}_{ij} = \mbf{0}
+	T & = \sum_{i=1}^n \frac12 m_i\left(\boldsymbol{v}_i'+\boldsymbol{v}_C\right)^2 = \sum_{i=1}^n \left(\frac12 m_i\boldsymbol{v}_i'^2 + m_i \boldsymbol{v}_i'\cdot \boldsymbol{v}_C + \frac12 m_i\boldsymbol{v}_C^2\right) \\
+	& = \sum_{i=1}^n \frac12 m_i\boldsymbol{v}_i'^2 + \left(\sum_{i=1}^nm_i\boldsymbol{v}_i'\right) \cdot \boldsymbol{v}_C + \frac12 \left(\sum_{i=1}^nm_i\right)\boldsymbol{v}_C^2
 \end{align*}
-此处利用了$\mbf{f}_{ij} \parallel \mbf{r}_{ij}$。由此即有{\heiti 质点系的角动量定理}
+其中$\displaystyle\sum_{i=1}^nm_i\boldsymbol{v}_i'$即为质点系在质心系中的动量，根据式\eqref{chapter2:质心系中的系统动量}可知其值为零，定理得证。
+\end{proof}
+
+\subsection{系统动力学基本定理}
+
+我们研究质点系在某个惯性系中的运动，仍采用与上一节相同的符号，则根据Newton第二定律，系统的运动微分方程可以表示为
 \begin{equation}
-	\frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \sum_{i=1}^n \mbf{r}_i \times \mbf{F}_i = \mbf{M}^{(e)}
+	m_i\boldsymbol{a}_i = \boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}, \quad i = 1,2,\cdots,n
+	\label{chapter2:系统的运动微分方程——牛顿第二定律}
 \end{equation}
-即，质点系的总角动量时间变化率等于合外力矩。
+为了研究系统的运动，我们必须在给定初始条件下求解微分方程组\eqref{chapter2:系统的运动微分方程——牛顿第二定律}得到每一个$\boldsymbol{r}_i$随时间的关系式。在大多数情形下，这是不可能做到的。
 
-如果质点系所受合外力矩为零，则质点系的总角动量保持不变。此即为{\heiti 角动量守恒定律}。即如有$\mbf{M}^{(e)} = \mbf{0}$，根据质点系的角动量定理，有
-\begin{equation*}
-	\mbf{M}^{(e)} = \dfrac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \mbf{0}
-\end{equation*}
-即总角动量$\mbf{L} = \text{常矢量}$。
+为了简化方程组\eqref{chapter2:系统的运动微分方程——牛顿第二定律}的求解，我们可以通过研究系统的基本动力学量：动量、角动量和动能，由此得到的一些关系称为{\bf 系统基本动力学基本定理}。如果在某些情形下，这些动力学量保持常数，则可称之为{\bf 守恒定律}\footnote{这里所说的守恒定律更应该被称为“守恒定理”，但实际上在经典力学以外的物理学中，这些守恒关系经常被认为是某种对称性的直接推论而被公理化，从而被称为守恒定律。}。
 
-如果质点系在某方向上合外力矩为零，则质点系的总角动量在该方向上的分量保持不变。即如果有常单位矢量$\mbf{e}$，满足$\mbf{e} \cdot \mbf{M}^{(e)} = 0$，则有
-\begin{equation*}
-	\mbf{e} \cdot \mbf{M}^{(e)} = \mbf{e} \cdot \frac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \frac{\mathrm{d} (\mbf{e} \cdot \mbf{L})}{\mathrm{d} t} = 0
-\end{equation*}
-即总角动量在该方向上的分量$\mbf{e} \cdot \mbf{L} = \text{常数}$。
+首先我们将方程组\eqref{chapter2:系统的运动微分方程——牛顿第二定律}对$i$求和可得
+\begin{equation}
+	\sum_{i=1}^nm_i\boldsymbol{a}_i = \sum_{i=1}^n \boldsymbol{F}_i^{(\mathrm{e})} + \sum_{i=1}^n \boldsymbol{F}_i^{(\mathrm{i})}
+\end{equation}
+上式右端等于外力的主矢$\boldsymbol{R}^{(\mathrm{e})}$，而左端则为
+\begin{equation}
+	\sum_{i=1}^nm_i\boldsymbol{a}_i = \sum_{i=1}^n m_i\frac{\mathd\boldsymbol{v}_i}{\mathd t} = \frac{\mathd}{\mathd t}\sum_{i=1}^n m_i\boldsymbol{v}_i = \dif{\boldsymbol{p}}{t}
+\end{equation}
+由此即可得到质点系的{\bf 动量定理}：
 
-角动量守恒定律在纯质点力学系统中由Newton第三定律保证。
+\begin{theorem}[动量定理]
+	\label{chapter2:质点系的动量定理}
+	系统动量随时间的变化率等于系统外力的主矢，即
+	\begin{equation}
+		\frac{\mathd\boldsymbol{p}}{\mathd t} = \boldsymbol{R}^{(\mathrm{e})}
+		\label{chapter2:质点系的动量定理}
+	\end{equation}
+\end{theorem}
+
+这个定理可以写成积分形式，将方程\eqref{chapter2:质点系的动量定理}两端从$t_1$到$t_2$积分，可得
+\begin{equation}
+	\Delta \boldsymbol{p} = \boldsymbol{p}_2 - \boldsymbol{p}_1 = \int_{t_1}^{t_2}\boldsymbol{R}^{(\mathrm{e})}\mathd t
+	\label{chapter2:动量定理的积分形式}
+\end{equation}
+式\eqref{chapter2:动量定理的积分形式}右端的积分称为时间$t_1$到$t_2$范围内外力的{\bf 外力的冲量}，这说明动量在有限时间内的增量等于该时间内外力的冲量。
+
+根据式\eqref{chapter2:质心动量表达式}，还可以将动量定理表述为下面的定理：
+
+\begin{theorem}[质心运动定理]
+	\label{chapter2:质心运动定理}
+	系统质心的运动就好像系统全部质量集中于质心的一个质点，在等于系统外力主矢的力作用下的运动。即
+	\begin{equation}
+		M\dif{\boldsymbol{v}_C}{t} = \boldsymbol{R}^{(\mathrm{e})}
+	\end{equation}
+\end{theorem}
+
+如果系统是封闭的，则$\boldsymbol{R}^{(\mathrm{e})} = \boldsymbol{0}$，由式\eqref{chapter2:质点系的动量定理}可得{\bf 动量守恒定律}，即：
+
+\begin{theorem}[动量守恒定律]
+	封闭系统在运动中其动量保持为常量。这个结论对于非封闭但外力主矢恒为零的系统也同样适用。
+\end{theorem}
+
+如果外力主矢仅在某一个固定方向$\boldsymbol{e}$上的投影恒为零，那么系统动量在该方向上的投影守恒。即如果系统满足$\boldsymbol{R}^{(\mathrm{e})}\cdot \boldsymbol{e} \equiv 0$，则有$\boldsymbol{p}\cdot \boldsymbol{e} \equiv 0$。
+
+系统对空间中$A$点的角动量由式\eqref{chapter2:系统角动量的定义式}确定，其中参考点$A$可以不与任何质点的位置重合，可以是静止不动的，也可以是作任意运动的，将$A$点的速度记作$\boldsymbol{v}_A$。将式\eqref{chapter2:系统角动量的定义式}两端对时间求导，可得
+\begin{align*}
+	\dif{\boldsymbol{L}}{t} & = \sum_{i=1}^n \left(\dif{\boldsymbol{r}_i}{t} - \dif{\boldsymbol{r}_A}{t}\right)\times \boldsymbol{p}_i + \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_A) \times \dif{\boldsymbol{p}_i}{t} \\
+	& = \sum_{i=1}^n (\boldsymbol{v}_i - \boldsymbol{v}_A) \times \boldsymbol{p}_i + \sum_{i=1}^n (\boldsymbol{r}_i - \boldsymbol{r}_A) \times \boldsymbol{F}_i
+\end{align*}
+由于$\boldsymbol{v}_i \times \boldsymbol{p}_i = \boldsymbol{v}_i \times m_i\boldsymbol{v}_i = \boldsymbol{0}$，所以有
+\begin{equation}
+	\dif{\boldsymbol{L}}{t} = M\boldsymbol{v}_C \times \boldsymbol{v}_A + \boldsymbol{M}_A^{(\mathrm{e})}
+\end{equation}
+式中$\boldsymbol{M}_A^{(\mathrm{e})}$即为质点系所有外力的主矩，这就是角动量定理。
+
+\begin{theorem}[角动量定理]
+	对于以任意速度$\boldsymbol{v}_A$运动的矩心$A$的角动量满足
+	\begin{equation}
+		\dif{\boldsymbol{L}}{t} = M\boldsymbol{v}_C \times \boldsymbol{v}_A + \boldsymbol{M}_A^{(\mathrm{e})}
+		\label{chapter2:质点系对任意矩心的角动量定理}
+	\end{equation}
+	如果矩心$A$是固定的，或者取为质心$C$，系统对固定矩心或质心的角动量对时间的导数等于系统外力对该矩心的主矩，即
+	\begin{equation}
+		\dif{\boldsymbol{L}}{t} = \boldsymbol{M}_A^{(\mathrm{e})}
+		\label{chapter2:质点系的角动量定理}
+	\end{equation}
+\end{theorem}
+
+这个定理同样可以写成积分形式，将式\eqref{chapter2:质点系的角动量定理}两端从$t_1$到$t_2$积分可得
+\begin{equation}
+	\Delta\boldsymbol{L} = \boldsymbol{L}_2 - \boldsymbol{L}_1 = \int_{t_1}^{t_2}\boldsymbol{M}^{(\mathrm{e})}\mathd t
+	\label{chapter2:质点系角动量定理的积分形式}
+\end{equation}
+式\eqref{chapter2:质点系角动量定理的积分形式}右端的积分称为时间$t_1$到$t_2$范围内外力的{\bf 冲量矩}。这说明系统对固定矩心或质心的角动量在有限时间内的增量等于这段时间内外力对该矩心的冲量矩。
+
+如果系统是封闭的，则$\boldsymbol{M}^{(\mathrm{e})} = \boldsymbol{0}$，由式\eqref{chapter2:质点系的角动量定理}可得角动量守恒定律，即：
+
+\begin{theorem}[角动量守恒定律]
+	封闭系统在运动中，系统对任意固定矩心和质心的角动量保持为常量。这对于非封闭但外力对某固定矩心或质心的主矩恒为零的系统也同样适用。
+\end{theorem}
+
+对于质心参考系，其中的角动量满足式\eqref{chapter2:质心系角动量与绝对角动量的关系}，根据角动量定理\eqref{chapter2:质点系的角动量定理}可得
+\begin{align*}
+	\dif{\boldsymbol{L}'}{t} = \dif{\boldsymbol{L}}{t} - \frac{\mathd}{\mathd t}(\boldsymbol{r}_C \times M\boldsymbol{v}_C) = \boldsymbol{M}^{(\mathrm{e})} - \boldsymbol{r}_C \times M\boldsymbol{a}_C
+\end{align*}
+再根据质心运动定理\ref{chapter2:质心运动定理}可得
+\begin{equation}
+	\dif{\boldsymbol{L}'}{t} = \boldsymbol{M}^{(\mathrm{e})} - \boldsymbol{r}_C \times \boldsymbol{R}^{(\mathrm{e})}
+\end{equation}
+根据不同矩心下力矩之间的关系式\eqref{chapter2:不同参考点力矩之间的关系}可得
+\begin{equation}
+	\boldsymbol{M}^{(e)} = \boldsymbol{M}_C^{(\mathrm{e})} + \boldsymbol{r}_C \times\boldsymbol{R}^{(e)}
+\end{equation}
+其中$\boldsymbol{M}_C^{(\mathrm{e})}$表示矩心为质心的外力主矩，于是可得{\bf 质心系的角动量定理}：
+
+\begin{theorem}[质心系的角动量定理]
+	系统的内禀角动量对时间的导数，等于以质心为矩心的外力主矩，即
+	\begin{equation}
+		\frac{\mathd \boldsymbol{L}'}{\mathd t} = \boldsymbol{M}_C^{(e)}
+	\end{equation}
+\end{theorem}
+在大多数情况下，质心系并不是一个惯性参考系，但是其特殊性保证了在质心系中的角动量定理与惯性系的角动量定理具有相同的形式。
+
+设$u$为某个固定轴或过系统质心但方向固定的轴，其方向矢量记作$\boldsymbol{e}$，在方程\eqref{chapter2:质点系对任意矩心的角动量定理}两端点乘$\boldsymbol{e}$可得
+\begin{equation}
+	\frac{\mathd}{\mathd t}(\boldsymbol{L}\cdot \boldsymbol{e}) = M (\boldsymbol{v}_C\times \boldsymbol{v}_A) \cdot \boldsymbol{e} + \boldsymbol{M}_A^{(\mathrm{e})}\cdot \boldsymbol{e}
+\end{equation}
+对于固定轴有$\boldsymbol{v}_A=\boldsymbol{0}$，而对于过系统质心但方向固定的轴有$\boldsymbol{v}_A=\boldsymbol{v}_C$，不论哪种情况都有$(\boldsymbol{v}_C\times \boldsymbol{v}_A) \cdot \boldsymbol{e} = 0$。因此，在这两种情况下有
+\begin{equation}
+	\frac{\mathd}{\mathd t}(\boldsymbol{L}\cdot \boldsymbol{e}) = \boldsymbol{M}_A^{(\mathrm{e})}\cdot \boldsymbol{e}
+\end{equation}
+即，此时只要有外力的主矩在轴$u$上的投影恒为零，即有系统角动量在轴$u$上的投影守恒。
+
+系统的动能由式\eqref{chapter2:质点系的动能}确定，下面我们研究系统动能的演化。
+% todo
 
 \subsection{能量及其守恒定律}
 
