@@ -569,6 +569,7 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 当质点上的作用力有势时
 \begin{equation}
 	\mathd'A = -\frac{\pl V}{\pl \boldsymbol{r}_i} \cdot \mathd\boldsymbol{r}_i = -\mathd V(\boldsymbol{r}_i,t)
+	\label{chapter2:外力有势时的元功是全微分}
 \end{equation}
 即有势力的元功是全微分。因此有势力的全功不依赖于路径，如果路径是闭合的，则有势力的全功为零。
 
@@ -821,282 +822,75 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 \end{equation}
 即，此时只要有外力的主矩在轴$u$上的投影恒为零，即有系统角动量在轴$u$上的投影守恒。
 
-系统的动能由式\eqref{chapter2:质点系的动能}确定，下面我们研究系统动能的演化。
-% todo
-
-\subsection{能量及其守恒定律}
-
-质点的{\heiti 动能}定义为
-\begin{equation}
-	T = \frac12 mv^2
-\end{equation}
-则有
-\begin{equation}
-	\frac{\mathrm{d} T}{\mathrm{d} t} = m\dot{\mbf{v}} \cdot \mbf{v} = \mbf{F} \cdot \mbf{v}
-	\label{动能定理1}
-\end{equation}
-或者
-\begin{equation}
-	\mathrm{d}T = \mbf{F} \cdot \mbf{v}\mathrm{d} t = \mbf{F} \cdot \mathrm{d} \mbf{r}
-	\label{动能定理2}
-\end{equation}
-式\eqref{动能定理1}和式\eqref{动能定理2}表示的关系称为{\heiti 动能定理}。
-
-质点系的动能定义为各个质点动能之和，即
-\begin{equation}
-	T = \sum_{i=1}^n T_i
-\end{equation}
-则有
-\begin{align*}
-	\mathrm{d} T & = \sum_{i=1}^n \mathrm{d} T_i = \sum_{i=1}^n \left(\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}\right) \cdot \mathrm{d} \mbf{r}_i
-\end{align*}
-式中
-\begin{align*}
-	\sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i & = \frac12 \sum_{i,j=1(i\neq j)}^n (\mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i +\mbf{f}_{ji} \cdot \mathrm{d} \mbf{r}_j) = \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot (\mathrm{d}\mbf{r}_i - \mathrm{d} \mbf{r}_j) \\
-	& = \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij}
-\end{align*}
-由此有{\heiti 质点系的动能定理}
-\begin{equation}
-	\mathrm{d} T = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij}
-\end{equation}
-即，质点系总动能增加量等于外力与内力的总功，内力共决定于质点间的相对运动。
-
-如果力$\mbf{F}$可以写作某标量函数的梯度，即
-\begin{equation}
-	\mbf{F} = -\bnb V(\mbf{r})
-\end{equation}
-则该力称为{\heiti 保守力}。根据保守力的定义，可有
-\begin{equation}
-	\mbf{F} \cdot \mathrm{d} \mbf{r} = -\mathrm{d}V
-\end{equation}
-所以
-\begin{equation*}
-	\int_{\mbf{r}_0}^{\mbf{r}} \mbf{F} \cdot \mathrm{d} \mbf{r} = V(\mbf{r}_0) - V(\mbf{r})
-\end{equation*}
-即，保守力做功与路径无关。由此也可得
-\begin{equation}
-	\oint_C \mbf{F} \cdot \mathrm{d} \mbf{r} = 0
-\end{equation}
-即，对任意闭合路径$C$，保守力做功为零。
-
-对于质点系，如果外力是保守力，即满足
-\begin{equation}
-	\mbf{F}_i = -\bnb_i V_i(\mbf{r}_i)
-\end{equation}
-其中
-\begin{equation}
-	\bnb_i = \mbf{e}_1 \frac{\pl}{\pl x_i} + \mbf{e}_2 \frac{\pl}{\pl y_i} + \mbf{e}_3 \frac{\pl}{\pl z_i}
-\end{equation}
-所以有
-\begin{equation}
-	\mbf{F}_i \cdot \mathrm{d} \mbf{r}_i = -\mathrm{d} V_i
-\end{equation}
-定义{\heiti 质点系外势能}为
-\begin{equation}
-	V^{(e)} = \sum_{i=1}^n V_i
-\end{equation}
-将有
-\begin{equation}
-	\sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i = -\sum_{i=1}^n \mathrm{d} V_i = -\mathrm{d} V^{(e)}
-\end{equation}
-即，保守外力总功等于外势能减少。
-
-如果质点系的内力是保守力，即有
-\begin{align*}
-	\mbf{f}_{ij} = -\bnb_i V_{ij}(\mbf{r}_{ij}) \\
-	\mbf{f}_{ji} = -\bnb_j V_{ij}(\mbf{r}_{ij})
-\end{align*}
-为一对保守内力，其中
-\begin{align*}
-	& \mbf{r}_{ij} = \mbf{r}_i - \mbf{r}_j \\
-	& \bnb_i = \bnb_{ij} = -\bnb_j
-\end{align*}
-由此内力可以表示为
-\begin{equation*}
-	\mbf{f}_{ij} = -\bnb_{ij} V_{ij}(\mbf{r}_{ij})
-\end{equation*}
-即有
-\begin{equation}
-	\mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i + \mbf{f}_{ji} \cdot \mathrm{d} \mbf{r}_j = -\mathrm{d} V_{ij}
-\end{equation}
-定义{\heiti 质点系内势能}为
-\begin{equation}
-	V^{(i)} = \frac12 \sum_{i,j=1(i \neq j)}^n V_{ij}
-\end{equation}
-则有
-\begin{equation}
-	\sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_i = \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} = -\frac12 \sum_{i,j=1(i\neq j)}^n \mathrm{d} V_{ij} = -\mathrm{d} V^{(i)}
-\end{equation}
-即，保守内力总功等于内势能减少。
-
-质点系的总势能定义为
-\begin{equation}
-	V(\mbf{r}_1,\mbf{r}_2,\cdots,\mbf{r}_n) = V^{(e)} + V^{(i)}
-\end{equation}
-则有
-\begin{align*}
-	-\bnb_i V^{(e)} & = -\sum_{j=1}^n \bnb_i V_j = \sum_{j=1}^n \delta_{ij} \mbf{F}_i = \mbf{F}_i \\
-	-\bnb_i V^{(i)} & = -\frac12 \sum_{j,k=1(j \neq k)}^n \bnb_i V_{jk} = \frac12 \sum_{j,k=1(j\neq k)}^n (\delta_{ij} \mbf{f}_{ik} + \delta_{ik} \mbf{f}_{ij}) \\
-	& = \frac12 \sum_{k=1(k\neq i)}^n \mbf{f}_{ik} + \frac12 \sum_{j(j\neq i)} \mbf{f}_{ij} = \sum_{j=1(j\neq i)}^n \mbf{f}_{ij}
-\end{align*}
-所以有
-\begin{equation}
-	\mbf{F}_i + \sum_{j=1(j\neq i)}^n \mbf{f}_{ij} = -\bnb_i V
-\end{equation}
-当所有力都为保守力（或者非保守力不做功）时，将有
-\begin{equation}
-	\mathrm{d} T = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} = -\mathrm{d} V^{(e)} - \mathrm{d} V^{(i)} = -\mathrm{d} V
-\end{equation}
-定义{\heiti 总能量}\footnote{此处仅指机械能。}为
-\begin{equation}
-	E = T+V
-\end{equation}
-则在所有力都为保守力（或者非保守力不做功）时，将有
-\begin{equation}
-	\mathrm{d} E = 0
-	\label{质点系能量守恒定律}
-\end{equation}
-式\eqref{质点系能量守恒定律}即为能量守恒定律。
-
-\subsection{质心参考系}
-
-质点系的{\heiti 质心}定义为
-\begin{equation}
-	\mbf{r}_C = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{r}_i}{M} = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{r}_i}{\displaystyle \sum_{i=1}^n m_i}
-\end{equation}
-质心的速度为
-\begin{equation}
-	\mbf{v}_C = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{v}_i}{M}
-\end{equation}
-加速度为
-\begin{equation}
-	\mbf{a}_C = \frac{\displaystyle \sum_{i=1}^n m_i \mbf{a}_i}{M}
-\end{equation}
-
-显然质点系的总动量可以用质心速度表示为
-\begin{equation*}
-	\mbf{p} = M\mbf{v}_C
-\end{equation*}
-由此可有
-\begin{equation}
-	\frac{\mathrm{d} \mbf{p}}{\mathrm{d} t} = M\mbf{a}_C = \mbf{F}^{(e)}
-	\label{质心运动定理}
-\end{equation}
-式\eqref{质心运动定理}表示的关系即为{\heiti 质心运动定理}。即，质点系的整体运动可视为全部质量集中于质心的单质点运动。
-
-质心运动定理是引进质点概念的动力学基础。
-
-\subsection{质心参考系的运动定理}
-
-以质心为原点，并随之平动的参考系称为{\heiti 质心参考系}或{\heiti 质心系}。一般为非惯性系。
-
-在质心系中，各质点的位矢和速度为
+系统的动能由式\eqref{chapter2:质点系的动能}确定，下面我们研究系统动能的演化。在式\eqref{chapter2:质点系的动能}两端求微分可得
 \begin{align}
-	\mbf{r}'_i & = \mbf{r}_i - \mbf{r}_C \\
-	\mbf{v}'_i & = \mbf{v}_i - \mbf{v}_C
+	\mathd T & = \sum_{i=1}^n m_i\boldsymbol{v}_i \cdot \boldsymbol{a}_i\mathd t = \sum_{i=1}^n m_i\boldsymbol{a}_i \cdot \mathd \boldsymbol{r}_i
 \end{align}
-即为各质点相对质心的运动（质点系的内部运动）。
+将系统的运动微分方程\eqref{chapter2:系统的运动微分方程——牛顿第二定律}带入，可得
+\begin{equation}
+	\mathd T = \sum_{i=1}^n (\boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}) \cdot \mathd \boldsymbol{r}_i = \mathd' A^{(\mathrm{e})} + \mathd' A^{(\mathrm{i})}
+\end{equation}
+这就是系统的动能定理：
 
-\subsubsection{质心系动量定理}
+\begin{theorem}[动能定理]
+	系统动能的微分等于质点系内所有内力和外力的元功之和，即
+	\begin{equation}
+		\mathd T = \mathd' A^{(\mathrm{e})} + \mathd' A^{(i)}
+		\label{chapter2:系统的动能定理}
+	\end{equation}
+\end{theorem}
 
-在质心系中，总动量为
+这个定理可以协程积分形式，将式\eqref{chapter2:系统的动能定理}两端从$t_1$到$t_2$积分可得
 \begin{equation}
-	\mbf{p}' = \sum_{i=1}^n m_i \mbf{v}'_i = \sum_{i=1}^n m_i(\mbf{v}_i - \mbf{v}_C) = \mbf{p} - M\mbf{v}_C = \mbf{0}
+	\Delta T = T_2 - T_1 = \int_{t_1}^{t_2}\mathd' A^{(\mathrm{e})} + \int_{t_1}^{t_2}\mathd' A^{(i)}
 \end{equation}
-即，在质心系中质点系的总动量为零。
+这说明系统的动能在有限时间内的增量等于系统所有内力和外力做功之和。
 
-\subsubsection{质心系角动量定理}
-在质心系中，质点系的总角动量
+设系统内所有内力和外力都有势，并且势能$V$不显含时间，根据式\eqref{chapter2:外力有势时的元功是全微分}可知此时的元功是全微分，即
 \begin{equation}
-	\mbf{L}' = \sum_{i=1}^n \mbf{r}'_i \times \mbf{p}'_i = \sum_{i=1}^n \mbf{r}'_i \times m_i \mbf{v}'_i
+	\mathd' A^{(\mathrm{e})} + \mathd' A^{(i)} = -\mathd V
 \end{equation}
-即为质点系的{\heiti 内秉角动量}或{\heiti 自旋角动量}。质心的角动量
+由此可得
 \begin{equation}
-	\mbf{L}_C = \mbf{r}_C \times M\mbf{v}_C
+	\mathd T+ \mathd V = 0
+	\label{chapter2:机械能守恒推导1}
 \end{equation}
-称为质点系的{\heiti 轨道角动量}。在实验室参考系中的总角动量为
-\begin{align*}
-	\mbf{L} & = \sum_{i=1}^n (\mbf{r}_C + \mbf{r}'_i) \times m_i(\mbf{v}_C + \mbf{v}'_i) \\
-	& = \mbf{r}_C \times M\mbf{v}_C + \mbf{r}_C\times \mbf{p}' + \sum_{i=1}^n m_i \mbf{r}'_i \times \mbf{v}_C + \sum_{i=1}^n \mbf{r}'_i \times m_i \mbf{v}'_i \\
-	& = \mbf{r}_C \times M\mbf{v}_C + \sum_{i=1}^n \mbf{r}'_i \times m_i \mbf{v}'_i
-\end{align*}
-所以有
+动能和势能之和称为{\bf 机械能}\footnote{如果此处的系统是纯力学系统，不包含力学作用以外的其他作用（如静电力等），这里的机械能就是常规意义下的机械能。但如果此处系统不是纯力学系统，那么此处的机械能即表示动能和势能之和，不必要与传统意义上的机械能定义相同。}，即$E=T+V$，由式\eqref{chapter2:机械能守恒推导1}可得
 \begin{equation}
-	\mbf{L} = \mbf{L}_C+\mbf{L}'
+	E = T + V = \text{常数}
 \end{equation}
-即，质点系的总角动量等于轨道角动量与内秉角动量之和。对于力矩，可有
-\begin{equation}
-	\mbf{M}^{(e)} = \sum_{i=1}^n \mbf{r}_i \times \mbf{F}_i = \sum_{i=1}^n (\mbf{r}_C+\mbf{r}'_i) \times \mbf{F}_i = \mbf{r}_C \times \mbf{F}^{(e)} + \mbf{M}'^{(e)}
-\end{equation}
-式中，$\displaystyle \mbf{M}'^{(e)} = \sum_{i=1}^n \mbf{r}'_i \times \mbf{F}_i$表示外力对质心的力矩。考虑到轨道角动量$\mbf{L}_C = \mbf{r}_C \times M\mbf{v}_C$，则有
-\begin{equation}
-	\frac{\mathrm{d} \mbf{L}_C}{\mathrm{d} t} = \mbf{v}_C \times M\mbf{v}_C + \mbf{r}_C \times M \mbf{a}_C = \mbf{r}_C \times \mbf{F}^{(e)}
-	\label{质心角动量定理}
-\end{equation}
-即，质点系的轨道角动量时间变化率等于外力集中于质心产生的合力矩。根据角动量定理$\dfrac{\mathrm{d} \mbf{L}}{\mathrm{d} t} = \mbf{M}^{(e)}$，以及$\mbf{L} = \mbf{L}_C + \mbf{L}'$，可有
-\begin{equation}
-	\frac{\mathrm{d} \mbf{L}'}{\mathrm{d} t} = \mbf{M}'^{(e)}
-	\label{质心系角动量定理}
-\end{equation}
-即，质点系的内秉角动量时间变化率等于相对于质心的合外力矩。式\eqref{质心角动量定理}和式\eqref{质心系角动量定理}表示的关系即为{\heiti 质心系角动量定理}。
+这便是{\bf 机械能守恒定律}。
+\begin{theorem}[机械能守恒定律]
+	如果系统内所有力都有势且势能不显含时间，则系统在运动过程中其机械能保持常数。事实上，前面所述条件可以放宽，只需要系统在其真实位移上做功非零的力有势即可。
+\end{theorem}
 
-\subsubsection{质心系动能定理}
-
-定义{\heiti 质点系整体运动动能}为
+在质心参考系中，根据K\"onig定理\ref{chapter2:Konig定理}可得
 \begin{equation}
-	T_C = \frac12 M v_C^2
+	\mathd T = \mathd T_C + \mathd T' = M\boldsymbol{v}_C \cdot \boldsymbol{a}_C\mathd t
 \end{equation}
-以及{\heiti 质点系内动能}为
+根据质心运动定理\ref{chapter2:质心运动定理}可得
 \begin{equation}
-	T' = \sum_{i=1}^n \frac12 m_i v'_i{}^2
+	M\boldsymbol{a}_C = \boldsymbol{R}^{(\mathrm{e})}
 \end{equation}
-则有
+因此有
+\begin{equation}
+	\mathd T = \mathd T' + \boldsymbol{R}^{(\mathrm{e})} \cdot \mathd \boldsymbol{r}_C
+	\label{chapter2:质心动能定理推导1}
+\end{equation}
+另一方面，由于
 \begin{align}
-	T & = \frac12 \sum_{i=1}^n m_i(\mbf{v}_C + \mbf{v}'_i) \cdot (\mbf{v}_C + \mbf{v}'_i) = \frac12 M v_C^2 + \mbf{v}_C \cdot \mbf{p}' + \frac12\sum_{i=1}^n m_i v'_i{}^2 \nonumber \\
-	& = T_C + T' \label{Konig定理}
+	\mathd T & = \sum_{i=1}^n (\boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}) \cdot \mathd \boldsymbol{r}_i = \sum_{i=1}^n (\boldsymbol{F}_i^{(\mathrm{e})} + \boldsymbol{F}_i^{(\mathrm{i})}) \cdot \mathd (\boldsymbol{r}_i' + \boldsymbol{r}_C) \nonumber \\ 
+	& = \boldsymbol{R}^{(\mathrm{e})} \cdot \boldsymbol{r}_C + \mathd' A'^{(\mathrm{e})} + \mathd' A'^{(\mathrm{i})}
+	\label{chapter2:质心动能定理推导2}
 \end{align}
-式\eqref{Konig定理}表示的关系称为{\heiti K\"onig（柯尼希）定理}。即，质点系总动能等于整体运动动能与内动能之和。
-
-根据整体运动动能的定义，有
-\begin{equation}
-	\frac{\mathrm{d} T_C}{\mathrm{d} t} = M\mbf{v}_C \cdot \mbf{a}_C = \mbf{F}^{(e)} \cdot \mbf{v}_C
-\end{equation}
-或者
-\begin{equation}
-	\mathrm{d}T_C = \mbf{F}^{(e)} \cdot \mathrm{d} \mbf{r}_C
-	\label{质心动能定理}
-\end{equation}
-即，质点系整体运动动能增量等于外力集中于质心做的总功。又考虑到相对位矢是Galileo变换的不变量，即有
-\begin{equation*}
-	\mbf{r}_{ij} = \mbf{r}_i - \mbf{r}_j = \mbf{r}'_i - \mbf{r}'_j = \mbf{r}'_{ij}
-\end{equation*}
-可得
-\begin{align*}
-	\mathrm{d} T & = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} \\
-	& = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}_C + \sum_i \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i + \frac12 \sum_{i,j=1(i\neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij} \\
-	& = \mbf{F}^{(e)} \cdot \mathrm{d} \mbf{r}_C + \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i + \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij}
-\end{align*}
-所以有
-\begin{equation}
-	\mathrm{d} T' = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i + \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij}
-	\label{质心系动能定理}
-\end{equation}
-式\eqref{质心动能定理}和式\eqref{质心系动能定理}表示的关系称为{\heiti 质心系动能定理}。即，质点系内动能增量等于外力与内力在质心系内做的总功。
-
-如果内力均为保守力，则有
-\begin{equation*}
-	\frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}_{ij} = \frac12 \sum_{i,j=1(i \neq j)}^n \mbf{f}_{ij} \cdot \mathrm{d} \mbf{r}'_{ij} = -\mathrm{d} V^{(i)}
-	\label{质点系内势能}
-\end{equation*}
-式中$V^{(i)}$称为{\heiti 质点系内势能}。定义{\heiti 质点系内能}为
-\begin{equation}
-	E' = T'+V^{(i)}
-\end{equation}
-由式\eqref{质点系内势能}和式\eqref{质心系动能定理}可得
-\begin{equation}
-	\mathrm{d} E' = \sum_{i=1}^n \mbf{F}_i \cdot \mathrm{d} \mbf{r}'_i
-\end{equation}
-即，质点系内能增量等于外力在质心系内做的总功。
+结合式\eqref{chapter2:质心动能定理推导1}和式\eqref{chapter2:质心动能定理推导2}可得下面的质心系动能定理：
+\begin{theorem}[质心系的动能定理]
+	系统在质心系中的动能微分等于质点系内所有内力和外力在质心系内的元功之和，即
+	\begin{equation}
+		\mathrm{d}T' = \mathd' A'^{(\mathrm{e})} + \mathd' A'^{(\mathrm{i})}
+	\end{equation}
+\end{theorem}
+质心系的动能定理与惯性系内的动能定理具有相同的形式，这是由质心系的特殊地位造成的。
 
 \begin{example}
 在铅直平面内有一光滑的半圆形管道（如图\ref{第一章例7图}所示），半径为$R$，管道内有一长为$\pi R$，质量线密度为$\rho$的均匀链条。假定链条由于轻微扰动而从管口向外滑出，试用角动量定理求出链条位于任意角度$\theta$时的速度$v$。
@@ -1322,4 +1116,252 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 即为$v_0$和$h$应满足的关系。
 \end{solution}
 
-\input{chapter/vectorial-mechanics/chapter1_mass.tex}
+\section{变质量系统}
+
+\subsection{变质量系统的概念}
+
+如果系统的质量或者组成系统的质点其中之一，或者两者同时随时间变化，这个系统就称为{\bf 变质量系统}。
+
+在自然现象中，变质量系统很常见。例如浮冰由于融化而减少质量，又由于结冰或者落雪而增加质量。在工程技术中，最常提到的变质量系统就是火箭了。
+
+对于变质量系统的研究，总是做这样的假设：系统分离或并入的质量是小量，而且每次并入或分离质量的时间间隔是小量。在这样的假设下，离开系统和进入系统的质量都是时间的连续可微的函数。
+
+如果将系统的质量记作$M(t)$，将$t=0$时的质量记作$M_0$，则它随时间的变化规律为
+\begin{equation}
+	M(t) = M_0 - M_1(t) + M_2(t)
+	\label{chapter1:变质量系统的质量关系}
+\end{equation}
+其中$M_1(t)$表示累计离开系统的质量，而$M_2(t)$表示累计进入系统的质量，$M_1,M_2$都是随时间的非递减的非负连续可微函数。
+
+\subsection{变质量系统的动量定理和角动量定理}
+
+设某个质点系相对惯性参考系$Oxyz$运动，研究相对$Oxyz$运动和变形的封闭曲面$S$。系统内的各个质点按照各自的运动可以进入或者离开曲面$S$围成的空间区域，那么曲面$S$围成的质点即组成一个变质量系统，将其动量用$\mbf{p}$表示。
+
+设在时刻$t=t'$，系统的动量为$\mbf{p}$。而在$t=t''=t'+\Delta t$的时刻，系统的动量记作$\mbf{p}+\Delta \mbf{p}$。显然有
+\begin{equation}
+	\Delta \mbf{p} = \Delta \mbf{p}^*-\Delta \mbf{p}_1+\Delta \mbf{p}_2
+	\label{chapter1:变质量系统的动量定理-初步}
+\end{equation}
+其中，$\Delta\mbf{p}_1$为在$\Delta t$时间内离开变质量系统的所有质点带走的动量，$\Delta\mbf{p}_2$为在这段时间内进入系统的所有质点带来的动量，而$\Delta\mbf{p}^*$则表示在这段时间内一直在系统内的所有质点本身的动量改变。
+
+% \begin{figure}[htb]
+% \centering
+% \begin{asy}
+	% size(300);
+	% //变质量系统1
+	% picture pic1;
+	% pair O,F,v,u,m;
+	% real rO,rm,lF,lv,lu;
+	% O = (0,0);
+	% rO = 2;
+	% fill(pic1,yscale(2/3)*scale(rO)*unitcircle,yellow);
+	% label(pic1,"$m$",O);
+	% v = (1,0.7);
+	% lv = 1.2;
+	% draw(pic1,Label("$\boldsymbol{v}$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
+	% F = (-1.3,-0.8);
+	% lF = 1.2;
+	% draw(pic1,Label("$\boldsymbol{F}$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
+	% rm = 0.7;
+	% m = (3,0.4);
+	% fill(pic1,shift(m)*yscale(2/3)*scale(rm)*unitcircle,green);
+	% label(pic1,"$\Delta m$",m);
+	% u = (-0.1,0.2)+m;
+	% lu = 0.9;
+	% draw(pic1,Label("$\boldsymbol{u}$",MidPoint,Relative(E)),u--u+lu*dir(135),Arrow);
+	% label(pic1,"$t$",(0,-1.5),S);
+	% add(pic1);
+	% //变质量系统2
+	% picture pic2;
+	% pair O,F,v,u,m;
+	% real rO,rm,lF,lv,lu;
+	% O = (0,0);
+	% rO = 2;
+	% fill(pic2,yscale(2/3)*scale(rO)*unitcircle,yellow);
+	% label(pic2,"$m'=m+\Delta m$",O);
+	% v = (1,0.7);
+	% lv = 1.2;
+	% draw(pic2,Label("$\boldsymbol{v}'$",MidPoint,Relative(W)),v--v+lv*dir(30),Arrow);
+	% F = (-1.3,-0.8);
+	% lF = 1.2;
+	% draw(pic2,Label("$\boldsymbol{F}'$",MidPoint,Relative(W)),F-lF*dir(30)--F,Arrow);
+	% label(pic2,"$t'=t+\Delta t$",(0,-1.5),S);
+	% add(shift((6.5,0))*pic2);
+	% //draw(O--(9,0),invisible);
+% \end{asy}
+% \caption{变质量系统}
+% \label{变质量系统}
+% \end{figure}
+
+设$\mbf{F}^{(e)}$是$t'$时刻作用在系统上的合外力，那么根据动量定理可得
+\begin{equation}
+	\dif{\mbf{p}^*}{t} = \mbf{F}^{(e)}
+\end{equation}
+在式\eqref{chapter1:变质量系统的动量定理-初步}两端除以$\Delta t$并取$\Delta t\to 0$的极限可得
+\begin{equation}
+	\dif{\mbf{p}}{t} = \mbf{F}^{(e)}+\mbf{F}^{(\text{ex})}
+\end{equation}
+其中$\mbf{F}^{(\text{ex})} = \mbf{F}_1+\mbf{F}_2$，而
+\begin{equation}
+	\mbf{F}_1 = -\lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_1}{\Delta t},\quad \mbf{F}_2 = \lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_2}{\Delta t}
+\end{equation}
+矢量$\mbf{F}_1$和$\mbf{F}_2$具有力的量纲，称为{\bf 反推力}。反推力$\mbf{F}_1$是由质点分离引起的，反推力$\mbf{F}_2$是由质点并入引起的。
+
+设惯性参考系$Oxyz$中的固定参考点为$A$，则类似前面的讨论可得变质量系统的角动量定理
+\begin{equation}
+	\dif{\mbf{L}_A}{t} = \mbf{M}_A^{(e)} + \mbf{M}_A^{(\text{ex})}
+\end{equation}
+其中$\mbf{L}_A$为系统对$A$点的角动量，$\mbf{M}_A^{(e)}$为系统受到的对$A$点的合外力矩，而$\mbf{M}_A^{(\text{ex})} = \mbf{M}_{A1} + \mbf{M}_{A2}$是变质量系统的附加力矩，其中
+\begin{equation}
+	\mbf{M}_{A1} = -\lim_{\Delta t\to 0} \frac{\Delta \mbf{L}_{A1}}{\Delta t},\quad \mbf{M}_{A2} =  \lim_{\Delta t\to 0} \frac{\Delta \mbf{L}_{A2}}{\Delta t}
+\end{equation}
+这里的$\Delta \mbf{L}_{A1}$为在$\Delta t$时间内离开变质量系统的所有质点的角动量，$\Delta \mbf{L}_{A2}$为在这段时间内进入系统的所有质点的角动量。
+
+\subsection{变质量质点的运动微分方程}
+
+作为变质量系统的一种特殊情况，现在来考虑变质量质点的运动微分方程。其质量变化同样满足式\eqref{chapter1:变质量系统的质量关系}，即
+\begin{equation}
+	M(t) = M_0 - M_1(t) + M_2(t)
+	\label{chapter1:变质量系统的质量关系-重写}
+\end{equation}
+如果记$\mbf{u}_1$为$t'$时刻离开变质量质点的微粒的速度，$\mbf{u}_2$为$t'$时刻并入质点的微粒的速度，那么精确到$\Delta t$和$\Delta M$的一阶小量，可有
+\begin{equation}
+	\Delta \mbf{p}_1 = \Delta M_1\mbf{u}_1,\quad \Delta \mbf{p}_2 = \Delta M_2\mbf{u}_2
+\end{equation}	
+由此可得
+\begin{equation}
+	\mbf{F}_1 = -\lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_1}{\Delta t} = -\dif{M_1}{t}\mbf{u}_1,\quad \mbf{F}_2 = \lim_{\Delta t\to 0} \frac{\Delta \mbf{p}_2}{\Delta t} = \dif{M_2}{t}\mbf{u}_2
+\end{equation}
+设$\mbf{v}$为变质量质点的速度，则其动量为
+\begin{equation}
+	\mbf{p} = M\mbf{v}
+\end{equation}
+则有
+\begin{equation}
+	\dif{M}{t}\mbf{v}+M\dif{\mbf{v}}{t} = \mbf{F}^{(e)} - \dif{M_1}{t}\mbf{u}_1 + \dif{M_2}{t}\mbf{u}_2
+	\label{chapter1:广义密歇尔斯基方程-初步}
+\end{equation}
+将式\eqref{chapter1:变质量系统的质量关系-重写}代入方程\eqref{chapter1:广义密歇尔斯基方程-初步}中可得
+\begin{equation}
+	M\dif{\mbf{v}}{t} = \mbf{F}^{(e)} - \dif{M_1}{t}(\mbf{u}_1-\mbf{v}) + \dif{M_2}{t}(\mbf{u}_2-\mbf{v})
+	\label{chapter1:广义密歇尔斯基方程}
+\end{equation}
+方程\eqref{chapter1:广义密歇尔斯基方程}即为变质量质点的运动微分方程，称为{\bf 广义Meshcherskii方程}\footnote{Meshcherskii，密歇尔斯基，前苏联力学家。}。在方程\eqref{chapter1:广义密歇尔斯基方程}中，$\mbf{u}_1-\mbf{v}=\mbf{u}_{1r}$是分离微粒相对质点的速度，而$\mbf{u}_2-\mbf{v}=\mbf{u}_{2r}$是并入微粒相对质点的速度。
+
+如果只有分离微粒而没有并入微粒，此时$M_2(t)\equiv 0$，此时方程\eqref{chapter1:广义密歇尔斯基方程}变为
+\begin{equation}
+	M\dif{\mbf{v}}{t} = \mbf{F}^{(e)} + \dif{M}{t}\mbf{u}_{1r}
+	\label{chapter1:密歇尔斯基方程}
+\end{equation}
+方程\eqref{chapter1:密歇尔斯基方程}称为{\bf Meshcherskii方程}。由Meshcherskii方程\eqref{chapter1:密歇尔斯基方程}可以看出，微粒分离等效于在质点上作用附加的反推力$\mbf{F}_1 = \dif{M}{t}\mbf{u}_{1r}$。
+
+\begin{example}[重力场中的火箭]
+在假设火箭竖直运动且喷气速度恒定，其所受外力只有恒定重力$\mbf{F}^{(e)} = -Mg\mbf{e}_3$的情况下求解火箭的运动。
+\end{example}
+\begin{solution}
+相对火箭的喷气速度
+\begin{equation*}
+	\mbf{u}-\mbf{v} = -u_r\mbf{e}_3
+\end{equation*}
+此时火箭的运动方程即为Meshcherskii方程\eqref{chapter1:密歇尔斯基方程}
+\begin{equation*}
+	M\frac{\mathrm{d} v}{\mathrm{d} t} = -Mg - \dif{M}{t}u_r
+\end{equation*}
+化简为
+\begin{equation*}
+	\mathrm{d} v = -g\mathd t - u_r \frac{\mathd M}{M}
+\end{equation*}
+直接积分，即可得末速度
+\begin{equation*}
+	v_f = v_i + v_r \ln \frac{M_i}{M_f} - gt_f = v_i + v_r \ln \left(1+\frac{|\Delta M|}{M_f}\right) - gt_f
+\end{equation*}
+提高火箭末速度的方法：
+\begin{itemize}
+	\item 提高喷气速度；
+	\item 用级连法提高燃料所占质量比；
+	\item 提高燃烧速度，减少加速时间。
+\end{itemize}
+\end{solution}
+
+\begin{example}
+一轻绳跨过定滑轮的两端，一端挂着质量为$m$的重物，另一端和线密度为$\rho$的软链相连。开始时软链全部静止在地上，重物亦静止，后来重物下降，并将软链向上提起。问软链最后可提起多高？
+\begin{figure}[htb]
+\centering
+\begin{asy}
+	size(300);
+	//第一章例10图
+	pair O;
+	real r,l1,l2,hand,a,T;
+	O = (0,0);
+	r = 1;
+	l1 = 4;
+	l2 = 6;
+	T = 3;
+	hand = 2;
+	a = 0.6;
+	draw(scale(r)*unitcircle);
+	draw(O--(0,hand),linewidth(3bp));
+	draw((-r,0)--(-r,-l1));
+	draw((-r,0)--(-r-2*a,0));
+	draw((-r,-l1)--(-r-2*a,-l1));
+	draw(Label("$X$",MidPoint,W),(-r-1.5*a,0)--(-r-1.5*a,-l1),Arrows);
+	fill(box((-r-a,-l1-a),(-r+a,-l1+a)),red);
+	dot((-r,-l1));
+	draw(Label("$T$",EndPoint,E),(-r,-l1)--(-r,-l1)+dir(90),Arrow);
+	draw(Label("$Mg$",EndPoint,E),(-r,-l1)--(-r,-l1)+dir(-90),Arrow);
+	draw((r,0)--(r,-l2+0.1));
+	draw((r,-T)--(r,-l2+0.1)..(r+0.1,-l2)--(r+3*a,-l2),blue+linewidth(3bp));
+	dot((r,-(T+l2)/2));
+	draw(Label("$\rho gx$",EndPoint,W),(r,-(T+l2)/2)--(r,-(T+l2)/2)+dir(-90),Arrow);
+	draw(Label("$T$",EndPoint,E),(r,-T)--(r,-T)+dir(90),Arrow);
+	draw((r,-T)--(r+2*a,-T));
+	draw((r,-l2)--(r+2*a,-l2));
+	draw(Label("$x$",MidPoint,E),(r+1.5*a,-T)--(r+1.5*a,-l2),Arrows);
+	//draw(O--(1.5,0),invisible);
+\end{asy}
+\caption{例\theexample}
+\label{第一章例10图}
+\end{figure}
+\end{example}
+\begin{solution}
+地面上的软链在被提起时的速度为$u =0$，根据变质量系统的运动微分方程\eqref{chapter1:密歇尔斯基方程}即有
+\begin{equation*}
+	\rho x \ddot{x} + \rho \dot{x} \dot{x} = T - \rho gx
+\end{equation*}
+对左端物体有
+\begin{equation*}
+	M\ddot{X} = Mg - T
+\end{equation*}
+约束为
+\begin{equation*}
+	\dot{X} = \dot{x}
+\end{equation*}
+消去无关变量即有
+\begin{equation*}
+	\rho x \ddot{x} + \rho \dot{x} \dot{x} + M\ddot{x} = Mg - \rho g x
+\end{equation*}
+可化为
+\begin{equation*}
+	\frac{\mathrm{d}}{\mathrm{d} t} [(M+\rho x) \dot{x}] = (M-\rho x) g
+\end{equation*}
+即
+\begin{equation*}
+	\dot{x} \frac{\mathrm{d}}{\mathrm{d} x} [(M+\rho x) \dot{x}] = (M-\rho x) g
+\end{equation*}
+因此
+\begin{equation*}
+	\frac12 \frac{\mathrm{d}}{\mathrm{d} x} [(M+\rho x) \dot{x}]^2 = (M-\rho x)(M+\rho x) g
+\end{equation*}
+积分，并考虑到$\dot{x}\big|_{x=0} = 0$，即得
+\begin{equation*}
+	\frac12 \left[(M+\rho x)\dot{x}\right]^2 = \left(M^2 - \frac13 \rho^2 x^2\right) gx
+\end{equation*}
+当软链升到最高时，有$\dot{x}\big|_{t=t_{max}} = 0$，即有
+\begin{equation*}
+	\left(M^2 - \frac13 \rho^2 x^2_{max}\right) gx_{max} = 0
+\end{equation*}
+由此得最大高度
+\begin{equation*}
+	x_{max} = \frac{\sqrt{3}M}{\rho}
+\end{equation*}
+\end{solution}
