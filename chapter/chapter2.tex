@@ -690,7 +690,7 @@ Lagrange函数为
 \begin{equation*}
 	Q_\alpha^* = \sum_{\beta=1}^s \gamma_{\alpha\beta}\dot{q}_\beta\quad (\alpha=1,2,\cdots,s)
 \end{equation*}
-如果系数矩阵$\begin{pmatrix} \gamma_{\alpha\beta} \end{pmatrix}$是反对称的$\gamma_{\alpha\beta}=\gamma_{\beta\alpha}$，那么必然有
+如果系数矩阵$\begin{pmatrix} \gamma_{\alpha\beta} \end{pmatrix}$是反对称的$\gamma_{\alpha\beta}+\gamma_{\beta\alpha}=0$，那么必然有
 \begin{equation*}
 	N^* = \sum_{\alpha=1}^s Q_\alpha^*\dot{q}_\alpha = \sum_{\alpha,\beta=1}^s \gamma_{\alpha\beta} \dot{q}_\alpha\dot{q}_\beta = 0
 \end{equation*}
@@ -749,7 +749,7 @@ Lagrange函数为
 
 \subsection{广义势·广义势系统的Lagrange函数}
 
-如果质点系中的质点所受外力可以用标量函数$U(\mbf{r},\dot{\mbf{r}},t)$表示为\footnote{与$\dfrac{\pl}{\pl \mbf{r}}$的含义类似，此处$\dfrac{\pl}{\pl \dot{\mbf{r}}_i}$定义为\begin{equation*} \frac{\pl}{\pl \dot{\mbf{r}}_i} = \mbf{e}_1 \frac{\pl}{\pl \dot{x}_i} + \mbf{e}_2 \frac{\pl}{\pl \dot{y}_i} + \mbf{e}_3 \frac{\pl}{\pl \dot{z}_i} \end{equation*}}
+如果质点系中的质点所受外力可以用标量函数$U(\mbf{r},\dot{\mbf{r}},t)$表示为
 \begin{equation}
 	\mbf{F}_i = \frac{\mathrm{d}}{\mathrm{d} t} \frac{\pl U}{\pl \dot{\mbf{r}}_i} - \frac{\pl U}{\pl \mbf{r}_i}\quad (i = 1,2,\cdots,n)
 	\label{广义势关系}

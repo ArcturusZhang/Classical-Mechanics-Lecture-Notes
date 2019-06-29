@@ -6,15 +6,11 @@
 
 经典力学的基础是Newton动力学定律（公理），这些公理是一些数学假设，其正确性由人类几个世纪的观察和实验得以验证。在上一章中曾提到，经典力学的时空观是绝对空间和绝对时间的组合，而相对于绝对空间作匀速直线运动的参考系称为{\bf 惯性参考系}。经典力学认为所有的惯性参考系对于所有的力学关系都是等价的，即力学定律和方程不依赖于具体的惯性参考系的选择，这被称为{\bf Galileo相对性原理}。
 
-% \subsection{Newton第一定律}
-
 \begin{law}[Newton第一定律]
 	如果质点上没有力的作用，它将保持静止或匀速直线运动。
 \end{law}
 
 Newton第一定律也被称为{\bf 惯性公理}。在惯性公理中，这种没有力作用的质点称为孤立质点。惯性公理事实上假定了惯性参考系的存在，并断言存在这样的惯性参考系使得孤立质点相对于其呈静止或匀速直线运动。
-
-% \subsection{Newton第二定律}
 
 \begin{law}[Newton第二定律]
 	当质点受力作用时，其加速度与力成正比，用公式可以表达为
@@ -28,15 +24,11 @@ Newton第二定律也被称为{\bf 动力学基本公理}。式\eqref{chapter2:�
 
 在经典力学中，质点的质量是具有可加性的恒正标量，并且不依赖于质点的运动状态。
 
-% \subsection{Newton第三定律}
-
 \begin{law}[Newton第三定律]
 	如果一个质点受到另外一个质点的作用力，则第二个质点也会受到第一个质点的作用力，并且这两个力大小相等，方向沿两质点之间的连线相反。
 \end{law}
 
 Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定律描述了一组质点之间作用力的关系，这使得我们可以进一步讨论质点系的力学性质。在Newton第三定律中描述的一对力，其相等关系和方向关系是瞬时成立的，其改变不需要传播时间，因而属于一种{\bf 超距作用}。
-
-% \subsection{力的独立作用定律}
 
 \begin{law}[力的独立作用定律]
 	如果质点的位置、速度和其他相关物理状态不改变，两个质点之间的相互作用不可能改变其他质点对它们的相互作用。换言之，当质点$m_i(i=1,2,\cdots,n)$作用在某质点上的力为$\boldsymbol{F}_i(i=1,2,\cdots,n)$时，则它们单独作用时产生的加速度$\boldsymbol{a}_i(i=1,2,\cdots,n)$之间可以相加。
@@ -427,12 +419,14 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 \begin{equation}
 	\mbf{v}' = \mbf{v} - \mbf{v}_0,\quad \mbf{a}' = \mbf{a}
 \end{equation}
-由此可以看出相对速度和加速度是Galileo变换下的不变量。经典力学中假设质点的质量是与其运动状态无关的常标量，因此可以根据Newton第二定律得出{\bf 力也是Gelileo变换下的不变量}。
+由此可以看出相对速度和加速度是Galileo变换下的不变量。经典力学中假设质点的质量是与其运动状态无关的常标量，因此可以根据Newton第二定律得出{\bf 力是Gelileo变换下的不变量}。
 
 \begin{figure}[!htb]
 \centering
+\begin{minipage}[t]{0.48\textwidth}
+\centering
 \begin{asy}
-	size(200);
+	size(180);
 	//Galileo变换
 	pair O,x,y,z,v,r;
 	O = (0,0);
@@ -455,7 +449,21 @@ Newton第三定律也被称为{\bf 质点相互作用公理}。Newton第三定�
 \end{asy}
 \caption{Galileo变换}
 \label{chapter2:Galileo变换}
+\end{minipage}
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\begin{asy}
+	size(180);
+	draw(box((0,0), (2,1)));
+	draw(box((1,1), (1.5, 1.5)));
+	draw(Label("$\boldsymbol{a}$", EndPoint), (2,0.5)--(2.5,0.5), Arrow);
+\end{asy}
+\caption{关于非惯性系}
+\label{chapter2:非惯性系中的Newton定律}
+\end{minipage}
 \end{figure}
+
+当参考系不是惯性参考系时，Newton定律也不再成立。例如考虑惯性系中一个光滑方块上叠放了一个小方块，当下方大方块向右进行加速运动时，上方小方块在惯性系中将保持静止，如图\ref{chapter2:非惯性系中的Newton定律}。如果以大方块为参考系，小方块进行向左的加速运动。由此可以看出，在非惯性系中，Newton第一定律不再成立。为了解决这个问题，可以认为力不是这种变换下的不变量，需要在非惯性系中对力附加额外的项以保证Newton第二定律的正确性\footnote{关于非惯性系的更详细内容，可以参见第\ref{chapter7:非惯性系章}章。}。
 
 \section{力系的主矢与主矩}
 
