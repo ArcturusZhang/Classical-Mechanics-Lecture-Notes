@@ -128,7 +128,6 @@
 
 % Blocked theorem environment
 \usepackage[framemethod=TikZ]{mdframed}
-\newcommand{\getthecounter}[1]{\csname the#1\endcsname}
 \newcommand{\newblocktheorem}[3][]{%
 \ifstrempty{#1}%
 {\newcounter{#2}\setcounter{#2}{0}%
@@ -362,7 +361,7 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 
 \input{chapter/vectorial-mechanics/Dynamics.tex}
 
-\part[分析力学]{分析力学\ (Anlaytical Mechanics)}
+\part[分析力学]{分析力学\ (Analytical Mechanics)}
 
 \input{chapter/analytical-mechanics/Constraint.tex}
 

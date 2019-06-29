@@ -32,7 +32,6 @@
 	label("$C$",C,N);
 	draw(Label("$\boldsymbol{r}$",MidPoint,Relative(W),black),m2--m1,red,Arrow);
 	dot(C);
-	//draw(O--m1+(0.2,0),invisible);
 \end{asy}
 \caption{两体问题}
 \label{两体问题}
@@ -90,16 +89,17 @@
 \begin{equation}
 	\dif{\mbf{L}'}{t} = \mbf{M}' = \mbf{r} \times \left(-V'(r) \frac{\mbf{r}}{r}\right) = \mbf{0}
 \end{equation}
-故$\mu$的运动内秉角动量守恒，而且有$\mbf{r} \perp \mbf{L}'$，即$\mu$在垂直于内秉角动量的固定平面内运动。因此相对运动可用平面极坐标系来描述，即取$r,\theta$为广义坐标，则此时的Lagrange函数\footnote{在本章中，Lagrange函数和角动量得符号都是$L$，但角动量是矢量，所以并不会造成混淆。}为
+故$\mu$的运动内秉角动量守恒，而且有$\mbf{r} \perp \mbf{L}'$，即$\mu$在垂直于内秉角动量的固定平面内运动。因此相对运动可用平面极坐标系来描述，即取$r,\theta$为广义坐标，则此时的Lagrange函数\footnote{在本章中，Lagrange函数和角动量得符号都是$L$，但角动量是矢量，其符号为$\boldsymbol{L}$，所以在不造成混淆的情形下，这两个量仍然使用相同的字母来表示。}为
 \begin{equation}
 	L' = \frac12 \mu \left(\dot{r}^2 + r^2 \dot{\theta}^2\right) - V(r)
+	\label{chapter4:相对运动的Lagrange函数}
 \end{equation}
 
 \section{等效势、运动解与轨道方程}
 
 \subsection{运动方程}
 
-根据相对运动的Lagrange函数
+根据相对运动的Lagrange函数\eqref{chapter4:相对运动的Lagrange函数}
 \begin{equation*}
 	L' = \frac12 \mu \left(\dot{r}^2 + r^2 \dot{\theta}^2\right) - V(r)
 \end{equation*}
@@ -408,7 +408,6 @@ Lagrange函数$L'$不显含时间，故
 	label("$E_4$",(0,fr(r3)),W,orange);
 	label("$r$",(7.2,0),E);
 	label("$U$",(0,abs(fr(0.6))),W);
-	//draw((0,0)--(7.9,0),invisible);
 \end{asy}
 \caption{$n>2$的情形}
 \label{n>2的情形}
@@ -454,7 +453,6 @@ Lagrange函数$L'$不显含时间，故
 	label("$E_3$",(0,E3),W,blue);
 	label("$r$",(6,0),E);
 	label("$U$",(0,abs(fr(0.6))),W);
-	//draw((0,0)--(6.9,0),invisible);
 \end{asy}
 \caption{$n=2$的情形（$\alpha>\dfrac{l^2}{2\mu}$）}
 \label{n=2的情形1}
@@ -497,7 +495,6 @@ Lagrange函数$L'$不显含时间，故
 	label("$E_2$",(0,0),W);
 	label("$r$",(6,0),E);
 	label("$U$",(0,abs(fr(0.6))),W);
-	//draw((0,0)--(6.9,0),invisible);
 \end{asy}
 \caption{$n=2$的情形（$\alpha<\dfrac{l^2}{2\mu}$）}
 \label{n=2的情形2}
@@ -583,7 +580,6 @@ Lagrange函数$L'$不显含时间，故
 	label("$U$",(0,ymax),W);
 	fill(box((xmax+0.1,ymax-0.2),(xmax-7.4,ymax-5.8)),black);
 	add(legend(),(xmax,ymax),SW,UnFill);
-	//draw((0,0)--(xmax+0.9,0),invisible);
 \end{asy}
 \caption{距离反比势场势能曲线图}
 \label{距离反比势场势能曲线图}
@@ -599,16 +595,13 @@ Lagrange函数$L'$不显含时间，故
 \end{equation}
 对于引力的情形，在
 \begin{equation}
-	r_m = -\frac{l^2}{\mu \alpha}
+	r_m = -\frac{l^2}{\mu \alpha} > 0
 \end{equation}
 时，等效势有极小值
 \begin{equation}
 	U_{\mathrm{min}} = -\frac{\mu \alpha^2}{2l^2}
 \end{equation}
-对于斥力的情形，等效势没有极值，仍记
-\begin{equation*}
-	r_m = -\frac{l^2}{\mu \alpha}
-\end{equation*}
+对于斥力的情形，等效势没有极值，因此也不存在圆轨道。
 
 当$\alpha<0$时（即引力情形）称为{\bf Kepler问题}。
 
@@ -675,7 +668,18 @@ Lagrange函数$L'$不显含时间，故
 	% p = |r_m| = \frac{l^2}{\mu |\alpha|},\quad e = \sqrt{1+\frac{2El^2}{\mu\alpha^2}}
 % \end{equation}
 
-\begin{figure}[htb]
+%在斥力的情形下，$\alpha>0$，$E>0$，则有$e>1$，轨道为双曲线。
+
+在引力的情形下，$\alpha<0$，按照系统能量的区别可以分为以下4种情况：
+\begin{enumerate}
+	\item 当$E>0$时，$e>1$，轨道为双曲线；
+	\item 当$E=0$时，$e=1$，轨道为拋物线；
+	\item 当$U_{\mathrm{min}}<E<0$时，$0<e<1$，轨道为椭圆；
+	\item 当$E=U_{\mathrm{min}}$时，$e=0$，轨道为圆。
+\end{enumerate}
+各种情形下，轨道的形状如图\ref{各种情形下轨道的形状}所示。
+
+\begin{figure}[!htb]
 \centering
 \begin{asy}
 	size(250);
@@ -706,7 +710,6 @@ Lagrange函数$L'$不显含时间，故
 	e[3] = 2.5;
 	ee = e[3];
 	draw(tmp,graph(xy,-0.6*pi,0.6*pi),blue+linewidth(1bp));
-	//draw(tmp,graph(nxy,-0.34*pi,0.34*pi),purple+linewidth(1bp));
 	draw(tmp,scale(p)*unitcircle,red+linewidth(1bp));
 	draw(tmp,(-100,0)--(100,0));
 	draw(tmp,(0,-100)--(0,100));
@@ -721,29 +724,13 @@ Lagrange函数$L'$不显含时间，故
 	label("$U_{\mathrm{min}}<E<0$",xy(-0.7*pi),SW,green);
 	label("$E=0$",(-0.7*xmax,ymax),N);
 	label("$E>0$",(-0.25*xmax,ymax),N,blue);
-	//label("$\alpha<0$",(-0.25*xmax,-ymax),S,blue);
-	//label("$E>0$",(0.7*xmax,ymax),N,purple);
-	//label("$\alpha>0$",(0.7*xmax,-ymax),S,purple);
 	label("$E=U_{\mathrm{min}}$",relpoint(scale(p)*unitcircle,0.06),E,red);
 \end{asy}
 \caption{各种情形下轨道的形状}
 \label{各种情形下轨道的形状}
 \end{figure}
 
-%在斥力的情形下，$\alpha>0$，$E>0$，则有$e>1$，轨道为双曲线。
-
-在引力的情形下，$\alpha<0$，按照系统能量的区别可以分为以下4种情况：
-\begin{enumerate}
-	\item 当$E>0$时，$e>1$，轨道为双曲线；
-	\item 当$E=0$时，$e=1$，轨道为拋物线；
-	\item 当$U_{\mathrm{min}}<E<0$时，$0<e<1$，轨道为椭圆；
-	\item 当$E=U_{\mathrm{min}}$时，$e=0$，轨道为圆。
-\end{enumerate}
-各种情形下，轨道的形状如图\ref{各种情形下轨道的形状}所示。
-
-当质点沿着轨道运动时，坐标对时间的依赖关系可以用式\eqref{t与r的关系}得到。它可以表示为下面所述的一种方便的参数形式。
-
-首先研究椭圆轨道。对椭圆轨道，质点与力心的最大距离为
+当质点沿着轨道运动时，坐标对时间的依赖关系可以用式\eqref{t与r的关系}得到。它可以表示为下面所述的一种方便的参数形式。首先考虑椭圆轨道。对椭圆轨道，质点与力心的最大距离为
 \begin{equation*}
 	r_{\max} = \frac{p}{1-e}
 \end{equation*}
@@ -962,36 +949,47 @@ Lagrange函数$L'$不显含时间，故
 
 \subsection{Kepler行星运动定律}\label{chapter4:subsection-Kepler行星运动定律}
 
-\begin{itemize}
-	\item {\heiti Kepler第一定律}：行星以太阳为焦点，沿椭圆轨道运动。椭圆轨道的半长轴半短轴分别为
-	\begin{align}
-		a & = \frac12 \left(\frac{p}{1+e}+\frac{p}{1-e}\right) = \frac{|\alpha|}{2|E|} \\
-		b & = \frac{p}{\sqrt{1-e^2}} = \frac{l}{\sqrt{2\mu|E|}}
-	\end{align}
-	由此可得，能量取决于长轴，与形状无关；长轴相同，短轴长的轨道角动量大。
-	\item {\heiti Kepler第二定律}：太阳与行星连线的扫面速度为常量。即
+\begin{theorem}[Kepler第一定律]
+	行星以太阳为焦点，沿椭圆轨道运动。
+\end{theorem}
+
+实际上，通过前面几节中对轨道方程的求解，我们还知道椭圆轨道的半长轴半短轴分别为
+\begin{align}
+	a & = \frac12 \left(\frac{p}{1+e}+\frac{p}{1-e}\right) = \frac{|\alpha|}{2|E|} \\
+	b & = \frac{p}{\sqrt{1-e^2}} = \frac{l}{\sqrt{2\mu|E|}}
+\end{align}
+由此可得，能量取决于长轴，与形状无关；长轴相同，短轴长的轨道角动量大。
+
+\begin{theorem}[Kepler第二定律]
+	太阳与行星连线的扫面速度为常量，此处扫面速度定义为
 	\begin{equation*}
-		\mathrm{d} \mbf{S} = \frac12 \mbf{r} \times \mathrm{d} \mbf{r}
+		\frac{\mathd \boldsymbol{S}}{\mathd t} = \frac12 \mbf{r} \times \frac{\mathd\boldsymbol{r}}{\mathd t} = \frac{\mbf{L}}{2\mu} = \text{常矢量}
 	\end{equation*}
-	因此
+\end{theorem}
+
+Kepler第二定律即为角动量守恒的另外一种表述。
+
+\begin{theorem}[Kepler第三定律]
+	行星公转周期的平方正比于椭圆半长轴的立方，即
 	\begin{equation}
-		\frac{\mathrm{d} \mbf{S}}{\mathrm{d} t} = \frac12 \mbf{r} \times \mbf{v} = \frac{\mbf{L}}{2\mu} = \text{常矢量}
+		\frac{T^2}{a^3} = \text{常数}
 	\end{equation}
-	\item {\heiti Kepler第三定律}：行星公转周期的平方正比于椭圆半长轴的立方。根据第二定律中求出的面积速度，可以求出行星公转的周期
-	\begin{equation}
-		T = \frac{\pi ab}{\dfrac{l}{2\mu}} = \pi |\alpha| \sqrt{\frac{\mu}{2|E|^3}} = \pi \sqrt{\frac{4\mu a^3}{|\alpha|}}
-	\end{equation}
-	由此即
-	\begin{equation}
-		\frac{T^2}{a^3} = \frac{4\pi^2 \mu}{|\alpha|}
-		\label{chapter4:Kepler第三定律1}
-	\end{equation}
-	此处$\mu=\dfrac{Mm}{M+m}$，根据万有引力定律，$\alpha=-GMm$，其中$G$为万有引力常数。所以有
-	\begin{equation}
-		\frac{T^2}{a^3} = \frac{4\pi^2}{G(M+m)} \approx \frac{4\pi^2}{GM} \quad (M\gg m)
-	\end{equation}
-	Kepler第三定律指出，比值$\dfrac{T^2}{a^3}$是一个仅与中心天体性质相关的常数，这实际上仅在中心天体的质量远大于行星的质量$M\gg m$时能够成立。
-\end{itemize}
+\end{theorem}
+
+根据第二定律中求出的面积速度，可以求出行星公转的周期
+\begin{equation}
+	T = \frac{\pi ab}{l/(2\mu)} = \pi |\alpha| \sqrt{\frac{\mu}{2|E|^3}} = \pi \sqrt{\frac{4\mu a^3}{|\alpha|}}
+\end{equation}
+由此即
+\begin{equation}
+	\frac{T^2}{a^3} = \frac{4\pi^2 \mu}{|\alpha|}
+	\label{chapter4:Kepler第三定律1}
+\end{equation}
+此处$\mu=\dfrac{Mm}{M+m}$，根据万有引力定律，$\alpha=-GMm$，其中$G$为万有引力常数。所以有
+\begin{equation}
+	\frac{T^2}{a^3} = \frac{4\pi^2}{G(M+m)} \approx \frac{4\pi^2}{GM} \quad (M\gg m)
+\end{equation}
+因此Kepler第三定律是当中心天体的质量远大于行星的质量$M\gg m$时成立的一个近似定律。
 
 \section{粒子弹性散射}
 
@@ -1055,7 +1053,6 @@ Lagrange函数$L'$不显含时间，故
 	draw(tmp,arc(O,v,0,theta),dashed);
 	label(tmp,"$\theta$",O,5*dir(theta/2));
 	add(shift(O1)*tmp);
-	//draw((0,0)--(6.7,0),invisible);
 \end{asy}
 \caption{质心坐标系中的散射}
 \label{质心坐标系中的散射}
@@ -1088,7 +1085,6 @@ Lagrange函数$L'$不显含时间，故
 	draw(Label("$\theta$",MidPoint,Relative(E)),arc(O,0.3,0,theta),Arrow);
 	draw(Label("$\mathnormal{\Theta}_1$",MidPoint,Relative(E)),arc(V*dir(180),0.3,0,degrees(v1*dir(theta)-V*dir(180))),Arrow);
 	draw(Label("$\mathnormal{\Theta}_2$",MidPoint,Relative(W)),arc(V*dir(180),0.2,360,degrees(V*dir(180+theta)-V*dir(180))),Arrow);
-	//draw(O--(3,0),invisible);
 \end{asy}
 \caption{静止靶粒子情形下的速度}
 \label{静止靶粒子情形下的速度}
@@ -1312,7 +1308,7 @@ Lagrange函数$L'$不显含时间，故
 \end{equation*}
 其中$\mathnormal{\Theta}_1$满足
 \begin{equation*}
-	\tan \mathnormal{\Theta}_1 = \frac{\sin \theta}{\frac{m_1}{m_2} + \cos \theta}
+	\tan \mathnormal{\Theta}_1 = \frac{\sin \theta}{m_1/m_2 + \cos \theta}
 \end{equation*}
 在实验中，可实际测量的量为$\displaystyle \mathnormal{\Sigma}_1(\mathnormal{\Theta}_1)$。
 
@@ -1328,7 +1324,7 @@ Coulomb势可以表示为
 \begin{equation*}
 	V = \frac{\alpha}{r},\quad \alpha > 0
 \end{equation*}
-此时$r_{\mathrm{min}}$满足
+这里只考虑了斥力情形。此时$r_{\mathrm{min}}$满足
 \begin{equation*}
 	1-  \frac{\alpha}{E r_{\mathrm{min}}} - \frac{b^2}{r_{\mathrm{min}}^2} = 0
 \end{equation*}
