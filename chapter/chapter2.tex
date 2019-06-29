@@ -25,11 +25,19 @@
 将上式两端点乘虚位移$\delta\mbf{r}_i$之后对$i$求和，可得
 \begin{equation}
 	\sum_{i=1}^n(\mbf{F}_i - m_i \ddot{\mbf{r}}_i) \cdot \delta \mbf{r}_i = 0
-	\label{chapter2:d'Alambert-Lagrange原理}
+	\label{chapter2:d'Alambert-Lagrange原理0}
 \end{equation}
-式\eqref{chapter2:d'Alambert-Lagrange原理}为相应于主动力$\mbf{F}_i$的理想约束允许的系统运动的充分必要条件，称为{\bf 动力学普遍方程}或{\bf d'Alambert-Lagrange微分变分原理}\footnote{或者简称为{\bf d'Alambert原理}。}。相应于主动力的名字，式\eqref{chapter2:d'Alambert-Lagrange原理}左端的$-m_i\ddot{\mbf{r}}_i$项称为{\bf 惯性力}，据此，d'Alambert-Lagrange微分变分原理可以表述为：在给定时刻的所有可能运动中，只有真实运动使主动力和惯性力在任意虚位移上的虚功等于零。
+式\eqref{chapter2:d'Alambert-Lagrange原理0}为相应于主动力$\mbf{F}_i$的理想约束允许的系统运动的充分必要条件，称为{\bf 动力学普遍方程}或{\bf d'Alambert-Lagrange微分变分原理}。
 
-动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}是在理想约束假设\eqref{chapter2:理想约束假设-重写}下得到的。如果全部或者部分约束反力$\mbf{G}_i$不满足式\eqref{chapter2:理想约束假设-重写}，可以在主动力中附加$\mbf{G}_i$，将方程\eqref{chapter2:d'Alambert-Lagrange原理}改写为
+\begin{theorem}[d'Alambert-Lagrange微分变分原理]
+	系统在给定时刻的所有可能运动中，只有真实运动使主动力和惯性力之和在任意虚位移上的虚功等于零，即
+	\begin{equation}
+		\sum_{i=1}^n(\mbf{F}_i - m_i \ddot{\mbf{r}}_i) \cdot \delta \mbf{r}_i = 0
+		\label{chapter2:d'Alambert-Lagrange原理}
+	\end{equation}
+\end{theorem}
+
+相应于主动力的名字，式\eqref{chapter2:d'Alambert-Lagrange原理0}左端的$-m_i\ddot{\mbf{r}}_i$项称为{\bf 惯性力}。动力学普遍方程\eqref{chapter2:d'Alambert-Lagrange原理}是在理想约束假设\eqref{chapter2:理想约束假设-重写}下得到的。如果全部或者部分约束反力$\mbf{G}_i$不满足式\eqref{chapter2:理想约束假设-重写}，可以在主动力中附加$\mbf{G}_i$，将方程\eqref{chapter2:d'Alambert-Lagrange原理}改写为
 \begin{equation}
 	\sum_{i=1}^n (\mbf{F}_i+\mbf{G}_i-m_i\ddot{\mbf{r}}_i)\cdot \delta \mbf{r}_i = 0\quad (i=1,2,\cdots,n)
 	\label{chapter2:考虑了非理想约束的d'Alambert-Lagrange原理}
