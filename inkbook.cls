@@ -314,36 +314,36 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 \newpage
 \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
-\renewcommand*{\maketitle}{
-	\renewcommand{\and}{\quad}
-	\let\footnotesize\small
-	%\let\footnoterule\hrule\vspace{5pt}
-	\let \footnote \thanks
-	\thispagestyle{empty}
-	\vspace*{50pt}
-	\begin{flushright}
-	\begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}
-	\cellcolor{black} &\cellcolor{covercolor}\textcolor{white}
-	\newline\heiti\LARGE \@title \par
-	\end{tabular}
-	\vspace*{50pt}
+% \renewcommand*{\maketitle}{
+% 	\renewcommand{\and}{\quad}
+% 	\let\footnotesize\small
+% 	%\let\footnoterule\hrule\vspace{5pt}
+% 	\let \footnote \thanks
+% 	\thispagestyle{empty}
+% 	\vspace*{50pt}
+% 	\begin{flushright}
+% 	\begin{tabular}{p{0.01\textwidth}p{0.98\textwidth}}
+% 	\cellcolor{black} &\cellcolor{covercolor}\textcolor{white}
+% 	\newline\heiti\LARGE \@title \par
+% 	\end{tabular}
+% 	\vspace*{50pt}
 
-	{\heiti\Large \@author \par}
-	{\heiti\Large \@date \par}
-	\end{flushright}
-	\@thanks
-	\cleardoublepage
-\global\let\thanks\relax
-\global\let\maketitle\relax
-\global\let\@thanks\@empty 
-\global\let\@author\@empty
-\global\let\@date\@empty
-\global\let\@title\@empty
-\global\let\title\relax
-\global\let\author\relax
-\global\let\date\relax
-\global\let\and\relax
-}
+% 	{\heiti\Large \@author \par}
+% 	{\heiti\Large \@date \par}
+% 	\end{flushright}
+% 	\@thanks
+% 	\cleardoublepage
+% \global\let\thanks\relax
+% \global\let\maketitle\relax
+% \global\let\@thanks\@empty 
+% \global\let\@author\@empty
+% \global\let\@date\@empty
+% \global\let\@title\@empty
+% \global\let\title\relax
+% \global\let\author\relax
+% \global\let\date\relax
+% \global\let\and\relax
+% }
 \makeatother
 
 %在插图目录图编号前加上“图”
